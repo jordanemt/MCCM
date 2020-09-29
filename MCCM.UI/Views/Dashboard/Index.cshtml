@@ -3,12 +3,18 @@
     ViewBag.Title = "Dashboard";
 }
 
+
+<link href="~/Content/Dashdboard.css" rel="stylesheet" type="text/css" />
+
 <div class="col-sm-12" id="dashboard-container">
 
     <div class="col-sm-2 dashboard-child">
 
         <div class="panel panel-default" style="height: 70%">
-            <div class="panel-heading">Casos</div>
+            <div class="panel-heading">
+                <div>Casos</div>
+                <div><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></div>
+            </div>
             <div class="panel-body" style="overflow-y: scroll" id="casos-container">
 
             </div>
@@ -26,33 +32,101 @@
     <div class="col-sm-10 dashboard-child">
 
         <div class="panel panel-default" style="height: 100%">
-            <div class="panel-heading">Nombre del Caso</div>
-            <div class="panel-body" id="pestanna-panel" style="height: 100%; flex-direction: row">
+            <div class="panel-heading">
+
+                <div>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb" style="margin: 0 0; padding: 0 0;">
+                            <li class="breadcrumb-item"><a class="nav-link active" href="#" onclick="changeVisiblePestannaBody('pestanna-1-panel-body');">Pestaña #1</a></li>
+                            <li class="breadcrumb-item"><a class="nav-link" href="#" onclick="changeVisiblePestannaBody('pestanna-2-panel-body');">Pestaña #2</a></li>
+                            <li class="breadcrumb-item"><a class="nav-link" href="#" onclick="changeVisiblePestannaBody('reporte-panel-body');">Generar reporte</a></li>
+                        </ol>
+                    </nav>
+                </div>
+
+                <div>
+                    <a style="text-decoration: none;" href="https://www.teletica.com/vivo?canal=teletica7" target="_blank">Teletica</a>
+                    <a style="text-decoration: none;" href="https://www.repretel.com/envivo-canal6/" target="_blank">Repretel</a>
+                </div>
+
+            </div>
+
+            <div class="panel-body" id="pestanna-1-panel-body" style="height: 100%;">
 
                 <div class="panel panel-info col-sm-4" style="height: 100%">
-                    <div class="panel-heading">Bitácora</div>
+                    <div class="panel-heading">
+                        <div>Bitácora</div>
+                        <div><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></div>
+                    </div>
                     <div class="panel-body" style="overflow-y: scroll" id="bitacora-container">
 
                     </div>
                 </div>
 
                 <div class="panel panel-info col-sm-4" style="height: 100%">
-                    <div class="panel-heading">Entidades</div>
+                    <div class="panel-heading">
+                        <div>Entidades</div>
+                        <div><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></div>
+                    </div>
                     <div class="panel-body" style="overflow-y: scroll" id="entidades-container">
 
                     </div>
                 </div>
 
                 <div class="panel panel-info col-sm-4" style="height: 100%">
-                    <div class="panel-heading">Tareas</div>
+                    <div class="panel-heading">
+                        <div>Tareas</div>
+                        <div><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></div>
+                    </div>
                     <div class="panel-body" style="overflow-y: scroll" id="tareas-container">
 
                     </div>
                 </div>
 
             </div>
+
+            <div class="panel-body" id="pestanna-2-panel-body" style="height: 100%;">
+
+                <div class="panel panel-info col-sm-4" style="height: 100%">
+                    <div class="panel-heading">
+                        <div>Gastos Operativos</div>
+                        <div><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></div>
+                    </div>
+                    <div class="panel-body" style="overflow-y: scroll" id="bitacora-container">
+
+                    </div>
+                </div>
+
+                <div class="panel panel-info col-sm-4" style="height: 100%">
+                    <div class="panel-heading">
+                        <div>Personal</div>
+                        <div><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></div>
+                    </div>
+                    <div class="panel-body" style="overflow-y: scroll" id="entidades-container">
+
+                    </div>
+                </div>
+
+                <div class="panel panel-info col-sm-4" style="height: 100%">
+                    <div class="panel-heading">
+                        <div>Vehículos</div>
+                        <div><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></div>
+                    </div>
+                    <div class="panel-body" style="overflow-y: scroll" id="tareas-container">
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="panel-body" id="reporte-panel-body" style="height: 100%;">
+
+            </div>
+
         </div>
 
     </div>
 
 </div>
+
+<script src="~/Scripts/Dashboard.js"></script>

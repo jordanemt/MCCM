@@ -1,5 +1,6 @@
 C:\Users\Jordan\source\repos\MCCM\MCCM.Entidad\bin\Debug\MCCM.Entidad.dll
 C:\Users\Jordan\source\repos\MCCM\MCCM.Entidad\bin\Debug\MCCM.Entidad.pdb
+C:\Users\Jordan\source\repos\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.csprojAssemblyReference.cache
 C:\Users\Jordan\source\repos\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.csproj.CoreCompileInputs.cache
 C:\Users\Jordan\source\repos\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.dll
 C:\Users\Jordan\source\repos\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.pdb
