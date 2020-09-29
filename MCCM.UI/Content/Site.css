@@ -1,12 +1,12 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 60px;
     padding-bottom: 20px;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 3vw;
+    padding-right: 3vw;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -21,4 +21,40 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+.panel {
+    padding: 0 0;
+}
+
+
+@media (min-width: 768px) {
+    #dashboard-container {
+        height: 75vh;
+        display: flex;
+    }
+
+    .dashboard-child {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        height: 100%;
+        margin: 0 5px;
+        padding: 0 0;
+    }
+
+    .panel {
+        display: flex;
+        flex-direction: column;
+        padding: 0 0;
+        margin: 0 0;
+    }
+
+    .panel-body {
+        display: flex;
+        flex-direction: column;
+        padding: 0 0;
+        margin: 0 0;
+    }
+
 }
