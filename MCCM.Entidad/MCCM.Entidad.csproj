@@ -31,8 +31,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,7 +50,155 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MCCMModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MCCMModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MCCMModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MCCMModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MCCMModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TMCCM_Caso.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TMCCM_C_Arma_Icono_Arma.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TMCCM_C_Arma_Marca.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TMCCM_C_Arma_Tipo_Arma.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TMCCM_C_Droga_Tipo_Droga.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TMCCM_C_Gasto_Tipo_Gasto.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TMCCM_C_Persona_Genero.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TMCCM_C_Persona_Icono_Persona.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TMCCM_C_Persona_Nacionalidad.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TMCCM_C_Persona_Sexo.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TMCCM_C_Persona_Tipo_Identificacion.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TMCCM_C_Telefono_Empresa_Telefonica.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TMCCM_C_Telefono_Icono_Telefono.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TMCCM_C_Ubicacion_Canton.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TMCCM_C_Ubicacion_Distrito.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TMCCM_C_Ubicacion_Provincia.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TMCCM_C_Ubicacion_Tipo_Ubicacion.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TMCCM_C_Vehiculo_Color.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TMCCM_C_Vehiculo_Icono.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TMCCM_C_Vehiculo_Marca.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TMCCM_Entidad_Arma.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TMCCM_Entidad_Droga.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TMCCM_Entidad_Persona.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TMCCM_Entidad_Telefono.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TMCCM_Entidad_Ubicacion.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TMCCM_Entidad_Vehiculo.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TMCCM_Evento.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TMCCM_Gasto.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TMCCM_Grupo.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TMCCM_Grupo_Usuario.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TMCCM_Grupo_Vehiculo.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TMCCM_Rol.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TMCCM_Tarea.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TMCCM_Usuario.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TMCCM_Vehiculo.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="MCCMModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MCCMModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="MCCMModel.edmx.diagram">
+      <DependentUpon>MCCMModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MCCMModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MCCMModel.Context.cs</LastGenOutput>
+      <DependentUpon>MCCMModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="MCCMModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MCCMModel.edmx</DependentUpon>
+      <LastGenOutput>MCCMModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
