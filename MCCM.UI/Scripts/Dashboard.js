@@ -1,7 +1,9 @@
 ﻿function changeVisiblePestannaBody(name) {
-    $("#pestanna-1-panel-body").css("visibility", "collapse");
-    $("#pestanna-2-panel-body").css("visibility", "collapse");
-    $("#reporte-panel-body").css("visibility", "collapse");
+    $("#pestanna-1-body").hide();
+    $("#pestanna-2-body").hide();
+    $("#reporte-body").hide();
 
-    $('#' + name).css("visibility", "visible");
+    $('#' + name).show();
 }
+
+changeVisiblePestannaBody('pestanna-1-body');
