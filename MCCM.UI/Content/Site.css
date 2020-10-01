@@ -1,12 +1,6 @@
-﻿body {
-    padding-top: 60px;
-    padding-bottom: 20px;
-}
-
-/* Set padding to keep content from hitting the edges */
+﻿/* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 3vw;
-    padding-right: 3vw;
+    padding: 3vh 3vw;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 

@@ -3,43 +3,46 @@
     ViewBag.Title = "Dashboard";
 }
 
-
 <link href="~/Content/Dashdboard.css" rel="stylesheet" type="text/css" />
 
 <div class="col-sm-12" id="dashboard-container">
 
-    <div class="col-sm-2 dashboard-child">
+    <div class="col-md-2 dashboard-child" style="margin: 0 0">
 
-        <div class="panel panel-default" style="height: 70%">
-            <div class="panel-heading">
+        <div class="card border-light mb-3" style="height: 70%;">
+            <div class="card-header">
                 <div>Casos</div>
-                <div><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></div>
+                <div><span><i class="fa fa-plus"></i></span></div>
             </div>
-            <div class="panel-body" style="overflow-y: scroll" id="casos-container">
+            <div class="card-body" style="overflow-y: scroll">
 
             </div>
         </div>
 
-        <div class="panel panel-default" style="height: 30%">
-            <div class="panel-heading">Mando</div>
-            <div class="panel-body" id="mando-container">
-                
+        <div class="card border-light mb-3" style="height: 30%;">
+            <div class="card-header">
+                <div>Mando</div>
+                <div><span><i class="fa fa-plus"></i></span></div>
+            </div>
+            <div class="card-body">
+
             </div>
         </div>
 
     </div>
 
-    <div class="col-sm-10 dashboard-child">
+    <div class="col-md-10 dashboard-child" style="margin: 0 0">
 
-        <div class="panel panel-default" style="height: 100%">
-            <div class="panel-heading">
+        <div class="card border-light mb-3" style="height: 100%">
+            <div class="card-header">
 
+                @*Pestannas nav*@
                 <div>
                     <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb" style="margin: 0 0; padding: 0 0;">
-                            <li class="breadcrumb-item"><a class="nav-link active" href="#" onclick="changeVisiblePestannaBody('pestanna-1-panel-body');">Pestaña #1</a></li>
-                            <li class="breadcrumb-item"><a class="nav-link" href="#" onclick="changeVisiblePestannaBody('pestanna-2-panel-body');">Pestaña #2</a></li>
-                            <li class="breadcrumb-item"><a class="nav-link" href="#" onclick="changeVisiblePestannaBody('reporte-panel-body');">Generar reporte</a></li>
+                        <ol class="breadcrumb" style="margin: 0; padding: 0 0;">
+                            <li class="breadcrumb-item"><a class="nav-link" href="#" style="padding: 0 0;" onclick="changeVisiblePestannaBody('pestanna-1-body');">Pestaña #1</a></li>
+                            <li class="breadcrumb-item"><a class="nav-link" href="#" style="padding: 0 0;" onclick="changeVisiblePestannaBody('pestanna-2-body');">Pestaña #2</a></li>
+                            <li class="breadcrumb-item"><a class="nav-link" href="#" style="padding: 0 0;" onclick="changeVisiblePestannaBody('reporte-body');">Generar reporte</a></li>
                         </ol>
                     </nav>
                 </div>
@@ -51,75 +54,78 @@
 
             </div>
 
-            <div class="panel-body" id="pestanna-1-panel-body" style="height: 100%;">
+            @*Pestanna #1 Body*@
+            <div class="card-body pestanna-body" id="pestanna-1-body">
 
-                <div class="panel panel-info col-sm-4" style="height: 100%">
-                    <div class="panel-heading">
+                <div class="card border-light mb-3 col-md-4" style="height: 100%; margin: 0 0; padding: 0 0;">
+                    <div class="card-header">
                         <div>Bitácora</div>
-                        <div><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></div>
+                        <div><span><i class="fa fa-plus"></i></span></div>
                     </div>
-                    <div class="panel-body" style="overflow-y: scroll" id="bitacora-container">
+                    <div class="card-body" style="overflow-y: scroll">
 
                     </div>
                 </div>
 
-                <div class="panel panel-info col-sm-4" style="height: 100%">
-                    <div class="panel-heading">
+                <div class="card border-light mb-3 col-md-4" style="height: 100%; margin: 0 0; padding: 0 0;">
+                    <div class="card-header">
                         <div>Entidades</div>
-                        <div><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></div>
+                        <div><span><i class="fa fa-plus"></i></span></div>
                     </div>
-                    <div class="panel-body" style="overflow-y: scroll" id="entidades-container">
+                    <div class="card-body" style="overflow-y: scroll">
 
                     </div>
                 </div>
 
-                <div class="panel panel-info col-sm-4" style="height: 100%">
-                    <div class="panel-heading">
+                <div class="card border-light mb-3 col-md-4" style="height: 100%; margin: 0 0; padding: 0 0;">
+                    <div class="card-header">
                         <div>Tareas</div>
-                        <div><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></div>
+                        <div><span><i class="fa fa-plus"></i></span></div>
                     </div>
-                    <div class="panel-body" style="overflow-y: scroll" id="tareas-container">
+                    <div class="card-body" style="overflow-y: scroll">
 
                     </div>
                 </div>
 
             </div>
 
-            <div class="panel-body" id="pestanna-2-panel-body" style="height: 100%;">
+            @*Pestanna #2 Body*@
+            <div class="card-body pestanna-body" id="pestanna-2-body">
 
-                <div class="panel panel-info col-sm-4" style="height: 100%">
-                    <div class="panel-heading">
+                <div class="card border-light mb-3 col-md-4" style="height: 100%; margin: 0 0; padding: 0 0;">
+                    <div class="card-header">
                         <div>Gastos Operativos</div>
-                        <div><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></div>
+                        <div><span><i class="fa fa-plus"></i></span></div>
                     </div>
-                    <div class="panel-body" style="overflow-y: scroll" id="bitacora-container">
+                    <div class="card-body" style="overflow-y: scroll">
 
                     </div>
                 </div>
 
-                <div class="panel panel-info col-sm-4" style="height: 100%">
-                    <div class="panel-heading">
+                <div class="card border-light mb-3 col-md-4" style="height: 100%; margin: 0 0; padding: 0 0;">
+                    <div class="card-header">
                         <div>Personal</div>
-                        <div><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></div>
+                        <div><span><i class="fa fa-plus"></i></span></div>
                     </div>
-                    <div class="panel-body" style="overflow-y: scroll" id="entidades-container">
+                    <div class="card-body" style="overflow-y: scroll">
 
                     </div>
                 </div>
 
-                <div class="panel panel-info col-sm-4" style="height: 100%">
-                    <div class="panel-heading">
+                <div class="card border-light mb-3 col-md-4" style="height: 100%; margin: 0 0; padding: 0 0;">
+                    <div class="card-header">
                         <div>Vehículos</div>
-                        <div><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></div>
+                        <div><span><i class="fa fa-plus"></i></span></div>
                     </div>
-                    <div class="panel-body" style="overflow-y: scroll" id="tareas-container">
+                    <div class="card-body" style="overflow-y: scroll">
 
                     </div>
                 </div>
 
             </div>
 
-            <div class="panel-body" id="reporte-panel-body" style="height: 100%;">
+            @*Reporte Body*@
+            <div class="card-body pestanna-body" id="reporte-body">
 
             </div>
 
