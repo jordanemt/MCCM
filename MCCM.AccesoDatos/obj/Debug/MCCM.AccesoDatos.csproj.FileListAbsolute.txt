@@ -1,12 +1,10 @@
-C:\Users\Jordan\source\repos\MCCM\MCCM.AccesoDatos\bin\Debug\MCCM.AccesoDatos.dll.config
 C:\Users\Jordan\source\repos\MCCM\MCCM.AccesoDatos\bin\Debug\MCCM.AccesoDatos.dll
 C:\Users\Jordan\source\repos\MCCM\MCCM.AccesoDatos\bin\Debug\MCCM.AccesoDatos.pdb
-C:\Users\Jordan\source\repos\MCCM\MCCM.AccesoDatos\bin\Debug\EntityFramework.dll
-C:\Users\Jordan\source\repos\MCCM\MCCM.AccesoDatos\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Jordan\source\repos\MCCM\MCCM.AccesoDatos\bin\Debug\MCCM.Entidad.dll
+C:\Users\Jordan\source\repos\MCCM\MCCM.AccesoDatos\bin\Debug\EntityFramework.dll
 C:\Users\Jordan\source\repos\MCCM\MCCM.AccesoDatos\bin\Debug\MCCM.Entidad.pdb
+C:\Users\Jordan\source\repos\MCCM\MCCM.AccesoDatos\bin\Debug\MCCM.Entidad.dll.config
 C:\Users\Jordan\source\repos\MCCM\MCCM.AccesoDatos\bin\Debug\EntityFramework.xml
-C:\Users\Jordan\source\repos\MCCM\MCCM.AccesoDatos\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Jordan\source\repos\MCCM\MCCM.AccesoDatos\obj\Debug\MCCM.AccesoDatos.csprojAssemblyReference.cache
 C:\Users\Jordan\source\repos\MCCM\MCCM.AccesoDatos\obj\Debug\MCCM.AccesoDatos.csproj.CoreCompileInputs.cache
 C:\Users\Jordan\source\repos\MCCM\MCCM.AccesoDatos\obj\Debug\MCCM.AccesoDatos.csproj.CopyComplete

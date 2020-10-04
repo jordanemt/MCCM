@@ -64,7 +64,9 @@ C:\Users\Jordan\source\repos\MCCM\MCCM.UI\bin\System.Web.WebPages.Deployment.dll
 C:\Users\Jordan\source\repos\MCCM\MCCM.UI\bin\System.Web.WebPages.dll
 C:\Users\Jordan\source\repos\MCCM\MCCM.UI\bin\System.Web.WebPages.Razor.dll
 C:\Users\Jordan\source\repos\MCCM\MCCM.UI\bin\WebGrease.dll
+C:\Users\Jordan\source\repos\MCCM\MCCM.UI\bin\EntityFramework.dll
 C:\Users\Jordan\source\repos\MCCM\MCCM.UI\bin\MCCM.Entidad.pdb
+C:\Users\Jordan\source\repos\MCCM\MCCM.UI\bin\MCCM.Entidad.dll.config
 C:\Users\Jordan\source\repos\MCCM\MCCM.UI\bin\MCCM.ReglasNegocio.pdb
 C:\Users\Jordan\source\repos\MCCM\MCCM.UI\bin\System.Web.Helpers.xml
 C:\Users\Jordan\source\repos\MCCM\MCCM.UI\bin\System.Web.Mvc.xml
@@ -76,6 +78,7 @@ C:\Users\Jordan\source\repos\MCCM\MCCM.UI\bin\System.Web.WebPages.Razor.xml
 C:\Users\Jordan\source\repos\MCCM\MCCM.UI\bin\Newtonsoft.Json.xml
 C:\Users\Jordan\source\repos\MCCM\MCCM.UI\bin\Antlr3.Runtime.pdb
 C:\Users\Jordan\source\repos\MCCM\MCCM.UI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Jordan\source\repos\MCCM\MCCM.UI\bin\EntityFramework.xml
 C:\Users\Jordan\source\repos\MCCM\MCCM.UI\obj\Debug\MCCM.UI.csprojAssemblyReference.cache
 C:\Users\Jordan\source\repos\MCCM\MCCM.UI\obj\Debug\MCCM.UI.csproj.CoreCompileInputs.cache
 C:\Users\Jordan\source\repos\MCCM\MCCM.UI\obj\Debug\MCCM.UI.csproj.CopyComplete
