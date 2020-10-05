@@ -4,6 +4,12 @@
 
 <link href="~/Content/Dashdboard.css" rel="stylesheet" type="text/css" />
 
+<style>
+    .filaseleccionada {
+        background-color: cornflowerblue;
+    }
+</style>
+
 <div class="col-sm-12" id="dashboard-container">
 
     <div class="col-md-2 dashboard-child" style="margin: 0 0">
@@ -11,12 +17,15 @@
         <div class="card border-light mb-3" style="height: 70%;">
             <div class="card-header">
                 <div>Casos</div>
-                <div><a href="#"><span><i class="fa fa-plus"></i></span></a></div>
+                
+                <div><a href="#"><span><i class="fa fa-plus" data-toggle="modal" data-target="#ModalFormCaso"></i></span></a></div>
             </div>
             <div class="card-body" id="casos-body" style="overflow-y: scroll">
 
             </div>
         </div>
+
+
 
         <div class="card border-light mb-3" style="height: 30%;">
             <div class="card-header">
@@ -208,3 +217,6 @@ function seleccionEntidad() {
 @Html.Partial("EntidadArma")
 @Html.Partial("EntidadDroga")
 @Html.Partial("EntidadPersonaJuridica")
+<script src="~/Scripts/Dashboard.js"></script>
+
+@Html.Partial("_ModalCasoInsert")
