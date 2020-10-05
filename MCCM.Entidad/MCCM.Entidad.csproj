@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\TMCCM_CasoDTO.cs" />
     <Compile Include="MCCMModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -90,6 +91,12 @@
     <Compile Include="TMCCM_C_Persona_Icono_Persona.cs">
       <DependentUpon>MCCMModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="TMCCM_C_Persona_Juridica_Icono_Persona_Juridica.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TMCCM_C_Persona_Juridica_Tipo_Organización.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="TMCCM_C_Persona_Nacionalidad.cs">
       <DependentUpon>MCCMModel.tt</DependentUpon>
     </Compile>
@@ -117,6 +124,9 @@
     <Compile Include="TMCCM_C_Ubicacion_Tipo_Ubicacion.cs">
       <DependentUpon>MCCMModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="TMCCM_C_Vehiculo_Clase.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="TMCCM_C_Vehiculo_Color.cs">
       <DependentUpon>MCCMModel.tt</DependentUpon>
     </Compile>
@@ -133,6 +143,9 @@
       <DependentUpon>MCCMModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TMCCM_Entidad_Persona.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TMCCM_Entidad_Persona_Juridica.cs">
       <DependentUpon>MCCMModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TMCCM_Entidad_Telefono.cs">

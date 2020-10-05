@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Dashboard";
 }
 
@@ -75,14 +74,30 @@
 
                     </div>
                 </div>
-
                 <div class="card border-light mb-3 col-md-4" style="height: 100%; margin: 0 0; padding: 0 0;">
                     <div class="card-header">
                         <div>Entidades</div>
-                        <div><a href="#"><span><i class="fa fa-plus"></i></span></a></div>
+                        <div>
+                            <a href="#" onclick="seleccionEntidad()"><span><i class="fa fa-plus"></i></span></a>
+                        </div>
                     </div>
-                    <div class="card-body" id="entidades-body" style="overflow-y: scroll">
+                    <div class="card border-light" style="height: 100%; margin: 0 0; padding: 0 0;">
+                        <div class="card-header">
+                            <div id="botones" class="nav nav-tabs card-header-tabs">
+                                <input type="hidden" id="custId" name="custId" value="0">
+                                <a class="nav-item nav-link active fa fa-user" id="entidadPersona" data-toggle="tab" href="#" role="tab" aria-controls="nav-home" aria-selected="true" onclick="seleccionado('1')"></a>
+                                <a class="nav-item nav-link fa fa-building" id="entidadPersonaJuridica" data-toggle="tab" href="#" role="tab" aria-controls="nav-profile" aria-selected="false" onclick="seleccionado('2')"></a>
+                                <a class="nav-item nav-link fa fa-car" id="entidadCarro" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('3')"></a>
+                                <a class="nav-item nav-link fa fa-map-marker" id="nav-contact-tab" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('4')"></a>
+                                <a class="nav-item nav-link fa fa-phone" id="nav-contact-tab" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('5')"></a>
+                                <a class="nav-item nav-link fa fa-bomb" id="nav-contact-tab" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('6')"></a>
+                                <a class="nav-item nav-link fa fa-magic" id="nav-contact-tab" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('7')"></a>
 
+                            </div>
+                        </div>
+                        <div class="card-body" id="entidades-body" style="overflow-y: scroll">
+
+                        </div>
                     </div>
                 </div>
 
@@ -144,6 +159,62 @@
 
 </div>
 
-<script src="~/Scripts/Dashboard.js"></script>
 
+
+<script src="~/Scripts/Dashboard.js">
+
+
+</script>
+<script type="text/javascript">
+
+ @*Metodo para cambiar variable global hidden*@
+function seleccionado(seleccion) {
+    var global = document.getElementById('custId').value;
+
+    if (seleccion !== global) {
+        document.getElementById('custId').value = seleccion;
+    }
+}
+
+ @*Metodo para seleccionar la entidad*@
+function seleccionEntidad() {
+    var global = document.getElementById('custId').value;
+
+    if (global == 1) {
+
+        $('#entidadPersonaModal').modal('show');
+    }
+    if (global == 2) {
+
+        $('#entidadPersonaJuridicaModal').modal('show');
+    }
+    if (global == 3) {
+
+        $('#entidadVehículoModal').modal('show');
+    }
+    if (global == 4) {
+
+        $('#entidadUbicacionModal').modal('show');
+    }
+    if (global == 5) {
+
+        $('#entidadTelefonoModal').modal('show');
+    }
+    if (global == 6) {
+
+        $('#entidadArmaModal').modal('show');
+    }
+    if (global == 7) {
+
+        $('#entidadDrogaModal').modal('show');
+    }
+    }
+</script>
+@Html.Partial("EntidadPersona")
+@Html.Partial("EntidadVehiculo")
+@Html.Partial("EntidadUbicacion")
+@Html.Partial("EntidadTelefono")
+@Html.Partial("EntidadArma")
+@Html.Partial("EntidadDroga")
+@Html.Partial("EntidadPersonaJuridica")
 @Html.Partial("_ModalCasoInsert")
