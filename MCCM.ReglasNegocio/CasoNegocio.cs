@@ -17,11 +17,20 @@ namespace MCCM.ReglasNegocio
             casoDatos.InsertarCaso(caso);
         }
 
+        public void ActualizarCaso(TMCCM_Caso caso)
+        {
+            casoDatos.ActualizarCaso(caso);
+        }
+
+        public string EliminarCaso(int ID) {
+            casoDatos.EliminarCaso(ID);
+            return "S";
+        }
         public List<TMCCM_CasoDTO> ListarCasos() {
             return casoDatos.ListarCasos();
         }
 
-        public TMCCM_Caso ObtenerCasoPorID(int ID) {
+        public TMCCM_CasoDTO ObtenerCasoPorID(int ID) {
             return casoDatos.ObtenerCasoPorID(ID);
         }
 

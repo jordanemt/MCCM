@@ -9,6 +9,7 @@ using MCCM.Entidad.DTO;
 using MCCM.ReglasNegocio;
 using Newtonsoft.Json;
 
+
 namespace MCCM.UI.Controllers
 {
     public class CasoController : Controller
@@ -27,6 +28,13 @@ namespace MCCM.UI.Controllers
             return "S";
         }
 
+        [HttpPost]
+        public String ActualizarCaso(TMCCM_Caso caso)
+        {
+            casoNegocio.ActualizarCaso(caso);
+            return "S";
+        }
+
         [HttpGet]
         public String ListarCasos() {
             return JsonConvert.SerializeObject(casoNegocio.ListarCasos(), Formatting.Indented);
@@ -35,6 +43,13 @@ namespace MCCM.UI.Controllers
         public string ObtenerCasoPorID(int ID) {
             return JsonConvert.SerializeObject(casoNegocio.ObtenerCasoPorID(ID), Formatting.Indented);
         }
+
+        [HttpPost]
+        public string EliminarCasoPorID(int ID)
+        {
+            return casoNegocio.EliminarCaso(ID);
+        }
+
 
 
     }
