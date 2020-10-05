@@ -77,6 +77,12 @@
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Vehiculo_REL_TMCCM_Grupo_Vehiculo" ManuallyRouted="false" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Usuario_REL_TMCCM_Tarea" ManuallyRouted="false" />
         <AssociationConnector Association="MCCMModel.TMCCM_Usuario_Rol" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Persona_Juridica_Icono_Persona_Juridica" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Persona_Juridica_Tipo_Organización" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Vehiculo_Clase" Width="1.5" PointX="5.75" PointY="2.125" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_Entidad_Persona_Juridica" Width="1.5" PointX="3" PointY="2.375" />
+        <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Persona_Juridica_Icono_Persona_Juridica_REL_TMCCM_Entidad_Persona_Juridica" />
+        <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Persona_Juridica_Tipo_Organización_REL_TMCCM_Entidad_Persona_Juridica" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

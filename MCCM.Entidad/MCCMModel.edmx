@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MCCMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MCCMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="TMCCM_C_Arma_Icono_Arma">
           <Key>
             <PropertyRef Name="TN_ID_Icono_Arma" />
@@ -65,6 +65,22 @@
           <Property Name="TN_ID_Icono_Persona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TC_Descripcion" Type="varchar" MaxLength="100" />
           <Property Name="TB_Imagen" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TMCCM_C_Persona_Juridica_Icono_Persona_Juridica">
+          <Key>
+            <PropertyRef Name="TN_ID_Icono_Persona_Juridica" />
+          </Key>
+          <Property Name="TN_ID_Icono_Persona_Juridica" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TC_Descripcion" Type="varchar" MaxLength="100" />
+          <Property Name="TB_Imagen" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TMCCM_C_Persona_Juridica_Tipo_Organización">
+          <Key>
+            <PropertyRef Name="TN_ID_Tipo_Organizacion" />
+          </Key>
+          <Property Name="TN_ID_Tipo_Organizacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TC_Descripcion" Type="varchar" MaxLength="100" />
+          <Property Name="TB_Eliminado" Type="bit" />
         </EntityType>
         <EntityType Name="TMCCM_C_Persona_Nacionalidad">
           <Key>
@@ -146,6 +162,15 @@
           <Property Name="TC_Descripcion" Type="varchar" MaxLength="100" />
           <Property Name="TB_Eliminado" Type="bit" />
         </EntityType>
+        <EntityType Name="TMCCM_C_Vehiculo_Clase">
+          <Key>
+            <PropertyRef Name="TN_ID_Clase_Vehiculo" />
+          </Key>
+          <Property Name="TN_ID_Clase_Vehiculo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TC_Descripcion" Type="varchar" MaxLength="100" />
+          <Property Name="TF_Fecha_Creacion" Type="date" />
+          <Property Name="TB_Eliminado" Type="bit" />
+        </EntityType>
         <EntityType Name="TMCCM_C_Vehiculo_Color">
           <Key>
             <PropertyRef Name="TN_ID_Color_Vehiculo" />
@@ -187,6 +212,8 @@
           <Property Name="TC_Descripcion" Type="varchar" MaxLength="200" />
           <Property Name="TC_Fuente" Type="varchar" MaxLength="200" />
           <Property Name="TB_Eliminado" Type="bit" />
+          <Property Name="TC_Delito" Type="varchar" MaxLength="100" />
+          <Property Name="TF_Fecha" Type="date" />
         </EntityType>
         <EntityType Name="TMCCM_Entidad_Arma">
           <Key>
@@ -205,6 +232,8 @@
           <Property Name="TC_Creado_Por" Type="varchar" MaxLength="50" />
           <Property Name="TC_Modificado_Por" Type="varchar" MaxLength="50" />
           <Property Name="TB_Eliminado" Type="bit" />
+          <Property Name="TB_Verificado" Type="bit" />
+          <Property Name="TC_Comentario" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="TMCCM_Entidad_Droga">
           <Key>
@@ -219,6 +248,11 @@
           <Property Name="TF_Fecha_Decomiso" Type="date" />
           <Property Name="TF_Hora_Decomiso" Type="time" Precision="7" />
           <Property Name="TB_Eliminado" Type="bit" />
+          <Property Name="TF_Fecha_Creacion" Type="date" />
+          <Property Name="TF_Fecha_Modificacion" Type="date" />
+          <Property Name="TC_Creado_Por" Type="varchar" MaxLength="50" />
+          <Property Name="TC_Modificado_Por" Type="varchar" MaxLength="50" />
+          <Property Name="TB_Verificado" Type="bit" />
         </EntityType>
         <EntityType Name="TMCCM_Entidad_Persona">
           <Key>
@@ -246,6 +280,32 @@
           <Property Name="TC_Creado_Por" Type="varchar" MaxLength="50" />
           <Property Name="TC_Modificado_Por" Type="varchar" MaxLength="50" />
           <Property Name="TB_Verificado" Type="bit" />
+          <Property Name="TB_Eliminado" Type="bit" />
+          <Property Name="TC_Comentario" Type="varchar" MaxLength="100" />
+          <Property Name="TC_Alias" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'MCCM.dbo.TMCCM_Entidad_Persona_Juridica' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="TMCCM_Entidad_Persona_Juridica">
+          <Key>
+            <PropertyRef Name="TN_ID_Persona_Juridica" />
+          </Key>
+          <Property Name="TN_ID_Persona_Juridica" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TN_ID_Caso" Type="int" />
+          <Property Name="TC_ID_Cedula_Juridica" Type="varchar" MaxLength="50" />
+          <Property Name="TC_Nombre_Organización" Type="varchar" MaxLength="100" />
+          <Property Name="TC_Nombre_Comercial" Type="varchar" MaxLength="100" />
+          <Property Name="TN_ID_Icono_Persona_Juridica" Type="int" />
+          <Property Name="TB_Fotografia" Type="varbinary(max)" />
+          <Property Name="TN_ID_Tipo_Organizacion" Type="int" />
+          <Property Name="TC_Sitio_Web" Type="varchar" MaxLength="200" />
+          <Property Name="TC_Comentario" Type="varchar" MaxLength="100" />
+          <Property Name="TF_Fecha_Creacion" Type="date" />
+          <Property Name="TF_Fecha_Modificacion" Type="date" />
+          <Property Name="TC_Creado_Por" Type="varchar" MaxLength="50" />
+          <Property Name="TC_Modificado_Por" Type="varchar" MaxLength="50" />
+          <Property Name="TB_Verificado" Type="bit" />
+          <Property Name="TB_Eliminado" Type="bit" />
         </EntityType>
         <EntityType Name="TMCCM_Entidad_Telefono">
           <Key>
@@ -262,6 +322,7 @@
           <Property Name="TC_Creado_Por" Type="varchar" MaxLength="50" />
           <Property Name="TC_Modificado_Por" Type="varchar" MaxLength="50" />
           <Property Name="TB_Eliminado" Type="bit" />
+          <Property Name="TB_Verificado" Type="bit" />
         </EntityType>
         <EntityType Name="TMCCM_Entidad_Ubicacion">
           <Key>
@@ -281,6 +342,7 @@
           <Property Name="TC_Creado_Por" Type="varchar" MaxLength="50" />
           <Property Name="TC_Modificado_Por" Type="varchar" MaxLength="50" />
           <Property Name="TB_Eliminado" Type="bit" />
+          <Property Name="TB_Verificado" Type="bit" />
         </EntityType>
         <EntityType Name="TMCCM_Entidad_Vehiculo">
           <Key>
@@ -301,6 +363,8 @@
           <Property Name="TC_Creado_Por" Type="varchar" MaxLength="50" />
           <Property Name="TC_Modificado_Por" Type="varchar" MaxLength="50" />
           <Property Name="TB_Eliminado" Type="bit" />
+          <Property Name="TB_Verificado" Type="bit" />
+          <Property Name="TB_Fotografia" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="TMCCM_Evento">
           <Key>
@@ -496,6 +560,30 @@
             </Principal>
             <Dependent Role="TMCCM_Entidad_Persona">
               <PropertyRef Name="TN_ID_Icono_Persona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TMCCM_C_Persona_Juridica_Icono_Persona_Juridica_REL_TMCCM_Entidad_Persona_Juridica">
+          <End Role="TMCCM_C_Persona_Juridica_Icono_Persona_Juridica" Type="Self.TMCCM_C_Persona_Juridica_Icono_Persona_Juridica" Multiplicity="0..1" />
+          <End Role="TMCCM_Entidad_Persona_Juridica" Type="Self.TMCCM_Entidad_Persona_Juridica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TMCCM_C_Persona_Juridica_Icono_Persona_Juridica">
+              <PropertyRef Name="TN_ID_Icono_Persona_Juridica" />
+            </Principal>
+            <Dependent Role="TMCCM_Entidad_Persona_Juridica">
+              <PropertyRef Name="TN_ID_Icono_Persona_Juridica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TMCCM_C_Persona_Juridica_Tipo_Organización_REL_TMCCM_Entidad_Persona_Juridica">
+          <End Role="TMCCM_C_Persona_Juridica_Tipo_Organización" Type="Self.TMCCM_C_Persona_Juridica_Tipo_Organización" Multiplicity="0..1" />
+          <End Role="TMCCM_Entidad_Persona_Juridica" Type="Self.TMCCM_Entidad_Persona_Juridica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TMCCM_C_Persona_Juridica_Tipo_Organización">
+              <PropertyRef Name="TN_ID_Tipo_Organizacion" />
+            </Principal>
+            <Dependent Role="TMCCM_Entidad_Persona_Juridica">
+              <PropertyRef Name="TN_ID_Tipo_Organizacion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -879,6 +967,8 @@
           <EntitySet Name="TMCCM_C_Gasto_Tipo_Gasto" EntityType="Self.TMCCM_C_Gasto_Tipo_Gasto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TMCCM_C_Persona_Genero" EntityType="Self.TMCCM_C_Persona_Genero" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TMCCM_C_Persona_Icono_Persona" EntityType="Self.TMCCM_C_Persona_Icono_Persona" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TMCCM_C_Persona_Juridica_Icono_Persona_Juridica" EntityType="Self.TMCCM_C_Persona_Juridica_Icono_Persona_Juridica" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TMCCM_C_Persona_Juridica_Tipo_Organización" EntityType="Self.TMCCM_C_Persona_Juridica_Tipo_Organización" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TMCCM_C_Persona_Nacionalidad" EntityType="Self.TMCCM_C_Persona_Nacionalidad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TMCCM_C_Persona_Sexo" EntityType="Self.TMCCM_C_Persona_Sexo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TMCCM_C_Persona_Tipo_Identificacion" EntityType="Self.TMCCM_C_Persona_Tipo_Identificacion" Schema="dbo" store:Type="Tables" />
@@ -888,6 +978,7 @@
           <EntitySet Name="TMCCM_C_Ubicacion_Distrito" EntityType="Self.TMCCM_C_Ubicacion_Distrito" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TMCCM_C_Ubicacion_Provincia" EntityType="Self.TMCCM_C_Ubicacion_Provincia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TMCCM_C_Ubicacion_Tipo_Ubicacion" EntityType="Self.TMCCM_C_Ubicacion_Tipo_Ubicacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TMCCM_C_Vehiculo_Clase" EntityType="Self.TMCCM_C_Vehiculo_Clase" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TMCCM_C_Vehiculo_Color" EntityType="Self.TMCCM_C_Vehiculo_Color" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TMCCM_C_Vehiculo_Icono" EntityType="Self.TMCCM_C_Vehiculo_Icono" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TMCCM_C_Vehiculo_Marca" EntityType="Self.TMCCM_C_Vehiculo_Marca" Schema="dbo" store:Type="Tables" />
@@ -908,6 +999,26 @@
           <EntitySet Name="TMCCM_Usuario" EntityType="Self.TMCCM_Usuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TMCCM_Usuario_Rol" EntityType="Self.TMCCM_Usuario_Rol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TMCCM_Vehiculo" EntityType="Self.TMCCM_Vehiculo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TMCCM_Entidad_Persona_Juridica" EntityType="Self.TMCCM_Entidad_Persona_Juridica" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TMCCM_Entidad_Persona_Juridica].[TN_ID_Persona_Juridica] AS [TN_ID_Persona_Juridica], 
+    [TMCCM_Entidad_Persona_Juridica].[TN_ID_Caso] AS [TN_ID_Caso], 
+    [TMCCM_Entidad_Persona_Juridica].[TC_ID_Cedula_Juridica] AS [TC_ID_Cedula_Juridica], 
+    [TMCCM_Entidad_Persona_Juridica].[TC_Nombre_Organización] AS [TC_Nombre_Organización], 
+    [TMCCM_Entidad_Persona_Juridica].[TC_Nombre_Comercial] AS [TC_Nombre_Comercial], 
+    [TMCCM_Entidad_Persona_Juridica].[TN_ID_Icono_Persona_Juridica] AS [TN_ID_Icono_Persona_Juridica], 
+    [TMCCM_Entidad_Persona_Juridica].[TB_Fotografia] AS [TB_Fotografia], 
+    [TMCCM_Entidad_Persona_Juridica].[TN_ID_Tipo_Organizacion] AS [TN_ID_Tipo_Organizacion], 
+    [TMCCM_Entidad_Persona_Juridica].[TC_Sitio_Web] AS [TC_Sitio_Web], 
+    [TMCCM_Entidad_Persona_Juridica].[TC_Comentario] AS [TC_Comentario], 
+    [TMCCM_Entidad_Persona_Juridica].[TF_Fecha_Creacion] AS [TF_Fecha_Creacion], 
+    [TMCCM_Entidad_Persona_Juridica].[TF_Fecha_Modificacion] AS [TF_Fecha_Modificacion], 
+    [TMCCM_Entidad_Persona_Juridica].[TC_Creado_Por] AS [TC_Creado_Por], 
+    [TMCCM_Entidad_Persona_Juridica].[TC_Modificado_Por] AS [TC_Modificado_Por], 
+    [TMCCM_Entidad_Persona_Juridica].[TB_Verificado] AS [TB_Verificado], 
+    [TMCCM_Entidad_Persona_Juridica].[TB_Eliminado] AS [TB_Eliminado]
+    FROM [dbo].[TMCCM_Entidad_Persona_Juridica] AS [TMCCM_Entidad_Persona_Juridica]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_TMCCM_C_Arma_Icono_Arma_REL_TMCCM_Entidad_Arma" Association="Self.FK_TMCCM_C_Arma_Icono_Arma_REL_TMCCM_Entidad_Arma">
             <End Role="TMCCM_C_Arma_Icono_Arma" EntitySet="TMCCM_C_Arma_Icono_Arma" />
             <End Role="TMCCM_Entidad_Arma" EntitySet="TMCCM_Entidad_Arma" />
@@ -935,6 +1046,14 @@
           <AssociationSet Name="FK_TMCCM_C_Persona_Icono_Persona_REL_TMCCM_Entidad_Persona" Association="Self.FK_TMCCM_C_Persona_Icono_Persona_REL_TMCCM_Entidad_Persona">
             <End Role="TMCCM_C_Persona_Icono_Persona" EntitySet="TMCCM_C_Persona_Icono_Persona" />
             <End Role="TMCCM_Entidad_Persona" EntitySet="TMCCM_Entidad_Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TMCCM_C_Persona_Juridica_Icono_Persona_Juridica_REL_TMCCM_Entidad_Persona_Juridica" Association="Self.FK_TMCCM_C_Persona_Juridica_Icono_Persona_Juridica_REL_TMCCM_Entidad_Persona_Juridica">
+            <End Role="TMCCM_C_Persona_Juridica_Icono_Persona_Juridica" EntitySet="TMCCM_C_Persona_Juridica_Icono_Persona_Juridica" />
+            <End Role="TMCCM_Entidad_Persona_Juridica" EntitySet="TMCCM_Entidad_Persona_Juridica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TMCCM_C_Persona_Juridica_Tipo_Organización_REL_TMCCM_Entidad_Persona_Juridica" Association="Self.FK_TMCCM_C_Persona_Juridica_Tipo_Organización_REL_TMCCM_Entidad_Persona_Juridica">
+            <End Role="TMCCM_C_Persona_Juridica_Tipo_Organización" EntitySet="TMCCM_C_Persona_Juridica_Tipo_Organización" />
+            <End Role="TMCCM_Entidad_Persona_Juridica" EntitySet="TMCCM_Entidad_Persona_Juridica" />
           </AssociationSet>
           <AssociationSet Name="FK_TMCCM_C_Persona_Nacionalidad_REL_TMCCM_Entidad_Persona" Association="Self.FK_TMCCM_C_Persona_Nacionalidad_REL_TMCCM_Entidad_Persona">
             <End Role="TMCCM_C_Persona_Nacionalidad" EntitySet="TMCCM_C_Persona_Nacionalidad" />
@@ -1061,8 +1180,7 @@
             <End Role="TMCCM_Grupo_Vehiculo" EntitySet="TMCCM_Grupo_Vehiculo" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MCCMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1281,6 +1399,8 @@
           <NavigationProperty Name="TMCCM_Gasto" Relationship="Self.FK_TMCCM_Caso_REL_TMCCM_Gasto" FromRole="TMCCM_Caso" ToRole="TMCCM_Gasto" />
           <NavigationProperty Name="TMCCM_Grupo" Relationship="Self.FK_TMCCM_Caso_REL_TMCCM_Grupo" FromRole="TMCCM_Caso" ToRole="TMCCM_Grupo" />
           <NavigationProperty Name="TMCCM_Tarea" Relationship="Self.FK_TMCCM_Caso_REL_TMCCM_Tarea" FromRole="TMCCM_Caso" ToRole="TMCCM_Tarea" />
+          <Property Name="TC_Delito" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TF_Fecha" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="TMCCM_Entidad_Arma">
           <Key>
@@ -1303,6 +1423,8 @@
           <NavigationProperty Name="TMCCM_C_Arma_Marca" Relationship="Self.FK_TMCCM_C_Arma_Marca_REL_TMCCM_Entidad_Arma" FromRole="TMCCM_Entidad_Arma" ToRole="TMCCM_C_Arma_Marca" />
           <NavigationProperty Name="TMCCM_C_Arma_Tipo_Arma" Relationship="Self.FK_TMCCM_C_Arma_Tipo_Arma_REL_TMCCM_Entidad_Arma" FromRole="TMCCM_Entidad_Arma" ToRole="TMCCM_C_Arma_Tipo_Arma" />
           <NavigationProperty Name="TMCCM_Caso" Relationship="Self.FK_TMCCM_Caso_REL_TMCCM_Entidad_Arma" FromRole="TMCCM_Entidad_Arma" ToRole="TMCCM_Caso" />
+          <Property Name="TB_Verificado" Type="Boolean" />
+          <Property Name="TC_Comentario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="TMCCM_Entidad_Droga">
           <Key>
@@ -1319,6 +1441,11 @@
           <Property Name="TB_Eliminado" Type="Boolean" />
           <NavigationProperty Name="TMCCM_C_Droga_Tipo_Droga" Relationship="Self.FK_TMCCM_C_Droga_Tipo_Droga_REL_TMCCM_Entidad_Droga" FromRole="TMCCM_Entidad_Droga" ToRole="TMCCM_C_Droga_Tipo_Droga" />
           <NavigationProperty Name="TMCCM_Caso" Relationship="Self.FK_TMCCM_Caso_REL_TMCCM_Entidad_Droga" FromRole="TMCCM_Entidad_Droga" ToRole="TMCCM_Caso" />
+          <Property Name="TF_Fecha_Creacion" Type="DateTime" Precision="0" />
+          <Property Name="TF_Fecha_Modificacion" Type="DateTime" Precision="0" />
+          <Property Name="TC_Creado_Por" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TC_Modificado_Por" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TB_Verificado" Type="Boolean" />
         </EntityType>
         <EntityType Name="TMCCM_Entidad_Persona">
           <Key>
@@ -1352,6 +1479,9 @@
           <NavigationProperty Name="TMCCM_C_Persona_Sexo" Relationship="Self.FK_TMCCM_C_Persona_Sexo_REL_TMCCM_Entidad_Persona" FromRole="TMCCM_Entidad_Persona" ToRole="TMCCM_C_Persona_Sexo" />
           <NavigationProperty Name="TMCCM_C_Persona_Tipo_Identificacion" Relationship="Self.FK_TMCCM_C_Persona_Tipo_Identificacion_REL_TMCCM_Entidad_Persona" FromRole="TMCCM_Entidad_Persona" ToRole="TMCCM_C_Persona_Tipo_Identificacion" />
           <NavigationProperty Name="TMCCM_Caso" Relationship="Self.FK_TMCCM_Caso_REL_TMCCM_Entidad_PErsona" FromRole="TMCCM_Entidad_Persona" ToRole="TMCCM_Caso" />
+          <Property Name="TB_Eliminado" Type="Boolean" />
+          <Property Name="TC_Comentario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TC_Alias" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="TMCCM_Entidad_Telefono">
           <Key>
@@ -1371,6 +1501,7 @@
           <NavigationProperty Name="TMCCM_C_Telefono_Empresa_Telefonica" Relationship="Self.FK_TMCCM_C_Telefono_Empresa_Telefonica_REL_TMCCM_Entidad_Telefono" FromRole="TMCCM_Entidad_Telefono" ToRole="TMCCM_C_Telefono_Empresa_Telefonica" />
           <NavigationProperty Name="TMCCM_C_Telefono_Icono_Telefono" Relationship="Self.FK_TMCCM_C_Telefono_Icono_Telefono_REL_TMCCM_Entidad_Telefono" FromRole="TMCCM_Entidad_Telefono" ToRole="TMCCM_C_Telefono_Icono_Telefono" />
           <NavigationProperty Name="TMCCM_Caso" Relationship="Self.FK_TMCCM_Caso_REL_TMCCM_Entidad_Telefono" FromRole="TMCCM_Entidad_Telefono" ToRole="TMCCM_Caso" />
+          <Property Name="TB_Verificado" Type="Boolean" />
         </EntityType>
         <EntityType Name="TMCCM_Entidad_Ubicacion">
           <Key>
@@ -1395,6 +1526,7 @@
           <NavigationProperty Name="TMCCM_C_Ubicacion_Provincia" Relationship="Self.FK_TMCCM_C_Ubicacion_Provincia_REL_TMCCM_Entidad_Ubicacion" FromRole="TMCCM_Entidad_Ubicacion" ToRole="TMCCM_C_Ubicacion_Provincia" />
           <NavigationProperty Name="TMCCM_C_Ubicacion_Tipo_Ubicacion" Relationship="Self.FK_TMCCM_C_Ubicacion_Tipo_Ubicacion_REL_TMCCM_Entidad_Ubicacion" FromRole="TMCCM_Entidad_Ubicacion" ToRole="TMCCM_C_Ubicacion_Tipo_Ubicacion" />
           <NavigationProperty Name="TMCCM_Caso" Relationship="Self.FK_TMCCM_Caso_REL_TMCCM_Entidad_Ubicacion" FromRole="TMCCM_Entidad_Ubicacion" ToRole="TMCCM_Caso" />
+          <Property Name="TB_Verificado" Type="Boolean" />
         </EntityType>
         <EntityType Name="TMCCM_Entidad_Vehiculo">
           <Key>
@@ -1419,6 +1551,8 @@
           <NavigationProperty Name="TMCCM_C_Vehiculo_Icono" Relationship="Self.FK_TMCCM_C_Vehiculo_Icono_REL_TMCCM_Entidad_Vehiculo" FromRole="TMCCM_Entidad_Vehiculo" ToRole="TMCCM_C_Vehiculo_Icono" />
           <NavigationProperty Name="TMCCM_C_Vehiculo_Marca" Relationship="Self.FK_TMCCM_C_Vehiculo_Marca_REL_TMCCM_Entidad_Vehiculo" FromRole="TMCCM_Entidad_Vehiculo" ToRole="TMCCM_C_Vehiculo_Marca" />
           <NavigationProperty Name="TMCCM_Caso" Relationship="Self.FK_TMCCM_Caso_REL_TMCCM_Entidad_Vehiculo" FromRole="TMCCM_Entidad_Vehiculo" ToRole="TMCCM_Caso" />
+          <Property Name="TB_Verificado" Type="Boolean" />
+          <Property Name="TB_Fotografia" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="TMCCM_Evento">
           <Key>
@@ -2162,7 +2296,93 @@
             <End Role="TMCCM_Rol" EntitySet="TMCCM_Rol" />
             <End Role="TMCCM_Usuario" EntitySet="TMCCM_Usuario" />
           </AssociationSet>
+          <EntitySet Name="TMCCM_C_Persona_Juridica_Icono_Persona_Juridica" EntityType="MCCMModel.TMCCM_C_Persona_Juridica_Icono_Persona_Juridica" />
+          <EntitySet Name="TMCCM_C_Persona_Juridica_Tipo_Organización" EntityType="MCCMModel.TMCCM_C_Persona_Juridica_Tipo_Organización" />
+          <EntitySet Name="TMCCM_C_Vehiculo_Clase" EntityType="MCCMModel.TMCCM_C_Vehiculo_Clase" />
+          <EntitySet Name="TMCCM_Entidad_Persona_Juridica" EntityType="MCCMModel.TMCCM_Entidad_Persona_Juridica" />
+          <AssociationSet Name="FK_TMCCM_C_Persona_Juridica_Icono_Persona_Juridica_REL_TMCCM_Entidad_Persona_Juridica" Association="MCCMModel.FK_TMCCM_C_Persona_Juridica_Icono_Persona_Juridica_REL_TMCCM_Entidad_Persona_Juridica">
+            <End Role="TMCCM_C_Persona_Juridica_Icono_Persona_Juridica" EntitySet="TMCCM_C_Persona_Juridica_Icono_Persona_Juridica" />
+            <End Role="TMCCM_Entidad_Persona_Juridica" EntitySet="TMCCM_Entidad_Persona_Juridica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TMCCM_C_Persona_Juridica_Tipo_Organización_REL_TMCCM_Entidad_Persona_Juridica" Association="MCCMModel.FK_TMCCM_C_Persona_Juridica_Tipo_Organización_REL_TMCCM_Entidad_Persona_Juridica">
+            <End Role="TMCCM_C_Persona_Juridica_Tipo_Organización" EntitySet="TMCCM_C_Persona_Juridica_Tipo_Organización" />
+            <End Role="TMCCM_Entidad_Persona_Juridica" EntitySet="TMCCM_Entidad_Persona_Juridica" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="TMCCM_C_Persona_Juridica_Icono_Persona_Juridica">
+          <Key>
+            <PropertyRef Name="TN_ID_Icono_Persona_Juridica" />
+          </Key>
+          <Property Name="TN_ID_Icono_Persona_Juridica" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TC_Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TB_Imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="TMCCM_Entidad_Persona_Juridica" Relationship="MCCMModel.FK_TMCCM_C_Persona_Juridica_Icono_Persona_Juridica_REL_TMCCM_Entidad_Persona_Juridica" FromRole="TMCCM_C_Persona_Juridica_Icono_Persona_Juridica" ToRole="TMCCM_Entidad_Persona_Juridica" />
+        </EntityType>
+        <EntityType Name="TMCCM_C_Persona_Juridica_Tipo_Organización">
+          <Key>
+            <PropertyRef Name="TN_ID_Tipo_Organizacion" />
+          </Key>
+          <Property Name="TN_ID_Tipo_Organizacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TC_Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TB_Eliminado" Type="Boolean" />
+          <NavigationProperty Name="TMCCM_Entidad_Persona_Juridica" Relationship="MCCMModel.FK_TMCCM_C_Persona_Juridica_Tipo_Organización_REL_TMCCM_Entidad_Persona_Juridica" FromRole="TMCCM_C_Persona_Juridica_Tipo_Organización" ToRole="TMCCM_Entidad_Persona_Juridica" />
+        </EntityType>
+        <EntityType Name="TMCCM_C_Vehiculo_Clase">
+          <Key>
+            <PropertyRef Name="TN_ID_Clase_Vehiculo" />
+          </Key>
+          <Property Name="TN_ID_Clase_Vehiculo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TC_Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TF_Fecha_Creacion" Type="DateTime" Precision="0" />
+          <Property Name="TB_Eliminado" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="TMCCM_Entidad_Persona_Juridica">
+          <Key>
+            <PropertyRef Name="TN_ID_Persona_Juridica" />
+          </Key>
+          <Property Name="TN_ID_Persona_Juridica" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TN_ID_Caso" Type="Int32" />
+          <Property Name="TC_ID_Cedula_Juridica" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TC_Nombre_Organización" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TC_Nombre_Comercial" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TN_ID_Icono_Persona_Juridica" Type="Int32" />
+          <Property Name="TB_Fotografia" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="TN_ID_Tipo_Organizacion" Type="Int32" />
+          <Property Name="TC_Sitio_Web" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="TC_Comentario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TF_Fecha_Creacion" Type="DateTime" Precision="0" />
+          <Property Name="TF_Fecha_Modificacion" Type="DateTime" Precision="0" />
+          <Property Name="TC_Creado_Por" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TC_Modificado_Por" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TB_Verificado" Type="Boolean" />
+          <Property Name="TB_Eliminado" Type="Boolean" />
+          <NavigationProperty Name="TMCCM_C_Persona_Juridica_Icono_Persona_Juridica" Relationship="MCCMModel.FK_TMCCM_C_Persona_Juridica_Icono_Persona_Juridica_REL_TMCCM_Entidad_Persona_Juridica" FromRole="TMCCM_Entidad_Persona_Juridica" ToRole="TMCCM_C_Persona_Juridica_Icono_Persona_Juridica" />
+          <NavigationProperty Name="TMCCM_C_Persona_Juridica_Tipo_Organización" Relationship="MCCMModel.FK_TMCCM_C_Persona_Juridica_Tipo_Organización_REL_TMCCM_Entidad_Persona_Juridica" FromRole="TMCCM_Entidad_Persona_Juridica" ToRole="TMCCM_C_Persona_Juridica_Tipo_Organización" />
+        </EntityType>
+        <Association Name="FK_TMCCM_C_Persona_Juridica_Icono_Persona_Juridica_REL_TMCCM_Entidad_Persona_Juridica">
+          <End Type="MCCMModel.TMCCM_C_Persona_Juridica_Icono_Persona_Juridica" Role="TMCCM_C_Persona_Juridica_Icono_Persona_Juridica" Multiplicity="0..1" />
+          <End Type="MCCMModel.TMCCM_Entidad_Persona_Juridica" Role="TMCCM_Entidad_Persona_Juridica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TMCCM_C_Persona_Juridica_Icono_Persona_Juridica">
+              <PropertyRef Name="TN_ID_Icono_Persona_Juridica" />
+            </Principal>
+            <Dependent Role="TMCCM_Entidad_Persona_Juridica">
+              <PropertyRef Name="TN_ID_Icono_Persona_Juridica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TMCCM_C_Persona_Juridica_Tipo_Organización_REL_TMCCM_Entidad_Persona_Juridica">
+          <End Type="MCCMModel.TMCCM_C_Persona_Juridica_Tipo_Organización" Role="TMCCM_C_Persona_Juridica_Tipo_Organización" Multiplicity="0..1" />
+          <End Type="MCCMModel.TMCCM_Entidad_Persona_Juridica" Role="TMCCM_Entidad_Persona_Juridica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TMCCM_C_Persona_Juridica_Tipo_Organización">
+              <PropertyRef Name="TN_ID_Tipo_Organizacion" />
+            </Principal>
+            <Dependent Role="TMCCM_Entidad_Persona_Juridica">
+              <PropertyRef Name="TN_ID_Tipo_Organizacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2360,6 +2580,8 @@
           <EntitySetMapping Name="TMCCM_Caso">
             <EntityTypeMapping TypeName="MCCMModel.TMCCM_Caso">
               <MappingFragment StoreEntitySet="TMCCM_Caso">
+                <ScalarProperty Name="TF_Fecha" ColumnName="TF_Fecha" />
+                <ScalarProperty Name="TC_Delito" ColumnName="TC_Delito" />
                 <ScalarProperty Name="TN_ID_Caso" ColumnName="TN_ID_Caso" />
                 <ScalarProperty Name="TN_ECU" ColumnName="TN_ECU" />
                 <ScalarProperty Name="TC_Nombre_Caso" ColumnName="TC_Nombre_Caso" />
@@ -2375,6 +2597,8 @@
           <EntitySetMapping Name="TMCCM_Entidad_Arma">
             <EntityTypeMapping TypeName="MCCMModel.TMCCM_Entidad_Arma">
               <MappingFragment StoreEntitySet="TMCCM_Entidad_Arma">
+                <ScalarProperty Name="TC_Comentario" ColumnName="TC_Comentario" />
+                <ScalarProperty Name="TB_Verificado" ColumnName="TB_Verificado" />
                 <ScalarProperty Name="TN_ID_Arma" ColumnName="TN_ID_Arma" />
                 <ScalarProperty Name="TN_ID_Caso" ColumnName="TN_ID_Caso" />
                 <ScalarProperty Name="TN_ID_Marca_Arma" ColumnName="TN_ID_Marca_Arma" />
@@ -2394,6 +2618,11 @@
           <EntitySetMapping Name="TMCCM_Entidad_Droga">
             <EntityTypeMapping TypeName="MCCMModel.TMCCM_Entidad_Droga">
               <MappingFragment StoreEntitySet="TMCCM_Entidad_Droga">
+                <ScalarProperty Name="TB_Verificado" ColumnName="TB_Verificado" />
+                <ScalarProperty Name="TC_Modificado_Por" ColumnName="TC_Modificado_Por" />
+                <ScalarProperty Name="TC_Creado_Por" ColumnName="TC_Creado_Por" />
+                <ScalarProperty Name="TF_Fecha_Modificacion" ColumnName="TF_Fecha_Modificacion" />
+                <ScalarProperty Name="TF_Fecha_Creacion" ColumnName="TF_Fecha_Creacion" />
                 <ScalarProperty Name="TN_ID_Droga" ColumnName="TN_ID_Droga" />
                 <ScalarProperty Name="TN_ID_Caso" ColumnName="TN_ID_Caso" />
                 <ScalarProperty Name="TN_ID_Tipo_Droga" ColumnName="TN_ID_Tipo_Droga" />
@@ -2409,6 +2638,9 @@
           <EntitySetMapping Name="TMCCM_Entidad_Persona">
             <EntityTypeMapping TypeName="MCCMModel.TMCCM_Entidad_Persona">
               <MappingFragment StoreEntitySet="TMCCM_Entidad_Persona">
+                <ScalarProperty Name="TC_Alias" ColumnName="TC_Alias" />
+                <ScalarProperty Name="TC_Comentario" ColumnName="TC_Comentario" />
+                <ScalarProperty Name="TB_Eliminado" ColumnName="TB_Eliminado" />
                 <ScalarProperty Name="TN_ID_Persona" ColumnName="TN_ID_Persona" />
                 <ScalarProperty Name="TN_ID_Caso" ColumnName="TN_ID_Caso" />
                 <ScalarProperty Name="TN_ID_Tipo_Identificacion" ColumnName="TN_ID_Tipo_Identificacion" />
@@ -2437,6 +2669,7 @@
           <EntitySetMapping Name="TMCCM_Entidad_Telefono">
             <EntityTypeMapping TypeName="MCCMModel.TMCCM_Entidad_Telefono">
               <MappingFragment StoreEntitySet="TMCCM_Entidad_Telefono">
+                <ScalarProperty Name="TB_Verificado" ColumnName="TB_Verificado" />
                 <ScalarProperty Name="TN_ID_Telefono" ColumnName="TN_ID_Telefono" />
                 <ScalarProperty Name="TN_ID_Caso" ColumnName="TN_ID_Caso" />
                 <ScalarProperty Name="TN_ID_Proveedor" ColumnName="TN_ID_Proveedor" />
@@ -2454,6 +2687,7 @@
           <EntitySetMapping Name="TMCCM_Entidad_Ubicacion">
             <EntityTypeMapping TypeName="MCCMModel.TMCCM_Entidad_Ubicacion">
               <MappingFragment StoreEntitySet="TMCCM_Entidad_Ubicacion">
+                <ScalarProperty Name="TB_Verificado" ColumnName="TB_Verificado" />
                 <ScalarProperty Name="TN_ID_Ubicacion" ColumnName="TN_ID_Ubicacion" />
                 <ScalarProperty Name="TN_ID_Caso" ColumnName="TN_ID_Caso" />
                 <ScalarProperty Name="TN_ID_Tipo_Ubicacion" ColumnName="TN_ID_Tipo_Ubicacion" />
@@ -2474,6 +2708,8 @@
           <EntitySetMapping Name="TMCCM_Entidad_Vehiculo">
             <EntityTypeMapping TypeName="MCCMModel.TMCCM_Entidad_Vehiculo">
               <MappingFragment StoreEntitySet="TMCCM_Entidad_Vehiculo">
+                <ScalarProperty Name="TB_Fotografia" ColumnName="TB_Fotografia" />
+                <ScalarProperty Name="TB_Verificado" ColumnName="TB_Verificado" />
                 <ScalarProperty Name="TN_ID_Vehiculo" ColumnName="TN_ID_Vehiculo" />
                 <ScalarProperty Name="TN_ID_Caso" ColumnName="TN_ID_Caso" />
                 <ScalarProperty Name="TN_ID_Marca_Vehiculo" ColumnName="TN_ID_Marca_Vehiculo" />
@@ -2612,6 +2848,56 @@
               <ScalarProperty Name="TN_ID_Usuario" ColumnName="TN_ID_Usuario" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="TMCCM_C_Persona_Juridica_Icono_Persona_Juridica">
+            <EntityTypeMapping TypeName="MCCMModel.TMCCM_C_Persona_Juridica_Icono_Persona_Juridica">
+              <MappingFragment StoreEntitySet="TMCCM_C_Persona_Juridica_Icono_Persona_Juridica">
+                <ScalarProperty Name="TB_Imagen" ColumnName="TB_Imagen" />
+                <ScalarProperty Name="TC_Descripcion" ColumnName="TC_Descripcion" />
+                <ScalarProperty Name="TN_ID_Icono_Persona_Juridica" ColumnName="TN_ID_Icono_Persona_Juridica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TMCCM_C_Persona_Juridica_Tipo_Organización">
+            <EntityTypeMapping TypeName="MCCMModel.TMCCM_C_Persona_Juridica_Tipo_Organización">
+              <MappingFragment StoreEntitySet="TMCCM_C_Persona_Juridica_Tipo_Organización">
+                <ScalarProperty Name="TB_Eliminado" ColumnName="TB_Eliminado" />
+                <ScalarProperty Name="TC_Descripcion" ColumnName="TC_Descripcion" />
+                <ScalarProperty Name="TN_ID_Tipo_Organizacion" ColumnName="TN_ID_Tipo_Organizacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TMCCM_C_Vehiculo_Clase">
+            <EntityTypeMapping TypeName="MCCMModel.TMCCM_C_Vehiculo_Clase">
+              <MappingFragment StoreEntitySet="TMCCM_C_Vehiculo_Clase">
+                <ScalarProperty Name="TB_Eliminado" ColumnName="TB_Eliminado" />
+                <ScalarProperty Name="TF_Fecha_Creacion" ColumnName="TF_Fecha_Creacion" />
+                <ScalarProperty Name="TC_Descripcion" ColumnName="TC_Descripcion" />
+                <ScalarProperty Name="TN_ID_Clase_Vehiculo" ColumnName="TN_ID_Clase_Vehiculo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TMCCM_Entidad_Persona_Juridica">
+            <EntityTypeMapping TypeName="MCCMModel.TMCCM_Entidad_Persona_Juridica">
+              <MappingFragment StoreEntitySet="TMCCM_Entidad_Persona_Juridica">
+                <ScalarProperty Name="TB_Eliminado" ColumnName="TB_Eliminado" />
+                <ScalarProperty Name="TB_Verificado" ColumnName="TB_Verificado" />
+                <ScalarProperty Name="TC_Modificado_Por" ColumnName="TC_Modificado_Por" />
+                <ScalarProperty Name="TC_Creado_Por" ColumnName="TC_Creado_Por" />
+                <ScalarProperty Name="TF_Fecha_Modificacion" ColumnName="TF_Fecha_Modificacion" />
+                <ScalarProperty Name="TF_Fecha_Creacion" ColumnName="TF_Fecha_Creacion" />
+                <ScalarProperty Name="TC_Comentario" ColumnName="TC_Comentario" />
+                <ScalarProperty Name="TC_Sitio_Web" ColumnName="TC_Sitio_Web" />
+                <ScalarProperty Name="TN_ID_Tipo_Organizacion" ColumnName="TN_ID_Tipo_Organizacion" />
+                <ScalarProperty Name="TB_Fotografia" ColumnName="TB_Fotografia" />
+                <ScalarProperty Name="TN_ID_Icono_Persona_Juridica" ColumnName="TN_ID_Icono_Persona_Juridica" />
+                <ScalarProperty Name="TC_Nombre_Comercial" ColumnName="TC_Nombre_Comercial" />
+                <ScalarProperty Name="TC_Nombre_Organización" ColumnName="TC_Nombre_Organización" />
+                <ScalarProperty Name="TC_ID_Cedula_Juridica" ColumnName="TC_ID_Cedula_Juridica" />
+                <ScalarProperty Name="TN_ID_Caso" ColumnName="TN_ID_Caso" />
+                <ScalarProperty Name="TN_ID_Persona_Juridica" ColumnName="TN_ID_Persona_Juridica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

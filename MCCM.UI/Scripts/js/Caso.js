@@ -21,7 +21,7 @@ $('#ModalFormCaso').on('hidden.bs.modal', function () {
 
 $('#ModalFormCaso').on('show.bs.modal', function (e) {
     var $activeElement = $(document.activeElement);
-    alert($activeElement.serialize());
+    /*alert($activeElement.serialize());*/
     $("#btnRegistrar").show();
     $("#btnModificar").hide();
     $("#btnEliminar").hide();    
