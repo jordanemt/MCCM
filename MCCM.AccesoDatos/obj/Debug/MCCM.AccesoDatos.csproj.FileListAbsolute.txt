@@ -27,3 +27,9 @@ C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.AccesoD
 C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.AccesoDatos\bin\Debug\EntityFramework.SqlServerCompact.dll
 C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.AccesoDatos\bin\Debug\System.Data.SqlServerCe.dll
 C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.AccesoDatos\bin\Debug\EntityFramework.SqlServerCompact.xml
+C:\Users\Jordan\source\repos\MCCM\MCCM.AccesoDatos\bin\Debug\MCCM.AccesoDatos.dll.config
+C:\Users\Jordan\source\repos\MCCM\MCCM.AccesoDatos\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Jordan\source\repos\MCCM\MCCM.AccesoDatos\bin\Debug\EntityFramework.SqlServerCompact.dll
+C:\Users\Jordan\source\repos\MCCM\MCCM.AccesoDatos\bin\Debug\System.Data.SqlServerCe.dll
+C:\Users\Jordan\source\repos\MCCM\MCCM.AccesoDatos\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Jordan\source\repos\MCCM\MCCM.AccesoDatos\bin\Debug\EntityFramework.SqlServerCompact.xml

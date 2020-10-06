@@ -174,3 +174,8 @@ C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.UI\bin\
 C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.UI\bin\MCCM.AccesoDatos.dll.config
 C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.UI\bin\EntityFramework.SqlServer.dll
 C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.UI\bin\EntityFramework.SqlServer.xml
+C:\Users\Jordan\source\repos\MCCM\MCCM.UI\bin\EntityFramework.SqlServer.dll
+C:\Users\Jordan\source\repos\MCCM\MCCM.UI\bin\MCCM.AccesoDatos.dll
+C:\Users\Jordan\source\repos\MCCM\MCCM.UI\bin\EntityFramework.SqlServer.xml
+C:\Users\Jordan\source\repos\MCCM\MCCM.UI\bin\MCCM.AccesoDatos.pdb
+C:\Users\Jordan\source\repos\MCCM\MCCM.UI\bin\MCCM.AccesoDatos.dll.config
