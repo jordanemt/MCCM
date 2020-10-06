@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MCCM.AccesoDatos
 {
-    class GastoDatos
+    public class GastoDatos
     {
         public IEnumerable<TMCCM_Gasto> GetAll() 
         {
@@ -40,13 +40,15 @@ namespace MCCM.AccesoDatos
                 context.SaveChanges();
             }
         }
-        public void Delete(TMCCM_Gasto gasto)
+
+        public void DeleteById(int id)
         {
             using (var context = new MCCMEntities())
             {
+                TMCCM_Gasto gasto = context.TMCCM_Gasto.Find(id);
                 gasto.TB_Eliminado = false;
                 gasto.TF_Fecha = DateTime.Now;
-                context.TMCCM_Gasto.Add(gasto);
+                context.Entry(gasto).State = EntityState.Modified;
                 context.SaveChanges();
             }
         }
