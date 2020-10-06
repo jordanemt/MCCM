@@ -12,3 +12,17 @@ C:\Users\Jordan\source\repos\MCCM\MCCM.ReglasNegocio\obj\Debug\MCCM.ReglasNegoci
 C:\Users\Jordan\source\repos\MCCM\MCCM.ReglasNegocio\obj\Debug\MCCM.ReglasNegocio.csproj.CopyComplete
 C:\Users\Jordan\source\repos\MCCM\MCCM.ReglasNegocio\obj\Debug\MCCM.ReglasNegocio.dll
 C:\Users\Jordan\source\repos\MCCM\MCCM.ReglasNegocio\obj\Debug\MCCM.ReglasNegocio.pdb
+C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.ReglasNegocio\bin\Debug\MCCM.ReglasNegocio.dll
+C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.ReglasNegocio\bin\Debug\MCCM.ReglasNegocio.pdb
+C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.ReglasNegocio\bin\Debug\MCCM.AccesoDatos.dll
+C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.ReglasNegocio\bin\Debug\MCCM.Entidad.dll
+C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.ReglasNegocio\bin\Debug\EntityFramework.dll
+C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.ReglasNegocio\bin\Debug\MCCM.AccesoDatos.pdb
+C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.ReglasNegocio\bin\Debug\MCCM.Entidad.pdb
+C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.ReglasNegocio\bin\Debug\MCCM.Entidad.dll.config
+C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.ReglasNegocio\bin\Debug\EntityFramework.xml
+C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.ReglasNegocio\obj\Debug\MCCM.ReglasNegocio.csprojAssemblyReference.cache
+C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.ReglasNegocio\obj\Debug\MCCM.ReglasNegocio.csproj.CopyComplete
+C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.ReglasNegocio\obj\Debug\MCCM.ReglasNegocio.dll
+C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.ReglasNegocio\obj\Debug\MCCM.ReglasNegocio.pdb
+C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.ReglasNegocio\bin\Debug\MCCM.AccesoDatos.dll.config
