@@ -1,0 +1,114 @@
+﻿@model MCCM.Entidad.TMCCM_Caso
+
+
+<div class="modal fade" id="ModalFormCaso">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title" id="tituloFormModal">Registrar Caso</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body col-12">
+                <div class="row">
+
+
+                    <form id="FormCaso" class="col-12">
+                        
+                        <div class="form-row" id="TN_ID_Input" style="display:none">
+                            @Html.LabelFor(model => model.TN_ID_Caso, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.TN_ID_Caso, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.TN_ID_Caso, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-row" >
+                            @Html.LabelFor(model => model.TN_ECU, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.TN_ECU, new { htmlAttributes = new { @class = "form-control", @name = "tN_ECU" } })
+                                @Html.ValidationMessageFor(model => model.TN_ECU, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            @Html.LabelFor(model => model.TC_Nombre_Caso, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.TC_Nombre_Caso, new { htmlAttributes = new { @class = "form-control", @name = "tC_Nombre_Caso" } })
+                                @Html.ValidationMessageFor(model => model.TC_Nombre_Caso, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            @Html.LabelFor(model => model.TC_Enfoque_Trabajo, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.TC_Enfoque_Trabajo, new { htmlAttributes = new { @class = "form-control", @name = "tC_Enfoque_Trabajo" } })
+                                @Html.ValidationMessageFor(model => model.TC_Enfoque_Trabajo, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            @Html.LabelFor(model => model.TC_Area_Trabajo, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.TC_Area_Trabajo, new { htmlAttributes = new { @class = "form-control", @name = "tC_Area_Trabajo" } })
+                                @Html.ValidationMessageFor(model => model.TC_Area_Trabajo, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            @Html.LabelFor(model => model.TN_Nivel, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.TN_Nivel, new { htmlAttributes = new { @class = "form-control", @name = "tC_Nivel" } })
+                                @Html.ValidationMessageFor(model => model.TN_Nivel, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            @Html.LabelFor(model => model.TC_Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.TC_Descripcion, new { htmlAttributes = new { @class = "form-control", @name = "tC_Descripcion" } })
+                                @Html.ValidationMessageFor(model => model.TC_Descripcion, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            @Html.LabelFor(model => model.TC_Fuente, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.TC_Fuente, new { htmlAttributes = new { @class = "form-control", @name = "tC_Fuente" } })
+                                @Html.ValidationMessageFor(model => model.TC_Fuente, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            @Html.LabelFor(model => model.TC_Delito, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.TC_Delito, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.TC_Delito, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-md-offset-2 col-md-10">
+                                <button id="btnRegistrar" class="btn btn-primary">Registrar</button>
+                                <button id="btnModificar" class="btn btn-info" style="display:none">Modificar</button>
+                                <button id="btnEliminar" class="btn btn-danger" style="display:none">Eliminar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Scripts/js/Caso.js"></script>
+

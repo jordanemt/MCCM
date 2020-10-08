@@ -1,9 +1,27 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Dashboard";
 }
 
 <link href="~/Content/Dashdboard.css" rel="stylesheet" type="text/css" />
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+
+<style>
+    .filaseleccionada {
+        background-color: cornflowerblue;
+    }
+
+    #FormCaso .form-row .col-md-10 {
+        padding-left: 20%;
+    }
+
+    #FormEvento .form-row .col-md-10 {
+        padding-left: 10%;
+    }
+</style>
 
 <div class="col-sm-12" id="dashboard-container">
 
@@ -12,19 +30,21 @@
         <div class="card border-light mb-3" style="height: 70%;">
             <div class="card-header">
                 <div>Casos</div>
-                <div><span><i class="fa fa-plus"></i></span></div>
+                <div><a href="#"><span><i class="fa fa-plus" data-toggle="modal" data-target="#ModalFormCaso"></i></span></a></div>
             </div>
-            <div class="card-body" style="overflow-y: scroll">
+            <div class="card-body" id="casos-body" style="overflow-y: scroll">
 
             </div>
         </div>
 
+
+
         <div class="card border-light mb-3" style="height: 30%;">
             <div class="card-header">
                 <div>Mando</div>
-                <div><span><i class="fa fa-plus"></i></span></div>
+                <div><a href="#"><span><i class="fa fa-plus"></i></span></a></div>
             </div>
-            <div class="card-body">
+            <div class="card-body" id="mado-body">
 
             </div>
         </div>
@@ -57,32 +77,48 @@
             @*Pestanna #1 Body*@
             <div class="card-body pestanna-body" id="pestanna-1-body">
 
-                <div class="card border-light mb-3 col-md-4" style="height: 100%; margin: 0 0; padding: 0 0;">
+                <div class="card border-light mb-3 col-md-4" style=" margin: 0 0; padding: 0 0;">
                     <div class="card-header">
                         <div>Bitácora</div>
-                        <div><span><i class="fa fa-plus"></i></span></div>
+                        <div><a href="#"><span><i class="fa fa-plus" data-toggle="modal" data-target="#ModalFormEvento"></i></span></a></div>
                     </div>
-                    <div class="card-body" style="overflow-y: scroll">
+                    <div class="card-body" id="bitacora-body" style="overflow-y: scroll">
 
                     </div>
                 </div>
-
                 <div class="card border-light mb-3 col-md-4" style="height: 100%; margin: 0 0; padding: 0 0;">
                     <div class="card-header">
                         <div>Entidades</div>
-                        <div><span><i class="fa fa-plus"></i></span></div>
+                        <div>
+                            <a href="#" onclick="seleccionEntidad()"><span><i class="fa fa-plus"></i></span></a>
+                        </div>
                     </div>
-                    <div class="card-body" style="overflow-y: scroll">
+                    <div class="card border-light" style="height: 100%; margin: 0 0; padding: 0 0;">
+                        <div class="card-header">
+                            <div id="botones" class="nav nav-tabs card-header-tabs">
+                                <input type="hidden" id="custId" name="custId" value="0">
+                                <a class="nav-item nav-link active fa fa-user" id="entidadPersona" data-toggle="tab" href="#" role="tab" aria-controls="nav-home" aria-selected="true" onclick="seleccionado('1')"></a>
+                                <a class="nav-item nav-link fa fa-building" id="entidadPersonaJuridica" data-toggle="tab" href="#" role="tab" aria-controls="nav-profile" aria-selected="false" onclick="seleccionado('2')"></a>
+                                <a class="nav-item nav-link fa fa-car" id="entidadCarro" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('3')"></a>
+                                <a class="nav-item nav-link fa fa-map-marker" id="nav-contact-tab" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('4')"></a>
+                                <a class="nav-item nav-link fa fa-phone" id="nav-contact-tab" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('5')"></a>
+                                <a class="nav-item nav-link fa fa-bomb" id="nav-contact-tab" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('6')"></a>
+                                <a class="nav-item nav-link fa fa-magic" id="nav-contact-tab" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('7')"></a>
 
+                            </div>
+                        </div>
+                        <div class="card-body" id="entidades-body" style="overflow-y: scroll">
+
+                        </div>
                     </div>
                 </div>
 
                 <div class="card border-light mb-3 col-md-4" style="height: 100%; margin: 0 0; padding: 0 0;">
                     <div class="card-header">
                         <div>Tareas</div>
-                        <div><span><i class="fa fa-plus"></i></span></div>
+                        <div><a href="#"><span><i class="fa fa-plus"></i></span></a></div>
                     </div>
-                    <div class="card-body" style="overflow-y: scroll">
+                    <div class="card-body" id="tareas-body" style="overflow-y: scroll">
 
                     </div>
                 </div>
@@ -95,9 +131,9 @@
                 <div class="card border-light mb-3 col-md-4" style="height: 100%; margin: 0 0; padding: 0 0;">
                     <div class="card-header">
                         <div>Gastos Operativos</div>
-                        <div><span><i class="fa fa-plus"></i></span></div>
+                        <div><a href="#"><span><i class="fa fa-plus"></i></span></a></div>
                     </div>
-                    <div class="card-body" style="overflow-y: scroll">
+                    <div class="card-body" id="gastos-body" style="overflow-y: scroll">
 
                     </div>
                 </div>
@@ -105,9 +141,9 @@
                 <div class="card border-light mb-3 col-md-4" style="height: 100%; margin: 0 0; padding: 0 0;">
                     <div class="card-header">
                         <div>Personal</div>
-                        <div><span><i class="fa fa-plus"></i></span></div>
+                        <div><a href="#"><span><i class="fa fa-plus"></i></span></a></div>
                     </div>
-                    <div class="card-body" style="overflow-y: scroll">
+                    <div class="card-body" id="personal-body" style="overflow-y: scroll">
 
                     </div>
                 </div>
@@ -115,9 +151,9 @@
                 <div class="card border-light mb-3 col-md-4" style="height: 100%; margin: 0 0; padding: 0 0;">
                     <div class="card-header">
                         <div>Vehículos</div>
-                        <div><span><i class="fa fa-plus"></i></span></div>
+                        <div><a href="#"><span><i class="fa fa-plus"></i></span></a></div>
                     </div>
-                    <div class="card-body" style="overflow-y: scroll">
+                    <div class="card-body" id="vehiculos-body" style="overflow-y: scroll">
 
                     </div>
                 </div>
@@ -135,4 +171,64 @@
 
 </div>
 
-<script src="~/Scripts/Dashboard.js"></script>
+
+
+<script src="~/Scripts/Dashboard.js">
+
+
+</script>
+<script type="text/javascript">
+
+ @*Metodo para cambiar variable global hidden*@
+function seleccionado(seleccion) {
+    var global = document.getElementById('custId').value;
+
+    if (seleccion !== global) {
+        document.getElementById('custId').value = seleccion;
+    }
+}
+
+ @*Metodo para seleccionar la entidad*@
+function seleccionEntidad() {
+    var global = document.getElementById('custId').value;
+
+    if (global == 1) {
+        $('#entidadPersonaModal').modal('show');
+    }
+    if (global == 2) {
+
+        $('#entidadPersonaJuridicaModal').modal('show');
+    }
+    if (global == 3) {
+
+        $('#entidadVehículoModal').modal('show');
+    }
+    if (global == 4) {
+
+        $('#entidadUbicacionModal').modal('show');
+    }
+    if (global == 5) {
+
+        $('#entidadTelefonoModal').modal('show');
+    }
+    if (global == 6) {
+
+        $('#entidadArmaModal').modal('show');
+    }
+    if (global == 7) {
+
+        $('#entidadDrogaModal').modal('show');
+    }
+    }
+</script>
+
+
+@Html.Partial("EntidadPersona")
+@Html.Partial("EntidadVehiculo")
+@Html.Partial("EntidadUbicacion")
+@Html.Partial("EntidadTelefono")
+@Html.Partial("EntidadArma")
+@Html.Partial("EntidadDroga")
+@Html.Partial("EntidadPersonaJuridica")
+@Html.Partial("~/Views/Caso/_ModalCasoInsert.cshtml")
+@Html.Partial("~/Views/Bitacora/_ModalEventoForm.cshtml")
