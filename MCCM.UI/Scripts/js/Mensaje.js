@@ -2,7 +2,6 @@
 
 $(document).on("click", '.borrar', function () {
     boton = $(this);
-    
 })
 
 $(document).on("click", ".btnEliminarMensaje", function () {
