@@ -131,8 +131,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CasoController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\E_ArmaController.cs" />
+    <Compile Include="Controllers\E_DrogaController.cs" />
     <Compile Include="Controllers\E_PersonaController.cs" />
+    <Compile Include="Controllers\E_PersonaJuridicaController.cs" />
+    <Compile Include="Controllers\E_TelefonoController.cs" />
+    <Compile Include="Controllers\E_VehiculoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\E_UbicacionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -192,7 +198,13 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\js\Caso.js" />
+    <Content Include="Scripts\js\EntidadArma.js" />
+    <Content Include="Scripts\js\EntidadDroga.js" />
+    <Content Include="Scripts\js\EntidadTelefono.js" />
+    <Content Include="Scripts\js\EntidadUbicacion.js" />
+    <Content Include="Scripts\js\EntidadVehiculo.js" />
     <Content Include="Scripts\js\EntidadPersona.js" />
+    <Content Include="Scripts\js\EntidadPersonaJuridica.js" />
     <Content Include="Scripts\js\Evento.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper-utils.js" />

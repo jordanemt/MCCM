@@ -52,7 +52,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTO\TMCCM_CasoDTO.cs" />
+    <Compile Include="DTO\TMCCM_EntidadArmaDTO.cs" />
+    <Compile Include="DTO\TMCCM_EntidadDrogaDTO.cs" />
     <Compile Include="DTO\TMCCM_EntidadPersonaDTO.cs" />
+    <Compile Include="DTO\TMCCM_EntidadPersonaJuridicaDTO.cs" />
+    <Compile Include="DTO\TMCCM_EntidadUbicacionDTO.cs" />
+    <Compile Include="DTO\TMCCM_EntidadVehiculoDTO.cs" />
+    <Compile Include="DTO\TMCCM_EntidadTelefonoDTO.cs" />
     <Compile Include="MCCMModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
