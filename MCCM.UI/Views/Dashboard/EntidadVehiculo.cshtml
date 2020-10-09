@@ -18,22 +18,22 @@
                     <div class="form-group row">
                         <label for="marca" class="col-md-3 col-form-label">Marca</label>
                         <select class=" col-md-8 form-control" name="TN_ID_Marca_Vehiculo" id="TN_ID_Marca_Vehiculo">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
+                            <option>Deconocido</option>
+                            <option>Marca No Registrada</option>
+                            <option>Foredil</option>
+                            <option>Astra</option>
+                            <option>Kobelco</option>
                         </select>
                         <a href="#" class="fa fa-plus col-md-1"></a>
                     </div>
                     <div class="form-group row">
                         <label for="clase" class="col-md-3 col-form-label">Clase</label>
                         <select class=" col-md-8 form-control" name="TC_Clase" id="TC_Clase">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
+                            <option>Motocicleta</option>
+                            <option>Motocarro</option>
+                            <option>Automovil</option>
+                            <option>Autobus</option>
+                            <option>Buseta</option>
                         </select>
                         <a href="#" class="fa fa-plus col-md-1"></a>
                     </div>
@@ -44,11 +44,11 @@
                     <div class="form-group row">
                         <label for="color" class="col-md-3 col-form-label">Color</label>
                         <select class=" col-md-8 form-control" name="TN_ID_Color_Vehiculo" id="TN_ID_Color_Vehiculo">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
+                            <option>Desconocido</option>
+                            <option>Cafe</option>
+                            <option>Celeste</option>
+                            <option>Negro</option>
+                            <option>Verde</option>
                         </select>
                         <a href="#" class="fa fa-plus col-md-1"></a>
                     </div>
@@ -71,37 +71,33 @@
                         <label for="año" class="col-md-3 col-form-label">Año</label>
                         <input type="number" class="col-md-8 form-control" name="TN_Anno" id="TN_Anno">
                     </div>
-                    <div class="form-group row">
-                        <label for="comentario" class="col-md-3 col-form-label">Comentario</label>
-                        <textarea class="col-md-8 form-control" name="TC_Comentario" id="TC_Comentario" rows="3"></textarea>
+                       <div class="form-group row">
+                        <label id="creadoPor_V" for="creadoPor" class="col-md-3 col-form-label">Creado por</label>
+                        <input type="text" class="col-md-8 form-control" name="TC_Creado_Por_V" id="TC_Creado_Por_V">
+                    </div>
+                    <div class="form-group row" tyle="display:none" id="fechaCreacion_Row_V">
+                        <label id="fechaCreacion_V" for="alias" class="col-md-3 col-form-label">Fecha Creacion</label>
+                        <input type="text" class="col-md-8 form-control" name="TF_Fecha_Creacion_V" id="TF_Fecha_Creacion_V">
+                    </div>
+                    <div class="form-group row" style="display:none" id="fechaModificación_Row_V">
+                        <label id="fechaModificación_V" for="segundoApellido" class="col-md-3 col-form-label">Fecha Modificación</label>
+                        <input type="text" class="col-md-8 form-control" name="TF_Fecha_Modificacion_V" id="TF_Fecha_Modificacion_V">
+                    </div>
+                    <div class="form-group row" style="display:none" id="modificadoPor_Row_V">
+                        <label id="modificadopor_V" for="creadoPor" class="col-md-3 col-form-label">Modificado por</label>
+                        <input type="text" class="col-md-8 form-control" name="TF_Modificado_Por_V" id="TF_Modificado_Por_V">
                     </div>
                     <div class="form-group row">
-                        <label for="segundoApellido" class="col-md-3 col-form-label">Fecha Modificación</label>
-                        <input type="text" class="col-md-8 form-control" name="TF_Fecha_Modificacion" id="TF_Fecha_Modificacion">
-                    </div>
-                    <div class="form-group row">
-                        <label for="alias" class="col-md-3 col-form-label">Fecha Creacion</label>
-                        <input type="text" class="col-md-8 form-control" name="TF_Fecha_Creacion" id="TF_Fecha_Creacion">
-                    </div>
-                    <div class="form-group row">
-                        <label for="creadoPor" class="col-md-3 col-form-label">Creado por</label>
-                        <input type="text" class="col-md-8 form-control" name="TC_Creado_Por" id="TC_Creado_Por">
-                    </div>
-                    <div class="form-group row">
-                        <label for="creadoPor" class="col-md-3 col-form-label">Modificado por</label>
-                        <input type="text" class="col-md-8 form-control" name="TF_Modificado_Por" id="TF_Modificado_Por">
-                    </div>
-                    <div class="form-group row">
-                        <label for="verificado" class="col-md-3 col-form-label">Verificado</label>
+                        <label id="verificado_V" for="verificado" class="col-md-3 col-form-label">Verificado</label>
                         <div class="col-md-8  form-check">
-                            <input class="form-check-input" type="checkbox" name="TB_Verificado" id="TB_Verificado">
+                            <input class="form-check-input" type="checkbox" name="TB_Verificado_V" id="TB_Verificado_V">
                         </div>
                     </div>
                     <div class="d-flex justify-content-center">
                         <button id="btnInsertarEntidadVehiculo" type="submit" class="btn btn-primary">Insertar</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                        <button id="btnModificar" class="btn btn-info" style="display:none">Modificar</button>
-                        <button id="btnEliminar" class="btn btn-danger" style="display:none">Eliminar</button>
+                        <button id="btnCancelarEntidadVehiculo" type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button id="btnModificarEntidadVehiculo" class="btn btn-info" style="display:none">Modificar</button>
+                        <button id="btnEliminarEntidadVehiculo" class="btn btn-danger" style="display:none">Eliminar</button>
                     </div>
                 </form>
             </div>
