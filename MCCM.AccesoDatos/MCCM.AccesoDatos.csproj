@@ -58,6 +58,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CasoDatos.cs" />
+    <Compile Include="EntidadPersonaDatos.cs" />
+    <Compile Include="EventoDatos.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TareaDatos.cs" />
     <Compile Include="GastoDatos.cs" />
     <Compile Include="GrupoDatos.cs" />
     <Compile Include="Grupo_VehiculoDatos.cs" />

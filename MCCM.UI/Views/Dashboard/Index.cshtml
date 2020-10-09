@@ -10,9 +10,22 @@
 <script src="~/Scripts/js/Gasto.js"></script>
 <script src="~/Scripts/js/Grupo.js"></script>
 
+
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+
 <style>
     .filaseleccionada {
         background-color: cornflowerblue;
+    }
+
+    #FormCaso .form-row .col-md-10 {
+        padding-left: 20%;
+    }
+
+    #FormEvento .form-row .col-md-10 {
+        padding-left: 10%;
     }
 </style>
 
@@ -68,12 +81,67 @@
             @*Pestanna #1 Body*@
             <div class="card-body card-body-flex" id="pestanna-1-body">
 
-                <div class="card border-light mb-3 col-md-4" style="height: 100%; margin: 0 0; padding: 0 0;">
+                <div class="card border-light mb-3 col-md-4" style=" margin: 0 0; padding: 0 0;">
                     <div class="card-header">
                         <div>Bitácora</div>
-                        <div><a href="#"><span><i class="fa fa-plus"></i></span></a></div>
+                        <div><a href="#"><span><i class="fa fa-plus" data-toggle="modal" data-target="#ModalFormEvento"></i></span></a></div>
                     </div>
                     <div class="card-body" id="bitacora-body" style="overflow-y: scroll">
+                        <div class="container">
+                            <div class="card evento" id="' + eventos.TN_ID_Caso + '">
+                                
+                                <div class="card-header">
+                                    <div>Evento # 1</div>
+                                    <div>
+                                        <a href="#" class="editarEvento" id="1"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
+                                        <a href="#" class="borrar borrarEvento" id="1"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>
+                                    </div>
+
+                                </div>
+                                <div class="card-body" style="padding:0px!important">
+                                    <div class="container">
+
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <h6><span class="w-100 badge badge-primary">Fecha/Hora</span></h6>
+                                            </div>
+                                            <div class="col-md-8" id="divInforma">
+                                                <small>2020/10/09 5:00PM</small>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <h6><span class="w-100 badge badge-primary">Informa:</span></h6>
+                                            </div>
+                                            <div class="col-md-8" id="divInforma">
+                                                <small>Maikel Matamoroso Zuñiga</small>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <h6><span class="w-100 badge badge-primary">Lugar:</span></h6>
+                                            </div>
+
+                                            <div class="col-md-8" id="divLugar">
+                                                <small>En Turri</small>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <h6><span class="w-100 badge badge-primary">Novedad:</span></h6>
+                                            </div>
+                                            <div class="col-md-8" id="divNovedad">
+                                                <p>Valeria está vendiendo mota a todos los niños de la escuela T_T</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
 
                     </div>
                 </div>
@@ -107,10 +175,64 @@
                 <div class="card border-light mb-3 col-md-4" style="height: 100%; margin: 0 0; padding: 0 0;">
                     <div class="card-header">
                         <div>Tareas</div>
-                        <div><a href="#"><span><i class="fa fa-plus"></i></span></a></div>
+                        <div><a href="#"><span><i class="fa fa-plus" data-toggle="modal" data-target="#ModalFormTarea"></i></span></a></div>
                     </div>
                     <div class="card-body" id="tareas-body" style="overflow-y: scroll">
+                        <div class="container">
+                            <div class="card evento" id="' + eventos.TN_ID_Caso + '">
 
+                                <div class="card-header">
+                                    <div>Evento # 1</div>
+                                    <div>
+                                        <a href="#" class="editarEvento" id="1"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
+                                        <a href="#" class="borrar borrarTarea" id="1"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>
+                                    </div>
+
+                                </div>
+                                <div class="card-body" style="padding:0px!important">
+                                    <div class="container">
+
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <h6><span class="w-100 badge badge-primary">Fecha/Hora</span></h6>
+                                            </div>
+                                            <div class="col-md-8" id="divInforma">
+                                                <small>2020/10/09 5:00PM</small>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <h6><span class="w-100 badge badge-primary">Informa:</span></h6>
+                                            </div>
+                                            <div class="col-md-8" id="divInforma">
+                                                <small>Maikel Matamoroso Zuñiga</small>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <h6><span class="w-100 badge badge-primary">Lugar:</span></h6>
+                                            </div>
+
+                                            <div class="col-md-8" id="divLugar">
+                                                <small>En Turri</small>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <h6><span class="w-100 badge badge-primary">Novedad:</span></h6>
+                                            </div>
+                                            <div class="col-md-8" id="divNovedad">
+                                                <p>Valeria está vendiendo mota a todos los niños de la escuela T_T</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
 
@@ -157,7 +279,15 @@
             @*Reporte Body*@
             <div class="card-body card-body-flex" id="reporte-body">
 
+                        </div>
+                    </div>
+                </div>
             </div>
+
+
+            @* Cartas, con cartas con check *@
+
+
 
         </div>
 
@@ -182,7 +312,6 @@ function seleccionEntidad() {
     var global = document.getElementById('custId').value;
 
     if (global == 1) {
-
         $('#entidadPersonaModal').modal('show');
     }
     if (global == 2) {
@@ -219,7 +348,10 @@ function seleccionEntidad() {
 @Html.Partial("EntidadArma")
 @Html.Partial("EntidadDroga")
 @Html.Partial("EntidadPersonaJuridica")
-@Html.Partial("_ModalCasoInsert")
+@Html.Partial("~/Views/Caso/_ModalCasoInsert.cshtml")
+@Html.Partial("~/Views/Bitacora/_ModalEventoForm.cshtml")
+@Html.Partial("~/Views/Tarea/_ModalFormTarea.cshtml")
+@Html.Partial("_ModalMensajeConfirmacion")
 @Html.Partial("~/Views/Gasto/_FormModal.cshtml")
 @Html.Partial("~/Views/Grupo/_FormModal.cshtml")
 @Html.Partial("~/Views/Grupo/_FormAddVehiculoModal.cshtml")

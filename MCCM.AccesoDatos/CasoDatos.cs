@@ -20,6 +20,7 @@ namespace MCCM.AccesoDatos
                 caso.TF_Fecha = DateTime.Now;
                 context.TMCCM_Caso.Add(caso);
                 context.SaveChanges();
+                
             }
         }
 
