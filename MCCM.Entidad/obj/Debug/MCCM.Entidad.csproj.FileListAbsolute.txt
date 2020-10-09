@@ -21,3 +21,15 @@ C:\Users\Jordan\source\repos\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.csproj.Cop
 C:\Users\Jordan\source\repos\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.dll
 C:\Users\Jordan\source\repos\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.pdb
 C:\Users\Jordan\source\repos\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.csprojAssemblyReference.cache
+C:\Users\Maikel\Desktop\MCCM\MCCM.Entidad\bin\Debug\MCCM.Entidad.dll.config
+C:\Users\Maikel\Desktop\MCCM\MCCM.Entidad\bin\Debug\MCCM.Entidad.dll
+C:\Users\Maikel\Desktop\MCCM\MCCM.Entidad\bin\Debug\MCCM.Entidad.pdb
+C:\Users\Maikel\Desktop\MCCM\MCCM.Entidad\bin\Debug\EntityFramework.dll
+C:\Users\Maikel\Desktop\MCCM\MCCM.Entidad\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Maikel\Desktop\MCCM\MCCM.Entidad\bin\Debug\EntityFramework.xml
+C:\Users\Maikel\Desktop\MCCM\MCCM.Entidad\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Maikel\Desktop\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.csproj.CoreCompileInputs.cache
+C:\Users\Maikel\Desktop\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.csproj.CopyComplete
+C:\Users\Maikel\Desktop\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.dll
+C:\Users\Maikel\Desktop\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.pdb
+C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.csprojAssemblyReference.cache

@@ -1,98 +1,107 @@
 ﻿@model MCCM.Entidad.TMCCM_Entidad_Ubicacion
-    <div class="modal fade bd-example-modal-lg" id="entidadUbicacionModal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title col-11 text-center" id="exampleModalLabel">Insertar Entidad Ubicación</h5>
-                    <button type="button" class="close col-1" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group row">
-                            <label for="tipoUbicacion" class="col-md-3 col-form-label">Tipo</label>
-                            <select class=" col-md-8 form-control" name="TN_Id_Ubicacion" id="exampleFormControlSelect1">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                            <a href="#" class="fa fa-plus col-md-1"></a>
-                        </div>
+<div class="modal fade bd-example-modal-lg" id="entidadUbicacionModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title col-11 text-center" id="exampleModalLabel">Insertar Entidad Ubicacion</h5>
+                <h5 class="modal-title col-11 text-center" id="exampleModalLabel" style="display:none">Entidad Ubicacion</h5>
 
-                        <div class="form-group row">
-                            <label for="provincia" class="col-md-3 col-form-label">Provincia</label>
-                            <select class=" col-md-8 form-control" name="TN_ID_Provincia" id="exampleFormControlSelect1">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </div>
-                        <div class="form-group row">
-                            <label for="canton" class="col-md-3 col-form-label">Cantón</label>
-                            <select class=" col-md-8 form-control" name="TN_ID_Canton" id="exampleFormControlSelect1">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </div>
-                        <div class="form-group row">
-                            <label for="distrito" class="col-md-3 col-form-label">Distrito</label>
-                            <select class=" col-md-8 form-control" name="TN_ID_Distrito" id="exampleFormControlSelect1">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
+                <button type="button" class="close col-1" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="FormEntidadUbicacion" enctype="multipart/form-data">
+                    <div class="form-group row">
+                        <label for="tipoUbicacion" class="col-md-3 col-form-label">Tipo</label>
+                        <select class=" col-md-8 form-control" name="TN_Id_Ubicacion" id="TN_Id_Ubicacion">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                        <a href="#" class="fa fa-plus col-md-1"></a>
+                    </div>
 
+                    <div class="form-group row">
+                        <label for="provincia" class="col-md-3 col-form-label">Provincia</label>
+                        <select class=" col-md-8 form-control" name="TN_ID_Provincia" id="TN_ID_Provincia">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                    <div class="form-group row">
+                        <label for="canton" class="col-md-3 col-form-label">Cantón</label>
+                        <select class=" col-md-8 form-control" name="TN_ID_Canton" id="TN_ID_Canton">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                    <div class="form-group row">
+                        <label for="distrito" class="col-md-3 col-form-label">Distrito</label>
+                        <select class=" col-md-8 form-control" name="TN_ID_Distrito" id="TN_ID_Distrito">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+
+                    </div>
+                    <div class="form-group row">
+                        <label for="senas" class="col-md-3 col-form-label">Señas</label>
+                        <textarea class="col-md-8 form-control" name="TC_Sennas" id="TC_Sennas" rows="3"></textarea>
+                    </div>
+                    <div class="form-group row">
+                        <label for="latitud" class="col-md-3 col-form-label">Latitud</label>
+                        <input type="text" class="col-md-8 form-control" name="TD_Latitud" id="TD_Latitud">
+                    </div>
+                    <div class="form-group row">
+                        <label for="longitud" class="col-md-3 col-form-label">Longitud</label>
+                        <input type="text" class="col-md-8 form-control" name="TD_Longitud" id="TD_Longitud">
+                    </div>
+                    <div class="form-group row">
+                        <label for="segundoApellido" class="col-md-3 col-form-label" style="display:none">Fecha Modificación</label>
+                        <input type="text" class="col-md-8 form-control" name="TF_Fecha_Modificacion" style="display:none" id="TF_Fecha_Modificacion">
+                    </div>
+                    <div class="form-group row">
+                        <label for="alias" class="col-md-3 col-form-label" style="display:none">Fecha Creacion</label>
+                        <input type="text" class="col-md-8 form-control" name="TF_Fecha_Creacion" style="display:none" id="TF_Fecha_Creacion">
+                    </div>
+                    <div class="form-group row">
+                        <label for="creadoPor" class="col-md-3 col-form-label">Creado por</label>
+                        <input type="text" class="col-md-8 form-control" name="TC_Creado_Por" id="TC_Creado_Por">
+                    </div>
+                    <div class="form-group row">
+                        <label for="creadoPor" class="col-md-3 col-form-label" style="display:none">Modificado por</label>
+                        <input type="text" class="col-md-8 form-control" name="TF_Modificado_Por" style="display:none" id="TF_Modificado_Por">
+                    </div>
+                    <div class="form-group row">
+                        <label for="verificado" class="col-md-3 col-form-label">Verificado</label>
+                        <div class="col-md-8  form-check">
+                            <input class="form-check-input" type="checkbox" name="TB_Verificado" id="TB_Verificado">
                         </div>
-                        <div class="form-group row">
-                            <label for="senas" class="col-md-3 col-form-label">Señas</label>
-                            <textarea class="col-md-8 form-control" name="TC_Sennas" id="exampleFormControlTextarea1" rows="3"></textarea>
-                        </div>
-                        <div class="form-group row">
-                            <label for="latitud" class="col-md-3 col-form-label">Latitud</label>
-                            <input type="text" class="col-md-8 form-control" name="TD_Latitud" id="segundoApellidoEntidadPersona">
-                        </div>
-                        <div class="form-group row">
-                            <label for="longitud" class="col-md-3 col-form-label">Longitud</label>
-                            <input type="text" class="col-md-8 form-control" name="TD_Longitud" id="segundoApellidoEntidadPersona">
-                        </div>
-                        <div class="form-group row">
-                            <label for="segundoApellido" class="col-md-3 col-form-label">Fecha Modificación</label>
-                            <input type="text" class="col-md-8 form-control" name="TF_Fecha_Modificacion" id="segundoApellidoEntidadPersona">
-                        </div>
-                        <div class="form-group row">
-                            <label for="alias" class="col-md-3 col-form-label">Fecha Creacion</label>
-                            <input type="text" class="col-md-8 form-control" name="TF_Fecha_Creacion" id="edadEntidadPersona">
-                        </div>
-                        <div class="form-group row">
-                            <label for="creadoPor" class="col-md-3 col-form-label">Creado por</label>
-                            <input type="text" class="col-md-8 form-control" name="TC_Creado_Por" id="edadEntidadPersona">
-                        </div>
-                        <div class="form-group row">
-                            <label for="creadoPor" class="col-md-3 col-form-label">Modificado por</label>
-                            <input type="text" class="col-md-8 form-control" name="TF_Modificado_Por" id="edadEntidadPersona">
-                        </div>
-                        <div class="form-group row">
-                            <label for="verificado" class="col-md-3 col-form-label">Verificado</label>
-                            <div class="col-md-8  form-check">
-                                <input class="form-check-input" type="checkbox" name="TB_Verificado" id="gridCheck1">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer d-flex justify-content-center">
-                    <button type="button" class="btn btn-primary">Insertar</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                </div>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button id="btnInsertarEntidadUbicacion" type="submit" class="btn btn-primary">Insertar</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button id="btnModificar" class="btn btn-info" style="display:none">Modificar</button>
+                        <button id="btnEliminar" class="btn btn-danger" style="display:none">Eliminar</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+
             </div>
         </div>
     </div>
+</div>
+
+<script src="~/Scripts/js/EntidadUbicacion.js"></script>

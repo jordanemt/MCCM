@@ -49,6 +49,7 @@
     <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -58,6 +59,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CasoDatos.cs" />
+    <Compile Include="EntidadArmaDatos.cs" />
+    <Compile Include="EntidadDrogaDatos.cs" />
+    <Compile Include="EntidadPersonaDatos.cs" />
+    <Compile Include="EntidadPersonaJuridicaDatos.cs" />
+    <Compile Include="EntidadTelefonoDatos.cs" />
+    <Compile Include="EntidadUbicacionDatos.cs" />
+    <Compile Include="EntidadVehiculoDatos.cs" />
+    <Compile Include="Utilidades.cs" />
+    <Compile Include="EventoDatos.cs" />
+    <Compile Include="TareaDatos.cs" />
     <Compile Include="GastoDatos.cs" />
     <Compile Include="GrupoDatos.cs" />
     <Compile Include="Grupo_VehiculoDatos.cs" />

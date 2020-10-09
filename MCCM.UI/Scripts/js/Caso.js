@@ -1,8 +1,21 @@
-﻿
-
-$(document).ready(function () {
+﻿$(document).ready(function () {
     //CargarCasos();
+    iniciarCalendario("06/10/2020");
 });
+
+function iniciarCalendario(fecha) {
+    //alert(fecha);
+    $('#calendarioBitacora').daterangepicker({
+        "singleDatePicker": true,
+        "timePicker": true,
+        "timePicker24Hour": true,
+        locale: {
+            format: 'M/DD hh:mm A'
+        }
+    }, function (start, end, label) {
+        console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
+    });
+}
 
 $(document).on("click",".caso",function () {
     if ($(".card").hasClass('filaseleccionada')) {
@@ -15,16 +28,53 @@ $(document).on("click",".caso",function () {
 });
 
 
+$(document).on("click", ".disquete", function () {
+    let lugar = $("#Lugar").val();
+    let novedad = $("#Novedad").val();
+    let informa = $("#Informa").val();
+    let calendario = $("#calendarioBitacora").val();
+    $("#divLugar").html("<h6 id='Lugar'>" + lugar + "</h6>")
+    $("#divNovedad").html("<h6 id='Novedad'>" + novedad + "</h6>")
+    $("#divInforma").html("<h6 id='Informa'>" + informa + "</h6>")
+    $("#divCalendario").html("<h6 id='Calendario'>" + calendario + "</h6>")
+    $("#guardarEvento").hide();
+    $("#eventoDiv").show();
+});
+
+$(document).on("click", ".editarEvento", function () {
+    let lugar = $("#Lugar").html();
+    let novedad = $("#Novedad").html();
+    let informa = $("#Informa").html();
+    let calendario = $("#Calendario").html();
+    $("#divLugar").html('<input class="form-control" id="Informa" value=' + lugar + '  />')
+    $("#divNovedad").html('<input class="form-control" id="Novedad" value=' + novedad + '  />')
+    $("#divInforma").html('<input class="form-control" id="Informa" value=' + informa + '  />')
+    $("#divCalendario").html('<input class="form-control" id="calendarioBitacora" value=' + calendario + '  />')
+    iniciarCalendario(calendario);
+    $("#guardarEvento").hide();
+    $("#eventoDiv").show();
+});
+
+
 $('#ModalFormCaso').on('hidden.bs.modal', function () {
     limpiarFormularioCaso();
 })
 
 $('#ModalFormCaso').on('show.bs.modal', function (e) {
-    var $activeElement = $(document.activeElement);
-    /*alert($activeElement.serialize());*/
-    $("#btnRegistrar").show();
-    $("#btnModificar").hide();
-    $("#btnEliminar").hide();    
+    if (e.relatedTarget != null) {
+        console.log(e.relatedTarget.nodeName);
+        $("#btnRegistrar").show();
+        $("#btnModificar").hide();
+        $("#btnEliminar").hide(); 
+        $("#tituloFormModal").html("Registrar Caso");
+        $("#TN_ID_Caso").hide();
+    } else {
+        $("#TN_ID_Caso").show();
+        $("#tituloFormModal").html("Modificar Caso");
+        $("#btnRegistrar").hide();
+        $("#btnModificar").show();
+        $("#btnEliminar").show();    
+    }
 })
 
 
@@ -36,11 +86,6 @@ $(document).on("click", ".ojito", function () {
     }).done(function (data) {
         let caso = new Array();
         caso = JSON.parse(data);
-        $("#btnRegistrar").hide();
-        $("#EliminarCasoPorID").show();
-        $("#btnModificar").show();
-        $("#btnEliminar").show();
-        $("#tituloFormModal").html("Modificar Caso");
         $("#TN_ID_Caso").val(caso.TN_ID_Caso);
         $("#TN_ECU").val(caso.TN_ECU);
         $("#TC_Nombre_Caso").val(caso.TC_Nombre_Caso);
@@ -67,17 +112,16 @@ function limpiarFormularioCaso() {
 }
 
 
-$(document).on("click", "#btnModificar", function (e) {
+$(document).on("click", "#btnModificarCaso", function (e) {
     e.preventDefault();
     var form = $("#FormCaso");
     alert(form.serialize());
     let url;
     url = "/Caso/ActualizarCaso";
     AccionesCasoForm(form,url);
-        
 });
 
-$(document).on("click", "#btnEliminar", function (e) {
+$(document).on("click", "#btnEliminarCaso", function (e) {
     e.preventDefault();
     alert("Eliminar");
 
@@ -92,7 +136,7 @@ $(document).on("click", "#btnEliminar", function (e) {
 
 });
 
-$(document).on("click", "#btnRegistrar", function (e) {
+$(document).on("click", "#btnRegistrarCaso", function (e) {
     e.preventDefault();
     var form = $("#FormCaso");
     alert(form.serialize());
@@ -122,7 +166,6 @@ function CargarCasos() {
         type: "GET",
         url: "/Caso/ListarCasos"
     }).done(function (data) {
-        
         let casos = new Array();
         casos = JSON.parse(data);
         $("#casos-body").empty();
