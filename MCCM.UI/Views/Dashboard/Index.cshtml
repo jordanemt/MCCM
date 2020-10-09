@@ -2,7 +2,13 @@
     ViewBag.Title = "Dashboard";
 }
 
-<link href="~/Content/Dashdboard.css" rel="stylesheet" type="text/css" />
+@*CSS*@
+<link href="~/Content/css/Dashdboard.css" rel="stylesheet" />
+
+@*JS*@
+<script src="~/Scripts/js/Dashboard.js"></script>
+<script src="~/Scripts/js/Gasto.js"></script>
+<script src="~/Scripts/js/Grupo.js"></script>
 
 
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
@@ -36,8 +42,6 @@
 
             </div>
         </div>
-
-
 
         <div class="card border-light mb-3" style="height: 30%;">
             <div class="card-header">
@@ -75,7 +79,7 @@
             </div>
 
             @*Pestanna #1 Body*@
-            <div class="card-body pestanna-body" id="pestanna-1-body">
+            <div class="card-body card-body-flex" id="pestanna-1-body">
 
                 <div class="card border-light mb-3 col-md-4" style=" margin: 0 0; padding: 0 0;">
                     <div class="card-header">
@@ -235,191 +239,45 @@
             </div>
 
             @*Pestanna #2 Body*@
-            <div class="card-body pestanna-body" id="pestanna-2-body">
+            <div class="card-body card-body-flex" id="pestanna-2-body">
 
                 <div class="card border-light mb-3 col-md-4" style="height: 100%; margin: 0 0; padding: 0 0;">
                     <div class="card-header">
                         <div>Gastos Operativos</div>
-                        <div><a href="#"><span><i class="fa fa-plus"></i></span></a></div>
+                        <div><a href="#"><span><i class="fa fa-plus" onclick="openInsertGastoModal()"></i></span></a></div>
                     </div>
-                    <div class="card-body" id="gastos-body" style="overflow-y: scroll">
-
+                    <div class="card-body" style="overflow-y: scroll">
+                        @* Solo para previsualizar *@
+                        @Html.Partial("~/Views/Gasto/_List.cshtml")
                     </div>
                 </div>
 
                 <div class="card border-light mb-3 col-md-4" style="height: 100%; margin: 0 0; padding: 0 0;">
                     <div class="card-header">
                         <div>Personal</div>
-                        <div><a href="#"><span><i class="fa fa-plus"></i></span></a></div>
+                        <div><a href="#"><span><i class="fa fa-plus" onclick="openInsertGrupoModal()"></i></span></a></div>
                     </div>
                     <div class="card-body" id="personal-body" style="overflow-y: scroll">
-
+                        @* Solo para previsualizar *@
+                        @Html.Partial("~/Views/Grupo/_List.cshtml")
                     </div>
                 </div>
 
                 <div class="card border-light mb-3 col-md-4" style="height: 100%; margin: 0 0; padding: 0 0;">
                     <div class="card-header">
                         <div>Vehículos</div>
-                        <div><a href="#"><span><i class="fa fa-plus"></i></span></a></div>
+                        <div><a href="#"><span><i class="fa fa-plus" onclick="openAddVehiculoModal()"></i></span></a></div>
                     </div>
                     <div class="card-body" id="vehiculos-body" style="overflow-y: scroll">
-
+                        @* Solo para previsualizar *@
+                        @Html.Partial("~/Views/Grupo/_ListVehiculos.cshtml")
                     </div>
                 </div>
 
             </div>
 
             @*Reporte Body*@
-            <div class="card-body pestanna-body" id="reporte-body">
-                @* Nombre caso y fechas *@
-
-                <div class="container col-12">
-                    <div class="row">
-
-                        <label class="col-md-3 col-form-label">Nombre del Caso:</label>
-                        <input type="text" class="col-md-8 form-control">
-
-                    </div>
-
-                    <div class="row">
-                        <div class="card align-content-center col-12">
-                            <div class="card-header">
-                                Reporte
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                    <label class="form-check-label" for="defaultCheck1">
-                                        Marcar Todo
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="card-body">
-                                <div class="container w-100">
-                                    <div class="row">
-                                        <div class="card col-4">
-                                            <div class="card-header">
-                                                Recursos
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="col-sm-12">
-                                                    <div class="row">
-                                                        <div class="col-6">
-
-                                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-
-                                                            <small>
-                                                                <span class="badge-primary">
-                                                                    Personal Policial
-                                                                </span>
-                                                            </small>
-
-
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-
-                                                            <label class="form-check-label" for="defaultCheck1" style="margin:auto; ">
-                                                                Personal Policial
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-6">
-                                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                                            Personal Policial
-                                                            <label class="form-check-label" for="defaultCheck1" style="margin:auto; ">
-
-                                                            </label>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                                            Personal Policial
-                                                            <label class="form-check-label" for="defaultCheck1" style="margin:auto; ">
-
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card col-4">
-                                            <div class="card-header">
-                                                Recursos
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="col-sm-12">
-                                                    <div class="form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                                        Personal Policial
-                                                        <label class="form-check-label" for="defaultCheck1" style="margin:auto; ">
-
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                                        Personal Policial
-                                                        <label class="form-check-label" for="defaultCheck1" style="margin:auto; ">
-
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                                        Personal Policial
-                                                        <label class="form-check-label" for="defaultCheck1" style="margin:auto; ">
-
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                                        Personal Policial
-                                                        <label class="form-check-label" for="defaultCheck1" style="margin:auto; ">
-
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card col-4">
-                                            <div class="card-header">
-                                                Recursos
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="col-sm-4">
-                                                    <div class="form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                                        Personal Policial
-                                                        <label class="form-check-label" for="defaultCheck1" style="margin:auto; ">
-
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                                        Personal Policial
-                                                        <label class="form-check-label" for="defaultCheck1" style="margin:auto; ">
-
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                                        Personal Policial
-                                                        <label class="form-check-label" for="defaultCheck1" style="margin:auto; ">
-
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                                        Personal Policial
-                                                        <label class="form-check-label" for="defaultCheck1" style="margin:auto; ">
-
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div><button type="button" class="btn btn-danger" style="position:center; opacity:1">Generar Reporte</button></div>
+            <div class="card-body card-body-flex" id="reporte-body">
 
                         </div>
                     </div>
@@ -438,11 +296,6 @@
 </div>
 
 
-
-<script src="~/Scripts/Dashboard.js">
-
-
-</script>
 <script type="text/javascript">
 
  @*Metodo para cambiar variable global hidden*@
@@ -488,7 +341,6 @@ function seleccionEntidad() {
     }
 </script>
 
-
 @Html.Partial("EntidadPersona")
 @Html.Partial("EntidadVehiculo")
 @Html.Partial("EntidadUbicacion")
@@ -500,4 +352,6 @@ function seleccionEntidad() {
 @Html.Partial("~/Views/Bitacora/_ModalEventoForm.cshtml")
 @Html.Partial("~/Views/Tarea/_ModalFormTarea.cshtml")
 @Html.Partial("_ModalMensajeConfirmacion")
-
+@Html.Partial("~/Views/Gasto/_FormModal.cshtml")
+@Html.Partial("~/Views/Grupo/_FormModal.cshtml")
+@Html.Partial("~/Views/Grupo/_FormAddVehiculoModal.cshtml")

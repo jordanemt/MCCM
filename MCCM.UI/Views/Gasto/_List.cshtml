@@ -1,0 +1,69 @@
+﻿@model IEnumerable<MCCM.Entidad.TMCCM_Gasto>
+
+@*@foreach (var item in Model)
+{
+    <div id="gasto-@item.TN_ID_Gasto" class="card border-light mb-3" style="margin: 5px; padding: 0 0;">
+        <div class="card-header">
+            <div>Gasto #@item.TN_ID_Gasto</div>
+            <div>
+                <a href="#"><span><i class="fa fa-edit"></i></span></a>
+                <a href="#" onclick="removeGasto(@item.TN_ID_Gasto)"><span><i class="fa fa-trash"></i></span></a>
+            </div>
+        </div>
+        <div class="card-body card-body-list">
+            <div class="group">
+                <span class="badge badge-primary">Fecha:</span>
+                <p>@item.TF_Fecha</p>
+            </div>
+            <div class="group">
+                <span class="badge badge-primary">Factura:</span>
+                <p>@item.TN_Num_Factura</p>
+            </div>
+            <div class="group">
+                <span class="badge badge-primary">Tipo de Gasto:</span>
+                <p>Nulo</p>
+            </div>
+            <div class="group">
+                <span class="badge badge-primary">Monto:</span>
+                <p>@item.TD_Monto</p>
+            </div>
+            <div class="group">
+                <span class="badge badge-primary">Detalle:</span>
+                <p>@item.TC_Compra</p>
+            </div>
+        </div>
+    </div>
+}*@
+
+@*Solo para previsualizar*@
+<div id="gasto-1" class="card border-light mb-3" style="margin: 5px; padding: 0 0;">
+    <div class="card-header">
+        <div>Gasto #1</div>
+        <div>
+            <a href="#"onclick="openUpdateGastoModal(1)"><span><i class="fa fa-edit"></i></span></a>
+            <a href="#"><span><i class="fa fa-trash"></i></span></a>
+        </div>
+    </div>
+    <div class="card-body" style="display: flex; flex-direction: column; justify-content: center; align-items: center">
+        <div style="display: flex; flex-direction: row;">
+            <span class="badge badge-primary" style="max-height: 20px;">Fecha:</span>
+            <p>12/12/2020</p>
+        </div>
+        <div style="display: flex; flex-direction: row;">
+            <span class="badge badge-primary" style="max-height: 20px;">Factura:</span>
+            <p>1234567</p>
+        </div>
+        <div style="display: flex; flex-direction: row;">
+            <span class="badge badge-primary" style="max-height: 20px;">Tipo de Gasto:</span>
+            <p>Operativo</p>
+        </div>
+        <div style="display: flex; flex-direction: row;">
+            <span class="badge badge-primary" style="max-height: 20px;">Monto:</span>
+            <p>50.000</p>
+        </div>
+        <div style="display: flex; flex-direction: row;">
+            <span class="badge badge-primary" style="max-height: 20px;">Detalle:</span>
+            <p>Detalle de compra</p>
+        </div>
+    </div>
+</div>

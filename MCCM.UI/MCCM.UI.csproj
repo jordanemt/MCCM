@@ -133,6 +133,8 @@
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\EventoController.cs" />
     <Compile Include="Controllers\E_PersonaController.cs" />
+    <Compile Include="Controllers\GastoController.cs" />
+    <Compile Include="Controllers\GrupoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TareaController.cs" />
     <Compile Include="Global.asax.cs">
@@ -147,7 +149,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Dashdboard.css" />
+    <Content Include="Content\css\Dashdboard.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="favicon.ico" />
@@ -158,7 +160,7 @@
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\Dashboard.js" />
+    <Content Include="Scripts\js\Dashboard.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
@@ -197,6 +199,8 @@
     <Content Include="Scripts\js\EntidadPersona.js" />
     <Content Include="Scripts\js\Evento.js" />
     <Content Include="Scripts\js\Mensaje.js" />
+    <Content Include="Scripts\js\Gasto.js" />
+    <Content Include="Scripts\js\Grupo.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
@@ -306,6 +310,12 @@
     <Content Include="Views\Bitacora\_ModalEventoForm.cshtml" />
     <Content Include="Views\Tarea\_ModalFormTarea.cshtml" />
     <Content Include="Views\Dashboard\_ModalMensajeConfirmacion.cshtml" />
+    <Content Include="Views\Gasto\_List.cshtml" />
+    <Content Include="Views\Gasto\_FormModal.cshtml" />
+    <Content Include="Views\Grupo\_List.cshtml" />
+    <Content Include="Views\Grupo\_FormModal.cshtml" />
+    <Content Include="Views\Grupo\_FormAddVehiculoModal.cshtml" />
+    <Content Include="Views\Grupo\_ListVehiculos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
