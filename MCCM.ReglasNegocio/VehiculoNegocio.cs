@@ -4,32 +4,31 @@ using System.Collections.Generic;
 
 namespace MCCM.ReglasNegocio
 {
-    public class GastoNegocio
+    public class VehiculoNegocio
     {
-        private GastoDatos datos;
+        private VehiculoDatos datos;
 
-        public GastoNegocio()
+        public VehiculoNegocio()
         {
-            datos = new GastoDatos();
+            datos = new VehiculoDatos();
         }
 
-        public IEnumerable<TMCCM_Gasto> GetAll()
+        public IEnumerable<TMCCM_Vehiculo> GetAll()
         {
             return datos.GetAll();
         }
 
-        public TMCCM_Gasto GetById(int id)
+        public TMCCM_Vehiculo GetById(int id)
         {
             return datos.GetById(id);
         }
 
-
-        public TMCCM_Gasto Insert(TMCCM_Gasto data)
+        public TMCCM_Vehiculo Insert(TMCCM_Vehiculo data)
         {
             return datos.Insert(data);
         }
 
-        public void Update(TMCCM_Gasto data)
+        public void Update(TMCCM_Vehiculo data)
         {
             datos.Update(data);
         }

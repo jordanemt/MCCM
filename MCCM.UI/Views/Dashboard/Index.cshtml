@@ -2,7 +2,13 @@
     ViewBag.Title = "Dashboard";
 }
 
-<link href="~/Content/Dashdboard.css" rel="stylesheet" type="text/css" />
+@*CSS*@
+<link href="~/Content/css/Dashdboard.css" rel="stylesheet" />
+
+@*JS*@
+<script src="~/Scripts/js/Dashboard.js"></script>
+<script src="~/Scripts/js/Gasto.js"></script>
+<script src="~/Scripts/js/Grupo.js"></script>
 
 <style>
     .filaseleccionada {
@@ -17,15 +23,12 @@
         <div class="card border-light mb-3" style="height: 70%;">
             <div class="card-header">
                 <div>Casos</div>
-                
                 <div><a href="#"><span><i class="fa fa-plus" data-toggle="modal" data-target="#ModalFormCaso"></i></span></a></div>
             </div>
             <div class="card-body" id="casos-body" style="overflow-y: scroll">
 
             </div>
         </div>
-
-
 
         <div class="card border-light mb-3" style="height: 30%;">
             <div class="card-header">
@@ -63,7 +66,7 @@
             </div>
 
             @*Pestanna #1 Body*@
-            <div class="card-body pestanna-body" id="pestanna-1-body">
+            <div class="card-body card-body-flex" id="pestanna-1-body">
 
                 <div class="card border-light mb-3 col-md-4" style="height: 100%; margin: 0 0; padding: 0 0;">
                     <div class="card-header">
@@ -114,42 +117,45 @@
             </div>
 
             @*Pestanna #2 Body*@
-            <div class="card-body pestanna-body" id="pestanna-2-body">
+            <div class="card-body card-body-flex" id="pestanna-2-body">
 
                 <div class="card border-light mb-3 col-md-4" style="height: 100%; margin: 0 0; padding: 0 0;">
                     <div class="card-header">
                         <div>Gastos Operativos</div>
-                        <div><a href="#"><span><i class="fa fa-plus"></i></span></a></div>
+                        <div><a href="#"><span><i class="fa fa-plus" onclick="openInsertGastoModal()"></i></span></a></div>
                     </div>
-                    <div class="card-body" id="gastos-body" style="overflow-y: scroll">
-
+                    <div class="card-body" style="overflow-y: scroll">
+                        @* Solo para previsualizar *@
+                        @Html.Partial("~/Views/Gasto/_List.cshtml")
                     </div>
                 </div>
 
                 <div class="card border-light mb-3 col-md-4" style="height: 100%; margin: 0 0; padding: 0 0;">
                     <div class="card-header">
                         <div>Personal</div>
-                        <div><a href="#"><span><i class="fa fa-plus"></i></span></a></div>
+                        <div><a href="#"><span><i class="fa fa-plus" onclick="openInsertGrupoModal()"></i></span></a></div>
                     </div>
                     <div class="card-body" id="personal-body" style="overflow-y: scroll">
-
+                        @* Solo para previsualizar *@
+                        @Html.Partial("~/Views/Grupo/_List.cshtml")
                     </div>
                 </div>
 
                 <div class="card border-light mb-3 col-md-4" style="height: 100%; margin: 0 0; padding: 0 0;">
                     <div class="card-header">
                         <div>Vehículos</div>
-                        <div><a href="#"><span><i class="fa fa-plus"></i></span></a></div>
+                        <div><a href="#"><span><i class="fa fa-plus" onclick="openAddVehiculoModal()"></i></span></a></div>
                     </div>
                     <div class="card-body" id="vehiculos-body" style="overflow-y: scroll">
-
+                        @* Solo para previsualizar *@
+                        @Html.Partial("~/Views/Grupo/_ListVehiculos.cshtml")
                     </div>
                 </div>
 
             </div>
 
             @*Reporte Body*@
-            <div class="card-body pestanna-body" id="reporte-body">
+            <div class="card-body card-body-flex" id="reporte-body">
 
             </div>
 
@@ -159,7 +165,6 @@
 
 </div>
 
-<script src="~/Scripts/js/Dashboard.js"></script>
 
 <script type="text/javascript">
 
@@ -206,6 +211,7 @@ function seleccionEntidad() {
     }
     }
 </script>
+
 @Html.Partial("EntidadPersona")
 @Html.Partial("EntidadVehiculo")
 @Html.Partial("EntidadUbicacion")
@@ -214,3 +220,6 @@ function seleccionEntidad() {
 @Html.Partial("EntidadDroga")
 @Html.Partial("EntidadPersonaJuridica")
 @Html.Partial("_ModalCasoInsert")
+@Html.Partial("~/Views/Gasto/_FormModal.cshtml")
+@Html.Partial("~/Views/Grupo/_FormModal.cshtml")
+@Html.Partial("~/Views/Grupo/_FormAddVehiculoModal.cshtml")

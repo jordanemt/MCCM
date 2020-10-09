@@ -131,6 +131,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CasoController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\GastoController.cs" />
+    <Compile Include="Controllers\GrupoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -144,7 +146,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Dashdboard.css" />
+    <Content Include="Content\css\Dashdboard.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="favicon.ico" />
@@ -191,6 +193,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\js\Caso.js" />
+    <Content Include="Scripts\js\Gasto.js" />
+    <Content Include="Scripts\js\Grupo.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
@@ -296,6 +300,12 @@
     <Content Include="Views\Dashboard\EntidadTelefono.cshtml" />
     <Content Include="Views\Dashboard\EntidadUbicacion.cshtml" />
     <Content Include="Views\Dashboard\EntidadVehiculo.cshtml" />
+    <Content Include="Views\Gasto\_List.cshtml" />
+    <Content Include="Views\Gasto\_FormModal.cshtml" />
+    <Content Include="Views\Grupo\_List.cshtml" />
+    <Content Include="Views\Grupo\_FormModal.cshtml" />
+    <Content Include="Views\Grupo\_FormAddVehiculoModal.cshtml" />
+    <Content Include="Views\Grupo\_ListVehiculos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

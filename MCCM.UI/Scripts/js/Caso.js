@@ -1,7 +1,7 @@
 ﻿
 
 $(document).ready(function () {
-    CargarCasos();
+    //CargarCasos();
 });
 
 $(document).on("click",".caso",function () {

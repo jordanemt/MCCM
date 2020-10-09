@@ -1,21 +1,4 @@
-﻿.card .card-body {
-    margin: 0 0;
-    padding: 0 0;
-}
-
-.card-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.card-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 250px;
-}
-
-#dashboard-container {
+﻿#dashboard-container {
     display: flex;
     flex-direction: column;
     margin: 0 0;
@@ -30,6 +13,22 @@
     padding: 0 5px;
 }
 
+.card-body {
+    margin: 0 0px;
+    padding: 0 0;
+}
+
+.card-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.card-body-flex {
+    display: flex;
+    flex-direction: column;
+}
+
 @media (min-width: 768px) {
     #dashboard-container {
         height: 75vh;
@@ -40,7 +39,7 @@
         height: 100%;
     }
 
-    .pestanna-body {
+    .card-body-flex {
         flex-direction: row;
     }
 }
@@ -51,7 +50,7 @@
     }
 
     .card {
-        max-width: 350px;
-        min-width: 350px;
+        width: 80vw;
+        max-width: 425px;
     }
 }

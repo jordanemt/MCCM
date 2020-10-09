@@ -1,48 +1,45 @@
 ﻿using MCCM.Entidad;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
 namespace MCCM.AccesoDatos
 {
-    public class GastoDatos
+    public class VehiculoDatos
     {
-        public IEnumerable<TMCCM_Gasto> GetAll() 
+        public IEnumerable<TMCCM_Vehiculo> GetAll()
         {
             using (var context = new MCCMEntities())
             {
-                return context.TMCCM_Gasto.Where(e => e.TB_Eliminado == true).ToList();
+                return context.TMCCM_Vehiculo.Where(e => e.TB_Eliminado == true).ToList();
             }
         }
 
-        public TMCCM_Gasto GetById(int id)
+        public TMCCM_Vehiculo GetById(int id)
         {
             using (var context = new MCCMEntities())
             {
-                return context.TMCCM_Gasto.Find(id);
+                return context.TMCCM_Vehiculo.Find(id);
             }
         }
 
 
-        public TMCCM_Gasto Insert(TMCCM_Gasto data) 
+        public TMCCM_Vehiculo Insert(TMCCM_Vehiculo data)
         {
             using (var context = new MCCMEntities())
             {
                 data.TB_Eliminado = true;
-                data.TF_Fecha = DateTime.Now;
-                TMCCM_Gasto newData = context.TMCCM_Gasto.Add(data);
+                TMCCM_Vehiculo newData = context.TMCCM_Vehiculo.Add(data);
                 context.SaveChanges();
                 return newData;
             }
         }
 
-        public void Update(TMCCM_Gasto data)
+        public void Update(TMCCM_Vehiculo data)
         {
             using (var context = new MCCMEntities())
             {
                 data.TB_Eliminado = true;
-                data.TF_Fecha = DateTime.Now;
                 context.Entry(data).State = EntityState.Modified;
                 context.SaveChanges();
             }
@@ -52,7 +49,7 @@ namespace MCCM.AccesoDatos
         {
             using (var context = new MCCMEntities())
             {
-                TMCCM_Gasto data = context.TMCCM_Gasto.Find(id);
+                TMCCM_Vehiculo data = context.TMCCM_Vehiculo.Find(id);
                 data.TB_Eliminado = false;
                 context.Entry(data).State = EntityState.Modified;
                 context.SaveChanges();

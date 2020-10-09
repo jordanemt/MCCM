@@ -1,0 +1,140 @@
+﻿@model MCCM.Entidad.TMCCM_Gasto
+
+<div class="modal fade" id="gasto-insert-modal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title"></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form id="gasto-form" method="post">
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.TN_ID_Gasto, "Número de gasto:", htmlAttributes: new { @class = "control-label" })
+                            <div class="">
+                                @Html.EditorFor(model => model.TN_ID_Gasto, new
+                                {
+                                    htmlAttributes = new
+                                    {
+                                        @class = "form-control",
+                                        type = "text",
+                                        @readonly = "readonly"
+                                    }
+                                })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.TN_ID_Caso, "Número de caso:", htmlAttributes: new { @class = "control-label" })
+                            <div class="">
+                                @Html.EditorFor(model => model.TN_ID_Caso, new
+                                {
+                                    htmlAttributes = new
+                                    {
+                                        @class = "form-control TN_ID_Caso",
+                                        type = "text",
+                                        @readonly = "readonly",
+                                    }
+                                })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.TF_Fecha, "Fecha:", htmlAttributes: new { @class = "control-label" })
+                            <div class="">
+                                @Html.EditorFor(model => model.TF_Fecha, new
+                                {
+                                    htmlAttributes = new
+                                    {
+                                        @class = "form-control",
+                                        @readonly = "readonly"
+                                    }
+                                })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.TN_Num_Factura, "Número de factura:", htmlAttributes: new { @class = "control-label" })
+                            <div class="">
+                                @Html.EditorFor(model => model.TN_Num_Factura, new
+                                {
+                                    htmlAttributes = new
+                                    {
+                                        @class = "form-control",
+                                        required = "required",
+                                        type = "number"
+                                    }
+                                })
+                                @Html.ValidationMessageFor(model => model.TN_Num_Factura, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.TN_ID_Tipo_Gasto, "Tipo de gasto", htmlAttributes: new { @class = "control-label" })
+                            <div class="">
+                                @*@Html.EditorFor(model => model.TN_ID_Tipo_Gasto, new { htmlAttributes = new { @class = "form-control", required = "required" } })*@
+                                <select id="TN_ID_Tipo_Gasto" class="form-control" name="TN_ID_Tipo_Gasto" required>
+                                    <option selected disabled>Seleccione una opción</option>
+                                    <option value="1">Operativo</option>
+                                    <option value="2">Combustible</option>
+                                </select>
+                                @Html.ValidationMessageFor(model => model.TN_ID_Tipo_Gasto, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.TD_Monto, "Monto:", htmlAttributes: new { @class = "control-label" })
+                            <div class="">
+                                @Html.EditorFor(model => model.TD_Monto, new
+                                {
+                                    htmlAttributes = new
+                                    {
+                                        @class = "form-control",
+                                        required = "required",
+                                        type = "number"
+                                    }
+                                })
+                                @Html.ValidationMessageFor(model => model.TD_Monto, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.TC_Compra, "Detalle", htmlAttributes: new { @class = "control-label" })
+                            <div class="">
+                                @Html.EditorFor(model => model.TC_Compra, new
+                                {
+                                    htmlAttributes = new
+                                    {
+                                        @class = "form-control",
+                                        required = "required",
+                                        type = "text"
+                                    }
+                                })
+                                @Html.ValidationMessageFor(model => model.TC_Compra, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="align-content: center">
+                            <input type="submit" value="Insertar" class="btn btn-primary submit-button" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>

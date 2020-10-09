@@ -20,3 +20,4 @@ C:\Users\Jordan\source\repos\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.csproj.Cor
 C:\Users\Jordan\source\repos\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.csproj.CopyComplete
 C:\Users\Jordan\source\repos\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.dll
 C:\Users\Jordan\source\repos\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.pdb
+C:\Users\Jordan\source\repos\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.csprojAssemblyReference.cache
