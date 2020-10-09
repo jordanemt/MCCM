@@ -213,6 +213,7 @@
     <Content Include="Scripts\js\Mensaje.js" />
     <Content Include="Scripts\js\Gasto.js" />
     <Content Include="Scripts\js\Grupo.js" />
+    <Content Include="Scripts\js\Tarea.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />

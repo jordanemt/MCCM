@@ -1,14 +1,16 @@
 ﻿$(document).ready(function () {
-    //CargarCasos();
+    CargarCasos();
     iniciarCalendario("06/10/2020");
 });
 
 function iniciarCalendario(fecha) {
     //alert(fecha);
+
     $('#calendarioBitacora').daterangepicker({
         "singleDatePicker": true,
         "timePicker": true,
         "timePicker24Hour": true,
+        "starDate": fecha,
         locale: {
             format: 'M/DD hh:mm A'
         }
@@ -18,6 +20,7 @@ function iniciarCalendario(fecha) {
 }
 
 $(document).on("click",".caso",function () {
+
     if ($(".card").hasClass('filaseleccionada')) {
         $(".card").removeClass('filaseleccionada');
         $(this).addClass('filaseleccionada');
@@ -25,35 +28,11 @@ $(document).on("click",".caso",function () {
         $(this).addClass('filaseleccionada');
     }
     sessionStorage.CasoID= $(this).attr('id');
+
 });
 
 
-$(document).on("click", ".disquete", function () {
-    let lugar = $("#Lugar").val();
-    let novedad = $("#Novedad").val();
-    let informa = $("#Informa").val();
-    let calendario = $("#calendarioBitacora").val();
-    $("#divLugar").html("<h6 id='Lugar'>" + lugar + "</h6>")
-    $("#divNovedad").html("<h6 id='Novedad'>" + novedad + "</h6>")
-    $("#divInforma").html("<h6 id='Informa'>" + informa + "</h6>")
-    $("#divCalendario").html("<h6 id='Calendario'>" + calendario + "</h6>")
-    $("#guardarEvento").hide();
-    $("#eventoDiv").show();
-});
 
-$(document).on("click", ".editarEvento", function () {
-    let lugar = $("#Lugar").html();
-    let novedad = $("#Novedad").html();
-    let informa = $("#Informa").html();
-    let calendario = $("#Calendario").html();
-    $("#divLugar").html('<input class="form-control" id="Informa" value=' + lugar + '  />')
-    $("#divNovedad").html('<input class="form-control" id="Novedad" value=' + novedad + '  />')
-    $("#divInforma").html('<input class="form-control" id="Informa" value=' + informa + '  />')
-    $("#divCalendario").html('<input class="form-control" id="calendarioBitacora" value=' + calendario + '  />')
-    iniciarCalendario(calendario);
-    $("#guardarEvento").hide();
-    $("#eventoDiv").show();
-});
 
 
 $('#ModalFormCaso').on('hidden.bs.modal', function () {
@@ -172,7 +151,7 @@ function CargarCasos() {
         for (let i = 0; i < casos.length; i++) {
             
             $("#casos-body").append(
-                '<div class="card caso" id="' + casos[i].TN_ID_Caso +'" style="height:10em;">'+
+                '<div class="card caso" id="' + casos[i].TN_ID_Caso +'" >'+
                 '<div class="card-header"><div>Caso #' + casos[i].TN_ID_Caso + '</div>'+
                 '<a href="#" class="ojito" id="' + casos[i].TN_ID_Caso+'"><span><i class="fa fa-eye" aria-hidden="true"></i></span></a></div >'+
                         '<div class="card-body" style="padding:0px!important">'+
