@@ -28,6 +28,7 @@ C:\Users\Maikel\Desktop\MCCM\MCCM.Entidad\bin\Debug\EntityFramework.dll
 C:\Users\Maikel\Desktop\MCCM\MCCM.Entidad\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Maikel\Desktop\MCCM\MCCM.Entidad\bin\Debug\EntityFramework.xml
 C:\Users\Maikel\Desktop\MCCM\MCCM.Entidad\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Maikel\Desktop\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.csprojAssemblyReference.cache
 C:\Users\Maikel\Desktop\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.csproj.CoreCompileInputs.cache
 C:\Users\Maikel\Desktop\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.csproj.CopyComplete
 C:\Users\Maikel\Desktop\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.dll
