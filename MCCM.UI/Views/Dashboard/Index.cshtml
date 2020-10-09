@@ -155,8 +155,8 @@
                     <div class="card border-light" style="height: 100%; margin: 0 0; padding: 0 0;">
                         <div class="card-header">
                             <div id="botones" class="nav nav-tabs card-header-tabs">
-                                <input type="hidden" id="custId" name="custId" value="0">
-                                <a class="nav-item nav-link active fa fa-user" id="entidadPersona" data-toggle="tab" href="#" role="tab" aria-controls="nav-home" aria-selected="true" onclick="seleccionado('1')"></a>
+                                <input type="hidden" id="custId" name="custId" value="1">
+                                <a class="nav-item nav-link active fa fa-user" id="entidadPersona" data-toggle="tab" role="tab" aria-controls="nav-home" aria-selected="true" onclick="seleccionado('1')"></a>
                                 <a class="nav-item nav-link fa fa-building" id="entidadPersonaJuridica" data-toggle="tab" href="#" role="tab" aria-controls="nav-profile" aria-selected="false" onclick="seleccionado('2')"></a>
                                 <a class="nav-item nav-link fa fa-car" id="entidadCarro" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('3')"></a>
                                 <a class="nav-item nav-link fa fa-map-marker" id="nav-contact-tab" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('4')"></a>
@@ -167,6 +167,387 @@
                             </div>
                         </div>
                         <div class="card-body" id="entidades-body" style="overflow-y: scroll">
+                            <div class="container">
+
+                                @*Carta EntidadPersona*@
+
+                                <div class="card" id="cartaEntidadPersona">
+
+                                    <div class="card-header">
+                                        <div>Entidad Persona #1</div>
+                                        <div>
+                                            <a href="#" class="editarEvento" id="1"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
+                                            <a href="#" class="borrar borrarTarea" id="1"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>
+                                        </div>
+
+                                    </div>
+                                    <div class="card-body" style="padding:0px!important">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <img src="https://wikipsicologia.com/wp-content/uploads/2020/04/fortalezas-y-deb-1.jpg" class="img-fluid">
+                                                </div>
+
+                                                <div class="col-md-8">
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h6><span class="w-100 badge badge-primary">Nombre</span></h6>
+                                                        </div>
+                                                        <div class="col-md-8" id="divInforma">
+                                                            <small>Juanito</small>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h6><span class="w-100 badge badge-primary">Identificación:</span></h6>
+                                                        </div>
+                                                        <div class="col-md-8" id="divInforma">
+                                                            <small>1-2345-6789</small>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h6><span class="w-100 badge badge-primary">Alias:</span></h6>
+                                                        </div>
+
+                                                        <div class="col-md-8" id="divLugar">
+                                                            <small>Foret</small>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h6><span class="w-100 badge badge-primary">Nacionalidad:</span></h6>
+                                                        </div>
+                                                        <div class="col-md-8" id="divNovedad">
+                                                            <p>Costarricense</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h6><span class="w-100 badge badge-primary">Genero:</span></h6>
+                                                        </div>
+                                                        <div class="col-md-8" id="divNovedad">
+                                                            <p>Indefinido</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                @*Carta EntidadPersonaJuridica*@
+                                <div class="card" id="cartaEntidadPersonaJuridica" style="display:none">
+
+                                    <div class="card-header">
+                                        <div>Entidad Cedula Juridica #1</div>
+                                        <div>
+                                            <a href="#" class="editarEvento" id="1"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
+                                            <a href="#" class="borrar borrarTarea" id="1"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>
+                                        </div>
+
+                                    </div>
+                                    <div class="card-body" style="padding:0px!important">
+                                        <div class="container">
+
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <h6><span class="w-100 badge badge-primary">Cedula Juridica:</span></h6>
+                                                </div>
+                                                <div class="col-md-8" id="divInforma">
+                                                    <p>0-0000-0000<p />
+
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <h6><span class="w-100 badge badge-primary">Nombre Organización:</span></h6>
+                                                </div>
+                                                <div class="col-md-8" id="divInforma">
+                                                    <p>Tegit Habntem mundum</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <h6><span class="w-100 badge badge-primary">Tipo Organización:</span></h6>
+                                                </div>
+
+                                                <div class="col-md-8" id="divLugar">
+                                                    <p>Animalia fulgura arce</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @*Carta EntidadVehiculo*@
+
+                                <div class="card" id="cartaEntidadVehiculo" style="display:none">
+
+                                    <div class="card-header">
+                                        <div>Entidad Vehiculo #1</div>
+                                        <div>
+                                            <a href="#" class="editarEvento" id="1"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
+                                            <a href="#" class="borrar borrarTarea" id="1"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>
+                                        </div>
+
+                                    </div>
+                                    <div class="card-body" style="padding:0px!important">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <img src="https://cnet3.cbsistatic.com/img/nMoE20f4PXRsjkiuTZIL9dbM6sI=/940x0/2019/07/03/c83d8791-3cfe-4b2b-b6d8-219646c5333d/mazda-cx-5-2019-foto.jpg" class="img-fluid">
+                                                </div>
+
+                                                <div class="col-md-8">
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h6><span class="w-100 badge badge-primary">Placa</span></h6>
+                                                        </div>
+                                                        <div class="col-md-8" id="divInforma">
+                                                            <small>000000</small>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h6><span class="w-100 badge badge-primary">Marca:</span></h6>
+                                                        </div>
+                                                        <div class="col-md-8" id="divInforma">
+                                                            <p>Campoque pinus sole</p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h6><span class="w-100 badge badge-primary">Estilo:</span></h6>
+                                                        </div>
+
+                                                        <div class="col-md-8" id="divLugar">
+                                                            <small>Fossae</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                @*Carta EntidadVehiculo*@
+
+                                @*Carta EntidadUbicacion*@
+                                <div class="card" id="cartaEntidadUbicacion" style="display:none">
+
+                                    <div class="card-header">
+                                        <div>Entidad Ubicacion #1</div>
+                                        <div>
+                                            <a href="#" class="editarEvento" id="1"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
+                                            <a href="#" class="borrar borrarTarea" id="1"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>
+                                        </div>
+
+                                    </div>
+                                    <div class="card-body" style="padding:0px!important">
+                                        <div class="container">
+
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <h6><span class="w-100 badge badge-primary">Provincia:</span></h6>
+                                                </div>
+                                                <div class="col-md-8" id="divInforma">
+                                                    <p>Cartago<p />
+
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <h6><span class="w-100 badge badge-primary">Cantón:</span></h6>
+                                                </div>
+                                                <div class="col-md-8" id="divInforma">
+                                                    <p>Turrialba</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <h6><span class="w-100 badge badge-primary">Distrito:</span></h6>
+                                                </div>
+
+                                                <div class="col-md-8" id="divLugar">
+                                                    <p>Distrito</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <h6><span class="w-100 badge badge-primary">Señas:</span></h6>
+                                                </div>
+
+                                                <div class="col-md-8" id="divLugar">
+                                                    <p>Por la ucr</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @*Carta EntidadTelefono*@
+                                <div class="card" id="cartaEntidadTelefono" style="display:none">
+
+                                    <div class="card-header">
+                                        <div>Entidad Telefono #1</div>
+                                        <div>
+                                            <a href="#" class="editarEvento" id="1"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
+                                            <a href="#" class="borrar borrarTarea" id="1"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>
+                                        </div>
+
+                                    </div>
+                                    <div class="card-body" style="padding:0px!important">
+                                        <div class="container">
+
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <h6><span class="w-100 badge badge-primary">Número:</span></h6>
+                                                </div>
+                                                <div class="col-md-8" id="divInforma">
+                                                    <p>0000-00000<p />
+
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <h6><span class="w-100 badge badge-primary">Empresa:</span></h6>
+                                                </div>
+                                                <div class="col-md-8" id="divInforma">
+                                                    <p>Kolbi ICE</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <h6><span class="w-100 badge badge-primary">Comentario:</span></h6>
+                                                </div>
+
+                                                <div class="col-md-8" id="divLugar">
+                                                    <p>No contesta</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @*Carta EntidadArma*@
+                                <div class="card" id="cartaEntidadArma" style="display:none">
+
+                                    <div class="card-header">
+                                        <div>Entidad Arma #1</div>
+                                        <div>
+                                            <a href="#" class="editarEvento" id="1"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
+                                            <a href="#" class="borrar borrarTarea" id="1"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>
+                                        </div>
+
+                                    </div>
+                                    <div class="card-body" style="padding:0px!important">
+                                        <div class="container">
+
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <h6><span class="w-100 badge badge-primary">Marca:</span></h6>
+                                                </div>
+                                                <div class="col-md-8" id="divInforma">
+                                                    <p>Caecoque minantia obstabatque<p />
+
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <h6><span class="w-100 badge badge-primary">Tipo:</span></h6>
+                                                </div>
+                                                <div class="col-md-8" id="divInforma">
+                                                    <p>Pistola</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <h6><span class="w-100 badge badge-primary">Calibre:</span></h6>
+                                                </div>
+
+                                                <div class="col-md-8" id="divLugar">
+                                                    <p>9mm</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @*Carta EntidadDroga*@
+                                <div class="card" id="cartaEntidadDroga" style="display:none">
+
+                                    <div class="card-header">
+                                        <div>Entidad Arma #1</div>
+                                        <div>
+                                            <a href="#" class="editarEvento" id="1"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
+                                            <a href="#" class="borrar borrarTarea" id="1"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>
+                                        </div>
+
+                                    </div>
+                                    <div class="card-body" style="padding:0px!important">
+                                        <div class="container">
+
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <h6><span class="w-100 badge badge-primary">Nombre:</span></h6>
+                                                </div>
+                                                <div class="col-md-8" id="divInforma">
+                                                    <p>Cannabis<p />
+
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <h6><span class="w-100 badge badge-primary">Cantidad:</span></h6>
+                                                </div>
+                                                <div class="col-md-8" id="divInforma">
+                                                    <p>0g</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                            </div>
 
                         </div>
                     </div>
@@ -302,6 +683,71 @@ function seleccionado(seleccion) {
     if (seleccion !== global) {
         document.getElementById('custId').value = seleccion;
     }
+    if (seleccion == 1) {
+        $('#cartaEntidadPersona').show();
+        $('#cartaEntidadPersonaJuridica').hide();
+        $('#cartaEntidadVehiculo').hide();
+        $('#cartaEntidadUbicacion').hide();
+        $('#cartaEntidadTelefono').hide();
+        $('#cartaEntidadArma').hide();
+        $('#cartaEntidadDroga').hide();
+    }
+    if (seleccion == 2) {
+         $('#cartaEntidadPersona').hide();
+        $('#cartaEntidadPersonaJuridica').show();
+        $('#cartaEntidadVehiculo').hide();
+        $('#cartaEntidadUbicacion').hide();
+        $('#cartaEntidadTelefono').hide();
+        $('#cartaEntidadArma').hide();
+        $('#cartaEntidadDroga').hide();
+    }
+    if (seleccion == 3) {
+         $('#cartaEntidadPersona').hide();
+        $('#cartaEntidadPersonaJuridica').hide();
+        $('#cartaEntidadVehiculo').show();
+        $('#cartaEntidadUbicacion').hide();
+        $('#cartaEntidadTelefono').hide();
+        $('#cartaEntidadArma').hide();
+        $('#cartaEntidadDroga').hide();
+    }
+    if (seleccion == 4) {
+         $('#cartaEntidadPersona').hide();
+        $('#cartaEntidadPersonaJuridica').hide();
+        $('#cartaEntidadVehiculo').hide();
+        $('#cartaEntidadUbicacion').show();
+        $('#cartaEntidadTelefono').hide();
+        $('#cartaEntidadArma').hide();
+        $('#cartaEntidadDroga').hide();
+    }
+    if (seleccion == 5) {
+         $('#cartaEntidadPersona').hide();
+        $('#cartaEntidadPersonaJuridica').hide();
+        $('#cartaEntidadVehiculo').hide();
+        $('#cartaEntidadUbicacion').hide();
+        $('#cartaEntidadTelefono').show();
+        $('#cartaEntidadArma').hide();
+        $('#cartaEntidadDroga').hide();
+    }
+
+    if (seleccion == 6) {
+         $('#cartaEntidadPersona').hide();
+        $('#cartaEntidadPersonaJuridica').hide();
+        $('#cartaEntidadVehiculo').hide();
+        $('#cartaEntidadUbicacion').hide();
+        $('#cartaEntidadTelefono').hide();
+        $('#cartaEntidadArma').show();
+        $('#cartaEntidadDroga').hide();
+    }
+    if (seleccion == 7) {
+         $('#cartaEntidadPersona').hide();
+        $('#cartaEntidadPersonaJuridica').hide();
+        $('#cartaEntidadVehiculo').hide();
+        $('#cartaEntidadUbicacion').hide();
+        $('#cartaEntidadTelefono').hide();
+        $('#cartaEntidadArma').hide();
+        $('#cartaEntidadDroga').show();
+    }
+
 }
 
  @*Metodo para seleccionar la entidad*@
