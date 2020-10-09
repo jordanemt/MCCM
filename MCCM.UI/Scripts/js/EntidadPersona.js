@@ -3,20 +3,22 @@ $("#FormEntidadPersona").submit(function (e) {
     e.preventDefault();
     var form = new FormData($("#FormEntidadPersona")[0]);
     let url;
-    url = "/E_PersonaController/Insertar_E_Persona";
+    
     AccionesEntidadPersonaForm(form,url);
 
 });
 
 function AccionesEntidadPersonaForm(form, url) {
+    //alert(JSON.stringify(Object.fromEntries(form)));
     $.ajax({
         type: "POST",
-        url: url,
+        url: "/E_Persona/Insertar_E_Persona",
         data: form,
         contentType: false,
         cache: false,
         processData: false,
     }).done(function (data) {
+        alert(data);
         $("#entidadPersonaModal").modal("hide");
 
     }); 

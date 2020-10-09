@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using MCCM.Entidad.DTO;
 using Newtonsoft.Json;
-
+using System.IO;
 namespace MCCM.UI.Controllers
 {
     public class E_PersonaController : Controller
@@ -20,7 +20,7 @@ namespace MCCM.UI.Controllers
         public String Insertar_E_Persona(TMCCM_EntidadPersonaDTO entidadPersonaDTO)
         {
             
-            return "S";
+            return Path.GetFileNameWithoutExtension(entidadPersonaDTO.TB_Fotografia.FileName); ;
         }
 
     }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
+using static System.Net.WebRequestMethods;
 
 namespace MCCM.Entidad.DTO
 {
@@ -20,7 +22,7 @@ namespace MCCM.Entidad.DTO
         public string TC_Segundo_Apellido { get; set; }
         public Nullable<System.DateTime> TF_Fecha_Nacimiento { get; set; }
         public Nullable<int> TN_Edad { get; set; }
-        public byte[] TB_Fotografia { get; set; }
+        public HttpPostedFileBase TB_Fotografia { get; set; }
         public string TC_Cedula { get; set; }
         public Nullable<bool> TB_Fallecido { get; set; }
         public Nullable<int> TN_Autopsia { get; set; }
