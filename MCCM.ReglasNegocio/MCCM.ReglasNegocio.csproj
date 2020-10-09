@@ -44,7 +44,6 @@
     <Compile Include="CasoNegocio.cs" />
     <Compile Include="EntidadPersonaNegocio.cs" />
     <Compile Include="EventoNegocio.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TareaNegocio.cs" />
     <Compile Include="GastoNegocio.cs" />
     <Compile Include="GrupoNegocio.cs" />
