@@ -83,6 +83,61 @@
                         <div><a href="#"><span><i class="fa fa-plus" data-toggle="modal" data-target="#ModalFormEvento"></i></span></a></div>
                     </div>
                     <div class="card-body" id="bitacora-body" style="overflow-y: scroll">
+                        <div class="container">
+                            <div class="card evento" id="' + eventos.TN_ID_Caso + '">
+                                
+                                <div class="card-header">
+                                    <div>Evento # 1</div>
+                                    <div>
+                                        <a href="#" class="editarEvento" id="1"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
+                                        <a href="#" class="borrar borrarEvento" id="1"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>
+                                    </div>
+
+                                </div>
+                                <div class="card-body" style="padding:0px!important">
+                                    <div class="container">
+
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <h6><span class="w-100 badge badge-primary">Fecha/Hora</span></h6>
+                                            </div>
+                                            <div class="col-md-8" id="divInforma">
+                                                <small>2020/10/09 5:00PM</small>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <h6><span class="w-100 badge badge-primary">Informa:</span></h6>
+                                            </div>
+                                            <div class="col-md-8" id="divInforma">
+                                                <small>Maikel Matamoroso Zuñiga</small>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <h6><span class="w-100 badge badge-primary">Lugar:</span></h6>
+                                            </div>
+
+                                            <div class="col-md-8" id="divLugar">
+                                                <small>En Turri</small>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <h6><span class="w-100 badge badge-primary">Novedad:</span></h6>
+                                            </div>
+                                            <div class="col-md-8" id="divNovedad">
+                                                <p>Valeria está vendiendo mota a todos los niños de la escuela T_T</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
 
                     </div>
                 </div>
@@ -116,10 +171,64 @@
                 <div class="card border-light mb-3 col-md-4" style="height: 100%; margin: 0 0; padding: 0 0;">
                     <div class="card-header">
                         <div>Tareas</div>
-                        <div><a href="#"><span><i class="fa fa-plus"></i></span></a></div>
+                        <div><a href="#"><span><i class="fa fa-plus" data-toggle="modal" data-target="#ModalFormTarea"></i></span></a></div>
                     </div>
                     <div class="card-body" id="tareas-body" style="overflow-y: scroll">
+                        <div class="container">
+                            <div class="card evento" id="' + eventos.TN_ID_Caso + '">
 
+                                <div class="card-header">
+                                    <div>Evento # 1</div>
+                                    <div>
+                                        <a href="#" class="editarEvento" id="1"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
+                                        <a href="#" class="borrar borrarTarea" id="1"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>
+                                    </div>
+
+                                </div>
+                                <div class="card-body" style="padding:0px!important">
+                                    <div class="container">
+
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <h6><span class="w-100 badge badge-primary">Fecha/Hora</span></h6>
+                                            </div>
+                                            <div class="col-md-8" id="divInforma">
+                                                <small>2020/10/09 5:00PM</small>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <h6><span class="w-100 badge badge-primary">Informa:</span></h6>
+                                            </div>
+                                            <div class="col-md-8" id="divInforma">
+                                                <small>Maikel Matamoroso Zuñiga</small>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <h6><span class="w-100 badge badge-primary">Lugar:</span></h6>
+                                            </div>
+
+                                            <div class="col-md-8" id="divLugar">
+                                                <small>En Turri</small>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <h6><span class="w-100 badge badge-primary">Novedad:</span></h6>
+                                            </div>
+                                            <div class="col-md-8" id="divNovedad">
+                                                <p>Valeria está vendiendo mota a todos los niños de la escuela T_T</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
 
@@ -193,33 +302,42 @@
                                             </div>
                                             <div class="card-body">
                                                 <div class="col-sm-12">
-                                                    <div class="form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                                        Personal Policial
-                                                        <label class="col-md-3 col-form-label" for="defaultCheck1" style="margin:auto; ">
+                                                    <div class="row">
+                                                        <div class="col-6">
 
-                                                        </label>
+                                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+
+                                                            <small>
+                                                                <span class="badge-primary">
+                                                                    Personal Policial
+                                                                </span>
+                                                            </small>
+
+
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+
+                                                            <label class="form-check-label" for="defaultCheck1" style="margin:auto; ">
+                                                                Personal Policial
+                                                            </label>
+                                                        </div>
                                                     </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                                        Personal Policial
-                                                        <label class="form-check-label" for="defaultCheck1" style="margin:auto; ">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                                            Personal Policial
+                                                            <label class="form-check-label" for="defaultCheck1" style="margin:auto; ">
 
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                                        Personal Policial
-                                                        <label class="form-check-label" for="defaultCheck1" style="margin:auto; ">
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                                            Personal Policial
+                                                            <label class="form-check-label" for="defaultCheck1" style="margin:auto; ">
 
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                                        Personal Policial
-                                                        <label class="form-check-label" for="defaultCheck1" style="margin:auto; ">
-
-                                                        </label>
+                                                            </label>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -380,5 +498,6 @@ function seleccionEntidad() {
 @Html.Partial("EntidadPersonaJuridica")
 @Html.Partial("~/Views/Caso/_ModalCasoInsert.cshtml")
 @Html.Partial("~/Views/Bitacora/_ModalEventoForm.cshtml")
-
+@Html.Partial("~/Views/Tarea/_ModalFormTarea.cshtml")
+@Html.Partial("_ModalMensajeConfirmacion")
 

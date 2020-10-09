@@ -59,7 +59,9 @@
   <ItemGroup>
     <Compile Include="CasoDatos.cs" />
     <Compile Include="EntidadPersonaDatos.cs" />
+    <Compile Include="EventoDatos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TareaDatos.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MCCM.Entidad\MCCM.Entidad.csproj">

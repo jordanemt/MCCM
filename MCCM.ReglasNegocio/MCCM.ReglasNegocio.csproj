@@ -43,7 +43,9 @@
   <ItemGroup>
     <Compile Include="CasoNegocio.cs" />
     <Compile Include="EntidadPersonaNegocio.cs" />
+    <Compile Include="EventoNegocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TareaNegocio.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MCCM.AccesoDatos\MCCM.AccesoDatos.csproj">

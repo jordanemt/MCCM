@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4f27690c85334e1885c5aefe8624e4c0" Name="Diagram1" ZoomLevel="10">
+      <Diagram DiagramId="4f27690c85334e1885c5aefe8624e4c0" Name="Diagram1" ZoomLevel="72">
         <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Arma_Icono_Arma" Width="1.5" PointX="0.75" PointY="30.125" IsExpanded="true" />
         <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Arma_Marca" Width="1.5" PointX="0.75" PointY="32.875" IsExpanded="true" />
         <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Arma_Tipo_Arma" Width="1.5" PointX="0.75" PointY="35.375" IsExpanded="true" />
