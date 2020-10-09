@@ -6,4 +6,6 @@
     $('#' + name).show();
 }
 
-changeVisiblePestannaBody('pestanna-1-body');
+$(document).ready(function () {
+    changeVisiblePestannaBody('pestanna-2-body');
+});

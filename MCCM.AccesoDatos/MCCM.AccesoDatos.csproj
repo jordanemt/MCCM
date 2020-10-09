@@ -66,8 +66,14 @@
     <Compile Include="EntidadTelefonoDatos.cs" />
     <Compile Include="EntidadUbicacionDatos.cs" />
     <Compile Include="EntidadVehiculoDatos.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilidades.cs" />
+    <Compile Include="EventoDatos.cs" />
+    <Compile Include="TareaDatos.cs" />
+    <Compile Include="GastoDatos.cs" />
+    <Compile Include="GrupoDatos.cs" />
+    <Compile Include="Grupo_VehiculoDatos.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VehiculoDatos.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MCCM.Entidad\MCCM.Entidad.csproj">

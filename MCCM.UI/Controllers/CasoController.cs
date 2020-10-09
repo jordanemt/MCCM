@@ -16,11 +16,7 @@ namespace MCCM.UI.Controllers
     {
 
         CasoNegocio casoNegocio = new CasoNegocio();
-        // GET: Caso
-        public ActionResult Index()
-        {
-            return View();
-        }
+        
 
         [HttpPost]
         public String InsertarCaso(TMCCM_Caso caso) {

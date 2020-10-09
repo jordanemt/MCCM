@@ -8,7 +8,7 @@ function iniciarCalendario(fecha) {
     $('#calendarioBitacora').daterangepicker({
         "singleDatePicker": true,
         "timePicker": true,
-        "minDate":  fecha,
+        "timePicker24Hour": true,
         locale: {
             format: 'M/DD hh:mm A'
         }
@@ -53,13 +53,6 @@ $(document).on("click", ".editarEvento", function () {
     iniciarCalendario(calendario);
     $("#guardarEvento").hide();
     $("#eventoDiv").show();
-});
-
-
-
-
-$(document).on("click", ".caso", function () {
-    
 });
 
 
@@ -119,17 +112,16 @@ function limpiarFormularioCaso() {
 }
 
 
-$(document).on("click", "#btnModificar", function (e) {
+$(document).on("click", "#btnModificarCaso", function (e) {
     e.preventDefault();
     var form = $("#FormCaso");
     alert(form.serialize());
     let url;
     url = "/Caso/ActualizarCaso";
     AccionesCasoForm(form,url);
-        
 });
 
-$(document).on("click", "#btnEliminar", function (e) {
+$(document).on("click", "#btnEliminarCaso", function (e) {
     e.preventDefault();
     alert("Eliminar");
 
@@ -144,7 +136,7 @@ $(document).on("click", "#btnEliminar", function (e) {
 
 });
 
-$(document).on("click", "#btnRegistrar", function (e) {
+$(document).on("click", "#btnRegistrarCaso", function (e) {
     e.preventDefault();
     var form = $("#FormCaso");
     alert(form.serialize());

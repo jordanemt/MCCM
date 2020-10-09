@@ -1,0 +1,116 @@
+﻿@model IEnumerable<MCCM.Entidad.TMCCM_Grupo>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TF_Hora)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TC_Zona)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TF_Fecha_Inicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TF_Fecha_Final)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TB_Eliminado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TMCCM_Caso.TC_Nombre_Caso)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TF_Hora)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TC_Zona)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TF_Fecha_Inicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TF_Fecha_Final)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TB_Eliminado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TMCCM_Caso.TC_Nombre_Caso)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.TN_ID_Grupo }) |
+                @Html.ActionLink("Details", "Details", new { id = item.TN_ID_Grupo }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.TN_ID_Grupo })
+            </td>
+        </tr>
+    }
+
+</table>*@
+
+
+@*Solo para previsualizar*@
+<div id="grupo-1" class="card border-light mb-3" style="margin: 5px; padding: 0 0;">
+    <div class="card-header">
+        <div>Grupo #1</div>
+        <div>
+            <a href="#" onclick="openUpdateGrupoModal(1)"><span><i class="fa fa-edit"></i></span></a>
+            <a href="#"><span><i class="fa fa-trash"></i></span></a>
+        </div>
+    </div>
+    <div class="card-body" style="display: flex; flex-direction: column; justify-content: center; align-items: center">
+        <div class="col-md-8" style="display: flex; flex-direction: row; justify-content: center; align-items: center">
+            @* Se debe iterar sobre los usuarios *@
+            <span style="margin: 0px 15px;"><i class="fa fa-male"></i></span>
+            <span style="margin: 0px 15px;"><i class="fa fa-female"></i></span>
+            <span style="margin: 0px 15px;"><i class="fa fa-female"></i></span>
+            <span style="margin: 0px 15px;"><i class="fa fa-male"></i></span>
+        </div>
+        <div class="col-md-12" style="display: flex; flex-direction: row; justify-content: center; align-items: center; margin: 5px 0;">
+            @* Iterar sobre grupos *@
+            <div class="col-md-6" style="display: flex; flex-direction: column;">
+                <div style="display: flex; flex-direction: row;">
+                    <span class="badge badge-primary" style="max-height: 20px;">Encargado:</span>
+                    <p>000 Juan Tobias</p>
+                </div>
+                <div style="display: flex; flex-direction: row;">
+                    <div>
+                        <span class="badge badge-secondary" style="max-height: 20px;">Acompaña:</span>
+                    </div>
+                    <div>
+                        <p>001 María Torres</p>
+                        <p>002 Sofia Campos</p>
+                        <p>003 Luis Ruíz</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6" style="display: flex; flex-direction: column;">
+                <div style="display: flex; flex-direction: row;">
+                    <span class="badge badge-primary" style="max-height: 20px;">Zona:</span>
+                    <p>Turrialba</p>
+                </div>
+                <div style="display: flex; flex-direction: row;">
+                    <span class="badge badge-primary" style="max-height: 20px;">F/Inicio:</span>
+                    <p>12/12/2019</p>
+                </div>
+                <div style="display: flex; flex-direction: row;">
+                    <span class="badge badge-primary" style="max-height: 20px;">F/Final:</span>
+                    <p>---</p>
+                </div>
+                <div style="display: flex; flex-direction: row;">
+                    <span class="badge badge-primary" style="max-height: 20px;">Hora:</span>
+                    <p>8:00pm</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -59,6 +59,8 @@
     <Compile Include="DTO\TMCCM_EntidadUbicacionDTO.cs" />
     <Compile Include="DTO\TMCCM_EntidadVehiculoDTO.cs" />
     <Compile Include="DTO\TMCCM_EntidadTelefonoDTO.cs" />
+    <Compile Include="DTO\TMCCM_EventoDTO.cs" />
+    <Compile Include="DTO\TMCCM_TareaDTO.cs" />
     <Compile Include="MCCMModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
