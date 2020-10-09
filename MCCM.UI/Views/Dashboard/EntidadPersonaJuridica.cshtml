@@ -41,11 +41,11 @@
                     <div class="form-group row">
                         <label for="tipoOrganizacion" class="col-md-3 col-form-label">Tipo Organización</label>
                         <select class=" col-md-8 form-control" name="TN_ID_Tipo_Organización" id="TN_ID_Tipo_Organización">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
+                            <option>Empresario individual</option>
+                            <option>Sociedad Anónima</option>
+                            <option>Asociacines sin ánimo de lucro</option>
+                            <option>Sociedad Cooperativa</option>
+                            <option>Comunidad de bienes</option>
                         </select>
                         <a href="#" class="fa fa-plus col-md-1"></a>
                     </div>
@@ -54,36 +54,36 @@
                         <input type="text" class="col-md-8 form-control" name="TC_Sitio_Web" id="TC_Sitio_Web">
                     </div>
                     <div class="form-group row">
-                        <label for="comentario" class="col-md-3 col-form-label">Comentario</label>
-                        <textarea class="col-md-8 form-control" name="TC_Comentario" id="TC_Comentario" rows="3"></textarea>
+                        <label id="comentario_PJ" for="comentario" class="col-md-3 col-form-label">Comentario</label>
+                        <textarea class="col-md-8 form-control" name="TC_Comentario_PJ" id="TC_Comentario_PJ" rows="3"></textarea>
                     </div>
                     <div class="form-group row">
-                        <label for="segundoApellido" class="col-md-3 col-form-label" style="display:none">Fecha Modificación</label>
-                        <input type="text" class="col-md-8 form-control" name="TF_Fecha_Modificacion" style="display:none" id="TF_Fecha_Modificacion">
+                        <label id="creadoPor_PJ" for="creadoPor" class="col-md-3 col-form-label">Creado por</label>
+                        <input type="text" class="col-md-8 form-control" name="TC_Creado_Por_PJ" id="TC_Creado_Por_PJ">
+                    </div>
+                    <div class="form-group row" tyle="display:none" id="fechaCreacion_Row_PJ">
+                        <label id="fechaCreacion_PJ" for="alias" class="col-md-3 col-form-label">Fecha Creacion</label>
+                        <input type="text" class="col-md-8 form-control" name="TF_Fecha_Creacion_PJ" id="TF_Fecha_Creacion_PJ">
+                    </div>
+                    <div class="form-group row" style="display:none" id="fechaModificación_Row_PJ">
+                        <label id="fechaModificación_PJ" for="segundoApellido" class="col-md-3 col-form-label">Fecha Modificación</label>
+                        <input type="text" class="col-md-8 form-control" name="TF_Fecha_Modificacion_PJ" id="TF_Fecha_Modificacion_PJ">
+                    </div>
+                    <div class="form-group row" style="display:none" id="modificadoPor_Row_PJ">
+                        <label id="modificadopor_PJ" for="creadoPor" class="col-md-3 col-form-label">Modificado por</label>
+                        <input type="text" class="col-md-8 form-control" name="TF_Modificado_Por_PJ" id="TF_Modificado_Por_PJ">
                     </div>
                     <div class="form-group row">
-                        <label for="alias" class="col-md-3 col-form-label" style="display:none">Fecha Creacion</label>
-                        <input type="text" class="col-md-8 form-control" name="TF_Fecha_Creacion" style="display:none" id="TF_Fecha_Creacion">
-                    </div>
-                    <div class="form-group row">
-                        <label for="creadoPor" class="col-md-3 col-form-label">Creado por</label>
-                        <input type="text" class="col-md-8 form-control" name="TC_Creado_Por" id="TC_Creado_Por">
-                    </div>
-                    <div class="form-group row">
-                        <label for="creadoPor" class="col-md-3 col-form-label" style="display:none">Modificado por</label>
-                        <input type="text" class="col-md-8 form-control" name="TF_Modificado_Por" style="display:none" id="TF_Modificado_Por">
-                    </div>
-                    <div class="form-group row">
-                        <label for="verificado" class="col-md-3 col-form-label">Verificado</label>
+                        <label id="verificado_PJ" for="verificado" class="col-md-3 col-form-label">Verificado</label>
                         <div class="col-md-8  form-check">
-                            <input class="form-check-input" type="checkbox" name="TB_Verificado" id="TB_Verificado">
+                            <input class="form-check-input" type="checkbox" name="TB_Verificado_PJ" id="TB_Verificado_PJ">
                         </div>
                     </div>
                     <div class="d-flex justify-content-center">
                         <button id="btnInsertarEntidadPersonaJuridica" type="submit" class="btn btn-primary">Insertar</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                        <button id="btnModificar" class="btn btn-info" style="display:none">Modificar</button>
-                        <button id="btnEliminar" class="btn btn-danger" style="display:none">Eliminar</button>
+                        <button id="btnCancelarEntidadPersonaJuridica" type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button id="btnModificarEntidadPersonaJuridica" class="btn btn-info" style="display:none">Modificar</button>
+                        <button id="btnEliminarPersonaJuridica" class="btn btn-danger" style="display:none">Eliminar</button>
                     </div>
                 </form>
             </div>
