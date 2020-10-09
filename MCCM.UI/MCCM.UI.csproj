@@ -191,6 +191,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\js\Caso.js" />
+    <Content Include="Scripts\js\Evento.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
@@ -288,7 +289,7 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\Dashboard\_ModalCasoInsert.cshtml" />
+    <Content Include="Views\Caso\_ModalCasoInsert.cshtml" />
     <Content Include="Views\Dashboard\EntidadArma.cshtml" />
     <Content Include="Views\Dashboard\EntidadDroga.cshtml" />
     <Content Include="Views\Dashboard\EntidadPersona.cshtml" />
@@ -296,6 +297,8 @@
     <Content Include="Views\Dashboard\EntidadTelefono.cshtml" />
     <Content Include="Views\Dashboard\EntidadUbicacion.cshtml" />
     <Content Include="Views\Dashboard\EntidadVehiculo.cshtml" />
+    <Content Include="Views\Dashboard\View.cshtml" />
+    <Content Include="Views\Bitacora\_ModalEventoForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,67 @@
+﻿@model MCCM.Entidad.TMCCM_Evento
+
+<div class="modal fade" id="ModalFormEvento">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title" id="tituloFormModal">Registrar Evento</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body col-12">
+                <div class="row">
+                    <form class="col-12" id="FormEvento">
+                        <div class="form-row">
+                            <div class="col-2">
+                                <h6><span class="badge badge-primary">Fecha/Hora: </span></h6>
+
+                            </div>
+                            <div class="col-md-10" id="divCalendario">
+                                <input class="form-control" id="calendarioBitacora" name="calendarioBitacora" />
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-2">
+                                <h6><span class="badge badge-primary">Informa</span></h6>
+                            </div>
+                            <div class="col-md-10" id="divInforma">
+                                <input class="form-control" id="Informa" name="Informa" />
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-2">
+                                <h6><span class="badge badge-primary">Lugar: </span></h6>
+                            </div>
+
+                            <div class="col-md-10" id="divLugar">
+                                <input class="form-control" id="Lugar" name="Lugar" />
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-2">
+                                <h6><span class="badge badge-primary">Novedad</span></h6>
+                            </div>
+                            <div class="col-md-10" id="divNovedad">
+                                <input class="form-control" id="Novedad" name="Novedad" />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-offset-2 col-md-10">
+                                <button id="btnRegistrarEvento" class="btn btn-primary">Registrar</button>
+                                <button id="btnModificarEvento" class="btn btn-info" style="display:none">Modificar</button>
+                                <button id="btnEliminarEvento" class="btn btn-danger" style="display:none">Eliminar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/js/Evento.js"></script>
