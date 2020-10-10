@@ -18,7 +18,8 @@ function iniciarCalendarioDroga(fecha) {
 }
 
 $(document).on("click", ".editarEntidadDroga", function () {
-
+    $("#tituloEntidadDrogaInsertar").hide();
+    $("#tituloEntidadDroga").show();
     $("#eventoIDI").val("1");
     $("#TC_Nombre_Droga").val("Marihuana");
     $("#TC_Detalle").val("Decomiso de gran cantidad de marihuana en Turrialba");
@@ -31,13 +32,25 @@ $(document).on("click", ".editarEntidadDroga", function () {
     $("#divDrogaMP").show();
     $("#TF_Modificado_Por_Droga").val("");
     $('#TB_Verificado_Droga').attr('checked', false);
-    $("#btnModificarDroga").show();
-    $("#btnAgregarEntidadDroga").hide();
-  
+    $("#btnModificarEntidadDroga").show();
+    $("#btnEliminarEntidadDroga").show();
+    $("#btnCancelarEntidadDroga").hide(); 
+    $("#btnAgregarEntidadDroga").hide(); 
     $("#entidadDrogaModal").modal("show");
 
 });
+$('#entidadDrogaModal').on('hidden.bs.modal', function () {
+    $("#FormEntidadDroga")[0].reset();
+    $("#tituloEntidadDrogaInsertar").show();
+    $("#tituloEntidadDroga").hide();
+    $("#divDrogaFC").hide();
+    $("#divDrogaMP").hide();
+    $("#btnModificarEntidadDroga").hide();
+    $("#btnEliminarEntidadDroga").hide();
+    $("#btnCancelarEntidadDroga").show();
+    $("#btnAgregarEntidadDroga").show(); 
 
+})
 
 $("#FormEntidadDroga").submit(function (e) {
     e.preventDefault();
