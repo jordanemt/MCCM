@@ -78,4 +78,8 @@ $('#entidadUbicacionModal').on('hidden.bs.modal', function () {
     $("#fechaCreacion_Row_U").hide();
     $("#fechaModificación_Row_U").hide();
     $("#modificadoPor_Row_U").hide();
+    $("#btnInsertarEntidadUbicacion").show();
+    $("#btnCancelarEntidadUbicacion").show();
+    $("#btnModificarEntidadUbicacion").hide();
+    $("#btnEliminarEntidadUbicacion").hide();
 })

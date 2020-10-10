@@ -76,4 +76,8 @@ $('#entidadVehículoModal').on('hidden.bs.modal', function () {
     $("#fechaCreacion_Row_V").hide();
     $("#fechaModificación_Row_V").hide();
     $("#modificadoPor_Row_V").hide();
+    $("#btnInsertarEntidadVehiculo").show();
+    $("#btnCancelarEntidadVehiculo").show();
+    $("#btnModificarEntidadVehiculo").hide();
+    $("#btnEliminarEntidadVehiculo").hide();
 })
