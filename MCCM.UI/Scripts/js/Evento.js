@@ -2,7 +2,7 @@
     e.preventDefault();
     var form = $("#FormEvento");
     //alert(form.serialize());
-    alert("holi");
+    //alert("holi");
     let url;
     url = "/Caso/ActualizarCaso";
 
@@ -21,13 +21,13 @@ $('#ModalFormEvento').on('hidden.bs.modal', function () {
 
 
 $(document).on("click", ".editarEvento", function () {
-
+    $("#tituloEventoModal").html("Modificar Evento");
     $("#eventoIDI").val("1");
-    $("#LugarI").val("En Turri");
-    $("#NovedadI").val("Valeria está vendiendo mota a todos los niños de la escuela T_T");
-    $("#InformaI").val("Maikel Matamoros Zúñiga");
-    $("#calendarioBitacora").val("10/09/2020 5:00PM");
-    iniciarCalendario("10/09/2020 5:00PM");
+    $("#LugarI").val("Turrialba");
+    $("#NovedadI").val("Se procede a entablar dialogo con los ladrones");
+    $("#InformaI").val("Juan Ramirez Suarez");
+    $("#calendarioBitacora").val("10/10 12:00 PM");
+    iniciarCalendario("10/10 12:00 PM");
     $("#divEventoID").show();
     $("#btnModificarEvento").show();
     $("#btnRegistrarEvento").hide();

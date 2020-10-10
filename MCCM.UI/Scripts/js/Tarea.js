@@ -14,17 +14,16 @@
 
 
 $(document).on("click", ".editarTarea", function () {
-
+    $("#tituloFormTarea").html("Modificar Tarea");
     $("#eventoIDI").val("1");
-    $("#LugarI").val("En Turri");
-    $("#NovedadI").val("Valeria está vendiendo mota a todos los niños de la escuela T_T");
+    $("#TLugarI").val("Turrialba");
+    $("#DiligenciaI").val("Comprar Pan");
     $("#InformaI").val("Maikel Matamoros Zúñiga");
-    $("#calendarioBitacora").val("10/09/2020 5:00PM");
+    $("#calendarioTarea").val("10/09/2020 5:00PM");
     iniciarCalendario("10/09/2020 5:00PM");
-    $("#divEventoID").show();
-    $("#btnModificarEvento").show();
-    $("#btnRegistrarEvento").hide();
-    $("#btnEvento").hide();
-    $("#ModalFormEvento").modal("show");
+    $("#btnModificarTarea").show();
+    $("#btnRegistrarTarea").hide();
+    $("#btnTarea").hide();
+    $("#ModalFormTarea").modal("show");
 
 });
