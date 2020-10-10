@@ -38,10 +38,26 @@ $(document).on("click", ".editarEntidadArma", function () {
     $("#TC_Modificado_Por_Arma").val("");
     $('#TB_Verificado_Droga').attr('checked', false);
     $("#btnModificarEntidadArma").show();
-    $("#btnAgregarEntidadArma").hide();
+    $("#btnEliminarEntidadArma").show();
+    $("#btnCancelarEntidadArma").hide();
+    $("#btnAgregarEntidadArma").hide(); 
     $("#entidadArmaModal").modal("show");
 
 });
+
+$('#entidadTelefonoModal').on('hidden.bs.modal', function () {
+    $("#FormEntidadArma")[0].reset();
+    $("#tituloEntidadArmaInsertar").show();
+    $("#tituloEntidadArma").hide();
+    $("#divFMA").hide();
+    $("#divFCA").hide();
+    $("#btnModificarEntidadArma").hide();
+    $("#btnEliminarEntidadArma").hide();
+    $("#btnCancelarEntidadArma").show();
+    $("#btnAgregarEntidadArma").show(); 
+
+})
+
 
 $(document).ready(function () {
 
