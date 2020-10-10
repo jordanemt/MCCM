@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
     CargarCasos();
+   
     iniciarCalendario("06/10/2020");
 });
 
@@ -30,9 +31,6 @@ $(document).on("click",".caso",function () {
     sessionStorage.CasoID= $(this).attr('id');
 
 });
-
-
-
 
 
 $('#ModalFormCaso').on('hidden.bs.modal', function () {
