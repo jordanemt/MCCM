@@ -1,0 +1,64 @@
+﻿label.error {
+    color: red;
+    font-size: 1rem;
+    display: block;
+    margin-top: 5px;
+    margin-left:2%;
+}
+
+#dashboard-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0;
+    padding: 0 0;
+    justify-content: center;
+}
+
+.dashboard-child {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0;
+    padding: 0 5px;
+}
+
+.card-body {
+    margin: 0 0px;
+    padding: 0 0;
+}
+
+.card-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.card-body-flex {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 768px) {
+    #dashboard-container {
+        height: 75vh;
+        flex-direction: row;
+    }
+
+    .dashboard-child {
+        height: 100%;
+    }
+
+    .card-body-flex {
+        flex-direction: row;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-child {
+        align-items: center;
+    }
+
+    .card {
+        width: 80vw;
+        max-width: 425px;
+    }
+}

@@ -41,7 +41,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CasoNegocio.cs" />
+    <Compile Include="EntidadArmaNegocio.cs" />
+    <Compile Include="EntidadDrogaNegocio.cs" />
+    <Compile Include="EntidadPersonaJuridicaNegocio.cs" />
+    <Compile Include="EntidadPersonaNegocio.cs" />
+    <Compile Include="EntidadTelefonoNegocio.cs" />
+    <Compile Include="EntidadUbicacionNegocio.cs" />
+    <Compile Include="EntidadVehiculoNegocio.cs" />
+    <Compile Include="EventoNegocio.cs" />
+    <Compile Include="TareaNegocio.cs" />
+    <Compile Include="GastoNegocio.cs" />
+    <Compile Include="GrupoNegocio.cs" />
+    <Compile Include="Grupo_VehiculoNegocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VehiculoNegocio.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MCCM.AccesoDatos\MCCM.AccesoDatos.csproj">
