@@ -1,0 +1,142 @@
+﻿@model IEnumerable<MCCM.Entidad.TMCCM_Usuario>
+
+<H5>
+    Lista de Usuarios
+</H5>
+
+<div class="row justify-content-center">
+
+    <div class="card ">
+        <div class="card-header align-content-center col-12">
+            <div>Usuarios</div>
+
+            <div><a href="#"><span><i class="fa fa-plus  " data-toggle="modal" data-target="#AgregarUsuarios" style="margin-left:95%!important"></i></span></a></div>
+        </div>
+        <div class="card-body ">
+            <form form class="form" id="LoginA">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <table class="table">
+                    <tr>
+                        <th>
+                            Código
+                        </th>
+                        <th>
+                            Nombre
+                        </th>
+                        <th>
+                            Primer Apellido
+                        </th>
+                        <th>
+                            Segundo Apellido
+                        </th>
+                        <th>
+                            Rol
+                        </th>
+
+                        <th>
+                            Acción
+                        </th>
+                    </tr>
+
+
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Arturo
+                        </td>
+                        <td>
+                            Campos
+                        </td>
+                        <td>
+                            Bogantes
+                        </td>
+                        <td>
+                            Encargado del Sistema
+                        </td>
+
+                        <td>
+                            <button type='button' class='edit btn btn-info' data-toggle="modal" data-target="#ActualizarUsuarios"><i class='fa fa-pencil'></i></button>
+                            <button type='button' class='eliminar btn btn-danger'><i class='fa fa-trash'></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            2
+                        </td>
+                        <td>
+                            Valeria
+                        </td>
+                        <td>
+                            Leiva
+                        </td>
+                        <td>
+                            Quiros
+                        </td>
+                        <td>
+                            Puesto de Mando
+                        </td>
+
+                        <td>
+                            <button type='button' class='edit btn btn-info' data-toggle="modal" data-target="#ActualizarUsuarios"><i class='fa fa-pencil'></i></button>
+                            <button type='button' class='eliminar btn btn-danger'><i class='fa fa-trash'></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            3
+                        </td>
+                        <td>
+                            Maikel
+                        </td>
+                        <td>
+                            Matamoros
+                        </td>
+                        <td>
+                            Zuñiga
+                        </td>
+                        <td>
+                            Digitador de Eventos
+                        </td>
+
+                        <td>
+
+                            <button type='button' class='edit btn btn-info' data-toggle="modal" data-target="#ActualizarUsuarios"><i class='fa fa-pencil'></i></button>
+                            <button type='button' class='eliminar btn btn-danger'><i class='fa fa-trash'></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            4
+                        </td>
+                        <td>
+                            Jordan
+                        </td>
+                        <td>
+                            Méndez
+                        </td>
+                        <td>
+                            Torres
+                        </td>
+                        <td>
+                            Puesto Operativo
+                        </td>
+
+                        <td>
+                            <button type='button' class='edit btn btn-info' data-toggle="modal" data-target="#ActualizarUsuarios"><i class='fa fa-pencil'></i></button>
+                            <button type='button' class='eliminar btn btn-danger'><i class='fa fa-trash'></i></button>
+                        </td>
+                    </tr>
+
+
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+@Html.Partial("~/Views/Usuario/_modalFormAgregarUsuario.cshtml")
+@Html.Partial("~/Views/Usuario/_modalFormActualizarUsuario.cshtml")
+
+<script src="~/Scripts/js/Usuario.js"></script>

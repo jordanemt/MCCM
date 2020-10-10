@@ -143,6 +143,7 @@
     <Compile Include="Controllers\GrupoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TareaController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -214,6 +215,7 @@
     <Content Include="Scripts\js\Gasto.js" />
     <Content Include="Scripts\js\Grupo.js" />
     <Content Include="Scripts\js\Tarea.js" />
+    <Content Include="Scripts\js\Usuario.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
@@ -328,6 +330,10 @@
     <Content Include="Views\Grupo\_FormModal.cshtml" />
     <Content Include="Views\Grupo\_FormAddVehiculoModal.cshtml" />
     <Content Include="Views\Grupo\_ListVehiculos.cshtml" />
+    <Content Include="Views\Usuario\ListaUsuario.cshtml" />
+    <Content Include="Views\Usuario\_modalFormAgregarUsuario.cshtml" />
+    <Content Include="Views\Usuario\_modalFormActualizarUsuario.cshtml" />
+    <Content Include="Views\Dashboard\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -6,16 +6,21 @@ using System.Web.Mvc;
 
 namespace MCCM.UI.Controllers
 {
-    public class DashboardController : Controller
+    public class UsuarioController : Controller
     {
-        // GET: Dashboard
-        public ActionResult Index()
+        // GET: Usuario
+        public ActionResult ListaUsuario()
         {
             return View();
         }
-        public ActionResult Login()
+        public ActionResult AgregarUsuario()
         {
             return View();
         }
+        public ActionResult ActualizarUsuario()
+        {
+            return View();
+        }
+
     }
 }
