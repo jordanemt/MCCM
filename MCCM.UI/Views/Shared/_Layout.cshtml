@@ -31,6 +31,9 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">@Html.ActionLink("Dashboard", "Index", "Dashboard", new { area = "" }, new { @class = "nav-link" })</li>
             </ul>
+            <ul class="navbar-nav mr-5">
+                <li class="nav-item">@Html.ActionLink("Usuarios", "ListaUsuario", "Usuario", new { area = "" }, new { @class = "nav-link" })</li>
+            </ul>
             <form class="form-inline my-2 my-lg-0">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">@Html.ActionLink("Salir", "", "", new { area = "" }, new { @class = "nav-link" })</li>
