@@ -39,7 +39,6 @@ $('#ModalFormCaso').on('hidden.bs.modal', function () {
 
 $('#ModalFormCaso').on('show.bs.modal', function (e) {
     if (e.relatedTarget != null) {
-        console.log(e.relatedTarget.nodeName);
         $("#btnRegistrar").show();
         $("#btnModificar").hide();
         $("#btnEliminar").hide(); 
@@ -71,7 +70,11 @@ $(document).on("click", ".ojito", function () {
         $("#TN_Nivel").val(caso.TN_Nivel);
         $("#TC_Descripcion").val(caso.TC_Descripcion);
         $("#TC_Fuente").val(caso.TC_Fuente);
-        $("#TC_Delito").val(caso.TC_Delito);        
+        $("#TC_Delito").val(caso.TC_Delito);
+        $("#btnRegistrarCaso").hide();
+        $("#btnEliminarCaso").show();
+        $("#btnModificarCaso").show();
+
         $("#ModalFormCaso").modal("show");
     });
 });
@@ -92,7 +95,7 @@ function limpiarFormularioCaso() {
 $(document).on("click", "#btnModificarCaso", function (e) {
     e.preventDefault();
     var form = $("#FormCaso");
-    alert(form.serialize());
+    //alert(form.serialize());
     let url;
     url = "/Caso/ActualizarCaso";
     AccionesCasoForm(form,url);
@@ -100,7 +103,7 @@ $(document).on("click", "#btnModificarCaso", function (e) {
 
 $(document).on("click", "#btnEliminarCaso", function (e) {
     e.preventDefault();
-    alert("Eliminar");
+    //alert("Eliminar");
 
     $.ajax({
         type: "POST",
@@ -116,7 +119,7 @@ $(document).on("click", "#btnEliminarCaso", function (e) {
 $(document).on("click", "#btnRegistrarCaso", function (e) {
     e.preventDefault();
     var form = $("#FormCaso");
-    alert(form.serialize());
+    //alert(form.serialize());
     let url;
     url = "/Caso/InsertarCaso";
     AccionesCasoForm(form,url);
