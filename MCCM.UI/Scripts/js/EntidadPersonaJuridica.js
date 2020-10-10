@@ -48,3 +48,33 @@ $(document).ready(function () {
     });
 
 })
+
+$(document).on("click", ".editarEntidadPersonaJuridica", function () {
+    $("#tituloEntidadPersonaJuridica").hide();
+    $("#modificarEntidadPersonaJuridica").show();
+    $("#TN_ID_Cedula_Juridica").val("0-0000-0000");
+    $("#TC_Nombre_Organización").val("egit Habntem mundum");
+    $("#TC_Nombre_Comercial").val("Mata Y Flores");
+    $("#TN_ID_Tipo_Organización").val("Sociedad Anónima");
+    $("#TC_Sitio_Web").val("www.matayflores.com");
+    $("#TC_Comentario_PJ").val("Es ficticia");
+    $("#fechaCreacion_Row_PJ").show();
+    $("#TC_Creado_Por_PJ").val("Valeria");
+    $("#TF_Fecha_Creacion_PJ").val("10/09/2020 5:00PM");
+    $("#fechaModificación_Row_PJ").show();
+    $("#modificadoPor_Row_PJ").show();
+    $("#verificado_PJ").show();
+    $("#btnInsertarEntidadPersonaJuridica").hide();
+    $("#btnCancelarEntidadPersonaJuridica").hide();
+    $("#btnModificarEntidadPersonaJuridica").show();
+    $("#btnEliminarPersonaJuridica").show();
+    $("#entidadPersonaJuridicaModal").modal("show");
+});
+
+
+$('#entidadPersonaJuridicaModal').on('hidden.bs.modal', function () {
+    $("#FormEntidadPersonaJuridica")[0].reset();
+    $("#fechaCreacion_Row_PJ").hide();
+    $("#fechaModificación_Row_PJ").hide();
+    $("#modificadoPor_Row_PJ").hide();
+})
