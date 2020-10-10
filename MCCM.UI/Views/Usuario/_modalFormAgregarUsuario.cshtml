@@ -1,0 +1,49 @@
+﻿<div class="modal fade bd-example-modal-lg " id="ActualizarUsuarios" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title col-11 text-center" id="exampleModalLabel">Actualizar Usuario</h5>
+                <h5 class="modal-title col-11 text-center" id="exampleModalLabel" style="display:none">Usuario</h5>
+                <button type="button" class="close col-1" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="FormEntidadPersona" enctype="multipart/form-data">
+                    <div class="form-group row">
+                        <label for="nombre" class="col-md-3 col-form-label">Nombre</label>
+                        <input type="text" class="col-md-8 form-control" name="TC_Nombre" id="TC_Nombre">
+                    </div>
+                    <div class="form-group row">
+                        <label for="primerApellido" class="col-md-3 col-form-label">Primer apellido</label>
+                        <input type="text" class="col-md-8 form-control" name="TC_Primer_Apellido" id="TC_Primer_Apellido">
+                    </div>
+                    <div class="form-group row">
+                        <label for="segundoApellido" class="col-md-3 col-form-label">Segundo apellido</label>
+                        <input type="text" class="col-md-8 form-control" name="TC_Segundo_Apellido" id="TC_Segundo_Apellido">
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="tipoIdentificacion" class="col-md-3 col-form-label">Roles</label>
+                        <select class=" col-md-8 form-control form-control" name="TN_ID_Tipo_Identificacion" id="TN_ID_Tipo_Identificacion">
+                            <option>Encargado del Sistema</option>
+                            <option>Puesto de Mando</option>
+                            <option>Digitador de Eventos</option>
+                            <option>Puesto Operativo</option>
+
+                        </select>
+                        <a href="#" class="fa fa-plus col-md-1"></a>
+                    </div>
+
+                    <button id="btnInsertarEntidadPersona" type="submit" class="btn btn-primary">Actualizr</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+
+                </form>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+
+
+            </div>
+        </div>
+    </div>
+</div>
