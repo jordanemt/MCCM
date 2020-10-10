@@ -49,3 +49,33 @@ $(document).ready(function () {
     });
 
 })
+$(document).on("click", ".editarEntidadUbicacion", function () {
+    $("#tituloEntidadUbicacion").hide();
+    $("#modificarEntidadUbicacion").show();
+    $("#TN_Id_Ubicacion").val("Edificio");
+    $("#TN_ID_Provincia").val("Cartago");
+    $("#TN_ID_Canton").val("No indica");
+    $("#TN_ID_Distrito").val("No indica");
+    $("#TC_Sennas").val("Por la ucr");
+    $("#TD_Latitud").val("40.7143528");
+    $("#TD_Longitud").val("-74.0059731");
+    $("#fechaCreacion_Row_U").show();
+    $("#TC_Creado_Por_U").val("Valeria");
+    $("#TF_Fecha_Creacion_U").val("10/09/2020 5:00PM");
+    $("#fechaModificación_Row_U").show();
+    $("#modificadoPor_Row_U").show();
+    $("#verificado_U").show();
+    $("#btnInsertarEntidadUbicacion").hide();
+    $("#btnCancelarEntidadUbicacion").hide();
+    $("#btnModificarEntidadUbicacion").show();
+    $("#btnEliminarEntidadUbicacion").show();
+    $("#entidadUbicacionModal").modal("show");
+});
+
+
+$('#entidadUbicacionModal').on('hidden.bs.modal', function () {
+    $("#FormEntidadUbicacion")[0].reset();
+    $("#fechaCreacion_Row_U").hide();
+    $("#fechaModificación_Row_U").hide();
+    $("#modificadoPor_Row_U").hide();
+})

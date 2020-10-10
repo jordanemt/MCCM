@@ -1,10 +1,51 @@
-﻿$("#FormEntidadTelefono").submit(function (e) {
+﻿$(document).ready(function () {
+
+    $.validator.addMethod("DefaultProveedor", function (value, element, arg) {
+        return arg !== value;
+    }, "Debe elegir un Proveedor");
+
+    $("#FormEntidadTelefono").validate({
+        rules: {
+            TN_Numero: {
+                required: true,
+                minlength: 8
+            },
+            TN_ID_Proveedor: { DefaultProveedor: "Selecciones un proveedor..." },
+            TC_Creado_Por_Telefono: {
+                required: true
+            }
+        },
+        messages: {
+            TN_Numero: {
+                required:"El campo Numero Telefono no puede quedar en blanco",
+                number: "Este campo debe ser un valor numerico",
+                minlength: "El número de telefono debe ser de al menos 8 digitos"   
+            },
+            TN_ID_Proveedor: { DefaultProveedor: "Por Favor, seleccione un proveedor" },
+            TC_Creado_Por_Telefono: {
+                    required:"Debe especificar quien registró la entidad telefono."
+            }
+
+        },
+        submitHandler: function (form) {
+            // do other things for a valid form
+            return false;
+        }
+    });
+});
+
+
+
+$("#FormEntidadTelefono").submit(function (e) {
     e.preventDefault();
-    var form = new FormData($("#FormEntidadTelefono")[0]);
-    let url;
+    if ($(this).valid()) {
+        var form = new FormData($("#FormEntidadTelefono")[0]);
+        let url;
 
-    AccionesEntidadTelefonoForm(form, url);
-
+        AccionesEntidadTelefonoForm(form, url);
+    } else {
+        alert("NO es valido");
+    }
 });
 
 function AccionesEntidadTelefonoForm(form, url) {
@@ -23,18 +64,24 @@ function AccionesEntidadTelefonoForm(form, url) {
     });
 }
 
-/*function limpiarFormularioCaso() {
-    $("#TN_ID_Caso").val("");
-    $("#TN_ECU").val("");
-    $("#TC_Nombre_Caso").val("");
-    $("#TC_Enfoque_Trabajo").val("");
-    $("#TC_Area_Trabajo").val("");
-    $("#TN_Nivel").val("");
-    $("#TC_Descripcion").val("");
-    $("#TC_Fuente").val("");
-    $("#TC_Delito").val("");
-}
-*/
+$(document).on("click", ".editarEntidadTelefono", function () {
+
+    $("#TD_ID_Telefono").val("1");
+    $("#TN_Numero_Telefono").val("0000-00000");
+    $("#TC_Comentario_Telefono").val("Telefono Importante");
+    $("#divFMT").show();
+    $("#divMPT").show();
+    $("#divFCT").show();
+    $("#TF_Fecha_Creacion_Telefono").val("10/09/2020 5:00PM");
+    $("#TC_Creado_Por_Telefono").val("Maikel Matamoros Zúñiga");
+    $("#TC_Modificado_Por_Telefono").val("");
+    $('#TB_Verificado_Telefono').attr('checked', false);
+    $("#btnModificarEntidadTelefono").show();
+    $("#btnInsertarEntidadTelefono").hide();
+    $("#entidadTelefonoModal").modal("show");
+
+});
+
 
 
 $(document).ready(function () {

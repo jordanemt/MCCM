@@ -48,3 +48,32 @@ $(document).ready(function () {
     });
 
 })
+$(document).on("click", ".editarEntidadVehiculo", function () {
+    $("#tituloEntidadVehiculo").hide();
+    $("#modificarEntidadVehiculo").show();
+    $("#TC_Placa").val("000000");
+    $("#TN_ID_Marca_Vehiculo").val("Foredil");
+    $("#TC_Clase").val("Motocicleta");
+    $("#TN_ID_Color_Vehiculo").val("Celeste");
+    $("#TC_Estilo").val("Fossae");
+    $("#TN_Anno").val("2010");
+    $("#fechaCreacion_Row_V").show();
+    $("#TC_Creado_Por_V").val("Valeria");
+    $("#TF_Fecha_Creacion_V").val("10/09/2020 5:00PM");
+    $("#fechaModificación_Row_V").show();
+    $("#modificadoPor_Row_V").show();
+    $("#verificado_V").show();
+    $("#btnInsertarEntidadVehiculo").hide();
+    $("#btnCancelarEntidadVehiculo").hide();
+    $("#btnModificarEntidadVehiculo").show();
+    $("#btnEliminarEntidadVehiculo").show();
+    $("#entidadVehículoModal").modal("show");
+});
+
+
+$('#entidadVehículoModal').on('hidden.bs.modal', function () {
+    $("#FormEntidadVehiculo")[0].reset();
+    $("#fechaCreacion_Row_V").hide();
+    $("#fechaModificación_Row_V").hide();
+    $("#modificadoPor_Row_V").hide();
+})

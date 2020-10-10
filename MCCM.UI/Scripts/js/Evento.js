@@ -2,14 +2,13 @@
     e.preventDefault();
     var form = $("#FormEvento");
     //alert(form.serialize());
+    //alert("holi");
     let url;
     url = "/Caso/ActualizarCaso";
 
     alert("Modificar");
     $("#ModalFormEvento").modal("hide");
     
-
-    //AccionesCasoForm(form, url);
 
 });
 
@@ -22,13 +21,13 @@ $('#ModalFormEvento').on('hidden.bs.modal', function () {
 
 
 $(document).on("click", ".editarEvento", function () {
-
+    $("#tituloEventoModal").html("Modificar Evento");
     $("#eventoIDI").val("1");
-    $("#LugarI").val("En Turri");
-    $("#NovedadI").val("Valeria está vendiendo mota a todos los niños de la escuela T_T");
-    $("#InformaI").val("Maikel Matamoros Zúñiga");
-    $("#calendarioBitacora").val("10/09/2020 5:00PM");
-    iniciarCalendario("10/09/2020 5:00PM");
+    $("#LugarI").val("Turrialba");
+    $("#NovedadI").val("Se procede a entablar dialogo con los ladrones");
+    $("#InformaI").val("Juan Ramirez Suarez");
+    $("#calendarioBitacora").val("10/10 12:00 PM");
+    iniciarCalendario("10/10 12:00 PM");
     $("#divEventoID").show();
     $("#btnModificarEvento").show();
     $("#btnRegistrarEvento").hide();
@@ -56,23 +55,23 @@ $(document).on("click", "#btnRegistrarEvento", function (e) {
     e.preventDefault();
     var form = $("#FormEvento");
     let eventos = JSON.parse(JSON.stringify(form.serializeArray()));
-    let url;
-    url = "/Caso/InsertarCaso";
-    $("#bitacora-body").empty();
-    for (let i = 0; i < casos.length; i++) {
+//  let url;
+//    url = "/Caso/InsertarCaso";
 
-        $("#bitacora-body").append(
-            '<div class="card evento" id="' + eventos.TN_ID_Caso + '" style="height:10em;">' +
-            '<div class="card-header"><div>Caso #' + eventos.TN_ID_Caso + '</div>' +
-            '<a href="#" class="ojito" id="' + eventos.TN_ID_Caso + '"><span><i class="fa fa-eye" aria-hidden="true"></i></span></a></div >' +
-            '<div class="card-body" style="padding:0px!important">' +
-            '<h6><small>Nombre:' + casos[i].TC_Nombre_Caso + '</small></h5>' +
-            '<h6><small>Fecha: ' + casos[i].TF_Fecha + '</small></h5>' +
-            '<h6><small>Delito: ' + casos[i].TC_Delito + '</small></h5>' +
-            '</div>' +
-            '</div>'
-        );
-    }
+    alert(eventos);
+
+        //$("#bitacora-body").append(
+        //    '<div class="card evento" id="' + eventos.TN_ID_Caso + '" style="height:10em;">' +
+        //    '<div class="card-header"><div>Caso #' + eventos.TN_ID_Caso + '</div>' +
+        //    '<a href="#" class="ojito" id="' + eventos.TN_ID_Caso + '"><span><i class="fa fa-eye" aria-hidden="true"></i></span></a></div >' +
+        //    '<div class="card-body" style="padding:0px!important">' +
+        //    '<h6><small>Nombre:' + casos[i].TC_Nombre_Caso + '</small></h5>' +
+        //    '<h6><small>Fecha: ' + casos[i].TF_Fecha + '</small></h5>' +
+        //    '<h6><small>Delito: ' + casos[i].TC_Delito + '</small></h5>' +
+        //    '</div>' +
+        //    '</div>'
+        //);
+    
     //AccionesCasoForm(form, url);
 
 });
