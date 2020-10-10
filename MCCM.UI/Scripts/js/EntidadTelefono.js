@@ -65,7 +65,8 @@ function AccionesEntidadTelefonoForm(form, url) {
 }
 
 $(document).on("click", ".editarEntidadTelefono", function () {
-
+    $("#tituloEntidadTelefonoInsertar").hide();
+    $("#tituloEntidadTelefono").show();
     $("#TD_ID_Telefono").val("1");
     $("#TN_Numero_Telefono").val("0000-00000");
     $("#TC_Comentario_Telefono").val("Telefono Importante");
@@ -82,7 +83,16 @@ $(document).on("click", ".editarEntidadTelefono", function () {
 
 });
 
-
+$('#entidadTelefonoModal').on('hidden.bs.modal', function () {
+    $("#FormEntidadTelefono")[0].reset();
+    $("#tituloEntidadTelefonoInsertar").show();
+    $("#tituloEntidadTelefono").hide();
+    $("#divFMT").hide();
+    $("#divMPT").hide();
+    $("#divFCT").hide();
+    $("#btnModificarEntidadTelefono").hide();
+    $("#btnInsertarEntidadTelefono").show();
+})
 
 $(document).ready(function () {
 
