@@ -11,64 +11,64 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="FormEntidadTelefono" enctype="multipart/form-data">
+                <form id="FormEntidadTelefono">
                     <div class="form-group row">
                         <label for="telefono" class="col-md-3 col-form-label">Telefono</label>
-                        <input type="text" class="col-md-8 form-control" name="TN_Numero" id="TN_Numero">
+                        <input type="text" class="col-md-8 form-control" name="TN_Numero" id="TN_Numero_Telefono" required>
                     </div>
                     <div class="form-group row">
                         <label for="empresaTelefonica" class="col-md-3 col-form-label">Proveedor</label>
-                        <select class=" col-md-8 form-control" name="TN_ID_Proveedor" id="TN_ID_Proveedor">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
+                        <select class=" col-md-8 form-control" name="TN_ID_Proveedor" id="TN_ID_Proveedor" required>
+                            <option id="">Selecciones un proveedor...</option>
+                            <option id="1">Kolbi ICE</option>
+                            <option id="2">Movistar</option>
+                            <option id="3">Claro</option>
+                            <option id="3">Tigo</option>
                         </select>
+                        
                         <a href="#" class="fa fa-plus col-md-1"></a>
                     </div>
                     <div class="form-group row">
                         <label for="iconoTelefono" class="col-md-3 col-form-label">Icono telefono</label>
                         <select class=" col-md-8 form-control" name="TN_ID_Icono_Telefono" id="TN_ID_Icono_Telefono">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
+                            <option id="-1">Selecciones un icono...</option>
+                            <option>Icono 1</option>
+                            <option>Icono 2</option>
+                            <option>Icono 3</option>
                         </select>
                         <a href="#" class="fa fa-plus col-md-1"></a>
                     </div>
                     <div class="form-group row">
                         <label for="ccomentario" class="col-md-3 col-form-label">Comentario</label>
-                        <textarea class="col-md-8 form-control" name="TC_Comentario" id="TC_Comentario" rows="3"></textarea>
+                        <textarea class="col-md-8 form-control" name="TC_Comentario" id="TC_Comentario_Telefono" rows="3"></textarea>
                     </div>
-                    <div class="form-group row">
-                        <label for="segundoApellido" class="col-md-3 col-form-label" style="display:none">Fecha Modificación</label>
-                        <input type="text" class="col-md-8 form-control" name="TF_Fecha_Modificacion" style="display:none" id="TF_Fecha_Modificacion">
+                    <div class="form-group row" id="divFMT" style="display:none">
+                        <label for="TF_Fecha_Modificacion" class="col-md-3 col-form-label" >Fecha Modificación</label>
+                        <input type="text" class="col-md-8 form-control" name="TF_Fecha_Modificacion" readonly id="TF_Fecha_Modificacion_Telefono">
                     </div>
-                    <div class="form-group row">
-                        <label for="alias" class="col-md-3 col-form-label" style="display:none">Fecha Creacion</label>
-                        <input type="text" class="col-md-8 form-control" name="TF_Fecha_Creacion" style="display:none" id="TF_Fecha_Creacion">
+                    <div class="form-group row" id="divFCT" style="display:none">
+                        <label for="TF_Fecha_Creacion_Telefono" class="col-md-3 col-form-label" >Fecha Creacion</label>
+                        <input type="text" class="col-md-8 form-control" name="TF_Fecha_Creacion" readonly id="TF_Fecha_Creacion_Telefono">
                     </div>
                     <div class="form-group row">
                         <label for="creadoPor" class="col-md-3 col-form-label">Creado por</label>
-                        <input type="text" class="col-md-8 form-control" name="TC_Creado_Por" id="TC_Creado_Por">
+                        <input type="text" class="col-md-8 form-control" name="TC_Creado_Por_Telefono" id="TC_Creado_Por_Telefono">
                     </div>
-                    <div class="form-group row">
-                        <label for="creadoPor" class="col-md-3 col-form-label" style="display:none">Modificado por</label>
-                        <input type="text" class="col-md-8 form-control" name="TF_Modificado_Por" style="display:none" id="TF_Modificado_Por">
+                    <div class="form-group row" id="divMPT" style="display:none">
+                        <label for="creadoPor" class="col-md-3 col-form-label" >Modificado por</label>
+                        <input type="text" class="col-md-8 form-control" name="TF_Modificado_Por" id="TF_Modificado_Por_Telefono">
                     </div>
                     <div class="form-group row">
                         <label for="verificado" class="col-md-3 col-form-label">Verificado</label>
                         <div class="col-md-8  form-check">
-                            <input class="form-check-input" type="checkbox" name="TB_Verificado" id="TB_Verificado">
+                            <input class="form-check-input" type="checkbox" name="TB_Verificado" id="TB_Verificado_Telefono">
                         </div>
                     </div>
                     <div class="d-flex justify-content-center">
                         <button id="btnInsertarEntidadTelefono" type="submit" class="btn btn-primary">Insertar</button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                        <button id="btnModificar" class="btn btn-info" style="display:none">Modificar</button>
-                        <button id="btnEliminar" class="btn btn-danger" style="display:none">Eliminar</button>
+                        <button id="btnModificarEntidadTelefono" class="btn btn-info" style="display:none">Modificar</button>
+                        <button id="btnEliminarEntidadTelefono" class="btn btn-danger" style="display:none">Eliminar</button>
                     </div>
                 </form>
             </div>

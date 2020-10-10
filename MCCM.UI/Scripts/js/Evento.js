@@ -2,14 +2,13 @@
     e.preventDefault();
     var form = $("#FormEvento");
     //alert(form.serialize());
+    alert("holi");
     let url;
     url = "/Caso/ActualizarCaso";
 
     alert("Modificar");
     $("#ModalFormEvento").modal("hide");
     
-
-    //AccionesCasoForm(form, url);
 
 });
 
@@ -56,23 +55,23 @@ $(document).on("click", "#btnRegistrarEvento", function (e) {
     e.preventDefault();
     var form = $("#FormEvento");
     let eventos = JSON.parse(JSON.stringify(form.serializeArray()));
-    let url;
-    url = "/Caso/InsertarCaso";
-    $("#bitacora-body").empty();
-    for (let i = 0; i < casos.length; i++) {
+//  let url;
+//    url = "/Caso/InsertarCaso";
 
-        $("#bitacora-body").append(
-            '<div class="card evento" id="' + eventos.TN_ID_Caso + '" style="height:10em;">' +
-            '<div class="card-header"><div>Caso #' + eventos.TN_ID_Caso + '</div>' +
-            '<a href="#" class="ojito" id="' + eventos.TN_ID_Caso + '"><span><i class="fa fa-eye" aria-hidden="true"></i></span></a></div >' +
-            '<div class="card-body" style="padding:0px!important">' +
-            '<h6><small>Nombre:' + casos[i].TC_Nombre_Caso + '</small></h5>' +
-            '<h6><small>Fecha: ' + casos[i].TF_Fecha + '</small></h5>' +
-            '<h6><small>Delito: ' + casos[i].TC_Delito + '</small></h5>' +
-            '</div>' +
-            '</div>'
-        );
-    }
+    alert(eventos);
+
+        //$("#bitacora-body").append(
+        //    '<div class="card evento" id="' + eventos.TN_ID_Caso + '" style="height:10em;">' +
+        //    '<div class="card-header"><div>Caso #' + eventos.TN_ID_Caso + '</div>' +
+        //    '<a href="#" class="ojito" id="' + eventos.TN_ID_Caso + '"><span><i class="fa fa-eye" aria-hidden="true"></i></span></a></div >' +
+        //    '<div class="card-body" style="padding:0px!important">' +
+        //    '<h6><small>Nombre:' + casos[i].TC_Nombre_Caso + '</small></h5>' +
+        //    '<h6><small>Fecha: ' + casos[i].TF_Fecha + '</small></h5>' +
+        //    '<h6><small>Delito: ' + casos[i].TC_Delito + '</small></h5>' +
+        //    '</div>' +
+        //    '</div>'
+        //);
+    
     //AccionesCasoForm(form, url);
 
 });

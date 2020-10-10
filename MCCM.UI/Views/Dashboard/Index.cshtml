@@ -6,6 +6,8 @@
 <link href="~/Content/css/Dashdboard.css" rel="stylesheet" />
 
 @*JS*@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+
 <script src="~/Scripts/js/Dashboard.js"></script>
 <script src="~/Scripts/js/Gasto.js"></script>
 <script src="~/Scripts/js/Grupo.js"></script>
@@ -412,8 +414,8 @@
                                     <div class="card-header">
                                         <div>Entidad Telefono #1</div>
                                         <div>
-                                            <a href="#" class="editarEvento" id="1"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
-                                            <a href="#" class="borrar borrarTarea" id="1"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>
+                                            <a href="#" class="editarEntidadTelefono" id="1"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
+                                            <a href="#" class="borrar borrarEntidadTelefono" id="1"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>
                                         </div>
 
                                     </div>
@@ -459,8 +461,8 @@
                                     <div class="card-header">
                                         <div>Entidad Arma #1</div>
                                         <div>
-                                            <a href="#" class="editarEvento" id="1"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
-                                            <a href="#" class="borrar borrarTarea" id="1"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>
+                                            <a href="#" class="editarEntidadArma" id="1"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
+                                            <a href="#" class="borrar borrarEntidadArma" id="1"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>
                                         </div>
 
                                     </div>
@@ -504,10 +506,10 @@
                                 <div class="card" id="cartaEntidadDroga" style="display:none">
 
                                     <div class="card-header">
-                                        <div>Entidad Arma #1</div>
+                                        <div>Droga #1</div>
                                         <div>
-                                            <a href="#" class="editarEvento" id="1"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
-                                            <a href="#" class="borrar borrarTarea" id="1"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>
+                                            <a href="#" class="editarEntidadDroga" id="1"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
+                                            <a href="#" class="borrar borrarEntidadDroga" id="1"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>
                                         </div>
 
                                     </div>
@@ -518,18 +520,16 @@
                                                 <div class="col-4">
                                                     <h6><span class="w-100 badge badge-primary">Nombre:</span></h6>
                                                 </div>
-                                                <div class="col-md-8" id="divInforma">
-                                                    <p>Cannabis<p />
-
+                                                <div class="col-8">
+                                                    <span>Marihuana</span>
                                                 </div>
                                             </div>
-
                                             <div class="row">
                                                 <div class="col-4">
                                                     <h6><span class="w-100 badge badge-primary">Cantidad:</span></h6>
                                                 </div>
                                                 <div class="col-md-8" id="divInforma">
-                                                    <p>0g</p>
+                                                    <p>5000000g</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -549,7 +549,6 @@
                     <div class="card-body" id="tareas-body" style="overflow-y: scroll">
                         <div class="container">
                             <div class="card tarea">
-
                                 <div class="card-header">
                                     <div>Tarea # 1</div>
                                     <div>
@@ -561,48 +560,36 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-4">
-                                                <div class="row">
-                                                    <div class="col-4">
-                                                        <h6><span class="w-100 badge badge-primary">Fecha/Hora</span></h6>
-                                                    </div>
-                                                    <div class="col-md-8" id="divInforma">
-                                                        <small>2020/10/09 5:00PM</small>
-                                                    </div>
-                                                </div>
+                                                <h6><span class="w-100 badge badge-primary">Fecha/Hora</span></h6>
                                             </div>
-
-                                            <div class="col-8">
-                                                <div class="row">
-                                                    <div class="col-4">
-                                                        <h6><span class="w-100 badge badge-primary">Informa:</span></h6>
-                                                    </div>
-                                                    <div class="col-md-8" id="divInforma">
-                                                        <small>Maikel Matamoroso Zuñiga</small>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-4">
-                                                        <h6><span class="w-100 badge badge-primary">Lugar:</span></h6>
-                                                    </div>
-
-                                                    <div class="col-md-8" id="divLugar">
-                                                        <small>En Turri</small>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-4">
-                                                        <h6><span class="w-100 badge badge-primary">Novedad:</span></h6>
-                                                    </div>
-                                                    <div class="col-md-8" id="divNovedad">
-                                                        <p>Valeria está vendiendo mota a todos los niños de la escuela T_T</p>
-                                                    </div>
-                                                </div>
+                                            <div class="col-md-8" id="dC">
+                                                <small id="tCalendario">2020/10/09 5:00PM</small>
                                             </div>
-
                                         </div>
-                                        
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <h6><span class="w-100 badge badge-primary">Asignado:</span></h6>
+                                            </div>
+                                            <div class="col-md-8" id="divAsignadoT">
+                                                <small id="tAsignado">Cod:666888 Maikel Matamoros Zúñiga</small>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <h6><span class="w-100 badge badge-primary">Lugar:</span></h6>
+                                            </div>
+                                            <div class="col-md-8" id="divLugarC">
+                                                <small tLugar>En Turri</small>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <h6><span class="w-100 badge badge-primary">Diligencia:</span></h6>
+                                            </div>
+                                            <div class="col-md-8" id="divDiligencia">
+                                                <p id="eDiligencia">Comprare mota a vale para que no la venda en la escuela</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -785,3 +772,7 @@ function seleccionEntidad() {
 @Html.Partial("~/Views/Gasto/_FormModal.cshtml")
 @Html.Partial("~/Views/Grupo/_FormModal.cshtml")
 @Html.Partial("~/Views/Grupo/_FormAddVehiculoModal.cshtml")
+
+<script>
+    $('select').selectpicker();
+</script>
