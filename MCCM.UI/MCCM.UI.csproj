@@ -319,7 +319,6 @@
     <Content Include="Views\Dashboard\EntidadTelefono.cshtml" />
     <Content Include="Views\Dashboard\EntidadUbicacion.cshtml" />
     <Content Include="Views\Dashboard\EntidadVehiculo.cshtml" />
-    <Content Include="Views\Dashboard\View.cshtml" />
     <Content Include="Views\Bitacora\_ModalEventoForm.cshtml" />
     <Content Include="Views\Tarea\_ModalFormTarea.cshtml" />
     <Content Include="Views\Dashboard\_ModalMensajeConfirmacion.cshtml" />
