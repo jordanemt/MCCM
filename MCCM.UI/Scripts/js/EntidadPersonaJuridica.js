@@ -77,4 +77,8 @@ $('#entidadPersonaJuridicaModal').on('hidden.bs.modal', function () {
     $("#fechaCreacion_Row_PJ").hide();
     $("#fechaModificación_Row_PJ").hide();
     $("#modificadoPor_Row_PJ").hide();
+    $("#btnInsertarEntidadPersonaJuridica").show();
+    $("#btnCancelarEntidadPersonaJuridica").show();
+    $("#btnModificarEntidadPersonaJuridica").hide();
+    $("#btnEliminarPersonaJuridica").hide();
 })

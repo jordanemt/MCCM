@@ -86,4 +86,8 @@ $('#entidadPersonaModal').on('hidden.bs.modal', function () {
     $("#fechaCreacion_Row_P").hide();
     $("#fechaModificación_Row_P").hide();
     $("#modificadoPor_Row_P").hide();
+    $("#btnInsertarEntidadPersona").show();
+    $("#btnCancelarEntidadPersona").show();
+    $("#btnModificarEntidadPersona").hide();
+    $("#btnEliminarEntidadPersona").hide();
 })
