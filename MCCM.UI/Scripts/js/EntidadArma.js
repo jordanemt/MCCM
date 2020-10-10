@@ -23,19 +23,25 @@ function AccionesEntidadArmaForm(form, url) {
     });
 }
 
-/*function limpiarFormularioCaso() {
-    $("#TN_ID_Caso").val("");
-    $("#TN_ECU").val("");
-    $("#TC_Nombre_Caso").val("");
-    $("#TC_Enfoque_Trabajo").val("");
-    $("#TC_Area_Trabajo").val("");
-    $("#TN_Nivel").val("");
-    $("#TC_Descripcion").val("");
-    $("#TC_Fuente").val("");
-    $("#TC_Delito").val("");
-}
-*/
+$(document).on("click", ".editarEntidadArma", function () {
 
+    $("#TD_ID_Arma").val("1");
+    $("#TC_Serie").val("000203las003");
+    $("#TC_Detalle").val("Decomiso de gran cantidad de marihuana en Turrialba");
+    $("#TC_Modelo_Arma").val("Modelo 1");
+    $("#TC_Calibre_Arma").val("22");
+    $("#TC_Comentario_Arma").val("Arma pequeña decomisada por ahi");
+    $("#divFMA").show();
+    $("#divFCA").show();
+    $("#TF_Fecha_Creacion_Arma").val("10/09/2020 5:00PM");
+    $("#TC_Creado_Por_Arma").val("Maikel Matamoros Zúñiga");
+    $("#TC_Modificado_Por_Arma").val("");
+    $('#TB_Verificado_Droga').attr('checked', false);
+    $("#btnModificarEntidadArma").show();
+    $("#btnAgregarEntidadArma").hide();
+    $("#entidadArmaModal").modal("show");
+
+});
 
 $(document).ready(function () {
 

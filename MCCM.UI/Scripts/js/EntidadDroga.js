@@ -1,4 +1,45 @@
-﻿$("#FormEntidadDroga").submit(function (e) {
+﻿$(document).ready(function () {
+
+    iniciarCalendarioDroga(moment());
+});
+
+function iniciarCalendarioDroga(fecha) {
+    $('#TF_Fecha_Decomiso').daterangepicker({
+        "singleDatePicker": true,
+        "timePicker": true,
+        "timePicker24Hour": true,
+        "starDate": fecha,
+        locale: {
+            format: 'M/DD hh:mm A'
+        }
+    }, function (start, end, label) {
+        console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
+    });
+}
+
+$(document).on("click", ".editarEntidadDroga", function () {
+
+    $("#eventoIDI").val("1");
+    $("#TC_Nombre_Droga").val("Marihuana");
+    $("#TC_Detalle").val("Decomiso de gran cantidad de marihuana en Turrialba");
+    $("#TN_Cantidad").val("500000");
+    $("#TF_Fecha_Decomiso").val("10/09/2020 5:00PM");
+    iniciarCalendarioDroga("10/09/2020 5:00PM");
+    $("#divDrogaFC").show();
+    $("#TF_Fecha_Creacion_Droga").val("10/09/2020 5:00PM");
+    $("#TC_Creado_Por_Droga").val("Maikel Matamoros Zúñiga"); 
+    $("#divDrogaMP").show();
+    $("#TF_Modificado_Por_Droga").val("");
+    $('#TB_Verificado_Droga').attr('checked', false);
+    $("#btnModificarDroga").show();
+    $("#btnAgregarEntidadDroga").hide();
+  
+    $("#entidadDrogaModal").modal("show");
+
+});
+
+
+$("#FormEntidadDroga").submit(function (e) {
     e.preventDefault();
     var form = new FormData($("#FormEntidadDroga")[0]);
     let url;
