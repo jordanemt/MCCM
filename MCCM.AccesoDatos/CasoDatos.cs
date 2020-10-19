@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +18,8 @@ namespace MCCM.AccesoDatos
             using (var context = new MCCMEntities())
             {
                 caso.TB_Eliminado = true;
-                caso.TF_Fecha = DateTime.Now;
+                string momentoActual = DateTime.Now.ToString("yyyy-MM-dd HH:mm tt");
+                caso.TF_Fecha = Convert.ToDateTime(momentoActual, CultureInfo.InvariantCulture);
                 context.TMCCM_Caso.Add(caso);
                 context.SaveChanges();
                 
