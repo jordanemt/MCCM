@@ -619,7 +619,7 @@
                 <div class="card border-light mb-3 col-md-6" style="height: 100%; margin: 0 0; padding: 0 0;">
                     <div class="card-header">
                         <div>Personal</div>
-                        <div><a href="#"><span><i class="fa fa-plus" onclick="openInsertGrupoModal()"></i></span></a></div>
+                        <div><a href="#"><span><i class="fa fa-plus" onclick="abrirInsertarGrupoFormModal()"></i></span></a></div>
                     </div>
                     <div class="card-body" id="personal-body" style="overflow-y: scroll">
                         <div id="grupo-contenedor" class="d-flex flex-column-reverse">
@@ -957,7 +957,6 @@ function seleccionEntidad() {
 @Html.Partial("~/Views/Caso/_ModalCasoInsert.cshtml")
 @Html.Partial("~/Views/Bitacora/_ModalEventoForm.cshtml")
 @Html.Partial("~/Views/Tarea/_ModalFormTarea.cshtml")
-@Html.Partial("~/Views/Grupo/_FormModal.cshtml")
 @Html.Partial("~/Views/Grupo/_FormAddVehiculoModal.cshtml")
 
 @Html.Partial("_ModalMensajeConfirmacion")

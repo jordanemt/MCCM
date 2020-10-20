@@ -1,203 +1,139 @@
 ﻿@model MCCM.Entidad.TMCCM_Grupo
 
-@*@using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-horizontal">
-            <h4>TMCCM_Grupo</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.TN_ID_Caso, "TN_ID_Caso", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("TN_ID_Caso", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.TN_ID_Caso, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.TF_Hora, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.TF_Hora, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.TF_Hora, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.TC_Zona, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.TC_Zona, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.TC_Zona, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.TF_Fecha_Inicio, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.TF_Fecha_Inicio, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.TF_Fecha_Inicio, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.TF_Fecha_Final, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.TF_Fecha_Final, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.TF_Fecha_Final, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.TB_Eliminado, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <div class="checkbox">
-                        @Html.EditorFor(model => model.TB_Eliminado)
-                        @Html.ValidationMessageFor(model => model.TB_Eliminado, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
-            </div>
-        </div>
-    }*@
-
-
 <div class="modal fade" id="grupo-form-modal">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title"></h4>
+                @if (Model == null)
+                {
+                    <h4 id="gasto-form-modal-title" class="modal-title">Insertar Grupo</h4>
+                }
+                else
+                {
+                    <h4 id="gasto-form-modal-title" class="modal-title">Actualizar Grupo</h4>
+                }
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
             <!-- Modal body -->
             <div class="modal-body">
-                <form id="grupo-form" method="post">
+                <form id="grupo-form">
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="form-group row justify-content-center">
-                        @Html.LabelFor(model => model.TN_ID_Grupo, "Número de grupo:", htmlAttributes: new { @class = "control-label col-md-3" })
+                        <label class="control-label col-md-3" for="TN_ID_Grupo">Número de gasto:</label>
                         <div class="row col-md-6">
-                            @Html.EditorFor(model => model.TN_ID_Grupo, new
+                            @if (Model == null)
                             {
-                                htmlAttributes = new
-                                {
-                                    @class = "form-control col-md-11",
-                                    type = "text",
-                                    @readonly = "readonly"
-                                }
-                            })
+                                <input id="TN_ID_Grupo" name="TN_ID_Grupo" class="form-control col-md-11" type="text" value="0" readonly>
+                            }
+                            else
+                            {
+                                <input id="TN_ID_Grupo" name="TN_ID_Grupo" class="form-control col-md-11" type="text" value="@Model.TN_ID_Grupo" readonly>
+                            }
                         </div>
                     </div>
 
                     <div class="form-group row justify-content-center">
-                        @Html.LabelFor(model => model.TN_ID_Caso, "Numero de caso:", htmlAttributes: new { @class = "control-label col-md-3" })
+                        <label class="control-label col-md-3" for="TN_ID_Caso">Número de caso:</label>
                         <div class="row col-md-6">
-                            @Html.EditorFor(model => model.TN_ID_Caso, new
+                            @if (Model == null)
                             {
-                                htmlAttributes = new
-                                {
-                                    @class = "form-control col-md-11 TN_ID_Caso",
-                                    required = "required",
-                                    type = "text",
-                                    @readonly = "readonly"
-                                }
-                            })
+                                <input id="TN_ID_Caso" name="TN_ID_Caso" class="form-control col-md-11" type="text" value="15" readonly>
+                            }
+                            else
+                            {
+                                <input id="TN_ID_Caso" name="TN_ID_Caso" class="form-control col-md-11" type="text" value="@Model.TN_ID_Caso" readonly>
+                            }
                         </div>
                     </div>
 
                     <div class="form-group row justify-content-center">
-                        @Html.LabelFor(model => model.TC_Zona, "Zona:", htmlAttributes: new { @class = "control-label col-md-3" })
+                        <label class="control-label col-md-3" for="TC_Zona">Zona:</label>
                         <div class="row col-md-6">
-                            @*@Html.EditorFor(model => model.TN_ID_Tipo_Gasto, new { htmlAttributes = new { @class = "form-control", required = "required" } })*@
-                            <select id="TC_Zona" class="form-control col-md-11" name="TC_Zona" required>
+                            @if (Model == null)
+                            {
+                                <input id="TC_Zona" name="TC_Zona" class="form-control col-md-11" type="text">
+                            }
+                            else
+                            {
+                                <input id="TC_Zona" name="TC_Zona" class="form-control col-md-11" type="text" value="@Model.TC_Zona">
+                            }
+                            <label id="TC_Zona-error" class="error" for="TC_Zona" style="display: none"></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group row justify-content-center">
+                        <label class="control-label col-md-3" for="TF_Fecha_Inicio">Fecha de Inicio:</label>
+                        <div class="row col-md-6">
+                            @if (Model == null)
+                            {
+                                <input id="TF_Fecha_Inicio" name="TF_Fecha_Inicio" class="form-control col-md-11" type="date" value="@DateTime.Today">
+                            }
+                            else
+                            {
+                                <input id="TF_Fecha_Inicio" name="TF_Fecha_Inicio" class="form-control col-md-11" type="date" value="@Model.TF_Fecha_Inicio">
+                            }
+                            <label id="TF_Fecha_Inicio-error" class="error" for="TF_Fecha_Inicio" style="display: none"></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group row justify-content-center">
+                        <label class="control-label col-md-3" for="TF_Fecha_Final">Fecha de Final:</label>
+                        <div class="row col-md-6">
+                            @if (Model == null)
+                            {
+                                <input id="TF_Fecha_Final" name="TF_Fecha_Final" class="form-control col-md-11" type="date" readonly>
+                            }
+                            else
+                            {
+                                <input id="TF_Fecha_Final" name="TF_Fecha_Final" class="form-control col-md-11" type="date" value="@Model.TF_Fecha_Final">
+                            }
+                            <label id="TF_Fecha_Final-error" class="error" for="TF_Fecha_Final" style="display: none"></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group row justify-content-center">
+                        <label class="control-label col-md-3" for="TF_Hora">Hora:</label>
+                        <div class="row col-md-6">
+                            @if (Model == null)
+                            {
+                                <input id="TF_Hora" name="TF_Hora" class="form-control col-md-11" type="time">
+                            }
+                            else
+                            {
+                                <input id="TF_Hora" name="TF_Hora" class="form-control col-md-11" type="time" value="@Model.TF_Hora">
+                            }
+                            <label id="TF_Hora-error" class="error" for="TF_Hora" style="display: none"></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group row justify-content-center">
+                        <label class="control-label col-md-3" for="Encargado">Encargado:</label>
+                        <div class="row col-md-6">
+                            <select id="Encargado" class="form-control col-md-11" name="Encargado" required>
                                 <option selected disabled>Seleccione una opción</option>
-                                <option value="1">Zona 1</option>
-                                <option value="2">Zona 2</option>
+                                @foreach (MCCM.Entidad.TMCCM_Usuario item in ViewBag.Usuarios)
+                                {
+                                    <option value="@item.TN_ID_Usuario">@item.TN_ID_Usuario @item.TC_Nombre @item.TC_Primer_Apellido</option>
+                                }
                             </select>
-                            <a href="#" class="fa fa-plus col-md-1"></a>
-                            @Html.ValidationMessageFor(model => model.TC_Zona, "", new { @class = "text-danger" })
+                            <label id="Encargado-error" class="error" for="Encargado" style="display: none"></label>
                         </div>
                     </div>
 
                     <div class="form-group row justify-content-center">
-                        @Html.LabelFor(model => model.TF_Fecha_Inicio, "Fecha de inicio:", htmlAttributes: new { @class = "control-label col-md-3" })
+                        <label class="control-label col-md-3" for="Acompannantes">Acompañantes:</label>
                         <div class="row col-md-6">
-                            @Html.EditorFor(model => model.TF_Fecha_Inicio, new
-                            {
-                                htmlAttributes = new
-                                {
-                                    @class = "form-control col-md-11",
-                                    required = "required",
-                                    type = "date"
-                                }
-                            })
-                            @Html.ValidationMessageFor(model => model.TF_Fecha_Inicio, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group row justify-content-center">
-                        @Html.LabelFor(model => model.TF_Fecha_Final, "Fecha final:", htmlAttributes: new { @class = "control-label col-md-3" })
-                        <div class="row col-md-6">
-                            @Html.EditorFor(model => model.TF_Fecha_Final, new
-                            {
-                                htmlAttributes = new
-                                {
-                                    @class = "form-control col-md-11",
-                                    required = "required",
-                                    type = "date"
-                                }
-                            })
-                            @Html.ValidationMessageFor(model => model.TF_Fecha_Final, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group row justify-content-center">
-                        @Html.LabelFor(model => model.TF_Hora, "Hora:", htmlAttributes: new { @class = "control-label col-md-3" })
-                        <div class="row col-md-6">
-                            @Html.EditorFor(model => model.TF_Hora, new
-                            {
-                                htmlAttributes = new
-                                {
-                                    @class = "form-control col-md-11",
-                                    required = "required",
-                                    type = "time"
-                                }
-                            })
-                            @Html.ValidationMessageFor(model => model.TF_Hora, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group row justify-content-center">
-                        @Html.LabelFor(model => model.TMCCM_Grupo_Usuario, "Encargado:", htmlAttributes: new { @class = "control-label col-md-3" })
-                        <div class="row col-md-6">
-                            @*@Html.EditorFor(model => model.TN_ID_Tipo_Gasto, new { htmlAttributes = new { @class = "form-control", required = "required" } })*@
-                            <select id="TMCCM_Grupo_Usuario" class="form-control col-md-11" name="TMCCM_Grupo_Usuario" required>
+                            <select id="Acompannantes" class="form-control col-md-11" name="Acompannantes" required>
                                 <option selected disabled>Seleccione una opción</option>
-                                <option value="1">Usuario 1</option>
-                                <option value="2">Usuario 2</option>
+                                @foreach (MCCM.Entidad.TMCCM_Usuario item in ViewBag.Usuarios)
+                                {
+                                    <option value="@item.TN_ID_Usuario">@item.TN_ID_Usuario @item.TC_Nombre @item.TC_Primer_Apellido</option>
+                                }
                             </select>
-                            @Html.ValidationMessageFor(model => model.TMCCM_Grupo_Usuario, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group row justify-content-center">
-                        @Html.LabelFor(model => model.TMCCM_Grupo_Usuario, "Acompañantes:", htmlAttributes: new { @class = "control-label col-md-3" })
-                        <div class="row col-md-6">
-                            @*@Html.EditorFor(model => model.TN_ID_Tipo_Gasto, new { htmlAttributes = new { @class = "form-control", required = "required" } })*@
-                            <select id="TMCCM_Grupo_Usuario" class="form-control col-md-11" name="TMCCM_Grupo_Usuario" required>
-                                <option selected disabled>Seleccione una opción</option>
-                                <option value="1">Usuario 1</option>
-                                <option value="2">Usuario 2</option>
-                            </select>
-                            <a href="#" class="fa fa-plus col-md-1"></a>
-                            @Html.ValidationMessageFor(model => model.TMCCM_Grupo_Usuario, "", new { @class = "text-danger" })
+                            <label id="Acompannantes-error" class="error" for="Acompannantes" style="display: none"></label>
                         </div>
                     </div>
 
@@ -206,15 +142,14 @@
                     </div>
                 </form>
             </div>
-
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-
         </div>
     </div>
 </div>
 
 <script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Scripts/jquery.mask.min.js"></script>
+
+<script>
+    aplicarValidGrupoForm();
+    aplicarMaskGrupoForm();
+</script>

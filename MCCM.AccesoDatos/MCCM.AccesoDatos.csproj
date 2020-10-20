@@ -67,6 +67,7 @@
     <Compile Include="EntidadUbicacionDatos.cs" />
     <Compile Include="EntidadVehiculoDatos.cs" />
     <Compile Include="Grupo_UsuarioDatos.cs" />
+    <Compile Include="UsuarioDatos.cs" />
     <Compile Include="Utilidades.cs" />
     <Compile Include="EventoDatos.cs" />
     <Compile Include="TareaDatos.cs" />

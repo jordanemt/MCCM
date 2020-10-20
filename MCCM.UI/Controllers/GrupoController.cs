@@ -7,21 +7,25 @@ namespace MCCM.UI.Controllers
     public class GrupoController : Controller
     {
         private GrupoNegocio grupoNegocio;
+        private UsuarioNegocio usuarioNegocio;
 
         public GrupoController()
         {
             grupoNegocio = new GrupoNegocio();
+            usuarioNegocio = new UsuarioNegocio();
         }
 
         [HttpGet]
         public ActionResult CargarModal()
         {
+            ViewBag.Usuarios = usuarioNegocio.Listar();
             return PartialView("_FormModal");
         }
 
         [HttpGet]
         public ActionResult CargarModalConId(int id)
         {
+            ViewBag.Usuarios = usuarioNegocio.Listar();
             return PartialView("_FormModal", grupoNegocio.ObtenerPorId(id));
         }
 
