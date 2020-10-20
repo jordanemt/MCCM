@@ -58,7 +58,6 @@ namespace MCCM.AccesoDatos
             using (var context = new MCCMEntities())
             {
                 data.TB_Eliminado = true;
-                data.TF_Fecha = DateTime.Now;
                 context.Entry(data).State = EntityState.Modified;
                 context.SaveChanges();
                 context.Entry(data).Reference(e => e.TMCCM_C_Gasto_Tipo_Gasto).Load();
@@ -74,6 +73,16 @@ namespace MCCM.AccesoDatos
                 data.TB_Eliminado = false;
                 context.Entry(data).State = EntityState.Modified;
                 context.SaveChanges();
+            }
+        }
+
+        public IEnumerable<TMCCM_C_Gasto_Tipo_Gasto> ListarTipoGasto()
+        {
+            using (var context = new MCCMEntities())
+            {
+                return context.TMCCM_C_Gasto_Tipo_Gasto
+                    .Where(e => e.TB_Eliminado == true)
+                    .ToList();
             }
         }
     }

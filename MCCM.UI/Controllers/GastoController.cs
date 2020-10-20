@@ -14,16 +14,24 @@ namespace MCCM.UI.Controllers
         }
 
         [HttpGet]
+        public ActionResult CargarModal()
+        {
+            ViewBag.TipoGasto = gastoNegocio.ListarTipoGasto();
+            return PartialView("_FormModal");
+        }
+
+        [HttpGet]
+        public ActionResult CargarModalGastoId(int id)
+        {
+            ViewBag.TipoGasto = gastoNegocio.ListarTipoGasto();
+            return PartialView("_FormModal", gastoNegocio.ObtenerPorId(id));
+        }
+
+        [HttpGet]
         public ActionResult Listar()
         {
             var model = gastoNegocio.Listar();
             return PartialView("_Lista", model);
-        }
-
-        [HttpGet]
-        public TMCCM_Gasto ObtenerPorId(int id)
-        {
-            return gastoNegocio.ObtenerPorId(id);
         }
 
         [HttpPost]
@@ -35,7 +43,6 @@ namespace MCCM.UI.Controllers
         [HttpPost]
         public ActionResult Actualizar(TMCCM_Gasto data)
         {
-            gastoNegocio.Actualizar(data);
             return PartialView("_Gasto", gastoNegocio.Actualizar(data));
         }
 

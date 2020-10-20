@@ -43,5 +43,10 @@ namespace MCCM.ReglasNegocio
         {
             datos.EliminarPorId(id);
         }
+
+        public IEnumerable<TMCCM_C_Gasto_Tipo_Gasto> ListarTipoGasto()
+        {
+            return datos.ListarTipoGasto();
+        }
     }
 }
