@@ -324,7 +324,7 @@
     <Content Include="Views\Bitacora\_ModalEventoForm.cshtml" />
     <Content Include="Views\Tarea\_ModalFormTarea.cshtml" />
     <Content Include="Views\Dashboard\_ModalMensajeConfirmacion.cshtml" />
-    <Content Include="Views\Gasto\_List.cshtml" />
+    <Content Include="Views\Gasto\_Lista.cshtml" />
     <Content Include="Views\Gasto\_FormModal.cshtml" />
     <Content Include="Views\Grupo\_List.cshtml" />
     <Content Include="Views\Grupo\_FormModal.cshtml" />
@@ -334,6 +334,7 @@
     <Content Include="Views\Usuario\_modalFormAgregarUsuario.cshtml" />
     <Content Include="Views\Usuario\_modalFormActualizarUsuario.cshtml" />
     <Content Include="Views\Dashboard\Login.cshtml" />
+    <Content Include="Views\Gasto\_Gasto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -5,14 +5,14 @@ $(document).on("click", '.borrar', function () {
 })
 
 $(document).on("click", ".btnEliminarMensaje", function () {
-    
-
     $("#ModalMensaje").modal("hide");
     if (boton.attr('class').split(' ')[1] == "borrarEvento") {
         alert("Se elimino el evento #" + boton.attr('id'));
     } else if (boton.attr('class').split(' ')[1] == "borrarTarea") {
         alert("Se elimino el tarea #" + boton.attr('id'));
+    } else if (boton.attr('class').split(' ')[1] == "borrarGasto") {
+        eliminarGastoPorId(boton.attr('id'));
     }
-    boton.parent().parent().parent().remove();
+    //boton.parent().parent().parent().remove();
 });
 

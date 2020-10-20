@@ -12,7 +12,6 @@
 <script src="~/Scripts/js/Gasto.js"></script>
 <script src="~/Scripts/js/Grupo.js"></script>
 
-
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
@@ -82,6 +81,7 @@
 
             @*Pestanna #1 Body*@
             <div class="card-body card-body-flex" id="pestanna-1-body">
+                <script>$('#pestanna-1-body').hide();</script>
 
                 <div class="card border-light mb-3 col-md-4" style=" margin: 0 0; padding: 0 0;">
                     <div class="card-header">
@@ -350,7 +350,7 @@
 
                                 </div>
 
-                             
+
 
                                 @*Carta EntidadUbicacion*@
                                 <div class="card" id="cartaEntidadUbicacion" style="display:none">
@@ -602,15 +602,17 @@
 
             @*Pestanna #2 Body*@
             <div class="card-body card-body-flex" id="pestanna-2-body">
+                @*<script>$('#pestanna-2-body').hide()</script>*@
 
                 <div class="card border-light mb-3 col-md-4" style="height: 100%; margin: 0 0; padding: 0 0;">
                     <div class="card-header">
                         <div>Gastos Operativos</div>
-                        <div><a href="#"><span><i class="fa fa-plus" onclick="openInsertGastoModal()"></i></span></a></div>
+                        <div><a href="#"><span><i class="fa fa-plus" onclick="abrirInsertarGastoFormModal()"></i></span></a></div>
                     </div>
-                    <div class="card-body" style="overflow-y: scroll">
-                        @* Solo para previsualizar *@
-                        @Html.Partial("~/Views/Gasto/_List.cshtml")
+                    <div class="card-body" style="overflow-y: scroll; overflow-x: no-display">
+                        <div id="gastos-contenedor" class="d-flex flex-column-reverse">
+
+                        </div>
                     </div>
                 </div>
 
@@ -640,6 +642,7 @@
 
             @*Reporte Body*@
             <div class="card-body card-body-flex" id="reporte-body">
+                <script>$('#reporte-body').hide()</script>
 
                 <div class="container col-12">
                     <div class="row">
@@ -952,11 +955,11 @@ function seleccionEntidad() {
 @Html.Partial("~/Views/Caso/_ModalCasoInsert.cshtml")
 @Html.Partial("~/Views/Bitacora/_ModalEventoForm.cshtml")
 @Html.Partial("~/Views/Tarea/_ModalFormTarea.cshtml")
-@Html.Partial("_ModalMensajeConfirmacion")
 @Html.Partial("~/Views/Gasto/_FormModal.cshtml")
 @Html.Partial("~/Views/Grupo/_FormModal.cshtml")
 @Html.Partial("~/Views/Grupo/_FormAddVehiculoModal.cshtml")
 
+@Html.Partial("_ModalMensajeConfirmacion")
 <script>
     $('select').selectpicker();
 </script>

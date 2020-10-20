@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    CargarCasos();
+    //CargarCasos();
    
     iniciarCalendario("06/10/2020");
 });

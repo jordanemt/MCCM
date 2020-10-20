@@ -13,30 +13,35 @@ namespace MCCM.ReglasNegocio
             datos = new GastoDatos();
         }
 
-        public IEnumerable<TMCCM_Gasto> GetAll()
+        public IEnumerable<TMCCM_Gasto> Listar()
         {
-            return datos.GetAll();
+            return datos.Listar();
         }
 
-        public TMCCM_Gasto GetById(int id)
+        public IEnumerable<TMCCM_Gasto> ListarPorCaso(int idCaso)
         {
-            return datos.GetById(id);
+            return datos.ListarPorCaso(idCaso);
+        }
+
+        public TMCCM_Gasto ObtenerPorId(int id)
+        {
+            return datos.ObtenerPorId(id);
         }
 
 
-        public TMCCM_Gasto Insert(TMCCM_Gasto data)
+        public TMCCM_Gasto Insertar(TMCCM_Gasto data)
         {
-            return datos.Insert(data);
+            return datos.Insertar(data);
         }
 
-        public void Update(TMCCM_Gasto data)
+        public TMCCM_Gasto Actualizar(TMCCM_Gasto data)
         {
-            datos.Update(data);
+            return datos.Actualizar(data);
         }
 
-        public void DeleteById(int id)
+        public void EliminarPorId(int id)
         {
-            datos.DeleteById(id);
+            datos.EliminarPorId(id);
         }
     }
 }
