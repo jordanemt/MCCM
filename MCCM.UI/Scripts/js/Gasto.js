@@ -20,7 +20,7 @@
 function abrirActualizarGastoFormModal(id) {
     $('#gasto-form-modal').remove();
 
-    var url = "/Gasto/CargarModalGastoId/";
+    var url = "/Gasto/CargarModalConId/";
 
     $.ajax({
         url: url,

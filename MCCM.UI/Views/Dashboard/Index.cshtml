@@ -604,26 +604,28 @@
             <div class="card-body card-body-flex" id="pestanna-2-body">
                 @*<script>$('#pestanna-2-body').hide()</script>*@
 
-                <div class="card border-light mb-3 col-md-4" style="height: 100%; margin: 0 0; padding: 0 0;">
+                <div class="card border-light mb-3 col-md-3" style="height: 100%; margin: 0 0; padding: 0 0;">
                     <div class="card-header">
                         <div>Gastos Operativos</div>
                         <div><a href="#"><span><i class="fa fa-plus" onclick="abrirInsertarGastoFormModal()"></i></span></a></div>
                     </div>
-                    <div class="card-body" style="overflow-y: scroll; overflow-x: no-display">
-                        <div id="gastos-contenedor" class="d-flex flex-column-reverse">
+                    <div class="card-body" style="overflow-y: scroll">
+                        <div id="gastos-contenedor" class="d-flex flex-column-reverse justify-content-center">
 
                         </div>
                     </div>
                 </div>
 
-                <div class="card border-light mb-3 col-md-5" style="height: 100%; margin: 0 0; padding: 0 0;">
+                <div class="card border-light mb-3 col-md-6" style="height: 100%; margin: 0 0; padding: 0 0;">
                     <div class="card-header">
                         <div>Personal</div>
                         <div><a href="#"><span><i class="fa fa-plus" onclick="openInsertGrupoModal()"></i></span></a></div>
                     </div>
                     <div class="card-body" id="personal-body" style="overflow-y: scroll">
-                        @* Solo para previsualizar *@
-                        @Html.Partial("~/Views/Grupo/_List.cshtml")
+                        <div id="grupo-contenedor" class="d-flex flex-column-reverse">
+                            @* Solo para previsualizar *@
+                            @Html.Partial("~/Views/Grupo/_List.cshtml")
+                        </div>
                     </div>
                 </div>
 

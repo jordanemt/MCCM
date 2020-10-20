@@ -21,7 +21,7 @@ namespace MCCM.UI.Controllers
         }
 
         [HttpGet]
-        public ActionResult CargarModalGastoId(int id)
+        public ActionResult CargarModalConId(int id)
         {
             ViewBag.TipoGasto = gastoNegocio.ListarTipoGasto();
             return PartialView("_FormModal", gastoNegocio.ObtenerPorId(id));

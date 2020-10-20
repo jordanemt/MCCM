@@ -25,6 +25,7 @@ namespace MCCM.AccesoDatos
             {
                 return context.TMCCM_Gasto
                     .Where(e => e.TB_Eliminado == true && e.TN_ID_Caso == idCaso)
+                    .Include(e => e.TMCCM_C_Gasto_Tipo_Gasto)
                     .ToList();
             }
         }

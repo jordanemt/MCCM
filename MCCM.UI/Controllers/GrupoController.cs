@@ -1,9 +1,5 @@
 ﻿using MCCM.Entidad;
 using MCCM.ReglasNegocio;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MCCM.UI.Controllers
@@ -18,43 +14,40 @@ namespace MCCM.UI.Controllers
         }
 
         [HttpGet]
-        public ActionResult List()
+        public ActionResult CargarModal()
         {
-            var model = grupoNegocio.GetAll();
-            return PartialView("_List", model);
+            return PartialView("_FormModal");
         }
 
         [HttpGet]
-        public TMCCM_Grupo GetById(int id)
+        public ActionResult CargarModalConId(int id)
         {
-            return grupoNegocio.GetById(id);
+            return PartialView("_FormModal", grupoNegocio.ObtenerPorId(id));
         }
 
         [HttpGet]
-        public ActionResult AddVehiculo(int idGrupo, int idVehiculo, string fecha)
+        public ActionResult Listar()
         {
-            return null;
+            var model = grupoNegocio.Listar();
+            return PartialView("_Lista", model);
         }
 
         [HttpPost]
-        public ActionResult Insert(TMCCM_Grupo data)
+        public ActionResult Insertar(TMCCM_Grupo data)
         {
-            grupoNegocio.Insert(data);
-            return RedirectToAction("Index", "Dashboard");
+            return PartialView("_Gasto", grupoNegocio.Insertar(data));
         }
 
         [HttpPost]
-        public ActionResult Update(TMCCM_Grupo data)
+        public ActionResult Actualizar(TMCCM_Grupo data)
         {
-            grupoNegocio.Update(data);
-            return RedirectToAction("Index", "Dashboard");
+            return PartialView("_Gasto", grupoNegocio.Actualizar(data));
         }
 
         [HttpPost]
-        public ActionResult Remove(int id)
+        public void EliminarPorId(int id)
         {
-            grupoNegocio.DeleteById(id);
-            return RedirectToAction("Index", "Dashboard");
+            grupoNegocio.EliminarPorId(id);
         }
     }
 }
