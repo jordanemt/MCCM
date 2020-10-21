@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-
+    cargarTipoDroga();
     iniciarCalendarioDroga(moment());
 });
 
@@ -56,13 +56,13 @@ $("#FormEntidadDroga").submit(function (e) {
     e.preventDefault();
     var form = new FormData($("#FormEntidadDroga")[0]);
     let url;
-
     AccionesEntidadDrogaForm(form, url);
 
 });
 
-function AccionesEntidadrogaForm(form, url) {
-    //alert(JSON.stringify(Object.fromEntries(form)));
+function AccionesEntidadDrogaForm(form, url) {
+    
+    alert(JSON.stringify(Object.fromEntries(form)));
     $.ajax({
         type: "POST",
         url: "/E_Droga/Insertar_E_Droga",
@@ -71,7 +71,7 @@ function AccionesEntidadrogaForm(form, url) {
         cache: false,
         processData: false,
     }).done(function (data) {
-        alert(data);
+      
         $("#entidadDrogaModal").modal("hide");
 
     });
@@ -93,7 +93,7 @@ function AccionesEntidadrogaForm(form, url) {
 
 $(document).ready(function () {
 
-    $('#TF_Fecha_Nacimiento').daterangepicker({
+    $('#TF_Fecha_Decomiso').daterangepicker({
         "singleDatePicker": true,
         "startDate": "09/29/2020",
         "endDate": "10/05/2020"
@@ -102,3 +102,23 @@ $(document).ready(function () {
     });
 
 })
+
+function cargarTipoDroga() {
+
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: "/C_TipoDroga/ListarTipoDroga",
+            data: "{}",
+            success: function (data) {
+                var s;
+                for (var i = 0; i < data.length; i++) {
+                    s += '<option value="' + data[i].TN_ID_Tipo_Droga + '">' + data[i].TC_Nombre + '</option>';
+            }
+                $("#TN_ID_Tipo_Droga").html(s);
+                $('#TN_ID_Tipo_Droga').selectpicker('refresh');
+            }
+          
+        });
+    });
+}

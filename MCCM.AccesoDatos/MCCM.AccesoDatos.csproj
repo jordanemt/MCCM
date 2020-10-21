@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CasoDatos.cs" />
+    <Compile Include="C_TipoDrogaDatos.cs" />
     <Compile Include="EntidadArmaDatos.cs" />
     <Compile Include="EntidadDrogaDatos.cs" />
     <Compile Include="EntidadPersonaDatos.cs" />

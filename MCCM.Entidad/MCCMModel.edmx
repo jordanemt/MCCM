@@ -36,7 +36,7 @@
             <PropertyRef Name="TN_ID_Tipo_Droga" />
           </Key>
           <Property Name="TN_ID_Tipo_Droga" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TF_Fecha_Creacion" Type="date" />
+          <Property Name="TF_Fecha_Creacion" Type="datetime" />
           <Property Name="TC_Nombre" Type="varchar" MaxLength="50" />
           <Property Name="TC_Descripcion" Type="varchar" MaxLength="100" />
           <Property Name="TB_Eliminado" Type="bit" />
@@ -213,7 +213,7 @@
           <Property Name="TC_Fuente" Type="varchar" MaxLength="200" />
           <Property Name="TB_Eliminado" Type="bit" />
           <Property Name="TC_Delito" Type="varchar" MaxLength="100" />
-          <Property Name="TF_Fecha" Type="date" />
+          <Property Name="TF_Fecha" Type="datetime" />
         </EntityType>
         <EntityType Name="TMCCM_Entidad_Arma">
           <Key>
@@ -248,8 +248,8 @@
           <Property Name="TF_Fecha_Decomiso" Type="date" />
           <Property Name="TF_Hora_Decomiso" Type="time" Precision="7" />
           <Property Name="TB_Eliminado" Type="bit" />
-          <Property Name="TF_Fecha_Creacion" Type="date" />
-          <Property Name="TF_Fecha_Modificacion" Type="date" />
+          <Property Name="TF_Fecha_Creacion" Type="datetime" />
+          <Property Name="TF_Fecha_Modificacion" Type="datetime" />
           <Property Name="TC_Creado_Por" Type="varchar" MaxLength="50" />
           <Property Name="TC_Modificado_Por" Type="varchar" MaxLength="50" />
           <Property Name="TB_Verificado" Type="bit" />
@@ -284,8 +284,6 @@
           <Property Name="TC_Comentario" Type="varchar" MaxLength="100" />
           <Property Name="TC_Alias" Type="varchar" MaxLength="30" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'MCCM.dbo.TMCCM_Entidad_Persona_Juridica' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="TMCCM_Entidad_Persona_Juridica">
           <Key>
             <PropertyRef Name="TN_ID_Persona_Juridica" />
@@ -421,6 +419,9 @@ advertencia 6002: La tabla o vista 'MCCM.dbo.TMCCM_Entidad_Persona_Juridica' no 
           </Key>
           <Property Name="TN_ID_Vehiculo" Type="int" Nullable="false" />
           <Property Name="TN_ID_Grupo" Type="int" Nullable="false" />
+          <Property Name="TN_Km_Inicio" Type="int" />
+          <Property Name="TN_Km_Regreso" Type="int" />
+          <Property Name="TF_Fecha_Hora" Type="datetime" />
           <Property Name="TB_Eliminado" Type="bit" />
         </EntityType>
         <EntityType Name="TMCCM_Rol">
@@ -451,9 +452,11 @@ advertencia 6002: La tabla o vista 'MCCM.dbo.TMCCM_Entidad_Persona_Juridica' no 
             <PropertyRef Name="TN_ID_Usuario" />
           </Key>
           <Property Name="TN_ID_Usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TC_Identificacion" Type="varchar" MaxLength="30" />
           <Property Name="TC_Nombre" Type="varchar" MaxLength="30" />
           <Property Name="TC_Primer_Apellido" Type="varchar" MaxLength="30" />
           <Property Name="TC_Segundo_Apellido" Type="varchar" MaxLength="30" />
+          <Property Name="TC_Correo" Type="varchar" MaxLength="100" />
           <Property Name="TC_Contrasennia" Type="varchar" MaxLength="20" />
           <Property Name="TB_Eliminado" Type="bit" />
         </EntityType>
@@ -471,12 +474,9 @@ advertencia 6002: La tabla o vista 'MCCM.dbo.TMCCM_Entidad_Persona_Juridica' no 
           </Key>
           <Property Name="TN_ID_Vehiculo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TC_Placa" Type="varchar" MaxLength="20" />
-          <Property Name="TC_Marca" Type="varchar" MaxLength="50" />
-          <Property Name="TC_Clase" Type="varchar" MaxLength="50" />
-          <Property Name="TB_Fotografia" Type="varbinary(max)" />
-          <Property Name="TC_Clasificacion" Type="varchar" MaxLength="50" />
-          <Property Name="TC_Estilo" Type="varchar" MaxLength="50" />
-          <Property Name="TN_Anno" Type="int" />
+          <Property Name="TC_Kilometraje" Type="int" />
+          <Property Name="TB_En_Uso" Type="bit" />
+          <Property Name="TC_Descripcion" Type="varchar" MaxLength="100" />
           <Property Name="TB_Eliminado" Type="bit" />
         </EntityType>
         <Association Name="FK_TMCCM_C_Arma_Icono_Arma_REL_TMCCM_Entidad_Arma">
@@ -959,6 +959,9 @@ advertencia 6002: La tabla o vista 'MCCM.dbo.TMCCM_Entidad_Persona_Juridica' no 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="sp_obtenerEventosPorCaso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="casoID" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="MCCMModelStoreContainer">
           <EntitySet Name="TMCCM_C_Arma_Icono_Arma" EntityType="Self.TMCCM_C_Arma_Icono_Arma" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TMCCM_C_Arma_Marca" EntityType="Self.TMCCM_C_Arma_Marca" Schema="dbo" store:Type="Tables" />
@@ -986,6 +989,7 @@ advertencia 6002: La tabla o vista 'MCCM.dbo.TMCCM_Entidad_Persona_Juridica' no 
           <EntitySet Name="TMCCM_Entidad_Arma" EntityType="Self.TMCCM_Entidad_Arma" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TMCCM_Entidad_Droga" EntityType="Self.TMCCM_Entidad_Droga" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TMCCM_Entidad_Persona" EntityType="Self.TMCCM_Entidad_Persona" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TMCCM_Entidad_Persona_Juridica" EntityType="Self.TMCCM_Entidad_Persona_Juridica" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TMCCM_Entidad_Telefono" EntityType="Self.TMCCM_Entidad_Telefono" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TMCCM_Entidad_Ubicacion" EntityType="Self.TMCCM_Entidad_Ubicacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TMCCM_Entidad_Vehiculo" EntityType="Self.TMCCM_Entidad_Vehiculo" Schema="dbo" store:Type="Tables" />
@@ -999,26 +1003,6 @@ advertencia 6002: La tabla o vista 'MCCM.dbo.TMCCM_Entidad_Persona_Juridica' no 
           <EntitySet Name="TMCCM_Usuario" EntityType="Self.TMCCM_Usuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TMCCM_Usuario_Rol" EntityType="Self.TMCCM_Usuario_Rol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TMCCM_Vehiculo" EntityType="Self.TMCCM_Vehiculo" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TMCCM_Entidad_Persona_Juridica" EntityType="Self.TMCCM_Entidad_Persona_Juridica" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [TMCCM_Entidad_Persona_Juridica].[TN_ID_Persona_Juridica] AS [TN_ID_Persona_Juridica], 
-    [TMCCM_Entidad_Persona_Juridica].[TN_ID_Caso] AS [TN_ID_Caso], 
-    [TMCCM_Entidad_Persona_Juridica].[TC_ID_Cedula_Juridica] AS [TC_ID_Cedula_Juridica], 
-    [TMCCM_Entidad_Persona_Juridica].[TC_Nombre_Organización] AS [TC_Nombre_Organización], 
-    [TMCCM_Entidad_Persona_Juridica].[TC_Nombre_Comercial] AS [TC_Nombre_Comercial], 
-    [TMCCM_Entidad_Persona_Juridica].[TN_ID_Icono_Persona_Juridica] AS [TN_ID_Icono_Persona_Juridica], 
-    [TMCCM_Entidad_Persona_Juridica].[TB_Fotografia] AS [TB_Fotografia], 
-    [TMCCM_Entidad_Persona_Juridica].[TN_ID_Tipo_Organizacion] AS [TN_ID_Tipo_Organizacion], 
-    [TMCCM_Entidad_Persona_Juridica].[TC_Sitio_Web] AS [TC_Sitio_Web], 
-    [TMCCM_Entidad_Persona_Juridica].[TC_Comentario] AS [TC_Comentario], 
-    [TMCCM_Entidad_Persona_Juridica].[TF_Fecha_Creacion] AS [TF_Fecha_Creacion], 
-    [TMCCM_Entidad_Persona_Juridica].[TF_Fecha_Modificacion] AS [TF_Fecha_Modificacion], 
-    [TMCCM_Entidad_Persona_Juridica].[TC_Creado_Por] AS [TC_Creado_Por], 
-    [TMCCM_Entidad_Persona_Juridica].[TC_Modificado_Por] AS [TC_Modificado_Por], 
-    [TMCCM_Entidad_Persona_Juridica].[TB_Verificado] AS [TB_Verificado], 
-    [TMCCM_Entidad_Persona_Juridica].[TB_Eliminado] AS [TB_Eliminado]
-    FROM [dbo].[TMCCM_Entidad_Persona_Juridica] AS [TMCCM_Entidad_Persona_Juridica]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_TMCCM_C_Arma_Icono_Arma_REL_TMCCM_Entidad_Arma" Association="Self.FK_TMCCM_C_Arma_Icono_Arma_REL_TMCCM_Entidad_Arma">
             <End Role="TMCCM_C_Arma_Icono_Arma" EntitySet="TMCCM_C_Arma_Icono_Arma" />
             <End Role="TMCCM_Entidad_Arma" EntitySet="TMCCM_Entidad_Arma" />
@@ -1218,7 +1202,7 @@ advertencia 6002: La tabla o vista 'MCCM.dbo.TMCCM_Entidad_Persona_Juridica' no 
             <PropertyRef Name="TN_ID_Tipo_Droga" />
           </Key>
           <Property Name="TN_ID_Tipo_Droga" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TF_Fecha_Creacion" Type="DateTime" Precision="0" />
+          <Property Name="TF_Fecha_Creacion" Type="DateTime" Precision="3" />
           <Property Name="TC_Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TC_Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="TB_Eliminado" Type="Boolean" />
@@ -1400,7 +1384,7 @@ advertencia 6002: La tabla o vista 'MCCM.dbo.TMCCM_Entidad_Persona_Juridica' no 
           <NavigationProperty Name="TMCCM_Grupo" Relationship="Self.FK_TMCCM_Caso_REL_TMCCM_Grupo" FromRole="TMCCM_Caso" ToRole="TMCCM_Grupo" />
           <NavigationProperty Name="TMCCM_Tarea" Relationship="Self.FK_TMCCM_Caso_REL_TMCCM_Tarea" FromRole="TMCCM_Caso" ToRole="TMCCM_Tarea" />
           <Property Name="TC_Delito" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="TF_Fecha" Type="DateTime" Precision="0" />
+          <Property Name="TF_Fecha" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="TMCCM_Entidad_Arma">
           <Key>
@@ -1441,8 +1425,8 @@ advertencia 6002: La tabla o vista 'MCCM.dbo.TMCCM_Entidad_Persona_Juridica' no 
           <Property Name="TB_Eliminado" Type="Boolean" />
           <NavigationProperty Name="TMCCM_C_Droga_Tipo_Droga" Relationship="Self.FK_TMCCM_C_Droga_Tipo_Droga_REL_TMCCM_Entidad_Droga" FromRole="TMCCM_Entidad_Droga" ToRole="TMCCM_C_Droga_Tipo_Droga" />
           <NavigationProperty Name="TMCCM_Caso" Relationship="Self.FK_TMCCM_Caso_REL_TMCCM_Entidad_Droga" FromRole="TMCCM_Entidad_Droga" ToRole="TMCCM_Caso" />
-          <Property Name="TF_Fecha_Creacion" Type="DateTime" Precision="0" />
-          <Property Name="TF_Fecha_Modificacion" Type="DateTime" Precision="0" />
+          <Property Name="TF_Fecha_Creacion" Type="DateTime" Precision="3" />
+          <Property Name="TF_Fecha_Modificacion" Type="DateTime" Precision="3" />
           <Property Name="TC_Creado_Por" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TC_Modificado_Por" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TB_Verificado" Type="Boolean" />
@@ -1619,7 +1603,10 @@ advertencia 6002: La tabla o vista 'MCCM.dbo.TMCCM_Entidad_Persona_Juridica' no 
           <Property Name="TN_ID_Grupo" Type="Int32" Nullable="false" />
           <Property Name="TB_Eliminado" Type="Boolean" />
           <NavigationProperty Name="TMCCM_Grupo" Relationship="Self.FK_TMCCM_Grupo_REL_TMCCM_Grupo_Vehiculo" FromRole="TMCCM_Grupo_Vehiculo" ToRole="TMCCM_Grupo" />
-          <NavigationProperty Name="TMCCM_Vehiculo" Relationship="Self.FK_TMCCM_Vehiculo_REL_TMCCM_Grupo_Vehiculo" FromRole="TMCCM_Grupo_Vehiculo" ToRole="TMCCM_Vehiculo" />
+          <Property Name="TN_Km_Inicio" Type="Int32" />
+          <Property Name="TN_Km_Regreso" Type="Int32" />
+          <Property Name="TF_Fecha_Hora" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TMCCM_Vehiculo" Relationship="MCCMModel.FK_TMCCM_Vehiculo_REL_TMCCM_Grupo_Vehiculo" FromRole="TMCCM_Grupo_Vehiculo" ToRole="TMCCM_Vehiculo" />
         </EntityType>
         <EntityType Name="TMCCM_Rol">
           <Key>
@@ -1660,21 +1647,8 @@ advertencia 6002: La tabla o vista 'MCCM.dbo.TMCCM_Entidad_Persona_Juridica' no 
           <NavigationProperty Name="TMCCM_Grupo_Usuario" Relationship="Self.FK_TMCCM_Usuario_REL_TMCCM_Grupo_Usuario" FromRole="TMCCM_Usuario" ToRole="TMCCM_Grupo_Usuario" />
           <NavigationProperty Name="TMCCM_Tarea" Relationship="Self.FK_TMCCM_Usuario_REL_TMCCM_Tarea" FromRole="TMCCM_Usuario" ToRole="TMCCM_Tarea" />
           <NavigationProperty Name="TMCCM_Rol" Relationship="Self.TMCCM_Usuario_Rol" FromRole="TMCCM_Usuario" ToRole="TMCCM_Rol" />
-        </EntityType>
-        <EntityType Name="TMCCM_Vehiculo">
-          <Key>
-            <PropertyRef Name="TN_ID_Vehiculo" />
-          </Key>
-          <Property Name="TN_ID_Vehiculo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TC_Placa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="TC_Marca" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TC_Clase" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TB_Fotografia" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="TC_Clasificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TC_Estilo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TN_Anno" Type="Int32" />
-          <Property Name="TB_Eliminado" Type="Boolean" />
-          <NavigationProperty Name="TMCCM_Grupo_Vehiculo" Relationship="Self.FK_TMCCM_Vehiculo_REL_TMCCM_Grupo_Vehiculo" FromRole="TMCCM_Vehiculo" ToRole="TMCCM_Grupo_Vehiculo" />
+          <Property Name="TC_Identificacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="TC_Correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_TMCCM_C_Arma_Icono_Arma_REL_TMCCM_Entidad_Arma">
           <End Role="TMCCM_C_Arma_Icono_Arma" Type="Self.TMCCM_C_Arma_Icono_Arma" Multiplicity="0..1" />
@@ -2084,18 +2058,6 @@ advertencia 6002: La tabla o vista 'MCCM.dbo.TMCCM_Entidad_Persona_Juridica' no 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TMCCM_Vehiculo_REL_TMCCM_Grupo_Vehiculo">
-          <End Role="TMCCM_Vehiculo" Type="Self.TMCCM_Vehiculo" Multiplicity="1" />
-          <End Role="TMCCM_Grupo_Vehiculo" Type="Self.TMCCM_Grupo_Vehiculo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TMCCM_Vehiculo">
-              <PropertyRef Name="TN_ID_Vehiculo" />
-            </Principal>
-            <Dependent Role="TMCCM_Grupo_Vehiculo">
-              <PropertyRef Name="TN_ID_Vehiculo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_TMCCM_Usuario_REL_TMCCM_Tarea">
           <End Role="TMCCM_Usuario" Type="Self.TMCCM_Usuario" Multiplicity="0..1" />
           <End Role="TMCCM_Tarea" Type="Self.TMCCM_Tarea" Multiplicity="*" />
@@ -2147,7 +2109,6 @@ advertencia 6002: La tabla o vista 'MCCM.dbo.TMCCM_Entidad_Persona_Juridica' no 
           <EntitySet Name="TMCCM_Rol" EntityType="Self.TMCCM_Rol" />
           <EntitySet Name="TMCCM_Tarea" EntityType="Self.TMCCM_Tarea" />
           <EntitySet Name="TMCCM_Usuario" EntityType="Self.TMCCM_Usuario" />
-          <EntitySet Name="TMCCM_Vehiculo" EntityType="Self.TMCCM_Vehiculo" />
           <AssociationSet Name="FK_TMCCM_C_Arma_Icono_Arma_REL_TMCCM_Entidad_Arma" Association="Self.FK_TMCCM_C_Arma_Icono_Arma_REL_TMCCM_Entidad_Arma">
             <End Role="TMCCM_C_Arma_Icono_Arma" EntitySet="TMCCM_C_Arma_Icono_Arma" />
             <End Role="TMCCM_Entidad_Arma" EntitySet="TMCCM_Entidad_Arma" />
@@ -2284,10 +2245,6 @@ advertencia 6002: La tabla o vista 'MCCM.dbo.TMCCM_Entidad_Persona_Juridica' no 
             <End Role="TMCCM_Usuario" EntitySet="TMCCM_Usuario" />
             <End Role="TMCCM_Grupo_Usuario" EntitySet="TMCCM_Grupo_Usuario" />
           </AssociationSet>
-          <AssociationSet Name="FK_TMCCM_Vehiculo_REL_TMCCM_Grupo_Vehiculo" Association="Self.FK_TMCCM_Vehiculo_REL_TMCCM_Grupo_Vehiculo">
-            <End Role="TMCCM_Vehiculo" EntitySet="TMCCM_Vehiculo" />
-            <End Role="TMCCM_Grupo_Vehiculo" EntitySet="TMCCM_Grupo_Vehiculo" />
-          </AssociationSet>
           <AssociationSet Name="FK_TMCCM_Usuario_REL_TMCCM_Tarea" Association="Self.FK_TMCCM_Usuario_REL_TMCCM_Tarea">
             <End Role="TMCCM_Usuario" EntitySet="TMCCM_Usuario" />
             <End Role="TMCCM_Tarea" EntitySet="TMCCM_Tarea" />
@@ -2308,6 +2265,14 @@ advertencia 6002: La tabla o vista 'MCCM.dbo.TMCCM_Entidad_Persona_Juridica' no 
             <End Role="TMCCM_C_Persona_Juridica_Tipo_Organización" EntitySet="TMCCM_C_Persona_Juridica_Tipo_Organización" />
             <End Role="TMCCM_Entidad_Persona_Juridica" EntitySet="TMCCM_Entidad_Persona_Juridica" />
           </AssociationSet>
+          <EntitySet Name="TMCCM_Vehiculo" EntityType="MCCMModel.TMCCM_Vehiculo" />
+          <AssociationSet Name="FK_TMCCM_Vehiculo_REL_TMCCM_Grupo_Vehiculo" Association="MCCMModel.FK_TMCCM_Vehiculo_REL_TMCCM_Grupo_Vehiculo">
+            <End Role="TMCCM_Vehiculo" EntitySet="TMCCM_Vehiculo" />
+            <End Role="TMCCM_Grupo_Vehiculo" EntitySet="TMCCM_Grupo_Vehiculo" />
+          </AssociationSet>
+          <FunctionImport Name="sp_obtenerEventosPorCaso" ReturnType="Collection(MCCMModel.sp_obtenerEventosPorCaso_Result)">
+            <Parameter Name="casoID" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="TMCCM_C_Persona_Juridica_Icono_Persona_Juridica">
           <Key>
@@ -2383,6 +2348,38 @@ advertencia 6002: La tabla o vista 'MCCM.dbo.TMCCM_Entidad_Persona_Juridica' no 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="TMCCM_Vehiculo">
+          <Key>
+            <PropertyRef Name="TN_ID_Vehiculo" />
+          </Key>
+          <Property Name="TN_ID_Vehiculo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TC_Placa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TC_Kilometraje" Type="Int32" />
+          <Property Name="TB_En_Uso" Type="Boolean" />
+          <Property Name="TC_Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TB_Eliminado" Type="Boolean" />
+          <NavigationProperty Name="TMCCM_Grupo_Vehiculo" Relationship="MCCMModel.FK_TMCCM_Vehiculo_REL_TMCCM_Grupo_Vehiculo" FromRole="TMCCM_Vehiculo" ToRole="TMCCM_Grupo_Vehiculo" />
+        </EntityType>
+        <Association Name="FK_TMCCM_Vehiculo_REL_TMCCM_Grupo_Vehiculo">
+          <End Type="MCCMModel.TMCCM_Vehiculo" Role="TMCCM_Vehiculo" Multiplicity="1" />
+          <End Type="MCCMModel.TMCCM_Grupo_Vehiculo" Role="TMCCM_Grupo_Vehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TMCCM_Vehiculo">
+              <PropertyRef Name="TN_ID_Vehiculo" />
+            </Principal>
+            <Dependent Role="TMCCM_Grupo_Vehiculo">
+              <PropertyRef Name="TN_ID_Vehiculo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="sp_obtenerEventosPorCaso_Result">
+          <Property Type="Int32" Name="TN_ID_Evento" Nullable="false" />
+          <Property Type="DateTime" Name="TF_Fecha" Nullable="true" />
+          <Property Type="Time" Name="TF_Hora" Nullable="true" />
+          <Property Type="String" Name="TC_Informa" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TC_Lugar" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TC_Novedad" Nullable="true" MaxLength="200" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2782,6 +2779,9 @@ advertencia 6002: La tabla o vista 'MCCM.dbo.TMCCM_Entidad_Persona_Juridica' no 
           <EntitySetMapping Name="TMCCM_Grupo_Vehiculo">
             <EntityTypeMapping TypeName="MCCMModel.TMCCM_Grupo_Vehiculo">
               <MappingFragment StoreEntitySet="TMCCM_Grupo_Vehiculo">
+                <ScalarProperty Name="TF_Fecha_Hora" ColumnName="TF_Fecha_Hora" />
+                <ScalarProperty Name="TN_Km_Regreso" ColumnName="TN_Km_Regreso" />
+                <ScalarProperty Name="TN_Km_Inicio" ColumnName="TN_Km_Inicio" />
                 <ScalarProperty Name="TN_ID_Vehiculo" ColumnName="TN_ID_Vehiculo" />
                 <ScalarProperty Name="TN_ID_Grupo" ColumnName="TN_ID_Grupo" />
                 <ScalarProperty Name="TB_Eliminado" ColumnName="TB_Eliminado" />
@@ -2816,26 +2816,13 @@ advertencia 6002: La tabla o vista 'MCCM.dbo.TMCCM_Entidad_Persona_Juridica' no 
           <EntitySetMapping Name="TMCCM_Usuario">
             <EntityTypeMapping TypeName="MCCMModel.TMCCM_Usuario">
               <MappingFragment StoreEntitySet="TMCCM_Usuario">
+                <ScalarProperty Name="TC_Correo" ColumnName="TC_Correo" />
+                <ScalarProperty Name="TC_Identificacion" ColumnName="TC_Identificacion" />
                 <ScalarProperty Name="TN_ID_Usuario" ColumnName="TN_ID_Usuario" />
                 <ScalarProperty Name="TC_Nombre" ColumnName="TC_Nombre" />
                 <ScalarProperty Name="TC_Primer_Apellido" ColumnName="TC_Primer_Apellido" />
                 <ScalarProperty Name="TC_Segundo_Apellido" ColumnName="TC_Segundo_Apellido" />
                 <ScalarProperty Name="TC_Contrasennia" ColumnName="TC_Contrasennia" />
-                <ScalarProperty Name="TB_Eliminado" ColumnName="TB_Eliminado" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TMCCM_Vehiculo">
-            <EntityTypeMapping TypeName="MCCMModel.TMCCM_Vehiculo">
-              <MappingFragment StoreEntitySet="TMCCM_Vehiculo">
-                <ScalarProperty Name="TN_ID_Vehiculo" ColumnName="TN_ID_Vehiculo" />
-                <ScalarProperty Name="TC_Placa" ColumnName="TC_Placa" />
-                <ScalarProperty Name="TC_Marca" ColumnName="TC_Marca" />
-                <ScalarProperty Name="TC_Clase" ColumnName="TC_Clase" />
-                <ScalarProperty Name="TB_Fotografia" ColumnName="TB_Fotografia" />
-                <ScalarProperty Name="TC_Clasificacion" ColumnName="TC_Clasificacion" />
-                <ScalarProperty Name="TC_Estilo" ColumnName="TC_Estilo" />
-                <ScalarProperty Name="TN_Anno" ColumnName="TN_Anno" />
                 <ScalarProperty Name="TB_Eliminado" ColumnName="TB_Eliminado" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2898,6 +2885,30 @@ advertencia 6002: La tabla o vista 'MCCM.dbo.TMCCM_Entidad_Persona_Juridica' no 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TMCCM_Vehiculo">
+            <EntityTypeMapping TypeName="MCCMModel.TMCCM_Vehiculo">
+              <MappingFragment StoreEntitySet="TMCCM_Vehiculo">
+                <ScalarProperty Name="TB_Eliminado" ColumnName="TB_Eliminado" />
+                <ScalarProperty Name="TC_Descripcion" ColumnName="TC_Descripcion" />
+                <ScalarProperty Name="TB_En_Uso" ColumnName="TB_En_Uso" />
+                <ScalarProperty Name="TC_Kilometraje" ColumnName="TC_Kilometraje" />
+                <ScalarProperty Name="TC_Placa" ColumnName="TC_Placa" />
+                <ScalarProperty Name="TN_ID_Vehiculo" ColumnName="TN_ID_Vehiculo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_obtenerEventosPorCaso" FunctionName="MCCMModel.Store.sp_obtenerEventosPorCaso">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MCCMModel.sp_obtenerEventosPorCaso_Result">
+                <ScalarProperty Name="TN_ID_Evento" ColumnName="TN_ID_Evento" />
+                <ScalarProperty Name="TF_Fecha" ColumnName="TF_Fecha" />
+                <ScalarProperty Name="TF_Hora" ColumnName="TF_Hora" />
+                <ScalarProperty Name="TC_Informa" ColumnName="TC_Informa" />
+                <ScalarProperty Name="TC_Lugar" ColumnName="TC_Lugar" />
+                <ScalarProperty Name="TC_Novedad" ColumnName="TC_Novedad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
