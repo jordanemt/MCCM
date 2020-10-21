@@ -130,6 +130,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CasoController.cs" />
+    <Compile Include="Controllers\C_TipoDrogaController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\E_ArmaController.cs" />
     <Compile Include="Controllers\E_DrogaController.cs" />
@@ -211,6 +212,7 @@
     <Content Include="Scripts\js\EntidadPersona.js" />
     <Content Include="Scripts\js\EntidadPersonaJuridica.js" />
     <Content Include="Scripts\js\Evento.js" />
+    <Content Include="Scripts\js\JavaScript.js" />
     <Content Include="Scripts\js\Mensaje.js" />
     <Content Include="Scripts\js\Gasto.js" />
     <Content Include="Scripts\js\Grupo.js" />
@@ -338,6 +340,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\C_TipoDroga\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

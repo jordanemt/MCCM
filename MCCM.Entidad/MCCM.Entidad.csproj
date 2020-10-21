@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTO\TMCCM_CasoDTO.cs" />
+    <Compile Include="DTO\TMCCM_C_TipoDatosDTO.cs" />
     <Compile Include="DTO\TMCCM_EntidadArmaDTO.cs" />
     <Compile Include="DTO\TMCCM_EntidadDrogaDTO.cs" />
     <Compile Include="DTO\TMCCM_EntidadPersonaDTO.cs" />
