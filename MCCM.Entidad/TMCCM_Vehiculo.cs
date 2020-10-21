@@ -22,12 +22,9 @@ namespace MCCM.Entidad
     
         public int TN_ID_Vehiculo { get; set; }
         public string TC_Placa { get; set; }
-        public string TC_Marca { get; set; }
-        public string TC_Clase { get; set; }
-        public byte[] TB_Fotografia { get; set; }
-        public string TC_Clasificacion { get; set; }
-        public string TC_Estilo { get; set; }
-        public Nullable<int> TN_Anno { get; set; }
+        public Nullable<int> TC_Kilometraje { get; set; }
+        public Nullable<bool> TB_En_Uso { get; set; }
+        public string TC_Descripcion { get; set; }
         public Nullable<bool> TB_Eliminado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

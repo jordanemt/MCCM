@@ -4,9 +4,6 @@
 
 $(document).ready(function () {
     CargarCasos();
-   
-    iniciarCalendario("06/10/2020");
-
     $("#FormCaso").validate({
         rules: {
             TC_Nombre_Caso: {
@@ -61,32 +58,21 @@ $(document).ready(function () {
     });
 });
 
-function iniciarCalendario(fecha) {
 
-    $('#calendarioBitacora').daterangepicker({
-        "singleDatePicker": true,
-        "timePicker": true,
-        "timePicker24Hour": true,
-        "starDate": fecha,
-        locale: {
-            format: 'M/DD hh:mm A'
-        }
-    }, function (start, end, label) {
-        console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
-    });
-}
 
-$(document).on("click",".caso",function () {
+$(document).on("click", ".caso", function () {
 
-    alert("CLICK CASO");
+    //alert("CLICK CASO");
     if ($(".card").hasClass('filaseleccionada')) {
         $(".card").removeClass('filaseleccionada');
         $(this).addClass('filaseleccionada');
     } else {
         $(this).addClass('filaseleccionada');
     }
+    
     sessionStorage.CasoID = $(this).attr('id');
-    $("#casosTitulo").html("Seleccionado: Caso #" + $(this).attr('id'));
+    CargarEventos();
+    $("#casosTitulo").html($(this).children(".card-body").children().first().children().last().text());
 });
 
 
@@ -116,7 +102,6 @@ $('#ModalFormCaso').on('show.bs.modal', function (e) {
 
 
 $(document).on("click", ".ojito", function () {
-    //alert("ojito")
     $.ajax({
         type: "GET",
         url: "/Caso/ObtenerCasoPorID",
@@ -160,7 +145,6 @@ $(document).on("click", "#btnModificarCaso", function (e) {
 
 $(document).on("click", "#btnEliminarCaso", function (e) {
     e.preventDefault();
-    //alert("Eliminar");
 
     $.ajax({
         type: "POST",
@@ -180,7 +164,16 @@ $(document).on("click", "#btnRegistrarCaso", function (e) {
         var form = new FormData($("#FormCaso")[0]);
         let url;
         url = "/Caso/InsertarCaso";
-        AccionesCasoForm(form, url);
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: Object.fromEntries(form)
+
+        }).done(function (data) {
+            insert = 1;
+            CargarCasos();
+            $("#ModalFormCaso").modal("hide");
+        });
         
     } else {
         alert("NO es valido");
@@ -188,23 +181,6 @@ $(document).on("click", "#btnRegistrarCaso", function (e) {
 
 
 });
-
-
-function AccionesCasoForm(form,url) {
-    $.ajax({
-        type: "POST",
-        url: url,
-        data: Object.fromEntries(form)
-
-    }).done(function (data) {
-        insert = 1;
-        CargarCasos();
-
-
-        //sessionStorage.CasoID = $("#casos-body").last().attr("id");
-        $("#ModalFormCaso").modal("hide");
-    });
-}
 
 
 
@@ -219,12 +195,12 @@ function CargarCasos() {
         for (let i = 0; i < casos.length; i++) {
             $("#casos-body").append(
                 '<div class="card caso" id="' + casos[i].TN_ID_Caso +'" >'+
-                '<div class="card-header"><div>Caso #' + casos[i].TN_ID_Caso + '</div>'+
-                '<a href="#" class="ojito" id="' + casos[i].TN_ID_Caso+'"><span><i class="fa fa-eye" style="color:black" aria-hidden="true"></i></span></a></div >'+
-                        '<div class="card-body" style="padding:0px!important">'+
-                            '<h6><small>Nombre:'+ casos[i].TC_Nombre_Caso +'</small></h5>'+
-                            '<h6><small>Fecha: ' + casos[i].TF_Fecha.substr(0, 10) +'</small></h5>'+
-                            '<h6><small>Delito: ' + casos[i].TC_Delito +'</small></h5>'+
+                    '<div class="card-header"><div>Caso #' + casos[i].TN_ID_Caso + '</div>'+
+                    '<a href="#" class="ojito" id="' + casos[i].TN_ID_Caso+'"><span><i class="fa fa-eye" style="color:black" aria-hidden="true"></i></span></a></div >'+
+                    '<div class="card-body" style="padding:0px!important">'+
+                            '<h6><small><b>Nombre: </b></small><small class="nombre">'+casos[i].TC_Nombre_Caso +'</small></h5>'+
+                            '<h6><small><b>Fecha: </b>' + casos[i].TF_Fecha.substr(0, 10) +" "+ casos[i].TF_Fecha.substr(11, 11) +'</small></h5>'+
+                            '<h6><small><b>Delito: </b>' + casos[i].TC_Delito +'</small></h5>'+
                         '</div>'+
                     '</div>'
             );
@@ -232,7 +208,9 @@ function CargarCasos() {
         if (insert == 1) {
             $("#casos-body").children().last().addClass('filaseleccionada');
             $("#casos-body").children().last()[0].scrollIntoView();
-            alert($("#casos-body").children().last().attr("id"));
+            $("#casosTitulo").html($("#casos-body").children().last().children(".card-body").children().first().children().last().text());
+            sessionStorage.CasoID = $("#casos-body").last().attr("id");
+            insert = 0;
         }
     });
 }

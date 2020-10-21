@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,7 +34,6 @@ namespace MCCM.AccesoDatos
                     result.TC_Lugar = evento.TC_Lugar;
                     result.TC_Novedad = evento.TC_Novedad;
                     result.TF_Fecha = evento.TF_Fecha;
-                    result.TF_Hora = evento.TF_Hora;
                     context.Entry(result).State = EntityState.Modified;
                     context.SaveChanges();
                 }
@@ -57,25 +57,16 @@ namespace MCCM.AccesoDatos
 
 
 
-        public List<TMCCM_EventoDTO> ListarEventos()
+        public List<sp_obtenerEventosPorCaso_Result> ListarEventos(int caso)
         {
-            List<TMCCM_EventoDTO> eventosDTO = null;
 
             using (var context = new MCCMEntities())
             {
-                eventosDTO = context.TMCCM_Evento.Where(c => c.TB_Eliminado == true)
-                  .Select(evento => new TMCCM_EventoDTO()
-                  {
-                      TN_ID_Evento = evento.TN_ID_Evento,
-                      TC_Informa = evento.TC_Informa,
-                      TC_Lugar = evento.TC_Lugar,
-                      TC_Novedad = evento.TC_Novedad,
-                      TF_Fecha = evento.TF_Fecha,
-                      TF_Hora = evento.TF_Hora
-                  }).ToList<TMCCM_EventoDTO>();
-
-                return eventosDTO;
+                var result= context.sp_obtenerEventosPorCaso(caso).ToList();
+                return result;
+                
             }
+            
         }
 
         public TMCCM_EventoDTO ObtenerEventoPorID(int ID)
@@ -91,7 +82,6 @@ namespace MCCM.AccesoDatos
                            TC_Lugar = evento.TC_Lugar,
                            TC_Novedad = evento.TC_Novedad,
                            TF_Fecha = evento.TF_Fecha,
-                           TF_Hora = evento.TF_Hora
                        }).Where(x => x.TN_ID_Evento == ID).Single();
             }
             return aux;

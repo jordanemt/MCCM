@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,9 +30,9 @@ namespace MCCM.ReglasNegocio
             eventoDatos.EliminarEvento(ID);
             return "S";
         }
-        public List<TMCCM_EventoDTO> ListarEventos()
+        public List<sp_obtenerEventosPorCaso_Result> ListarEventos(int caso)
         {
-            return eventoDatos.ListarEventos();
+            return eventoDatos.ListarEventos(caso);
         }
 
         public TMCCM_EventoDTO ObtenerEventoPorID(int ID)
