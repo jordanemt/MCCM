@@ -1,5 +1,8 @@
 ﻿@model MCCM.Entidad.TMCCM_Grupo
 
+<script src="~/Scripts/bootstrap-select.min.js"></script>
+<link href="~/Content/bootstrap-select.min.css" rel="stylesheet" />
+
 <div class="modal fade" id="grupo-form-modal">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
@@ -20,7 +23,6 @@
             <!-- Modal body -->
             <div class="modal-body">
                 <form id="grupo-form">
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="form-group row justify-content-center">
                         <label class="control-label col-md-3" for="TN_ID_Grupo">Número de gasto:</label>
                         <div class="row col-md-6">
@@ -112,11 +114,26 @@
                     <div class="form-group row justify-content-center">
                         <label class="control-label col-md-3" for="Encargado">Encargado:</label>
                         <div class="row col-md-6">
-                            <select id="Encargado" class="form-control col-md-11" name="Encargado" required>
+                            <select id="Encargado" class="form-control col-md-11 mdb-select" name="Acompannantes">
                                 <option selected disabled>Seleccione una opción</option>
+                                @{
+                                    if (Model == null)
+                                    {
+                                        int idEncargado = Model.TMCCM_Grupo_Usuario
+                                            .Where(e => e.TB_Encargado == true)
+                                            .FirstOrDefault().TN_ID_Usuario;
+                                    }
+                                }
                                 @foreach (MCCM.Entidad.TMCCM_Usuario item in ViewBag.Usuarios)
                                 {
-                                    <option value="@item.TN_ID_Usuario">@item.TN_ID_Usuario @item.TC_Nombre @item.TC_Primer_Apellido</option>
+                                    if (Model !=null && item.TN_ID_Usuario == idEncargado)
+                                    {
+                                        <option selected value="@item.TN_ID_Usuario">@item.TN_ID_Usuario @item.TC_Nombre @item.TC_Primer_Apellido</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.TN_ID_Usuario">@item.TN_ID_Usuario @item.TC_Nombre @item.TC_Primer_Apellido</option>
+                                    }
                                 }
                             </select>
                             <label id="Encargado-error" class="error" for="Encargado" style="display: none"></label>
@@ -126,11 +143,28 @@
                     <div class="form-group row justify-content-center">
                         <label class="control-label col-md-3" for="Acompannantes">Acompañantes:</label>
                         <div class="row col-md-6">
-                            <select id="Acompannantes" class="form-control col-md-11" name="Acompannantes" required>
+                            <select id="Acompannantes" class="form-control col-md-11" name="Acompannantes" multiple>
                                 <option selected disabled>Seleccione una opción</option>
                                 @foreach (MCCM.Entidad.TMCCM_Usuario item in ViewBag.Usuarios)
                                 {
-                                    <option value="@item.TN_ID_Usuario">@item.TN_ID_Usuario @item.TC_Nombre @item.TC_Primer_Apellido</option>
+                                    foreach (MCCM.Entidad.TMCCM_Grupo_Usuario acompannante in Model.TMCCM_Grupo_Usuario)
+                                    {
+                                        if (acompannante.TN_ID_Usuario == item.TN_ID_Usuario)
+                                        {
+                                            if (item.TN_ID_Usuario == idEncargado)
+                                            {
+                                                <option disabled value="@item.TN_ID_Usuario">@item.TN_ID_Usuario @item.TC_Nombre @item.TC_Primer_Apellido</option>
+                                            }
+                                            else
+                                            {
+                                                <option selected value="@item.TN_ID_Usuario">@item.TN_ID_Usuario @item.TC_Nombre @item.TC_Primer_Apellido</option>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.TN_ID_Usuario">@item.TN_ID_Usuario @item.TC_Nombre @item.TC_Primer_Apellido</option>
+                                        }
+                                    }
                                 }
                             </select>
                             <label id="Acompannantes-error" class="error" for="Acompannantes" style="display: none"></label>
@@ -138,7 +172,15 @@
                     </div>
 
                     <div class="form-group row justify-content-center">
-                        <input type="submit" value="Insertar" class="btn btn-primary submit-button" />
+                        @if (Model == null)
+                        {
+                            <input id="gasto-form-modal-submit" type="button" value="Insertar" class="btn btn-primary submit-button mx-2" onclick="insertarGrupo();" />
+                        }
+                        else
+                        {
+                            <input id="gasto-form-modal-submit" type="button" value="Actualizar" class="btn btn-primary submit-button mx-2" onclick="actualizarGrupo();" />
+                        }
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     </div>
                 </form>
             </div>
@@ -146,10 +188,12 @@
     </div>
 </div>
 
+
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.mask.min.js"></script>
 
 <script>
+    //$('select').selectpicker();
     aplicarValidGrupoForm();
     aplicarMaskGrupoForm();
 </script>

@@ -54,7 +54,7 @@ function listarGrupo() {
 }
 
 function insertarGrupo() {
-    if ($("#grupo-form").valid()) {
+    //if ($("#grupo-form").valid()) {
         var url = "/Grupo/Insertar/";
 
         $.ajax({
@@ -70,7 +70,7 @@ function insertarGrupo() {
                 alert("error : " + reponse);
             }
         });
-    }
+    //}
 }
 
 function actualizarGrupo() {
@@ -135,5 +135,5 @@ function aplicarMaskGrupoForm() {
 }
 
 $(document).ready(function () {
-    //listarGastos();
+    //listarGrupo();
 });

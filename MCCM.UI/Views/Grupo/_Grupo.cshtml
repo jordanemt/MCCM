@@ -1,69 +1,10 @@
-﻿@model IEnumerable<MCCM.Entidad.TMCCM_Grupo>
+﻿@model MCCM.Entidad.TMCCM_Grupo
 
-@*<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TF_Hora)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TC_Zona)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TF_Fecha_Inicio)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TF_Fecha_Final)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TB_Eliminado)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TMCCM_Caso.TC_Nombre_Caso)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TF_Hora)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TC_Zona)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TF_Fecha_Inicio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TF_Fecha_Final)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TB_Eliminado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TMCCM_Caso.TC_Nombre_Caso)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.TN_ID_Grupo }) |
-                @Html.ActionLink("Details", "Details", new { id = item.TN_ID_Grupo }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.TN_ID_Grupo })
-            </td>
-        </tr>
-    }
-
-</table>*@
-
-
-@*Solo para previsualizar*@
-<div id="grupo-1" class="card">
+<div id="grupo-@Model.TN_ID_Grupo" class="card">
     <div class="card-header">
-        <div>Grupo #1</div>
+        <div>Grupo #@Model.TN_ID_Grupo</div>
         <div>
-            <a href="#"><span><i class="fa fa-edit"></i></span></a>
+            <a href="#" onclick="abrirActualizarGrupoFormModal(@Model.TN_ID_Grupo);"><span><i class="fa fa-edit"></i></span></a>
             <a href="#"><span><i class="fa fa-trash"></i></span></a>
         </div>
     </div>
@@ -102,7 +43,7 @@
                         <span class="badge badge-primary w-100">Zona:</span>
                     </div>
                     <div class="col-sm-6">
-                        <p>Turrialba</p>
+                        <p>@Model.TC_Zona</p>
                     </div>
                 </div>
                 <div class="d-flex flex-sm-row">
@@ -110,7 +51,7 @@
                         <span class="badge badge-primary w-100">F/Inicio:</span>
                     </div>
                     <div class="col-sm-6">
-                        <p>12/12/2019</p>
+                        <p>@Model.TF_Fecha_Inicio</p>
                     </div>
                 </div>
                 <div class="d-flex flex-sm-row">
@@ -118,7 +59,7 @@
                         <span class="badge badge-primary w-100">F/Final:</span>
                     </div>
                     <div class="col-sm-6">
-                        <p>---</p>
+                        <p>@Model.TF_Fecha_Final</p>
                     </div>
                 </div>
                 <div class="d-flex flex-sm-row">
@@ -126,7 +67,7 @@
                         <span class="badge badge-primary w-100">Hora:</span>
                     </div>
                     <div class="col-sm-6">
-                        <p>8:00am</p>
+                        <p>@Model.TF_Hora</p>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,7 @@
 ﻿using MCCM.Entidad;
 using MCCM.ReglasNegocio;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace MCCM.UI.Controllers
@@ -37,9 +39,17 @@ namespace MCCM.UI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Insertar(TMCCM_Grupo data)
+        public ActionResult Insertar(TMCCM_Grupo data, List<int> Acompannantes)
         {
-            return PartialView("_Gasto", grupoNegocio.Insertar(data));
+            foreach (int val in Acompannantes)
+            {
+                TMCCM_Grupo_Usuario item = new TMCCM_Grupo_Usuario();
+                item.TN_ID_Usuario = val;
+                item.TB_Encargado = (val == Acompannantes.First());
+                item.TB_Eliminado = false;
+                data.TMCCM_Grupo_Usuario.Add(item);
+            }
+            return PartialView("_Grupo", grupoNegocio.Insertar(data));
         }
 
         [HttpPost]

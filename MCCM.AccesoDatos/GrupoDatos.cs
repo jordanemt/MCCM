@@ -14,9 +14,11 @@ namespace MCCM.AccesoDatos
         {
             using (var context = new MCCMEntities())
             {
-                return context.TMCCM_Grupo
+                List<TMCCM_Grupo> data = context.TMCCM_Grupo
                     .Where(e => e.TB_Eliminado == true)
+                    .Include(e => e.TMCCM_Grupo_Vehiculo)
                     .ToList();
+                return data;
             }
         }
 
@@ -34,7 +36,12 @@ namespace MCCM.AccesoDatos
         {
             using (var context = new MCCMEntities())
             {
-                var data = context.TMCCM_Grupo.Find(id);
+                TMCCM_Grupo data = context.TMCCM_Grupo.Find(id);
+                context.Entry(data).Reference(e => e.TMCCM_Grupo_Usuario).Load();
+                foreach (TMCCM_Grupo_Usuario item in data.TMCCM_Grupo_Usuario) 
+                {
+                    context.Entry(item).Reference(e => e.TMCCM_Usuario).Load();
+                }
                 return data;
             }
         }
@@ -47,6 +54,10 @@ namespace MCCM.AccesoDatos
                 data.TB_Eliminado = true;
                 data.TF_Fecha_Inicio = DateTime.Now;
                 TMCCM_Grupo newData = context.TMCCM_Grupo.Add(data);
+                foreach (TMCCM_Grupo_Usuario item in newData.TMCCM_Grupo_Usuario)
+                {
+                    context.Entry(item).Reference(e => e.TMCCM_Usuario).Load();
+                }
                 context.SaveChanges();
                 return newData;
             }
