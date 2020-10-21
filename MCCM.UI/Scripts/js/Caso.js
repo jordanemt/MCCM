@@ -1,55 +1,102 @@
-﻿$(document).ready(function () {
+﻿let insert = 0;
+
+
+
+$(document).ready(function () {
     CargarCasos();
-   
-    iniciarCalendario("06/10/2020");
+    $("#FormCaso").validate({
+        rules: {
+            TC_Nombre_Caso: {
+                required: true,
+            },
+            TN_ECU: {
+                required: true,
+                number: true
+            },
+            TN_Nivel: {
+                required: true,
+                number: true
+            },
+            TC_Descripcion: {
+                required: true,
+            },
+            TC_Fuente: {
+                required: true
+            },
+            TC_Delito: {
+                required: true
+            }
+            
+        },
+        messages: {
+            TC_Nombre_Caso: {
+                required: "El Nombre del caso no puede quedar en blanco"
+            },
+            TN_ECU: {
+                required: "El #ECU no puede quedar en blanco",
+                number: "#ECU debe ser un número"
+            },
+            TN_Nivel: {
+                required: "El Nivel no puede quedar en blanco",
+                number: "Nivel debe ser un número"
+            },
+            TC_Descripcion: {
+                required: "La descripcion del caso no puede quedar en blanco",
+            },
+            TC_Fuente: {
+                required: "La fuente de la información no puede quedar en blanco"
+            },
+            TC_Delito: {
+                required: "El delito no puede quedar en blanco"
+            }
+
+        },
+        submitHandler: function (form) {
+            // do other things for a valid form
+            return false;
+        }
+    });
 });
 
-function iniciarCalendario(fecha) {
-    //alert(fecha);
 
-    $('#calendarioBitacora').daterangepicker({
-        "singleDatePicker": true,
-        "timePicker": true,
-        "timePicker24Hour": true,
-        "starDate": fecha,
-        locale: {
-            format: 'M/DD hh:mm A'
-        }
-    }, function (start, end, label) {
-        console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
-    });
-}
 
-$(document).on("click",".caso",function () {
+$(document).on("click", ".caso", function () {
 
+    //alert("CLICK CASO");
     if ($(".card").hasClass('filaseleccionada')) {
         $(".card").removeClass('filaseleccionada');
         $(this).addClass('filaseleccionada');
     } else {
         $(this).addClass('filaseleccionada');
     }
-    sessionStorage.CasoID= $(this).attr('id');
-
+    
+    sessionStorage.CasoID = $(this).attr('id');
+    CargarEventos();
+    $("#casosTitulo").html($(this).children(".card-body").children().first().children().last().text());
 });
 
 
 $('#ModalFormCaso').on('hidden.bs.modal', function () {
-    limpiarFormularioCaso();
+    $("#FormCaso")[0].reset();
 })
 
 $('#ModalFormCaso').on('show.bs.modal', function (e) {
     if (e.relatedTarget != null) {
-        $("#btnRegistrar").show();
-        $("#btnModificar").hide();
-        $("#btnEliminar").hide(); 
+        $("#btnRegistrarCaso").show();
+        $("#btnModificarCaso").hide();
+        $("#btnEliminarCaso").hide(); 
         $("#tituloFormModal").html("Registrar Caso");
         $("#TN_ID_Caso").hide();
+        $("#TN_ID_Input").hide();
+        //alert("Hola1");
     } else {
         $("#TN_ID_Caso").show();
         $("#tituloFormModal").html("Modificar Caso");
-        $("#btnRegistrar").hide();
-        $("#btnModificar").show();
-        $("#btnEliminar").show();    
+        $("#btnRegistrarCaso").hide();
+        $("#btnModificarCaso").show();
+        $("#btnEliminarCaso").show();
+        $("#TN_ID_Input").show();
+        //alert("Hola2");
     }
 })
 
@@ -74,36 +121,30 @@ $(document).on("click", ".ojito", function () {
         $("#btnRegistrarCaso").hide();
         $("#btnEliminarCaso").show();
         $("#btnModificarCaso").show();
-
         $("#ModalFormCaso").modal("show");
     });
 });
 
-function limpiarFormularioCaso() {
-    $("#TN_ID_Caso").val("");
-    $("#TN_ECU").val("");
-    $("#TC_Nombre_Caso").val("");
-    $("#TC_Enfoque_Trabajo").val("");
-    $("#TC_Area_Trabajo").val("");
-    $("#TN_Nivel").val("");
-    $("#TC_Descripcion").val("");
-    $("#TC_Fuente").val("");
-    $("#TC_Delito").val("");
-}
 
 
 $(document).on("click", "#btnModificarCaso", function (e) {
     e.preventDefault();
-    var form = $("#FormCaso");
-    //alert(form.serialize());
-    let url;
-    url = "/Caso/ActualizarCaso";
-    AccionesCasoForm(form,url);
+    if ($("#FormCaso").valid()) {
+        var form = $("#FormCaso");
+        $.ajax({
+            type: "POST",
+            url: "/Caso/ActualizarCaso",
+            data: form.serialize()
+
+        }).done(function (data) {
+            $("#ModalFormCaso").modal("hide");
+            CargarCasos();
+        });
+    }
 });
 
 $(document).on("click", "#btnEliminarCaso", function (e) {
     e.preventDefault();
-    //alert("Eliminar");
 
     $.ajax({
         type: "POST",
@@ -118,26 +159,28 @@ $(document).on("click", "#btnEliminarCaso", function (e) {
 
 $(document).on("click", "#btnRegistrarCaso", function (e) {
     e.preventDefault();
-    var form = $("#FormCaso");
-    //alert(form.serialize());
-    let url;
-    url = "/Caso/InsertarCaso";
-    AccionesCasoForm(form,url);
+    
+    if ($("#FormCaso").valid()) {
+        var form = new FormData($("#FormCaso")[0]);
+        let url;
+        url = "/Caso/InsertarCaso";
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: Object.fromEntries(form)
+
+        }).done(function (data) {
+            insert = 1;
+            CargarCasos();
+            $("#ModalFormCaso").modal("hide");
+        });
+        
+    } else {
+        alert("NO es valido");
+    }
+
 
 });
-
-
-function AccionesCasoForm(form,url) {
-    $.ajax({
-        type: "POST",
-        url: url,
-        data: form.serialize()
-
-    }).done(function (data) {
-        $("#ModalFormCaso").modal("hide");
-        CargarCasos();
-    });
-}
 
 
 
@@ -150,18 +193,24 @@ function CargarCasos() {
         casos = JSON.parse(data);
         $("#casos-body").empty();
         for (let i = 0; i < casos.length; i++) {
-            
             $("#casos-body").append(
                 '<div class="card caso" id="' + casos[i].TN_ID_Caso +'" >'+
-                '<div class="card-header"><div>Caso #' + casos[i].TN_ID_Caso + '</div>'+
-                '<a href="#" class="ojito" id="' + casos[i].TN_ID_Caso+'"><span><i class="fa fa-eye" aria-hidden="true"></i></span></a></div >'+
-                        '<div class="card-body" style="padding:0px!important">'+
-                            '<h6><small>Nombre:'+ casos[i].TC_Nombre_Caso +'</small></h5>'+
-                            '<h6><small>Fecha: ' + casos[i].TF_Fecha +'</small></h5>'+
-                            '<h6><small>Delito: ' + casos[i].TC_Delito +'</small></h5>'+
+                    '<div class="card-header"><div>Caso #' + casos[i].TN_ID_Caso + '</div>'+
+                    '<a href="#" class="ojito" id="' + casos[i].TN_ID_Caso+'"><span><i class="fa fa-eye" style="color:black" aria-hidden="true"></i></span></a></div >'+
+                    '<div class="card-body" style="padding:0px!important">'+
+                            '<h6><small><b>Nombre: </b></small><small class="nombre">'+casos[i].TC_Nombre_Caso +'</small></h5>'+
+                            '<h6><small><b>Fecha: </b>' + casos[i].TF_Fecha.substr(0, 10) +" "+ casos[i].TF_Fecha.substr(11, 11) +'</small></h5>'+
+                            '<h6><small><b>Delito: </b>' + casos[i].TC_Delito +'</small></h5>'+
                         '</div>'+
                     '</div>'
             );
+        }
+        if (insert == 1) {
+            $("#casos-body").children().last().addClass('filaseleccionada');
+            $("#casos-body").children().last()[0].scrollIntoView();
+            $("#casosTitulo").html($("#casos-body").children().last().children(".card-body").children().first().children().last().text());
+            sessionStorage.CasoID = $("#casos-body").last().attr("id");
+            insert = 0;
         }
     });
 }

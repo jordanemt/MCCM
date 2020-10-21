@@ -12,6 +12,8 @@ namespace MCCM.Entidad
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class MCCMEntities : DbContext
     {
@@ -51,7 +53,6 @@ namespace MCCM.Entidad
         public virtual DbSet<TMCCM_Entidad_Telefono> TMCCM_Entidad_Telefono { get; set; }
         public virtual DbSet<TMCCM_Entidad_Ubicacion> TMCCM_Entidad_Ubicacion { get; set; }
         public virtual DbSet<TMCCM_Entidad_Vehiculo> TMCCM_Entidad_Vehiculo { get; set; }
-        public virtual DbSet<TMCCM_Evento> TMCCM_Evento { get; set; }
         public virtual DbSet<TMCCM_Gasto> TMCCM_Gasto { get; set; }
         public virtual DbSet<TMCCM_Grupo> TMCCM_Grupo { get; set; }
         public virtual DbSet<TMCCM_Grupo_Usuario> TMCCM_Grupo_Usuario { get; set; }
@@ -59,10 +60,20 @@ namespace MCCM.Entidad
         public virtual DbSet<TMCCM_Rol> TMCCM_Rol { get; set; }
         public virtual DbSet<TMCCM_Tarea> TMCCM_Tarea { get; set; }
         public virtual DbSet<TMCCM_Usuario> TMCCM_Usuario { get; set; }
-        public virtual DbSet<TMCCM_Vehiculo> TMCCM_Vehiculo { get; set; }
         public virtual DbSet<TMCCM_C_Persona_Juridica_Icono_Persona_Juridica> TMCCM_C_Persona_Juridica_Icono_Persona_Juridica { get; set; }
         public virtual DbSet<TMCCM_C_Persona_Juridica_Tipo_Organización> TMCCM_C_Persona_Juridica_Tipo_Organización { get; set; }
         public virtual DbSet<TMCCM_C_Vehiculo_Clase> TMCCM_C_Vehiculo_Clase { get; set; }
         public virtual DbSet<TMCCM_Entidad_Persona_Juridica> TMCCM_Entidad_Persona_Juridica { get; set; }
+        public virtual DbSet<TMCCM_Vehiculo> TMCCM_Vehiculo { get; set; }
+        public virtual DbSet<TMCCM_Evento> TMCCM_Evento { get; set; }
+    
+        public virtual ObjectResult<sp_obtenerEventosPorCaso_Result> sp_obtenerEventosPorCaso(Nullable<int> casoID)
+        {
+            var casoIDParameter = casoID.HasValue ?
+                new ObjectParameter("casoID", casoID) :
+                new ObjectParameter("casoID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_obtenerEventosPorCaso_Result>("sp_obtenerEventosPorCaso", casoIDParameter);
+        }
     }
 }

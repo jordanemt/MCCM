@@ -22,13 +22,13 @@ namespace MCCM.AccesoDatos
                     TN_ID_Caso = entidadTelefonoDTO.TN_ID_Caso,
                     TN_ID_Proveedor = entidadTelefonoDTO.TN_ID_Proveedor,
                     TN_ID_Icono_Telefono = entidadTelefonoDTO.TN_ID_Icono_Telefono,
-                    TN_Numero = entidadTelefonoDTO.TN_Numero,
-                    TC_Comentario = entidadTelefonoDTO.TC_Comentario,
-                    TF_Fecha_Creacion = entidadTelefonoDTO.TF_Fecha_Creacion,
-                    TF_Fecha_Modificacion = entidadTelefonoDTO.TF_Fecha_Modificacion,
-                    TC_Creado_Por = entidadTelefonoDTO.TC_Creado_Por,
+                    TN_Numero = entidadTelefonoDTO.TN_Numero_Telefono,
+                    TC_Comentario = entidadTelefonoDTO.TC_Comentario_Telefono,
+                    TF_Fecha_Creacion = entidadTelefonoDTO.TF_Fecha_Creacion_Telefono,
+                    TF_Fecha_Modificacion = entidadTelefonoDTO.TF_Fecha_Modificacion_Telefono,
+                    TC_Creado_Por = entidadTelefonoDTO.TC_Creado_Por_Telefono,
                     TC_Modificado_Por = "",
-                    TB_Verificado = entidadTelefonoDTO.TB_Verificado,
+                    TB_Verificado = entidadTelefonoDTO.TB_Verificado_Telefono,
                 });
 
                 context.SaveChanges();
@@ -41,17 +41,17 @@ namespace MCCM.AccesoDatos
                 var result = context.TMCCM_Entidad_Telefono.SingleOrDefault(b => b.TN_ID_Telefono == entidadTelefonoDTO.TN_ID_Telefono);
                 if (result != null)
                 {
-                    result.TN_ID_Telefono = entidadTelefonoDTO.TN_ID_Telefono;
+                    result.TN_ID_Telefono = (int)entidadTelefonoDTO.TN_ID_Telefono;
                     result.TN_ID_Caso = entidadTelefonoDTO.TN_ID_Caso;
                     result.TN_ID_Proveedor = entidadTelefonoDTO.TN_ID_Proveedor;
                     result.TN_ID_Icono_Telefono = entidadTelefonoDTO.TN_ID_Icono_Telefono;
-                    result.TN_Numero = entidadTelefonoDTO.TN_Numero;
-                    result.TC_Comentario = entidadTelefonoDTO.TC_Comentario;
-                    result.TF_Fecha_Creacion = entidadTelefonoDTO.TF_Fecha_Creacion;
-                    result.TF_Fecha_Modificacion = entidadTelefonoDTO.TF_Fecha_Modificacion;
-                    result.TC_Creado_Por = entidadTelefonoDTO.TC_Creado_Por;
+                    result.TN_Numero = entidadTelefonoDTO.TN_Numero_Telefono;
+                    result.TC_Comentario = entidadTelefonoDTO.TC_Comentario_Telefono;
+                    result.TF_Fecha_Creacion = entidadTelefonoDTO.TF_Fecha_Creacion_Telefono;
+                    result.TF_Fecha_Modificacion = entidadTelefonoDTO.TF_Fecha_Modificacion_Telefono;
+                    result.TC_Creado_Por = entidadTelefonoDTO.TC_Creado_Por_Telefono;
                     result.TC_Modificado_Por = "";
-                    result.TB_Verificado = entidadTelefonoDTO.TB_Verificado;
+                    result.TB_Verificado = entidadTelefonoDTO.TB_Verificado_Telefono;
                     context.Entry(result).State = EntityState.Modified;
                     context.SaveChanges();
                 }
@@ -85,13 +85,13 @@ namespace MCCM.AccesoDatos
                        TN_ID_Caso = telefonoItem.TN_ID_Caso,
                        TN_ID_Proveedor = telefonoItem.TN_ID_Proveedor,
                        TN_ID_Icono_Telefono = telefonoItem.TN_ID_Icono_Telefono,
-                       TN_Numero = telefonoItem.TN_Numero,
-                       TC_Comentario = telefonoItem.TC_Comentario,
-                       TF_Fecha_Creacion = telefonoItem.TF_Fecha_Creacion,
-                       TF_Fecha_Modificacion = telefonoItem.TF_Fecha_Modificacion,
-                       TC_Creado_Por = telefonoItem.TC_Creado_Por,
-                       TC_Modificado_Por = telefonoItem.TC_Modificado_Por,
-                       TB_Verificado = telefonoItem.TB_Verificado,
+                       TN_Numero_Telefono = telefonoItem.TN_Numero,
+                       TC_Comentario_Telefono = telefonoItem.TC_Comentario,
+                       TF_Fecha_Creacion_Telefono = telefonoItem.TF_Fecha_Creacion,
+                       TF_Fecha_Modificacion_Telefono = telefonoItem.TF_Fecha_Modificacion,
+                       TC_Creado_Por_Telefono = telefonoItem.TC_Creado_Por,
+                       TC_Modificado_Por_Telefono = telefonoItem.TC_Modificado_Por,
+                       TB_Verificado_Telefono = telefonoItem.TB_Verificado,
                    }).ToList<TMCCM_EntidadTelefonoDTO>();
             }
             return entidadTelefonoDTO;
@@ -109,13 +109,13 @@ namespace MCCM.AccesoDatos
                            TN_ID_Caso = telefonoItem.TN_ID_Caso,
                            TN_ID_Proveedor = telefonoItem.TN_ID_Proveedor,
                            TN_ID_Icono_Telefono = telefonoItem.TN_ID_Icono_Telefono,
-                           TN_Numero = telefonoItem.TN_Numero,
-                           TC_Comentario = telefonoItem.TC_Comentario,
-                           TF_Fecha_Creacion = telefonoItem.TF_Fecha_Creacion,
-                           TF_Fecha_Modificacion = telefonoItem.TF_Fecha_Modificacion,
-                           TC_Creado_Por = telefonoItem.TC_Creado_Por,
-                           TC_Modificado_Por = telefonoItem.TC_Modificado_Por,
-                           TB_Verificado = telefonoItem.TB_Verificado,
+                           TN_Numero_Telefono = telefonoItem.TN_Numero,
+                           TC_Comentario_Telefono = telefonoItem.TC_Comentario,
+                           TF_Fecha_Creacion_Telefono = telefonoItem.TF_Fecha_Creacion,
+                           TF_Fecha_Modificacion_Telefono = telefonoItem.TF_Fecha_Modificacion,
+                           TC_Creado_Por_Telefono = telefonoItem.TC_Creado_Por,
+                           TC_Modificado_Por_Telefono = telefonoItem.TC_Modificado_Por,
+                           TB_Verificado_Telefono = telefonoItem.TB_Verificado,
                        }).Where(x => x.TN_ID_Telefono == ID).Single();
             }
             return aux;
