@@ -17,10 +17,12 @@ namespace MCCM.UI.Controllers
         {
             return View();
         }
+
         [HttpPost]
-        public String Insertar_E_Telefono(TMCCM_EntidadTelefonoDTO entidadTelefonoDTO)
+        public String Insertar_E_Telefono(TMCCM_EntidadTelefonoDTO telefono,int caso)
         {
-            entidadTelefonoNegocio.InsertarEntidadTelefono(entidadTelefonoDTO);
+            telefono.TN_ID_Caso = caso;
+            entidadTelefonoNegocio.InsertarEntidadTelefono(telefono);
             return "S";
         }
     }

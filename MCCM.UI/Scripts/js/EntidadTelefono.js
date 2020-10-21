@@ -21,7 +21,9 @@
                 number: "Este campo debe ser un valor numerico",
                 minlength: "El número de telefono debe ser de al menos 8 digitos"   
             },
-            TN_ID_Proveedor: { DefaultProveedor: "Por Favor, seleccione un proveedor" },
+            TN_ID_Proveedor: {
+                DefaultProveedor: "Por Favor, seleccione un proveedor"
+            },
             TC_Creado_Por_Telefono: {
                     required:"Debe especificar quien registró la entidad telefono."
             }
@@ -41,7 +43,6 @@ $("#FormEntidadTelefono").submit(function (e) {
     if ($(this).valid()) {
         var form = new FormData($("#FormEntidadTelefono")[0]);
         let url;
-
         AccionesEntidadTelefonoForm(form, url);
     } else {
         alert("NO es valido");
@@ -49,14 +50,13 @@ $("#FormEntidadTelefono").submit(function (e) {
 });
 
 function AccionesEntidadTelefonoForm(form, url) {
-    //alert(JSON.stringify(Object.fromEntries(form)));
+    
+    alert(JSON.stringify(Object.fromEntries(form)));
+    //alert(form.serialize());
     $.ajax({
         type: "POST",
         url: "/E_Telefono/Insertar_E_Telefono",
-        data: form,
-        contentType: false,
-        cache: false,
-        processData: false,
+        data: { "telefono": Object.fromEntries(form), "caso": 15},
     }).done(function (data) {
         alert(data);
         $("#entidadTelefonoModal").modal("hide");
