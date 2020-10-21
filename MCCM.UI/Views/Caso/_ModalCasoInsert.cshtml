@@ -18,94 +18,87 @@
 
                     <form id="FormCaso" class="col-12">
 
-                        <div class="form-row" id="TN_ID_Input" style="display:none">
-                            <label class="w-100">ID Caso</label>
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.TN_ID_Caso, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                @Html.ValidationMessageFor(model => model.TN_ID_Caso, "", new { @class = "text-danger" })
+                        <div class="form-group row" id="TN_ID_Input" style="display:none">
+                            <div class="col-4">
+                                <label class="col-form-label">ID Caso</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="number" class="form-control" name="TN_ID_Caso" id="TN_ID_Caso" readonly required>
                             </div>
                         </div>
-                        <div class="form-row">
+                        <div class="form-group row">
                             <div class="col-4">
                                 <label class="col-form-label">#ECU</label>
                             </div>
                             <div class="col-md-8">
-                                @Html.EditorFor(model => model.TN_ECU, new { htmlAttributes = new { @class = "form-control", @name = "tN_ECU" } })
-                                @Html.ValidationMessageFor(model => model.TN_ECU, "", new { @class = "text-danger" })
+                                <input type="number" class=" form-control" name="TN_ECU" id="TN_ECU" required>
                             </div>
                         </div>
 
-                        <div class="form-row">
+                        <div class="form-group row">
                             <div class="col-4">
                                 <label class="col-form-label">Nombre</label>
                             </div>
                             <div class="col-md-8">
-                                @Html.EditorFor(model => model.TC_Nombre_Caso, new { htmlAttributes = new { @class = "form-control", @name = "tC_Nombre_Caso" } })
-                                @Html.ValidationMessageFor(model => model.TC_Nombre_Caso, "", new { @class = "text-danger" })
+                                <input type="text" class=" form-control" name="TC_Nombre_Caso" id="TC_Nombre_Caso" required>
                             </div>
                         </div>
 
-                        <div class="form-row">
+                        <div class="form-group row">
                             <div class="col-4">
-                                <label >Enfoque de Trabajo</label>
+                                <label>Enfoque de Trabajo</label>
                             </div>
                             <div class="col-md-8">
-                                @Html.EditorFor(model => model.TC_Enfoque_Trabajo, new { htmlAttributes = new { @class = "form-control", @name = "tC_Enfoque_Trabajo" } })
-                                @Html.ValidationMessageFor(model => model.TC_Enfoque_Trabajo, "", new { @class = "text-danger" })
+                                <input type="text" class=" form-control" name="TC_Enfoque_Trabajo" id="TC_Enfoque_Trabajo">
                             </div>
                         </div>
 
-                        <div class="form-row">
+                        <div class="form-group row">
                             <div class="col-4">
                                 <label class="w-100 col-form-label">Area De Trabajo</label>
                             </div>
                             <div class="col-md-8">
-                                @Html.EditorFor(model => model.TC_Area_Trabajo, new { htmlAttributes = new { @class = "form-control", @name = "tC_Area_Trabajo" } })
-                                @Html.ValidationMessageFor(model => model.TC_Area_Trabajo, "", new { @class = "text-danger" })
+                                <input type="text" class=" form-control" name="TC_Area_Trabajo" id="TC_Area_Trabajo">
                             </div>
                         </div>
 
-                        <div class="form-row">
+                        <div class="form-group row">
                             <div class="col-4">
                                 <label class="w-100 col-form-label">Nivel</label>
                             </div>
                             <div class="col-md-8">
-                                @Html.EditorFor(model => model.TN_Nivel, new { htmlAttributes = new { @class = "form-control", @name = "tC_Nivel" } })
-                                @Html.ValidationMessageFor(model => model.TN_Nivel, "", new { @class = "text-danger" })
+                                <input type="number" class=" form-control" name="TN_Nivel" id="TN_Nivel" required>
                             </div>
                         </div>
 
-                        <div class="form-row">
+                        <div class="form-group row">
                             <div class="col-4">
                                 <label class="w-100 col-form-label">Descripcion</label>
                             </div>
                             <div class="col-md-8">
-                                @Html.EditorFor(model => model.TC_Descripcion, new { htmlAttributes = new { @class = "form-control", @name = "tC_Descripcion" } })
-                                @Html.ValidationMessageFor(model => model.TC_Descripcion, "", new { @class = "text-danger" })
+                                <textarea class=" form-control" name="TC_Descripcion" id="TC_Descripcion" required></textarea>
                             </div>
                         </div>
 
-                        <div class="form-row">
+                        <div class="form-group row">
                             <div class="col-4">
                                 <label class="w-100 col-form-label">Fuente</label>
                             </div>
                             <div class="col-md-8">
-                                @Html.EditorFor(model => model.TC_Fuente, new { htmlAttributes = new { @class = "form-control", @name = "tC_Fuente" } })
-                                @Html.ValidationMessageFor(model => model.TC_Fuente, "", new { @class = "text-danger" })
+                                <input type="text" class=" form-control" name="TC_Fuente" id="TC_Fuente" required>
                             </div>
                         </div>
 
-                        <div class="form-row">
+                        <div class="form-group row">
                             <div class="col-4">
                                 <label class="w-100 col-form-label">Delito</label>
                             </div>
                             <div class="col-md-8">
-                                @Html.EditorFor(model => model.TC_Delito, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.TC_Delito, "", new { @class = "text-danger" })
+                                <textarea class=" form-control" name="TC_Delito" id="TC_Delito" required></textarea>
                             </div>
                         </div>
 
-                        <div class="d-flex justify-content-center" style="padding-top:2%;">
+                        <div class="d-flex justify-content-center" style="padding:2%;">
                             <button id="btnRegistrarCaso" class="btn btn-primary">Registrar</button>
                             <button id="btnModificarCaso" class="btn btn-info" style="display:none">Modificar</button>
                             <button id="btnEliminarCaso" class="btn btn-danger" style="display:none">Eliminar</button>

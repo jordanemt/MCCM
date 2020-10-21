@@ -31,7 +31,6 @@
         <EntityTypeShape EntityType="MCCMModel.TMCCM_Entidad_Telefono" Width="1.5" PointX="3" PointY="19.875" IsExpanded="true" />
         <EntityTypeShape EntityType="MCCMModel.TMCCM_Entidad_Ubicacion" Width="1.5" PointX="6" PointY="19.375" IsExpanded="true" />
         <EntityTypeShape EntityType="MCCMModel.TMCCM_Entidad_Vehiculo" Width="1.5" PointX="6" PointY="29.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_Evento" Width="1.5" PointX="3" PointY="54.875" IsExpanded="true" />
         <EntityTypeShape EntityType="MCCMModel.TMCCM_Gasto" Width="1.5" PointX="3" PointY="30.25" IsExpanded="true" />
         <EntityTypeShape EntityType="MCCMModel.TMCCM_Grupo" Width="1.5" PointX="3" PointY="62.125" IsExpanded="true" />
         <EntityTypeShape EntityType="MCCMModel.TMCCM_Grupo_Usuario" Width="1.5" PointX="5.25" PointY="62.5" IsExpanded="true" />
@@ -66,7 +65,6 @@
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_Telefono" ManuallyRouted="false" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_Ubicacion" ManuallyRouted="false" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_Vehiculo" ManuallyRouted="false" />
-        <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Evento" ManuallyRouted="false" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Gasto" ManuallyRouted="false" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Grupo" ManuallyRouted="false" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Tarea" ManuallyRouted="false" />
@@ -83,6 +81,8 @@
         <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Persona_Juridica_Tipo_Organización_REL_TMCCM_Entidad_Persona_Juridica" />
         <EntityTypeShape EntityType="MCCMModel.TMCCM_Vehiculo" Width="1.5" PointX="6.375" PointY="5" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Vehiculo_REL_TMCCM_Grupo_Vehiculo" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_Evento" Width="1.5" PointX="3" PointY="49.625" />
+        <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Evento" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

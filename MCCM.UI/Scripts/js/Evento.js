@@ -1,14 +1,29 @@
-﻿$(document).on("click", "#btnModificarEvento", function (e) {
+﻿$(document).ready(function () {
+    iniciarCalendario(moment())
+})
+
+function iniciarCalendario(fecha) {
+
+    $('#TF_Fecha').daterangepicker({
+        "singleDatePicker": true,
+        "timePicker": true,
+        "timePicker24Hour": true,
+        "starDate": fecha,
+        locale: {
+            format: 'YYYY/M/DD HH:mm'
+        }
+    });
+}
+
+$(document).on("click", "#btnModificarEvento", function (e) {
     e.preventDefault();
     var form = $("#FormEvento");
-    //alert(form.serialize());
-    //alert("holi");
     let url;
     url = "/Caso/ActualizarCaso";
 
     alert("Modificar");
     $("#ModalFormEvento").modal("hide");
-    
+
 
 });
 
@@ -33,47 +48,32 @@ $(document).on("click", ".editarEvento", function () {
     $("#btnRegistrarEvento").hide();
     $("#btnEvento").hide();
     $("#ModalFormEvento").modal("show");
-    
+
 });
 
-$(document).on("click", "#btnEliminar", function (e) {
-    e.preventDefault();
-    alert("Eliminar");
-
+function eliminarEvento(evento) {
+    alert(evento);
     $.ajax({
         type: "POST",
-        url: "/Caso/EliminarCasoPorID",
-        data: { "ID": $("#TN_ID_Caso").val() }
+        url: "/Evento/EliminarEventoPorID",
+        data: { "eventoID": evento }
     }).done(function (data) {
-        $("#ModalFormCaso").modal("hide");
-        CargarCasos();
     });
-
-});
+}
 
 $(document).on("click", "#btnRegistrarEvento", function (e) {
     e.preventDefault();
-    var form = $("#FormEvento");
-    let eventos = JSON.parse(JSON.stringify(form.serializeArray()));
-//  let url;
-//    url = "/Caso/InsertarCaso";
-
-    alert(eventos);
-
-        //$("#bitacora-body").append(
-        //    '<div class="card evento" id="' + eventos.TN_ID_Caso + '" style="height:10em;">' +
-        //    '<div class="card-header"><div>Caso #' + eventos.TN_ID_Caso + '</div>' +
-        //    '<a href="#" class="ojito" id="' + eventos.TN_ID_Caso + '"><span><i class="fa fa-eye" aria-hidden="true"></i></span></a></div >' +
-        //    '<div class="card-body" style="padding:0px!important">' +
-        //    '<h6><small>Nombre:' + casos[i].TC_Nombre_Caso + '</small></h5>' +
-        //    '<h6><small>Fecha: ' + casos[i].TF_Fecha + '</small></h5>' +
-        //    '<h6><small>Delito: ' + casos[i].TC_Delito + '</small></h5>' +
-        //    '</div>' +
-        //    '</div>'
-        //);
-    
-    //AccionesCasoForm(form, url);
-
+    var form = new FormData($("#FormEvento")[0]);
+    alert(JSON.stringify(form));
+    $.ajax({
+        type: "POST",
+        url: "/Evento/InsertarEvento",
+        data: { "evento": Object.fromEntries(form), "caso": sessionStorage.CasoID }
+    }).done(function (data) {
+        $("#ModalFormEvento").modal("hide");
+        CargarEventos();
+        alert("Evento Insert");
+    });
 });
 
 
@@ -90,29 +90,39 @@ $(document).on("click", "#btnRegistrarEvento", function (e) {
 //    });
 //}
 
-//function CargarCasos() {
-//    $.ajax({
-//        type: "GET",
-//        url: "/Caso/ListarCasos"
-//    }).done(function (data) {
-//        let casos = new Array();
-//        casos = JSON.parse(data);
-//        $("#casos-body").empty();
-//        for (let i = 0; i < casos.length; i++) {
+function CargarEventos() {
+    $.ajax({
+        type: "GET",
+        url: "/Evento/ListarEventos",
+        data: { "caso": sessionStorage.CasoID }
+    }).done(function (data) {
+        let eventos = new Array();
+        eventos = JSON.parse(data);
+        
+        $("#bitacora-body").empty();
+        for (let i = 0; i < eventos.length; i++) {
 
-//            $("#casos-body").append(
-//                '<div class="card caso" id="' + casos[i].TN_ID_Caso + '" style="height:10em;">' +
-//                '<div class="card-header"><div>Caso #' + casos[i].TN_ID_Caso + '</div>' +
-//                '<a href="#" class="ojito" id="' + casos[i].TN_ID_Caso + '"><span><i class="fa fa-eye" aria-hidden="true"></i></span></a></div >' +
-//                '<div class="card-body" style="padding:0px!important">' +
-//                '<h6><small>Nombre:' + casos[i].TC_Nombre_Caso + '</small></h5>' +
-//                '<h6><small>Fecha: ' + casos[i].TF_Fecha + '</small></h5>' +
-//                '<h6><small>Delito: ' + casos[i].TC_Delito + '</small></h5>' +
-//                '</div>' +
-//                '</div>'
-//            );
-//        }
-//    });
-//}
+            $("#bitacora-body").append(
+                '<div class="card evento" id="' + eventos[i].TN_ID_Evento + '" style="height:10em;">' +
+                '<div class="card-header">'+
+                  ' Evento #' + eventos[i].TN_ID_Evento +
+                '<div>' +
+                '<a href="#" class="editarEvento" id="' + eventos[i].TN_ID_Evento + '"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>' +
+                '<a href="#" class="borrar borrarEvento" id="' + eventos[i].TN_ID_Evento + '"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>' +
+                '</div>' +
+
+                '</div>' +
+                
+                '<div class="card-body" style="padding:0px!important">' +
+                '<h6><small>Novedad:' + eventos[i].TC_Novedad + '</small></h6>' +
+                '<h6><small>Lugar: ' + eventos[i].TC_Lugar + '</small></h6>' +
+                '<h6><small>Fecha: ' + eventos[i].TF_Fecha + '</small></h6>' +
+                '<h6><small>Informa: ' + eventos[i].TC_Informa + '</small></h6>' +
+                '</div>' +
+                '</div>'
+            );
+        }
+    });
+}
 
 

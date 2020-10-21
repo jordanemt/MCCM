@@ -17,7 +17,6 @@ namespace MCCM.Entidad
         public int TN_ID_Evento { get; set; }
         public Nullable<int> TN_ID_Caso { get; set; }
         public Nullable<System.DateTime> TF_Fecha { get; set; }
-        public Nullable<System.TimeSpan> TF_Hora { get; set; }
         public string TC_Informa { get; set; }
         public string TC_Lugar { get; set; }
         public string TC_Novedad { get; set; }
