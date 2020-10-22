@@ -1,5 +1,6 @@
 ﻿using MCCM.Entidad;
 using MCCM.ReglasNegocio;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +17,22 @@ namespace MCCM.UI.Controllers
         {
             return View();
         }
-        public String Insertar_E_Droga(TMCCM_Entidad_Droga entidad_Droga)
+        [HttpPost]
+        public String Insertar_E_Droga(TMCCM_Entidad_Droga entidadDroga, int caso)
         {
-
-            entidadDrogaNegocio.InsertarEntidadDroga(entidad_Droga);
+            entidadDroga.TN_ID_Caso = caso;
+            entidadDrogaNegocio.InsertarEntidadDroga(entidadDroga);
             return "S";
+        }
+        [HttpGet]
+        public String Listar_E_Droga(int caso)
+        {
+            return JsonConvert.SerializeObject(entidadDrogaNegocio.ListarEntidadDrogas(caso), Formatting.Indented);
+        }
+        [HttpDelete]
+        public String Eliminar_E_DrogaPorID(int entidadDrogaID)
+        {
+            return entidadDrogaNegocio.EliminarEntidadDroga(entidadDrogaID);
         }
     }
 }

@@ -31,3 +31,4 @@ C:\Users\Maikel\Desktop\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.csproj.CoreComp
 C:\Users\Maikel\Desktop\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.csproj.CopyComplete
 C:\Users\Maikel\Desktop\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.dll
 C:\Users\Maikel\Desktop\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.pdb
+C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.csprojAssemblyReference.cache

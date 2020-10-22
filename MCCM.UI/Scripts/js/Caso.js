@@ -73,6 +73,7 @@ $(document).on("click", ".caso", function () {
     sessionStorage.CasoID = $(this).attr('id');
     CargarEventos();
     $("#casosTitulo").html($(this).children(".card-body").children().first().children().last().text());
+    CargarEntidadDrogas()
 });
 
 

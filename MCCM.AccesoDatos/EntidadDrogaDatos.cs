@@ -11,12 +11,13 @@ namespace MCCM.AccesoDatos
 {
     public class EntidadDrogaDatos
     {
-        Utilidades utilidades = new Utilidades();
+        
         public void InsertarEntidadDroga(TMCCM_Entidad_Droga entidadDroga)
         {
             using (var context = new MCCMEntities())
             {
                 entidadDroga.TB_Eliminado = true;
+                entidadDroga.TF_Fecha_Creacion = DateTime.Now;
                 context.TMCCM_Entidad_Droga.Add(entidadDroga);
                 context.SaveChanges();
 
@@ -37,7 +38,6 @@ namespace MCCM.AccesoDatos
                     result.TC_Detalle = entidadDroga.TC_Detalle;
                     result.TN_Cantidad = entidadDroga.TN_Cantidad;
                     result.TF_Fecha_Decomiso = entidadDroga.TF_Fecha_Decomiso;
-                    result.TF_Hora_Decomiso = entidadDroga.TF_Hora_Decomiso;
                     result.TF_Fecha_Creacion = entidadDroga.TF_Fecha_Creacion;
                     result.TF_Fecha_Modificacion = entidadDroga.TF_Fecha_Modificacion;
                     result.TC_Creado_Por = entidadDroga.TC_Creado_Por;
@@ -64,28 +64,20 @@ namespace MCCM.AccesoDatos
             }
         }
 
-        public List<TMCCM_EntidadDrogaDTO> ListarEntidadDroga()
+        public List<TMCCM_EntidadDrogaDTO> ListarEntidadDroga(int caso)
         {
             List<TMCCM_EntidadDrogaDTO> entidadDrogaDTO = null;
 
             using (var context = new MCCMEntities())
             {
-                entidadDrogaDTO = context.TMCCM_Entidad_Droga.Where(c => c.TB_Eliminado == true)
+                entidadDrogaDTO = context.TMCCM_Entidad_Droga.Where(c => c.TB_Eliminado==true && c.TN_ID_Caso == caso)
                   .Select(drogaItem => new TMCCM_EntidadDrogaDTO()
                   {
                     TN_ID_Droga= drogaItem.TN_ID_Droga,
                     TN_ID_Caso = drogaItem.TN_ID_Caso,
                     TN_ID_Tipo_Droga = drogaItem.TN_ID_Tipo_Droga,
                     TC_Nombre = drogaItem.TC_Nombre,
-                    TC_Detalle = drogaItem.TC_Detalle,
                     TN_Cantidad = drogaItem.TN_Cantidad,
-                    TF_Fecha_Decomiso = drogaItem.TF_Fecha_Decomiso,
-                    TF_Hora_Decomiso = drogaItem.TF_Hora_Decomiso,
-                    TF_Fecha_Creacion = drogaItem.TF_Fecha_Creacion,
-                    TF_Fecha_Modificacion = drogaItem.TF_Fecha_Modificacion,
-                    TC_Creado_Por = drogaItem.TC_Creado_Por,
-                    TC_Modificado_Por = drogaItem.TC_Modificado_Por,
-                    TB_Verificado = drogaItem.TB_Verificado
 
             }).ToList<TMCCM_EntidadDrogaDTO>();
             }
@@ -108,7 +100,6 @@ namespace MCCM.AccesoDatos
                            TC_Detalle = drogaItem.TC_Detalle,
                            TN_Cantidad = drogaItem.TN_Cantidad,
                            TF_Fecha_Decomiso = drogaItem.TF_Fecha_Decomiso,
-                           TF_Hora_Decomiso = drogaItem.TF_Hora_Decomiso,
                            TF_Fecha_Creacion = drogaItem.TF_Fecha_Creacion,
                            TF_Fecha_Modificacion = drogaItem.TF_Fecha_Modificacion,
                            TC_Creado_Por = drogaItem.TC_Creado_Por,

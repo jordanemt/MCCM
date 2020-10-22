@@ -3,6 +3,7 @@
     iniciarCalendarioDroga(moment());
 });
 
+/*Fecha*/
 function iniciarCalendarioDroga(fecha) {
     $('#TF_Fecha_Decomiso').daterangepicker({
         "singleDatePicker": true,
@@ -10,10 +11,8 @@ function iniciarCalendarioDroga(fecha) {
         "timePicker24Hour": true,
         "starDate": fecha,
         locale: {
-            format: 'M/DD hh:mm A'
+            format: 'YYYY/M/DD HH:mm'
         }
-    }, function (start, end, label) {
-        console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
     });
 }
 
@@ -52,57 +51,87 @@ $('#entidadDrogaModal').on('hidden.bs.modal', function () {
 
 })
 
-$("#FormEntidadDroga").submit(function (e) {
+/* Agregar Droga*/
+$(document).on("click", "#btnAgregarEntidadDroga", function (e) {
     e.preventDefault();
     var form = new FormData($("#FormEntidadDroga")[0]);
-    let url;
-    AccionesEntidadDrogaForm(form, url);
-
-});
-
-function AccionesEntidadDrogaForm(form, url) {
-    
     alert(JSON.stringify(Object.fromEntries(form)));
     $.ajax({
         type: "POST",
         url: "/E_Droga/Insertar_E_Droga",
-        data: form,
-        contentType: false,
-        cache: false,
-        processData: false,
+        data: { "entidadDroga": Object.fromEntries(form), "caso": sessionStorage.CasoID },
     }).done(function (data) {
-      
         $("#entidadDrogaModal").modal("hide");
+        CargarEntidadDrogas();
+        alert("Droga Insertada");
+    });
+});
+
+/*Cargar Drogas*/
+function CargarEntidadDrogas() {
+    $.ajax({
+        type: "GET",
+        url: "/E_Droga/Listar_E_Droga",
+        data: { "caso": sessionStorage.CasoID }
+    }).done(function (data) {
+        let entidadDrogas = new Array();
+        entidadDrogas = JSON.parse(data);
+
+        $("#entidades-body").empty();
+        for (let i = 0; i < entidadDrogas.length; i++) {
+
+            $("#entidades-body").append(
+                '<div class="card" id="cartaEntidadDroga"' + entidadDrogas[i].TN_ID_Droga + '" style="height:10em;">' +
+                '<div class="card-header">' +
+                ' Droga #' + entidadDrogas[i].TN_ID_Droga +
+                '<div>' +
+                '<a href="#" class="editarEntidadDroga" id="' + entidadDrogas[i].TN_ID_Droga + '"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>' +
+                '<a href="#" class="borrar borrarEntidadEvento" id="' + entidadDrogas[i].TN_ID_Droga + '"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>' +
+                '</div>' +
+
+                '</div>' +
+
+                '<div class="card-body" style="padding:0px!important">' +
+                '<div class="container">'+
+
+                    '<div class="row">'+
+                        '<div class="col-4">'+
+                           '<h6><span class="w-100 badge badge-primary">Nombre:</span></h6>'+
+                        '</div>'+
+                        '<div class="col-8">'+
+                        '<span>'+ entidadDrogas[i].TC_Nombre + '</span>'+
+                        '</div>'+
+                    '</div>'+
+                    '<div class="row">'+
+                        '<div class="col-4">'+
+                           ' <h6><span class="w-100 badge badge-primary">Cantidad:</span></h6>'+
+                        '</div>'+
+                        '<div class="col-md-8" id="divInforma">'+
+                         '<p>' + entidadDrogas[i].TN_Cantidad +'</p>'+
+                        '</div>'+
+                   ' </div>'+
+                '</div>'+
+                '</div>' +
+                '</div>'
+            );
+        }
+    });
+}
+
+/*Eliminar Droga*/
+
+function eliminarDroga(entidadDrogaID) {
+    $.ajax({
+        type: "DELETE",
+        url: "/E_Droga/Eliminar_E_DrogaPorID",
+        data: { "entidadDrogaID": entidadDrogaID }
+    }).done(function (data) {
+        CargarEntidadDrogas();
 
     });
 }
 
-/*function limpiarFormularioCaso() {
-    $("#TN_ID_Caso").val("");
-    $("#TN_ECU").val("");
-    $("#TC_Nombre_Caso").val("");
-    $("#TC_Enfoque_Trabajo").val("");
-    $("#TC_Area_Trabajo").val("");
-    $("#TN_Nivel").val("");
-    $("#TC_Descripcion").val("");
-    $("#TC_Fuente").val("");
-    $("#TC_Delito").val("");
-}
-*/
-
-
-$(document).ready(function () {
-
-    $('#TF_Fecha_Decomiso').daterangepicker({
-        "singleDatePicker": true,
-        "startDate": "09/29/2020",
-        "endDate": "10/05/2020"
-    }, function (start, end, label) {
-        console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
-    });
-
-})
-
+/*Carga de Catalogos*/ 
 function cargarTipoDroga() {
 
     $(document).ready(function () {
