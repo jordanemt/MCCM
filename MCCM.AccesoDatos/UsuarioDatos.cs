@@ -9,7 +9,7 @@ namespace MCCM.AccesoDatos
 {
     public class UsuarioDatos
     {
-        public IEnumerable<TMCCM_Usuario> Listar()
+        public List<TMCCM_Usuario> Listar()
         {
             using (var context = new MCCMEntities())
             {

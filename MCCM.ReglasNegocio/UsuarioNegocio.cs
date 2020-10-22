@@ -17,7 +17,7 @@ namespace MCCM.ReglasNegocio
             datos = new UsuarioDatos();
         }
 
-        public IEnumerable<TMCCM_Usuario> Listar()
+        public List<TMCCM_Usuario> Listar()
         {
             return datos.Listar();
         }

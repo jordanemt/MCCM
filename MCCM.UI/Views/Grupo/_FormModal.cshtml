@@ -1,5 +1,11 @@
 ﻿@model MCCM.Entidad.TMCCM_Grupo
 
+@{ 
+    MCCM.Entidad.TMCCM_Usuario encargado = ViewBag.Encargado;
+    List<MCCM.Entidad.TMCCM_Usuario> acompannantes = ViewBag.Acompannantes;
+    List<MCCM.Entidad.TMCCM_Usuario> usuarios = ViewBag.Usuarios;
+}
+
 <script src="~/Scripts/bootstrap-select.min.js"></script>
 <link href="~/Content/bootstrap-select.min.css" rel="stylesheet" />
 
@@ -71,7 +77,7 @@
                         <div class="row col-md-6">
                             @if (Model == null)
                             {
-                                <input id="TF_Fecha_Inicio" name="TF_Fecha_Inicio" class="form-control col-md-11" type="date" value="@DateTime.Today">
+                                <input id="TF_Fecha_Inicio" name="TF_Fecha_Inicio" class="form-control col-md-11" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")">
                             }
                             else
                             {
@@ -86,7 +92,7 @@
                         <div class="row col-md-6">
                             @if (Model == null)
                             {
-                                <input id="TF_Fecha_Final" name="TF_Fecha_Final" class="form-control col-md-11" type="date" readonly>
+                                <input id="TF_Fecha_Final" name="TF_Fecha_Final" class="form-control col-md-11" type="date">
                             }
                             else
                             {
@@ -116,24 +122,19 @@
                         <div class="row col-md-6">
                             <select id="Encargado" class="form-control col-md-11 mdb-select" name="Acompannantes">
                                 <option selected disabled>Seleccione una opción</option>
-                                @{
-                                    if (Model == null)
+
+                                @if (Model != null)
+                                {
+                                    <option selected value="@encargado.TN_ID_Usuario">@encargado.TN_ID_Usuario @encargado.TC_Nombre @encargado.TC_Primer_Apellido</option>
+                                    foreach (MCCM.Entidad.TMCCM_Usuario acompannante in acompannantes)
                                     {
-                                        int idEncargado = Model.TMCCM_Grupo_Usuario
-                                            .Where(e => e.TB_Encargado == true)
-                                            .FirstOrDefault().TN_ID_Usuario;
+                                        <option value="@acompannante.TN_ID_Usuario">@acompannante.TN_ID_Usuario @acompannante.TC_Nombre @acompannante.TC_Primer_Apellido</option>
                                     }
                                 }
-                                @foreach (MCCM.Entidad.TMCCM_Usuario item in ViewBag.Usuarios)
+
+                                @foreach (MCCM.Entidad.TMCCM_Usuario usuario in usuarios)
                                 {
-                                    if (Model !=null && item.TN_ID_Usuario == idEncargado)
-                                    {
-                                        <option selected value="@item.TN_ID_Usuario">@item.TN_ID_Usuario @item.TC_Nombre @item.TC_Primer_Apellido</option>
-                                    }
-                                    else
-                                    {
-                                        <option value="@item.TN_ID_Usuario">@item.TN_ID_Usuario @item.TC_Nombre @item.TC_Primer_Apellido</option>
-                                    }
+                                    <option value="@usuario.TN_ID_Usuario">@usuario.TN_ID_Usuario @usuario.TC_Nombre @usuario.TC_Primer_Apellido</option>
                                 }
                             </select>
                             <label id="Encargado-error" class="error" for="Encargado" style="display: none"></label>
@@ -144,27 +145,20 @@
                         <label class="control-label col-md-3" for="Acompannantes">Acompañantes:</label>
                         <div class="row col-md-6">
                             <select id="Acompannantes" class="form-control col-md-11" name="Acompannantes" multiple>
-                                <option selected disabled>Seleccione una opción</option>
-                                @foreach (MCCM.Entidad.TMCCM_Usuario item in ViewBag.Usuarios)
+                                <option disabled>Seleccione una opción</option>
+
+                                @if (Model != null)
                                 {
-                                    foreach (MCCM.Entidad.TMCCM_Grupo_Usuario acompannante in Model.TMCCM_Grupo_Usuario)
+                                    <option disabled value="@encargado.TN_ID_Usuario">@encargado.TN_ID_Usuario @encargado.TC_Nombre @encargado.TC_Primer_Apellido</option>
+                                    foreach (MCCM.Entidad.TMCCM_Usuario acompannante in acompannantes)
                                     {
-                                        if (acompannante.TN_ID_Usuario == item.TN_ID_Usuario)
-                                        {
-                                            if (item.TN_ID_Usuario == idEncargado)
-                                            {
-                                                <option disabled value="@item.TN_ID_Usuario">@item.TN_ID_Usuario @item.TC_Nombre @item.TC_Primer_Apellido</option>
-                                            }
-                                            else
-                                            {
-                                                <option selected value="@item.TN_ID_Usuario">@item.TN_ID_Usuario @item.TC_Nombre @item.TC_Primer_Apellido</option>
-                                            }
-                                        }
-                                        else
-                                        {
-                                            <option value="@item.TN_ID_Usuario">@item.TN_ID_Usuario @item.TC_Nombre @item.TC_Primer_Apellido</option>
-                                        }
+                                        <option selected value="@acompannante.TN_ID_Usuario">@acompannante.TN_ID_Usuario @acompannante.TC_Nombre @acompannante.TC_Primer_Apellido</option>
                                     }
+                                }
+
+                                @foreach (MCCM.Entidad.TMCCM_Usuario usuario in usuarios)
+                                {
+                                    <option value="@usuario.TN_ID_Usuario">@usuario.TN_ID_Usuario @usuario.TC_Nombre @usuario.TC_Primer_Apellido</option>
                                 }
                             </select>
                             <label id="Acompannantes-error" class="error" for="Acompannantes" style="display: none"></label>

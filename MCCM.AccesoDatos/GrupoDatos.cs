@@ -16,7 +16,7 @@ namespace MCCM.AccesoDatos
             {
                 List<TMCCM_Grupo> data = context.TMCCM_Grupo
                     .Where(e => e.TB_Eliminado == true)
-                    .Include(e => e.TMCCM_Grupo_Vehiculo)
+                    .Include(e => e.TMCCM_Grupo_Usuario)
                     .ToList();
                 return data;
             }
@@ -37,7 +37,6 @@ namespace MCCM.AccesoDatos
             using (var context = new MCCMEntities())
             {
                 TMCCM_Grupo data = context.TMCCM_Grupo.Find(id);
-                context.Entry(data).Reference(e => e.TMCCM_Grupo_Usuario).Load();
                 foreach (TMCCM_Grupo_Usuario item in data.TMCCM_Grupo_Usuario) 
                 {
                     context.Entry(item).Reference(e => e.TMCCM_Usuario).Load();

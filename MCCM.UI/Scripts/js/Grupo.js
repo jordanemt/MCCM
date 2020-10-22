@@ -1,5 +1,5 @@
 ﻿function abrirInsertarGrupoFormModal() {
-    $('#gasto-form-modal').remove();
+    $('#grupo-form-modal').remove();
 
     var url = "/Grupo/CargarModal/";
 
@@ -136,4 +136,5 @@ function aplicarMaskGrupoForm() {
 
 $(document).ready(function () {
     //listarGrupo();
+    abrirActualizarGrupoFormModal(9);
 });

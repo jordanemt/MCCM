@@ -27,8 +27,22 @@ namespace MCCM.UI.Controllers
         [HttpGet]
         public ActionResult CargarModalConId(int id)
         {
-            ViewBag.Usuarios = usuarioNegocio.Listar();
-            return PartialView("_FormModal", grupoNegocio.ObtenerPorId(id));
+            TMCCM_Grupo grupo = grupoNegocio.ObtenerPorId(id);
+            List<TMCCM_Usuario> usuarios = usuarioNegocio.Listar();
+            TMCCM_Usuario encargado = grupo.TMCCM_Grupo_Usuario.Where(e => e.TB_Encargado == true).Select(e => e.TMCCM_Usuario).FirstOrDefault();
+            List<TMCCM_Usuario> acompannantes = grupo.TMCCM_Grupo_Usuario.Where(e => e.TB_Encargado != true).Select(e => e.TMCCM_Usuario).ToList();
+
+            usuarios.Remove(usuarios.Where(e => e.TN_ID_Usuario == encargado.TN_ID_Usuario).FirstOrDefault());
+            foreach (TMCCM_Usuario acompannante in acompannantes)
+            {
+                usuarios.Remove(usuarios.Where(e => e.TN_ID_Usuario == acompannante.TN_ID_Usuario).FirstOrDefault());
+            }
+
+            ViewBag.Usuarios = usuarios;
+            ViewBag.Encargado = encargado;
+            ViewBag.Acompannantes = acompannantes;
+
+            return PartialView("_FormModal", grupo);
         }
 
         [HttpGet]
