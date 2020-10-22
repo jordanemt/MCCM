@@ -1,8 +1,8 @@
 ﻿$(document).ready(function () {
-    iniciarCalendario(moment())
+    iniciarCalendarioEvento(moment())
 })
 
-function iniciarCalendario(fecha) {
+function iniciarCalendarioEvento(fecha) {
 
     $('#TF_Fecha').daterangepicker({
         "singleDatePicker": true,
@@ -17,46 +17,56 @@ function iniciarCalendario(fecha) {
 
 $(document).on("click", "#btnModificarEvento", function (e) {
     e.preventDefault();
-    var form = $("#FormEvento");
-    let url;
-    url = "/Caso/ActualizarCaso";
-
-    alert("Modificar");
-    $("#ModalFormEvento").modal("hide");
-
-
+    var form = new FormData($("#FormEvento")[0]);
+    $.ajax({
+        type: "POST",
+        url: "/Evento/ModificarEvento",
+        data: Object.fromEntries(form)
+    }).done(function (data) {
+        CargarEventos();
+        $("#ModalFormEvento").modal("hide");
+    });
 });
 
 
 $('#ModalFormEvento').on('hidden.bs.modal', function () {
     $("#FormEvento")[0].reset();
-    iniciarCalendario("10/09/2020 1:00AM");
+    iniciarCalendarioEvento(moment());
     $("#divEventoID").hide();
+    $("#tituloEventoModal").html("Registrar Evento");
+    $("#btnModificarEvento").hide();
+    $("#btnRegistrarEvento").show();
 })
 
 
 $(document).on("click", ".editarEvento", function () {
-    $("#tituloEventoModal").html("Modificar Evento");
-    $("#eventoIDI").val("1");
-    $("#LugarI").val("Turrialba");
-    $("#NovedadI").val("Se procede a entablar dialogo con los ladrones");
-    $("#InformaI").val("Juan Ramirez Suarez");
-    $("#calendarioBitacora").val("10/10 12:00 PM");
-    iniciarCalendario("10/10 12:00 PM");
-    $("#divEventoID").show();
-    $("#btnModificarEvento").show();
-    $("#btnRegistrarEvento").hide();
-    $("#btnEvento").hide();
-    $("#ModalFormEvento").modal("show");
-
+    $.ajax({
+        type: "GET",
+        url: "/Evento/ObtenerEventoPorID",
+        data: { "ID": $(this).attr('ID') }
+    }).done(function (data) {
+        let evento = new Array();
+        evento = JSON.parse(data);
+        $("#tituloEventoModal").html("Modificar Evento");
+        $("#TN_ID_Evento").val(evento.TN_ID_Evento);
+        $("#TC_Lugar").val(evento.TC_Lugar);
+        $("#TC_Novedad").val(evento.TC_Novedad);
+        $("#TC_Informa").val(evento.TC_Informa);
+        $("#TF_Fecha").val(evento.TF_Fecha);
+        iniciarCalendarioEvento(evento.TF_Fecha);
+        $("#divEventoID").show();
+        $("#btnModificarEvento").show();
+        $("#btnRegistrarEvento").hide();
+        $("#ModalFormEvento").modal("show");
+    });
 });
 
-function eliminarEvento(evento) {
-    alert(evento);
+function eliminarEvento(eventoID) {
+ 
     $.ajax({
         type: "POST",
         url: "/Evento/EliminarEventoPorID",
-        data: { "eventoID": evento }
+        data: { "eventoID": eventoID }
     }).done(function (data) {
     });
 }
@@ -64,7 +74,7 @@ function eliminarEvento(evento) {
 $(document).on("click", "#btnRegistrarEvento", function (e) {
     e.preventDefault();
     var form = new FormData($("#FormEvento")[0]);
-    alert(JSON.stringify(form));
+    
     $.ajax({
         type: "POST",
         url: "/Evento/InsertarEvento",
