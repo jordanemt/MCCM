@@ -564,7 +564,12 @@ Alter Table dbo.TMCCM_Entidad_Persona_Juridica add constraint PK_TCCM_C_Entidad_
 ALTER TABLE dbo.TMCCM_Evento ALTER COLUMN TF_Fecha DATETIME
 ALTER TABLE dbo.TMCCM_Evento DROP COLUMN TF_Hora
 
+create procedure sp_Obtener_Catalogo_Usuario
+as
+select TN_ID_Usuario,TC_Identificacion,CONCAT(TC_Nombre,' ',TC_Primer_Apellido,' ',TC_Segundo_Apellido) as TC_Nombre_Completo from TMCCM_Usuario
 
+ALTER TABLE dbo.TMCCM_Tarea ALTER COLUMN TF_Fecha DATETIME
+ALTER TABLE dbo.TMCCM_Tarea DROP COLUMN TF_Hora
 
 
 
