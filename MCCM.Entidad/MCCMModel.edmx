@@ -5,6 +5,16 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="MCCMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="TMCCM_C_Arma_Icono_Arma">
           <Key>
             <PropertyRef Name="TN_ID_Icono_Arma" />
@@ -246,7 +256,6 @@
           <Property Name="TC_Detalle" Type="varchar" MaxLength="200" />
           <Property Name="TN_Cantidad" Type="int" />
           <Property Name="TF_Fecha_Decomiso" Type="date" />
-          <Property Name="TF_Hora_Decomiso" Type="time" Precision="7" />
           <Property Name="TB_Eliminado" Type="bit" />
           <Property Name="TF_Fecha_Creacion" Type="datetime" />
           <Property Name="TF_Fecha_Modificacion" Type="datetime" />
@@ -370,8 +379,7 @@
           </Key>
           <Property Name="TN_ID_Evento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TN_ID_Caso" Type="int" />
-          <Property Name="TF_Fecha" Type="date" />
-          <Property Name="TF_Hora" Type="time" Precision="7" />
+          <Property Name="TF_Fecha" Type="datetime" />
           <Property Name="TC_Informa" Type="varchar" MaxLength="50" />
           <Property Name="TC_Lugar" Type="varchar" MaxLength="50" />
           <Property Name="TC_Novedad" Type="varchar" MaxLength="200" />
@@ -401,6 +409,7 @@
           <Property Name="TF_Fecha_Inicio" Type="date" />
           <Property Name="TF_Fecha_Final" Type="date" />
           <Property Name="TB_Eliminado" Type="bit" />
+          <Property Name="TB_Mando" Type="bit" />
         </EntityType>
         <EntityType Name="TMCCM_Grupo_Usuario">
           <Key>
@@ -441,8 +450,7 @@
           <Property Name="TN_ID_Tarea" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TN_ID_Caso" Type="int" />
           <Property Name="TN_ID_Usuario" Type="int" />
-          <Property Name="TF_Fecha" Type="date" />
-          <Property Name="TF_Hora" Type="time" Precision="7" />
+          <Property Name="TF_Fecha" Type="datetime" />
           <Property Name="TC_Diligencia" Type="varchar" MaxLength="100" />
           <Property Name="TC_Lugar" Type="varchar" MaxLength="50" />
           <Property Name="TB_Eliminado" Type="bit" />
@@ -459,6 +467,7 @@
           <Property Name="TC_Correo" Type="varchar" MaxLength="100" />
           <Property Name="TC_Contrasennia" Type="varchar" MaxLength="20" />
           <Property Name="TB_Eliminado" Type="bit" />
+          <Property Name="TB_En_Grupo" Type="bit" />
         </EntityType>
         <EntityType Name="TMCCM_Usuario_Rol">
           <Key>
@@ -959,7 +968,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="sp_Obtener_Catalogo_Usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_obtenerEventosPorCaso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="casoID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_obtenerTareaPorCaso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idCaso" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="MCCMModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TMCCM_C_Arma_Icono_Arma" EntityType="Self.TMCCM_C_Arma_Icono_Arma" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TMCCM_C_Arma_Marca" EntityType="Self.TMCCM_C_Arma_Marca" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TMCCM_C_Arma_Tipo_Arma" EntityType="Self.TMCCM_C_Arma_Tipo_Arma" Schema="dbo" store:Type="Tables" />
@@ -1166,6 +1183,7 @@
     <edmx:ConceptualModels>
       <Schema Namespace="MCCMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="MCCMEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="MCCMModel.sysdiagram" />
           <EntitySet Name="TMCCM_C_Arma_Icono_Arma" EntityType="MCCMModel.TMCCM_C_Arma_Icono_Arma" />
           <EntitySet Name="TMCCM_C_Arma_Marca" EntityType="MCCMModel.TMCCM_C_Arma_Marca" />
           <EntitySet Name="TMCCM_C_Arma_Tipo_Arma" EntityType="MCCMModel.TMCCM_C_Arma_Tipo_Arma" />
@@ -1361,7 +1379,24 @@
             <End Role="TMCCM_Rol" EntitySet="TMCCM_Rol" />
             <End Role="TMCCM_Usuario" EntitySet="TMCCM_Usuario" />
           </AssociationSet>
+          <FunctionImport Name="sp_Obtener_Catalogo_Usuario" ReturnType="Collection(MCCMModel.sp_Obtener_Catalogo_Usuario_Result)" />
+          <FunctionImport Name="sp_obtenerEventosPorCaso" ReturnType="Collection(MCCMModel.sp_obtenerEventosPorCaso_Result)">
+            <Parameter Name="casoID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_obtenerTareaPorCaso" ReturnType="Collection(MCCMModel.sp_obtenerTareaPorCaso_Result)">
+            <Parameter Name="idCaso" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <EntityType Name="TMCCM_C_Arma_Icono_Arma">
           <Key>
             <PropertyRef Name="TN_ID_Icono_Arma" />
@@ -1642,7 +1677,6 @@
           <Property Name="TC_Detalle" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="TN_Cantidad" Type="Int32" />
           <Property Name="TF_Fecha_Decomiso" Type="DateTime" Precision="0" />
-          <Property Name="TF_Hora_Decomiso" Type="Time" Precision="7" />
           <Property Name="TB_Eliminado" Type="Boolean" />
           <Property Name="TF_Fecha_Creacion" Type="DateTime" Precision="3" />
           <Property Name="TF_Fecha_Modificacion" Type="DateTime" Precision="3" />
@@ -1788,8 +1822,7 @@
           </Key>
           <Property Name="TN_ID_Evento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TN_ID_Caso" Type="Int32" />
-          <Property Name="TF_Fecha" Type="DateTime" Precision="0" />
-          <Property Name="TF_Hora" Type="Time" Precision="7" />
+          <Property Name="TF_Fecha" Type="DateTime" Precision="3" />
           <Property Name="TC_Informa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TC_Lugar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TC_Novedad" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
@@ -1822,6 +1855,7 @@
           <Property Name="TF_Fecha_Inicio" Type="DateTime" Precision="0" />
           <Property Name="TF_Fecha_Final" Type="DateTime" Precision="0" />
           <Property Name="TB_Eliminado" Type="Boolean" />
+          <Property Name="TB_Mando" Type="Boolean" />
           <NavigationProperty Name="TMCCM_Caso" Relationship="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Grupo" FromRole="TMCCM_Grupo" ToRole="TMCCM_Caso" />
           <NavigationProperty Name="TMCCM_Grupo_Usuario" Relationship="MCCMModel.FK_TMCCM_Grupo_REL_TMCCM_Grupo_Usuario" FromRole="TMCCM_Grupo" ToRole="TMCCM_Grupo_Usuario" />
           <NavigationProperty Name="TMCCM_Grupo_Vehiculo" Relationship="MCCMModel.FK_TMCCM_Grupo_REL_TMCCM_Grupo_Vehiculo" FromRole="TMCCM_Grupo" ToRole="TMCCM_Grupo_Vehiculo" />
@@ -1870,8 +1904,7 @@
           <Property Name="TN_ID_Tarea" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TN_ID_Caso" Type="Int32" />
           <Property Name="TN_ID_Usuario" Type="Int32" />
-          <Property Name="TF_Fecha" Type="DateTime" Precision="0" />
-          <Property Name="TF_Hora" Type="Time" Precision="7" />
+          <Property Name="TF_Fecha" Type="DateTime" Precision="3" />
           <Property Name="TC_Diligencia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="TC_Lugar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TB_Eliminado" Type="Boolean" />
@@ -1890,6 +1923,7 @@
           <Property Name="TC_Correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="TC_Contrasennia" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="TB_Eliminado" Type="Boolean" />
+          <Property Name="TB_En_Grupo" Type="Boolean" />
           <NavigationProperty Name="TMCCM_Grupo_Usuario" Relationship="MCCMModel.FK_TMCCM_Usuario_REL_TMCCM_Grupo_Usuario" FromRole="TMCCM_Usuario" ToRole="TMCCM_Grupo_Usuario" />
           <NavigationProperty Name="TMCCM_Tarea" Relationship="MCCMModel.FK_TMCCM_Usuario_REL_TMCCM_Tarea" FromRole="TMCCM_Usuario" ToRole="TMCCM_Tarea" />
           <NavigationProperty Name="TMCCM_Rol" Relationship="MCCMModel.TMCCM_Usuario_Rol" FromRole="TMCCM_Usuario" ToRole="TMCCM_Rol" />
@@ -2366,12 +2400,42 @@
           <End Type="MCCMModel.TMCCM_Rol" Role="TMCCM_Rol" Multiplicity="*" />
           <End Type="MCCMModel.TMCCM_Usuario" Role="TMCCM_Usuario" Multiplicity="*" />
         </Association>
+        <ComplexType Name="sp_Obtener_Catalogo_Usuario_Result">
+          <Property Type="Int32" Name="TN_ID_Usuario" Nullable="false" />
+          <Property Type="String" Name="TC_Identificacion" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="TC_Nombre_Completo" Nullable="false" MaxLength="92" />
+        </ComplexType>
+        <ComplexType Name="sp_obtenerEventosPorCaso_Result">
+          <Property Type="Int32" Name="TN_ID_Evento" Nullable="false" />
+          <Property Type="DateTime" Name="TF_Fecha" Nullable="true" Precision="23" />
+          <Property Type="String" Name="TC_Informa" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TC_Lugar" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TC_Novedad" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="sp_obtenerTareaPorCaso_Result">
+          <Property Type="Int32" Name="TN_ID_Tarea" Nullable="false" />
+          <Property Type="String" Name="T_Usuario" Nullable="false" MaxLength="123" />
+          <Property Type="DateTime" Name="TF_Fecha" Nullable="true" Precision="23" />
+          <Property Type="String" Name="TC_Diligencia" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="TC_Lugar" Nullable="true" MaxLength="50" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="MCCMModelStoreContainer" CdmEntityContainer="MCCMEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="MCCMModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TMCCM_C_Arma_Icono_Arma">
             <EntityTypeMapping TypeName="MCCMModel.TMCCM_C_Arma_Icono_Arma">
               <MappingFragment StoreEntitySet="TMCCM_C_Arma_Icono_Arma">
@@ -2635,7 +2699,6 @@
                 <ScalarProperty Name="TF_Fecha_Modificacion" ColumnName="TF_Fecha_Modificacion" />
                 <ScalarProperty Name="TF_Fecha_Creacion" ColumnName="TF_Fecha_Creacion" />
                 <ScalarProperty Name="TB_Eliminado" ColumnName="TB_Eliminado" />
-                <ScalarProperty Name="TF_Hora_Decomiso" ColumnName="TF_Hora_Decomiso" />
                 <ScalarProperty Name="TF_Fecha_Decomiso" ColumnName="TF_Fecha_Decomiso" />
                 <ScalarProperty Name="TN_Cantidad" ColumnName="TN_Cantidad" />
                 <ScalarProperty Name="TC_Detalle" ColumnName="TC_Detalle" />
@@ -2768,7 +2831,6 @@
                 <ScalarProperty Name="TC_Novedad" ColumnName="TC_Novedad" />
                 <ScalarProperty Name="TC_Lugar" ColumnName="TC_Lugar" />
                 <ScalarProperty Name="TC_Informa" ColumnName="TC_Informa" />
-                <ScalarProperty Name="TF_Hora" ColumnName="TF_Hora" />
                 <ScalarProperty Name="TF_Fecha" ColumnName="TF_Fecha" />
                 <ScalarProperty Name="TN_ID_Caso" ColumnName="TN_ID_Caso" />
                 <ScalarProperty Name="TN_ID_Evento" ColumnName="TN_ID_Evento" />
@@ -2792,6 +2854,7 @@
           <EntitySetMapping Name="TMCCM_Grupo">
             <EntityTypeMapping TypeName="MCCMModel.TMCCM_Grupo">
               <MappingFragment StoreEntitySet="TMCCM_Grupo">
+                <ScalarProperty Name="TB_Mando" ColumnName="TB_Mando" />
                 <ScalarProperty Name="TB_Eliminado" ColumnName="TB_Eliminado" />
                 <ScalarProperty Name="TF_Fecha_Final" ColumnName="TF_Fecha_Final" />
                 <ScalarProperty Name="TF_Fecha_Inicio" ColumnName="TF_Fecha_Inicio" />
@@ -2841,7 +2904,6 @@
                 <ScalarProperty Name="TB_Eliminado" ColumnName="TB_Eliminado" />
                 <ScalarProperty Name="TC_Lugar" ColumnName="TC_Lugar" />
                 <ScalarProperty Name="TC_Diligencia" ColumnName="TC_Diligencia" />
-                <ScalarProperty Name="TF_Hora" ColumnName="TF_Hora" />
                 <ScalarProperty Name="TF_Fecha" ColumnName="TF_Fecha" />
                 <ScalarProperty Name="TN_ID_Usuario" ColumnName="TN_ID_Usuario" />
                 <ScalarProperty Name="TN_ID_Caso" ColumnName="TN_ID_Caso" />
@@ -2852,6 +2914,7 @@
           <EntitySetMapping Name="TMCCM_Usuario">
             <EntityTypeMapping TypeName="MCCMModel.TMCCM_Usuario">
               <MappingFragment StoreEntitySet="TMCCM_Usuario">
+                <ScalarProperty Name="TB_En_Grupo" ColumnName="TB_En_Grupo" />
                 <ScalarProperty Name="TB_Eliminado" ColumnName="TB_Eliminado" />
                 <ScalarProperty Name="TC_Contrasennia" ColumnName="TC_Contrasennia" />
                 <ScalarProperty Name="TC_Correo" ColumnName="TC_Correo" />
@@ -2883,6 +2946,37 @@
               <ScalarProperty Name="TN_ID_Rol" ColumnName="TN_ID_Rol" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="sp_Obtener_Catalogo_Usuario" FunctionName="MCCMModel.Store.sp_Obtener_Catalogo_Usuario">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MCCMModel.sp_Obtener_Catalogo_Usuario_Result">
+                <ScalarProperty Name="TN_ID_Usuario" ColumnName="TN_ID_Usuario" />
+                <ScalarProperty Name="TC_Identificacion" ColumnName="TC_Identificacion" />
+                <ScalarProperty Name="TC_Nombre_Completo" ColumnName="TC_Nombre_Completo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_obtenerEventosPorCaso" FunctionName="MCCMModel.Store.sp_obtenerEventosPorCaso">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MCCMModel.sp_obtenerEventosPorCaso_Result">
+                <ScalarProperty Name="TN_ID_Evento" ColumnName="TN_ID_Evento" />
+                <ScalarProperty Name="TF_Fecha" ColumnName="TF_Fecha" />
+                <ScalarProperty Name="TC_Informa" ColumnName="TC_Informa" />
+                <ScalarProperty Name="TC_Lugar" ColumnName="TC_Lugar" />
+                <ScalarProperty Name="TC_Novedad" ColumnName="TC_Novedad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_obtenerTareaPorCaso" FunctionName="MCCMModel.Store.sp_obtenerTareaPorCaso">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MCCMModel.sp_obtenerTareaPorCaso_Result">
+                <ScalarProperty Name="TN_ID_Tarea" ColumnName="TN_ID_Tarea" />
+                <ScalarProperty Name="T_Usuario" ColumnName="T_Usuario" />
+                <ScalarProperty Name="TF_Fecha" ColumnName="TF_Fecha" />
+                <ScalarProperty Name="TC_Diligencia" ColumnName="TC_Diligencia" />
+                <ScalarProperty Name="TC_Lugar" ColumnName="TC_Lugar" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -30,6 +30,7 @@ namespace MCCM.Entidad
         public string TC_Correo { get; set; }
         public string TC_Contrasennia { get; set; }
         public Nullable<bool> TB_Eliminado { get; set; }
+        public Nullable<bool> TB_En_Grupo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TMCCM_Grupo_Usuario> TMCCM_Grupo_Usuario { get; set; }

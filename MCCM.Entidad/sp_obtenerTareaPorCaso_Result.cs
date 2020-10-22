@@ -10,18 +10,13 @@
 namespace MCCM.Entidad
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class TMCCM_Evento
+    public partial class sp_obtenerTareaPorCaso_Result
     {
-        public int TN_ID_Evento { get; set; }
-        public Nullable<int> TN_ID_Caso { get; set; }
+        public int TN_ID_Tarea { get; set; }
+        public string T_Usuario { get; set; }
         public Nullable<System.DateTime> TF_Fecha { get; set; }
-        public string TC_Informa { get; set; }
+        public string TC_Diligencia { get; set; }
         public string TC_Lugar { get; set; }
-        public string TC_Novedad { get; set; }
-        public Nullable<bool> TB_Eliminado { get; set; }
-    
-        public virtual TMCCM_Caso TMCCM_Caso { get; set; }
     }
 }

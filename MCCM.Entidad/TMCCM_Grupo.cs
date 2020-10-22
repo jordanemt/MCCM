@@ -28,6 +28,7 @@ namespace MCCM.Entidad
         public Nullable<System.DateTime> TF_Fecha_Inicio { get; set; }
         public Nullable<System.DateTime> TF_Fecha_Final { get; set; }
         public Nullable<bool> TB_Eliminado { get; set; }
+        public Nullable<bool> TB_Mando { get; set; }
     
         public virtual TMCCM_Caso TMCCM_Caso { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

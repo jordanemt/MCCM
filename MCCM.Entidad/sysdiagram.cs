@@ -12,16 +12,12 @@ namespace MCCM.Entidad
     using System;
     using System.Collections.Generic;
     
-    public partial class TMCCM_Evento
+    public partial class sysdiagram
     {
-        public int TN_ID_Evento { get; set; }
-        public Nullable<int> TN_ID_Caso { get; set; }
-        public Nullable<System.DateTime> TF_Fecha { get; set; }
-        public string TC_Informa { get; set; }
-        public string TC_Lugar { get; set; }
-        public string TC_Novedad { get; set; }
-        public Nullable<bool> TB_Eliminado { get; set; }
-    
-        public virtual TMCCM_Caso TMCCM_Caso { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }
