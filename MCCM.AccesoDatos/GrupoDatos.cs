@@ -18,6 +18,15 @@ namespace MCCM.AccesoDatos
                     .Where(e => e.TB_Eliminado == true)
                     .Include(e => e.TMCCM_Grupo_Usuario)
                     .ToList();
+
+                foreach (TMCCM_Grupo grupo in data) 
+                {
+                    foreach (TMCCM_Grupo_Usuario item in grupo.TMCCM_Grupo_Usuario)
+                    {
+                        context.Entry(item).Reference(e => e.TMCCM_Usuario).Load();
+                    }
+                }
+
                 return data;
             }
         }
@@ -67,7 +76,13 @@ namespace MCCM.AccesoDatos
             using (var context = new MCCMEntities())
             {
                 data.TB_Eliminado = true;
+                context.TMCCM_Grupo_Usuario.RemoveRange(context.TMCCM_Grupo_Usuario.Where(e => e.TN_ID_Grupo == data.TN_ID_Grupo));
+                context.TMCCM_Grupo_Usuario.AddRange(data.TMCCM_Grupo_Usuario);
                 context.Entry(data).State = EntityState.Modified;
+                foreach (TMCCM_Grupo_Usuario item in data.TMCCM_Grupo_Usuario)
+                {
+                    context.Entry(item).Reference(e => e.TMCCM_Usuario).Load();
+                }
                 context.SaveChanges();
                 return context.Entry(data).Entity;
             }

@@ -1,13 +1,16 @@
 ﻿@model MCCM.Entidad.TMCCM_Grupo
 
-@{ 
+@{
     MCCM.Entidad.TMCCM_Usuario encargado = ViewBag.Encargado;
     List<MCCM.Entidad.TMCCM_Usuario> acompannantes = ViewBag.Acompannantes;
     List<MCCM.Entidad.TMCCM_Usuario> usuarios = ViewBag.Usuarios;
 }
 
-<script src="~/Scripts/bootstrap-select.min.js"></script>
 <link href="~/Content/bootstrap-select.min.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+<script src="~/Scripts/bootstrap-select.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
 <div class="modal fade" id="grupo-form-modal">
     <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -77,11 +80,11 @@
                         <div class="row col-md-6">
                             @if (Model == null)
                             {
-                                <input id="TF_Fecha_Inicio" name="TF_Fecha_Inicio" class="form-control col-md-11" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")">
+                                <input id="TF_Fecha_Inicio" name="TF_Fecha_Inicio" class="form-control col-md-11" type="text" value="@DateTime.Now">
                             }
                             else
                             {
-                                <input id="TF_Fecha_Inicio" name="TF_Fecha_Inicio" class="form-control col-md-11" type="date" value="@Model.TF_Fecha_Inicio">
+                                <input id="TF_Fecha_Inicio" name="TF_Fecha_Inicio" class="form-control col-md-11" type="text" value="@Model.TF_Fecha_Inicio">
                             }
                             <label id="TF_Fecha_Inicio-error" class="error" for="TF_Fecha_Inicio" style="display: none"></label>
                         </div>
@@ -92,11 +95,11 @@
                         <div class="row col-md-6">
                             @if (Model == null)
                             {
-                                <input id="TF_Fecha_Final" name="TF_Fecha_Final" class="form-control col-md-11" type="date">
+                                <input id="TF_Fecha_Final" name="TF_Fecha_Final" class="form-control col-md-11" type="text">
                             }
                             else
                             {
-                                <input id="TF_Fecha_Final" name="TF_Fecha_Final" class="form-control col-md-11" type="date" value="@Model.TF_Fecha_Final">
+                                <input id="TF_Fecha_Final" name="TF_Fecha_Final" class="form-control col-md-11" type="text" value="@Model.TF_Fecha_Final">
                             }
                             <label id="TF_Fecha_Final-error" class="error" for="TF_Fecha_Final" style="display: none"></label>
                         </div>
@@ -120,21 +123,20 @@
                     <div class="form-group row justify-content-center">
                         <label class="control-label col-md-3" for="Encargado">Encargado:</label>
                         <div class="row col-md-6">
-                            <select id="Encargado" class="form-control col-md-11 mdb-select" name="Acompannantes">
-                                <option selected disabled>Seleccione una opción</option>
-
+                            <select id="Encargado" class="form-control col-md-11 mdb-select" name="Acompannantes" onchange="bloquearAcompannanteEncargado();">
+                                <option selected disabled>Seleccione un encargado</option>
                                 @if (Model != null)
                                 {
-                                    <option selected value="@encargado.TN_ID_Usuario">@encargado.TN_ID_Usuario @encargado.TC_Nombre @encargado.TC_Primer_Apellido</option>
+                                    <option id="encargado-@encargado.TN_ID_Usuario" selected value="@encargado.TN_ID_Usuario">@encargado.TN_ID_Usuario @encargado.TC_Nombre @encargado.TC_Primer_Apellido</option>
                                     foreach (MCCM.Entidad.TMCCM_Usuario acompannante in acompannantes)
                                     {
-                                        <option value="@acompannante.TN_ID_Usuario">@acompannante.TN_ID_Usuario @acompannante.TC_Nombre @acompannante.TC_Primer_Apellido</option>
+                                        <option id="encargado-@acompannante.TN_ID_Usuario" value="@acompannante.TN_ID_Usuario">@acompannante.TN_ID_Usuario @acompannante.TC_Nombre @acompannante.TC_Primer_Apellido</option>
                                     }
                                 }
 
                                 @foreach (MCCM.Entidad.TMCCM_Usuario usuario in usuarios)
                                 {
-                                    <option value="@usuario.TN_ID_Usuario">@usuario.TN_ID_Usuario @usuario.TC_Nombre @usuario.TC_Primer_Apellido</option>
+                                    <option id="encargado-@usuario.TN_ID_Usuario" value="@usuario.TN_ID_Usuario">@usuario.TN_ID_Usuario @usuario.TC_Nombre @usuario.TC_Primer_Apellido</option>
                                 }
                             </select>
                             <label id="Encargado-error" class="error" for="Encargado" style="display: none"></label>
@@ -145,20 +147,19 @@
                         <label class="control-label col-md-3" for="Acompannantes">Acompañantes:</label>
                         <div class="row col-md-6">
                             <select id="Acompannantes" class="form-control col-md-11" name="Acompannantes" multiple>
-                                <option disabled>Seleccione una opción</option>
-
+                                <option disabled>Seleccione los acompañantes</option>
                                 @if (Model != null)
                                 {
-                                    <option disabled value="@encargado.TN_ID_Usuario">@encargado.TN_ID_Usuario @encargado.TC_Nombre @encargado.TC_Primer_Apellido</option>
+                                    <option id="acompannante-@encargado.TN_ID_Usuario" disabled value="@encargado.TN_ID_Usuario">@encargado.TN_ID_Usuario @encargado.TC_Nombre @encargado.TC_Primer_Apellido</option>
                                     foreach (MCCM.Entidad.TMCCM_Usuario acompannante in acompannantes)
                                     {
-                                        <option selected value="@acompannante.TN_ID_Usuario">@acompannante.TN_ID_Usuario @acompannante.TC_Nombre @acompannante.TC_Primer_Apellido</option>
+                                        <option id="acompannante-@acompannante.TN_ID_Usuario" selected value="@acompannante.TN_ID_Usuario">@acompannante.TN_ID_Usuario @acompannante.TC_Nombre @acompannante.TC_Primer_Apellido</option>
                                     }
                                 }
 
                                 @foreach (MCCM.Entidad.TMCCM_Usuario usuario in usuarios)
                                 {
-                                    <option value="@usuario.TN_ID_Usuario">@usuario.TN_ID_Usuario @usuario.TC_Nombre @usuario.TC_Primer_Apellido</option>
+                                    <option id="acompannante-@usuario.TN_ID_Usuario" value="@usuario.TN_ID_Usuario">@usuario.TN_ID_Usuario @usuario.TC_Nombre @usuario.TC_Primer_Apellido</option>
                                 }
                             </select>
                             <label id="Acompannantes-error" class="error" for="Acompannantes" style="display: none"></label>
@@ -187,7 +188,7 @@
 <script src="~/Scripts/jquery.mask.min.js"></script>
 
 <script>
-    //$('select').selectpicker();
+    aplicarDateRangeGrupo();
     aplicarValidGrupoForm();
     aplicarMaskGrupoForm();
 </script>

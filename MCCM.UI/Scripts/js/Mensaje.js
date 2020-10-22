@@ -12,6 +12,8 @@ $(document).on("click", ".btnEliminarMensaje", function () {
         alert("Se elimino el tarea #" + boton.attr('id'));
     } else if (boton.attr('class').split(' ')[1] == "borrarGasto") {
         eliminarGastoPorId(boton.attr('id'));
+    } else if (boton.attr('class').split(' ')[1] == "borrarGrupo") {
+        eliminarGrupoPorId(boton.attr('id'));
     }
     //boton.parent().parent().parent().remove();
 });

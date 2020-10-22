@@ -28,9 +28,9 @@ namespace MCCM.UI.Controllers
         public ActionResult CargarModalConId(int id)
         {
             TMCCM_Grupo grupo = grupoNegocio.ObtenerPorId(id);
-            List<TMCCM_Usuario> usuarios = usuarioNegocio.Listar();
             TMCCM_Usuario encargado = grupo.TMCCM_Grupo_Usuario.Where(e => e.TB_Encargado == true).Select(e => e.TMCCM_Usuario).FirstOrDefault();
             List<TMCCM_Usuario> acompannantes = grupo.TMCCM_Grupo_Usuario.Where(e => e.TB_Encargado != true).Select(e => e.TMCCM_Usuario).ToList();
+            List<TMCCM_Usuario> usuarios = usuarioNegocio.Listar();
 
             usuarios.Remove(usuarios.Where(e => e.TN_ID_Usuario == encargado.TN_ID_Usuario).FirstOrDefault());
             foreach (TMCCM_Usuario acompannante in acompannantes)
@@ -67,9 +67,18 @@ namespace MCCM.UI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Actualizar(TMCCM_Grupo data)
+        public ActionResult Actualizar(TMCCM_Grupo data, List<int> Acompannantes)
         {
-            return PartialView("_Gasto", grupoNegocio.Actualizar(data));
+            foreach (int val in Acompannantes)
+            {
+                TMCCM_Grupo_Usuario item = new TMCCM_Grupo_Usuario();
+                item.TN_ID_Grupo = data.TN_ID_Grupo;
+                item.TN_ID_Usuario = val;
+                item.TB_Encargado = (val == Acompannantes.First());
+                item.TB_Eliminado = false;
+                data.TMCCM_Grupo_Usuario.Add(item);
+            }
+            return PartialView("_Grupo", grupoNegocio.Actualizar(data));
         }
 
         [HttpPost]
