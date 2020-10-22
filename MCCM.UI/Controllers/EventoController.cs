@@ -23,6 +23,13 @@ namespace MCCM.UI.Controllers
         }
 
         [HttpPost]
+        public String ModificarEvento(TMCCM_Evento evento)
+        {
+            eventoNegocio.ActualizarEvento(evento);
+            return "S";
+        }
+
+        [HttpPost]
         public String EliminarEventoPorID(int eventoID) {
             return eventoNegocio.EliminarEvento(eventoID);
         }
@@ -31,6 +38,12 @@ namespace MCCM.UI.Controllers
         public String ListarEventos(int caso)
         {
             return JsonConvert.SerializeObject(eventoNegocio.ListarEventos(caso), Formatting.Indented);
+        }
+
+        [HttpGet]
+        public String ObtenerEventoPorID(int ID)
+        {
+            return JsonConvert.SerializeObject(eventoNegocio.ObtenerEventoPorID(ID), Formatting.Indented);
         }
 
     }
