@@ -51,6 +51,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CatalogoUsuarioResult.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DTO\TMCCM_CasoDTO.cs" />
     <Compile Include="DTO\TMCCM_C_TipoDatosDTO.cs" />
     <Compile Include="DTO\TMCCM_EntidadArmaDTO.cs" />

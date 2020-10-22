@@ -26,7 +26,6 @@
         <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Vehiculo_Marca" Width="1.5" PointX="3.75" PointY="46.625" IsExpanded="true" />
         <EntityTypeShape EntityType="MCCMModel.TMCCM_Caso" Width="1.5" PointX="0.75" PointY="24.375" IsExpanded="true" />
         <EntityTypeShape EntityType="MCCMModel.TMCCM_Entidad_Arma" Width="1.5" PointX="3" PointY="24.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_Entidad_Droga" Width="1.5" PointX="6" PointY="25.25" IsExpanded="true" />
         <EntityTypeShape EntityType="MCCMModel.TMCCM_Entidad_Persona" Width="1.5" PointX="9" PointY="23.625" IsExpanded="true" />
         <EntityTypeShape EntityType="MCCMModel.TMCCM_Entidad_Telefono" Width="1.5" PointX="3" PointY="19.875" IsExpanded="true" />
         <EntityTypeShape EntityType="MCCMModel.TMCCM_Entidad_Ubicacion" Width="1.5" PointX="6" PointY="19.375" IsExpanded="true" />
@@ -41,7 +40,6 @@
         <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Arma_Icono_Arma_REL_TMCCM_Entidad_Arma" ManuallyRouted="false" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Arma_Marca_REL_TMCCM_Entidad_Arma" ManuallyRouted="false" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Arma_Tipo_Arma_REL_TMCCM_Entidad_Arma" ManuallyRouted="false" />
-        <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Droga_Tipo_Droga_REL_TMCCM_Entidad_Droga" ManuallyRouted="false" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Gasto_Tipo_Gasto_REL_TMCCM_Gasto" ManuallyRouted="false" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Persona_Genero_REL_TMCCM_Entidad_Persona" ManuallyRouted="false" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Persona_Icono_Persona_REL_TMCCM_Entidad_Persona" ManuallyRouted="false" />
@@ -60,7 +58,6 @@
         <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Vehiculo_Icono_REL_TMCCM_Entidad_Vehiculo" ManuallyRouted="false" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Vehiculo_Marca_REL_TMCCM_Entidad_Vehiculo" ManuallyRouted="false" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_Arma" ManuallyRouted="false" />
-        <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_Droga" ManuallyRouted="false" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_PErsona" ManuallyRouted="false" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_Telefono" ManuallyRouted="false" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_Ubicacion" ManuallyRouted="false" />
@@ -83,6 +80,9 @@
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Vehiculo_REL_TMCCM_Grupo_Vehiculo" />
         <EntityTypeShape EntityType="MCCMModel.TMCCM_Evento" Width="1.5" PointX="3" PointY="49.625" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Evento" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_Entidad_Droga" Width="1.5" PointX="9" PointY="32.125" />
+        <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Droga_Tipo_Droga_REL_TMCCM_Entidad_Droga" />
+        <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_Droga" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

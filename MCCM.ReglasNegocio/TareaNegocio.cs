@@ -37,5 +37,11 @@ namespace MCCM.ReglasNegocio
         {
             return tareaDatos.ObtenerTareaPorID(ID);
         }
+
+        public List<CatalogoUsuarioResult> ObtenerCatalogoUsuarios() {
+            return tareaDatos.ObtenerCatalogoUsuarios();
+        }
+
+
     }
 }

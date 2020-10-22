@@ -174,12 +174,9 @@ $(document).on("click", "#btnRegistrarCaso", function (e) {
             CargarCasos();
             $("#ModalFormCaso").modal("hide");
         });
-        
     } else {
         alert("NO es valido");
     }
-
-
 });
 
 
