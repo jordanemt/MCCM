@@ -1,48 +1,6 @@
 ﻿@model MCCM.Entidad.TMCCM_Vehiculo
 
-@*@using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-horizontal">
-            <h4>TMCCM_Grupo_Vehiculo</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.TN_ID_Vehiculo, "TN_ID_Vehiculo", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("TN_ID_Vehiculo", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.TN_ID_Vehiculo, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.TN_ID_Grupo, "TN_ID_Grupo", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("TN_ID_Grupo", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.TN_ID_Grupo, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.TB_Eliminado, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <div class="checkbox">
-                        @Html.EditorFor(model => model.TB_Eliminado)
-                        @Html.ValidationMessageFor(model => model.TB_Eliminado, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
-            </div>
-        </div>
-    }*@
-
-<div class="modal fade" id="add-vehiculo-form-modal">
+<div class="modal fade" id="vehiculo-form-modal">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
 

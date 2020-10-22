@@ -11,6 +11,7 @@
 <script src="~/Scripts/js/Dashboard.js"></script>
 <script src="~/Scripts/js/Gasto.js"></script>
 <script src="~/Scripts/js/Grupo.js"></script>
+<script src="~/Scripts/js/Vehiculo.js"></script>
 
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
@@ -631,11 +632,11 @@
                 <div class="card border-light mb-3 col-md-3" style="height: 100%; margin: 0 0; padding: 0 0;">
                     <div class="card-header">
                         <div>Vehículos</div>
-                        <div><a href="#"><span><i class="fa fa-plus" onclick="openAddVehiculoModal()"></i></span></a></div>
+                        <div><a href="#"><span><i class="fa fa-plus" onclick="abrirInsertarVehiculoFormModal()"></i></span></a></div>
                     </div>
                     <div class="card-body" id="vehiculos-body" style="overflow-y: scroll">
                         @* Solo para previsualizar *@
-                        @Html.Partial("~/Views/Grupo/_ListVehiculos.cshtml")
+                        @Html.Partial("~/Views/Vehiculo/_Vehiculo.cshtml")
                     </div>
                 </div>
 
@@ -956,7 +957,7 @@ function seleccionEntidad() {
 @Html.Partial("~/Views/Caso/_ModalCasoInsert.cshtml")
 @Html.Partial("~/Views/Bitacora/_ModalEventoForm.cshtml")
 @Html.Partial("~/Views/Tarea/_ModalFormTarea.cshtml")
-@Html.Partial("~/Views/Grupo/_FormAddVehiculoModal.cshtml")
+@Html.Partial("~/Views/Vehiculo/_FormModal.cshtml")
 
 @Html.Partial("_ModalMensajeConfirmacion")
 

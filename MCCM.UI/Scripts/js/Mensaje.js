@@ -14,7 +14,9 @@ $(document).on("click", ".btnEliminarMensaje", function () {
         eliminarGastoPorId(boton.attr('id'));
     } else if (boton.attr('class').split(' ')[1] == "borrarGrupo") {
         eliminarGrupoPorId(boton.attr('id'));
+    } else if (boton.attr('class').split(' ')[1] == "borrarVehiculo") {
+        alert('Se ha borrado el vehículo');
+        boton.parent().parent().parent().remove();
     }
-    //boton.parent().parent().parent().remove();
 });
 
