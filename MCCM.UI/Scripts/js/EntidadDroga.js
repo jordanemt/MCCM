@@ -15,42 +15,6 @@ function iniciarCalendarioDroga(fecha) {
         }
     });
 }
-
-$(document).on("click", ".editarEntidadDroga", function () {
-    $("#tituloEntidadDrogaInsertar").hide();
-    $("#tituloEntidadDroga").show();
-    $("#eventoIDI").val("1");
-    $("#TC_Nombre_Droga").val("Marihuana");
-    $("#TC_Detalle").val("Decomiso de gran cantidad de marihuana en Turrialba");
-    $("#TN_Cantidad").val("500000");
-    $("#TF_Fecha_Decomiso").val("10/09/2020 5:00PM");
-    iniciarCalendarioDroga("10/09/2020 5:00PM");
-    $("#divDrogaFC").show();
-    $("#TF_Fecha_Creacion_Droga").val("10/09/2020 5:00PM");
-    $("#TC_Creado_Por_Droga").val("Maikel Matamoros Zúñiga"); 
-    $("#divDrogaMP").show();
-    $("#TF_Modificado_Por_Droga").val("");
-    $('#TB_Verificado_Droga').attr('checked', false);
-    $("#btnModificarEntidadDroga").show();
-    $("#btnEliminarEntidadDroga").show();
-    $("#btnCancelarEntidadDroga").hide(); 
-    $("#btnAgregarEntidadDroga").hide(); 
-    $("#entidadDrogaModal").modal("show");
-
-});
-$('#entidadDrogaModal').on('hidden.bs.modal', function () {
-    $("#FormEntidadDroga")[0].reset();
-    $("#tituloEntidadDrogaInsertar").show();
-    $("#tituloEntidadDroga").hide();
-    $("#divDrogaFC").hide();
-    $("#divDrogaMP").hide();
-    $("#btnModificarEntidadDroga").hide();
-    $("#btnEliminarEntidadDroga").hide();
-    $("#btnCancelarEntidadDroga").show();
-    $("#btnAgregarEntidadDroga").show(); 
-
-})
-
 /* Agregar Droga*/
 $(document).on("click", "#btnAgregarEntidadDroga", function (e) {
     e.preventDefault();
@@ -130,6 +94,53 @@ function eliminarDroga(entidadDrogaID) {
 
     });
 }
+
+
+/*Editar*/
+
+$(document).on("click", ".editarEntidadDroga", function () {
+    $.ajax({
+        type: "GET",
+        url: "/E_Droga/Obtener_E_DrogaPorID",
+        data: { "ID": $(this).attr('ID') }
+    }).done(function (data) {
+        let entidadDroga = new Array();
+        entidadDroga = JSON.parse(data);
+        $("#tituloEntidadDrogaInsertar").html("Modificar Entidad Droga");
+        $("#divDrogaID").show();
+        $("#TN_ID_Droga").val(entidadDroga.TN_ID_Droga);
+        $("#TN_ID_Tipo_Droga").val(entidadDroga.TN_ID_Tipo_Droga);
+        $("#TC_Nombre_Droga").val(entidadDroga.TC_Nombre);
+        $("#TC_Detalle").val(entidadDroga.TC_Detalle);
+        $("#TN_Cantidad").val(entidadDroga.TN_Cantidad);
+        $("#TF_Fecha_Decomiso").val(entidadDroga.TF_Fecha);
+        iniciarCalendarioDroga(entidadDroga.TF_Fecha);
+        $("#divDrogaFC").show();
+        $("#TF_Fecha_Creacion_Droga").val(entidadDroga.TF_Fecha_Creacion);
+        $("#TC_Creado_Por_Droga").val(entidadDroga.TC_Creado_Por);
+        $("#divDrogaMP").show();
+        $("#TF_Modificado_Por_Droga").val("");
+        $('#TB_Verificado_Droga').attr('checked', entidadDroga.TB_Verificado);
+        $("#btnModificarEntidadDroga").show();
+        $("#btnEliminarEntidadDroga").show();
+        $("#btnCancelarEntidadDroga").hide();
+        $("#btnAgregarEntidadDroga").hide();
+        $("#entidadDrogaModal").modal("show");
+    });
+});
+
+$('#entidadDrogaModal').on('hidden.bs.modal', function () {
+    $("#FormEntidadDroga")[0].reset();
+    $("#tituloEntidadDrogaInsertar").show();
+    $("#tituloEntidadDroga").hide();
+    $("#divDrogaFC").hide();
+    $("#divDrogaMP").hide();
+    $("#btnModificarEntidadDroga").hide();
+    $("#btnEliminarEntidadDroga").hide();
+    $("#btnCancelarEntidadDroga").show();
+    $("#btnAgregarEntidadDroga").show();
+
+})
 
 /*Carga de Catalogos*/ 
 function cargarTipoDroga() {

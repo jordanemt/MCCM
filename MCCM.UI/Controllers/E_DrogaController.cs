@@ -34,5 +34,16 @@ namespace MCCM.UI.Controllers
         {
             return entidadDrogaNegocio.EliminarEntidadDroga(entidadDrogaID);
         }
+        [HttpPost]
+        public String Modificar_E_Droga(TMCCM_Entidad_Droga entidadDroga)
+        {
+            entidadDrogaNegocio.ActualizarEntidadDroga(entidadDroga);
+            return "S";
+        }
+        [HttpGet]
+        public String Obtener_E_DrogaPorID(int ID)
+        {
+            return JsonConvert.SerializeObject(entidadDrogaNegocio.ObtenerEntidadDrogaPorID(ID), Formatting.Indented);
+        }
     }
 }

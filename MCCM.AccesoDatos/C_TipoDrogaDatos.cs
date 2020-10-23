@@ -10,21 +10,21 @@ namespace MCCM.AccesoDatos
 {
     public class C_TipoDrogaDatos
     {
-        public List<TMCCM_C_TipoDatosDTO> ListarTiposDroga()
+        public List<TMCCM_C_TipoDrogaDTO> ListarTiposDroga()
         {
-            List<TMCCM_C_TipoDatosDTO> droga_Tipo_Drogas = null;
+            List<TMCCM_C_TipoDrogaDTO> droga_Tipo_Drogas = null;
 
             using (var context = new MCCMEntities())
             {
-                droga_Tipo_Drogas = context.TMCCM_C_Droga_Tipo_Droga.Where(c => c.TB_Eliminado == true)
-                  .Select(tipoDrogaItem => new TMCCM_C_TipoDatosDTO()
+                droga_Tipo_Drogas = context.TMCCM_C_Droga_Tipo_Droga.Where(c => c.TB_Eliminado == false)
+                  .Select(tipoDrogaItem => new TMCCM_C_TipoDrogaDTO()
                   {
                       TN_ID_Tipo_Droga = tipoDrogaItem.TN_ID_Tipo_Droga,
                       TF_Fecha_Creacion = tipoDrogaItem.TF_Fecha_Creacion,
                       TC_Nombre = tipoDrogaItem.TC_Nombre,
                       TC_Descripcion = tipoDrogaItem.TC_Descripcion,
                       TB_Eliminado = tipoDrogaItem.TB_Eliminado
-                  }).ToList<TMCCM_C_TipoDatosDTO>();
+                  }).ToList<TMCCM_C_TipoDrogaDTO>();
             }
 
             return droga_Tipo_Drogas;
