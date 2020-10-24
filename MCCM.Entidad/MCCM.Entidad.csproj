@@ -51,6 +51,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CatalogoUsuarioResult.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DTO\TMCCM_CasoDTO.cs" />
     <Compile Include="DTO\TMCCM_C_TipoDatosDTO.cs" />
     <Compile Include="DTO\TMCCM_EntidadArmaDTO.cs" />
@@ -81,13 +84,7 @@
     <Compile Include="sp_obtenerEventosPorCaso_Result.cs">
       <DependentUpon>MCCMModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="sp_obtenerTareaPorCaso_Result.cs">
-      <DependentUpon>MCCMModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_Obtener_Catalogo_Usuario_Result.cs">
-      <DependentUpon>MCCMModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagram.cs">
+    <Compile Include="TareaCasoResult.cs">
       <DependentUpon>MCCMModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TMCCM_Caso.cs">

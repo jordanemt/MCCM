@@ -52,7 +52,6 @@ namespace MCCM.Entidad
         public virtual DbSet<TMCCM_C_Vehiculo_Marca> TMCCM_C_Vehiculo_Marca { get; set; }
         public virtual DbSet<TMCCM_Caso> TMCCM_Caso { get; set; }
         public virtual DbSet<TMCCM_Entidad_Arma> TMCCM_Entidad_Arma { get; set; }
-        public virtual DbSet<TMCCM_Entidad_Droga> TMCCM_Entidad_Droga { get; set; }
         public virtual DbSet<TMCCM_Entidad_Persona> TMCCM_Entidad_Persona { get; set; }
         public virtual DbSet<TMCCM_Entidad_Persona_Juridica> TMCCM_Entidad_Persona_Juridica { get; set; }
         public virtual DbSet<TMCCM_Entidad_Telefono> TMCCM_Entidad_Telefono { get; set; }
@@ -77,18 +76,18 @@ namespace MCCM.Entidad
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_obtenerEventosPorCaso_Result>("sp_obtenerEventosPorCaso", casoIDParameter);
         }
     
-        public virtual ObjectResult<sp_Obtener_Catalogo_Usuario_Result> sp_Obtener_Catalogo_Usuario()
+        public virtual ObjectResult<CatalogoUsuarioResult> sp_Obtener_Catalogo_Usuario()
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Obtener_Catalogo_Usuario_Result>("sp_Obtener_Catalogo_Usuario");
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CatalogoUsuarioResult>("sp_Obtener_Catalogo_Usuario");
         }
     
-        public virtual ObjectResult<sp_obtenerTareaPorCaso_Result> sp_obtenerTareaPorCaso(Nullable<int> idCaso)
+        public virtual ObjectResult<TareaCasoResult> sp_obtenerTareaPorCaso(Nullable<int> idCaso)
         {
             var idCasoParameter = idCaso.HasValue ?
                 new ObjectParameter("idCaso", idCaso) :
                 new ObjectParameter("idCaso", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_obtenerTareaPorCaso_Result>("sp_obtenerTareaPorCaso", idCasoParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TareaCasoResult>("sp_obtenerTareaPorCaso", idCasoParameter);
         }
     }
 }

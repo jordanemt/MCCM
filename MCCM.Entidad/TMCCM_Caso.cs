@@ -18,7 +18,6 @@ namespace MCCM.Entidad
         public TMCCM_Caso()
         {
             this.TMCCM_Entidad_Arma = new HashSet<TMCCM_Entidad_Arma>();
-            this.TMCCM_Entidad_Droga = new HashSet<TMCCM_Entidad_Droga>();
             this.TMCCM_Entidad_Persona = new HashSet<TMCCM_Entidad_Persona>();
             this.TMCCM_Entidad_Telefono = new HashSet<TMCCM_Entidad_Telefono>();
             this.TMCCM_Entidad_Ubicacion = new HashSet<TMCCM_Entidad_Ubicacion>();
@@ -44,8 +43,6 @@ namespace MCCM.Entidad
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TMCCM_Entidad_Arma> TMCCM_Entidad_Arma { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TMCCM_Entidad_Droga> TMCCM_Entidad_Droga { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TMCCM_Entidad_Persona> TMCCM_Entidad_Persona { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TMCCM_Entidad_Telefono> TMCCM_Entidad_Telefono { get; set; }
@@ -61,5 +58,9 @@ namespace MCCM.Entidad
         public virtual ICollection<TMCCM_Grupo> TMCCM_Grupo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TMCCM_Tarea> TMCCM_Tarea { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TMCCM_Evento> TMCCM_Evento { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TMCCM_Entidad_Droga> TMCCM_Entidad_Droga { get; set; }
     }
 }

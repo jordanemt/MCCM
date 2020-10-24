@@ -561,7 +561,7 @@ CREATE TABLE TMCCM_C_Persona_Juridica_Tipo_Organizaciรณn(
 
 CREATE PROCEDURE [dbo].[sp_obtenerEventosPorCaso](@casoID int)
 as
-select TN_ID_Evento,TF_Fecha,TC_Informa,TC_Lugar,TC_Novedad from TMCCM_Evento where TB_Eliminado=1 and TN_ID_Caso=@casoID;
+select TN_ID_Evento,TF_Fecha,TC_Informa,TC_Lugar,TC_Novedad from TMCCM_Evento where TB_Eliminado=0 and TN_ID_Caso=@casoID;
 
 ALTER TABLE dbo.TMCCM_Entidad_Droga
 ALTER COLUMN TF_Fecha_Creacion datetime;
@@ -574,8 +574,12 @@ Alter Table dbo.TMCCM_Entidad_Persona_Juridica add constraint PK_TCCM_C_Entidad_
 ALTER TABLE dbo.TMCCM_Evento ALTER COLUMN TF_Fecha DATETIME
 ALTER TABLE dbo.TMCCM_Evento DROP COLUMN TF_Hora
 
+create procedure sp_Obtener_Catalogo_Usuario
+as
+select TN_ID_Usuario,TC_Identificacion,CONCAT(TC_Nombre,' ',TC_Primer_Apellido,' ',TC_Segundo_Apellido) as TC_Nombre_Completo from TMCCM_Usuario
 
-
+ALTER TABLE dbo.TMCCM_Tarea ALTER COLUMN TF_Fecha DATETIME
+ALTER TABLE dbo.TMCCM_Tarea DROP COLUMN TF_Hora
 
 
 

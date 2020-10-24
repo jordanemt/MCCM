@@ -68,6 +68,7 @@ function eliminarEvento(eventoID) {
         url: "/Evento/EliminarEventoPorID",
         data: { "eventoID": eventoID }
     }).done(function (data) {
+
     });
 }
 

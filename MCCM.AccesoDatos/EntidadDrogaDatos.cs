@@ -37,7 +37,6 @@ namespace MCCM.AccesoDatos
                     result.TC_Detalle = entidadDroga.TC_Detalle;
                     result.TN_Cantidad = entidadDroga.TN_Cantidad;
                     result.TF_Fecha_Decomiso = entidadDroga.TF_Fecha_Decomiso;
-                    result.TF_Hora_Decomiso = entidadDroga.TF_Hora_Decomiso;
                     result.TF_Fecha_Creacion = entidadDroga.TF_Fecha_Creacion;
                     result.TF_Fecha_Modificacion = entidadDroga.TF_Fecha_Modificacion;
                     result.TC_Creado_Por = entidadDroga.TC_Creado_Por;
@@ -80,7 +79,6 @@ namespace MCCM.AccesoDatos
                     TC_Detalle = drogaItem.TC_Detalle,
                     TN_Cantidad = drogaItem.TN_Cantidad,
                     TF_Fecha_Decomiso = drogaItem.TF_Fecha_Decomiso,
-                    TF_Hora_Decomiso = drogaItem.TF_Hora_Decomiso,
                     TF_Fecha_Creacion = drogaItem.TF_Fecha_Creacion,
                     TF_Fecha_Modificacion = drogaItem.TF_Fecha_Modificacion,
                     TC_Creado_Por = drogaItem.TC_Creado_Por,
@@ -108,7 +106,6 @@ namespace MCCM.AccesoDatos
                            TC_Detalle = drogaItem.TC_Detalle,
                            TN_Cantidad = drogaItem.TN_Cantidad,
                            TF_Fecha_Decomiso = drogaItem.TF_Fecha_Decomiso,
-                           TF_Hora_Decomiso = drogaItem.TF_Hora_Decomiso,
                            TF_Fecha_Creacion = drogaItem.TF_Fecha_Creacion,
                            TF_Fecha_Modificacion = drogaItem.TF_Fecha_Modificacion,
                            TC_Creado_Por = drogaItem.TC_Creado_Por,

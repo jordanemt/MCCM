@@ -2419,6 +2419,62 @@
           <Property Type="String" Name="TC_Diligencia" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="TC_Lugar" Nullable="true" MaxLength="50" />
         </ComplexType>
+        <ComplexType Name="CatalogoUsuarioResult">
+          <Property Type="Int32" Name="TN_ID_Usuario" Nullable="false" />
+          <Property Type="String" Name="TC_Identificacion" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="TC_Nombre_Completo" Nullable="false" MaxLength="92" />
+        </ComplexType>
+        <EntityType Name="TMCCM_Entidad_Droga">
+          <Key>
+            <PropertyRef Name="TN_ID_Droga" />
+          </Key>
+          <Property Name="TN_ID_Droga" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TN_ID_Caso" Type="Int32" />
+          <Property Name="TN_ID_Tipo_Droga" Type="Int32" />
+          <Property Name="TC_Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TC_Detalle" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="TN_Cantidad" Type="Int32" />
+          <Property Name="TF_Fecha_Decomiso" Type="DateTime" Precision="0" />
+          <Property Name="TB_Eliminado" Type="Boolean" />
+          <Property Name="TF_Fecha_Creacion" Type="DateTime" Precision="3" />
+          <Property Name="TF_Fecha_Modificacion" Type="DateTime" Precision="3" />
+          <Property Name="TC_Creado_Por" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TC_Modificado_Por" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TB_Verificado" Type="Boolean" />
+          <NavigationProperty Name="TMCCM_C_Droga_Tipo_Droga" Relationship="MCCMModel.FK_TMCCM_C_Droga_Tipo_Droga_REL_TMCCM_Entidad_Droga" FromRole="TMCCM_Entidad_Droga" ToRole="TMCCM_C_Droga_Tipo_Droga" />
+          <NavigationProperty Name="TMCCM_Caso" Relationship="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_Droga" FromRole="TMCCM_Entidad_Droga" ToRole="TMCCM_Caso" />
+        </EntityType>
+        <Association Name="FK_TMCCM_C_Droga_Tipo_Droga_REL_TMCCM_Entidad_Droga">
+          <End Type="MCCMModel.TMCCM_C_Droga_Tipo_Droga" Role="TMCCM_C_Droga_Tipo_Droga" Multiplicity="0..1" />
+          <End Type="MCCMModel.TMCCM_Entidad_Droga" Role="TMCCM_Entidad_Droga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TMCCM_C_Droga_Tipo_Droga">
+              <PropertyRef Name="TN_ID_Tipo_Droga" />
+            </Principal>
+            <Dependent Role="TMCCM_Entidad_Droga">
+              <PropertyRef Name="TN_ID_Tipo_Droga" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TMCCM_Caso_REL_TMCCM_Entidad_Droga">
+          <End Type="MCCMModel.TMCCM_Caso" Role="TMCCM_Caso" Multiplicity="0..1" />
+          <End Type="MCCMModel.TMCCM_Entidad_Droga" Role="TMCCM_Entidad_Droga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TMCCM_Caso">
+              <PropertyRef Name="TN_ID_Caso" />
+            </Principal>
+            <Dependent Role="TMCCM_Entidad_Droga">
+              <PropertyRef Name="TN_ID_Caso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="TareaCasoResult">
+          <Property Type="Int32" Name="TN_ID_Tarea" Nullable="false" />
+          <Property Type="String" Name="T_Usuario" Nullable="false" MaxLength="123" />
+          <Property Type="DateTime" Name="TF_Fecha" Nullable="true" Precision="23" />
+          <Property Type="String" Name="TC_Diligencia" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="TC_Lugar" Nullable="true" MaxLength="50" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2969,6 +3025,45 @@
           <FunctionImportMapping FunctionImportName="sp_obtenerTareaPorCaso" FunctionName="MCCMModel.Store.sp_obtenerTareaPorCaso">
             <ResultMapping>
               <ComplexTypeMapping TypeName="MCCMModel.sp_obtenerTareaPorCaso_Result">
+                <ScalarProperty Name="TN_ID_Tarea" ColumnName="TN_ID_Tarea" />
+                <ScalarProperty Name="T_Usuario" ColumnName="T_Usuario" />
+                <ScalarProperty Name="TF_Fecha" ColumnName="TF_Fecha" />
+                <ScalarProperty Name="TC_Diligencia" ColumnName="TC_Diligencia" />
+                <ScalarProperty Name="TC_Lugar" ColumnName="TC_Lugar" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Obtener_Catalogo_Usuario" FunctionName="MCCMModel.Store.sp_Obtener_Catalogo_Usuario">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MCCMModel.CatalogoUsuarioResult">
+                <ScalarProperty Name="TN_ID_Usuario" ColumnName="TN_ID_Usuario" />
+                <ScalarProperty Name="TC_Identificacion" ColumnName="TC_Identificacion" />
+                <ScalarProperty Name="TC_Nombre_Completo" ColumnName="TC_Nombre_Completo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="TMCCM_Entidad_Droga">
+            <EntityTypeMapping TypeName="MCCMModel.TMCCM_Entidad_Droga">
+              <MappingFragment StoreEntitySet="TMCCM_Entidad_Droga">
+                <ScalarProperty Name="TB_Verificado" ColumnName="TB_Verificado" />
+                <ScalarProperty Name="TC_Modificado_Por" ColumnName="TC_Modificado_Por" />
+                <ScalarProperty Name="TC_Creado_Por" ColumnName="TC_Creado_Por" />
+                <ScalarProperty Name="TF_Fecha_Modificacion" ColumnName="TF_Fecha_Modificacion" />
+                <ScalarProperty Name="TF_Fecha_Creacion" ColumnName="TF_Fecha_Creacion" />
+                <ScalarProperty Name="TB_Eliminado" ColumnName="TB_Eliminado" />
+                <ScalarProperty Name="TF_Fecha_Decomiso" ColumnName="TF_Fecha_Decomiso" />
+                <ScalarProperty Name="TN_Cantidad" ColumnName="TN_Cantidad" />
+                <ScalarProperty Name="TC_Detalle" ColumnName="TC_Detalle" />
+                <ScalarProperty Name="TC_Nombre" ColumnName="TC_Nombre" />
+                <ScalarProperty Name="TN_ID_Tipo_Droga" ColumnName="TN_ID_Tipo_Droga" />
+                <ScalarProperty Name="TN_ID_Caso" ColumnName="TN_ID_Caso" />
+                <ScalarProperty Name="TN_ID_Droga" ColumnName="TN_ID_Droga" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_obtenerTareaPorCaso" FunctionName="MCCMModel.Store.sp_obtenerTareaPorCaso">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MCCMModel.TareaCasoResult">
                 <ScalarProperty Name="TN_ID_Tarea" ColumnName="TN_ID_Tarea" />
                 <ScalarProperty Name="T_Usuario" ColumnName="T_Usuario" />
                 <ScalarProperty Name="TF_Fecha" ColumnName="TF_Fecha" />
