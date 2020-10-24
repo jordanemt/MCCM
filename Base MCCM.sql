@@ -561,7 +561,7 @@ CREATE TABLE TMCCM_C_Persona_Juridica_Tipo_Organizaciรณn(
 
 CREATE PROCEDURE [dbo].[sp_obtenerEventosPorCaso](@casoID int)
 as
-select TN_ID_Evento,TF_Fecha,TC_Informa,TC_Lugar,TC_Novedad from TMCCM_Evento where TB_Eliminado=1 and TN_ID_Caso=@casoID;
+select TN_ID_Evento,TF_Fecha,TC_Informa,TC_Lugar,TC_Novedad from TMCCM_Evento where TB_Eliminado=0 and TN_ID_Caso=@casoID;
 
 ALTER TABLE dbo.TMCCM_Entidad_Droga
 ALTER COLUMN TF_Fecha_Creacion datetime;

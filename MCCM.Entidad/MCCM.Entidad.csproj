@@ -84,6 +84,9 @@
     <Compile Include="sp_obtenerEventosPorCaso_Result.cs">
       <DependentUpon>MCCMModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="TareaCasoResult.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="TMCCM_Caso.cs">
       <DependentUpon>MCCMModel.tt</DependentUpon>
     </Compile>

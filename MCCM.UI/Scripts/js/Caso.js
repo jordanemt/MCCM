@@ -1,7 +1,5 @@
 ﻿let insert = 0;
 
-
-
 $(document).ready(function () {
     CargarCasos();
     $("#FormCaso").validate({
@@ -26,7 +24,6 @@ $(document).ready(function () {
             TC_Delito: {
                 required: true
             }
-            
         },
         messages: {
             TC_Nombre_Caso: {
@@ -72,6 +69,7 @@ $(document).on("click", ".caso", function () {
     
     sessionStorage.CasoID = $(this).attr('id');
     CargarEventos();
+    CargarTareas();
     $("#casosTitulo").html($(this).children(".card-body").children().first().children().last().text());
 });
 

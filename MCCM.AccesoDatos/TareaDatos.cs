@@ -15,7 +15,7 @@ namespace MCCM.AccesoDatos
         {
             using (var context = new MCCMEntities())
             {
-                tarea.TB_Eliminado = true;
+                tarea.TB_Eliminado = false;
                 context.TMCCM_Tarea.Add(tarea);
                 context.SaveChanges();
             }
@@ -53,24 +53,13 @@ namespace MCCM.AccesoDatos
             }
         }
 
-        public List<TMCCM_TareaDTO> ListarTareas()
+        public List<TareaCasoResult> ListarTareas(int idCaso)
         {
-            List<TMCCM_TareaDTO> tareasDTO = null;
-
             using (var context = new MCCMEntities())
             {
-                tareasDTO = context.TMCCM_Tarea.Where(c => c.TB_Eliminado == true)
-                  .Select(tareaItem => new TMCCM_TareaDTO()
-                  {
-                      TN_ID_Tarea = tareaItem.TN_ID_Tarea,
-                      TN_ID_Usuario = tareaItem.TN_ID_Usuario,
-                      TF_Fecha = tareaItem.TF_Fecha,
-                      TC_Diligencia = tareaItem.TC_Diligencia,
-                      TC_Lugar = tareaItem.TC_Lugar
-                  }).ToList<TMCCM_TareaDTO>();
+                return context.sp_obtenerTareaPorCaso(idCaso).ToList();
             }
 
-            return tareasDTO;
         }
 
         public TMCCM_TareaDTO ObtenerTareaPorID(int ID)

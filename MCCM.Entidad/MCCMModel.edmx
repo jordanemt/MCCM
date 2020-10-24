@@ -962,6 +962,9 @@
         <Function Name="sp_obtenerEventosPorCaso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="casoID" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_obtenerTareaPorCaso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idCaso" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="MCCMModelStoreContainer">
           <EntitySet Name="TMCCM_C_Arma_Icono_Arma" EntityType="Self.TMCCM_C_Arma_Icono_Arma" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TMCCM_C_Arma_Marca" EntityType="Self.TMCCM_C_Arma_Marca" Schema="dbo" store:Type="Tables" />
@@ -2204,6 +2207,9 @@
             <End Role="TMCCM_Caso" EntitySet="TMCCM_Caso" />
             <End Role="TMCCM_Entidad_Droga" EntitySet="TMCCM_Entidad_Droga" />
           </AssociationSet>
+          <FunctionImport Name="sp_obtenerTareaPorCaso" ReturnType="Collection(MCCMModel.TareaCasoResult)">
+            <Parameter Name="idCaso" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="TMCCM_C_Persona_Juridica_Icono_Persona_Juridica">
           <Key>
@@ -2384,6 +2390,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="TareaCasoResult">
+          <Property Type="Int32" Name="TN_ID_Tarea" Nullable="false" />
+          <Property Type="String" Name="T_Usuario" Nullable="false" MaxLength="123" />
+          <Property Type="DateTime" Name="TF_Fecha" Nullable="true" Precision="23" />
+          <Property Type="String" Name="TC_Diligencia" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="TC_Lugar" Nullable="true" MaxLength="50" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2920,6 +2933,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_obtenerTareaPorCaso" FunctionName="MCCMModel.Store.sp_obtenerTareaPorCaso">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MCCMModel.TareaCasoResult">
+                <ScalarProperty Name="TN_ID_Tarea" ColumnName="TN_ID_Tarea" />
+                <ScalarProperty Name="T_Usuario" ColumnName="T_Usuario" />
+                <ScalarProperty Name="TF_Fecha" ColumnName="TF_Fecha" />
+                <ScalarProperty Name="TC_Diligencia" ColumnName="TC_Diligencia" />
+                <ScalarProperty Name="TC_Lugar" ColumnName="TC_Lugar" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

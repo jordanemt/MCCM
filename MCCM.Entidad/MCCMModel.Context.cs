@@ -80,5 +80,14 @@ namespace MCCM.Entidad
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CatalogoUsuarioResult>("sp_Obtener_Catalogo_Usuario");
         }
+    
+        public virtual ObjectResult<TareaCasoResult> sp_obtenerTareaPorCaso(Nullable<int> idCaso)
+        {
+            var idCasoParameter = idCaso.HasValue ?
+                new ObjectParameter("idCaso", idCaso) :
+                new ObjectParameter("idCaso", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TareaCasoResult>("sp_obtenerTareaPorCaso", idCasoParameter);
+        }
     }
 }

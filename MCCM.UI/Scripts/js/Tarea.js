@@ -63,3 +63,38 @@ function iniciarCalendarioTarea(fecha) {
         }
     });
 }
+
+function CargarTareas() {
+    $.ajax({
+        type: "GET",
+        url: "/Tarea/ListarTarea",
+        data: { "caso": sessionStorage.CasoID }
+    }).done(function (data) {
+        let tareas = new Array();
+        tareas = JSON.parse(data);
+
+        $("#tareas-body").empty();
+        for (let i = 0; i < tareas.length; i++) {
+            $("#tareas-body").append(
+            '<div class="card tarea">'+
+                '<div class="card-header">'+
+                    '<div>Tarea # 1</div>'+
+                '<div>' +
+                '<a href="#" class="editarTarea" id="' + tareas[i].TN_ID_Tarea + '"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>'+
+                '<a href="#" class="borrar borrarTarea" id="' + tareas[i].TN_ID_Tarea + '"><span><i class="fa fa-trash" data-toggle="modal"'+ 
+                            'data - target="#ModalMensaje" aria - hidden="true" ></i ></span ></a > '+
+                 '</div>'+
+                '</div>'+
+            '<div class="card-body" style="padding:0px!important">'+
+                 '<h6><small>Asignado:' + tareas[i].T_Usuario + '</small></h6 > ' +
+                 '<h6><small>Fecha/Hora: ' + tareas[i].TF_Fecha + '</small></h6>' +
+                 '<h6><small>Diligencia: ' + tareas[i].TC_Diligencia + '</small></h6>' +
+                 '<h6><small>Lugar: ' + tareas[i].TC_Lugar + '</small></h6>' +
+             '</div>'+
+            '</div>'
+            )
+        }
+    })
+}
+
+

@@ -28,9 +28,9 @@ namespace MCCM.ReglasNegocio
             tareaDatos.EliminarTarea(ID);
             return "S";
         }
-        public List<TMCCM_TareaDTO> ListarTarea()
+        public List<TareaCasoResult> ListarTarea(int idCaso)
         {
-            return tareaDatos.ListarTareas();
+            return tareaDatos.ListarTareas(idCaso);
         }
 
         public TMCCM_TareaDTO ObtenerTareaPorID(int ID)

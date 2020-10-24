@@ -37,10 +37,11 @@ namespace MCCM.UI.Controllers
         }
 
         [HttpGet]
-        public String ListarTarea()
+        public String ListarTarea(int caso)
         {
-            return JsonConvert.SerializeObject(tareaNegocio.ListarTarea(), Formatting.Indented);
+            return JsonConvert.SerializeObject(tareaNegocio.ListarTarea(caso), Formatting.Indented);
         }
+
         [HttpGet]
         public string ObtenerTareaPorID(int ID)
         {
