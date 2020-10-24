@@ -3,15 +3,16 @@ use MCCM
 
 CREATE TABLE TMCCM_Usuario(
 	TN_ID_Usuario int identity(1,1),
+	TC_Identificacion Varchar(30),
 	TC_Nombre Varchar(30),
 	TC_Primer_Apellido varchar(30),
 	TC_Segundo_Apellido varchar(30),
+	TC_Correo Varchar(100),
 	TC_Contrasennia varchar(20),
+	TB_En_Grupo bit default 0,
 	TB_Eliminado bit default 1,
 	CONSTRAINT PK_TMCCM_Usuario PRIMARY KEY(TN_ID_Usuario)
 )
-
-
 
 CREATE TABLE TMCCM_Rol(
 	TN_ID_Rol int identity,
@@ -22,7 +23,6 @@ CREATE TABLE TMCCM_Rol(
 	CONSTRAINT PK_TMCCM_Rol Primary key(TN_ID_Rol)
 )
 
-
 CREATE TABLE TMCCM_Usuario_Rol(
 	TN_ID_Rol int,
 	TN_ID_Usuario int,
@@ -30,7 +30,6 @@ CREATE TABLE TMCCM_Usuario_Rol(
 	CONSTRAINT FK_TMCCM_Usuario_REL_TMCCM_Usuario_Rol Foreign Key(TN_ID_Usuario) references TMCCM_Usuario(TN_ID_Usuario),
 	CONSTRAINT PK_TMCCM_Usuario_Rol PRIMARY KEY(TN_ID_Rol,TN_ID_Usuario)
 )
-
 
 CREATE TABLE TMCCM_Caso(
 	TN_ID_Caso int identity,
@@ -58,11 +57,11 @@ CREATE TABLE TMCCM_Grupo(
 	TC_Zona varchar(50),
 	TF_Fecha_Inicio Date,
 	TF_Fecha_Final Date,
+	TB_Mando bit default 0,
 	TB_Eliminado bit default 1,
 	CONSTRAINT PK_TCCM_Grupo PRImARY KEY(TN_ID_Grupo),
 	CONSTRAINT FK_TMCCM_Caso_REL_TMCCM_Grupo Foreign Key(TN_ID_Caso) references TMCCM_Caso(TN_ID_Caso),
 )
-
 
 CREATE TABLE TMCCM_Grupo_Usuario(
 	TN_ID_Usuario int,
@@ -73,7 +72,6 @@ CREATE TABLE TMCCM_Grupo_Usuario(
 	CONSTRAINT FK_TMCCM_Usuario_REL_TMCCM_Grupo_Usuario Foreign Key(TN_ID_Usuario) references TMCCM_Usuario(TN_ID_Usuario),
 	CONSTRAINT PK_TMCCM_Grupo_Usuario PRIMARY KEY(TN_ID_Usuario,TN_ID_Grupo)
 )
-
 
 CREATE TABLE TMCCM_Vehiculo(
 	TN_ID_Vehiculo int identity,
@@ -88,7 +86,6 @@ CREATE TABLE TMCCM_Vehiculo(
 	CONSTRAINT PK_TCCM_Vehiculo PRImARY KEY(TN_ID_Vehiculo)
 )
 
-
 CREATE TABLE TMCCM_Grupo_Vehiculo(
 	TN_ID_Vehiculo int,
 	TN_ID_Grupo int,
@@ -97,7 +94,6 @@ CREATE TABLE TMCCM_Grupo_Vehiculo(
 	CONSTRAINT FK_TMCCM_Vehiculo_REL_TMCCM_Grupo_Vehiculo Foreign Key(TN_ID_Vehiculo) references TMCCM_Vehiculo(TN_ID_Vehiculo),
 	CONSTRAINT PK_TMCCM_Grupo_Vehiculo PRIMARY KEY(TN_ID_Vehiculo,TN_ID_Grupo)
 )
-
 
 CREATE TABLE TMCCM_Evento(
 	TN_ID_Evento int identity,
@@ -135,7 +131,6 @@ CREATE TABLE TMCCM_C_Droga_Tipo_Droga(
 	CONSTRAINT PK_TCCM_C_Droga_Tipo_Droga PRImARY KEY(TN_ID_Tipo_Droga)
 )
 
-
 CREATE TABLE TMCCM_Entidad_Droga(
 	TN_ID_Droga int identity,
 	TN_ID_Caso int,
@@ -165,8 +160,6 @@ ADD TC_Modificado_Por varchar(50);
 
 ALTER TABLE TMCCM_Entidad_Droga
 ADD TB_Verificado bit default 0;
-
-
 
 CREATE TABLE TMCCM_C_Gasto_Tipo_Gasto(
 	TN_ID_Tipo_Gasto int identity,
@@ -212,7 +205,6 @@ CREATE TABLE TMCCM_C_Arma_Icono_Arma(
 	TB_Eliminado bit default 1,
 	CONSTRAINT PK_TCCM_C_Arma_Icono_Arma PRImARY KEY(TN_ID_Icono_Arma)
 )
-
 
 CREATE TABLE TMCCM_Entidad_Arma(
 	TN_ID_Arma int identity,
@@ -504,8 +496,6 @@ CREATE TABLE TMCCM_Entidad_Persona(
 	CONSTRAINT FK_TMCCM_C_Persona_Nacionalidad_REL_TMCCM_Entidad_Persona 
 	Foreign Key(TN_ID_Nacionalidad) references TMCCM_C_Persona_Nacionalidad(TN_ID_Nacionalidad)
 )
-
-
 
 ALTER TABLE TMCCM_Entidad_Persona
 ADD CONSTRAINT df_estado_Verificado

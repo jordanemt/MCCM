@@ -27,6 +27,7 @@ namespace MCCM.Entidad
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TMCCM_C_Arma_Icono_Arma> TMCCM_C_Arma_Icono_Arma { get; set; }
         public virtual DbSet<TMCCM_C_Arma_Marca> TMCCM_C_Arma_Marca { get; set; }
         public virtual DbSet<TMCCM_C_Arma_Tipo_Arma> TMCCM_C_Arma_Tipo_Arma { get; set; }

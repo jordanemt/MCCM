@@ -1,139 +1,155 @@
 ﻿@model MCCM.Entidad.TMCCM_Gasto
 
-<div class="modal fade" id="gasto-insert-modal">
+<div class="modal fade" id="gasto-form-modal">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title"></h4>
+                @if (Model == null)
+                {
+                    <h4 id="gasto-form-modal-title" class="modal-title">Insertar Gasto</h4>
+                }
+                else
+                {
+                    <h4 id="gasto-form-modal-title" class="modal-title">Actualizar Gasto</h4>
+                }
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
             <!-- Modal body -->
             <div class="modal-body">
-                <form id="gasto-form" method="post">
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <form id="gasto-form">
                     <div class="form-group row justify-content-center">
-                        @Html.LabelFor(model => model.TN_ID_Gasto, "Número de gasto:", htmlAttributes: new { @class = "control-label col-md-3" })
+                        <label class="control-label col-md-3" for="TN_ID_Gasto">Número de gasto:</label>
                         <div class="row col-md-6">
-                            @Html.EditorFor(model => model.TN_ID_Gasto, new
+                            @if (Model == null)
                             {
-                                htmlAttributes = new
-                                {
-                                    @class = "form-control col-md-11",
-                                    type = "text",
-                                    @readonly = "readonly"
-                                }
-                            })
+                                <input id="TN_ID_Gasto" name="TN_ID_Gasto" class="form-control col-md-11" type="text" value="0" readonly>
+                            }
+                            else
+                            {
+                                <input id="TN_ID_Gasto" name="TN_ID_Gasto" class="form-control col-md-11" type="text" value="@Model.TN_ID_Gasto" readonly>
+                            }
                         </div>
                     </div>
 
                     <div class="form-group row justify-content-center">
-                        @Html.LabelFor(model => model.TN_ID_Caso, "Número de caso:", htmlAttributes: new { @class = "control-label col-md-3" })
+                        <label class="control-label col-md-3" for="TN_ID_Caso">Número de caso:</label>
                         <div class="row col-md-6">
-                            @Html.EditorFor(model => model.TN_ID_Caso, new
+                            @if (Model == null)
                             {
-                                htmlAttributes = new
-                                {
-                                    @class = "form-control col-md-11 TN_ID_Caso",
-                                    type = "text",
-                                    @readonly = "readonly",
-                                }
-                            })
+                                <input id="TN_ID_Caso" name="TN_ID_Caso" class="form-control col-md-11" type="text" value="15" readonly>
+                            }
+                            else
+                            {
+                                <input id="TN_ID_Caso" name="TN_ID_Caso" class="form-control col-md-11" type="text" value="@Model.TN_ID_Caso" readonly>
+                            }
                         </div>
                     </div>
 
                     <div class="form-group row justify-content-center">
-                        @Html.LabelFor(model => model.TF_Fecha, "Fecha:", htmlAttributes: new { @class = "control-label col-md-3" })
+                        <label class="control-label col-md-3" for="TF_Fecha">Fecha:</label>
                         <div class="row col-md-6">
-                            @Html.EditorFor(model => model.TF_Fecha, new
+                            @if (Model == null)
                             {
-                                htmlAttributes = new
-                                {
-                                    @class = "form-control col-md-11",
-                                    @readonly = "readonly"
-                                }
-                            })
+                                <input id="TF_Fecha" name="TF_Fecha" class="form-control col-md-11" type="datetime" value="@DateTime.Now" readonly>
+                            }
+                            else
+                            {
+                                <input id="TF_Fecha" name="TF_Fecha" class="form-control col-md-11" type="datetime" value="@Model.TF_Fecha" readonly>
+                            }
                         </div>
                     </div>
 
                     <div class="form-group row justify-content-center">
-                        @Html.LabelFor(model => model.TN_Num_Factura, "Número de factura:", htmlAttributes: new { @class = "control-label col-md-3" })
+                        <label class="control-label col-md-3" for="TN_Num_Factura">Número de factura:</label>
                         <div class="row col-md-6">
-                            @Html.EditorFor(model => model.TN_Num_Factura, new
+                            @if (Model == null)
                             {
-                                htmlAttributes = new
-                                {
-                                    @class = "form-control col-md-11",
-                                    required = "required",
-                                    type = "number"
-                                }
-                            })
-                            @Html.ValidationMessageFor(model => model.TN_Num_Factura, "", new { @class = "text-danger" })
+                                <input id="TN_Num_Factura" name="TN_Num_Factura" class="form-control col-md-11" type="text">
+                            }
+                            else
+                            {
+                                <input id="TN_Num_Factura" name="TN_Num_Factura" class="form-control col-md-11" type="text" value="@Model.TN_Num_Factura">
+                            }
+                            <label id="TN_Num_Factura-error" class="error" for="TN_Num_Factura" style="display: none"></label>
                         </div>
                     </div>
 
                     <div class="form-group row justify-content-center">
-                        @Html.LabelFor(model => model.TN_ID_Tipo_Gasto, "Tipo de gasto", htmlAttributes: new { @class = "control-label col-md-3" })
+                        <label class="control-label col-md-3" for="TN_ID_Tipo_Gasto">Tipo de Gasto:</label>
                         <div class="row col-md-6">
-                            @*@Html.EditorFor(model => model.TN_ID_Tipo_Gasto, new { htmlAttributes = new { @class = "form-control", required = "required" } })*@
-                            <select id="TN_ID_Tipo_Gasto" class="form-control col-md-11" name="TN_ID_Tipo_Gasto" required>
+                            <select id="TN_ID_Tipo_Gasto" class="form-control col-md-11" name="TN_ID_Tipo_Gasto">
                                 <option selected disabled>Seleccione una opción</option>
-                                <option value="1">Operativo</option>
-                                <option value="2">Combustible</option>
+                                @foreach (MCCM.Entidad.TMCCM_C_Gasto_Tipo_Gasto item in ViewBag.TipoGasto)
+                                {
+                                    if (Model != null && Model.TN_ID_Tipo_Gasto == item.TN_ID_Tipo_Gasto)
+                                    {
+                                        <option value="@item.TN_ID_Tipo_Gasto" selected>@item.TC_Nombre</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.TN_ID_Tipo_Gasto">@item.TC_Nombre</option>
+                                    }
+                                }
                             </select>
-                            <a href="#" class="fa fa-plus col-md-1"></a>
-                            @Html.ValidationMessageFor(model => model.TN_ID_Tipo_Gasto, "", new { @class = "text-danger" })
+                            <a href="#" class="fa fa-plus col-md-1 align-self-center"></a>
+                            <label id="TN_ID_Tipo_Gasto-error" class="error" for="TN_ID_Tipo_Gasto" style="display: none"></label>
                         </div>
                     </div>
 
                     <div class="form-group row justify-content-center">
-                        @Html.LabelFor(model => model.TD_Monto, "Monto:", htmlAttributes: new { @class = "control-label col-md-3" })
+                        <label class="control-label col-md-3" for="TD_Monto">Monto:</label>
                         <div class="row col-md-6">
-                            @Html.EditorFor(model => model.TD_Monto, new
+                            @if (Model == null)
                             {
-                                htmlAttributes = new
-                                {
-                                    @class = "form-control col-md-11",
-                                    required = "required",
-                                    type = "number"
-                                }
-                            })
-                            @Html.ValidationMessageFor(model => model.TD_Monto, "", new { @class = "text-danger" })
+                                <input id="TD_Monto" name="TD_Monto" class="form-control col-md-11" type="text">
+                            }
+                            else
+                            {
+                                <input id="TD_Monto" name="TD_Monto" class="form-control col-md-11" type="text" value="@Model.TD_Monto">
+                            }
+                            <label id="TD_Monto-error" class="error" for="TD_Monto" style="display: none"></label>
                         </div>
                     </div>
 
                     <div class="form-group row justify-content-center">
-                        @Html.LabelFor(model => model.TC_Compra, "Detalle", htmlAttributes: new { @class = "control-label col-md-3" })
+                        <label class="control-label col-md-3" for="TC_Compra">Detalle:</label>
                         <div class="row col-md-6">
-                            @Html.EditorFor(model => model.TC_Compra, new
+                            @if (Model == null)
                             {
-                                htmlAttributes = new
-                                {
-                                    @class = "form-control col-md-11",
-                                    required = "required",
-                                    type = "text"
-                                }
-                            })
-                            @Html.ValidationMessageFor(model => model.TC_Compra, "", new { @class = "text-danger" })
+                                <textarea id="TC_Compra" name="TC_Compra" class="form-control col-md-11" type="text"></textarea>
+                            }
+                            else
+                            {
+                                <textarea id="TD_MTC_Compraonto" name="TC_Compra" class="form-control col-md-11">@Model.TC_Compra</textarea>
+                            }
+                            <label id="TC_Compra-error" class="error" for="TC_Compra" style="display: none"></label>
                         </div>
                     </div>
 
                     <div class="form-group row justify-content-center">
-                        <input type="submit" value="Insertar" class="btn btn-primary submit-button" />
+                        @if (Model == null)
+                        {
+                            <input id="gasto-form-modal-submit" type="button" value="Insertar" class="btn btn-primary submit-button mx-2" onclick="insertarGasto();" />
+                        }
+                        else
+                        {
+                            <input id="gasto-form-modal-submit" type="button" value="Actualizar" class="btn btn-primary submit-button mx-2" onclick="actualizarGasto();" />
+                        }
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     </div>
                 </form>
             </div>
-
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-
         </div>
     </div>
 </div>
 
 <script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Scripts/jquery.mask.min.js"></script>
+
+<script>
+    aplicarValidGastoForm();
+    aplicarMaskGastoForm();
+</script>
