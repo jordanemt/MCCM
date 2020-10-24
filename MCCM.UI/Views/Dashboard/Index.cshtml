@@ -21,14 +21,6 @@
     .filaseleccionada {
         background-color: cornflowerblue;
     }
-
-    #FormCaso .form-row .col-md-10 {
-        padding-left: 20%;
-    }
-
-    #FormEvento .form-row .col-md-10 {
-        padding-left: 10%;
-    }
 </style>
 
 <div class="col-sm-12" id="dashboard-container">
@@ -37,7 +29,7 @@
 
         <div class="card border-light mb-3" style="height: 70%;">
             <div class="card-header">
-                <div>Casos</div>
+                <div id="casosTitulo">Casos</div>
                 <div><a href="#"><span><i class="fa fa-plus" data-toggle="modal" data-target="#ModalFormCaso"></i></span></a></div>
             </div>
             <div class="card-body" id="casos-body" style="overflow-y: scroll">
@@ -90,58 +82,6 @@
                     </div>
                     <div class="card-body" id="bitacora-body" style="overflow-y: scroll">
                         <div class="container">
-                            <div class="card evento" id="' + eventos.TN_ID_Caso + '">
-
-                                <div class="card-header">
-                                    <div>Evento # 1</div>
-                                    <div>
-                                        <a href="#" class="editarEvento" id="1"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
-                                        <a href="#" class="borrar borrarEvento" id="1"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>
-                                    </div>
-
-                                </div>
-                                <div class="card-body" style="padding:0px!important">
-                                    <div class="container">
-
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <h6><span class="w-100 badge badge-primary">Fecha/Hora:</span></h6>
-                                            </div>
-                                            <div class="col-md-8" id="divInformaC">
-                                                <small id="eCalendario">10/10 12:00 PM</small>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <h6><span class="w-100 badge badge-primary">Informa:</span></h6>
-                                            </div>
-                                            <div class="col-md-8" id="divInformaC">
-                                                <small id="eInforma">Juan Ramirez Suarez</small>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <h6><span class="w-100 badge badge-primary">Lugar:</span></h6>
-                                            </div>
-
-                                            <div class="col-md-8" id="divLugarC">
-                                                <small eLugar>Turrialba</small>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <h6><span class="w-100 badge badge-primary">Novedad:</span></h6>
-                                            </div>
-                                            <div class="col-md-8" id="divNovedadC">
-                                                <p id="eNovedad">Se procede a entablar dialogo con los ladrones</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
                         </div>
 
@@ -350,7 +290,6 @@
 
                                 </div>
 
-                                @*Carta EntidadVehiculo*@
 
                                 @*Carta EntidadUbicacion*@
                                 <div class="card" id="cartaEntidadUbicacion" style="display:none">
@@ -447,7 +386,7 @@
                                                 </div>
 
                                                 <div class="col-md-8" id="divLugar">
-                                                    <p>No contesta</p>
+                                                    <p>Telefono Importante</p>
                                                 </div>
                                             </div>
 
@@ -474,7 +413,7 @@
                                                     <h6><span class="w-100 badge badge-primary">Marca:</span></h6>
                                                 </div>
                                                 <div class="col-md-8" id="divInforma">
-                                                    <p>Caecoque minantia obstabatque<p />
+                                                    <p>Marca 1<p />
 
                                                 </div>
                                             </div>
@@ -484,7 +423,7 @@
                                                     <h6><span class="w-100 badge badge-primary">Tipo:</span></h6>
                                                 </div>
                                                 <div class="col-md-8" id="divInforma">
-                                                    <p>Pistola</p>
+                                                    <p>Tipo 1</p>
                                                 </div>
                                             </div>
 
@@ -494,7 +433,7 @@
                                                 </div>
 
                                                 <div class="col-md-8" id="divLugar">
-                                                    <p>9mm</p>
+                                                    <p>22</p>
                                                 </div>
                                             </div>
 
@@ -529,7 +468,7 @@
                                                     <h6><span class="w-100 badge badge-primary">Cantidad:</span></h6>
                                                 </div>
                                                 <div class="col-md-8" id="divInforma">
-                                                    <p>5000000g</p>
+                                                    <p>500000</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -614,7 +553,7 @@
                     </div>
                 </div>
 
-                <div class="card border-light mb-3 col-md-4" style="height: 100%; margin: 0 0; padding: 0 0;">
+                <div class="card border-light mb-3 col-md-5" style="height: 100%; margin: 0 0; padding: 0 0;">
                     <div class="card-header">
                         <div>Personal</div>
                         <div><a href="#"><span><i class="fa fa-plus" onclick="openInsertGrupoModal()"></i></span></a></div>
@@ -625,7 +564,7 @@
                     </div>
                 </div>
 
-                <div class="card border-light mb-3 col-md-4" style="height: 100%; margin: 0 0; padding: 0 0;">
+                <div class="card border-light mb-3 col-md-3" style="height: 100%; margin: 0 0; padding: 0 0;">
                     <div class="card-header">
                         <div>Vehículos</div>
                         <div><a href="#"><span><i class="fa fa-plus" onclick="openAddVehiculoModal()"></i></span></a></div>
@@ -639,8 +578,7 @@
             </div>
 
             @*Reporte Body*@
-            <div class="card-body pestanna-body" id="reporte-body">
-                @* Nombre caso y fechas *@
+            <div class="card-body card-body-flex" id="reporte-body">
 
                 <div class="container col-12">
                     <div class="row">
@@ -825,8 +763,8 @@
                         <div><button type="button" class="btn btn-info" style="margin:auto;" ; opacity:1">Generar Reporte</button></div>
                     </div>
                 </div>
-            </div>
 
+            </div>
         </div>
     </div>
 </div>

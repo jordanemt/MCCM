@@ -6,7 +6,7 @@
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title" id="tituloFormModal">Registrar Evento</h4>
+                <h4 class="modal-title" id="tituloEventoModal">Registrar Evento</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
@@ -14,50 +14,55 @@
             <div class="modal-body col-12">
                 <div class="row">
                     <form class="col-12" id="FormEvento">
-                        <div class="form-row">
-                            <div class="col-2">
-                                <h6><span class="badge badge-primary">Fecha/Hora: </span></h6>
-
+                        <div class="form-group row" id="divEventoID" style="display:none;">
+                            <div class="col-4">
+                                <h6><span>Evento ID: </span></h6>
                             </div>
-                            <div class="col-md-10" id="divCalendario">
-                                <input class="form-control" id="calendarioBitacora" name="calendarioBitacora" />
+                            <div class="col-md-8" id="divEventoIDI">
+                                <input class="form-control" id="TN_ID_Evento" name="TN_ID_Evento" readonly />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <h6><span>Fecha/Hora: </span></h6>
+                            </div>
+                            <div class="col-md-8" id="divCalendarioF">
+                                <input class="form-control" id="TF_Fecha" name="TF_Fecha" />
                             </div>
                         </div>
 
-                        <div class="form-row">
-                            <div class="col-2">
-                                <h6><span class="badge badge-primary">Informa</span></h6>
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <h6><span>Informa</span></h6>
                             </div>
-                            <div class="col-md-10" id="divInforma">
-                                <input class="form-control" id="Informa" name="Informa" />
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="col-2">
-                                <h6><span class="badge badge-primary">Lugar: </span></h6>
-                            </div>
-
-                            <div class="col-md-10" id="divLugar">
-                                <input class="form-control" id="Lugar" name="Lugar" />
+                            <div class="col-md-8" id="divInformaF">
+                                <input class="form-control" id="TC_Informa" name="TC_Informa" />
                             </div>
                         </div>
 
-                        <div class="form-row">
-                            <div class="col-2">
-                                <h6><span class="badge badge-primary">Novedad</span></h6>
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <h6><span>Lugar: </span></h6>
                             </div>
-                            <div class="col-md-10" id="divNovedad">
-                                <input class="form-control" id="Novedad" name="Novedad" />
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="col-md-offset-2 col-md-10">
-                                <button id="btnRegistrarEvento" class="btn btn-primary">Registrar</button>
-                                <button id="btnModificarEvento" class="btn btn-info" style="display:none">Modificar</button>
-                                <button id="btnEliminarEvento" class="btn btn-danger" style="display:none">Eliminar</button>
+
+                            <div class="col-md-8" id="divLugarF">
+                                <input class="form-control" id="TC_Lugar" name="TC_Lugar" />
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <h6><span>Novedad</span></h6>
+                            </div>
+                            <div class="col-md-8" id="divNovedadF">
+                                <textarea rows="2" class="form-control w-100" id="TC_Novedad" name="TC_Novedad"></textarea>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center" style="padding-top:2%;">
+                            <button id="btnRegistrarEvento" class="btn btn-primary">Registrar</button>
+                            <button id="btnModificarEvento" class="btn btn-info" style="display:none">Modificar</button>
+                        </div>
+
                     </form>
                 </div>
             </div>

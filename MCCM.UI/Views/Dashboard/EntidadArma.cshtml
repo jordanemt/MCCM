@@ -1,90 +1,106 @@
 ﻿@model MCCM.Entidad.TMCCM_Entidad_Arma
-<div class="modal fade bd-example-modal-lg" id="entidadArmaModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title col-11 text-center" id="exampleModalLabel">Insertar Entidad Arma</h5>
-                <button type="button" class="close col-1" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group row">
-                        <label for="serie" class="col-md-3 col-form-label">Serie</label>
-                        <input type="text" name="TD_ID_Arma" class="col-md-8 form-control" id="segundoApellidoEntidadPersona">
-                    </div>
-                    <div class="form-group row">
-                        <label for="marca" class="col-md-3 col-form-label">Marca</label>
-                        <select class=" col-md-8 form-control" name="TN_ID_Marca" id="exampleFormControlSelect1">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
-                        <a href="#" class="fa fa-plus col-md-1"></a>
-                    </div>
-                    <div class="form-group row">
-                        <label for="iconoArma" class="col-md-3 col-form-label">Icono</label>
-                        <select class=" col-md-8 form-control" name="TN_ID_Icono_Arma" id="exampleFormControlSelect1">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
-                        <a href="#" class="fa fa-plus col-md-1"></a>
-                    </div>
-                    <div class="form-group row">
-                        <label for="tipoArma" class="col-md-3 col-form-label">Tipo</label>
-                        <select class=" col-md-8 form-control"  name="TN_ID_Tipo_Arma" id="exampleFormControlSelect1">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
-                        <a href="#" class="fa fa-plus col-md-1"></a>
-                    </div>
-                    <div class="form-group row">
-                        <label for="modelo" class="col-md-3 col-form-label">Modelo</label>
-                        <input type="text" class="col-md-8 form-control" name="TC_Modelo_Arma" id="edadEntidadPersona">
-                    </div>
-                    <div class="form-group row">
-                        <label for="calibre" class="col-md-3 col-form-label">Calibre</label>
-                        <input type="text" class="col-md-8 form-control" name="TC_Calibre_Arma" id="edadEntidadPersona">
-                    </div>
-                    <div class="form-group row">
-                        <label for="comentario" class="col-md-3 col-form-label">Comentario</label>
-                        <textarea class="col-md-8 form-control" name="TC_Comentario" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    </div>
-                    <div class="form-group row">
-                        <label for="alias" class="col-md-3 col-form-label">Fecha Creacion</label>
-                        <input type="text" class="col-md-8 form-control" name="TF_Fecha_Creacion" id="edadEntidadPersona">
-                    </div>
-                    <div class="form-group row">
-                        <label for="creadoPor" class="col-md-3 col-form-label">Creado por</label>
-                        <input type="text" class="col-md-8 form-control" name="TC_Creado_Por" id="edadEntidadPersona">
-                    </div>
-                    <div class="form-group row">
-                        <label for="creadoPor" class="col-md-3 col-form-label">Modificado por</label>
-                        <input type="text" class="col-md-8 form-control" name="TF_Modificado_Por" id="edadEntidadPersona">
-                    </div>
-                    <div class="form-group row">
-                        <label for="verificado" class="col-md-3 col-form-label">Verificado</label>
-                        <div class="col-md-8  form-check">
-                            <input class="form-check-input" type="checkbox" name="TB_Verificado" id="gridCheck1">
+    <div class="modal fade bd-example-modal-lg" id="entidadArmaModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title col-11 text-center" id="tituloEntidadArmaInsertar">Insertar Entidad Arma</h5>
+                    <h5 class="modal-title col-11 text-center" id="tituloEntidadArma" style="display:none">Entidad Arma</h5>
+                    <button type="button" class="close col-1" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="FormEntidadArma">
+                        <div class="form-group row" style="display:none">
+                            <label for="TD_ID_Arma" class="col-md-3 col-form-label">ID Arma</label>
+                            <input type="text" name="TD_ID_Arma" class="col-md-8 form-control" id="TD_ID_Arma">
                         </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer d-flex justify-content-center">
-                <button type="button" class="btn btn-primary">Insertar</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <div class="form-group row">
+                            <label for="serie" class="col-md-3 col-form-label">Serie</label>
+                            <input type="text" name="TC_Serie" class="col-md-8 form-control" id="TC_Serie">
+                        </div>
+                        <div class="form-group row">
+                            <label for="marca" class="col-md-3 col-form-label">Marca</label>
+                            <select class=" col-md-8 form-control" name="TN_ID_Marca" id="TN_ID_Marca">
+                                <option id="1">Marca 1</option>
+                                <option id="2">Marca 2</option>
+                                <option id="3">Marca 3</option>
+                                <option id="4">Marca 4</option>
+                                <option id="5">Marca 5</option>
+                            </select>
+                            <a href="#" class="fa fa-plus col-md-1"></a>
+                        </div>
+                        <div class="form-group row">
+                            <label for="iconoArma" class="col-md-3 col-form-label">Icono</label>
+                            <select class=" col-md-8 form-control" name="TN_ID_Icono_Arma" id="TN_ID_Icono_Arma">
+                                <option>Icono 1</option>
+                                <option>Icono 2</option>
+                                <option>Icono 3</option>
+                                <option>Icono 4</option>
+                                <option>Icono 5</option>
+                            </select>
+                            <a href="#" class="fa fa-plus col-md-1"></a>
+                        </div>
+                        <div class="form-group row">
+                            <label for="tipoArma" class="col-md-3 col-form-label">Tipo</label>
+                            <select class=" col-md-8 form-control" name="TN_ID_Tipo_Arma" id="TN_ID_Tipo_Arma">
+                                <option id="1">Tipo 1</option>
+                                <option id="2">Tipo 2</option>
+                                <option id="3">Tipo 3</option>
+                                <option id="4">Tipo 4</option>
+                                <option id="5">Tipo 5</option>
+                            </select>
+                            <a href="#" class="fa fa-plus col-md-1"></a>
+                        </div>
+                        <div class="form-group row">
+                            <label for="modelo" class="col-md-3 col-form-label">Modelo</label>
+                            <input type="text" class="col-md-8 form-control" name="TC_Modelo_Arma" id="TC_Modelo_Arma">
+                        </div>
+                        <div class="form-group row">
+                            <label for="calibre" class="col-md-3 col-form-label">Calibre</label>
+                            <input type="text" class="col-md-8 form-control" name="TC_Calibre_Arma" id="TC_Calibre_Arma">
+                        </div>
+                        <div class="form-group row">
+                            <label for="comentario" class="col-md-3 col-form-label">Comentario</label>
+                            <textarea class="col-md-8 form-control" name="TC_Comentario" id="TC_Comentario_Arma" rows="3"></textarea>
+                        </div>
+                        <div class="form-group row" id="divFMA" style="display:none">
+                            <label for="TF_Fecha_Modificacion" class="col-md-3 col-form-label" >Fecha Modificación</label>
+                            <input type="text" class="col-md-8 form-control" name="TF_Fecha_Modificacion" readonly id="TF_Fecha_Modificacion_Arma">
+                        </div>
+                        <div class="form-group row" id="divFCA" style="display:none">
+                            <label for="TF_Fecha_Creacion" class="col-md-3 col-form-label" >Fecha Creacion</label>
+                            <input type="text" class="col-md-8 form-control" name="TF_Fecha_Creacion" readonly id="TF_Fecha_Creacion_Arma">
+                        </div>
+                        <div class="form-group row" >
+                            <label for="creadoPor" class="col-md-3 col-form-label">Creado por</label>
+                            <input type="text" class="col-md-8 form-control" name="TC_Creado_Por" id="TC_Creado_Por_Arma">
+                        </div>
+                        <div class="form-group row" style="display:none" id="divMPA">
+                            <label for="modificadoPor" class="col-md-3 col-form-label">Modificado por</label>
+                            <input type="text" class="col-md-8 form-control" name="TC_Modificado_Por" id="TC_Modificado_Por_Arma">
+                        </div>
+                        <div class="form-group row">
+                            <label for="verificado" class="col-md-3 col-form-label">Verificado</label>
+                            <div class="col-md-8  form-check">
+                                <input class="form-check-input" type="checkbox" name="TB_Verificado" id="TB_Verificado_Arma">
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <button id="btnAgregarEntidadArma" type="submit" class="btn btn-primary">Insertar</button>
+                            <button id="btnCancelarEntidadArma" type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                            <button id="btnModificarEntidadArma" class="btn btn-info" style="display:none">Modificar</button>
+                            <button id="btnEliminarEntidadArma" class="btn btn-danger" style="display:none">Eliminar</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
 
+
+                </div>
             </div>
         </div>
     </div>
-</div>
 
+
+<script src="~/Scripts/js/EntidadArma.js"></script>
