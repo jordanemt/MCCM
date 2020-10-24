@@ -10,16 +10,11 @@
 namespace MCCM.Entidad
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class TMCCM_Grupo_Usuario
+    public partial class sp_Obtener_Catalogo_Usuario_Result
     {
         public int TN_ID_Usuario { get; set; }
-        public int TN_ID_Grupo { get; set; }
-        public Nullable<bool> TB_Eliminado { get; set; }
-        public Nullable<bool> TB_Encargado { get; set; }
-    
-        public virtual TMCCM_Grupo TMCCM_Grupo { get; set; }
-        public virtual TMCCM_Usuario TMCCM_Usuario { get; set; }
+        public string TC_Identificacion { get; set; }
+        public string TC_Nombre_Completo { get; set; }
     }
 }

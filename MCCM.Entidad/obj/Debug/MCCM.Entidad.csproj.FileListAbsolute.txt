@@ -32,3 +32,14 @@ C:\Users\Maikel\Desktop\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.csproj.CoreComp
 C:\Users\Maikel\Desktop\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.csproj.CopyComplete
 C:\Users\Maikel\Desktop\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.dll
 C:\Users\Maikel\Desktop\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.pdb
+C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.Entidad\bin\Debug\MCCM.Entidad.dll.config
+C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.Entidad\bin\Debug\MCCM.Entidad.dll
+C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.Entidad\bin\Debug\MCCM.Entidad.pdb
+C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.Entidad\bin\Debug\EntityFramework.dll
+C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.Entidad\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.Entidad\bin\Debug\EntityFramework.xml
+C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.Entidad\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.csproj.CoreCompileInputs.cache
+C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.csproj.CopyComplete
+C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.dll
+C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.pdb
