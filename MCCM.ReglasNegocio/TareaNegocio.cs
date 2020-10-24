@@ -28,7 +28,7 @@ namespace MCCM.ReglasNegocio
             tareaDatos.EliminarTarea(ID);
             return "S";
         }
-        public List<TareaCasoResult> ListarTarea(int idCaso)
+        public List<sp_obtenerTareaPorCaso_Result> ListarTarea(int idCaso)
         {
             return tareaDatos.ListarTareas(idCaso);
         }
@@ -38,7 +38,7 @@ namespace MCCM.ReglasNegocio
             return tareaDatos.ObtenerTareaPorID(ID);
         }
 
-        public List<CatalogoUsuarioResult> ObtenerCatalogoUsuarios() {
+        public List<sp_Obtener_Catalogo_Usuario_Result> ObtenerCatalogoUsuarios() {
             return tareaDatos.ObtenerCatalogoUsuarios();
         }
 

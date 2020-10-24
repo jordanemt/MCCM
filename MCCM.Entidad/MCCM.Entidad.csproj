@@ -51,9 +51,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CatalogoUsuarioResult.cs">
-      <DependentUpon>MCCMModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="DTO\TMCCM_CasoDTO.cs" />
     <Compile Include="DTO\TMCCM_C_TipoDatosDTO.cs" />
     <Compile Include="DTO\TMCCM_EntidadArmaDTO.cs" />
@@ -84,7 +81,10 @@
     <Compile Include="sp_obtenerEventosPorCaso_Result.cs">
       <DependentUpon>MCCMModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="TareaCasoResult.cs">
+    <Compile Include="sp_obtenerTareaPorCaso_Result.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Obtener_Catalogo_Usuario_Result.cs">
       <DependentUpon>MCCMModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TMCCM_Caso.cs">
@@ -206,32 +206,30 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="MCCMModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>MCCMModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
     <None Include="MCCMModel.edmx.diagram">
       <DependentUpon>MCCMModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="MCCMModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MCCMModel.Context.cs</LastGenOutput>
       <DependentUpon>MCCMModel.edmx</DependentUpon>
+      <LastGenOutput>MCCMModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="MCCMModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>MCCMModel.edmx</DependentUpon>
       <LastGenOutput>MCCMModel.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
