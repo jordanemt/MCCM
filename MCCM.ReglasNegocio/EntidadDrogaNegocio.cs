@@ -14,6 +14,10 @@ namespace MCCM.ReglasNegocio
         EntidadDrogaDatos entidadDrogaDatos = new EntidadDrogaDatos();
         public void InsertarEntidadDroga(TMCCM_Entidad_Droga entidadDroga)
         {
+            if (entidadDroga.TB_Verificado == null)
+            {
+                entidadDroga.TB_Verificado = false;
+            }
             entidadDrogaDatos.InsertarEntidadDroga(entidadDroga);
         }
         public void ActualizarEntidadDroga(TMCCM_Entidad_Droga entidadDroga)
@@ -26,9 +30,9 @@ namespace MCCM.ReglasNegocio
             entidadDrogaDatos.EliminarEntidadDroga(ID);
             return "S";
         }
-        public List<TMCCM_EntidadDrogaDTO> ListarEntidadDrogas()
+        public List<TMCCM_EntidadDrogaDTO> ListarEntidadDrogas(int caso)
         {
-            return entidadDrogaDatos.ListarEntidadDroga();
+            return entidadDrogaDatos.ListarEntidadDroga(caso);
         }
 
         public TMCCM_EntidadDrogaDTO ObtenerEntidadDrogaPorID(int ID)

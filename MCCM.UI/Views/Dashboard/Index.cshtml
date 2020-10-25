@@ -11,7 +11,7 @@
 <script src="~/Scripts/js/Dashboard.js"></script>
 <script src="~/Scripts/js/Gasto.js"></script>
 <script src="~/Scripts/js/Grupo.js"></script>
-
+<script src="~/Scripts/js/Vehiculo.js"></script>
 
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
@@ -21,14 +21,6 @@
     .filaseleccionada {
         background-color: cornflowerblue;
     }
-
-    #FormCaso .form-row .col-md-10 {
-        padding-left: 20%;
-    }
-
-    #FormEvento .form-row .col-md-10 {
-        padding-left: 10%;
-    }
 </style>
 
 <div class="col-sm-12" id="dashboard-container">
@@ -37,7 +29,7 @@
 
         <div class="card border-light mb-3" style="height: 70%;">
             <div class="card-header">
-                <div>Casos</div>
+                <div id="casosTitulo">Casos</div>
                 <div><a href="#"><span><i class="fa fa-plus" data-toggle="modal" data-target="#ModalFormCaso"></i></span></a></div>
             </div>
             <div class="card-body" id="casos-body" style="overflow-y: scroll">
@@ -82,6 +74,7 @@
 
             @*Pestanna #1 Body*@
             <div class="card-body card-body-flex" id="pestanna-1-body">
+                <script>$('#pestanna-1-body').hide();</script>
 
                 <div class="card border-light mb-3 col-md-4" style=" margin: 0 0; padding: 0 0;">
                     <div class="card-header">
@@ -90,58 +83,6 @@
                     </div>
                     <div class="card-body" id="bitacora-body" style="overflow-y: scroll">
                         <div class="container">
-                            <div class="card evento" id="' + eventos.TN_ID_Caso + '">
-
-                                <div class="card-header">
-                                    <div>Evento # 1</div>
-                                    <div>
-                                        <a href="#" class="editarEvento" id="1"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
-                                        <a href="#" class="borrar borrarEvento" id="1"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>
-                                    </div>
-
-                                </div>
-                                <div class="card-body" style="padding:0px!important">
-                                    <div class="container">
-
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <h6><span class="w-100 badge badge-primary">Fecha/Hora:</span></h6>
-                                            </div>
-                                            <div class="col-md-8" id="divInformaC">
-                                                <small id="eCalendario">10/10 12:00 PM</small>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <h6><span class="w-100 badge badge-primary">Informa:</span></h6>
-                                            </div>
-                                            <div class="col-md-8" id="divInformaC">
-                                                <small id="eInforma">Juan Ramirez Suarez</small>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <h6><span class="w-100 badge badge-primary">Lugar:</span></h6>
-                                            </div>
-
-                                            <div class="col-md-8" id="divLugarC">
-                                                <small eLugar>Turrialba</small>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <h6><span class="w-100 badge badge-primary">Novedad:</span></h6>
-                                            </div>
-                                            <div class="col-md-8" id="divNovedadC">
-                                                <p id="eNovedad">Se procede a entablar dialogo con los ladrones</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
                         </div>
 
@@ -171,370 +112,6 @@
                         <div class="card-body" id="entidades-body" style="overflow-y: scroll">
                             <div class="container">
 
-                                @*Carta EntidadPersona*@
-
-                                <div class="card" id="cartaEntidadPersona">
-
-                                    <div class="card-header">
-                                        <div>Entidad Persona #1</div>
-                                        <div>
-                                            <a href="#" class="editarEntidadPersona" id="1"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
-                                            <a href="#" class="borrar borrarEntidadPersona" id="1"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>
-                                        </div>
-
-                                    </div>
-                                    <div class="card-body" style="padding:0px!important">
-                                        <div class="container">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <img src="https://wikipsicologia.com/wp-content/uploads/2020/04/fortalezas-y-deb-1.jpg" class="img-fluid">
-                                                </div>
-
-                                                <div class="col-md-8">
-                                                    <div class="row">
-                                                        <div class="col-4">
-                                                            <h6><span class="w-100 badge badge-primary">Nombre</span></h6>
-                                                        </div>
-                                                        <div class="col-md-8" id="divInforma">
-                                                            <small>Juanito</small>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-4">
-                                                            <h6><span class="w-100 badge badge-primary">Identificación:</span></h6>
-                                                        </div>
-                                                        <div class="col-md-8" id="divInforma">
-                                                            <small>1-2345-6789</small>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-4">
-                                                            <h6><span class="w-100 badge badge-primary">Alias:</span></h6>
-                                                        </div>
-
-                                                        <div class="col-md-8" id="divLugar">
-                                                            <small>Foret</small>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-4">
-                                                            <h6><span class="w-100 badge badge-primary">Nacionalidad:</span></h6>
-                                                        </div>
-                                                        <div class="col-md-8" id="divNovedad">
-                                                            <p>Costa Rica</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-4">
-                                                            <h6><span class="w-100 badge badge-primary">Genero:</span></h6>
-                                                        </div>
-                                                        <div class="col-md-8" id="divNovedad">
-                                                            <p>Indefinido</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                @*Carta EntidadPersonaJuridica*@
-                                <div class="card" id="cartaEntidadPersonaJuridica" style="display:none">
-
-                                    <div class="card-header">
-                                        <div>Entidad Cedula Juridica #1</div>
-                                        <div>
-                                            <a href="#" class="editarEntidadPersonaJuridica" id="1"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
-                                            <a href="#" class="borrar borrarEntidadPersona" id="1"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>
-                                        </div>
-
-                                    </div>
-                                    <div class="card-body" style="padding:0px!important">
-                                        <div class="container">
-
-                                            <div class="row">
-                                                <div class="col-4">
-                                                    <h6><span class="w-100 badge badge-primary">Cedula Juridica:</span></h6>
-                                                </div>
-                                                <div class="col-md-8" id="divInforma">
-                                                    <p>0-0000-0000<p />
-
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-4">
-                                                    <h6><span class="w-100 badge badge-primary">Nombre Organización:</span></h6>
-                                                </div>
-                                                <div class="col-md-8" id="divInforma">
-                                                    <p>Tegit Habntem mundum</p>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-4">
-                                                    <h6><span class="w-100 badge badge-primary">Tipo Organización:</span></h6>
-                                                </div>
-
-                                                <div class="col-md-8" id="divLugar">
-                                                    <p>Sociedad Anónima</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                @*Carta EntidadVehiculo*@
-
-                                <div class="card" id="cartaEntidadVehiculo" style="display:none">
-
-                                    <div class="card-header">
-                                        <div>Entidad Vehiculo #1</div>
-                                        <div>
-                                            <a href="#" class="editarEntidadVehiculo" id="1"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
-                                            <a href="#" class="borrar borrarTarea" id="1"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>
-                                        </div>
-
-                                    </div>
-                                    <div class="card-body" style="padding:0px!important">
-                                        <div class="container">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <img src="https://cnet3.cbsistatic.com/img/nMoE20f4PXRsjkiuTZIL9dbM6sI=/940x0/2019/07/03/c83d8791-3cfe-4b2b-b6d8-219646c5333d/mazda-cx-5-2019-foto.jpg" class="img-fluid">
-                                                </div>
-
-                                                <div class="col-md-8">
-                                                    <div class="row">
-                                                        <div class="col-4">
-                                                            <h6><span class="w-100 badge badge-primary">Placa</span></h6>
-                                                        </div>
-                                                        <div class="col-md-8" id="divInforma">
-                                                            <small>000000</small>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-4">
-                                                            <h6><span class="w-100 badge badge-primary">Marca:</span></h6>
-                                                        </div>
-                                                        <div class="col-md-8" id="divInforma">
-                                                            <p>Foredil</p>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-4">
-                                                            <h6><span class="w-100 badge badge-primary">Estilo:</span></h6>
-                                                        </div>
-
-                                                        <div class="col-md-8" id="divLugar">
-                                                            <small>Fossae</small>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                             
-
-                                @*Carta EntidadUbicacion*@
-                                <div class="card" id="cartaEntidadUbicacion" style="display:none">
-
-                                    <div class="card-header">
-                                        <div>Entidad Ubicacion #1</div>
-                                        <div>
-                                            <a href="#" class="editarEntidadUbicacion" id="1"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
-                                            <a href="#" class="borrar borrarTarea" id="1"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>
-                                        </div>
-
-                                    </div>
-                                    <div class="card-body" style="padding:0px!important">
-                                        <div class="container">
-
-                                            <div class="row">
-                                                <div class="col-4">
-                                                    <h6><span class="w-100 badge badge-primary">Provincia:</span></h6>
-                                                </div>
-                                                <div class="col-md-8" id="divInforma">
-                                                    <p>Cartago<p />
-
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-4">
-                                                    <h6><span class="w-100 badge badge-primary">Cantón:</span></h6>
-                                                </div>
-                                                <div class="col-md-8" id="divInforma">
-                                                    <p>No indica</p>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-4">
-                                                    <h6><span class="w-100 badge badge-primary">Distrito:</span></h6>
-                                                </div>
-
-                                                <div class="col-md-8" id="divLugar">
-                                                    <p>No indica</p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-4">
-                                                    <h6><span class="w-100 badge badge-primary">Señas:</span></h6>
-                                                </div>
-
-                                                <div class="col-md-8" id="divLugar">
-                                                    <p>Por la ucr</p>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                                @*Carta EntidadTelefono*@
-                                <div class="card" id="cartaEntidadTelefono" style="display:none">
-
-                                    <div class="card-header">
-                                        <div>Entidad Telefono #1</div>
-                                        <div>
-                                            <a href="#" class="editarEntidadTelefono" id="1"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
-                                            <a href="#" class="borrar borrarEntidadTelefono" id="1"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>
-                                        </div>
-
-                                    </div>
-                                    <div class="card-body" style="padding:0px!important">
-                                        <div class="container">
-
-                                            <div class="row">
-                                                <div class="col-4">
-                                                    <h6><span class="w-100 badge badge-primary">Número:</span></h6>
-                                                </div>
-                                                <div class="col-md-8" id="divInforma">
-                                                    <p>0000-00000<p />
-
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-4">
-                                                    <h6><span class="w-100 badge badge-primary">Empresa:</span></h6>
-                                                </div>
-                                                <div class="col-md-8" id="divInforma">
-                                                    <p>Kolbi ICE</p>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-4">
-                                                    <h6><span class="w-100 badge badge-primary">Comentario:</span></h6>
-                                                </div>
-
-                                                <div class="col-md-8" id="divLugar">
-                                                    <p>Telefono Importante</p>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                                @*Carta EntidadArma*@
-                                <div class="card" id="cartaEntidadArma" style="display:none">
-
-                                    <div class="card-header">
-                                        <div>Entidad Arma #1</div>
-                                        <div>
-                                            <a href="#" class="editarEntidadArma" id="1"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
-                                            <a href="#" class="borrar borrarEntidadArma" id="1"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>
-                                        </div>
-
-                                    </div>
-                                    <div class="card-body" style="padding:0px!important">
-                                        <div class="container">
-
-                                            <div class="row">
-                                                <div class="col-4">
-                                                    <h6><span class="w-100 badge badge-primary">Marca:</span></h6>
-                                                </div>
-                                                <div class="col-md-8" id="divInforma">
-                                                    <p>Marca 1<p />
-
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-4">
-                                                    <h6><span class="w-100 badge badge-primary">Tipo:</span></h6>
-                                                </div>
-                                                <div class="col-md-8" id="divInforma">
-                                                    <p>Tipo 1</p>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-4">
-                                                    <h6><span class="w-100 badge badge-primary">Calibre:</span></h6>
-                                                </div>
-
-                                                <div class="col-md-8" id="divLugar">
-                                                    <p>22</p>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                                @*Carta EntidadDroga*@
-                                <div class="card" id="cartaEntidadDroga" style="display:none">
-
-                                    <div class="card-header">
-                                        <div>Droga #1</div>
-                                        <div>
-                                            <a href="#" class="editarEntidadDroga" id="1"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
-                                            <a href="#" class="borrar borrarEntidadDroga" id="1"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>
-                                        </div>
-
-                                    </div>
-                                    <div class="card-body" style="padding:0px!important">
-                                        <div class="container">
-
-                                            <div class="row">
-                                                <div class="col-4">
-                                                    <h6><span class="w-100 badge badge-primary">Nombre:</span></h6>
-                                                </div>
-                                                <div class="col-8">
-                                                    <span>Marihuana</span>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-4">
-                                                    <h6><span class="w-100 badge badge-primary">Cantidad:</span></h6>
-                                                </div>
-                                                <div class="col-md-8" id="divInforma">
-                                                    <p>500000</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
 
                         </div>
@@ -547,54 +124,10 @@
                         <div><a href="#"><span><i class="fa fa-plus" data-toggle="modal" data-target="#ModalFormTarea"></i></span></a></div>
                     </div>
                     <div class="card-body" id="tareas-body" style="overflow-y: scroll">
-                        <div class="container">
-                            <div class="card tarea">
-                                <div class="card-header">
-                                    <div>Tarea # 1</div>
-                                    <div>
-                                        <a href="#" class="editarTarea" id="1"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
-                                        <a href="#" class="borrar borrarTarea" id="1"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>
-                                    </div>
-                                </div>
-                                <div class="card-body" style="padding:0px!important">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <h6><span class="w-100 badge badge-primary">Fecha/Hora</span></h6>
-                                            </div>
-                                            <div class="col-md-8" id="dC">
-                                                <small id="tCalendario">2020/10/09 5:00PM</small>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <h6><span class="w-100 badge badge-primary">Asignado:</span></h6>
-                                            </div>
-                                            <div class="col-md-8" id="divAsignadoT">
-                                                <small id="tAsignado">Cod:666888 Maikel Matamoros Zúñiga</small>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <h6><span class="w-100 badge badge-primary">Lugar:</span></h6>
-                                            </div>
-                                            <div class="col-md-8" id="divLugarC">
-                                                <small tLugar>Turrialba</small>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <h6><span class="w-100 badge badge-primary">Diligencia:</span></h6>
-                                            </div>
-                                            <div class="col-md-8" id="divDiligencia">
-                                                <p id="eDiligencia">Comprar Pan</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                       
+                           
 
-                        </div>
+                        
                     </div>
                 </div>
 
@@ -602,37 +135,40 @@
 
             @*Pestanna #2 Body*@
             <div class="card-body card-body-flex" id="pestanna-2-body">
+                @*<script>$('#pestanna-2-body').hide()</script>*@
 
-                <div class="card border-light mb-3 col-md-4" style="height: 100%; margin: 0 0; padding: 0 0;">
+                <div class="card border-light mb-3 col-md-3" style="height: 100%; margin: 0 0; padding: 0 0;">
                     <div class="card-header">
                         <div>Gastos Operativos</div>
-                        <div><a href="#"><span><i class="fa fa-plus" onclick="openInsertGastoModal()"></i></span></a></div>
+                        <div><a href="#"><span><i class="fa fa-plus" onclick="abrirInsertarGastoFormModal()"></i></span></a></div>
                     </div>
                     <div class="card-body" style="overflow-y: scroll">
-                        @* Solo para previsualizar *@
-                        @Html.Partial("~/Views/Gasto/_List.cshtml")
+                        <div id="gastos-contenedor" class="d-flex flex-column-reverse justify-content-center">
+
+                        </div>
                     </div>
                 </div>
 
-                <div class="card border-light mb-3 col-md-5" style="height: 100%; margin: 0 0; padding: 0 0;">
+                <div class="card border-light mb-3 col-md-6" style="height: 100%; margin: 0 0; padding: 0 0;">
                     <div class="card-header">
                         <div>Personal</div>
-                        <div><a href="#"><span><i class="fa fa-plus" onclick="openInsertGrupoModal()"></i></span></a></div>
+                        <div><a href="#"><span><i class="fa fa-plus" onclick="abrirInsertarGrupoFormModal()"></i></span></a></div>
                     </div>
                     <div class="card-body" id="personal-body" style="overflow-y: scroll">
-                        @* Solo para previsualizar *@
-                        @Html.Partial("~/Views/Grupo/_List.cshtml")
+                        <div id="grupo-contenedor" class="d-flex flex-column-reverse">
+
+                        </div>
                     </div>
                 </div>
 
                 <div class="card border-light mb-3 col-md-3" style="height: 100%; margin: 0 0; padding: 0 0;">
                     <div class="card-header">
                         <div>Vehículos</div>
-                        <div><a href="#"><span><i class="fa fa-plus" onclick="openAddVehiculoModal()"></i></span></a></div>
+                        <div><a href="#"><span><i class="fa fa-plus" onclick="abrirInsertarVehiculoFormModal()"></i></span></a></div>
                     </div>
                     <div class="card-body" id="vehiculos-body" style="overflow-y: scroll">
                         @* Solo para previsualizar *@
-                        @Html.Partial("~/Views/Grupo/_ListVehiculos.cshtml")
+                        @Html.Partial("~/Views/Vehiculo/_Vehiculo.cshtml")
                     </div>
                 </div>
 
@@ -640,6 +176,7 @@
 
             @*Reporte Body*@
             <div class="card-body card-body-flex" id="reporte-body">
+                <script>$('#reporte-body').hide()</script>
 
                 <div class="container col-12">
                     <div class="row">
@@ -842,68 +379,26 @@ function seleccionado(seleccion) {
         document.getElementById('custId').value = seleccion;
     }
     if (seleccion == 1) {
-        $('#cartaEntidadPersona').show();
-        $('#cartaEntidadPersonaJuridica').hide();
-        $('#cartaEntidadVehiculo').hide();
-        $('#cartaEntidadUbicacion').hide();
-        $('#cartaEntidadTelefono').hide();
-        $('#cartaEntidadArma').hide();
-        $('#cartaEntidadDroga').hide();
-    }
+        $("#entidades-body").empty();
+    } 
     if (seleccion == 2) {
-         $('#cartaEntidadPersona').hide();
-        $('#cartaEntidadPersonaJuridica').show();
-        $('#cartaEntidadVehiculo').hide();
-        $('#cartaEntidadUbicacion').hide();
-        $('#cartaEntidadTelefono').hide();
-        $('#cartaEntidadArma').hide();
-        $('#cartaEntidadDroga').hide();
+        $("#entidades-body").empty();
     }
     if (seleccion == 3) {
-         $('#cartaEntidadPersona').hide();
-        $('#cartaEntidadPersonaJuridica').hide();
-        $('#cartaEntidadVehiculo').show();
-        $('#cartaEntidadUbicacion').hide();
-        $('#cartaEntidadTelefono').hide();
-        $('#cartaEntidadArma').hide();
-        $('#cartaEntidadDroga').hide();
+        $("#entidades-body").empty();
     }
     if (seleccion == 4) {
-         $('#cartaEntidadPersona').hide();
-        $('#cartaEntidadPersonaJuridica').hide();
-        $('#cartaEntidadVehiculo').hide();
-        $('#cartaEntidadUbicacion').show();
-        $('#cartaEntidadTelefono').hide();
-        $('#cartaEntidadArma').hide();
-        $('#cartaEntidadDroga').hide();
+    $("#entidades-body").empty();
     }
     if (seleccion == 5) {
-         $('#cartaEntidadPersona').hide();
-        $('#cartaEntidadPersonaJuridica').hide();
-        $('#cartaEntidadVehiculo').hide();
-        $('#cartaEntidadUbicacion').hide();
-        $('#cartaEntidadTelefono').show();
-        $('#cartaEntidadArma').hide();
-        $('#cartaEntidadDroga').hide();
+     $("#entidades-body").empty();
     }
 
     if (seleccion == 6) {
-         $('#cartaEntidadPersona').hide();
-        $('#cartaEntidadPersonaJuridica').hide();
-        $('#cartaEntidadVehiculo').hide();
-        $('#cartaEntidadUbicacion').hide();
-        $('#cartaEntidadTelefono').hide();
-        $('#cartaEntidadArma').show();
-        $('#cartaEntidadDroga').hide();
+      $("#entidades-body").empty();  
     }
     if (seleccion == 7) {
-         $('#cartaEntidadPersona').hide();
-        $('#cartaEntidadPersonaJuridica').hide();
-        $('#cartaEntidadVehiculo').hide();
-        $('#cartaEntidadUbicacion').hide();
-        $('#cartaEntidadTelefono').hide();
-        $('#cartaEntidadArma').hide();
-        $('#cartaEntidadDroga').show();
+        CargarEntidadDrogas();
     }
 
 }
@@ -947,15 +442,14 @@ function seleccionEntidad() {
 @Html.Partial("EntidadUbicacion")
 @Html.Partial("EntidadTelefono")
 @Html.Partial("EntidadArma")
-@Html.Partial("EntidadDroga")
+@Html.Partial("~/Views/Entidad/_EntidadDroga.cshtml")
 @Html.Partial("EntidadPersonaJuridica")
 @Html.Partial("~/Views/Caso/_ModalCasoInsert.cshtml")
 @Html.Partial("~/Views/Bitacora/_ModalEventoForm.cshtml")
 @Html.Partial("~/Views/Tarea/_ModalFormTarea.cshtml")
+@Html.Partial("~/Views/Vehiculo/_FormModal.cshtml")
+
 @Html.Partial("_ModalMensajeConfirmacion")
-@Html.Partial("~/Views/Gasto/_FormModal.cshtml")
-@Html.Partial("~/Views/Grupo/_FormModal.cshtml")
-@Html.Partial("~/Views/Grupo/_FormAddVehiculoModal.cshtml")
 
 <script>
     $('select').selectpicker();

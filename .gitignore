@@ -1,19 +1,17 @@
-
 .vs/
+
 MCCM.AccesoDatos/obj/
 
 MCCM.Entidad/obj/
 
-MCCM.UI/bin/
+MCCM.ReglasNegocio/obj/
 
 MCCM.UI/obj/
 
-MCCM.ReglasNegocio/obj/
+MCCM.AccesoDatos/bin/
 
-MCCM.AccesoDatos/MCCM.AccesoDatos.csproj.user
+MCCM.Entidad/bin/
 
-MCCM.Entidad/MCCM.Entidad.csproj.user
+MCCM.ReglasNegocio/bin/
 
-MCCM.ReglasNegocio/MCCM.ReglasNegocio.csproj.user
-
-MCCM.UI/MCCM.UI.csproj.user
+MCCM.UI/bin/

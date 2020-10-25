@@ -65,13 +65,13 @@ namespace MCCM.AccesoDatos
             }
         }
 
-        public List<TMCCM_EntidadUbicacionDTO> ListarEntidadUbicacion()
+        public List<TMCCM_EntidadUbicacionDTO> ListarEntidadUbicacion(int caso)
         {
             List<TMCCM_EntidadUbicacionDTO> entidadUbicacionDTO = null;
 
             using (var context = new MCCMEntities())
             {
-                entidadUbicacionDTO = context.TMCCM_Entidad_Ubicacion.Where(c => c.TB_Eliminado == true)
+                entidadUbicacionDTO = context.TMCCM_Entidad_Ubicacion.Where(c => c.TB_Eliminado == false && c.TN_ID_Caso == caso)
                   .Select(ubicacionItem => new TMCCM_EntidadUbicacionDTO()
                   {
                    TN_ID_Ubicacion = ubicacionItem.TN_ID_Ubicacion,

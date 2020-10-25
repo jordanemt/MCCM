@@ -52,6 +52,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTO\TMCCM_CasoDTO.cs" />
+    <Compile Include="DTO\TMCCM_C_ArmaMarcaDTO.cs" />
+    <Compile Include="DTO\TMCCM_C_PersonaGeneroDTO.cs" />
+    <Compile Include="DTO\TMCCM_C_PersonaNacionalidadDTO.cs" />
+    <Compile Include="DTO\TMCCM_C_PersonaSexoDTO.cs" />
+    <Compile Include="DTO\TMCCM_C_PersonaTipoIdentificacionDTO.cs" />
+    <Compile Include="DTO\TMCCM_C_TipoArmaDTO.cs" />
+    <Compile Include="DTO\TMCCM_C_PersonaJuridicaTipoOrganizaciónDTO.cs" />
+    <Compile Include="DTO\TMCCM_C_TipoDrogaDTO.cs" />
+    <Compile Include="DTO\TMCCM_C_TipoUbicacionDTO.cs" />
+    <Compile Include="DTO\TMCCM_C_UbicacionCantonDTO.cs" />
+    <Compile Include="DTO\TMCCM_C_UbicacionProvinciaDTO.cs" />
+    <Compile Include="DTO\TMCCM_C_VehiculoClaseDTO.cs" />
+    <Compile Include="DTO\TMCCM_C_VehiculoColorDTO.cs" />
+    <Compile Include="DTO\TMCCM_C_VehiculoMarcaDTO.cs" />
     <Compile Include="DTO\TMCCM_EntidadArmaDTO.cs" />
     <Compile Include="DTO\TMCCM_EntidadDrogaDTO.cs" />
     <Compile Include="DTO\TMCCM_EntidadPersonaDTO.cs" />
@@ -61,6 +75,7 @@
     <Compile Include="DTO\TMCCM_EntidadTelefonoDTO.cs" />
     <Compile Include="DTO\TMCCM_EventoDTO.cs" />
     <Compile Include="DTO\TMCCM_TareaDTO.cs" />
+    <Compile Include="DTO\TMCCM_C_UbicacionDistritoDTO.cs" />
     <Compile Include="MCCMModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -77,6 +92,15 @@
       <DependentUpon>MCCMModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sp_obtenerEventosPorCaso_Result.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_obtenerTareaPorCaso_Result.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Obtener_Catalogo_Usuario_Result.cs">
+      <DependentUpon>MCCMModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="TMCCM_Caso.cs">
       <DependentUpon>MCCMModel.tt</DependentUpon>
     </Compile>
@@ -196,32 +220,30 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="MCCMModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>MCCMModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
     <None Include="MCCMModel.edmx.diagram">
       <DependentUpon>MCCMModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="MCCMModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MCCMModel.Context.cs</LastGenOutput>
       <DependentUpon>MCCMModel.edmx</DependentUpon>
+      <LastGenOutput>MCCMModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="MCCMModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>MCCMModel.edmx</DependentUpon>
       <LastGenOutput>MCCMModel.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
