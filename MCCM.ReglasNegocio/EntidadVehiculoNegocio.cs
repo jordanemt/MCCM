@@ -25,9 +25,9 @@ namespace MCCM.ReglasNegocio
             entidadVehiculoDatos.EliminarEntidadVehiculo(ID);
             return "S";
         }
-        public List<TMCCM_EntidadVehiculoDTO> ListarEntidadPersonas()
+        public List<TMCCM_EntidadVehiculoDTO> ListarEntidadVehiculo(int caso)
         {
-            return entidadVehiculoDatos.ListarEntidadVehiculos();
+            return entidadVehiculoDatos.ListarEntidadVehiculos(caso);
         }
 
         public TMCCM_EntidadVehiculoDTO ObtenerEntidadVehiculoPorID(int ID)

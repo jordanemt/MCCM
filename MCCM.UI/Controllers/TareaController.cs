@@ -21,8 +21,10 @@ namespace MCCM.UI.Controllers
         }
 
         [HttpPost]
-        public String InsertarTarea(TMCCM_Tarea tarea)
+        public String InsertarTarea(TMCCM_Tarea tarea,DateTime TF_Fecha, int caso)
         {
+            tarea.TF_Fecha = TF_Fecha;
+            tarea.TN_ID_Caso = caso;
             tareaNegocio.InsertarTarea(tarea);
             return "S";
         }
@@ -35,17 +37,25 @@ namespace MCCM.UI.Controllers
         }
 
         [HttpGet]
-        public String ListarTarea()
+        public String ListarTarea(int caso)
         {
-            return JsonConvert.SerializeObject(tareaNegocio.ListarTarea(), Formatting.Indented);
+            return JsonConvert.SerializeObject(tareaNegocio.ListarTarea(caso), Formatting.Indented);
         }
+
         [HttpGet]
         public string ObtenerTareaPorID(int ID)
         {
             return JsonConvert.SerializeObject(tareaNegocio.ObtenerTareaPorID(ID), Formatting.Indented);
         }
 
-        [HttpPost]
+        [HttpGet]
+        public string ObtenerCatalogoUsuarios()
+        {
+            return JsonConvert.SerializeObject(tareaNegocio.ObtenerCatalogoUsuarios(), Formatting.Indented);
+        }
+        
+
+       [HttpPost]
         public string EliminarTareaPorID(int ID)
         {
             return tareaNegocio.EliminarTarea(ID);

@@ -17,7 +17,7 @@ namespace MCCM.AccesoDatos
         {
             using (var context = new MCCMEntities())
             {
-                caso.TB_Eliminado = true;
+                caso.TB_Eliminado = false;
                 string momentoActual = DateTime.Now.ToString("yyyy-MM-dd HH:mm tt");
                 caso.TF_Fecha = Convert.ToDateTime(momentoActual, CultureInfo.InvariantCulture);
                 context.TMCCM_Caso.Add(caso);
@@ -54,7 +54,7 @@ namespace MCCM.AccesoDatos
                 var result = context.TMCCM_Caso.SingleOrDefault(b => b.TN_ID_Caso == ID);
                 if (result != null)
                 {
-                    result.TB_Eliminado = false;
+                    result.TB_Eliminado = true;
                     context.Entry(result).State = EntityState.Modified;
                     context.SaveChanges();
                 }
@@ -70,7 +70,7 @@ namespace MCCM.AccesoDatos
 
             using (var context = new MCCMEntities())
             {
-                casosDTO = context.TMCCM_Caso.Where(c => c.TB_Eliminado==true)
+                casosDTO = context.TMCCM_Caso.Where(c => c.TB_Eliminado==false)
                   .Select(casoItem => new TMCCM_CasoDTO()
                   {
                       TN_ID_Caso = casoItem.TN_ID_Caso,

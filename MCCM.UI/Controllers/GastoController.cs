@@ -1,6 +1,5 @@
 ﻿using MCCM.Entidad;
 using MCCM.ReglasNegocio;
-using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace MCCM.UI.Controllers
@@ -15,37 +14,42 @@ namespace MCCM.UI.Controllers
         }
 
         [HttpGet]
-        public ActionResult List()
+        public ActionResult CargarModal()
         {
-            var model = gastoNegocio.GetAll();
-            return PartialView("_List", model);
+            ViewBag.TipoGasto = gastoNegocio.ListarTipoGasto();
+            return PartialView("_FormModal");
         }
 
         [HttpGet]
-        public TMCCM_Gasto GetById(int id)
+        public ActionResult CargarModalConId(int id)
         {
-            return gastoNegocio.GetById(id);
+            ViewBag.TipoGasto = gastoNegocio.ListarTipoGasto();
+            return PartialView("_FormModal", gastoNegocio.ObtenerPorId(id));
+        }
+
+        [HttpGet]
+        public ActionResult Listar()
+        {
+            var model = gastoNegocio.Listar();
+            return PartialView("_Lista", model);
         }
 
         [HttpPost]
-        public ActionResult Insert(TMCCM_Gasto data)
+        public ActionResult Insertar(TMCCM_Gasto data)
         {
-            gastoNegocio.Insert(data);
-            return RedirectToAction("Index", "Dashboard");
+            return PartialView("_Gasto", gastoNegocio.Insertar(data));
         }
 
         [HttpPost]
-        public ActionResult Update(TMCCM_Gasto data)
+        public ActionResult Actualizar(TMCCM_Gasto data)
         {
-            gastoNegocio.Update(data);
-            return RedirectToAction("Index", "Dashboard");
+            return PartialView("_Gasto", gastoNegocio.Actualizar(data));
         }
 
         [HttpPost]
-        public ActionResult Remove(int id)
+        public void EliminarPorId(int id)
         {
-            gastoNegocio.DeleteById(id);
-            return RedirectToAction("Index", "Dashboard");
+            gastoNegocio.EliminarPorId(id);
         }
     }
 }

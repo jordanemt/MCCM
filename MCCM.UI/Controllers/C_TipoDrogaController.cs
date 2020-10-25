@@ -17,10 +17,6 @@ namespace MCCM.UI.Controllers
 
             return Json(c_TipoDrogaNegocio.ListarTiposDroga(), JsonRequestBehavior.AllowGet);
         }
-        public ActionResult Index()
-        {
-            return View();
-        }
       
     }
 }

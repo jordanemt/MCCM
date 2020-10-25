@@ -1,13 +1,51 @@
-﻿function listGastos() {
-    var url = "/Gasto/List/";
+﻿function abrirInsertarGastoFormModal() {
+    $('#gasto-form-modal').remove();
+
+    var url = "/Gasto/CargarModal/";
 
     $.ajax({
         url: url,
         cache: false,
         type: "GET",
         success: function (data) {
-            $('#gastos-body').html(data);
-            /* little fade in effect */
+            $('.body-content').append(data);
+            $('#gasto-form-modal').modal('show');
+        },
+        error: function (reponse) {
+            alert("error : " + reponse);
+        }
+    });
+}
+
+function abrirActualizarGastoFormModal(id) {
+    $('#gasto-form-modal').remove();
+
+    var url = "/Gasto/CargarModalConId/";
+
+    $.ajax({
+        url: url,
+        cache: false,
+        type: "GET",
+        data: { "id": id },
+        success: function (data) {
+            $('.body-content').append(data);
+            $('#gasto-form-modal').modal('show');
+        },
+        error: function (reponse) {
+            alert("error : " + reponse);
+        }
+    });
+}
+
+function listarGastos() {
+    var url = "/Gasto/Listar/";
+
+    $.ajax({
+        url: url,
+        cache: false,
+        type: "GET",
+        success: function (data) {
+            $('#gastos-contenedor').html(data);
             //$('#divPartial').fadeIn('fast');
         },
         error: function (reponse) {
@@ -16,16 +54,61 @@
     });
 }
 
-function removeGasto(id) {
-    var url = "/Gasto/Remove/";
+function insertarGasto() {
+    if ($("#gasto-form").valid()) {
+        var url = "/Gasto/Insertar/";
+
+        $.ajax({
+            url: url,
+            cache: false,
+            type: "POST",
+            data: $('#gasto-form').serialize(),
+            success: function (data) {
+                $('#gasto-form-modal').modal('hide');
+                $('#gastos-contenedor').append(data);
+                //$('#gastos-contenedor').fadeIn('fast');
+            },
+            error: function (reponse) {
+                alert("error : " + reponse);
+            }
+        });
+    }
+}
+
+function actualizarGasto() {
+    if ($("#gasto-form").valid()) {
+        var url = "/Gasto/Actualizar/";
+
+        $.ajax({
+            url: url,
+            cache: false,
+            type: "POST",
+            data: $('#gasto-form').serialize(),
+            success: function (data) {
+                $('#gasto-' + $('#TN_ID_Gasto').val()).remove();
+                $('#gasto-form-modal').modal('hide');
+                $('#gastos-contenedor').append(data);
+                //$('#gastos-contenedor').fadeIn('fast');
+            },
+            error: function (reponse) {
+                alert("error : " + reponse);
+            }
+        });
+    }
+}
+
+function eliminarGastoPorId(id) {
+    var url = "/Gasto/EliminarPorId/";
 
     $.ajax({
         url: url,
         cache: false,
         type: "POST",
-        data: { "id": id},
+        data: { "id": id },
         success: function (data) {
-            window.location = '/Dashboard/';
+            alert("Se elimino el gasto #" + id);
+            $('#gasto-' + id).remove();
+            //$('#gastos-contenedor').fadeOut('fast');
         },
         error: function (reponse) {
             alert("error : " + reponse);
@@ -33,37 +116,28 @@ function removeGasto(id) {
     });
 }
 
-function openInsertGastoModal() {
-    $(".modal-title").text("Insertar Gasto");
-    $('#gasto-form').attr('action', '/Insert/Gasto');
-    $('#TN_ID_Gasto').val('0');
-    $('.TN_ID_Caso').val('1');
-    var d = new Date();
-    $('#TF_Fecha').val(d.toLocaleDateString());
-    $('#TN_Num_Factura').val('');
-    //$('#TN_ID_Tipo_Gasto').val('');
-    $('#TD_Monto').val('');
-    $('#TC_Compra').val('');
-    $('.submit-button').val('Insertar');
-    $('#gasto-insert-modal').modal('show');
+function aplicarValidGastoForm() {
+    $("#gasto-form").validate({
+        rules: {
+            TN_Num_Factura: "required",
+            TN_ID_Tipo_Gasto: "required",
+            TD_Monto: "required",
+            TC_Compra: "required"
+        },
+        messages: {
+            TN_Num_Factura: "Ingrese la factura",
+            TN_ID_Tipo_Gasto: "Seleccione una opción",
+            TD_Monto: "Ingrese el monto",
+            TC_Compra: "Ingrese el detalle"
+        }
+    });
 }
 
-function openUpdateGastoModal(id) {
-    //Funcionalidad no implementada
-    //GetById
-    $(".modal-title").text("Actualizar Gasto");
-    $('#gasto-form').attr('action', '/Update/Gasto');
-    $('#TN_ID_Gasto').val('1');
-    $('.TN_ID_Caso').val('1');
-    $('#TF_Fecha').val('12/12/2020');
-    $('#TN_Num_Factura').val('1234567');
-    //$('#TN_ID_Tipo_Gasto').val('');
-    $('#TD_Monto').val('50.000');
-    $('#TC_Compra').val('Detalle de compra');
-    $('.submit-button').val('Actualizar');
-    $('#gasto-insert-modal').modal('show');
+function aplicarMaskGastoForm() {
+    $('#TN_Num_Factura').mask("0000000000", { placeholder: "_ _ _ _ _ _ _ _ _ _" });
+    $('#TD_Monto').mask("0000000000", { placeholder: "0000000000" });
 }
 
 $(document).ready(function () {
-    //listGastos();
+    listarGastos();
 });

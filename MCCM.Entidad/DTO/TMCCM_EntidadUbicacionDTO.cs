@@ -21,7 +21,6 @@ namespace MCCM.Entidad.DTO
         public Nullable<System.DateTime> TF_Fecha_Modificacion { get; set; }
         public string TC_Creado_Por { get; set; }
         public string TC_Modificado_Por { get; set; }
-        public Nullable<bool> TB_Eliminado { get; set; }
         public Nullable<bool> TB_Verificado { get; set; }
     }
 }

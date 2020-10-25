@@ -12,11 +12,7 @@ namespace MCCM.UI.Controllers
     {
 
         EntidadTelefonoNegocio entidadTelefonoNegocio = new EntidadTelefonoNegocio();
-        // GET: E_Telefono
-        public ActionResult Index()
-        {
-            return View();
-        }
+
 
         [HttpPost]
         public String Insertar_E_Telefono(TMCCM_EntidadTelefonoDTO telefono,int caso)
