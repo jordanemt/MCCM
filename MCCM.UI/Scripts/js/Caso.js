@@ -71,6 +71,7 @@ $(document).on("click", ".caso", function () {
     CargarEventos();
     CargarTareas();
     $("#casosTitulo").html($(this).children(".card-body").children().first().children().last().text());
+    
 });
 
 

@@ -7,19 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace MCCM.ReglasNegocio
 {
     public class C_TipoDrogaNegocio
     {
         C_TipoDrogaDatos c_TipoDrogaDatos = new C_TipoDrogaDatos();
-        public List<TMCCM_C_TipoDatosDTO> ListarTiposDroga()
+        public List<TMCCM_C_TipoDrogaDTO> ListarTiposDroga()
         { 
             return c_TipoDrogaDatos.ListarTiposDroga();
-        }
-
-        public TMCCM_C_TipoDatosDTO ObtenerTipoDrogaPorID(int ID)
-        {
-            return null; //c_TipoDrogaDatos.ObtenerTipoDrogaPorID(ID);
         }
     }
 }

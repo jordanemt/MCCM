@@ -14,37 +14,16 @@ namespace MCCM.AccesoDatos
     public class EntidadPersonaDatos
     {
         Utilidades utilidades = new Utilidades();
-        public void InsertarEntidadPersona(TMCCM_EntidadPersonaDTO entidadPersonaDTO)
+        public void InsertarEntidadPersona(TMCCM_Entidad_Persona entidadPersona)
         {
             using (var context = new MCCMEntities())
             {
-                context.TMCCM_Entidad_Persona.Add(new TMCCM_Entidad_Persona()
-                {
-                    TN_ID_Caso = entidadPersonaDTO.TN_ID_Caso,
-                    TN_ID_Tipo_Identificacion = entidadPersonaDTO.TN_ID_Tipo_Identificacion,
-                    TN_ID_Icono_Persona = entidadPersonaDTO.TN_ID_Icono_Persona,
-                    TN_ID_Sexo = entidadPersonaDTO.TN_ID_Sexo,
-                    TN_ID_Genero = entidadPersonaDTO.TN_ID_Genero,
-                    TN_ID_Nacionalidad = entidadPersonaDTO.TN_ID_Nacionalidad,
-                    TC_Nombre = entidadPersonaDTO.TC_Nombre,
-                    TC_Primer_Apellido = entidadPersonaDTO.TC_Primer_Apellido,
-                    TC_Segundo_Apellido = entidadPersonaDTO.TC_Segundo_Apellido,
-                    TF_Fecha_Nacimiento = entidadPersonaDTO.TF_Fecha_Nacimiento,
-                    TN_Edad = entidadPersonaDTO.TN_Edad,
-                    TB_Fotografia = utilidades.ConverToBytes(entidadPersonaDTO.TB_Fotografia),
-                    TC_Cedula = entidadPersonaDTO.TC_Cedula,
-                    TB_Fallecido = entidadPersonaDTO.TB_Fallecido,
-                    TN_Autopsia = entidadPersonaDTO.TN_Autopsia,
-                    TB_Exp_Criminal = entidadPersonaDTO.TB_Exp_Criminal,
-                    TF_Fecha_Creacion = entidadPersonaDTO.TF_Fecha_Creacion,
-                    TF_Fecha_Modificacion = entidadPersonaDTO.TF_Fecha_Modificacion,
-                    TC_Creado_Por = entidadPersonaDTO.TC_Creado_Por,
-                    TC_Modificado_Por = "",
-                    TB_Verificado = entidadPersonaDTO.TB_Verificado,
-                    TC_Comentario = entidadPersonaDTO.TC_Comentario,
-                    TC_Alias = entidadPersonaDTO.TC_Alias
-                });
+                entidadPersona.TB_Eliminado = false;
+                entidadPersona.TF_Fecha_Creacion = DateTime.Now;
+                context.TMCCM_Entidad_Persona.Add(entidadPersona);
+                context.SaveChanges();
 
+           
                 context.SaveChanges();
             }
         } 
@@ -56,7 +35,6 @@ namespace MCCM.AccesoDatos
                 if (result != null)
                 {
                     result.TN_ID_Persona = entidadPersonaDTO.TN_ID_Persona;
-                        result.TN_ID_Caso = entidadPersonaDTO.TN_ID_Caso;
                         result.TN_ID_Tipo_Identificacion = entidadPersonaDTO.TN_ID_Tipo_Identificacion;
                         result.TN_ID_Icono_Persona = entidadPersonaDTO.TN_ID_Icono_Persona;
                         result.TN_ID_Sexo = entidadPersonaDTO.TN_ID_Sexo;
@@ -99,13 +77,13 @@ namespace MCCM.AccesoDatos
                 }
             }
 
-            public List<TMCCM_EntidadPersonaDTO> ListarEntidadPersonas()
+            public List<TMCCM_EntidadPersonaDTO> ListarEntidadPersonas(int caso)
             {
                 List<TMCCM_EntidadPersonaDTO> entidadPersonaDTO = null;
 
                 using (var context = new MCCMEntities())
                 {
-                   entidadPersonaDTO = context.TMCCM_Entidad_Persona.Where(c => c.TB_Eliminado == true)
+                   entidadPersonaDTO = context.TMCCM_Entidad_Persona.Where(c => c.TB_Eliminado == false && c.TN_ID_Caso == caso)
                       .Select(personaItem => new TMCCM_EntidadPersonaDTO()
                       {
                           TN_ID_Persona = personaItem.TN_ID_Persona,

@@ -448,7 +448,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Caso\_ModalCasoInsert.cshtml" />
     <Content Include="Views\Dashboard\EntidadArma.cshtml" />
-    <Content Include="Views\Dashboard\EntidadDroga.cshtml" />
+    <Content Include="Views\Entidad\_EntidadDroga.cshtml" />
     <Content Include="Views\Dashboard\EntidadPersona.cshtml" />
     <Content Include="Views\Dashboard\EntidadPersonaJuridica.cshtml" />
     <Content Include="Views\Dashboard\EntidadTelefono.cshtml" />
@@ -474,7 +474,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\C_TipoDroga\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

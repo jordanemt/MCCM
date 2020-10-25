@@ -19,6 +19,10 @@ $(document).on("click", ".btnEliminarMensaje", function () {
         alert('Se ha borrado el vehículo');
         boton.parent().parent().parent().remove();
     }
+    else if (boton.attr('class').split(' ')[1] == "borrarEntidadDroga") {
+        eliminarDroga(boton.attr('id'));
+    }
+    boton.parent().parent().parent().remove();
 });
 
 

@@ -27,9 +27,9 @@ namespace MCCM.ReglasNegocio
             entidadUbicacionDatos.EliminarEntidadUbicacion(ID);
             return "S";
         }
-        public List<TMCCM_EntidadUbicacionDTO> ListarEntidadUbicaciones()
+        public List<TMCCM_EntidadUbicacionDTO> ListarEntidadUbicaciones(int caso)
         {
-            return entidadUbicacionDatos.ListarEntidadUbicacion();
+            return entidadUbicacionDatos.ListarEntidadUbicacion(caso);
         }
 
         public TMCCM_EntidadUbicacionDTO ObtenerEntidadUbicacionPorID(int ID)

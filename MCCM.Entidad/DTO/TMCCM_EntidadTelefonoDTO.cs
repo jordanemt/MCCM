@@ -20,7 +20,6 @@ namespace MCCM.Entidad.DTO
         public Nullable<System.DateTime> TF_Fecha_Modificacion_Telefono { get; set; }
         public string TC_Creado_Por_Telefono { get; set; }
         public string TC_Modificado_Por_Telefono { get; set; }
-        public Nullable<bool> TB_Eliminado_Telefono { get; set; }
         public Nullable<bool> TB_Verificado_Telefono { get; set; }
     }
 }
