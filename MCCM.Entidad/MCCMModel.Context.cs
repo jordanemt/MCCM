@@ -51,6 +51,7 @@ namespace MCCM.Entidad
         public virtual DbSet<TMCCM_C_Vehiculo_Marca> TMCCM_C_Vehiculo_Marca { get; set; }
         public virtual DbSet<TMCCM_Caso> TMCCM_Caso { get; set; }
         public virtual DbSet<TMCCM_Entidad_Arma> TMCCM_Entidad_Arma { get; set; }
+        public virtual DbSet<TMCCM_Entidad_Droga> TMCCM_Entidad_Droga { get; set; }
         public virtual DbSet<TMCCM_Entidad_Persona> TMCCM_Entidad_Persona { get; set; }
         public virtual DbSet<TMCCM_Entidad_Persona_Juridica> TMCCM_Entidad_Persona_Juridica { get; set; }
         public virtual DbSet<TMCCM_Entidad_Telefono> TMCCM_Entidad_Telefono { get; set; }

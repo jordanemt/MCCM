@@ -178,7 +178,6 @@ $('#entidadDrogaModal').on('hidden.bs.modal', function () {
 $(document).on("click", "#btnModificarEntidadDroga", function (e) {
     e.preventDefault();
     var form = new FormData($("#FormEntidadDroga")[0]);
-    alert(JSON.stringify(Object.fromEntries(form)));
     $.ajax({
         type: "POST",
         url: "/E_Droga/Modificar_E_Droga",

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3da35b7a5ba747ff98fd34db6d2601c7" Name="Diagram1" ZoomLevel="12">
+      <Diagram DiagramId="ba6c5c216d0745ae83e4b6a53f108f28" Name="Diagram1">
         <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Arma_Icono_Arma" Width="1.5" PointX="0.75" PointY="34.625" IsExpanded="true" />
         <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Arma_Marca" Width="1.5" PointX="0.75" PointY="37.375" IsExpanded="true" />
         <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Arma_Tipo_Arma" Width="1.5" PointX="0.75" PointY="39.875" IsExpanded="true" />
@@ -47,6 +47,7 @@
         <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Arma_Icono_Arma_REL_TMCCM_Entidad_Arma" ManuallyRouted="false" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Arma_Marca_REL_TMCCM_Entidad_Arma" ManuallyRouted="false" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Arma_Tipo_Arma_REL_TMCCM_Entidad_Arma" ManuallyRouted="false" />
+        <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Droga_Tipo_Droga_REL_TMCCM_Entidad_Droga" ManuallyRouted="false" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Gasto_Tipo_Gasto_REL_TMCCM_Gasto" ManuallyRouted="false" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Persona_Genero_REL_TMCCM_Entidad_Persona" ManuallyRouted="false" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Persona_Icono_Persona_REL_TMCCM_Entidad_Persona" ManuallyRouted="false" />
@@ -67,6 +68,7 @@
         <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Vehiculo_Icono_REL_TMCCM_Entidad_Vehiculo" ManuallyRouted="false" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Vehiculo_Marca_REL_TMCCM_Entidad_Vehiculo" ManuallyRouted="false" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_Arma" ManuallyRouted="false" />
+        <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_Droga" ManuallyRouted="false" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_PErsona" ManuallyRouted="false" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_Persona_Juridica" ManuallyRouted="false" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_Telefono" ManuallyRouted="false" />

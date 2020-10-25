@@ -1226,7 +1226,7 @@
           <Property Name="TC_Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TC_Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="TB_Eliminado" Type="Boolean" />
-          <NavigationProperty Name="TMCCM_Entidad_Droga" Relationship="MCCMModel.FK_TMCCM_C_Droga_Tipo_Droga_REL_TMCCM_Entidad_Droga" FromRole="TMCCM_C_Droga_Tipo_Droga" ToRole="TMCCM_Entidad_Droga" />
+          <NavigationProperty Name="TMCCM_Entidad_Droga" Relationship="Self.FK_TMCCM_C_Droga_Tipo_Droga_REL_TMCCM_Entidad_Droga" FromRole="TMCCM_C_Droga_Tipo_Droga" ToRole="TMCCM_Entidad_Droga" />
         </EntityType>
         <EntityType Name="TMCCM_C_Gasto_Tipo_Gasto">
           <Key>
@@ -1423,6 +1423,7 @@
           <Property Name="TC_Delito" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="TF_Fecha" Type="DateTime" Precision="3" />
           <NavigationProperty Name="TMCCM_Entidad_Arma" Relationship="Self.FK_TMCCM_Caso_REL_TMCCM_Entidad_Arma" FromRole="TMCCM_Caso" ToRole="TMCCM_Entidad_Arma" />
+          <NavigationProperty Name="TMCCM_Entidad_Droga" Relationship="Self.FK_TMCCM_Caso_REL_TMCCM_Entidad_Droga" FromRole="TMCCM_Caso" ToRole="TMCCM_Entidad_Droga" />
           <NavigationProperty Name="TMCCM_Entidad_Persona" Relationship="Self.FK_TMCCM_Caso_REL_TMCCM_Entidad_PErsona" FromRole="TMCCM_Caso" ToRole="TMCCM_Entidad_Persona" />
           <NavigationProperty Name="TMCCM_Entidad_Persona_Juridica" Relationship="Self.FK_TMCCM_Caso_REL_TMCCM_Entidad_Persona_Juridica" FromRole="TMCCM_Caso" ToRole="TMCCM_Entidad_Persona_Juridica" />
           <NavigationProperty Name="TMCCM_Entidad_Telefono" Relationship="Self.FK_TMCCM_Caso_REL_TMCCM_Entidad_Telefono" FromRole="TMCCM_Caso" ToRole="TMCCM_Entidad_Telefono" />
@@ -1651,7 +1652,6 @@
           <NavigationProperty Name="TMCCM_Caso" Relationship="Self.FK_TMCCM_Caso_REL_TMCCM_Grupo" FromRole="TMCCM_Grupo" ToRole="TMCCM_Caso" />
           <NavigationProperty Name="TMCCM_Grupo_Usuario" Relationship="Self.FK_TMCCM_Grupo_REL_TMCCM_Grupo_Usuario" FromRole="TMCCM_Grupo" ToRole="TMCCM_Grupo_Usuario" />
           <NavigationProperty Name="TMCCM_Grupo_Vehiculo" Relationship="Self.FK_TMCCM_Grupo_REL_TMCCM_Grupo_Vehiculo" FromRole="TMCCM_Grupo" ToRole="TMCCM_Grupo_Vehiculo" />
-          <Property Name="TB_Mando" Type="Boolean" />
         </EntityType>
         <EntityType Name="TMCCM_Grupo_Usuario">
           <Key>
@@ -1766,6 +1766,18 @@
             </Principal>
             <Dependent Role="TMCCM_Entidad_Arma">
               <PropertyRef Name="TN_ID_Tipo_Arma" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TMCCM_C_Droga_Tipo_Droga_REL_TMCCM_Entidad_Droga">
+          <End Role="TMCCM_C_Droga_Tipo_Droga" Type="Self.TMCCM_C_Droga_Tipo_Droga" Multiplicity="0..1" />
+          <End Role="TMCCM_Entidad_Droga" Type="Self.TMCCM_Entidad_Droga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TMCCM_C_Droga_Tipo_Droga">
+              <PropertyRef Name="TN_ID_Tipo_Droga" />
+            </Principal>
+            <Dependent Role="TMCCM_Entidad_Droga">
+              <PropertyRef Name="TN_ID_Tipo_Droga" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2009,6 +2021,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TMCCM_Caso_REL_TMCCM_Entidad_Droga">
+          <End Role="TMCCM_Caso" Type="Self.TMCCM_Caso" Multiplicity="0..1" />
+          <End Role="TMCCM_Entidad_Droga" Type="Self.TMCCM_Entidad_Droga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TMCCM_Caso">
+              <PropertyRef Name="TN_ID_Caso" />
+            </Principal>
+            <Dependent Role="TMCCM_Entidad_Droga">
+              <PropertyRef Name="TN_ID_Caso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TMCCM_Caso_REL_TMCCM_Entidad_PErsona">
           <End Role="TMCCM_Caso" Type="Self.TMCCM_Caso" Multiplicity="0..1" />
           <End Role="TMCCM_Entidad_Persona" Type="Self.TMCCM_Entidad_Persona" Multiplicity="*" />
@@ -2206,6 +2230,7 @@
           <EntitySet Name="TMCCM_C_Vehiculo_Marca" EntityType="Self.TMCCM_C_Vehiculo_Marca" />
           <EntitySet Name="TMCCM_Caso" EntityType="Self.TMCCM_Caso" />
           <EntitySet Name="TMCCM_Entidad_Arma" EntityType="Self.TMCCM_Entidad_Arma" />
+          <EntitySet Name="TMCCM_Entidad_Droga" EntityType="Self.TMCCM_Entidad_Droga" />
           <EntitySet Name="TMCCM_Entidad_Persona" EntityType="Self.TMCCM_Entidad_Persona" />
           <EntitySet Name="TMCCM_Entidad_Persona_Juridica" EntityType="Self.TMCCM_Entidad_Persona_Juridica" />
           <EntitySet Name="TMCCM_Entidad_Telefono" EntityType="Self.TMCCM_Entidad_Telefono" />
@@ -2231,6 +2256,10 @@
           <AssociationSet Name="FK_TMCCM_C_Arma_Tipo_Arma_REL_TMCCM_Entidad_Arma" Association="Self.FK_TMCCM_C_Arma_Tipo_Arma_REL_TMCCM_Entidad_Arma">
             <End Role="TMCCM_C_Arma_Tipo_Arma" EntitySet="TMCCM_C_Arma_Tipo_Arma" />
             <End Role="TMCCM_Entidad_Arma" EntitySet="TMCCM_Entidad_Arma" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TMCCM_C_Droga_Tipo_Droga_REL_TMCCM_Entidad_Droga" Association="Self.FK_TMCCM_C_Droga_Tipo_Droga_REL_TMCCM_Entidad_Droga">
+            <End Role="TMCCM_C_Droga_Tipo_Droga" EntitySet="TMCCM_C_Droga_Tipo_Droga" />
+            <End Role="TMCCM_Entidad_Droga" EntitySet="TMCCM_Entidad_Droga" />
           </AssociationSet>
           <AssociationSet Name="FK_TMCCM_C_Gasto_Tipo_Gasto_REL_TMCCM_Gasto" Association="Self.FK_TMCCM_C_Gasto_Tipo_Gasto_REL_TMCCM_Gasto">
             <End Role="TMCCM_C_Gasto_Tipo_Gasto" EntitySet="TMCCM_C_Gasto_Tipo_Gasto" />
@@ -2311,6 +2340,10 @@
           <AssociationSet Name="FK_TMCCM_Caso_REL_TMCCM_Entidad_Arma" Association="Self.FK_TMCCM_Caso_REL_TMCCM_Entidad_Arma">
             <End Role="TMCCM_Caso" EntitySet="TMCCM_Caso" />
             <End Role="TMCCM_Entidad_Arma" EntitySet="TMCCM_Entidad_Arma" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TMCCM_Caso_REL_TMCCM_Entidad_Droga" Association="Self.FK_TMCCM_Caso_REL_TMCCM_Entidad_Droga">
+            <End Role="TMCCM_Caso" EntitySet="TMCCM_Caso" />
+            <End Role="TMCCM_Entidad_Droga" EntitySet="TMCCM_Entidad_Droga" />
           </AssociationSet>
           <AssociationSet Name="FK_TMCCM_Caso_REL_TMCCM_Entidad_PErsona" Association="Self.FK_TMCCM_Caso_REL_TMCCM_Entidad_PErsona">
             <End Role="TMCCM_Caso" EntitySet="TMCCM_Caso" />
@@ -2823,7 +2856,6 @@
           <EntitySetMapping Name="TMCCM_Grupo">
             <EntityTypeMapping TypeName="MCCMModel.TMCCM_Grupo">
               <MappingFragment StoreEntitySet="TMCCM_Grupo">
-                <ScalarProperty Name="TB_Mando" ColumnName="TB_Mando" />
                 <ScalarProperty Name="TN_ID_Grupo" ColumnName="TN_ID_Grupo" />
                 <ScalarProperty Name="TN_ID_Caso" ColumnName="TN_ID_Caso" />
                 <ScalarProperty Name="TF_Hora" ColumnName="TF_Hora" />
