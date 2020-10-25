@@ -7,6 +7,7 @@ using MCCM.Entidad.DTO;
 using Newtonsoft.Json;
 using System.IO;
 using MCCM.ReglasNegocio;
+using MCCM.Entidad;
 
 namespace MCCM.UI.Controllers
 {
@@ -14,19 +15,34 @@ namespace MCCM.UI.Controllers
     {
 
         EntidadPersonaNegocio entidadPersonaNegocio = new EntidadPersonaNegocio();
-        // GET: E_Persona
-        public ActionResult Index()
-        {
-            return View();
-        }
 
         [HttpPost]
-        public String Insertar_E_Persona(TMCCM_EntidadPersonaDTO entidadPersonaDTO)
+        public String Insertar_E_Persona(TMCCM_Entidad_Persona entidadPersonaDTO)
         {
-            //return Path.GetFileNameWithoutExtension(entidadPersonaDTO.TB_Fotografia.FileName); 
 
             entidadPersonaNegocio.InsertarEntidadPersona(entidadPersonaDTO);
             return "S";
+        }
+        [HttpGet]
+        public String Listar_E_Persona(int caso)
+        {
+            return JsonConvert.SerializeObject(entidadPersonaNegocio.ListarEntidadPersonas(caso), Formatting.Indented);
+        }
+        [HttpDelete]
+        public String Eliminar_E_PersonaPorID(int entidadPersonaID)
+        {
+            return entidadPersonaNegocio.EliminarEntidadPersona(entidadPersonaID);
+        }
+        [HttpPost]
+        public String Modificar_E_Persona(TMCCM_EntidadPersonaDTO entidadPersonaDTO)
+        {
+            entidadPersonaNegocio.ActualizarEntidadPersona(entidadPersonaDTO);
+            return "S";
+        }
+        [HttpGet]
+        public String Obtener_E_PersonaPorID(int ID)
+        {
+            return JsonConvert.SerializeObject(entidadPersonaNegocio.ObtenerEntidadPersonaPorID(ID), Formatting.Indented);
         }
 
     }

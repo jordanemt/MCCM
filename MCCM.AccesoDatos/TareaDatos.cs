@@ -31,7 +31,6 @@ namespace MCCM.AccesoDatos
                     result.TN_ID_Tarea = tarea.TN_ID_Tarea;
                     result.TN_ID_Usuario = tarea.TN_ID_Usuario;
                     result.TF_Fecha = tarea.TF_Fecha;
-                    result.TF_Hora = tarea.TF_Hora;
                     result.TC_Diligencia = tarea.TC_Diligencia;
                     result.TC_Lugar = tarea.TC_Lugar;
                     context.Entry(result).State = EntityState.Modified;
@@ -66,7 +65,6 @@ namespace MCCM.AccesoDatos
                       TN_ID_Tarea = tareaItem.TN_ID_Tarea,
                       TN_ID_Usuario = tareaItem.TN_ID_Usuario,
                       TF_Fecha = tareaItem.TF_Fecha,
-                      TF_Hora = tareaItem.TF_Hora,
                       TC_Diligencia = tareaItem.TC_Diligencia,
                       TC_Lugar = tareaItem.TC_Lugar
                   }).ToList<TMCCM_TareaDTO>();
@@ -86,7 +84,6 @@ namespace MCCM.AccesoDatos
                            TN_ID_Tarea = tareaItem.TN_ID_Tarea,
                            TN_ID_Usuario = tareaItem.TN_ID_Usuario,
                            TF_Fecha = tareaItem.TF_Fecha,
-                           TF_Hora = tareaItem.TF_Hora,
                            TC_Diligencia = tareaItem.TC_Diligencia,
                            TC_Lugar = tareaItem.TC_Lugar
                        }).Where(x => x.TN_ID_Tarea == ID).Single();

@@ -20,28 +20,11 @@ namespace MCCM.AccesoDatos
                   .Select(sexoItem => new TMCCM_C_PersonaSexoDTO()
                   {
                       TN_ID_Sexo = sexoItem.TN_ID_Sexo,
-                      TC_Descripcion = sexoItem.TC_Descripcion,
-                      TB_Eliminado = sexoItem.TB_Eliminado
+                      TC_Descripcion = sexoItem.TC_Descripcion
                   }).ToList<TMCCM_C_PersonaSexoDTO>();
             }
 
             return personaSexo;
-        }
-
-        public TMCCM_C_Persona_Sexo ObtenerPorPersonaSexoID(int ID)
-        {
-            TMCCM_C_Persona_Sexo aux;
-            using (var context = new MCCMEntities())
-            {
-                aux = (from sexoItem in context.TMCCM_C_Persona_Sexo
-                       select new TMCCM_C_Persona_Sexo()
-                       {
-                           TN_ID_Sexo = sexoItem.TN_ID_Sexo,
-                           TC_Descripcion = sexoItem.TC_Descripcion,
-                           TB_Eliminado = sexoItem.TB_Eliminado
-                       }).Where(x => x.TN_ID_Sexo == ID).Single();
-            }
-            return aux;
         }
     }
 

@@ -18,10 +18,5 @@ namespace MCCM.ReglasNegocio
             return c_PersonaTipoIdentificacionDatos.ListarPersonaTipoIdentificacion();
         }
 
-        public TMCCM_C_Persona_Tipo_Identificacion ObtenerPorTipoIdentificacionID(int ID)
-        {
-            return c_PersonaTipoIdentificacionDatos.ObtenerPorTipoIdentificacionID(ID);
-        }
-
     }
 }

@@ -21,30 +21,11 @@ namespace MCCM.AccesoDatos
                   {
                       TN_ID_Tipo_Arma = armaTipoItem.TN_ID_Tipo_Arma,
                       TC_Descripcion = armaTipoItem.TC_Descripcion,
-                      TN_Peso= armaTipoItem.TN_Peso,
-                      TB_Eliminado = armaTipoItem.TB_Eliminado
 
                   }).ToList<TMCCM_C_TipoArmaDTO>();
             }
 
             return arma_Tipos;
-        }
-        public TMCCM_C_Arma_Tipo_Arma ObtenerTipoArmaPorID(int ID)
-        {
-            TMCCM_C_Arma_Tipo_Arma aux;
-            using (var context = new MCCMEntities())
-            {
-                aux = (from armaTipoItem in context.TMCCM_C_Arma_Tipo_Arma
-                       select new TMCCM_C_Arma_Tipo_Arma()
-                       {
-
-                           TN_ID_Tipo_Arma = armaTipoItem.TN_ID_Tipo_Arma,
-                           TC_Descripcion = armaTipoItem.TC_Descripcion,
-                           TN_Peso = armaTipoItem.TN_Peso,
-                           TB_Eliminado = armaTipoItem.TB_Eliminado
-                       }).Where(x => x.TN_ID_Tipo_Arma == ID).Single();
-            }
-            return aux;
         }
 
     }

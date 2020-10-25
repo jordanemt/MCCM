@@ -33,5 +33,6 @@ namespace MCCM.Entidad
     
         public virtual TMCCM_C_Persona_Juridica_Icono_Persona_Juridica TMCCM_C_Persona_Juridica_Icono_Persona_Juridica { get; set; }
         public virtual TMCCM_C_Persona_Juridica_Tipo_Organización TMCCM_C_Persona_Juridica_Tipo_Organización { get; set; }
+        public virtual TMCCM_Caso TMCCM_Caso { get; set; }
     }
 }

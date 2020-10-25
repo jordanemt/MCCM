@@ -17,10 +17,6 @@ namespace MCCM.ReglasNegocio
            
             return c_TipoArmaDatos.ListaTipoArma();
         }
-        public TMCCM_C_Arma_Tipo_Arma ObtenerTipoArmaPorID(int ID)
-        {
-            return c_TipoArmaDatos.ObtenerTipoArmaPorID(ID);
-        }
 
     }
 }

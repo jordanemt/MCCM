@@ -26,9 +26,9 @@ namespace MCCM.ReglasNegocio
             entidadPersonaJuridicaDatos.EliminarEntidadPersonaJuridica(ID);
             return "S";
         }
-        public List<TMCCM_EntidadPersonaJuridicaDTO> ListarEntidadPersonaJuridicas()
+        public List<TMCCM_EntidadPersonaJuridicaDTO> ListarEntidadPersonaJuridicas(int caso)
         {
-            return entidadPersonaJuridicaDatos.ListarEntidadPersonaJuridicas();
+            return entidadPersonaJuridicaDatos.ListarEntidadPersonaJuridicas(caso);
         }
 
         public TMCCM_EntidadPersonaJuridicaDTO ObtenerEntidadPersonaJuridicaPorID(int ID)

@@ -21,28 +21,12 @@ namespace MCCM.AccesoDatos
                   {
                       TN_ID_Genero = generoItem.TN_ID_Genero,
                       TC_Descripcion = generoItem.TC_Descripcion,
-                      TB_Eliminado = generoItem.TB_Eliminado
                   }).ToList<TMCCM_C_PersonaGeneroDTO>();
             }
 
             return personaGeneros;
         }
 
-        public TMCCM_C_Persona_Genero ObtenerPorPersonaGeneroID(int ID)
-        {
-            TMCCM_C_Persona_Genero aux;
-            using (var context = new MCCMEntities())
-            {
-                aux = (from generoItem in context.TMCCM_C_Persona_Genero
-                       select new TMCCM_C_Persona_Genero()
-                       {
-                           TN_ID_Genero = generoItem.TN_ID_Genero,
-                           TC_Descripcion = generoItem.TC_Descripcion,
-                           TB_Eliminado = generoItem.TB_Eliminado
-                       }).Where(x => x.TN_ID_Genero == ID).Single();
-            }
-            return aux;
-        }
     }
 }
 

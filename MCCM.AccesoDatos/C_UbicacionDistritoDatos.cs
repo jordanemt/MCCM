@@ -21,31 +21,11 @@ namespace MCCM.AccesoDatos
                   {
                       TN_ID_Distrito= ubicacionDistritoItem.TN_ID_Distrito,
                       TN_ID_Canton = ubicacionDistritoItem.TN_ID_Canton,
-                      TF_Fecha_Creacion = ubicacionDistritoItem.TF_Fecha_Creacion,
-                      TC_Descripcion = ubicacionDistritoItem.TC_Descripcion,
-                      TB_Eliminado = ubicacionDistritoItem.TB_Eliminado
+                      TC_Descripcion = ubicacionDistritoItem.TC_Descripcion
                   }).ToList<TMCCM_C_UbicacionDistritoDTO>();
             }
 
             return ubicacionDistritos;
-        }
-
-        public TMCCM_C_Ubicacion_Distrito ObtenerUbicacionDistritoPorID(int ID)
-        {
-            TMCCM_C_Ubicacion_Distrito aux;
-            using (var context = new MCCMEntities())
-            {
-                aux = (from ubicacionDistritoItem in context.TMCCM_C_Ubicacion_Distrito
-                       select new TMCCM_C_Ubicacion_Distrito()
-                       {
-                           TN_ID_Distrito = ubicacionDistritoItem.TN_ID_Distrito,
-                           TN_ID_Canton = ubicacionDistritoItem.TN_ID_Canton,
-                           TF_Fecha_Creacion = ubicacionDistritoItem.TF_Fecha_Creacion,
-                           TC_Descripcion = ubicacionDistritoItem.TC_Descripcion,
-                           TB_Eliminado = ubicacionDistritoItem.TB_Eliminado
-                       }).Where(x => x.TN_ID_Distrito == ID).Single();
-            }
-            return aux;
         }
     }
 

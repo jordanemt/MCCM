@@ -14,9 +14,8 @@ $(document).on("click", ".btnEliminarMensaje", function () {
     } else if (boton.attr('class').split(' ')[1] == "borrarTarea") {
         alert("Se elimino el tarea #" + boton.attr('id'));
     }
-    else if (boton.attr('class').split(' ')[1] == "borrarEntidadEvento") {
+    else if (boton.attr('class').split(' ')[1] == "borrarEntidadDroga") {
         eliminarDroga(boton.attr('id'));
-        alert("Se elimino la droga #" + boton.attr('id'));
     }
     boton.parent().parent().parent().remove();
 });

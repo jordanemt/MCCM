@@ -18,12 +18,7 @@ namespace MCCM.ReglasNegocio
             return c_PersonaSexoDatos.ListarPersonaSexo();
         }
 
-        public TMCCM_C_Persona_Sexo ObtenerPorPersonaSexoID(int ID)
-        {
-            return c_PersonaSexoDatos.ObtenerPorPersonaSexoID(ID);
-        }
-    }
 
-
+}
 }
 

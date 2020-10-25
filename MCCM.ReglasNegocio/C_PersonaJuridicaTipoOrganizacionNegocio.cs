@@ -16,14 +16,9 @@ namespace MCCM.ReglasNegocio
         public List<TMCCM_C_PersonaJuridicaTipoOrganizaciónDTO> ListarPersonaJuridicaTipoOrganización()
         {
            
-            return c_PersonaJuridicaTipoOrganizacion.ListarPersonaJuridicaTipoOrganización();
+            return c_PersonaJuridicaTipoOrganizacion.ListarPersonaJuridicaTipoOrganizacion();
         }
 
-        public TMCCM_C_Persona_Juridica_Tipo_Organización ObtenerPorTipoOrganizaciónID(int ID)
-        {
-           
-            return c_PersonaJuridicaTipoOrganizacion.ObtenerPorTipoOrganizaciónID(ID);
-        }
 
     }
 }

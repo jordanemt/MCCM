@@ -21,8 +21,7 @@ namespace MCCM.AccesoDatos
                   {
                       TN_ID_Tipo_Identificacion = tipoIdentificacionItem.TN_ID_Tipo_Identificacion,
                       TC_Descripcion = tipoIdentificacionItem.TC_Descripcion,
-                      TC_Mascara = tipoIdentificacionItem.TC_Mascara,
-                      TF_Fecha_Creacion= tipoIdentificacionItem.TF_Fecha_Creacion,
+                      TC_Mascara = tipoIdentificacionItem.TC_Mascara
 
                   }).ToList<TMCCM_C_PersonaTipoIdentificacionDTO>();
             }

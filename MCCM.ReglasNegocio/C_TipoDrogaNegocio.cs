@@ -17,11 +17,6 @@ namespace MCCM.ReglasNegocio
         { 
             return c_TipoDrogaDatos.ListarTiposDroga();
         }
-
-        public TMCCM_C_Droga_Tipo_Droga ObtenerTipoDrogaPorID(int ID)
-        {
-            return c_TipoDrogaDatos.ObtenerTipoDrogaPorID(ID);
-        }
     }
 }
 

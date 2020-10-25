@@ -80,13 +80,13 @@ namespace MCCM.AccesoDatos
             }
         }
 
-        public List<TMCCM_EntidadPersonaJuridicaDTO> ListarEntidadPersonaJuridicas()
+        public List<TMCCM_EntidadPersonaJuridicaDTO> ListarEntidadPersonaJuridicas(int caso )
         {
             List<TMCCM_EntidadPersonaJuridicaDTO> entidadPersonaJuridicaDTO = null;
 
             using (var context = new MCCMEntities())
             {
-                entidadPersonaJuridicaDTO = context.TMCCM_Entidad_Persona_Juridica.Where(c => c.TB_Eliminado == true)
+                entidadPersonaJuridicaDTO = context.TMCCM_Entidad_Persona_Juridica.Where(c => c.TB_Eliminado == false && c.TN_ID_Caso == caso)
                    .Select(personaJuridicaItem => new TMCCM_EntidadPersonaJuridicaDTO()
                    {
                        TN_ID_Persona_Juridica = personaJuridicaItem.TN_ID_Persona_Juridica,

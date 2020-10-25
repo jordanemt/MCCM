@@ -9,18 +9,12 @@ using MCCM.AccesoDatos;
 
 namespace MCCM.ReglasNegocio
 {
-    class C_VehiculoClaseNegocio
+    public class C_VehiculoClaseNegocio
     {
         C_VehiculoClaseDatos c_VehiculoClaseDatos = new C_VehiculoClaseDatos();
         public List<TMCCM_C_VehiculoClaseDTO> ListarVehiculoClase()
         {
             return c_VehiculoClaseDatos.ListarVehiculoClase();
         }
-
-        public TMCCM_C_Vehiculo_Clase ObtenerVehiculoClasePorID(int ID)
-        {
-            return c_VehiculoClaseDatos.ObtenerVehiculoClasePorID(ID);
-        }
-
     }
 }

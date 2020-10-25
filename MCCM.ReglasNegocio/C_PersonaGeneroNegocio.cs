@@ -16,11 +16,6 @@ namespace MCCM.ReglasNegocio
         {
             return c_PersonaGeneroDatos.ListarPersonaGenero();
         }
-
-        public TMCCM_C_Persona_Genero ObtenerPorPersonaGeneroID(int ID)
-        {
-            return c_PersonaGeneroDatos.ObtenerPorPersonaGeneroID(ID);
-        }
     }
 
 

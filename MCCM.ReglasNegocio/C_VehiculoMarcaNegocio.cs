@@ -16,12 +16,5 @@ namespace MCCM.ReglasNegocio
         {
             return c_VehiculoMarcaDatos.ListarVehiculoMarca(); ;
         }
-
-        public TMCCM_C_Vehiculo_Marca ObtenerVehiculoMarcaPorID(int ID)
-        {
-            return c_VehiculoMarcaDatos.ObtenerVehiculoMarcaPorID(ID);
-        }
-
-
     }
 }

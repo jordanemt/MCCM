@@ -10,6 +10,5 @@ namespace MCCM.Entidad.DTO
     {
         public int TN_ID_Genero { get; set; }
         public string TC_Descripcion { get; set; }
-        public Nullable<bool> TB_Eliminado { get; set; }
     }
 }

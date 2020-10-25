@@ -12,11 +12,7 @@ namespace MCCM.UI.Controllers
     public class E_DrogaController : Controller
     {
         EntidadDrogaNegocio entidadDrogaNegocio = new EntidadDrogaNegocio();
-        // GET: E_Droga
-        public ActionResult Index()
-        {
-            return View();
-        }
+   
         [HttpPost]
         public String Insertar_E_Droga(TMCCM_Entidad_Droga entidadDroga, int caso)
         {
@@ -29,7 +25,7 @@ namespace MCCM.UI.Controllers
         {
             return JsonConvert.SerializeObject(entidadDrogaNegocio.ListarEntidadDrogas(caso), Formatting.Indented);
         }
-        [HttpDelete]
+        [HttpPost]
         public String Eliminar_E_DrogaPorID(int entidadDrogaID)
         {
             return entidadDrogaNegocio.EliminarEntidadDroga(entidadDrogaID);

@@ -16,7 +16,7 @@ namespace MCCM.AccesoDatos
         {
             using (var context = new MCCMEntities())
             {
-                entidadDroga.TB_Eliminado = true;
+                entidadDroga.TB_Eliminado = false;
                 entidadDroga.TF_Fecha_Creacion = DateTime.Now;
                 context.TMCCM_Entidad_Droga.Add(entidadDroga);
                 context.SaveChanges();
@@ -32,14 +32,13 @@ namespace MCCM.AccesoDatos
                 if (result != null)
                 {
                     result.TN_ID_Droga = entidadDroga.TN_ID_Droga;
-                    result.TN_ID_Caso = entidadDroga.TN_ID_Caso;
                     result.TN_ID_Tipo_Droga = entidadDroga.TN_ID_Tipo_Droga;
                     result.TC_Nombre = entidadDroga.TC_Nombre;
                     result.TC_Detalle = entidadDroga.TC_Detalle;
                     result.TN_Cantidad = entidadDroga.TN_Cantidad;
                     result.TF_Fecha_Decomiso = entidadDroga.TF_Fecha_Decomiso;
                     result.TF_Fecha_Creacion = entidadDroga.TF_Fecha_Creacion;
-                    result.TF_Fecha_Modificacion = entidadDroga.TF_Fecha_Modificacion;
+                    result.TF_Fecha_Modificacion = DateTime.Now; ;
                     result.TC_Creado_Por = entidadDroga.TC_Creado_Por;
                     result.TC_Modificado_Por = entidadDroga.TC_Modificado_Por;
                     result.TB_Verificado = entidadDroga.TB_Verificado;
@@ -57,7 +56,7 @@ namespace MCCM.AccesoDatos
                 var result = context.TMCCM_Entidad_Droga.SingleOrDefault(b => b.TN_ID_Droga == ID);
                 if (result != null)
                 {
-                    result.TB_Eliminado = false;
+                    result.TB_Eliminado = true;
                     context.Entry(result).State = EntityState.Modified;
                     context.SaveChanges();
                 }
@@ -70,7 +69,7 @@ namespace MCCM.AccesoDatos
 
             using (var context = new MCCMEntities())
             {
-                entidadDrogaDTO = context.TMCCM_Entidad_Droga.Where(c => c.TB_Eliminado==true && c.TN_ID_Caso == caso)
+                entidadDrogaDTO = context.TMCCM_Entidad_Droga.Where(c => c.TB_Eliminado==false && c.TN_ID_Caso == caso)
                   .Select(drogaItem => new TMCCM_EntidadDrogaDTO()
                   {
                     TN_ID_Droga= drogaItem.TN_ID_Droga,

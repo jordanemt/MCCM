@@ -16,10 +16,5 @@ namespace MCCM.ReglasNegocio
         {
             return c_VehiculoColorDatos.ListarVehiculoColor();
         }
-
-        public TMCCM_C_Vehiculo_Color ObtenerVehiculoColorPorID(int ID)
-        {
-            return c_VehiculoColorDatos.ObtenerVehiculoColorPorID(ID);
-        }
     }
 }

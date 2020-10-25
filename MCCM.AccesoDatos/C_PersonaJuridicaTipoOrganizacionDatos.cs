@@ -10,7 +10,7 @@ namespace MCCM.AccesoDatos
 {
     public class C_PersonaJuridicaTipoOrganizacionDatos
     {
-        public List<TMCCM_C_PersonaJuridicaTipoOrganizaciónDTO> ListarPersonaJuridicaTipoOrganización()
+        public List<TMCCM_C_PersonaJuridicaTipoOrganizaciónDTO> ListarPersonaJuridicaTipoOrganizacion()
         {
             List<TMCCM_C_PersonaJuridicaTipoOrganizaciónDTO> personaJuridicaTipoOrganización = null;
 
@@ -20,28 +20,11 @@ namespace MCCM.AccesoDatos
                   .Select(tipoOrganizacionItem => new TMCCM_C_PersonaJuridicaTipoOrganizaciónDTO()
                   {
                       TN_ID_Tipo_Organizacion = tipoOrganizacionItem.TN_ID_Tipo_Organizacion,
-                      TC_Descripcion = tipoOrganizacionItem.TC_Descripcion,
-                      TB_Eliminado = tipoOrganizacionItem.TB_Eliminado
+                      TC_Descripcion = tipoOrganizacionItem.TC_Descripcion
                   }).ToList<TMCCM_C_PersonaJuridicaTipoOrganizaciónDTO>();
             }
 
             return personaJuridicaTipoOrganización;
-        }
-
-        public TMCCM_C_Persona_Juridica_Tipo_Organización ObtenerPorTipoOrganizaciónID(int ID)
-        {
-            TMCCM_C_Persona_Juridica_Tipo_Organización aux;
-            using (var context = new MCCMEntities())
-            {
-                aux = (from tipoOrganizacionItem in context.TMCCM_C_Persona_Juridica_Tipo_Organización
-                       select new TMCCM_C_Persona_Juridica_Tipo_Organización()
-                       {
-                           TN_ID_Tipo_Organizacion = tipoOrganizacionItem.TN_ID_Tipo_Organizacion,
-                           TC_Descripcion = tipoOrganizacionItem.TC_Descripcion,
-                           TB_Eliminado = tipoOrganizacionItem.TB_Eliminado
-                       }).Where(x => x.TN_ID_Tipo_Organizacion== ID).Single();
-            }
-            return aux;
         }
     }
 }

@@ -21,27 +21,10 @@ namespace MCCM.AccesoDatos
                   {
                       TN_ID_Nacionalidad = nacionalidadItem.TN_ID_Nacionalidad,
                       TC_Descripcion = nacionalidadItem.TC_Descripcion,
-                      TF_Fecha_Creacion = nacionalidadItem.TF_Fecha_Creacion
                   }).ToList<TMCCM_C_PersonaNacionalidadDTO>();
             }
 
             return personaNacionalidades;
-        }
-
-        public TMCCM_C_Persona_Nacionalidad ObtenerPorPersonaNacionalidadID(int ID)
-        {
-            TMCCM_C_Persona_Nacionalidad aux;
-            using (var context = new MCCMEntities())
-            {
-                aux = (from nacionalidadItem in context.TMCCM_C_Persona_Nacionalidad
-                       select new TMCCM_C_Persona_Nacionalidad()
-                       {
-                           TN_ID_Nacionalidad = nacionalidadItem.TN_ID_Nacionalidad,
-                           TC_Descripcion = nacionalidadItem.TC_Descripcion,
-                           TF_Fecha_Creacion = nacionalidadItem.TF_Fecha_Creacion
-                       }).Where(x => x.TN_ID_Nacionalidad == ID).Single();
-            }
-            return aux;
         }
     }
 }

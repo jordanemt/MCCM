@@ -15,11 +15,7 @@ namespace MCCM.ReglasNegocio
 
         public List<TMCCM_C_TipoUbicacionDTO> ListaTipoUbicacion()
         {
-            return c_TipoUbicacionDatos.ListaTipoUbicacion();
-        }
-        public TMCCM_C_Ubicacion_Tipo_Ubicacion ObtenerTipoUbicacionPorID(int ID)
-        {
-            return c_TipoUbicacionDatos.ObtenerTipoUbicacionPorID(ID);
+            return c_TipoUbicacionDatos.ListarTipoUbicacion();
         }
 
     }

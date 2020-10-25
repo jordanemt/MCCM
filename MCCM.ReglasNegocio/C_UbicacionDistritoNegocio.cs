@@ -17,10 +17,5 @@ namespace MCCM.ReglasNegocio
             return c_UbicacionDistritoDatos.ListarUbicacionDistrito(idCanton);
         }
 
-        public TMCCM_C_Ubicacion_Distrito ObtenerUbicacionDistritoPorID(int ID)
-        {
-            return c_UbicacionDistritoDatos.ObtenerUbicacionDistritoPorID(ID);
-        }
-
     }
 }

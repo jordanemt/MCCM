@@ -20,30 +20,11 @@ namespace MCCM.AccesoDatos
                   .Select(vehiculoColorItem => new TMCCM_C_VehiculoColorDTO()
                   {
                       TN_ID_Color_Vehiculo = vehiculoColorItem.TN_ID_Color_Vehiculo,
-                      TF_Fecha_Creacion = vehiculoColorItem.TF_Fecha_Creacion,
-                      TC_Descripcion = vehiculoColorItem.TC_Descripcion,
-                      TB_Eliminado = vehiculoColorItem.TB_Eliminado
+                      TC_Descripcion = vehiculoColorItem.TC_Descripcion
                   }).ToList<TMCCM_C_VehiculoColorDTO>();
             }
 
             return vehiculoColor;
-        }
-
-        public TMCCM_C_Vehiculo_Color ObtenerVehiculoColorPorID(int ID)
-        {
-            TMCCM_C_Vehiculo_Color aux;
-            using (var context = new MCCMEntities())
-            {
-                aux = (from vehiculoColorItem in context.TMCCM_C_Vehiculo_Color
-                       select new TMCCM_C_Vehiculo_Color()
-                       {
-                           TN_ID_Color_Vehiculo = vehiculoColorItem.TN_ID_Color_Vehiculo,
-                           TF_Fecha_Creacion = vehiculoColorItem.TF_Fecha_Creacion,
-                           TC_Descripcion = vehiculoColorItem.TC_Descripcion,
-                           TB_Eliminado = vehiculoColorItem.TB_Eliminado
-                       }).Where(x => x.TN_ID_Color_Vehiculo == ID).Single();
-            }
-            return aux;
         }
     }
 }

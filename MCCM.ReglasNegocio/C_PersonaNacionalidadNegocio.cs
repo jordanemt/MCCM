@@ -18,11 +18,5 @@ namespace MCCM.ReglasNegocio
             return c_PersonaNacionalidadDatos.ListarPersonaNacionalidad();
         }
 
-        public TMCCM_C_Persona_Nacionalidad ObtenerPorPersonaNacionalidadID(int ID)
-        {
-           
-            return c_PersonaNacionalidadDatos.ObtenerPorPersonaNacionalidadID(ID);
-        }
-
     }
 }
