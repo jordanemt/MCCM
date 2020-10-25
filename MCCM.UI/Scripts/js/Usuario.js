@@ -2,3 +2,11 @@
     $(this).parent().parent().remove();
 
 })
+$(document).on("click", ".editar", function () {
+    $(this).parent().parent().remove();
+
+})
+function ListarUsuario() {
+
+
+};

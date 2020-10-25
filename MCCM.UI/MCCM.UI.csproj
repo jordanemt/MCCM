@@ -470,6 +470,8 @@
     <Content Include="Views\Vehiculo\_Vehiculo.cshtml" />
     <Content Include="Views\Vehiculo\_Lista.cshtml" />
     <Content Include="Views\Vehiculo\_FormModal.cshtml" />
+    <Content Include="Views\Usuario\InsertarUsuario.cshtml" />
+    <Content Include="Views\Usuario\ModificarUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
