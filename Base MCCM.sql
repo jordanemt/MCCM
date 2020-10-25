@@ -140,7 +140,7 @@ CREATE TABLE TMCCM_Entidad_Droga(
 	TN_Cantidad int,
 	TF_Fecha_Decomiso date,
 	TF_Hora_Decomiso time,
-	TB_Eliminado bit default 1,
+	TB_Eliminado bit default 0,
 	CONSTRAINT PK_TCCM_Entidad_Droga PRImARY KEY(TN_ID_Droga),
 	CONSTRAINT FK_TMCCM_Caso_REL_TMCCM_Entidad_Droga Foreign Key(TN_ID_Caso) references TMCCM_Caso(TN_ID_Caso),
 	CONSTRAINT FK_TMCCM_C_Droga_Tipo_Droga_REL_TMCCM_Entidad_Droga Foreign Key(TN_ID_Tipo_Droga) references TMCCM_C_Droga_Tipo_Droga(TN_ID_Tipo_Droga)
@@ -570,6 +570,472 @@ select TN_ID_Usuario,TC_Identificacion,CONCAT(TC_Nombre,' ',TC_Primer_Apellido,'
 
 ALTER TABLE dbo.TMCCM_Tarea ALTER COLUMN TF_Fecha DATETIME
 ALTER TABLE dbo.TMCCM_Tarea DROP COLUMN TF_Hora
+
+
+
+ALTER TABLE TMCCM_Entidad_Droga
+DROP COLUMN TF_Hora_Decomiso;
+
+---Insertar Marca Arma-----
+INSERT INTO [dbo].[TMCCM_C_Arma_Marca]
+           ([TC_Descripcion]
+           ,[TB_Eliminado])
+     VALUES
+           ('DESCONOCIDO'
+           ,'0')
+GO
+INSERT INTO [dbo].[TMCCM_C_Arma_Marca]
+           ([TC_Descripcion]
+           ,[TB_Eliminado])
+     VALUES
+           ('A.A. BROWN &amp; SONS'
+           ,'0')
+GO
+INSERT INTO [dbo].[TMCCM_C_Arma_Marca]
+           ([TC_Descripcion]
+           ,[TB_Eliminado])
+     VALUES
+           ('ACCU-TEK'
+           ,'0')
+GO
+------Insertar C_Arma_Tipo_Arma
+INSERT INTO [dbo].[TMCCM_C_Arma_Tipo_Arma]
+           ([TC_Descripcion]
+           ,[TB_Eliminado]
+           ,[TN_Peso])
+     VALUES
+           ('AARMA BLNACA'
+           ,'0'
+           ,'10')
+GO
+INSERT INTO [dbo].[TMCCM_C_Arma_Tipo_Arma]
+           ([TC_Descripcion]
+           ,[TB_Eliminado]
+           ,[TN_Peso])
+     VALUES
+           ('ARMA DE FUEGO'
+           ,'0'
+           ,'20')
+GO
+INSERT INTO [dbo].[TMCCM_C_Arma_Tipo_Arma]
+           ([TC_Descripcion]
+           ,[TB_Eliminado]
+           ,[TN_Peso])
+     VALUES
+           ('ARMA CONTUNDENTE'
+           ,'0'
+           ,'0')
+GO
+INSERT INTO [dbo].[TMCCM_C_Arma_Tipo_Arma]
+           ([TC_Descripcion]
+           ,[TB_Eliminado]
+           ,[TN_Peso])
+     VALUES
+           ('MUNICION'
+           ,'0'
+           ,'0')
+GO
+
+-----Insertar C_Tipo_Ubicación------
+INSERT INTO [dbo].[TMCCM_C_Ubicacion_Tipo_Ubicacion]
+           ([TC_Nombre]
+           ,[TC_Descripcion]
+           ,[TB_Eliminado])
+     VALUES
+           ('CASA'
+           ,'Construcción cubierta destinada a ser habitada'
+           ,'0')
+GO
+INSERT INTO [dbo].[TMCCM_C_Ubicacion_Tipo_Ubicacion]
+           ([TC_Nombre]
+           ,[TC_Descripcion]
+           ,[TB_Eliminado])
+     VALUES
+           ('PARQUE'
+           ,'Terreno acotado en núcleos rurales o urbanos, generalmente con plantas y árboles'
+           ,'0')
+GO
+INSERT INTO [dbo].[TMCCM_C_Ubicacion_Tipo_Ubicacion]
+           ([TC_Nombre]
+           ,[TC_Descripcion]
+           ,[TB_Eliminado])
+     VALUES
+           ('EDIFICIO'
+           ,'Construcción de grandes dimensiones fabricada con piedras, ladrillos y materiales resistentes'
+           ,'0')
+GO
+
+-------INSERTAR C_Ubicacion_Provincia-----
+INSERT INTO [dbo].[TMCCM_C_Ubicacion_Provincia]
+           ([TF_Fecha_Creacion]
+           ,[TC_Descripcion]
+           ,[TB_Eliminado])
+     VALUES
+           (GETDATE()
+           ,'NO INDICA'
+           ,'0')
+GO
+INSERT INTO [dbo].[TMCCM_C_Ubicacion_Provincia]
+           ([TF_Fecha_Creacion]
+           ,[TC_Descripcion]
+           ,[TB_Eliminado])
+     VALUES
+           (GETDATE()
+           ,'SAN JOSÉ'
+           ,'0')
+GO
+INSERT INTO [dbo].[TMCCM_C_Ubicacion_Provincia]
+           ([TF_Fecha_Creacion]
+           ,[TC_Descripcion]
+           ,[TB_Eliminado])
+     VALUES
+           (GETDATE()
+           ,'CARTAGO'
+           ,'0')
+GO
+
+-----INSERTAR C_Ubicacion_Cantón---
+INSERT INTO [dbo].[TMCCM_C_Ubicacion_Canton]
+           ([TN_ID_Provincia]
+           ,[TF_Fecha_Creacion]
+           ,[TC_Descripcion]
+           ,[TB_Eliminado])
+     VALUES
+           ('1'
+           ,GETDATE()
+           ,'NO INDICA'
+           ,'0')
+GO
+INSERT INTO [dbo].[TMCCM_C_Ubicacion_Canton]
+           ([TN_ID_Provincia]
+           ,[TF_Fecha_Creacion]
+           ,[TC_Descripcion]
+           ,[TB_Eliminado])
+     VALUES
+           ('2'
+           ,GETDATE()
+           ,'SAN JOSÉ'
+           ,'0')
+GO
+INSERT INTO [dbo].[TMCCM_C_Ubicacion_Canton]
+           ([TN_ID_Provincia]
+           ,[TF_Fecha_Creacion]
+           ,[TC_Descripcion]
+           ,[TB_Eliminado])
+     VALUES
+           ('3'
+           ,GETDATE()
+           ,'PARAÍSO'
+           ,'0')
+GO
+
+----INSERTAR C_Ubicacion_Distrito-----
+INSERT INTO [dbo].[TMCCM_C_Ubicacion_Distrito]
+           ([TN_ID_Canton]
+           ,[TF_Fecha_Creacion]
+           ,[TC_Descripcion]
+           ,[TB_Eliminado])
+     VALUES
+           ('1'
+           ,GETDATE()
+           ,'NO INDICA'
+           ,'0')
+GO
+INSERT INTO [dbo].[TMCCM_C_Ubicacion_Distrito]
+           ([TN_ID_Canton]
+           ,[TF_Fecha_Creacion]
+           ,[TC_Descripcion]
+           ,[TB_Eliminado])
+     VALUES
+           ('2'
+           ,GETDATE()
+           ,'NO INDICA'
+           ,'0')
+GO
+INSERT INTO [dbo].[TMCCM_C_Ubicacion_Distrito]
+           ([TN_ID_Canton]
+           ,[TF_Fecha_Creacion]
+           ,[TC_Descripcion]
+           ,[TB_Eliminado])
+     VALUES
+           ('3'
+           ,GETDATE()
+           ,'NO INDICA'
+           ,'0')
+GO
+--------Insertar C_Vehículos_Marca------
+INSERT INTO [dbo].[TMCCM_C_Vehiculo_Marca]
+           ([TC_Descripcion]
+           ,[TF_Fecha_Creacion]
+           ,[TB_Eliminado])
+     VALUES
+           ('DESCONOCIDO'
+           ,GETDATE()
+           ,'0')
+GO
+INSERT INTO [dbo].[TMCCM_C_Vehiculo_Marca]
+           ([TC_Descripcion]
+           ,[TF_Fecha_Creacion]
+           ,[TB_Eliminado])
+     VALUES
+           ('MARCA NO REGISTRADA'
+           ,GETDATE()
+           ,'0')
+GO
+INSERT INTO [dbo].[TMCCM_C_Vehiculo_Marca]
+           ([TC_Descripcion]
+           ,[TF_Fecha_Creacion]
+           ,[TB_Eliminado])
+     VALUES
+           ('FOREDIL'
+           ,GETDATE()
+           ,'0')
+GO
+
+--------INSERTAR C_Vehiculo_Clase-----
+INSERT INTO [dbo].[TMCCM_C_Vehiculo_Clase]
+           ([TC_Descripcion]
+           ,[TF_Fecha_Creacion]
+           ,[TB_Eliminado])
+     VALUES
+           ('Motocicleta'
+           ,GETDATE()
+           ,'0')
+GO
+INSERT INTO [dbo].[TMCCM_C_Vehiculo_Clase]
+           ([TC_Descripcion]
+           ,[TF_Fecha_Creacion]
+           ,[TB_Eliminado])
+     VALUES
+           ('Motocarro'
+           ,GETDATE()
+           ,'0')
+GO
+INSERT INTO [dbo].[TMCCM_C_Vehiculo_Clase]
+           ([TC_Descripcion]
+           ,[TF_Fecha_Creacion]
+           ,[TB_Eliminado])
+     VALUES
+           ('Automovil'
+           ,GETDATE()
+           ,'0')
+GO
+-----INSERTAR C_Vehiculo_Color-----
+INSERT INTO [dbo].[TMCCM_C_Vehiculo_Color]
+           ([TC_Descripcion]
+           ,[TF_Fecha_Creacion]
+           ,[TB_Eliminado])
+     VALUES
+           ('DESCONOCIDO'
+           ,GETDATE()
+           ,'0')
+GO
+INSERT INTO [dbo].[TMCCM_C_Vehiculo_Color]
+           ([TC_Descripcion]
+           ,[TF_Fecha_Creacion]
+           ,[TB_Eliminado])
+     VALUES
+           ('CAFE'
+           ,GETDATE()
+           ,'0')
+GO
+INSERT INTO [dbo].[TMCCM_C_Vehiculo_Color]
+           ([TC_Descripcion]
+           ,[TF_Fecha_Creacion]
+           ,[TB_Eliminado])
+     VALUES
+           ('CELESTE'
+           ,GETDATE()
+           ,'0')
+GO
+
+-------INSERTAR C_Persona_Juridica_Tipo_Organización----
+INSERT INTO [dbo].[TMCCM_C_Persona_Juridica_Tipo_Organización]
+           ([TC_Descripcion]
+           ,[TB_Eliminado])
+     VALUES
+           ('Empresario Individual'
+           ,'0')
+GO
+INSERT INTO [dbo].[TMCCM_C_Persona_Juridica_Tipo_Organización]
+           ([TC_Descripcion]
+           ,[TB_Eliminado])
+     VALUES
+           ('Sociedad Anonima'
+           ,'0')
+GO
+INSERT INTO [dbo].[TMCCM_C_Persona_Juridica_Tipo_Organización]
+           ([TC_Descripcion]
+           ,[TB_Eliminado])
+     VALUES
+           ('Asociaciones sin ánimo de lucro'
+           ,'0')
+GO
+
+------INSERTAR C_Tipo_Identificacion----
+INSERT INTO [dbo].[TMCCM_C_Persona_Tipo_Identificacion]
+           ([TC_Descripcion]
+           ,[TC_Mascara]
+           ,[TF_Fecha_Creacion])
+     VALUES
+           ('DESCONOCIDO'
+           ,'xxxxxxxxxxxxxxxxxxxx'
+           ,GETDATE())
+GO
+INSERT INTO [dbo].[TMCCM_C_Persona_Tipo_Identificacion]
+           ([TC_Descripcion]
+           ,[TC_Mascara]
+           ,[TF_Fecha_Creacion])
+     VALUES
+           ('CEDULA'
+           ,'##########'
+           ,GETDATE())
+GO
+INSERT INTO [dbo].[TMCCM_C_Persona_Tipo_Identificacion]
+           ([TC_Descripcion]
+           ,[TC_Mascara]
+           ,[TF_Fecha_Creacion])
+     VALUES
+           ('CEDULA DE RESIDENCIA'
+           ,'xxxxxxxxxxxxxxxxxxxx'
+           ,GETDATE())
+GO
+----INSERTAR C_Persona_Sexo----
+INSERT INTO [dbo].[TMCCM_C_Persona_Sexo]
+           ([TC_Descripcion]
+           ,[TB_Eliminado])
+     VALUES
+           ('DESCONOCIDO'
+           ,0)
+GO
+INSERT INTO [dbo].[TMCCM_C_Persona_Sexo]
+           ([TC_Descripcion]
+           ,[TB_Eliminado])
+     VALUES
+           ('HOMBRE'
+           ,0)
+GO
+INSERT INTO [dbo].[TMCCM_C_Persona_Sexo]
+           ([TC_Descripcion]
+           ,[TB_Eliminado])
+     VALUES
+           ('MUJER'
+           ,0)
+GO
+
+-----INSERTAR C_Persona_Genero----
+INSERT INTO [dbo].[TMCCM_C_Persona_Genero]
+           ([TC_Descripcion]
+           ,[TB_Eliminado])
+     VALUES
+           ('DESCONOCIDO'
+           ,'0')
+GO
+INSERT INTO [dbo].[TMCCM_C_Persona_Genero]
+           ([TC_Descripcion]
+           ,[TB_Eliminado])
+     VALUES
+           ('INDEFINIDO'
+           ,'0')
+GO
+INSERT INTO [dbo].[TMCCM_C_Persona_Genero]
+           ([TC_Descripcion]
+           ,[TB_Eliminado])
+     VALUES
+           ('MASCULINO'
+           ,'0')
+GO
+INSERT INTO [dbo].[TMCCM_C_Persona_Genero]
+           ([TC_Descripcion]
+           ,[TB_Eliminado])
+     VALUES
+           ('FEMENINO'
+           ,'0')
+GO
+-------INSERTAR C_Persona_Nacionalidad----
+INSERT INTO [dbo].[TMCCM_C_Persona_Nacionalidad]
+           ([TC_Descripcion]
+           ,[TF_Fecha_Creacion])
+     VALUES
+           ('OTRO O DESCONOCIDO'
+           ,GETDATE())
+GO
+INSERT INTO [dbo].[TMCCM_C_Persona_Nacionalidad]
+           ([TC_Descripcion]
+           ,[TF_Fecha_Creacion])
+     VALUES
+           ('COSTA RICA'
+           ,GETDATE())
+GO
+INSERT INTO [dbo].[TMCCM_C_Persona_Nacionalidad]
+           ([TC_Descripcion]
+           ,[TF_Fecha_Creacion])
+     VALUES
+           ('ABJASIA'
+           ,GETDATE())
+GO
+////Catalogo_Tipo_Droga
+INSERT INTO [dbo].[TMCCM_C_Droga_Tipo_Droga]
+           ([TF_Fecha_Creacion]
+           ,[TC_Nombre]
+           ,[TC_Descripcion]
+           ,[TB_Eliminado])
+     VALUES
+           (GETDATE()
+           ,'Alcohol'
+           ,'Bebida que contiene alcohol etílico.'
+           ,1)
+GO
+INSERT INTO [dbo].[TMCCM_C_Droga_Tipo_Droga]
+           ([TF_Fecha_Creacion]
+           ,[TC_Nombre]
+           ,[TC_Descripcion]
+           ,[TB_Eliminado])
+     VALUES
+           (GETDATE()
+           ,'Tabaco'
+           ,'Hoja de esta planta que, curada y preparada, se fuma, se masca o se aspira en forma de rapé.'
+           ,1)
+GO
+INSERT INTO [dbo].[TMCCM_C_Droga_Tipo_Droga]
+           ([TF_Fecha_Creacion]
+           ,[TC_Nombre]
+           ,[TC_Descripcion]
+           ,[TB_Eliminado])
+     VALUES
+           (GETDATE()
+           ,'Marihuana'
+           ,'Una sustancia química que proviene de una planta llamada cannabis'
+           ,1)
+GO
+INSERT INTO [dbo].[TMCCM_C_Droga_Tipo_Droga]
+           ([TF_Fecha_Creacion]
+           ,[TC_Nombre]
+           ,[TC_Descripcion]
+           ,[TB_Eliminado])
+     VALUES
+           (GETDATE()
+           ,'Cocaína'
+           ,'Droga derivada de la planta de coca un adicto a la cocaína'
+           ,1)
+GO
+INSERT INTO [dbo].[TMCCM_C_Droga_Tipo_Droga]
+           ([TF_Fecha_Creacion]
+           ,[TC_Nombre]
+           ,[TC_Descripcion]
+           ,[TB_Eliminado])
+     VALUES
+           (GETDATE()
+           ,'Crack'
+           ,'Droga de aspecto sólido derivada de la cocaína y altamente adictiva.'
+           ,1)
+GO
+
+ALTER TABLE TMCCM_Entidad_Persona_Juridica
+ADD CONSTRAINT FK_TMCCM_Caso_REL_TMCCM_Entidad_Persona_Juridica Foreign Key(TN_ID_Caso) references TMCCM_Caso(TN_ID_Caso)
+
+
+
 
 
 
