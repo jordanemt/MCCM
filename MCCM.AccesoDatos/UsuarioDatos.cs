@@ -33,7 +33,7 @@ namespace MCCM.AccesoDatos
         {
             using (var context = new MCCMEntities())
             {
-                data.TB_Eliminado = true;
+                data.TB_Eliminado = false;
                 TMCCM_Usuario newData = context.TMCCM_Usuario.Add(data);
                 context.SaveChanges();
                 return newData;

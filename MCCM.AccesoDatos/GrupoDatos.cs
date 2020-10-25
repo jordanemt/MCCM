@@ -55,6 +55,11 @@ namespace MCCM.AccesoDatos
                 {
                     context.Entry(item).Reference(e => e.TMCCM_Usuario).Load();
                 }
+                List<TMCCM_Grupo_Usuario> toRemoveList = data.TMCCM_Grupo_Usuario.Where(e => e.TMCCM_Usuario.TB_Eliminado == true).ToList();
+                foreach (var toRemove in toRemoveList)
+                {
+                    data.TMCCM_Grupo_Usuario.Remove(toRemove);
+                }
                 return data;
             }
         }

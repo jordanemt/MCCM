@@ -80,11 +80,11 @@
                         <div class="row col-md-6">
                             @if (Model == null)
                             {
-                                <input id="TF_Fecha_Inicio" name="TF_Fecha_Inicio" class="form-control col-md-11" type="text" value="@DateTime.Now">
+                                <input id="TF_Fecha_Inicio" name="TF_Fecha_Inicio" class="form-control col-md-11" type="text" value="">
                             }
                             else
                             {
-                                <input id="TF_Fecha_Inicio" name="TF_Fecha_Inicio" class="form-control col-md-11" type="text" value="@Model.TF_Fecha_Inicio">
+                                <input id="TF_Fecha_Inicio" name="TF_Fecha_Inicio" class="form-control col-md-11" type="text" value="@(((DateTime) Model.TF_Fecha_Inicio).ToString("MM/dd/yyyy"))">
                             }
                             <label id="TF_Fecha_Inicio-error" class="error" for="TF_Fecha_Inicio" style="display: none"></label>
                         </div>
@@ -99,7 +99,7 @@
                             }
                             else
                             {
-                                <input id="TF_Fecha_Final" name="TF_Fecha_Final" class="form-control col-md-11" type="text" value="@Model.TF_Fecha_Final">
+                                <input id="TF_Fecha_Final" name="TF_Fecha_Final" class="form-control col-md-11" type="text" value="@((Model.TF_Fecha_Final != null) ? ((DateTime)Model.TF_Fecha_Final).ToString("dd-MM-yyyy") : "")">
                             }
                             <label id="TF_Fecha_Final-error" class="error" for="TF_Fecha_Final" style="display: none"></label>
                         </div>

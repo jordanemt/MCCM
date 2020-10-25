@@ -29,10 +29,10 @@ namespace MCCM.UI.Controllers
         }
 
         [HttpPost]
-        public String InsertarUsuario(TMCCM_Usuario usuario)
+        public ActionResult InsertarUsuario(TMCCM_Usuario usuario)
         {
             usuarioNegocio.Insertar(usuario);
-            return "S";
+            return View("ListaUsuario", usuarioNegocio.Listar());
         }
 
         [HttpPost]
@@ -46,7 +46,6 @@ namespace MCCM.UI.Controllers
         public IEnumerable<TMCCM_Usuario> ListarUsuario()
         {
             return usuarioNegocio.Listar();
-
         }
 
         [HttpGet]
