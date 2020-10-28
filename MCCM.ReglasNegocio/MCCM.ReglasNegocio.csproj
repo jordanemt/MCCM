@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,6 +43,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CasoNegocio.cs" />
+    <Compile Include="C_ArmaMarcaNegocio.cs" />
+    <Compile Include="C_PersonaGeneroNegocio.cs" />
+    <Compile Include="C_PersonaJuridicaTipoOrganizacionNegocio.cs" />
+    <Compile Include="C_PersonaNacionalidadNegocio.cs" />
+    <Compile Include="C_PersonaSexoNegocio.cs" />
+    <Compile Include="C_PersonaTipoIdentificacionNegocio.cs" />
+    <Compile Include="C_TipoArmaNegocio.cs" />
+    <Compile Include="C_TipoDrogaNegocio.cs" />
+    <Compile Include="C_TipoUbicacionNegocio.cs" />
+    <Compile Include="C_UbicacionCantonNegocio.cs" />
+    <Compile Include="C_UbicacionDistritoNegocio.cs" />
+    <Compile Include="C_UbicacionProvinciaNegocio.cs" />
+    <Compile Include="C_VehiculoClaseNegocio.cs" />
+    <Compile Include="C_VehiculoColorNegocio.cs" />
+    <Compile Include="C_VehiculoMarcaNegocio.cs" />
     <Compile Include="EntidadArmaNegocio.cs" />
     <Compile Include="EntidadDrogaNegocio.cs" />
     <Compile Include="EntidadPersonaJuridicaNegocio.cs" />

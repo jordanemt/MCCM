@@ -21,5 +21,25 @@ namespace MCCM.ReglasNegocio
         {
             return datos.Listar();
         }
+
+        public TMCCM_Usuario ObtenerPorID(int id)
+        {
+            return datos.ObtenerPorID(id);
+        }
+
+        public TMCCM_Usuario Insertar(TMCCM_Usuario data)
+        {
+            return datos.Insertar(data);
+        }
+
+        public void Actualizar(TMCCM_Usuario data)
+        {
+            datos.Actualizar(data);
+        }
+
+        public void EliminarPorID(int id)
+        {
+            datos.EliminarPorID(id);
+        }
     }
 }

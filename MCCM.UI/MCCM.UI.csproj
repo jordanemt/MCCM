@@ -130,6 +130,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CasoController.cs" />
+    <Compile Include="Controllers\C_TipoDrogaController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\E_ArmaController.cs" />
     <Compile Include="Controllers\E_DrogaController.cs" />
@@ -341,6 +342,7 @@
     <Content Include="Scripts\js\EntidadPersona.js" />
     <Content Include="Scripts\js\EntidadPersonaJuridica.js" />
     <Content Include="Scripts\js\Evento.js" />
+    <Content Include="Scripts\js\JavaScript.js" />
     <Content Include="Scripts\js\Mensaje.js" />
     <Content Include="Scripts\js\Gasto.js" />
     <Content Include="Scripts\js\Grupo.js" />
@@ -446,7 +448,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Caso\_ModalCasoInsert.cshtml" />
     <Content Include="Views\Dashboard\EntidadArma.cshtml" />
-    <Content Include="Views\Dashboard\EntidadDroga.cshtml" />
+    <Content Include="Views\Entidad\_EntidadDroga.cshtml" />
     <Content Include="Views\Dashboard\EntidadPersona.cshtml" />
     <Content Include="Views\Dashboard\EntidadPersonaJuridica.cshtml" />
     <Content Include="Views\Dashboard\EntidadTelefono.cshtml" />
@@ -468,6 +470,8 @@
     <Content Include="Views\Vehiculo\_Vehiculo.cshtml" />
     <Content Include="Views\Vehiculo\_Lista.cshtml" />
     <Content Include="Views\Vehiculo\_FormModal.cshtml" />
+    <Content Include="Views\Usuario\InsertarUsuario.cshtml" />
+    <Content Include="Views\Usuario\ModificarUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -7,7 +7,8 @@ $(document).on("click", '.borrar', function () {
 $(document).on("click", ".btnEliminarMensaje", function () {
     $("#ModalMensaje").modal("hide");
     if (boton.attr('class').split(' ')[1] == "borrarEvento") {
-        alert("Se elimino el evento #" + boton.attr('id'));
+        eliminarEvento(boton.attr('id'));
+        //alert("Se elimino el evento #" + boton.attr('id'));
     } else if (boton.attr('class').split(' ')[1] == "borrarTarea") {
         alert("Se elimino el tarea #" + boton.attr('id'));
     } else if (boton.attr('class').split(' ')[1] == "borrarGasto") {
@@ -18,5 +19,11 @@ $(document).on("click", ".btnEliminarMensaje", function () {
         alert('Se ha borrado el vehículo');
         boton.parent().parent().parent().remove();
     }
+    else if (boton.attr('class').split(' ')[1] == "borrarEntidadDroga") {
+        eliminarDroga(boton.attr('id'));
+    }
+    boton.parent().parent().parent().remove();
 });
+
+
 

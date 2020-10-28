@@ -150,15 +150,13 @@ function aplicarDateRangeGrupo() {
         timePicker: false,
         singleDatePicker: true,
         showDropdowns: true,
-        minYear: 2020,
-        maxYear: parseInt(moment().format('YYYY'), 10) + 10
+        dateFormat: 'dd-mm-yyyy'
     });
     $('#TF_Fecha_Final').daterangepicker({
         timePicker: false,
         singleDatePicker: true,
         showDropdowns: true,
-        minYear: 2020,
-        maxYear: parseInt(moment().format('YYYY'), 10) + 10
+        dateFormat: 'dd/mm/yyyy' 
     });
 }
 

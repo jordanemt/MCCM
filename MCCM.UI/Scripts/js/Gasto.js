@@ -134,8 +134,8 @@ function aplicarValidGastoForm() {
 }
 
 function aplicarMaskGastoForm() {
-    $('#TN_Num_Factura').mask("0000000000", { placeholder: "_ _ _ _ _ _ _ _ _ _" });
-    $('#TD_Monto').mask("0000000000", { placeholder: "0000000000" });
+    //$('#TN_Num_Factura').mask("0000000000", { placeholder: "_ _ _ _ _ _ _ _ _ _" });
+    //$('#TD_Monto').mask("0000000000", { placeholder: "0000000000" });
 }
 
 $(document).ready(function () {
