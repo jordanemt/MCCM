@@ -15,10 +15,9 @@ namespace MCCM.Entidad.DTO
         public string TC_Detalle { get; set; }
         public Nullable<int> TN_Cantidad { get; set; }
         public Nullable<System.DateTime> TF_Fecha_Decomiso { get; set; }
-        public Nullable<System.TimeSpan> TF_Hora_Decomiso { get; set; }
-        public Nullable<bool> TB_Eliminado { get; set; }
         public Nullable<System.DateTime> TF_Fecha_Creacion { get; set; }
         public Nullable<System.DateTime> TF_Fecha_Modificacion { get; set; }
+        public Nullable<bool> TB_Eliminado { get; set; }
         public string TC_Creado_Por { get; set; }
         public string TC_Modificado_Por { get; set; }
         public Nullable<bool> TB_Verificado { get; set; }

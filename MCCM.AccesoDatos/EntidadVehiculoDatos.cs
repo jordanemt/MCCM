@@ -81,13 +81,13 @@ namespace MCCM.AccesoDatos
             }
         }
 
-        public List<TMCCM_EntidadVehiculoDTO> ListarEntidadVehiculos()
+        public List<TMCCM_EntidadVehiculoDTO> ListarEntidadVehiculos( int caso)
         {
             List<TMCCM_EntidadVehiculoDTO> entidadVehiculoDTO = null;
 
             using (var context = new MCCMEntities())
             {
-                entidadVehiculoDTO = context.TMCCM_Entidad_Vehiculo.Where(c => c.TB_Eliminado == true)
+                entidadVehiculoDTO = context.TMCCM_Entidad_Vehiculo.Where(c => c.TB_Eliminado == false && c.TN_ID_Caso == caso)
                    .Select(vehiculoItem => new TMCCM_EntidadVehiculoDTO()
                    {
                        TN_ID_Vehiculo = vehiculoItem.TN_ID_Vehiculo,

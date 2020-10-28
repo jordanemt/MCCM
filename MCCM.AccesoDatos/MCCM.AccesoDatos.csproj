@@ -59,7 +59,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CasoDatos.cs" />
+    <Compile Include="C_ArmaMarcaDatos.cs" />
+    <Compile Include="C_PersonaGeneroDatos.cs" />
+    <Compile Include="C_PersonaJuridicaTipoOrganizacionDatos.cs" />
+    <Compile Include="C_PersonaNacionalidadDatos.cs" />
+    <Compile Include="C_PersonaSexoDatos.cs" />
+    <Compile Include="C_PersonaTipoIdentificacionDatos.cs" />
+    <Compile Include="C_TipoArmaDatos.cs" />
     <Compile Include="C_TipoDrogaDatos.cs" />
+    <Compile Include="C_TipoUbicacionDatos.cs" />
+    <Compile Include="C_UbicacionCantonDatos.cs" />
+    <Compile Include="C_UbicacionDistritoDatos.cs" />
+    <Compile Include="C_UbicacionProvinciaDatos.cs" />
+    <Compile Include="C_VehiculoClaseDatos.cs" />
+    <Compile Include="C_VehiculoColorDatos.cs" />
+    <Compile Include="C_VehiculoMarcaDatos.cs" />
     <Compile Include="EntidadArmaDatos.cs" />
     <Compile Include="EntidadDrogaDatos.cs" />
     <Compile Include="EntidadPersonaDatos.cs" />
@@ -68,6 +82,7 @@
     <Compile Include="EntidadUbicacionDatos.cs" />
     <Compile Include="EntidadVehiculoDatos.cs" />
     <Compile Include="Grupo_UsuarioDatos.cs" />
+    <Compile Include="UsuarioDatos.cs" />
     <Compile Include="Utilidades.cs" />
     <Compile Include="EventoDatos.cs" />
     <Compile Include="TareaDatos.cs" />

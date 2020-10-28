@@ -7,7 +7,7 @@
 }
 
 $(document).ready(function () {
-    changeVisiblePestannaBody('pestanna-2-body');
+    //changeVisiblePestannaBody('pestanna-2-body');
     $('#picker').daterangepicker({
         "showDropdowns": true,
         "showWeekNumbers": true,

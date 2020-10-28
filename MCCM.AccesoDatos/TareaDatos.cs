@@ -53,7 +53,7 @@ namespace MCCM.AccesoDatos
             }
         }
 
-        public List<TareaCasoResult> ListarTareas(int idCaso)
+        public List<sp_obtenerTareaPorCaso_Result> ListarTareas(int idCaso)
         {
             using (var context = new MCCMEntities())
             {
@@ -80,7 +80,7 @@ namespace MCCM.AccesoDatos
             return aux;
         }
 
-        public List<CatalogoUsuarioResult> ObtenerCatalogoUsuarios() {
+        public List<sp_Obtener_Catalogo_Usuario_Result> ObtenerCatalogoUsuarios() {
             using (var context = new MCCMEntities()) {
                 return context.sp_Obtener_Catalogo_Usuario().ToList();
             }
