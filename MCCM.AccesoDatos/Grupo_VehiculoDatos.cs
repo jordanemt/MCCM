@@ -7,7 +7,7 @@ namespace MCCM.AccesoDatos
 {
     public class Grupo_VehiculoDatos
     {
-        public IEnumerable<TMCCM_Grupo_Vehiculo> GetAll()
+        public IEnumerable<TMCCM_Grupo_Vehiculo> Listar()
         {
             using (var context = new MCCMEntities())
             {
@@ -15,7 +15,7 @@ namespace MCCM.AccesoDatos
             }
         }
 
-        public TMCCM_Grupo_Vehiculo GetById(int id)
+        public TMCCM_Grupo_Vehiculo ObtenerPorId(int id)
         {
             using (var context = new MCCMEntities())
             {
@@ -24,7 +24,7 @@ namespace MCCM.AccesoDatos
         }
 
 
-        public TMCCM_Grupo_Vehiculo Insert(TMCCM_Grupo_Vehiculo data)
+        public TMCCM_Grupo_Vehiculo Insertar(TMCCM_Grupo_Vehiculo data)
         {
             using (var context = new MCCMEntities())
             {
@@ -35,17 +35,18 @@ namespace MCCM.AccesoDatos
             }
         }
 
-        public void Update(TMCCM_Grupo_Vehiculo data)
+        public TMCCM_Grupo_Vehiculo Actualizar(TMCCM_Grupo_Vehiculo data)
         {
             using (var context = new MCCMEntities())
             {
                 data.TB_Eliminado = true;
                 context.Entry(data).State = EntityState.Modified;
                 context.SaveChanges();
+                return data;
             }
         }
 
-        public void DeleteById(int id)
+        public void EliminarPorId(int id)
         {
             using (var context = new MCCMEntities())
             {

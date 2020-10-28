@@ -8,7 +8,6 @@ namespace MCCM.UI.Controllers
 {
     public class VehiculoController : Controller
     {
-        // GET: Vehiculo
         public ActionResult Index()
         {
             return View();
