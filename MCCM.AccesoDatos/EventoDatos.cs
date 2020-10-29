@@ -16,7 +16,7 @@ namespace MCCM.AccesoDatos
         {
             using (var context = new MCCMEntities())
             {
-                evento.TB_Eliminado = true;
+                evento.TB_Eliminado = false;
                 context.TMCCM_Evento.Add(evento);
                 context.SaveChanges();
             }
@@ -47,7 +47,7 @@ namespace MCCM.AccesoDatos
                 var result = context.TMCCM_Evento.SingleOrDefault(b => b.TN_ID_Evento == ID);
                 if (result != null)
                 {
-                    result.TB_Eliminado = false;
+                    result.TB_Eliminado = true;
                     context.Entry(result).State = EntityState.Modified;
                     context.SaveChanges();
                 }

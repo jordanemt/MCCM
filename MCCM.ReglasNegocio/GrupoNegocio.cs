@@ -13,30 +13,35 @@ namespace MCCM.ReglasNegocio
             datos = new GrupoDatos();
         }
 
-        public IEnumerable<TMCCM_Grupo> GetAll()
+        public IEnumerable<TMCCM_Grupo> Listar()
         {
-            return datos.GetAll();
+            return datos.Listar();
         }
 
-        public TMCCM_Grupo GetById(int id)
+        public IEnumerable<TMCCM_Grupo> ListarPorCaso(int idCaso)
         {
-            return datos.GetById(id);
+            return datos.ListarPorCaso(idCaso);
+        }
+
+        public TMCCM_Grupo ObtenerPorId(int id)
+        {
+            return datos.ObtenerPorId(id);
         }
 
 
-        public TMCCM_Grupo Insert(TMCCM_Grupo data)
+        public TMCCM_Grupo Insertar(TMCCM_Grupo data)
         {
-            return datos.Insert(data);
+            return datos.Insertar(data);
         }
 
-        public void Update(TMCCM_Grupo data)
+        public TMCCM_Grupo Actualizar(TMCCM_Grupo data)
         {
-            datos.Update(data);
+            return datos.Actualizar(data);
         }
 
-        public void DeleteById(int id)
+        public void EliminarPorId(int id)
         {
-            datos.DeleteById(id);
+            datos.EliminarPorId(id);
         }
     }
 }

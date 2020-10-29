@@ -68,6 +68,7 @@ function eliminarEvento(eventoID) {
         url: "/Evento/EliminarEventoPorID",
         data: { "eventoID": eventoID }
     }).done(function (data) {
+
     });
 }
 
@@ -87,18 +88,6 @@ $(document).on("click", "#btnRegistrarEvento", function (e) {
 });
 
 
-
-//function AccionesCasoForm(form, url) {
-//    $.ajax({
-//        type: "POST",
-//        url: url,
-//        data: form.serialize()
-
-//    }).done(function (data) {
-//        $("#ModalFormCaso").modal("hide");
-//        CargarCasos();
-//    });
-//}
 
 function CargarEventos() {
     $.ajax({

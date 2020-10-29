@@ -1,9 +1,7 @@
 ﻿using MCCM.Entidad;
 using MCCM.ReglasNegocio;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MCCM.UI.Controllers
@@ -11,50 +9,82 @@ namespace MCCM.UI.Controllers
     public class GrupoController : Controller
     {
         private GrupoNegocio grupoNegocio;
+        private UsuarioNegocio usuarioNegocio;
 
         public GrupoController()
         {
             grupoNegocio = new GrupoNegocio();
+            usuarioNegocio = new UsuarioNegocio();
         }
 
         [HttpGet]
-        public ActionResult List()
+        public ActionResult CargarModal()
         {
-            var model = grupoNegocio.GetAll();
-            return PartialView("_List", model);
+            ViewBag.Usuarios = usuarioNegocio.Listar();
+            return PartialView("_FormModal");
         }
 
         [HttpGet]
-        public TMCCM_Grupo GetById(int id)
+        public ActionResult CargarModalConId(int id)
         {
-            return grupoNegocio.GetById(id);
+            TMCCM_Grupo grupo = grupoNegocio.ObtenerPorId(id);
+            TMCCM_Usuario encargado = grupo.TMCCM_Grupo_Usuario.Where(e => e.TB_Encargado == true).Select(e => e.TMCCM_Usuario).FirstOrDefault();
+            List<TMCCM_Usuario> acompannantes = grupo.TMCCM_Grupo_Usuario.Where(e => e.TB_Encargado != true).Select(e => e.TMCCM_Usuario).ToList();
+            List<TMCCM_Usuario> usuarios = usuarioNegocio.Listar();
+
+            usuarios.Remove(usuarios.Where(e => e.TN_ID_Usuario == encargado.TN_ID_Usuario).FirstOrDefault());
+            foreach (TMCCM_Usuario acompannante in acompannantes)
+            {
+                usuarios.Remove(usuarios.Where(e => e.TN_ID_Usuario == acompannante.TN_ID_Usuario).FirstOrDefault());
+            }
+
+            ViewBag.Usuarios = usuarios;
+            ViewBag.Encargado = encargado;
+            ViewBag.Acompannantes = acompannantes;
+
+            return PartialView("_FormModal", grupo);
         }
 
         [HttpGet]
-        public ActionResult AddVehiculo(int idGrupo, int idVehiculo, string fecha)
+        public ActionResult Listar()
         {
-            return null;
+            var model = grupoNegocio.Listar();
+            return PartialView("_Lista", model);
         }
 
         [HttpPost]
-        public ActionResult Insert(TMCCM_Grupo data)
+        public ActionResult Insertar(TMCCM_Grupo data, List<int> Acompannantes)
         {
-            grupoNegocio.Insert(data);
-            return RedirectToAction("Index", "Dashboard");
+            foreach (int val in Acompannantes)
+            {
+                TMCCM_Grupo_Usuario item = new TMCCM_Grupo_Usuario();
+                item.TN_ID_Usuario = val;
+                item.TB_Encargado = (val == Acompannantes.First());
+                item.TB_Eliminado = false;
+                data.TMCCM_Grupo_Usuario.Add(item);
+            }
+            return PartialView("_Grupo", grupoNegocio.Insertar(data));
         }
 
         [HttpPost]
-        public ActionResult Update(TMCCM_Grupo data)
+        public ActionResult Actualizar(TMCCM_Grupo data, List<int> Acompannantes)
         {
-            grupoNegocio.Update(data);
-            return RedirectToAction("Index", "Dashboard");
+            foreach (int val in Acompannantes)
+            {
+                TMCCM_Grupo_Usuario item = new TMCCM_Grupo_Usuario();
+                item.TN_ID_Grupo = data.TN_ID_Grupo;
+                item.TN_ID_Usuario = val;
+                item.TB_Encargado = (val == Acompannantes.First());
+                item.TB_Eliminado = false;
+                data.TMCCM_Grupo_Usuario.Add(item);
+            }
+            return PartialView("_Grupo", grupoNegocio.Actualizar(data));
         }
 
         [HttpPost]
-        public ActionResult Remove(int id)
+        public void EliminarPorId(int id)
         {
-            grupoNegocio.DeleteById(id);
-            return RedirectToAction("Index", "Dashboard");
+            grupoNegocio.EliminarPorId(id);
         }
     }
 }

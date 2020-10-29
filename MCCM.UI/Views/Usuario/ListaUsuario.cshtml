@@ -1,5 +1,8 @@
 ﻿@model IEnumerable<MCCM.Entidad.TMCCM_Usuario>
 
+@{
+    ViewBag.Title = "prueba";
+}
 <H5>
     Lista de Usuarios
 </H5>
@@ -10,128 +13,62 @@
         <div class="card-header align-content-center col-12">
             <div>Usuarios</div>
 
-            <div><a href="#"><span><i class="fa fa-plus  " data-toggle="modal" data-target="#AgregarUsuarios" style="margin-left:95%!important"></i></span></a></div>
+            <div><a href="/Usuario/InsertarUsuario"><span><i class="fa fa-plus  "style="margin-left:95%!important"></i></span></a></div>
         </div>
         <div class="card-body ">
-            <form form class="form" id="LoginA">
+            <form form class="form" id="tablaUsuario">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
+                
                 <table class="table">
                     <tr>
                         <th>
-                            Código
+                           Codigo
                         </th>
                         <th>
-                            Nombre
+                           Nombre
                         </th>
                         <th>
                             Primer Apellido
                         </th>
                         <th>
                             Segundo Apellido
-                        </th>
+                        </th> 
+                        
                         <th>
-                            Rol
+                            Accion
                         </th>
-
-                        <th>
-                            Acción
-                        </th>
+                        
                     </tr>
 
-
-                    <tr>
-                        <td>
-                            1
-                        </td>
-                        <td>
-                            Arturo
-                        </td>
-                        <td>
-                            Campos
-                        </td>
-                        <td>
-                            Bogantes
-                        </td>
-                        <td>
-                            Encargado del Sistema
-                        </td>
-
-                        <td>
-                            <button type='button' class='edit btn btn-info' data-toggle="modal" data-target="#ActualizarUsuarios"><i class='fa fa-pencil'></i></button>
-                            <button type='button' class='eliminar btn btn-danger'><i class='fa fa-trash'></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            2
-                        </td>
-                        <td>
-                            Valeria
-                        </td>
-                        <td>
-                            Leiva
-                        </td>
-                        <td>
-                            Quiros
-                        </td>
-                        <td>
-                            Puesto de Mando
-                        </td>
-
-                        <td>
-                            <button type='button' class='edit btn btn-info' data-toggle="modal" data-target="#ActualizarUsuarios"><i class='fa fa-pencil'></i></button>
-                            <button type='button' class='eliminar btn btn-danger'><i class='fa fa-trash'></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            3
-                        </td>
-                        <td>
-                            Maikel
-                        </td>
-                        <td>
-                            Matamoros
-                        </td>
-                        <td>
-                            Zuñiga
-                        </td>
-                        <td>
-                            Digitador de Eventos
-                        </td>
-
-                        <td>
-
-                            <button type='button' class='edit btn btn-info' data-toggle="modal" data-target="#ActualizarUsuarios"><i class='fa fa-pencil'></i></button>
-                            <button type='button' class='eliminar btn btn-danger'><i class='fa fa-trash'></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            4
-                        </td>
-                        <td>
-                            Jordan
-                        </td>
-                        <td>
-                            Méndez
-                        </td>
-                        <td>
-                            Torres
-                        </td>
-                        <td>
-                            Puesto Operativo
-                        </td>
-
-                        <td>
-                            <button type='button' class='edit btn btn-info' data-toggle="modal" data-target="#ActualizarUsuarios"><i class='fa fa-pencil'></i></button>
-                            <button type='button' class='eliminar btn btn-danger'><i class='fa fa-trash'></i></button>
-                        </td>
-                    </tr>
-
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TN_ID_Usuario)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TC_Nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TC_Primer_Apellido)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TC_Segundo_Apellido)
+                            </td>
+                            
+                           
+                            <td>
+                              
+                                @Html.ActionLink("Editar", "ModificarUsuario", new { id=item.TN_ID_Usuario }, new { @class = "btn btn-info fa fa-pencil" }) |
+                  
+                                @Html.ActionLink("Eliminar", "EliminarUsuarioPorID", new { id=item.TN_ID_Usuario }, new { @class = "eliminar btn btn-danger fa fa-trash" })
+                            </td>
+                        </tr>
+                    }
 
                 </table>
+
             </form>
         </div>
     </div>
