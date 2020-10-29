@@ -14,36 +14,36 @@ namespace MCCM.UI.Controllers
         }
 
         [HttpGet]
-        public ActionResult CargarModal()
+        public ActionResult InsertarFormModal()
         {
             ViewBag.TipoGasto = gastoNegocio.ListarTipoGasto();
-            return PartialView("_FormModal");
+            return PartialView("_InsertarFormModal");
         }
 
         [HttpGet]
-        public ActionResult CargarModalConId(int id)
+        public ActionResult ActualizarFormModal(int id)
         {
             ViewBag.TipoGasto = gastoNegocio.ListarTipoGasto();
-            return PartialView("_FormModal", gastoNegocio.ObtenerPorId(id));
+            return PartialView("_ActualizarFormModal", gastoNegocio.ObtenerPorId(id));
         }
 
         [HttpGet]
         public ActionResult Listar()
         {
             var model = gastoNegocio.Listar();
-            return PartialView("_Lista", model);
+            return PartialView("_ListaCards", model);
         }
 
         [HttpPost]
         public ActionResult Insertar(TMCCM_Gasto data)
         {
-            return PartialView("_Gasto", gastoNegocio.Insertar(data));
+            return PartialView("_Card", gastoNegocio.Insertar(data));
         }
 
         [HttpPost]
         public ActionResult Actualizar(TMCCM_Gasto data)
         {
-            return PartialView("_Gasto", gastoNegocio.Actualizar(data));
+            return PartialView("_Card", gastoNegocio.Actualizar(data));
         }
 
         [HttpPost]

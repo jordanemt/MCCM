@@ -1,7 +1,7 @@
 ﻿function abrirInsertarGastoFormModal() {
     $('#gasto-form-modal').remove();
 
-    var url = "/Gasto/CargarModal/";
+    var url = "/Gasto/InsertarFormModal/";
 
     $.ajax({
         url: url,
@@ -20,7 +20,7 @@
 function abrirActualizarGastoFormModal(id) {
     $('#gasto-form-modal').remove();
 
-    var url = "/Gasto/CargarModalConId/";
+    var url = "/Gasto/ActualizarFormModal/";
 
     $.ajax({
         url: url,
@@ -119,12 +119,14 @@ function eliminarGastoPorId(id) {
 function aplicarValidGastoForm() {
     $("#gasto-form").validate({
         rules: {
+            TF_Fecha: "required",
             TN_Num_Factura: "required",
             TN_ID_Tipo_Gasto: "required",
             TD_Monto: "required",
             TC_Compra: "required"
         },
         messages: {
+            TF_Fecha: "Seleccione una fecha",
             TN_Num_Factura: "Ingrese la factura",
             TN_ID_Tipo_Gasto: "Seleccione una opción",
             TD_Monto: "Ingrese el monto",
@@ -136,6 +138,23 @@ function aplicarValidGastoForm() {
 function aplicarMaskGastoForm() {
     //$('#TN_Num_Factura').mask("0000000000", { placeholder: "_ _ _ _ _ _ _ _ _ _" });
     //$('#TD_Monto').mask("0000000000", { placeholder: "0000000000" });
+}
+
+function aplicarGastoDateRangePicker() {
+    $('#TF_Fecha_Gasto').daterangepicker({
+        singleDatePicker: true,
+        showDropdowns: true,
+        minYear: parseInt(moment().format('YYYY'), 10),
+        maxYear: parseInt(moment().format('YYYY'), 10),
+        startDate: ($('#TF_Fecha_Gasto').val() !== '') ? moment($('#TF_Fecha_Gasto').val()) : moment(),
+        locale: {
+            format: 'DD/M/Y'
+        }
+    });
+}
+
+function aplicarGastoSelectPicker() {
+    $('#TN_ID_Tipo_Gasto').selectpicker();
 }
 
 $(document).ready(function () {
