@@ -1,7 +1,7 @@
 ﻿function abrirInsertarGrupoFormModal() {
     $('#grupo-form-modal').remove();
 
-    var url = "/Grupo/CargarModal/";
+    var url = "/Grupo/InsertarFormModal/";
 
     $.ajax({
         url: url,
@@ -20,7 +20,7 @@
 function abrirActualizarGrupoFormModal(id) {
     $('#grupo-form-modal').remove();
 
-    var url = "/Grupo/CargarModalConId/";
+    var url = "/Grupo/ActualizarFormModal/";
 
     $.ajax({
         url: url,
@@ -88,7 +88,7 @@ function actualizarGrupo() {
                 $('#grupo-contenedor').append(data);
             },
             error: function (reponse) {
-                alert("error : " + reponse);
+                alert("error: " + reponse);
             }
         });
     }
@@ -112,52 +112,72 @@ function eliminarGrupoPorId(id) {
     });
 }
 
-function aplicarValidGrupoForm() {
+function aplicarGrupoValidation() {
     $("#grupo-form").validate({
         rules: {
             TC_Zona: "required",
             TF_Fecha_Inicio: "required",
-            TF_Fecha_Final: "required",
             TF_Hora: "required",
             Encargado: "required",
-            Acompannantes: "required"
+            Acompannantes: "required",
+            TB_Mando: "required"
         },
         messages: {
-            TC_Zona: "Ingrese la zona",
-            TF_Fecha_Inicio: "Ingrese una fecha de inicio",
-            TF_Fecha_Final: "Ingrese una fecha final",
-            TF_Hora: "Ingrese la hora",
-            Encargado: "Seleccione un encargado",
-            Acompannantes: "Seleccione al menos un acompañante"
+            TC_Zona: "Este campo es necesario",
+            TF_Fecha_Inicio: "Este campo es necesario",
+            TF_Hora: "Este campo es necesario",
+            Encargado: "Este campo es necesario",
+            Acompannantes: "Este campo es necesario",
+            TB_Mando: "Este campo es necesario"
         }
     });
 }
 
-function aplicarMaskGrupoForm() {
-    //$('#TN_Num_Factura').mask("0000000000", { placeholder: "_ _ _ _ _ _ _ _ _ _" });
-    //$('#TD_Monto').mask("0000000000", { placeholder: "0000000000" });
+function aplicarGrupoDateRangePicker() {
+    var fechaInicioElement = $('#TF_Fecha_Inicio');
+    var fechaInicio = $('#TF_Fecha_Inicio').val();
+    fechaInicioElement.daterangepicker({
+        singleDatePicker: true,
+        startDate: (fechaInicioElement.val() !== '') ? moment(fechaInicioElement.val()) : moment(),
+        locale: {
+            format: 'DD/M/Y'
+        }
+    });
+
+    var fechaFinalElement = $('#TF_Fecha_Final');
+    fechaInicioElement.on('apply.daterangepicker', function (ev, picker) {
+        fechaFinalElement.val('');
+        fechaFinalElement.daterangepicker({
+            autoUpdateInput: false,
+            singleDatePicker: true,
+            minDate: picker.startDate,
+        });
+    });
+    fechaFinalElement.daterangepicker({
+        autoUpdateInput: false,
+        singleDatePicker: true,
+        minDate: (fechaInicio !== '') ? moment(fechaInicio) : moment(),
+    });
+    if (fechaFinalElement.val() !== '') {
+        fechaFinalElement.val(moment(fechaFinalElement.val()).format('DD/M/Y'));
+    }
+    fechaFinalElement.on('apply.daterangepicker', function (ev, picker) {
+        $(this).val(picker.startDate.format('DD/M/Y'));
+    });
+}
+
+function aplicarGrupoSelectPicker() {
+    $('#Encargado').selectpicker();
+    $('#Acompannantes').selectpicker();
+    $('#TB_Mando').selectpicker();
 }
 
 function bloquearAcompannanteEncargado() {
     var encargadoId = $('#Encargado').val();
     $('#Acompannantes').find('option').prop('disabled', false);
-    $('#Acompannantes').find('#acompannante-' + encargadoId).prop('selected', false);
-    $('#Acompannantes').find('#acompannante-' + encargadoId).prop('disabled', true);
-}
-
-function aplicarDateRangeGrupo() {
-    $('#TF_Fecha_Inicio').daterangepicker({
-        timePicker: false,
-        singleDatePicker: true,
-        showDropdowns: true,
-        dateFormat: 'dd-mm-yyyy'
-    });
-    $('#TF_Fecha_Final').daterangepicker({
-        timePicker: false,
-        singleDatePicker: true,
-        showDropdowns: true,
-        dateFormat: 'dd/mm/yyyy' 
-    });
+    $('#Acompannantes').find('[value=' + encargadoId + ']').prop('selected', false);
+    $('#Acompannantes').find('[value=' + encargadoId + ']').prop('disabled', true);
+    $('#Acompannantes').selectpicker('refresh');
 }
 
 $(document).ready(function () {

@@ -1,0 +1,129 @@
+﻿@model MCCM.Entidad.TMCCM_Grupo
+
+@{
+    MCCM.Entidad.TMCCM_Usuario encargado = ViewBag.Encargado;
+    List<MCCM.Entidad.TMCCM_Usuario> acompannantes = ViewBag.Acompannantes;
+    List<MCCM.Entidad.TMCCM_Usuario> usuarios = ViewBag.Usuarios;
+}
+
+<div class="modal fade" id="grupo-form-modal">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 id="gasto-form-modal-title" class="modal-title">Actualizar Grupo</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form id="grupo-form">
+                    <div class="form-group row justify-content-center">
+                        <label class="control-label col-md-3" for="TN_ID_Grupo">Número de grupo:</label>
+                        <div class="row col-md-6">
+                            <input id="TN_ID_Grupo" name="TN_ID_Grupo" class="form-control col-md-11" type="text" value="@Model.TN_ID_Grupo" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-group row justify-content-center">
+                        <label class="control-label col-md-3" for="TN_ID_Caso">Número de caso:</label>
+                        <div class="row col-md-6">
+                            <input id="TN_ID_Caso" name="TN_ID_Caso" class="form-control col-md-11" type="text" value="@Model.TN_ID_Caso" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-group row justify-content-center">
+                        <label class="control-label col-md-3" for="TC_Zona">Zona:</label>
+                        <div class="row col-md-6">
+                            <input id="TC_Zona" name="TC_Zona" class="form-control col-md-11" type="text" value="@Model.TC_Zona">
+                            <label id="TC_Zona-error" class="error" for="TC_Zona" style="display: none"></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group row justify-content-center">
+                        <label class="control-label col-md-3" for="TF_Fecha_Inicio">Fecha de Inicio:</label>
+                        <div class="row col-md-6">
+                            <input id="TF_Fecha_Inicio" name="TF_Fecha_Inicio" class="form-control col-md-11" type="text" value="@(((DateTime) Model.TF_Fecha_Inicio).ToString("yyyy-MM-dd"))">
+                            <label id="TF_Fecha_Inicio-error" class="error" for="TF_Fecha_Inicio" style="display: none"></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group row justify-content-center">
+                        <label class="control-label col-md-3" for="TF_Fecha_Final">Fecha de Final:</label>
+                        <div class="row col-md-6">
+                            <input id="TF_Fecha_Final" name="TF_Fecha_Final" class="form-control col-md-11" type="text" placeholder="Opcional" value="@((Model.TF_Fecha_Final != null) ? (((DateTime) Model.TF_Fecha_Final).ToString("yyyy-MM-dd")) : "")">
+                            <label id="TF_Fecha_Final-error" class="error" for="TF_Fecha_Final" style="display: none"></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group row justify-content-center">
+                        <label class="control-label col-md-3" for="TF_Hora">Hora:</label>
+                        <div class="row col-md-6">
+                            <input id="TF_Hora" name="TF_Hora" class="form-control col-md-11" type="time" value="@Model.TF_Hora">
+                            <label id="TF_Hora-error" class="error" for="TF_Hora" style="display: none"></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group row justify-content-center">
+                        <label class="control-label col-md-3" for="Encargado">Encargado:</label>
+                        <div class="row col-md-6">
+                            <select id="Encargado" class="form-control col-md-11 mdb-select" name="Encargado" onchange="bloquearAcompannanteEncargado();">
+                                <option id="encargado-@encargado.TN_ID_Usuario" selected value="@encargado.TN_ID_Usuario">@encargado.TN_ID_Usuario @encargado.TC_Nombre @encargado.TC_Primer_Apellido</option>
+                                @foreach (MCCM.Entidad.TMCCM_Usuario acompannante in acompannantes)
+                                {
+                                    <option value="@acompannante.TN_ID_Usuario">@acompannante.TN_ID_Usuario @acompannante.TC_Nombre @acompannante.TC_Primer_Apellido</option>
+                                }
+                                @foreach (MCCM.Entidad.TMCCM_Usuario usuario in usuarios)
+                                {
+                                    <option value="@usuario.TN_ID_Usuario">@usuario.TN_ID_Usuario @usuario.TC_Nombre @usuario.TC_Primer_Apellido</option>
+                                }
+                            </select>
+                            <label id="Encargado-error" class="error" for="Encargado" style="display: none"></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group row justify-content-center">
+                        <label class="control-label col-md-3" for="Acompannantes">Acompañantes:</label>
+                        <div class="row col-md-6">
+                            <select id="Acompannantes" class="form-control col-md-11" name="Acompannantes" multiple>
+                                <option disabled value="@encargado.TN_ID_Usuario">@encargado.TN_ID_Usuario @encargado.TC_Nombre @encargado.TC_Primer_Apellido</option>
+                                @foreach (MCCM.Entidad.TMCCM_Usuario acompannante in acompannantes)
+                                {
+                                    <option selected value="@acompannante.TN_ID_Usuario">@acompannante.TN_ID_Usuario @acompannante.TC_Nombre @acompannante.TC_Primer_Apellido</option>
+                                }
+                                @foreach (MCCM.Entidad.TMCCM_Usuario usuario in usuarios)
+                                {
+                                    <option value="@usuario.TN_ID_Usuario">@usuario.TN_ID_Usuario @usuario.TC_Nombre @usuario.TC_Primer_Apellido</option>
+                                }
+                            </select>
+                            <label id="Acompannantes-error" class="error" for="Acompannantes" style="display: none"></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group row justify-content-center">
+                        <label class="control-label col-md-3" for="TB_Mando">Tipo de grupo:</label>
+                        <div class="row col-md-6">
+                            <select id="TB_Mando" class="form-control col-md-11" name="TB_Mando" title="Seleccione el tipo de grupo">
+                                <option value="false" @((Model.TB_Mando == false)? "selected":"")>Operativo</option>
+                                <option value="true" @((Model.TB_Mando == true)? "selected":"")>Mando</option>
+                            </select>
+                            <label id="TB_Mando-error" class="error" for="TB_Mando" style="display: none"></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group row justify-content-center">
+                        <input id="gasto-form-modal-submit" type="button" value="Actualizar" class="btn btn-primary submit-button mx-2" onclick="actualizarGrupo();" />
+                        <button type="button" class="btn btn-secondary mx-2" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    aplicarGrupoValidation();
+    aplicarGrupoDateRangePicker();
+    aplicarGrupoSelectPicker();
+</script>

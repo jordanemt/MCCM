@@ -60,7 +60,7 @@
                         <span class="badge badge-primary w-100">F/Inicio:</span>
                     </div>
                     <div class="col-sm-6">
-                        <p>@(((DateTime) Model.TF_Fecha_Inicio).ToString("MM-dd-yyyy"))</p>
+                        <p>@(((DateTime) Model.TF_Fecha_Inicio).ToString("dd/MM/yyyy"))</p>
                     </div>
                 </div>
                 <div class="d-flex flex-sm-row">
@@ -68,7 +68,7 @@
                         <span class="badge badge-primary w-100">F/Final:</span>
                     </div>
                     <div class="col-sm-6">
-                        <p>@((Model.TF_Fecha_Final != null) ? ((DateTime)Model.TF_Fecha_Final).ToString("MM-dd-yyyy") : "---")</p>
+                        <p>@((Model.TF_Fecha_Final != null) ? ((DateTime)Model.TF_Fecha_Final).ToString("dd/MM/yyyy") : "---")</p>
                     </div>
                 </div>
                 <div class="d-flex flex-sm-row">

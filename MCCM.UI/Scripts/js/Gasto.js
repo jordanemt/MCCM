@@ -116,7 +116,7 @@ function eliminarGastoPorId(id) {
     });
 }
 
-function aplicarValidGastoForm() {
+function aplicarGastoValidation() {
     $("#gasto-form").validate({
         rules: {
             TF_Fecha: "required",
@@ -133,11 +133,6 @@ function aplicarValidGastoForm() {
             TC_Compra: "Ingrese el detalle"
         }
     });
-}
-
-function aplicarMaskGastoForm() {
-    //$('#TN_Num_Factura').mask("0000000000", { placeholder: "_ _ _ _ _ _ _ _ _ _" });
-    //$('#TD_Monto').mask("0000000000", { placeholder: "0000000000" });
 }
 
 function aplicarGastoDateRangePicker() {
