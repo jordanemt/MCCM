@@ -16,3 +16,7 @@ MCCM.ReglasNegocio/bin/
 
 MCCM.UI/bin/
 MCCM.UI/MCCM.UI.csproj.user
+
+MCCM.AccesoDatos/MCCM.AccesoDatos.csproj
+
+MCCM.UI/MCCM.UI.csproj
