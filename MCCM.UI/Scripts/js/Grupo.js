@@ -9,7 +9,9 @@
         type: "GET",
         success: function (data) {
             $('.body-content').append(data);
-            $('#grupo-form-modal').modal('show');
+            if (agregarCasoIDToInputElementVal($('#TN_ID_Caso_Grupo'))) {
+                $('#grupo-form-modal').modal('show');
+            }
         },
         error: function (reponse) {
             alert("error : " + reponse);
@@ -37,18 +39,21 @@ function abrirActualizarGrupoFormModal(id) {
     });
 }
 
-function listarGrupo() {
-    var url = "/Grupo/Listar/";
+function listarGrupos() {
+    var url = "/Grupo/ListarPorCasoId/";
 
     $.ajax({
         url: url,
         cache: false,
         type: "GET",
+        data: {
+            idCaso: sessionStorage.CasoID
+        },
         success: function (data) {
             $('#grupo-contenedor').html(data);
         },
         error: function (reponse) {
-            alert("error : " + reponse);
+            alert("error : " + JSON.stringify(reponse));
         }
     });
 }
@@ -180,6 +185,15 @@ function bloquearAcompannanteEncargado() {
     $('#Acompannantes').selectpicker('refresh');
 }
 
+function seleccionarGrupo(idGrupo) {
+    $(".grupoCard").removeClass('filaseleccionada');
+    $('#grupo-' + idGrupo).addClass('filaseleccionada');
+
+    sessionStorage.GrupoID = idGrupo;
+    $("#vehiculos-titulo").text('Vechículos/Grupo #' + idGrupo);
+    listarGrupo_Vehiculo();//Definido en Vehiculo.js
+}
+
 $(document).ready(function () {
-    listarGrupo();
+    //listarGrupo();
 });

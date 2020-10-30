@@ -9,7 +9,9 @@
         type: "GET",
         success: function (data) {
             $('.body-content').append(data);
-            $('#gasto-form-modal').modal('show');
+            if (agregarCasoIDToInputElementVal($('#TN_ID_Caso_Gasto'))) {
+                $('#gasto-form-modal').modal('show');
+            }
         },
         error: function (reponse) {
             alert("error : " + reponse);
@@ -38,15 +40,17 @@ function abrirActualizarGastoFormModal(id) {
 }
 
 function listarGastos() {
-    var url = "/Gasto/Listar/";
+    var url = "/Gasto/ListarPorCasoId/";
 
     $.ajax({
         url: url,
         cache: false,
         type: "GET",
+        data: {
+            idCaso: sessionStorage.CasoID
+        },
         success: function (data) {
             $('#gastos-contenedor').html(data);
-            //$('#divPartial').fadeIn('fast');
         },
         error: function (reponse) {
             alert("error : " + reponse);
@@ -66,7 +70,6 @@ function insertarGasto() {
             success: function (data) {
                 $('#gasto-form-modal').modal('hide');
                 $('#gastos-contenedor').append(data);
-                //$('#gastos-contenedor').fadeIn('fast');
             },
             error: function (reponse) {
                 alert("error : " + reponse);
@@ -108,7 +111,6 @@ function eliminarGastoPorId(id) {
         success: function (data) {
             alert("Se elimino el gasto #" + id);
             $('#gasto-' + id).remove();
-            //$('#gastos-contenedor').fadeOut('fast');
         },
         error: function (reponse) {
             alert("error : " + reponse);
@@ -153,5 +155,5 @@ function aplicarGastoSelectPicker() {
 }
 
 $(document).ready(function () {
-    listarGastos();
+    //listarGastos();
 });

@@ -34,6 +34,12 @@ namespace MCCM.UI.Controllers
             return PartialView("_ListaCards", model);
         }
 
+        [HttpGet]
+        public ActionResult ListarPorCasoId(int idCaso)
+        {
+            return PartialView("_ListaCards", gastoNegocio.ListarPorCaso(idCaso));
+        }
+
         [HttpPost]
         public ActionResult Insertar(TMCCM_Gasto data)
         {

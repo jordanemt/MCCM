@@ -40,9 +40,25 @@ namespace MCCM.AccesoDatos
         {
             using (var context = new MCCMEntities())
             {
-                return context.TMCCM_Grupo
+                List<TMCCM_Grupo> data = context.TMCCM_Grupo
                     .Where(e => e.TB_Eliminado == false && e.TN_ID_Caso == idCaso)
+                    .Include(e => e.TMCCM_Grupo_Usuario)
                     .ToList();
+
+                foreach (TMCCM_Grupo grupo in data)
+                {
+                    foreach (TMCCM_Grupo_Usuario item in grupo.TMCCM_Grupo_Usuario)
+                    {
+                        context.Entry(item).Reference(e => e.TMCCM_Usuario).Load();
+                    }
+                    List<TMCCM_Grupo_Usuario> toRemoveList = grupo.TMCCM_Grupo_Usuario.Where(e => e.TMCCM_Usuario.TB_Eliminado == true).ToList();
+                    foreach (var toRemove in toRemoveList)
+                    {
+                        grupo.TMCCM_Grupo_Usuario.Remove(toRemove);
+                    }
+                }
+
+                return data;
             }
         }
 

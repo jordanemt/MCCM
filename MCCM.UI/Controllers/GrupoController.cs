@@ -49,7 +49,13 @@ namespace MCCM.UI.Controllers
         public ActionResult Listar()
         {
             var model = negocio.Listar();
-            return PartialView("_Lista", model);
+            return PartialView("_ListaCards", model);
+        }
+
+        [HttpGet]
+        public ActionResult ListarPorCasoId(int idCaso)
+        {
+            return PartialView("_ListaCards", negocio.ListarPorCaso(idCaso));
         }
 
         [HttpPost]
