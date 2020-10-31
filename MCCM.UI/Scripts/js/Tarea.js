@@ -1,7 +1,30 @@
 ﻿$(document).ready(function () {
     iniciarCalendarioTarea(moment());
     cargarCatalogoUsuario();
+    validarFormularioTarea();
 })
+
+function validarFormularioTarea() {
+    $("#FormTarea").validate({
+        rules: {
+            TC_Diligencia: { required: true },
+            TC_Lugar: { required: true },
+            TN_ID_Usuario: { required: true },
+            TF_Fecha_Tarea: { required: true }
+        },
+        messages: {
+            TC_Diligencia: { required: "Debe indicar la Diligencia" },
+            TC_Lugar: { required: "Debe indicar el Lugar" },
+            TN_ID_Usuario: { required: "Debe indicar a quién se le asigna la tarea" },
+            TF_Fecha_Tarea: { required: "Debe indicar la fecha limite" }
+
+        },
+        submitHandler: function (form) {
+            return false;
+        }
+    });
+}
+
 
 function cargarCatalogoUsuario() {
     $.ajax({
@@ -21,15 +44,18 @@ function cargarCatalogoUsuario() {
 
 $(document).on("click", "#btnRegistrarTarea", function (e) {
     e.preventDefault();
-    var form = new FormData($("#FormTarea")[0]);
-    $.ajax({
-        type: "POST",
-        url: "/Tarea/InsertarTarea",
-        data: { "tarea": Object.fromEntries(form), "TF_Fecha": $("#TF_Fecha_Tarea").val(), "caso": sessionStorage.CasoID }
-    }).done(function (data) {
-        CargarTareas();
-        $("#ModalFormTarea").modal("hide");
-    });
+    if ($("#FormTarea").valid()) {
+        var form = new FormData($("#FormTarea")[0]);
+        $.ajax({
+            type: "POST",
+            url: "/Tarea/InsertarTarea",
+            data: { "tarea": Object.fromEntries(form), "TF_Fecha": $("#TF_Fecha_Tarea").val(), "caso": sessionStorage.CasoID }
+        }).done(function (data) {
+            CargarTareas();
+            $("#ModalFormTarea").modal("hide");
+        });
+    }
+    
 });
 
 function iniciarCalendarioTarea(fecha) {
@@ -145,15 +171,17 @@ $(document).on("click", ".editarTarea", function () {
 
 $(document).on("click", "#btnModificarTarea", function (e) {
     e.preventDefault();
-    var form = new FormData($("#FormTarea")[0]);
-    $.ajax({
-        type: "POST",
-        url: "/Tarea/ModificarTarea",
-        data: { "tarea": Object.fromEntries(form), "fecha": $("#TF_Fecha_Tarea").val() }
-    }).done(function (data) {
-        CargarTareas();
-        $("#ModalFormTarea").modal("hide");
-    });
+    if ($("#FormTarea").valid()) {
+        var form = new FormData($("#FormTarea")[0]);
+        $.ajax({
+            type: "POST",
+            url: "/Tarea/ModificarTarea",
+            data: { "tarea": Object.fromEntries(form), "fecha": $("#TF_Fecha_Tarea").val() }
+        }).done(function (data) {
+            CargarTareas();
+            $("#ModalFormTarea").modal("hide");
+        });
+    }
 });
 
 $('#ModalFormTarea').on('hidden.bs.modal', function () {
