@@ -64,23 +64,16 @@ namespace MCCM.AccesoDatos
 
 
 
-        public List<TMCCM_CasoDTO> ListarCasos()
+        public List<sp_listarCasos_Result> ListarCasos()
         {
-            List<TMCCM_CasoDTO> casosDTO = null;
+            List<sp_listarCasos_Result> casos = null;
 
             using (var context = new MCCMEntities())
             {
-                casosDTO = context.TMCCM_Caso.Where(c => c.TB_Eliminado==false)
-                  .Select(casoItem => new TMCCM_CasoDTO()
-                  {
-                      TN_ID_Caso = casoItem.TN_ID_Caso,
-                      TC_Nombre_Caso = casoItem.TC_Nombre_Caso,
-                      TC_Delito = casoItem.TC_Delito,
-                      TF_Fecha = casoItem.TF_Fecha
-                  }).ToList<TMCCM_CasoDTO>();
+                return casos = context.sp_listarCasos().ToList(); 
             }
 
-            return casosDTO;
+            
         }
 
         public TMCCM_CasoDTO ObtenerCasoPorID(int ID)

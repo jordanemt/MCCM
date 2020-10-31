@@ -18,9 +18,9 @@ namespace MCCM.ReglasNegocio
             tareaDatos.InsertarTarea(tarea);
         }
 
-        public void ActualizarTarea(TMCCM_Tarea tarea)
+        public void ModificarTarea(TMCCM_Tarea tarea)
         {
-            tareaDatos.ActualizarTarea(tarea);
+            tareaDatos.ModificarTarea(tarea);
         }
 
         public string EliminarTarea(int ID)

@@ -30,9 +30,10 @@ namespace MCCM.UI.Controllers
         }
 
         [HttpPost]
-        public String ActualizarTarea(TMCCM_Tarea tarea)
+        public String ModificarTarea(TMCCM_Tarea tarea,DateTime fecha)
         {
-            tareaNegocio.ActualizarTarea(tarea);
+            tarea.TF_Fecha = fecha;
+            tareaNegocio.ModificarTarea(tarea);
             return "S";
         }
 
@@ -56,9 +57,9 @@ namespace MCCM.UI.Controllers
         
 
        [HttpPost]
-        public string EliminarTareaPorID(int ID)
+        public string EliminarTareaPorID(int tareaID)
         {
-            return tareaNegocio.EliminarTarea(ID);
+            return tareaNegocio.EliminarTarea(tareaID);
         }
     }
 }

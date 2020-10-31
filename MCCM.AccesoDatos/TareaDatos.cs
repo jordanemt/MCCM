@@ -21,7 +21,7 @@ namespace MCCM.AccesoDatos
             }
         }
 
-        public void ActualizarTarea(TMCCM_Tarea tarea)
+        public void ModificarTarea(TMCCM_Tarea tarea)
         {
             using (var context = new MCCMEntities())
             {
@@ -46,7 +46,7 @@ namespace MCCM.AccesoDatos
                 var result = context.TMCCM_Tarea.SingleOrDefault(b => b.TN_ID_Tarea == ID);
                 if (result != null)
                 {
-                    result.TB_Eliminado = false;
+                    result.TB_Eliminado = true;
                     context.Entry(result).State = EntityState.Modified;
                     context.SaveChanges();
                 }

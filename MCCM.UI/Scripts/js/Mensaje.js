@@ -1,16 +1,16 @@
-﻿let boton; 
+﻿let boton;
 
 $(document).on("click", '.borrar', function () {
     boton = $(this);
 })
 
 $(document).on("click", ".btnEliminarMensaje", function () {
-    $("#ModalMensaje").modal("hide");
+    
     if (boton.attr('class').split(' ')[1] == "borrarEvento") {
         eliminarEvento(boton.attr('id'));
         //alert("Se elimino el evento #" + boton.attr('id'));
     } else if (boton.attr('class').split(' ')[1] == "borrarTarea") {
-        alert("Se elimino el tarea #" + boton.attr('id'));
+        eliminarTarea(boton.attr('id'), boton);
     } else if (boton.attr('class').split(' ')[1] == "borrarGasto") {
         eliminarGastoPorId(boton.attr('id'));
     } else if (boton.attr('class').split(' ')[1] == "borrarGrupo") {
@@ -21,8 +21,11 @@ $(document).on("click", ".btnEliminarMensaje", function () {
     }
     else if (boton.attr('class').split(' ')[1] == "borrarEntidadDroga") {
         eliminarDroga(boton.attr('id'));
+    } else if (boton.attr('class').split(' ')[1] == "borrarEntidadTelefono") {
+        alert("HOLA");
+        eliminarTelefono(boton.attr('id'), boton);
     }
-    boton.parent().parent().parent().remove();
+    $("#ModalMensaje").modal("hide");
 });
 
 
