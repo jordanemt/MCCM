@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MCCMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MCCMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="TMCCM_C_Arma_Icono_Arma">
           <Key>
             <PropertyRef Name="TN_ID_Icono_Arma" />
@@ -314,8 +314,8 @@
           <Property Name="TN_ID_Icono_Telefono" Type="int" />
           <Property Name="TC_Comentario" Type="varchar" MaxLength="100" />
           <Property Name="TN_Numero" Type="int" />
-          <Property Name="TF_Fecha_Creacion" Type="date" />
-          <Property Name="TF_Fecha_Modificacion" Type="date" />
+          <Property Name="TF_Fecha_Creacion" Type="datetime" />
+          <Property Name="TF_Fecha_Modificacion" Type="datetime" />
           <Property Name="TC_Creado_Por" Type="varchar" MaxLength="50" />
           <Property Name="TC_Modificado_Por" Type="varchar" MaxLength="50" />
           <Property Name="TB_Eliminado" Type="bit" />
@@ -351,7 +351,6 @@
           <Property Name="TN_ID_Icono_Vehiculo" Type="int" />
           <Property Name="TN_ID_Color_Vehiculo" Type="int" />
           <Property Name="TC_Placa" Type="varchar" MaxLength="20" />
-          <Property Name="TC_Clase" Type="varchar" MaxLength="50" />
           <Property Name="TC_Estilo" Type="varchar" MaxLength="50" />
           <Property Name="TC_Comentario" Type="varchar" MaxLength="100" />
           <Property Name="TN_Anno" Type="int" />
@@ -362,6 +361,7 @@
           <Property Name="TB_Eliminado" Type="bit" />
           <Property Name="TB_Verificado" Type="bit" />
           <Property Name="TB_Fotografia" Type="varbinary(max)" />
+          <Property Name="TN_ID_Clase_Vehiculo" Type="int" />
         </EntityType>
         <EntityType Name="TMCCM_Evento">
           <Key>
@@ -718,6 +718,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TMCCM_C_Vehiculo_Clase_REL_TMCCM_Entidad_Vehiculo">
+          <End Role="TMCCM_C_Vehiculo_Clase" Type="Self.TMCCM_C_Vehiculo_Clase" Multiplicity="0..1" />
+          <End Role="TMCCM_Entidad_Vehiculo" Type="Self.TMCCM_Entidad_Vehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TMCCM_C_Vehiculo_Clase">
+              <PropertyRef Name="TN_ID_Clase_Vehiculo" />
+            </Principal>
+            <Dependent Role="TMCCM_Entidad_Vehiculo">
+              <PropertyRef Name="TN_ID_Clase_Vehiculo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TMCCM_C_Vehiculo_Color_REL_TMCCM_Entidad_Vehiculo">
           <End Role="TMCCM_C_Vehiculo_Color" Type="Self.TMCCM_C_Vehiculo_Color" Multiplicity="0..1" />
           <End Role="TMCCM_Entidad_Vehiculo" Type="Self.TMCCM_Entidad_Vehiculo" Multiplicity="*" />
@@ -970,6 +982,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="sp_listarCasos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_listarEntidadTelefono" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="caso" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_Obtener_Catalogo_Usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_obtenerEventosPorCaso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="casoID" Type="int" Mode="In" />
@@ -1098,6 +1114,10 @@
             <End Role="TMCCM_C_Ubicacion_Tipo_Ubicacion" EntitySet="TMCCM_C_Ubicacion_Tipo_Ubicacion" />
             <End Role="TMCCM_Entidad_Ubicacion" EntitySet="TMCCM_Entidad_Ubicacion" />
           </AssociationSet>
+          <AssociationSet Name="FK_TMCCM_C_Vehiculo_Clase_REL_TMCCM_Entidad_Vehiculo" Association="Self.FK_TMCCM_C_Vehiculo_Clase_REL_TMCCM_Entidad_Vehiculo">
+            <End Role="TMCCM_C_Vehiculo_Clase" EntitySet="TMCCM_C_Vehiculo_Clase" />
+            <End Role="TMCCM_Entidad_Vehiculo" EntitySet="TMCCM_Entidad_Vehiculo" />
+          </AssociationSet>
           <AssociationSet Name="FK_TMCCM_C_Vehiculo_Color_REL_TMCCM_Entidad_Vehiculo" Association="Self.FK_TMCCM_C_Vehiculo_Color_REL_TMCCM_Entidad_Vehiculo">
             <End Role="TMCCM_C_Vehiculo_Color" EntitySet="TMCCM_C_Vehiculo_Color" />
             <End Role="TMCCM_Entidad_Vehiculo" EntitySet="TMCCM_Entidad_Vehiculo" />
@@ -1183,8 +1203,7 @@
             <End Role="TMCCM_Grupo_Vehiculo" EntitySet="TMCCM_Grupo_Vehiculo" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MCCMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1375,6 +1394,7 @@
           <Property Name="TC_Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="TF_Fecha_Creacion" Type="DateTime" Precision="0" />
           <Property Name="TB_Eliminado" Type="Boolean" />
+          <NavigationProperty Name="TMCCM_Entidad_Vehiculo" Relationship="MCCMModel.FK_TMCCM_C_Vehiculo_Clase_REL_TMCCM_Entidad_Vehiculo" FromRole="TMCCM_C_Vehiculo_Clase" ToRole="TMCCM_Entidad_Vehiculo" />
         </EntityType>
         <EntityType Name="TMCCM_C_Vehiculo_Color">
           <Key>
@@ -1548,8 +1568,8 @@
           <Property Name="TN_ID_Icono_Telefono" Type="Int32" />
           <Property Name="TC_Comentario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="TN_Numero" Type="Int32" />
-          <Property Name="TF_Fecha_Creacion" Type="DateTime" Precision="0" />
-          <Property Name="TF_Fecha_Modificacion" Type="DateTime" Precision="0" />
+          <Property Name="TF_Fecha_Creacion" Type="DateTime" Precision="3" />
+          <Property Name="TF_Fecha_Modificacion" Type="DateTime" Precision="3" />
           <Property Name="TC_Creado_Por" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TC_Modificado_Por" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TB_Eliminado" Type="Boolean" />
@@ -1593,7 +1613,6 @@
           <Property Name="TN_ID_Icono_Vehiculo" Type="Int32" />
           <Property Name="TN_ID_Color_Vehiculo" Type="Int32" />
           <Property Name="TC_Placa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="TC_Clase" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TC_Estilo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TC_Comentario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="TN_Anno" Type="Int32" />
@@ -1608,6 +1627,8 @@
           <NavigationProperty Name="TMCCM_C_Vehiculo_Icono" Relationship="Self.FK_TMCCM_C_Vehiculo_Icono_REL_TMCCM_Entidad_Vehiculo" FromRole="TMCCM_Entidad_Vehiculo" ToRole="TMCCM_C_Vehiculo_Icono" />
           <NavigationProperty Name="TMCCM_C_Vehiculo_Marca" Relationship="Self.FK_TMCCM_C_Vehiculo_Marca_REL_TMCCM_Entidad_Vehiculo" FromRole="TMCCM_Entidad_Vehiculo" ToRole="TMCCM_C_Vehiculo_Marca" />
           <NavigationProperty Name="TMCCM_Caso" Relationship="Self.FK_TMCCM_Caso_REL_TMCCM_Entidad_Vehiculo" FromRole="TMCCM_Entidad_Vehiculo" ToRole="TMCCM_Caso" />
+          <Property Name="TN_ID_Clase_Vehiculo" Type="Int32" />
+          <NavigationProperty Name="TMCCM_C_Vehiculo_Clase" Relationship="MCCMModel.FK_TMCCM_C_Vehiculo_Clase_REL_TMCCM_Entidad_Vehiculo" FromRole="TMCCM_Entidad_Vehiculo" ToRole="TMCCM_C_Vehiculo_Clase" />
         </EntityType>
         <EntityType Name="TMCCM_Evento">
           <Key>
@@ -2407,10 +2428,18 @@
           </AssociationSet>
           <FunctionImport Name="sp_Obtener_Catalogo_Usuario" ReturnType="Collection(MCCMModel.sp_Obtener_Catalogo_Usuario_Result)" />
           <FunctionImport Name="sp_obtenerEventosPorCaso" ReturnType="Collection(MCCMModel.sp_obtenerEventosPorCaso_Result)">
-            <Parameter Name="casoID" Mode="In" Type="Int32" />
+          <Parameter Name="casoID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_obtenerTareaPorCaso" ReturnType="Collection(MCCMModel.sp_obtenerTareaPorCaso_Result)">
-            <Parameter Name="idCaso" Mode="In" Type="Int32" />
+          <Parameter Name="idCaso" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <AssociationSet Name="FK_TMCCM_C_Vehiculo_Clase_REL_TMCCM_Entidad_Vehiculo" Association="MCCMModel.FK_TMCCM_C_Vehiculo_Clase_REL_TMCCM_Entidad_Vehiculo">
+            <End Role="TMCCM_C_Vehiculo_Clase" EntitySet="TMCCM_C_Vehiculo_Clase" />
+            <End Role="TMCCM_Entidad_Vehiculo" EntitySet="TMCCM_Entidad_Vehiculo" />
+          </AssociationSet>
+          <FunctionImport Name="sp_listarCasos" ReturnType="Collection(MCCMModel.sp_listarCasos_Result)" />
+          <FunctionImport Name="sp_listarEntidadTelefono" ReturnType="Collection(MCCMModel.sp_listarEntidadTelefono_Result)">
+            <Parameter Name="caso" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_Obtener_Catalogo_Usuario_Result">
@@ -2431,6 +2460,30 @@
           <Property Type="DateTime" Name="TF_Fecha" Nullable="true" Precision="23" />
           <Property Type="String" Name="TC_Diligencia" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="TC_Lugar" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <Association Name="FK_TMCCM_C_Vehiculo_Clase_REL_TMCCM_Entidad_Vehiculo">
+          <End Type="MCCMModel.TMCCM_C_Vehiculo_Clase" Role="TMCCM_C_Vehiculo_Clase" Multiplicity="0..1" />
+          <End Type="MCCMModel.TMCCM_Entidad_Vehiculo" Role="TMCCM_Entidad_Vehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TMCCM_C_Vehiculo_Clase">
+              <PropertyRef Name="TN_ID_Clase_Vehiculo" />
+            </Principal>
+            <Dependent Role="TMCCM_Entidad_Vehiculo">
+              <PropertyRef Name="TN_ID_Clase_Vehiculo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="sp_listarCasos_Result">
+          <Property Type="Int32" Name="TN_ID_Caso" Nullable="false" />
+          <Property Type="String" Name="TC_Nombre_Caso" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="TC_Delito" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="TF_Fecha" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="sp_listarEntidadTelefono_Result">
+          <Property Type="Int32" Name="TN_ID_Telefono" Nullable="false" />
+          <Property Type="String" Name="TC_Descripcion" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="TC_Comentario" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="TN_Numero" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2806,13 +2859,13 @@
           <EntitySetMapping Name="TMCCM_Entidad_Vehiculo">
             <EntityTypeMapping TypeName="MCCMModel.TMCCM_Entidad_Vehiculo">
               <MappingFragment StoreEntitySet="TMCCM_Entidad_Vehiculo">
+                <ScalarProperty Name="TN_ID_Clase_Vehiculo" ColumnName="TN_ID_Clase_Vehiculo" />
                 <ScalarProperty Name="TN_ID_Vehiculo" ColumnName="TN_ID_Vehiculo" />
                 <ScalarProperty Name="TN_ID_Caso" ColumnName="TN_ID_Caso" />
                 <ScalarProperty Name="TN_ID_Marca_Vehiculo" ColumnName="TN_ID_Marca_Vehiculo" />
                 <ScalarProperty Name="TN_ID_Icono_Vehiculo" ColumnName="TN_ID_Icono_Vehiculo" />
                 <ScalarProperty Name="TN_ID_Color_Vehiculo" ColumnName="TN_ID_Color_Vehiculo" />
                 <ScalarProperty Name="TC_Placa" ColumnName="TC_Placa" />
-                <ScalarProperty Name="TC_Clase" ColumnName="TC_Clase" />
                 <ScalarProperty Name="TC_Estilo" ColumnName="TC_Estilo" />
                 <ScalarProperty Name="TC_Comentario" ColumnName="TC_Comentario" />
                 <ScalarProperty Name="TN_Anno" ColumnName="TN_Anno" />
@@ -2976,6 +3029,26 @@
                 <ScalarProperty Name="TF_Fecha" ColumnName="TF_Fecha" />
                 <ScalarProperty Name="TC_Diligencia" ColumnName="TC_Diligencia" />
                 <ScalarProperty Name="TC_Lugar" ColumnName="TC_Lugar" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_listarCasos" FunctionName="MCCMModel.Store.sp_listarCasos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MCCMModel.sp_listarCasos_Result">
+                <ScalarProperty Name="TN_ID_Caso" ColumnName="TN_ID_Caso" />
+                <ScalarProperty Name="TC_Nombre_Caso" ColumnName="TC_Nombre_Caso" />
+                <ScalarProperty Name="TC_Delito" ColumnName="TC_Delito" />
+                <ScalarProperty Name="TF_Fecha" ColumnName="TF_Fecha" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_listarEntidadTelefono" FunctionName="MCCMModel.Store.sp_listarEntidadTelefono">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MCCMModel.sp_listarEntidadTelefono_Result">
+                <ScalarProperty Name="TN_ID_Telefono" ColumnName="TN_ID_Telefono" />
+                <ScalarProperty Name="TC_Descripcion" ColumnName="TC_Descripcion" />
+                <ScalarProperty Name="TC_Comentario" ColumnName="TC_Comentario" />
+                <ScalarProperty Name="TN_Numero" ColumnName="TN_Numero" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

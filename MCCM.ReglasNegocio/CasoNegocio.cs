@@ -26,7 +26,7 @@ namespace MCCM.ReglasNegocio
             casoDatos.EliminarCaso(ID);
             return "S";
         }
-        public List<TMCCM_CasoDTO> ListarCasos() {
+        public List<sp_listarCasos_Result> ListarCasos() {
             return casoDatos.ListarCasos();
         }
 

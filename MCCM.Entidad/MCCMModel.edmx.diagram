@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ba6c5c216d0745ae83e4b6a53f108f28" Name="Diagram1">
+      <Diagram DiagramId="ba6c5c216d0745ae83e4b6a53f108f28" Name="Diagram1" ZoomLevel="116">
         <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Arma_Icono_Arma" Width="1.5" PointX="0.75" PointY="34.625" IsExpanded="true" />
         <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Arma_Marca" Width="1.5" PointX="0.75" PointY="37.375" IsExpanded="true" />
         <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Arma_Tipo_Arma" Width="1.5" PointX="0.75" PointY="39.875" IsExpanded="true" />
@@ -84,6 +84,7 @@
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Vehiculo_REL_TMCCM_Grupo_Vehiculo" ManuallyRouted="false" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Usuario_REL_TMCCM_Tarea" ManuallyRouted="false" />
         <AssociationConnector Association="MCCMModel.TMCCM_Usuario_Rol" ManuallyRouted="false" />
+        <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Vehiculo_Clase_REL_TMCCM_Entidad_Vehiculo" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

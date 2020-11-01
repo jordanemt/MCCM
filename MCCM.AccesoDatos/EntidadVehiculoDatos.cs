@@ -23,7 +23,6 @@ namespace MCCM.AccesoDatos
                     TN_ID_Icono_Vehiculo = entidadVehiculoDTO.TN_ID_Icono_Vehiculo,
                     TN_ID_Color_Vehiculo = entidadVehiculoDTO.TN_ID_Color_Vehiculo,
                     TC_Placa = entidadVehiculoDTO.TC_Placa,
-                    TC_Clase = entidadVehiculoDTO.TC_Clase,
                     TC_Estilo = entidadVehiculoDTO.TC_Estilo,
                     TN_Anno = entidadVehiculoDTO.TN_Anno,
                     TB_Fotografia = utilidades.ConverToBytes(entidadVehiculoDTO.TB_Fotografia),
@@ -51,7 +50,6 @@ namespace MCCM.AccesoDatos
                     result.TN_ID_Icono_Vehiculo = entidadVehiculoDTO.TN_ID_Icono_Vehiculo;
                     result.TN_ID_Color_Vehiculo = entidadVehiculoDTO.TN_ID_Color_Vehiculo;
                     result.TC_Placa = entidadVehiculoDTO.TC_Placa;
-                    result.TC_Clase = entidadVehiculoDTO.TC_Clase;
                     result.TC_Estilo = entidadVehiculoDTO.TC_Estilo;
                     result.TN_Anno = entidadVehiculoDTO.TN_Anno;
                     result.TB_Fotografia = utilidades.ConverToBytes(entidadVehiculoDTO.TB_Fotografia);
@@ -96,7 +94,6 @@ namespace MCCM.AccesoDatos
                        TN_ID_Icono_Vehiculo = vehiculoItem.TN_ID_Icono_Vehiculo,
                        TN_ID_Color_Vehiculo = vehiculoItem.TN_ID_Color_Vehiculo,
                        TC_Placa = vehiculoItem.TC_Placa,
-                       TC_Clase = vehiculoItem.TC_Clase,
                        TC_Estilo = vehiculoItem.TC_Estilo,
                        TN_Anno = vehiculoItem.TN_Anno,
                        imgTemporal = utilidades.ConvertToString64(vehiculoItem.TB_Fotografia),
@@ -126,7 +123,6 @@ namespace MCCM.AccesoDatos
                            TN_ID_Icono_Vehiculo = vehiculoItem.TN_ID_Icono_Vehiculo,
                            TN_ID_Color_Vehiculo = vehiculoItem.TN_ID_Color_Vehiculo,
                            TC_Placa = vehiculoItem.TC_Placa,
-                           TC_Clase = vehiculoItem.TC_Clase,
                            TC_Estilo = vehiculoItem.TC_Estilo,
                            TN_Anno = vehiculoItem.TN_Anno,
                            imgTemporal = utilidades.ConvertToString64(vehiculoItem.TB_Fotografia),
