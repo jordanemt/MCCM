@@ -2,33 +2,22 @@
 
 $(document).ready(function () {
     CargarCasos();
+    validarFormularioCaso();
+});
+
+
+function validarFormularioCaso() {
     $("#FormCaso").validate({
         rules: {
-            TC_Nombre_Caso: {
-                required: true,
-            },
-            TN_ECU: {
-                required: true,
-                number: true
-            },
-            TN_Nivel: {
-                required: true,
-                number: true
-            },
-            TC_Descripcion: {
-                required: true,
-            },
-            TC_Fuente: {
-                required: true
-            },
-            TC_Delito: {
-                required: true
-            }
+            TC_Nombre_Caso: { required: true, },
+            TN_ECU: { required: true, number: true },
+            TN_Nivel: { required: true, number: true },
+            TC_Descripcion: { required: true },
+            TC_Fuente: { required: true },
+            TC_Delito: { required: true }
         },
         messages: {
-            TC_Nombre_Caso: {
-                required: "El Nombre del caso no puede quedar en blanco"
-            },
+            TC_Nombre_Caso: { required: "El Nombre del caso no puede quedar en blanco" },
             TN_ECU: {
                 required: "El #ECU no puede quedar en blanco",
                 number: "#ECU debe ser un número"
@@ -37,29 +26,20 @@ $(document).ready(function () {
                 required: "El Nivel no puede quedar en blanco",
                 number: "Nivel debe ser un número"
             },
-            TC_Descripcion: {
-                required: "La descripcion del caso no puede quedar en blanco",
-            },
-            TC_Fuente: {
-                required: "La fuente de la información no puede quedar en blanco"
-            },
-            TC_Delito: {
-                required: "El delito no puede quedar en blanco"
-            }
+            TC_Descripcion: { required: "La descripcion del caso no puede quedar en blanco", },
+            TC_Fuente: { required: "La fuente de la información no puede quedar en blanco" },
+            TC_Delito: { required: "El delito no puede quedar en blanco" }
 
         },
         submitHandler: function (form) {
-            // do other things for a valid form
             return false;
         }
     });
-});
-
+}
 
 
 $(document).on("click", ".caso", function () {
 
-    //alert("CLICK CASO");
     if ($(".card").hasClass('filaseleccionada')) {
         $(".card").removeClass('filaseleccionada');
         $(this).addClass('filaseleccionada');
@@ -158,7 +138,6 @@ $(document).on("click", "#btnEliminarCaso", function (e) {
 
 $(document).on("click", "#btnRegistrarCaso", function (e) {
     e.preventDefault();
-    
     if ($("#FormCaso").valid()) {
         var form = new FormData($("#FormCaso")[0]);
         let url;

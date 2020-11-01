@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
-    iniciarCalendarioEvento(moment())
+    iniciarCalendarioEvento(moment());
+    validarFormularioEvento();
 })
 
 function iniciarCalendarioEvento(fecha) {
@@ -15,17 +16,42 @@ function iniciarCalendarioEvento(fecha) {
     });
 }
 
+function validarFormularioEvento() {
+    $("#FormEvento").validate({
+        rules: {
+            TC_Novedad: { required: true },
+            TC_Lugar: { required: true },
+            TC_Informa: { required: true },
+            TF_Fecha: { required: true }
+        },
+        messages: {
+            TC_Novedad: { required: "Debe indicar la Novedad" },
+            TC_Lugar: { required: "Debe indicar el Lugar" },
+            TC_Informa: { required: "Debe indicar a quién está informando" },
+            TF_Fecha: { required: "Debe indicar la fecha" }
+
+        },
+        submitHandler: function (form) {
+            return false;
+        }
+    });
+}
+
+
 $(document).on("click", "#btnModificarEvento", function (e) {
     e.preventDefault();
-    var form = new FormData($("#FormEvento")[0]);
-    $.ajax({
-        type: "POST",
-        url: "/Evento/ModificarEvento",
-        data: Object.fromEntries(form)
-    }).done(function (data) {
-        CargarEventos();
-        $("#ModalFormEvento").modal("hide");
-    });
+    if ($("#FormEvento").valid()) {
+        var form = new FormData($("#FormEvento")[0]);
+        $.ajax({
+            type: "POST",
+            url: "/Evento/ModificarEvento",
+            data: Object.fromEntries(form)
+        }).done(function (data) {
+            CargarEventos();
+            $("#ModalFormEvento").modal("hide");
+        });
+    }
+    
 });
 
 
@@ -40,6 +66,7 @@ $('#ModalFormEvento').on('hidden.bs.modal', function () {
 
 
 $(document).on("click", ".editarEvento", function () {
+    alert("HOLA");
     $.ajax({
         type: "GET",
         url: "/Evento/ObtenerEventoPorID",
@@ -74,17 +101,18 @@ function eliminarEvento(eventoID) {
 
 $(document).on("click", "#btnRegistrarEvento", function (e) {
     e.preventDefault();
-    var form = new FormData($("#FormEvento")[0]);
-    
-    $.ajax({
-        type: "POST",
-        url: "/Evento/InsertarEvento",
-        data: { "evento": Object.fromEntries(form), "caso": sessionStorage.CasoID }
-    }).done(function (data) {
-        $("#ModalFormEvento").modal("hide");
-        CargarEventos();
-        alert("Evento Insert");
-    });
+    if ($("#FormEvento").valid()) {
+        var form = new FormData($("#FormEvento")[0]);
+        $.ajax({
+            type: "POST",
+            url: "/Evento/InsertarEvento",
+            data: { "evento": Object.fromEntries(form), "caso": sessionStorage.CasoID }
+        }).done(function (data) {
+            $("#ModalFormEvento").modal("hide");
+            CargarEventos();
+     
+        });
+    }
 });
 
 
@@ -106,8 +134,8 @@ function CargarEventos() {
                 '<div class="card-header">' +
                 ' Evento Codigo #' + eventos[i].TN_ID_Evento +
                 '<div>' +
-                '<a href="#" class="editarTarea" id="' +  eventos[i].TN_ID_Evento + '"><span><i class="fa fa-pencil" aria-hidden="true"></i></span ></a > ' +
-                '<a href="#" class="borrar borrarTarea" id="' + eventos[i].TN_ID_Evento + '"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span ></a > ' +
+                '<a href="#" class="editarEvento" id="' +  eventos[i].TN_ID_Evento + '"><span><i class="fa fa-pencil" aria-hidden="true"></i></span ></a > ' +
+                '<a href="#" class="borrar borrarEvento" id="' + eventos[i].TN_ID_Evento + '"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span ></a > ' +
                 '</div>' +
                 '</div>' +
                 '<div class="card-body" style="padding:0px!important">' +

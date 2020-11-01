@@ -35,7 +35,7 @@ function cargarCatalogoUsuario() {
         $("#TN_ID_Usuario").empty();
         for (let i = 0; i < usuarios.length; i++) {
             $("#TN_ID_Usuario").append(
-                "<option value='" + usuarios[i].TN_ID_Usuario + "'>Cod:" + usuarios[i].TC_Identificacion + " " + usuarios[i].TC_Nombre_Completo + "</option >"
+                "<option value='" + usuarios[i].TN_ID_Usuario + "'>"+ usuarios[i].TC_Identificacion + " " + usuarios[i].TC_Nombre_Completo + "</option >"
             );
         }
         $("#TN_ID_Usuario").selectpicker("refresh");
@@ -146,6 +146,7 @@ function eliminarTarea(tareaID, elemento) {
 
 
 $(document).on("click", ".editarTarea", function () {
+    alert("HOLA2.0");
     $.ajax({
         type: "GET",
         url: "/Tarea/ObtenerTareaPorID",
@@ -187,6 +188,7 @@ $(document).on("click", "#btnModificarTarea", function (e) {
 $('#ModalFormTarea').on('hidden.bs.modal', function () {
     $("#FormTarea")[0].reset();
     iniciarCalendarioTarea(moment());
+    $("#TN_ID_Usuario").selectpicker("refresh");
     $("#divTareaID").hide();
     $("#tituloFormTarea").html("Registrar Tarea");
     $("#btnModificarTarea").hide();
