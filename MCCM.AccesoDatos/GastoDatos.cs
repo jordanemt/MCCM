@@ -85,5 +85,15 @@ namespace MCCM.AccesoDatos
                     .ToList();
             }
         }
+
+        public TMCCM_C_Gasto_Tipo_Gasto InsertarTipo_Gasto(TMCCM_C_Gasto_Tipo_Gasto data) {
+            using (var context = new MCCMEntities())
+            {
+                data.TB_Eliminado = false;
+                TMCCM_C_Gasto_Tipo_Gasto newData = context.TMCCM_C_Gasto_Tipo_Gasto.Add(data);
+                context.SaveChanges();
+                return newData;
+            }
+        } 
     }
 }

@@ -23,31 +23,27 @@
                     <div class="form-group row justify-content-center">
                         <label class="control-label col-md-3" for="TN_ID_Caso">Número de caso:</label>
                         <div class="row col-md-6">
-                            <input id="TN_ID_Caso_Gasto" name="TN_ID_Caso" class="form-control col-md-11" type="text" value="@Model.TN_ID_Caso" readonly>
+                            <input id="TN_ID_Caso_Gasto" name="TN_ID_Caso" class="form-control col-md-11" type="text" value="@Model.TN_ID_Caso" readonly required>
                         </div>
                     </div>
 
                     <div class="form-group row justify-content-center">
                         <label class="control-label col-md-3" for="TF_Fecha">Fecha:</label>
                         <div class="row col-md-6">
-                            <input id="TF_Fecha_Gasto" name="TF_Fecha" class="form-control col-md-11" type="datetime" value="@(((DateTime) Model.TF_Fecha).ToString("yyyy-MM-dd"))">
-                            <label id="TF_Fecha_Gasto-error" class="error" for="TF_Fecha_Gasto" style="display: none"></label>
-                        </div>
+                            <input id="TF_Fecha_Gasto" name="TF_Fecha" class="form-control col-md-11" type="datetime" value="@(((DateTime) Model.TF_Fecha).ToString("yyyy-MM-dd"))" required>                        </div>
                     </div>
 
                     <div class="form-group row justify-content-center">
                         <label class="control-label col-md-3" for="TN_Num_Factura">Número de factura:</label>
                         <div class="row col-md-6">
-                            <input id="TN_Num_Factura" name="TN_Num_Factura" class="form-control col-md-11" type="text" value="@Model.TN_Num_Factura">
-                            <label id="TN_Num_Factura-error" class="error" for="TN_Num_Factura" style="display: none"></label>
+                            <input id="TN_Num_Factura" name="TN_Num_Factura" class="form-control col-md-11" type="text" value="@Model.TN_Num_Factura" required>
                         </div>
                     </div>
 
                     <div class="form-group row justify-content-center">
                         <label class="control-label col-md-3" for="TN_ID_Tipo_Gasto">Tipo de Gasto:</label>
                         <div class="row col-md-6">
-                            <select id="TN_ID_Tipo_Gasto" class="form-control col-md-11" name="TN_ID_Tipo_Gasto">
-                                <option disabled>Seleccione una opción</option>
+                            <select id="TN_ID_Tipo_Gasto" class="form-control col-md-11" name="TN_ID_Tipo_Gasto" title="Seleccione una opción" onchange="$('#TN_ID_Tipo_Gasto-error').hide();" required>
                                 @foreach (MCCM.Entidad.TMCCM_C_Gasto_Tipo_Gasto item in ViewBag.TipoGasto)
                                 {
                                     if (Model.TN_ID_Tipo_Gasto == item.TN_ID_Tipo_Gasto)
@@ -60,7 +56,7 @@
                                     }
                                 }
                             </select>
-                            <a href="#" class="fa fa-plus col-md-1 align-self-center"></a>
+                            <a href="#" class="fa fa-plus col-md-1 align-self-center" data-dismiss="modal" data-toggle="modal" data-target="#tipo_gasto-form-modal"></a>
                             <label id="TN_ID_Tipo_Gasto-error" class="error" for="TN_ID_Tipo_Gasto" style="display: none"></label>
                         </div>
                     </div>
@@ -68,16 +64,14 @@
                     <div class="form-group row justify-content-center">
                         <label class="control-label col-md-3" for="TD_Monto">Monto:</label>
                         <div class="row col-md-6">
-                            <input id="TD_Monto" name="TD_Monto" class="form-control col-md-11" type="text" value="@Model.TD_Monto">
-                            <label id="TD_Monto-error" class="error" for="TD_Monto" style="display: none"></label>
+                            <input id="TD_Monto" name="TD_Monto" class="form-control col-md-11" type="number" value="@Model.TD_Monto" required>
                         </div>
                     </div>
 
                     <div class="form-group row justify-content-center">
                         <label class="control-label col-md-3" for="TC_Compra">Detalle:</label>
                         <div class="row col-md-6">
-                            <textarea id="TD_MTC_Compraonto" name="TC_Compra" class="form-control col-md-11">@Model.TC_Compra</textarea>
-                            <label id="TC_Compra-error" class="error" for="TC_Compra" style="display: none"></label>
+                            <textarea id="TD_MTC_Compraonto" name="TC_Compra" class="form-control col-md-11" required>@Model.TC_Compra</textarea>
                         </div>
                     </div>
 

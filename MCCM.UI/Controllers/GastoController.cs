@@ -57,5 +57,12 @@ namespace MCCM.UI.Controllers
         {
             gastoNegocio.EliminarPorId(id);
         }
+
+        [HttpPost]
+        public ActionResult InsertarTipo_Gasto(TMCCM_C_Gasto_Tipo_Gasto data)
+        {
+            TMCCM_C_Gasto_Tipo_Gasto newData = gastoNegocio.InsertarTipo_Gasto(data);
+            return Json(new { Nombre = newData.TC_Nombre, ID = newData.TN_ID_Tipo_Gasto });
+        }
     }
 }

@@ -118,31 +118,31 @@ function eliminarGastoPorId(id) {
     });
 }
 
-function aplicarGastoValidation() {
-    $("#gasto-form").validate({
-        rules: {
-            TF_Fecha: "required",
-            TN_Num_Factura: "required",
-            TN_ID_Tipo_Gasto: "required",
-            TD_Monto: "required",
-            TC_Compra: "required"
-        },
-        messages: {
-            TF_Fecha: "Seleccione una fecha",
-            TN_Num_Factura: "Ingrese la factura",
-            TN_ID_Tipo_Gasto: "Seleccione una opción",
-            TD_Monto: "Ingrese el monto",
-            TC_Compra: "Ingrese el detalle"
-        }
-    });
+function insertarTipo_Gasto() {
+    if ($("#tipo_gasto-form").valid()) {
+        var url = "/Gasto/InsertarTipo_Gasto/";
+
+        $.ajax({
+            url: url,
+            cache: false,
+            type: "POST",
+            data: $('#tipo_gasto-form').serialize(),
+            success: function (data) {
+                $("#TN_ID_Tipo_Gasto").append(new Option(data.Nombre, data.ID, true, true));
+                $('#TN_ID_Tipo_Gasto').selectpicker('refresh');
+                $('#tipo_gasto-form-modal').modal('hide');
+                $('#gasto-form-modal').modal('show');
+            },
+            error: function (reponse) {
+                alert("error : " + reponse);
+            }
+        });
+    }
 }
 
 function aplicarGastoDateRangePicker() {
     $('#TF_Fecha_Gasto').daterangepicker({
         singleDatePicker: true,
-        showDropdowns: true,
-        minYear: parseInt(moment().format('YYYY'), 10),
-        maxYear: parseInt(moment().format('YYYY'), 10),
         startDate: ($('#TF_Fecha_Gasto').val() !== '') ? moment($('#TF_Fecha_Gasto').val()) : moment(),
         locale: {
             format: 'DD/M/Y'

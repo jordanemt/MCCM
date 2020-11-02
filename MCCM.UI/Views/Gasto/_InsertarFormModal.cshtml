@@ -23,37 +23,34 @@
                     <div class="form-group row justify-content-center">
                         <label class="control-label col-md-3" for="TN_ID_Caso">Número de caso:</label>
                         <div class="row col-md-6">
-                            <input id="TN_ID_Caso_Gasto" name="TN_ID_Caso" class="form-control col-md-11" type="text" readonly>
+                            <input id="TN_ID_Caso_Gasto" name="TN_ID_Caso" class="form-control col-md-11" type="text" readonly required>
                         </div>
                     </div>
 
                     <div class="form-group row justify-content-center">
                         <label class="control-label col-md-3" for="TF_Fecha">Fecha:</label>
                         <div class="row col-md-6">
-                            <input id="TF_Fecha_Gasto" name="TF_Fecha" class="form-control col-md-11" type="text">
-                            <label id="TF_Fecha_Gasto-error" class="error" for="TF_Fecha_Gasto" style="display: none"></label>
+                            <input id="TF_Fecha_Gasto" name="TF_Fecha" class="form-control col-md-11" type="text" required>
                         </div>
                     </div>
 
                     <div class="form-group row justify-content-center">
                         <label class="control-label col-md-3" for="TN_Num_Factura">Número de factura:</label>
                         <div class="row col-md-6">
-                            <input id="TN_Num_Factura" name="TN_Num_Factura" class="form-control col-md-11" type="text">
-                            <label id="TN_Num_Factura-error" class="error" for="TN_Num_Factura" style="display: none"></label>
+                            <input id="TN_Num_Factura" name="TN_Num_Factura" class="form-control col-md-11" type="number" required>
                         </div>
                     </div>
 
                     <div class="form-group row justify-content-center">
                         <label class="control-label col-md-3" for="TN_ID_Tipo_Gasto">Tipo de Gasto:</label>
                         <div class="row col-md-6">
-                            <select id="TN_ID_Tipo_Gasto" class="form-control col-md-11" name="TN_ID_Tipo_Gasto">
-                                <option selected disabled>Seleccione una opción</option>
+                            <select id="TN_ID_Tipo_Gasto" class="form-control col-md-11" name="TN_ID_Tipo_Gasto" title="Seleccione una opción" onchange="$('#TN_ID_Tipo_Gasto-error').hide();" required>
                                 @foreach (MCCM.Entidad.TMCCM_C_Gasto_Tipo_Gasto item in ViewBag.TipoGasto)
                                 {
                                     <option value="@item.TN_ID_Tipo_Gasto">@item.TC_Nombre</option>
                                 }
                             </select>
-                            <a href="#" class="fa fa-plus col-md-1 align-self-center"></a>
+                            <a href="#" class="fa fa-plus col-md-1 align-self-center" data-dismiss="modal" data-toggle="modal" data-target="#tipo_gasto-form-modal"></a>
                             <label id="TN_ID_Tipo_Gasto-error" class="error" for="TN_ID_Tipo_Gasto" style="display: none"></label>
                         </div>
                     </div>
@@ -61,16 +58,14 @@
                     <div class="form-group row justify-content-center">
                         <label class="control-label col-md-3" for="TD_Monto">Monto:</label>
                         <div class="row col-md-6">
-                            <input id="TD_Monto" name="TD_Monto" class="form-control col-md-11" type="number">
-                            <label id="TD_Monto-error" class="error" for="TD_Monto" style="display: none"></label>
+                            <input id="TD_Monto" name="TD_Monto" class="form-control col-md-11" type="number" required>
                         </div>
                     </div>
 
                     <div class="form-group row justify-content-center">
                         <label class="control-label col-md-3" for="TC_Compra">Detalle:</label>
                         <div class="row col-md-6">
-                            <textarea id="TC_Compra" name="TC_Compra" class="form-control col-md-11" type="text"></textarea>
-                            <label id="TC_Compra-error" class="error" for="TC_Compra" style="display: none"></label>
+                            <textarea id="TC_Compra" name="TC_Compra" class="form-control col-md-11" type="text" required></textarea>
                         </div>
                     </div>
 
@@ -85,7 +80,6 @@
 </div>
 
 <script>
-    aplicarGastoValidation();
     aplicarGastoDateRangePicker();
     aplicarGastoSelectPicker();
 </script>
