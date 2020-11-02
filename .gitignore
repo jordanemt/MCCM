@@ -20,3 +20,7 @@ MCCM.UI/MCCM.UI.csproj.user
 MCCM.AccesoDatos/MCCM.AccesoDatos.csproj
 
 MCCM.UI/MCCM.UI.csproj
+
+MCCM.Entidad/MCCM.Entidad.csproj.user
+
+MCCM.ReglasNegocio/MCCM.ReglasNegocio.csproj
