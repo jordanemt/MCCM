@@ -40,19 +40,19 @@ namespace MCCM.UI.Controllers
         [HttpGet]
         public String ListarTarea(int caso)
         {
-            return JsonConvert.SerializeObject(tareaNegocio.ListarTarea(caso), Formatting.Indented);
+            return tareaNegocio.ListarTarea(caso);
         }
 
         [HttpGet]
         public string ObtenerTareaPorID(int ID)
         {
-            return JsonConvert.SerializeObject(tareaNegocio.ObtenerTareaPorID(ID), Formatting.Indented);
+            return tareaNegocio.ObtenerTareaPorID(ID);
         }
 
         [HttpGet]
         public string ObtenerCatalogoUsuarios()
         {
-            return JsonConvert.SerializeObject(tareaNegocio.ObtenerCatalogoUsuarios(), Formatting.Indented);
+            return tareaNegocio.ObtenerCatalogoUsuarios();
         }
         
 

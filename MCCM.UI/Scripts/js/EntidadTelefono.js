@@ -61,8 +61,16 @@ $(document).on("click", "#btnRegistrarEntidadTelefono", function (e) {
         $.ajax({
             type: "POST",
             url: "/E_Telefono/Insertar_E_Telefono",
-            data: { "telefono": form, "caso": 15 },
+            data: { "telefono": form, "caso": SessionStorage.CasoID },
+            beforeSend: function () {
+                $("#btnRegistrarEntidadTelefono").prop("disabled", true);
+                $("#btnRegistrarEntidadTelefono").html(
+                    '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
+                );
+            }
         }).done(function (data) {
+            $("#btnRegistrarEntidadTelefono").removeAttr("disabled");
+            $("#btnRegistrarEntidadTelefono").html('Registrar');
             CargarEntidadTelefono();
             $("#entidadTelefonoModal").modal("hide");
         });
@@ -91,7 +99,15 @@ $(document).on("click", "#btnModificarEntidadTelefono", function (e) {
             type: "POST",
             url: "/E_Telefono/Modificar_E_Telefono",
             data: { "telefono": form },
+            beforeSend: function () {
+                $("#btnModificarEntidadTelefono").prop("disabled", true);
+                $("#btnModificarEntidadTelefono").html(
+                    '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
+                );
+            }
         }).done(function (data) {
+            $("#btnModificarEntidadTelefono").removeAttr("disabled");
+            $("#btnModificarEntidadTelefono").html('Modificar');
             CargarEntidadTelefono();
             $("#entidadTelefonoModal").modal("hide");
         });
@@ -201,8 +217,12 @@ function eliminarTelefono(telefonoID, elemento) {
 $('#entidadTelefonoModal').on('hidden.bs.modal', function () {
     $("#FormEntidadTelefono")[0].reset();
     $("#divTelefonoID").hide();
+    $("#divFMT").hide();
+    $("#divMPT").hide();
+    $("#divFCT").hide();
     $("#tituloEntidadTelefonoInsertar").html("Registrar Entidad Telefono");
     $("#TN_ID_Proveedor").selectpicker("refresh");
     $("#btnModificarEntidadTelefono").hide();
     $("#btnRegistrarEntidadTelefono").show();
+    $("label.error").hide();
 })

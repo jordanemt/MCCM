@@ -32,12 +32,12 @@ namespace MCCM.UI.Controllers
         }
 
         [HttpGet]
-        public String ListarCasos() {
-            return JsonConvert.SerializeObject(casoNegocio.ListarCasos(), Formatting.Indented);
+        public string ListarCasos() {
+            return casoNegocio.ListarCasos();
         }
         [HttpGet]
         public string ObtenerCasoPorID(int ID) {
-            return JsonConvert.SerializeObject(casoNegocio.ObtenerCasoPorID(ID), Formatting.Indented);
+            return casoNegocio.ObtenerCasoPorID(ID);
         }
 
         [HttpPost]

@@ -30,12 +30,12 @@ namespace MCCM.ReglasNegocio
             eventoDatos.EliminarEvento(ID);
             return "S";
         }
-        public List<sp_obtenerEventosPorCaso_Result> ListarEventos(int caso)
+        public string ListarEventos(int caso)
         {
             return eventoDatos.ListarEventos(caso);
         }
 
-        public TMCCM_EventoDTO ObtenerEventoPorID(int ID)
+        public string ObtenerEventoPorID(int ID)
         {
             return eventoDatos.ObtenerEventoPorID(ID);
         }

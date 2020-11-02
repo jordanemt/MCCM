@@ -15,7 +15,6 @@ namespace MCCM.UI.Controllers
 
         EntidadTelefonoNegocio entidadTelefonoNegocio = new EntidadTelefonoNegocio();
 
-
         [HttpPost]
         public String Insertar_E_Telefono(TMCCM_Entidad_Telefono telefono,int caso)
         {
@@ -34,8 +33,7 @@ namespace MCCM.UI.Controllers
         [HttpGet]
         public String ListarEntidadTelefono(int caso)
         {
-            return JsonConvert.SerializeObject(entidadTelefonoNegocio.ListarEntidadTelefonos(caso), 
-                Formatting.Indented);
+            return entidadTelefonoNegocio.ListarEntidadTelefonos(caso);
         }
 
         [HttpPost]
@@ -47,8 +45,7 @@ namespace MCCM.UI.Controllers
         [HttpGet]
         public string ObtenerEntidadTelefonoPorID(int ID)
         {
-            return JsonConvert.SerializeObject(entidadTelefonoNegocio.ObtenerEntidadTelefonoPorID(ID),
-                Formatting.Indented);
+            return entidadTelefonoNegocio.ObtenerEntidadTelefonoPorID(ID);
         }
 
     }

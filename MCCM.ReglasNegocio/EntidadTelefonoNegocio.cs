@@ -1,11 +1,5 @@
 ﻿using MCCM.AccesoDatos;
 using MCCM.Entidad;
-using MCCM.Entidad.DTO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MCCM.ReglasNegocio
 {
@@ -27,12 +21,12 @@ namespace MCCM.ReglasNegocio
             entidadTelefonoDatos.EliminarEntidadTelefono(ID);
             return "S";
         }
-        public List<sp_listarEntidadTelefono_Result> ListarEntidadTelefonos(int caso)
+        public string ListarEntidadTelefonos(int caso)
         {
             return entidadTelefonoDatos.ListarEntidadTelefonos(caso);
         }
 
-        public TMCCM_EntidadTelefonoDTO ObtenerEntidadTelefonoPorID(int ID)
+        public string ObtenerEntidadTelefonoPorID(int ID)
         {
             return entidadTelefonoDatos.ObtenerEntidadTelefonoPorID(ID);
         }

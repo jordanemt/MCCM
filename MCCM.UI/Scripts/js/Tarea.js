@@ -49,8 +49,16 @@ $(document).on("click", "#btnRegistrarTarea", function (e) {
         $.ajax({
             type: "POST",
             url: "/Tarea/InsertarTarea",
-            data: { "tarea": Object.fromEntries(form), "TF_Fecha": $("#TF_Fecha_Tarea").val(), "caso": sessionStorage.CasoID }
+            data: { "tarea": Object.fromEntries(form), "TF_Fecha": $("#TF_Fecha_Tarea").val(), "caso": sessionStorage.CasoID },
+            beforeSend: function () {
+                $("#btnRegistrarTarea").prop("disabled", true);
+                $("#btnRegistrarTarea").html(
+                    '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
+                );
+            }
         }).done(function (data) {
+            $("#btnRegistrarTarea").removeAttr("disabled");
+            $("#btnRegistrarTarea").html('Registrar');
             CargarTareas();
             $("#ModalFormTarea").modal("hide");
         });
@@ -177,8 +185,16 @@ $(document).on("click", "#btnModificarTarea", function (e) {
         $.ajax({
             type: "POST",
             url: "/Tarea/ModificarTarea",
-            data: { "tarea": Object.fromEntries(form), "fecha": $("#TF_Fecha_Tarea").val() }
+            data: { "tarea": Object.fromEntries(form), "fecha": $("#TF_Fecha_Tarea").val() },
+            beforeSend: function () {
+                $("#btnModificarTarea").prop("disabled", true);
+                $("#btnModificarTarea").html(
+                    '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
+                );
+            }
         }).done(function (data) {
+            $("#btnModificarTarea").removeAttr("disabled");
+            $("#btnModificarTarea").html('Modificar');
             CargarTareas();
             $("#ModalFormTarea").modal("hide");
         });
@@ -193,4 +209,5 @@ $('#ModalFormTarea').on('hidden.bs.modal', function () {
     $("#tituloFormTarea").html("Registrar Tarea");
     $("#btnModificarTarea").hide();
     $("#btnRegistrarTarea").show();
+    $("label.error").hide();
 })

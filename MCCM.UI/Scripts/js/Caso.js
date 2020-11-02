@@ -57,6 +57,7 @@ $(document).on("click", ".caso", function () {
 
 $('#ModalFormCaso').on('hidden.bs.modal', function () {
     $("#FormCaso")[0].reset();
+    $("label.error").hide();
 })
 
 $('#ModalFormCaso').on('show.bs.modal', function (e) {
@@ -152,8 +153,6 @@ $(document).on("click", "#btnRegistrarCaso", function (e) {
             CargarCasos();
             $("#ModalFormCaso").modal("hide");
         });
-    } else {
-        alert("NO es valido");
     }
 });
 
@@ -162,8 +161,9 @@ $(document).on("click", "#btnRegistrarCaso", function (e) {
 function CargarCasos() {
     $.ajax({
         type: "GET",
-        url: "/Caso/ListarCasos"
+        url: "/Caso/ListarCasos",
     }).done(function (data) {
+        alert(data);
         let casos = new Array();
         casos = JSON.parse(data);
         $("#casos-body").empty();

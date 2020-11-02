@@ -28,17 +28,17 @@ namespace MCCM.ReglasNegocio
             tareaDatos.EliminarTarea(ID);
             return "S";
         }
-        public List<sp_obtenerTareaPorCaso_Result> ListarTarea(int idCaso)
+        public string ListarTarea(int idCaso)
         {
             return tareaDatos.ListarTareas(idCaso);
         }
 
-        public TMCCM_TareaDTO ObtenerTareaPorID(int ID)
+        public string ObtenerTareaPorID(int ID)
         {
             return tareaDatos.ObtenerTareaPorID(ID);
         }
 
-        public List<sp_Obtener_Catalogo_Usuario_Result> ObtenerCatalogoUsuarios() {
+        public string ObtenerCatalogoUsuarios() {
             return tareaDatos.ObtenerCatalogoUsuarios();
         }
 
