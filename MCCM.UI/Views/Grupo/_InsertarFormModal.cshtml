@@ -27,23 +27,21 @@
                     <div class="form-group row justify-content-center">
                         <label class="control-label col-md-3" for="TN_ID_Caso">Número de caso:</label>
                         <div class="row col-md-6">
-                            <input id="TN_ID_Caso_Grupo" name="TN_ID_Caso" class="form-control col-md-11" type="text" value="15" readonly>
+                            <input id="TN_ID_Caso_Grupo" name="TN_ID_Caso" class="form-control col-md-11" type="text" value="15" readonly required>
                         </div>
                     </div>
 
                     <div class="form-group row justify-content-center">
                         <label class="control-label col-md-3" for="TC_Zona">Zona:</label>
                         <div class="row col-md-6">
-                            <input id="TC_Zona" name="TC_Zona" class="form-control col-md-11" type="text">
-                            <label id="TC_Zona-error" class="error" for="TC_Zona" style="display: none"></label>
+                            <input id="TC_Zona" name="TC_Zona" class="form-control col-md-11" type="text" required>
                         </div>
                     </div>
 
                     <div class="form-group row justify-content-center">
                         <label class="control-label col-md-3" for="TF_Fecha_Inicio">Fecha de Inicio:</label>
                         <div class="row col-md-6">
-                            <input id="TF_Fecha_Inicio" name="TF_Fecha_Inicio" class="form-control col-md-11" type="text" value="">
-                            <label id="TF_Fecha_Inicio-error" class="error" for="TF_Fecha_Inicio" style="display: none"></label>
+                            <input id="TF_Fecha_Inicio" name="TF_Fecha_Inicio" class="form-control col-md-11" type="text" required>
                         </div>
                     </div>
 
@@ -51,14 +49,13 @@
                         <label class="control-label col-md-3" for="TF_Fecha_Final">Fecha de Final:</label>
                         <div class="row col-md-6">
                             <input id="TF_Fecha_Final" name="TF_Fecha_Final" class="form-control col-md-11" type="text" placeholder="Opcional">
-                            <label id="TF_Fecha_Final-error" class="error" for="TF_Fecha_Final" style="display: none"></label>
                         </div>
                     </div>
 
                     <div class="form-group row justify-content-center">
                         <label class="control-label col-md-3" for="TF_Hora">Hora:</label>
                         <div class="row col-md-6">
-                            <input id="TF_Hora" name="TF_Hora" class="form-control col-md-11" type="time">
+                            <input id="TF_Hora" name="TF_Hora" class="form-control col-md-11" type="time" required>
                             <label id="TF_Hora-error" class="error" for="TF_Hora" style="display: none"></label>
                         </div>
                     </div>
@@ -66,7 +63,7 @@
                     <div class="form-group row justify-content-center">
                         <label class="control-label col-md-3" for="Encargado">Encargado:</label>
                         <div class="row col-md-6">
-                            <select id="Encargado" class="form-control col-md-11 mdb-select" name="Encargado" title="Seleccione el encargado" onchange="bloquearAcompannanteEncargado();">
+                            <select id="Encargado" class="form-control col-md-11 mdb-select" name="Encargado" title="Seleccione una opción" onchange="bloquearAcompannanteEncargado(); $('#Encargado-error').hide();" required>
                                 @foreach (MCCM.Entidad.TMCCM_Usuario usuario in usuarios)
                                 {
                                     <option value="@usuario.TN_ID_Usuario">@usuario.TN_ID_Usuario @usuario.TC_Nombre @usuario.TC_Primer_Apellido</option>
@@ -79,7 +76,7 @@
                     <div class="form-group row justify-content-center">
                         <label class="control-label col-md-3" for="Acompannantes">Acompañantes:</label>
                         <div class="row col-md-6">
-                            <select id="Acompannantes" class="form-control col-md-11" name="Acompannantes" title="Seleccione los acompañantes" multiple>
+                            <select id="Acompannantes" class="form-control col-md-11" name="Acompannantes" title="Seleccione una o más opciones" onchange="$('#Acompannantes-error').hide();" multiple required>
                                 @foreach (MCCM.Entidad.TMCCM_Usuario usuario in usuarios)
                                 {
                                     <option value="@usuario.TN_ID_Usuario">@usuario.TN_ID_Usuario @usuario.TC_Nombre @usuario.TC_Primer_Apellido</option>
@@ -92,7 +89,7 @@
                     <div class="form-group row justify-content-center">
                         <label class="control-label col-md-3" for="TB_Mando">Tipo de grupo:</label>
                         <div class="row col-md-6">
-                            <select id="TB_Mando" class="form-control col-md-11" name="TB_Mando" title="Seleccione el tipo de grupo">
+                            <select id="TB_Mando" class="form-control col-md-11" name="TB_Mando" title="Seleccione una opción" onchange="$('#TB_Mando-error').hide();" required>
                                 <option value="false">Operativo</option>
                                 <option value="true">Mando</option>
                             </select>
@@ -111,7 +108,6 @@
 </div>
 
 <script>
-    aplicarGrupoValidation();
     aplicarGrupoDateRangePicker();
     aplicarGrupoSelectPicker();
 </script>

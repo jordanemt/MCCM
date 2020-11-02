@@ -29,23 +29,21 @@
                     <div class="form-group row justify-content-center">
                         <label class="control-label col-md-3" for="TN_ID_Caso">Número de caso:</label>
                         <div class="row col-md-6">
-                            <input id="TN_ID_Caso" name="TN_ID_Caso" class="form-control col-md-11" type="text" value="@Model.TN_ID_Caso" readonly>
+                            <input id="TN_ID_Caso" name="TN_ID_Caso" class="form-control col-md-11" type="text" value="@Model.TN_ID_Caso" readonly required>
                         </div>
                     </div>
 
                     <div class="form-group row justify-content-center">
                         <label class="control-label col-md-3" for="TC_Zona">Zona:</label>
                         <div class="row col-md-6">
-                            <input id="TC_Zona" name="TC_Zona" class="form-control col-md-11" type="text" value="@Model.TC_Zona">
-                            <label id="TC_Zona-error" class="error" for="TC_Zona" style="display: none"></label>
+                            <input id="TC_Zona" name="TC_Zona" class="form-control col-md-11" type="text" value="@Model.TC_Zona" required>
                         </div>
                     </div>
 
                     <div class="form-group row justify-content-center">
                         <label class="control-label col-md-3" for="TF_Fecha_Inicio">Fecha de Inicio:</label>
                         <div class="row col-md-6">
-                            <input id="TF_Fecha_Inicio" name="TF_Fecha_Inicio" class="form-control col-md-11" type="text" value="@(((DateTime) Model.TF_Fecha_Inicio).ToString("yyyy-MM-dd"))">
-                            <label id="TF_Fecha_Inicio-error" class="error" for="TF_Fecha_Inicio" style="display: none"></label>
+                            <input id="TF_Fecha_Inicio" name="TF_Fecha_Inicio" class="form-control col-md-11" type="text" value="@(((DateTime) Model.TF_Fecha_Inicio).ToString("yyyy-MM-dd"))" required>
                         </div>
                     </div>
 
@@ -53,22 +51,20 @@
                         <label class="control-label col-md-3" for="TF_Fecha_Final">Fecha de Final:</label>
                         <div class="row col-md-6">
                             <input id="TF_Fecha_Final" name="TF_Fecha_Final" class="form-control col-md-11" type="text" placeholder="Opcional" value="@((Model.TF_Fecha_Final != null) ? (((DateTime) Model.TF_Fecha_Final).ToString("yyyy-MM-dd")) : "")">
-                            <label id="TF_Fecha_Final-error" class="error" for="TF_Fecha_Final" style="display: none"></label>
                         </div>
                     </div>
 
                     <div class="form-group row justify-content-center">
                         <label class="control-label col-md-3" for="TF_Hora">Hora:</label>
                         <div class="row col-md-6">
-                            <input id="TF_Hora" name="TF_Hora" class="form-control col-md-11" type="time" value="@Model.TF_Hora">
-                            <label id="TF_Hora-error" class="error" for="TF_Hora" style="display: none"></label>
+                            <input id="TF_Hora" name="TF_Hora" class="form-control col-md-11" type="time" value="@Model.TF_Hora" required>
                         </div>
                     </div>
 
                     <div class="form-group row justify-content-center">
                         <label class="control-label col-md-3" for="Encargado">Encargado:</label>
                         <div class="row col-md-6">
-                            <select id="Encargado" class="form-control col-md-11 mdb-select" name="Encargado" onchange="bloquearAcompannanteEncargado();">
+                            <select id="Encargado" class="form-control col-md-11 mdb-select" name="Encargado" title="Seleccione una opción" onchange="bloquearAcompannanteEncargado(); $('#Encargado-error').hide();" required>
                                 <option id="encargado-@encargado.TN_ID_Usuario" selected value="@encargado.TN_ID_Usuario">@encargado.TN_ID_Usuario @encargado.TC_Nombre @encargado.TC_Primer_Apellido</option>
                                 @foreach (MCCM.Entidad.TMCCM_Usuario acompannante in acompannantes)
                                 {
@@ -86,7 +82,7 @@
                     <div class="form-group row justify-content-center">
                         <label class="control-label col-md-3" for="Acompannantes">Acompañantes:</label>
                         <div class="row col-md-6">
-                            <select id="Acompannantes" class="form-control col-md-11" name="Acompannantes" multiple>
+                            <select id="Acompannantes" class="form-control col-md-11" name="Acompannantes" title="Seleccione una o más opciones" onchange="$('#Acompannantes-error').hide();" multiple required>
                                 <option disabled value="@encargado.TN_ID_Usuario">@encargado.TN_ID_Usuario @encargado.TC_Nombre @encargado.TC_Primer_Apellido</option>
                                 @foreach (MCCM.Entidad.TMCCM_Usuario acompannante in acompannantes)
                                 {
@@ -104,9 +100,9 @@
                     <div class="form-group row justify-content-center">
                         <label class="control-label col-md-3" for="TB_Mando">Tipo de grupo:</label>
                         <div class="row col-md-6">
-                            <select id="TB_Mando" class="form-control col-md-11" name="TB_Mando" title="Seleccione el tipo de grupo">
-                                <option value="false" @((Model.TB_Mando == false)? "selected":"")>Operativo</option>
-                                <option value="true" @((Model.TB_Mando == true)? "selected":"")>Mando</option>
+                            <select id="" class="form-control col-md-11" name="TB_Mando" title="Seleccione el tipo de grupo" onchange="$('#TB_Mando-error').hide();" required>
+                                <option value="false" @((Model.TB_Mando == false) ? "selected" : "")>Operativo</option>
+                                <option value="true" @((Model.TB_Mando == true) ? "selected" : "")>Mando</option>
                             </select>
                             <label id="TB_Mando-error" class="error" for="TB_Mando" style="display: none"></label>
                         </div>
@@ -123,7 +119,6 @@
 </div>
 
 <script>
-    aplicarGrupoValidation();
     aplicarGrupoDateRangePicker();
     aplicarGrupoSelectPicker();
 </script>

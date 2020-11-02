@@ -117,33 +117,12 @@ function eliminarGrupoPorId(id) {
     });
 }
 
-function aplicarGrupoValidation() {
-    $("#grupo-form").validate({
-        rules: {
-            TC_Zona: "required",
-            TF_Fecha_Inicio: "required",
-            TF_Hora: "required",
-            Encargado: "required",
-            Acompannantes: "required",
-            TB_Mando: "required"
-        },
-        messages: {
-            TC_Zona: "Este campo es necesario",
-            TF_Fecha_Inicio: "Este campo es necesario",
-            TF_Hora: "Este campo es necesario",
-            Encargado: "Este campo es necesario",
-            Acompannantes: "Este campo es necesario",
-            TB_Mando: "Este campo es necesario"
-        }
-    });
-}
-
 function aplicarGrupoDateRangePicker() {
     var fechaInicioElement = $('#TF_Fecha_Inicio');
     var fechaInicio = $('#TF_Fecha_Inicio').val();
     fechaInicioElement.daterangepicker({
         singleDatePicker: true,
-        startDate: (fechaInicioElement.val() !== '') ? moment(fechaInicioElement.val()) : moment(),
+        startDate: (fechaInicioElement.val() !== '') ? moment($('#TF_Fecha_Inicio').val()) : moment(),
         locale: {
             format: 'DD/M/Y'
         }
