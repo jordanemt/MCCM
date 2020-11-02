@@ -460,6 +460,9 @@ function seleccionEntidad() {
 
 @Html.Partial("_ModalMensajeConfirmacion")
 
+@Html.Partial("~/Views/Gasto/_Tipo_GastoInsertarFormModal.cshtml")
+
 <script>
     $('select').selectpicker();
+    sobreescribirJQueryMessages();
 </script>
