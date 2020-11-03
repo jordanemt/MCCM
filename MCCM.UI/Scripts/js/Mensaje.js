@@ -8,7 +8,6 @@ $(document).on("click", ".btnEliminarMensaje", function () {
     
     if (boton.attr('class').split(' ')[1] == "borrarEvento") {
         eliminarEvento(boton.attr('id'), boton);
-        //alert("Se elimino el evento #" + boton.attr('id'));
     } else if (boton.attr('class').split(' ')[1] == "borrarTarea") {
         eliminarTarea(boton.attr('id'), boton);
     } else if (boton.attr('class').split(' ')[1] == "borrarGasto") {
@@ -22,7 +21,6 @@ $(document).on("click", ".btnEliminarMensaje", function () {
     else if (boton.attr('class').split(' ')[1] == "borrarEntidadDroga") {
         eliminarDroga(boton.attr('id'));
     } else if (boton.attr('class').split(' ')[1] == "borrarEntidadTelefono") {
-        alert("HOLA");
         eliminarTelefono(boton.attr('id'), boton);
     }
     $("#ModalMensaje").modal("hide");

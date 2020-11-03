@@ -1,5 +1,5 @@
 ﻿@model MCCM.Entidad.TMCCM_Entidad_Telefono
-<div class="modal fade bd-example-modal-lg" id="entidadTelefonoModal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="entidadTelefonoModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -21,25 +21,10 @@
                     </div>
                     <div class="form-group row">
                         <label for="empresaTelefonica" class="col-md-3 col-form-label">Proveedor</label>
-                        <select class="col-md-8 form-control" name="TN_ID_Proveedor" id="TN_ID_Proveedor" required>
-                            <option value="">Selecciones un proveedor...</option>
-                            <option value="1">Kolbi ICE</option>
-                            <option value="2">Movistar</option>
-                            <option value="3">Claro</option>
-                            <option value="4">Tigo</option>
+                        <select class="col-md-8 form-control" name="TN_ID_Proveedor" title="Seleccione Proveedor..." id="TN_ID_Proveedor" required>
                         </select>
+                        <a href="#" data-toggle="modal" data-target="#telefonoProveedorModal" class="fa fa-plus col-md-1"></a>
                         <label id="TN_ID_Proveedor-error" class="error" for="TN_ID_Proveedor" style="display: none"></label>
-
-                    </div>
-                    <div class="form-group row">
-                        <label for="iconoTelefono" class="col-md-3 col-form-label">Icono telefono</label>
-                        <select class=" col-md-8 form-control" name="TN_ID_Icono_Telefono" id="TN_ID_Icono_Telefono">
-                            <option id="-1">Selecciones un icono...</option>
-                            <option value="0">Icono 1</option>
-                            <option value="1">Icono 2</option>
-                            <option value="2">Icono 3</option>
-                        </select>
-                        <a href="#" class="fa fa-plus col-md-1"></a>
 
                     </div>
                     <div class="form-group row">
@@ -83,5 +68,5 @@
         </div>
     </div>
 </div>
-
+@Html.Partial("_Modal_C_Telefono_Proveedor")
 <script src="~/Scripts/js/EntidadTelefono.js"></script>

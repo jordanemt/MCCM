@@ -24,6 +24,13 @@ namespace MCCM.UI.Controllers
         }
 
         [HttpPost]
+        public String Insertar_Proveedor(TMCCM_C_Telefono_Empresa_Telefonica proveedor)
+        {
+            entidadTelefonoNegocio.InsertarProveedor(proveedor);
+            return "S";
+        }
+
+        [HttpPost]
         public String Modificar_E_Telefono(TMCCM_Entidad_Telefono telefono)
         {
             entidadTelefonoNegocio.ActualizarEntidadTelefono(telefono);
@@ -34,6 +41,12 @@ namespace MCCM.UI.Controllers
         public String ListarEntidadTelefono(int caso)
         {
             return entidadTelefonoNegocio.ListarEntidadTelefonos(caso);
+        }
+
+        [HttpGet]
+        public String ObtenerCatalogoProveedores()
+        {
+            return entidadTelefonoNegocio.ListarTelefonosProveedores();
         }
 
         [HttpPost]

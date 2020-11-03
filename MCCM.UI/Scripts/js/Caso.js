@@ -68,7 +68,6 @@ $('#ModalFormCaso').on('show.bs.modal', function (e) {
         $("#tituloFormModal").html("Registrar Caso");
         $("#TN_ID_Caso").hide();
         $("#TN_ID_Input").hide();
-        //alert("Hola1");
     } else {
         $("#TN_ID_Caso").show();
         $("#tituloFormModal").html("Modificar Caso");
@@ -76,7 +75,6 @@ $('#ModalFormCaso').on('show.bs.modal', function (e) {
         $("#btnModificarCaso").show();
         $("#btnEliminarCaso").show();
         $("#TN_ID_Input").show();
-        //alert("Hola2");
     }
 })
 
@@ -163,14 +161,13 @@ function CargarCasos() {
         type: "GET",
         url: "/Caso/ListarCasos",
     }).done(function (data) {
-        alert(data);
         let casos = new Array();
         casos = JSON.parse(data);
         $("#casos-body").empty();
         for (let i = 0; i < casos.length; i++) {
             $("#casos-body").append(
                 '<div class="card caso" id="' + casos[i].TN_ID_Caso +'" >'+
-                    '<div class="card-header"><div>Caso #' + casos[i].TN_ID_Caso + '</div>'+
+                    '<div class="card-header"><div>Caso Codigo #' + casos[i].TN_ID_Caso + '</div>'+
                     '<a href="#" class="ojito" id="' + casos[i].TN_ID_Caso+'"><span><i class="fa fa-eye" style="color:black" aria-hidden="true"></i></span></a></div >'+
                     '<div class="card-body" style="padding:0px!important">'+
                             '<h6><small><b>Nombre: </b></small><small class="nombre">'+casos[i].TC_Nombre_Caso +'</small></h5>'+

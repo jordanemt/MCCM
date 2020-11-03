@@ -31,6 +31,14 @@ namespace MCCM.ReglasNegocio
             return entidadTelefonoDatos.ObtenerEntidadTelefonoPorID(ID);
         }
 
+        public string ListarTelefonosProveedores()
+        {
+            return entidadTelefonoDatos.ListarTelefonosProveedores();
+        }
 
+        public void InsertarProveedor(TMCCM_C_Telefono_Empresa_Telefonica proveedor)
+        {
+            entidadTelefonoDatos.InsertarTelefonoProveedor(proveedor);
+        }
     }
 }

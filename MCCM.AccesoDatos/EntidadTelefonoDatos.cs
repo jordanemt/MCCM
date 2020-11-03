@@ -12,7 +12,6 @@ namespace MCCM.AccesoDatos
 {
     public class EntidadTelefonoDatos
     {
-        Utilidades utilidades = new Utilidades();
         public void InsertarEntidadTelefono(TMCCM_Entidad_Telefono entidadTelefono)
         {
             using (var context = new MCCMEntities())
@@ -115,6 +114,35 @@ namespace MCCM.AccesoDatos
                 return JsonConvert.SerializeObject(anonimo, Formatting.Indented);
             }
         }
+
+        public void InsertarTelefonoProveedor(TMCCM_C_Telefono_Empresa_Telefonica proveedor)
+        {
+            using (var context = new MCCMEntities())
+            {
+                context.TMCCM_C_Telefono_Empresa_Telefonica.Add(new TMCCM_C_Telefono_Empresa_Telefonica()
+                {
+                    TC_Descripcion=proveedor.TC_Descripcion,  
+                    TB_Eliminado = false
+                });
+                context.SaveChanges();
+            }
+        }
+
+        public string ListarTelefonosProveedores()
+        {
+            using (var context = new MCCMEntities())
+            {
+                var anonimo = from t in context.TMCCM_C_Telefono_Empresa_Telefonica
+                              where t.TB_Eliminado == false
+                              select new
+                              {
+                                  TN_ID_Proveedor = t.TN_ID_Proveedor,
+                                  TC_Descripcion = t.TC_Descripcion
+                              };
+                return JsonConvert.SerializeObject(anonimo, Formatting.Indented);
+            }
+        }
+
     }
 }
 

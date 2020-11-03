@@ -4,6 +4,7 @@
 
 $(document).on("click", "#entidadTelefono", function () {
     CargarEntidadTelefono();
+    cargarCatalogoProveedores();
 })
 
 
@@ -41,8 +42,6 @@ function validarFormularioEntidadTelefono() {
 }
 
 
-/*Descripción: Metodo que registra una entidad telefono,
-carga el formulario y lo envía los datos por el metodo POST*/
 $(document).on("click", "#btnRegistrarEntidadTelefono", function (e) {
     e.preventDefault();
     if ($("#FormEntidadTelefono").valid()) {
@@ -61,7 +60,7 @@ $(document).on("click", "#btnRegistrarEntidadTelefono", function (e) {
         $.ajax({
             type: "POST",
             url: "/E_Telefono/Insertar_E_Telefono",
-            data: { "telefono": form, "caso": SessionStorage.CasoID },
+            data: { "telefono": form, "caso": sessionStorage.CasoID },
             beforeSend: function () {
                 $("#btnRegistrarEntidadTelefono").prop("disabled", true);
                 $("#btnRegistrarEntidadTelefono").html(
@@ -77,12 +76,40 @@ $(document).on("click", "#btnRegistrarEntidadTelefono", function (e) {
     }
 });
 
+/*Descripción: Metodo que registra una entidad telefono,
+carga el formulario y lo envía los datos por el metodo POST*/
+
+
+$(document).on("click", "#btnRegistrarTelefonoProveedor", function (e) {
+    e.preventDefault();
+    if ($("#FormTelefonoProveedor").valid()) {
+        $.ajax({
+            type: "POST",
+            url: "/E_Telefono/Insertar_Proveedor",
+            data: { "TC_Descripcion": $("#TC_Descripcion").val() },
+            beforeSend: function () {
+                $("#btnRegistrarTelefonoProveedor").prop("disabled", true);
+                $("#btnRegistrarTelefonoProveedor").html(
+                    '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
+                );
+            }
+        }).done(function (data) {
+            $("#btnRegistrarTelefonoProveedor").removeAttr("disabled");
+            $("#btnRegistrarTelefonoProveedor").html('Registrar');
+            cargarCatalogoProveedores();
+            $("#FormTelefonoProveedor")[0].reset();
+            $("#telefonoProveedorModal").modal("hide");
+        });
+    }
+});
+
 /*Descripción: Metodo que modifica una entidad telefono,
 carga el formulario y lo envía los datos por el metodo POST*/
 $(document).on("click", "#btnModificarEntidadTelefono", function (e) {
     e.preventDefault();
     if ($("#FormEntidadTelefono").valid()) {
         fechaActual = moment().format('YYYY-MM-DD HH:mm:00');
+        
         var form = {
             "TN_ID_Telefono": $("#TN_ID_Telefono").val(),
             "TN_Numero": $("#TN_Numero_Telefono").val(),
@@ -161,7 +188,7 @@ function CargarEntidadTelefono() {
             $("#entidades-body").append(
                 '<div class="card" id="entidadTelefonoCard" >' +
                 '<div class="card-header">' +
-                '<div>Entidad Telefono #1</div>' +
+                'Telefono Codigo #' + telefonos[i].TN_ID_Telefono+
                 '<div>' +
                 '<a href="#" class="editarEntidadTelefono" id="' + telefonos[i].TN_ID_Telefono + '"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>' +
                 '<a href="#" class="borrar borrarEntidadTelefono" id="' + telefonos[i].TN_ID_Telefono + '"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>' +
@@ -226,3 +253,21 @@ $('#entidadTelefonoModal').on('hidden.bs.modal', function () {
     $("#btnRegistrarEntidadTelefono").show();
     $("label.error").hide();
 })
+
+
+
+function cargarCatalogoProveedores() {
+    $.ajax({
+        type: "GET",
+        url: "/E_Telefono/ObtenerCatalogoProveedores"
+    }).done(function (data) {
+        let proveedores = JSON.parse(data);
+        $("#TN_ID_Proveedor").empty();
+        for (let i = 0; i < proveedores.length; i++) {
+            $("#TN_ID_Proveedor").append(
+                "<option value='" + proveedores[i].TN_ID_Proveedor + "'>" + proveedores[i].TC_Descripcion +"</option >"
+            );
+        }
+        $("#TN_ID_Proveedor").selectpicker("refresh");
+    });
+}
