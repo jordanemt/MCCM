@@ -1,5 +1,6 @@
 ﻿using MCCM.Entidad;
 using MCCM.ReglasNegocio;
+using System;
 using System.Web.Mvc;
 
 namespace MCCM.UI.Controllers
@@ -30,8 +31,15 @@ namespace MCCM.UI.Controllers
         [HttpGet]
         public ActionResult Listar()
         {
-            var model = gastoNegocio.Listar();
-            return PartialView("_ListaCards", model);
+            try
+            {
+                var model = gastoNegocio.Listar();
+                return PartialView("_ListaCards", model);
+            }
+            catch (Exception e)
+            {
+                return Content(e.Message, "text");
+            }
         }
 
         [HttpGet]

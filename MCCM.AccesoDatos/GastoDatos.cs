@@ -1,4 +1,5 @@
-﻿using MCCM.Entidad;
+﻿using MCCM.AccesoDatos.exceptions;
+using MCCM.Entidad;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -10,12 +11,19 @@ namespace MCCM.AccesoDatos
     {
         public IEnumerable<TMCCM_Gasto> Listar()
         {
-            using (var context = new MCCMEntities())
+            try
             {
-                return context.TMCCM_Gasto
-                    .Where(e => e.TB_Eliminado == false)
-                    .Include(e => e.TMCCM_C_Gasto_Tipo_Gasto)
-                    .ToList();
+                using (var context = new MCCMEntities())
+                {
+                    return context.TMCCM_Gasto
+                        .Where(e => e.TB_Eliminado == false)
+                        .Include(e => e.TMCCM_C_Gasto_Tipo_Gasto)
+                        .ToList();
+                }
+            }
+            catch (Exception e)
+            {
+                throw ExceptionHandler.Handle(e);
             }
         }
 

@@ -181,6 +181,7 @@
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Img\icono.png" />
     <Content Include="Scripts\bootstrap-select.js" />
     <Content Include="Scripts\bootstrap-select.min.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -363,6 +364,7 @@
     <Content Include="Scripts\js\Grupo.js" />
     <Content Include="Scripts\js\Tarea.js" />
     <Content Include="Scripts\js\Usuario.js" />
+    <Content Include="Scripts\js\Util.js" />
     <Content Include="Scripts\js\Vehiculo.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper-utils.js" />
@@ -472,16 +474,10 @@
     <Content Include="Views\Bitacora\_ModalEventoForm.cshtml" />
     <Content Include="Views\Tarea\_ModalFormTarea.cshtml" />
     <Content Include="Views\Dashboard\_ModalMensajeConfirmacion.cshtml" />
-    <Content Include="Views\Gasto\_Lista.cshtml" />
-    <Content Include="Views\Gasto\_FormModal.cshtml" />
-    <Content Include="Views\Grupo\_Lista.cshtml" />
-    <Content Include="Views\Grupo\_FormModal.cshtml" />
     <Content Include="Views\Usuario\ListaUsuario.cshtml" />
     <Content Include="Views\Usuario\_modalFormAgregarUsuario.cshtml" />
     <Content Include="Views\Usuario\_modalFormActualizarUsuario.cshtml" />
     <Content Include="Views\Dashboard\Login.cshtml" />
-    <Content Include="Views\Gasto\_Gasto.cshtml" />
-    <Content Include="Views\Grupo\_Grupo.cshtml" />
     <Content Include="Views\Vehiculo\_Vehiculo.cshtml" />
     <Content Include="Views\Vehiculo\_Lista.cshtml" />
     <Content Include="Views\Vehiculo\_FormModal.cshtml" />
@@ -491,6 +487,16 @@
     <Content Include="Views\EntidadArma\_ModalTipoArma.cshtml" />
     <Content Include="Views\EntidadArma\_ModalMarcaArma.cshtml" />
     <Content Include="Views\EntidadUbicacion\_ModalTipoUbicacion.cshtml" />
+    <Content Include="Views\Dashboard\_Modal_C_Telefono_Proveedor.cshtml" />
+    <Content Include="Views\Gasto\_ActualizarFormModal.cshtml" />
+    <Content Include="Views\Gasto\_Card.cshtml" />
+    <Content Include="Views\Gasto\_InsertarFormModal.cshtml" />
+    <Content Include="Views\Gasto\_ListaCards.cshtml" />
+    <Content Include="Views\Gasto\_Tipo_GastoInsertarFormModal.cshtml" />
+    <Content Include="Views\Grupo\_ActualizarFormModal.cshtml" />
+    <Content Include="Views\Grupo\_Card.cshtml" />
+    <Content Include="Views\Grupo\_InsertarFormModal.cshtml" />
+    <Content Include="Views\Grupo\_ListaCards.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -506,9 +512,9 @@
       <Project>{8b873827-90fe-4f09-a8cc-612b61d57269}</Project>
       <Name>MCCM.Entidad</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MCCM.ReglasNegocio\MCCM.ReglasNegocio.csproj">
-      <Project>{34e13288-382a-44bb-ae35-b048e860caf7}</Project>
-      <Name>MCCM.ReglasNegocio</Name>
+    <ProjectReference Include="..\ReglasNegocio\ReglasNegocio.csproj">
+      <Project>{ec1a40d5-dbc0-4b5c-86f4-ef4f78462293}</Project>
+      <Name>ReglasNegocio</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -516,6 +522,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
