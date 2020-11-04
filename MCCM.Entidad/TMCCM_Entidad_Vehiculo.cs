@@ -17,10 +17,8 @@ namespace MCCM.Entidad
         public int TN_ID_Vehiculo { get; set; }
         public Nullable<int> TN_ID_Caso { get; set; }
         public Nullable<int> TN_ID_Marca_Vehiculo { get; set; }
-        public Nullable<int> TN_ID_Icono_Vehiculo { get; set; }
         public Nullable<int> TN_ID_Color_Vehiculo { get; set; }
         public string TC_Placa { get; set; }
-        public string TC_Clase { get; set; }
         public string TC_Estilo { get; set; }
         public string TC_Comentario { get; set; }
         public Nullable<int> TN_Anno { get; set; }
@@ -31,9 +29,10 @@ namespace MCCM.Entidad
         public Nullable<bool> TB_Eliminado { get; set; }
         public Nullable<bool> TB_Verificado { get; set; }
         public byte[] TB_Fotografia { get; set; }
+        public Nullable<int> TN_ID_Clase_Vehiculo { get; set; }
     
+        public virtual TMCCM_C_Vehiculo_Clase TMCCM_C_Vehiculo_Clase { get; set; }
         public virtual TMCCM_C_Vehiculo_Color TMCCM_C_Vehiculo_Color { get; set; }
-        public virtual TMCCM_C_Vehiculo_Icono TMCCM_C_Vehiculo_Icono { get; set; }
         public virtual TMCCM_C_Vehiculo_Marca TMCCM_C_Vehiculo_Marca { get; set; }
         public virtual TMCCM_Caso TMCCM_Caso { get; set; }
     }

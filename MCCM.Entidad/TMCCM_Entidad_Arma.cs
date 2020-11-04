@@ -17,7 +17,6 @@ namespace MCCM.Entidad
         public int TN_ID_Arma { get; set; }
         public Nullable<int> TN_ID_Caso { get; set; }
         public Nullable<int> TN_ID_Marca_Arma { get; set; }
-        public Nullable<int> TN_ID_Icono_Arma { get; set; }
         public Nullable<int> TN_ID_Tipo_Arma { get; set; }
         public string TC_Modelo_Arma { get; set; }
         public string TC_Calibre { get; set; }
@@ -30,7 +29,6 @@ namespace MCCM.Entidad
         public Nullable<bool> TB_Verificado { get; set; }
         public string TC_Comentario { get; set; }
     
-        public virtual TMCCM_C_Arma_Icono_Arma TMCCM_C_Arma_Icono_Arma { get; set; }
         public virtual TMCCM_C_Arma_Marca TMCCM_C_Arma_Marca { get; set; }
         public virtual TMCCM_C_Arma_Tipo_Arma TMCCM_C_Arma_Tipo_Arma { get; set; }
         public virtual TMCCM_Caso TMCCM_Caso { get; set; }

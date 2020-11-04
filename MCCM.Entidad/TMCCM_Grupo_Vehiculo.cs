@@ -14,8 +14,9 @@ namespace MCCM.Entidad
     
     public partial class TMCCM_Grupo_Vehiculo
     {
-        public int TN_ID_Vehiculo { get; set; }
-        public int TN_ID_Grupo { get; set; }
+        public int TN_ID_Grupo_Vehiculo { get; set; }
+        public Nullable<int> TN_ID_Vehiculo { get; set; }
+        public Nullable<int> TN_ID_Grupo { get; set; }
         public Nullable<int> TN_Km_Inicio { get; set; }
         public Nullable<int> TN_Km_Regreso { get; set; }
         public Nullable<System.DateTime> TF_Fecha_Hora { get; set; }

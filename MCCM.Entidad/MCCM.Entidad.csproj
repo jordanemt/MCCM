@@ -104,9 +104,6 @@
     <Compile Include="TMCCM_Caso.cs">
       <DependentUpon>MCCMModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="TMCCM_C_Arma_Icono_Arma.cs">
-      <DependentUpon>MCCMModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="TMCCM_C_Arma_Marca.cs">
       <DependentUpon>MCCMModel.tt</DependentUpon>
     </Compile>
@@ -120,12 +117,6 @@
       <DependentUpon>MCCMModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TMCCM_C_Persona_Genero.cs">
-      <DependentUpon>MCCMModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TMCCM_C_Persona_Icono_Persona.cs">
-      <DependentUpon>MCCMModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TMCCM_C_Persona_Juridica_Icono_Persona_Juridica.cs">
       <DependentUpon>MCCMModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TMCCM_C_Persona_Juridica_Tipo_Organización.cs">
@@ -162,9 +153,6 @@
       <DependentUpon>MCCMModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TMCCM_C_Vehiculo_Color.cs">
-      <DependentUpon>MCCMModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TMCCM_C_Vehiculo_Icono.cs">
       <DependentUpon>MCCMModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TMCCM_C_Vehiculo_Marca.cs">

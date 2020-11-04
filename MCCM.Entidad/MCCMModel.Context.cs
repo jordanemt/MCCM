@@ -27,14 +27,11 @@ namespace MCCM.Entidad
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<TMCCM_C_Arma_Icono_Arma> TMCCM_C_Arma_Icono_Arma { get; set; }
         public virtual DbSet<TMCCM_C_Arma_Marca> TMCCM_C_Arma_Marca { get; set; }
         public virtual DbSet<TMCCM_C_Arma_Tipo_Arma> TMCCM_C_Arma_Tipo_Arma { get; set; }
         public virtual DbSet<TMCCM_C_Droga_Tipo_Droga> TMCCM_C_Droga_Tipo_Droga { get; set; }
         public virtual DbSet<TMCCM_C_Gasto_Tipo_Gasto> TMCCM_C_Gasto_Tipo_Gasto { get; set; }
         public virtual DbSet<TMCCM_C_Persona_Genero> TMCCM_C_Persona_Genero { get; set; }
-        public virtual DbSet<TMCCM_C_Persona_Icono_Persona> TMCCM_C_Persona_Icono_Persona { get; set; }
-        public virtual DbSet<TMCCM_C_Persona_Juridica_Icono_Persona_Juridica> TMCCM_C_Persona_Juridica_Icono_Persona_Juridica { get; set; }
         public virtual DbSet<TMCCM_C_Persona_Juridica_Tipo_Organización> TMCCM_C_Persona_Juridica_Tipo_Organización { get; set; }
         public virtual DbSet<TMCCM_C_Persona_Nacionalidad> TMCCM_C_Persona_Nacionalidad { get; set; }
         public virtual DbSet<TMCCM_C_Persona_Sexo> TMCCM_C_Persona_Sexo { get; set; }
@@ -47,7 +44,6 @@ namespace MCCM.Entidad
         public virtual DbSet<TMCCM_C_Ubicacion_Tipo_Ubicacion> TMCCM_C_Ubicacion_Tipo_Ubicacion { get; set; }
         public virtual DbSet<TMCCM_C_Vehiculo_Clase> TMCCM_C_Vehiculo_Clase { get; set; }
         public virtual DbSet<TMCCM_C_Vehiculo_Color> TMCCM_C_Vehiculo_Color { get; set; }
-        public virtual DbSet<TMCCM_C_Vehiculo_Icono> TMCCM_C_Vehiculo_Icono { get; set; }
         public virtual DbSet<TMCCM_C_Vehiculo_Marca> TMCCM_C_Vehiculo_Marca { get; set; }
         public virtual DbSet<TMCCM_Caso> TMCCM_Caso { get; set; }
         public virtual DbSet<TMCCM_Entidad_Arma> TMCCM_Entidad_Arma { get; set; }
