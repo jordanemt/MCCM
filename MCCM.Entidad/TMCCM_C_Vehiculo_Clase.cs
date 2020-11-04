@@ -14,9 +14,18 @@ namespace MCCM.Entidad
     
     public partial class TMCCM_C_Vehiculo_Clase
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TMCCM_C_Vehiculo_Clase()
+        {
+            this.TMCCM_Entidad_Vehiculo = new HashSet<TMCCM_Entidad_Vehiculo>();
+        }
+    
         public int TN_ID_Clase_Vehiculo { get; set; }
         public string TC_Descripcion { get; set; }
         public Nullable<System.DateTime> TF_Fecha_Creacion { get; set; }
         public Nullable<bool> TB_Eliminado { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TMCCM_Entidad_Vehiculo> TMCCM_Entidad_Vehiculo { get; set; }
     }
 }
