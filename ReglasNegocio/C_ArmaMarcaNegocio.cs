@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using MCCM.Entidad;
 using MCCM.AccesoDatos;
-using MCCM.Entidad.DTO;
 
 namespace MCCM.ReglasNegocio
 {

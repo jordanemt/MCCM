@@ -287,7 +287,7 @@ $(document).on("click", "#btnAgregar_C_ClaseVehiculo", function (e) {
             data: Object.fromEntries(form)
         }).done(function (data) {
             $("#modal_C_ClaseVehiculo").modal("hide");
-            cargarVehiculoMarca();
+            cargarVehiculoClase();
         });
     } else {
         alert("NO es valido");
@@ -297,15 +297,15 @@ $(document).on("click", "#btnAgregar_C_ClaseVehiculo", function (e) {
 /*Insertar Vehiculo Color*/
 $(document).on("click", "#btnAgregar_C_ColorVehiculo", function (e) {
     e.preventDefault();
-    if ($("#Form_C_ClaseVehiculo").valid()) {
-        var form = new FormData($("#Form_C_ClaseVehiculo")[0]);
+    if ($("#Form_C_ColorVehiculo").valid()) {
+        var form = new FormData($("#Form_C_ColorVehiculo")[0]);
         $.ajax({
             type: "POST",
-            url: "/C_VehiculoColor/C_VehiculoColorNegocio",
+            url: "/C_VehiculoColor/InsertarVehiculoColor",
             data: Object.fromEntries(form)
         }).done(function (data) {
             $("#modal_C_ColorVehiculo").modal("hide");
-            cargarVehiculoMarca();
+            cargarVehiculoColor();
         });
     } else {
         alert("NO es valido");

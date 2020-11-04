@@ -24,22 +24,23 @@
                     <div class="form-group row ">
                         <label for="marca" class="col-md-3 col-form-label">Marca</label>
                         <select class=" col-md-8 form-control" name="TN_ID_Marca_Vehiculo" title="Seleccione una Marca..." id="TN_ID_Marca_Vehiculo"></select>
-                        <a href="#" class="fa fa-plus col-md-1"></a>
+                        <a href="#" data-toggle="modal" data-target="#modal_C_MarcaVehiculo" class="fa fa-plus col-md-1"></a>
                     </div>
                     <div class="form-group row ">
                         <label for="clase" class="col-md-3 col-form-label">Clase</label>
                         <select class=" col-md-8 form-control" name="TN_ID_Clase_Vehiculo" title="Seleccione una Clase..." id="TN_ID_Clase_Vehiculo"></select>
-                        <a href="#" class="fa fa-plus col-md-1"></a>
+                        <a href="#" data-toggle="modal" data-target="#modal_C_ClaseVehiculo" class="fa fa-plus col-md-1"></a>
+                    </div>
+                    <div class="form-group row ">
+                        <label for="color" class="col-md-3 col-form-label">Color</label>
+                        <select class=" col-md-8 form-control" name="TN_ID_Color_Vehiculo" title="Seleccione un Color..." id="TN_ID_Color_Vehiculo"></select>
+                        <a href="#" data-toggle="modal" data-target="#modal_C_ColorVehiculo" class="fa fa-plus col-md-1"></a>
                     </div>
                     <div class="form-group row ">
                         <label for="fotografía" class="col-md-3 col-form-label">Fotografía</label>
                         <input type="file" class="col-md-8 form-control-file" name="imagenVehiculo" id="imagenVehiculo">
                     </div>
-                    <div class="form-group row ">
-                        <label for="color" class="col-md-3 col-form-label">Color</label>
-                        <select class=" col-md-8 form-control" name="TN_ID_Color_Vehiculo" title="Seleccione un Color..." id="TN_ID_Color_Vehiculo"></select>
-                        <a href="#" class="fa fa-plus col-md-1"></a>
-                    </div>
+
                     <div class="form-group row ">
                         <label for="estilo" class="col-md-3 col-form-label">Estilo</label>
                         <input type="text" class="col-md-8 form-control" name="TC_Estilo" id="TC_Estilo_Vehiculo">
@@ -76,13 +77,15 @@
                         <button id="btnCancelarEntidadVehiculo" type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     </div>
                 </form>
-</div>
+            </div>
             <div class="modal-footer d-flex justify-content-center">
-               
+
 
             </div>
         </div>
     </div>
 </div>
-
+@Html.Partial("~/Views/EntidadVehiculo/_ModalMarcaVehiculo.cshtml")
+@Html.Partial("~/Views/EntidadVehiculo/_ModalClaseVehiculo.cshtml")
+@Html.Partial("~/Views/EntidadVehiculo/_ModalColorVehiculo.cshtml")
 <script src="~/Scripts/js/EntidadVehiculo.js"></script>

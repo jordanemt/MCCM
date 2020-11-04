@@ -1,5 +1,4 @@
-﻿using MCCM.Entidad.DTO;
-using MCCM.ReglasNegocio;
+﻿using MCCM.ReglasNegocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;

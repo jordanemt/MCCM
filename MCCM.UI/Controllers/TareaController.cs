@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 using MCCM.Entidad;
 using MCCM.ReglasNegocio;
-using MCCM.Entidad.DTO;
 using Newtonsoft.Json;
 
 namespace MCCM.UI.Controllers

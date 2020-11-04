@@ -5,7 +5,6 @@ using System.Runtime.Remoting.Messaging;
 using System.Web;
 using System.Web.Mvc;
 using MCCM.Entidad;
-using MCCM.Entidad.DTO;
 using MCCM.ReglasNegocio;
 using Newtonsoft.Json;
 

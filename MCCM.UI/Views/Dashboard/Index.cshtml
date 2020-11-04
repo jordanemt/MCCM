@@ -208,7 +208,7 @@ function seleccionado(seleccion) {
         document.getElementById('custId').value = seleccion;
     }
     if (seleccion == 1) {
-        $("#entidades-body").empty();
+        CargarEntidadPersona();
     }
     if (seleccion == 2) {
         CargarEntidadPersonaJuridica();
@@ -220,10 +220,10 @@ function seleccionado(seleccion) {
         CargarEntidadUbicaciones();
     }
     if (seleccion == 5) {
-     $("#entidades-body").empty();
+        CargarEntidadTelefono();
     }
     if (seleccion == 6) {
-      $("#entidades-body").empty();
+       CargarEntidadArmas();
     }
     if (seleccion == 7) {
         CargarEntidadDrogas();

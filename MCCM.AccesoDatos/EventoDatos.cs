@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MCCM.Entidad;
-using MCCM.Entidad.DTO;
 using Newtonsoft.Json;
 
 namespace MCCM.AccesoDatos

@@ -1,5 +1,4 @@
 ﻿using MCCM.Entidad;
-using MCCM.Entidad.DTO;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -12,7 +11,6 @@ namespace MCCM.AccesoDatos
 {
     public class EntidadVehiculoDatos
     {
-        Utilidades utilidades = new Utilidades();
         public void InsertarEntidadVehiculo(TMCCM_Entidad_Vehiculo entidadVehiculo)
         {
 
