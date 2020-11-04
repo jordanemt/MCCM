@@ -6,7 +6,7 @@
 }
 
 <div id="grupo-@Model.TN_ID_Grupo" class="card grupoCard" onclick="seleccionarGrupo(@Model.TN_ID_Grupo);">
-    <div class="card-header">
+    <div class="card-header gris_claro">
         <div>Grupo #@Model.TN_ID_Grupo</div>
         <div>
             <a href="#" onclick="abrirActualizarGrupoFormModal(@Model.TN_ID_Grupo);"><span><i class="fa fa-edit"></i></span></a>
@@ -21,24 +21,24 @@
             <span style="margin: 0px 15px;"><i class="fa fa-male"></i></span>
             <span style="margin: 0px 15px;"><i class="fa fa-male"></i></span>
         </div>*@
-        <div class="d-flex flex-md-row flex-sm-column justify-content-center my-2">
-            <div class="col-md-6">
-                <div class="d-flex flex-sm-row">
-                    <div class="col-sm-6 w-100">
+        <div class="d-flex flex-lg-row flex-column justify-content-center my-2">
+            <div class="col-lg-6">
+                <div class="d-flex flex-lg-row">
+                    <div class="col-lg-6 w-100">
                         <span class="badge badge-primary w-100">Encargado:</span>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-lg-6">
                         @if (encargado != null) 
                         {
                             <p>@encargado.TN_ID_Usuario @encargado.TC_Nombre @encargado.TC_Primer_Apellido</p>
                         }
                     </div>
                 </div>
-                <div class="d-flex flex-sm-row">
-                    <div class="col-sm-6">
+                <div class="d-flex flex-lg-row">
+                    <div class="col-lg-6">
                         <span class="badge badge-primary w-100">Acompaña:</span>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-lg-6">
                         @foreach (MCCM.Entidad.TMCCM_Usuario acompannante in acompannantes)
                         {
                             <p>@acompannante.TN_ID_Usuario @acompannante.TC_Nombre @acompannante.TC_Primer_Apellido</p>
@@ -46,36 +46,36 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="d-flex flex-sm-row">
-                    <div class="col-sm-6 w-100">
+            <div class="col-lg-6">
+                <div class="d-flex flex-lg-row">
+                    <div class="col-lg-6 w-100">
                         <span class="badge badge-primary w-100">Zona:</span>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-lg-6">
                         <p>@Model.TC_Zona</p>
                     </div>
                 </div>
-                <div class="d-flex flex-sm-row">
-                    <div class="col-sm-6 w-100">
+                <div class="d-flex flex-lg-row">
+                    <div class="col-lg-6 w-100">
                         <span class="badge badge-primary w-100">F/Inicio:</span>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-lg-6">
                         <p>@(((DateTime) Model.TF_Fecha_Inicio).ToString("dd/MM/yyyy"))</p>
                     </div>
                 </div>
-                <div class="d-flex flex-sm-row">
-                    <div class="col-sm-6 w-100">
+                <div class="d-flex flex-lg-row">
+                    <div class="col-lg-6 w-100">
                         <span class="badge badge-primary w-100">F/Final:</span>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-lg-6">
                         <p>@((Model.TF_Fecha_Final != null) ? ((DateTime)Model.TF_Fecha_Final).ToString("dd/MM/yyyy") : "---")</p>
                     </div>
                 </div>
-                <div class="d-flex flex-sm-row">
-                    <div class="col-sm-6 w-100">
+                <div class="d-flex flex-lg-row">
+                    <div class="col-lg-6 w-100">
                         <span class="badge badge-primary w-100">Hora:</span>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-lg-6">
                         <p>@Model.TF_Hora</p>
                     </div>
                 </div>

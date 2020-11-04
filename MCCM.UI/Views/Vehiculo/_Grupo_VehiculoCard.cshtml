@@ -1,7 +1,7 @@
 ﻿@model MCCM.Entidad.TMCCM_Grupo_Vehiculo
 
 <div id="grupo_vehiculo-@Model.TN_ID_Vehiculo" class="card">
-    <div class="card-header">
+    <div class="card-header gris_claro">
         <div>@Model.TMCCM_Vehiculo.TC_Placa</div>
         <div>
             <a href="#" onclick="abrirGrupo_VehiculoActualizarFormModal(@Model.TN_ID_Grupo, @Model.TN_ID_Vehiculo)"><span><i class="fa fa-edit"></i></span></a>
@@ -9,19 +9,19 @@
         </div>
     </div>
     <div class="card-body">
-        <div class="d-flex flex-sm-row">
-            <div class="col-sm-6">
+        <div class="d-flex flex-lg-row">
+            <div class="col-lg-6">
                 <span class="badge badge-primary w-100">Km/Inicio:</span>
             </div>
-            <div class="col-sm-6">
+            <div class="col-lg-6">
                 <p>@Model.TN_Km_Inicio</p>
             </div>
         </div>
-        <div class="d-flex flex-sm-row">
-            <div class="col-sm-6">
+        <div class="d-flex flex-lg-row">
+            <div class="col-lg-6">
                 <span class="badge badge-primary w-100">Km/Regreso:</span>
             </div>
-            <div class="col-sm-6">
+            <div class="col-lg-6">
                 @if (Model.TN_Km_Regreso != null)
                 {
                     <p>@Model.TN_Km_Regreso</p>
@@ -32,11 +32,11 @@
                 }
             </div>
         </div>
-        <div class="d-flex flex-sm-row">
-            <div class="col-sm-6">
+        <div class="d-flex flex-lg-row">
+            <div class="col-lg-6">
                 <span class="badge badge-primary w-100">Fecha/Hora:</span>
             </div>
-            <div class="col-sm-6">
+            <div class="col-lg-6">
                 <p>@Model.TF_Fecha_Hora</p>
             </div>
         </div>

@@ -26,7 +26,7 @@
     background-color: #CCCCCC;
 }
 
-.amazrillo_claro {
+.amarillo_claro {
     background-color: #FFE2B8;
 }
 
@@ -35,9 +35,57 @@
 }
 
 .negro {
-    background-color: #000000;
+    background-color: white;
 }
 
 .blanco {
-    background-color: #FFFFFF;
+    background-color: black;
+}
+
+.font_gris {
+    color: #808080;
+}
+
+.font_blanco {
+    color: white;
+}
+
+.font_negro {
+    color: black;
+}
+
+.modal-header {
+    background-color: #0C3E8E;
+}
+
+    .modal-header h4 {
+        color: white;
+    }
+
+    .modal-header a {
+        color: black;
+    }
+
+.close {
+    color: white;
+}
+
+    .close:hover {
+        color: #FFB140;
+    }
+
+.card-header span, a {
+    color: white;
+}
+
+    .card-header span:hover, a:hover {
+        color: #FFB140;
+    }
+
+.font_grisHover:hover {
+    color: #808080 !important;
+}
+
+.transparencia {
+    opacity: 0.5;
 }

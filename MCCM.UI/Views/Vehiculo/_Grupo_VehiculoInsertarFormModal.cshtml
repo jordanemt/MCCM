@@ -14,16 +14,16 @@
             <div class="modal-body">
                 <form id="grupo_vehiculo-form">
                     <div class="form-group row justify-content-center">
-                        <label for="TN_ID_Grupo" class="control-label col-md-3">Número de grupo: </label>
-                        <div class="row col-md-6">
-                            <input class="form-control col-md-11" type="text" id="TN_ID_Grupo_Vehiculo" name="TN_ID_Grupo" readonly />
+                        <label for="TN_ID_Grupo" class="control-label col-sm-3">Número de grupo: </label>
+                        <div class="row col-sm-6">
+                            <input class="form-control col-sm-11" type="text" id="TN_ID_Grupo_Vehiculo" name="TN_ID_Grupo" readonly />
                         </div>
                     </div>
 
                     <div class="form-group row justify-content-center">
-                        <label class="control-label col-md-3" for="TN_ID_Vehiculo">Placa de vehículo:</label>
-                        <div class="row col-md-6">
-                            <select id="TN_ID_Vehiculo" class="form-control col-md-11" name="TN_ID_Vehiculo" title="Seleccione un vehículo">
+                        <label class="control-label col-sm-3" for="TN_ID_Vehiculo">Placa de vehículo:</label>
+                        <div class="row col-sm-6">
+                            <select id="TN_ID_Vehiculo" class="form-control col-sm-11" name="TN_ID_Vehiculo" title="Seleccione un vehículo">
                                 @foreach (MCCM.Entidad.TMCCM_Vehiculo item in Model)
                                 {
                                     <option value="@item.TN_ID_Vehiculo">@item.TC_Placa</option>
@@ -33,15 +33,15 @@
                     </div>
 
                     <div class="form-group row justify-content-center">
-                        <label for="TF_Fecha_Hora" class="control-label col-md-3">Fecha/Hora: </label>
-                        <div class="row col-md-6">
-                            <input class="form-control col-md-11" type="text" id="TF_Fecha_Hora-Vehiculo" name="TF_Fecha_Hora" />
+                        <label for="TF_Fecha_Hora" class="control-label col-sm-3">Fecha/Hora: </label>
+                        <div class="row col-sm-6">
+                            <input class="form-control col-sm-11" type="text" id="TF_Fecha_Hora-Vehiculo" name="TF_Fecha_Hora" />
                         </div>
                     </div>
 
                     <div class="form-group row justify-content-center">
                         <input type="button" value="Insertar" class="btn btn-primary submit-button mx-2" onclick="insertarGrupo_Vehiculo()" />
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                     </div>
                 </form>
             </div>
