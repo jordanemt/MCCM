@@ -55,3 +55,4 @@ C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.cspr
 C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.csproj.CopyComplete
 C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.dll
 C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.pdb
+C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.csprojAssemblyReference.cache
