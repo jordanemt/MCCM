@@ -42,7 +42,7 @@ namespace MCCM.AccesoDatos
                     result.TB_Fotografia = entidadVehiculo.TB_Fotografia;
                     result.TC_Comentario = entidadVehiculo.TC_Comentario;
                     result.TF_Fecha_Creacion = entidadVehiculo.TF_Fecha_Creacion;
-                    result.TF_Fecha_Modificacion = entidadVehiculo.TF_Fecha_Modificacion;
+                    result.TF_Fecha_Modificacion = DateTime.Now;
                     result.TC_Creado_Por = entidadVehiculo.TC_Creado_Por;
                     result.TC_Modificado_Por = entidadVehiculo.TC_Modificado_Por;
                     result.TB_Verificado = entidadVehiculo.TB_Verificado;

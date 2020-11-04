@@ -491,6 +491,9 @@
     <Content Include="Views\EntidadArma\_ModalTipoArma.cshtml" />
     <Content Include="Views\EntidadArma\_ModalMarcaArma.cshtml" />
     <Content Include="Views\EntidadUbicacion\_ModalTipoUbicacion.cshtml" />
+    <Content Include="Views\EntidadVehiculo\_ModalMarcaVehiculo.cshtml" />
+    <Content Include="Views\EntidadVehiculo\_ModalClaseVehiculo.cshtml" />
+    <Content Include="Views\EntidadVehiculo\_ModalColorVehiculo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
