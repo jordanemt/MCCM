@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MCCM.Entidad;
 using MCCM.Entidad.DTO;
+using Newtonsoft.Json;
 
 namespace MCCM.AccesoDatos
 {
@@ -54,37 +55,43 @@ namespace MCCM.AccesoDatos
             }
         }
 
-
-
-
-        public List<sp_obtenerEventosPorCaso_Result> ListarEventos(int caso)
+        public string ListarEventos(int caso)
         {
-
             using (var context = new MCCMEntities())
             {
-
-                return null;
-                
+                var anonimo = from eventoItem in context.TMCCM_Evento
+                              where eventoItem.TB_Eliminado == false
+                              where eventoItem.TN_ID_Caso == caso
+                              select new
+                              {
+                                  TN_ID_Evento = eventoItem.TN_ID_Evento,
+                                  TC_Novedad = eventoItem.TC_Novedad,
+                                  TC_Lugar= eventoItem.TC_Lugar,
+                                  TC_Informa = eventoItem.TC_Informa,
+                                  TF_Fecha = eventoItem.TF_Fecha
+                              };
+                return JsonConvert.SerializeObject(anonimo, Formatting.Indented);                
             }
             
         }
 
-        public TMCCM_EventoDTO ObtenerEventoPorID(int ID)
+        public string ObtenerEventoPorID(int ID)
         {
-            TMCCM_EventoDTO aux;
             using (var context = new MCCMEntities())
             {
-                aux = (from evento in context.TMCCM_Evento
-                       select new TMCCM_EventoDTO()
-                       {
-                           TN_ID_Evento = evento.TN_ID_Evento,
-                           TC_Informa = evento.TC_Informa,
-                           TC_Lugar = evento.TC_Lugar,
-                           TC_Novedad = evento.TC_Novedad,
-                           TF_Fecha = evento.TF_Fecha,
-                       }).Where(x => x.TN_ID_Evento == ID).Single();
+
+                var anonimo = (from eventoItem in context.TMCCM_Evento
+                              where eventoItem.TN_ID_Evento==ID
+                              select new
+                              {
+                                  TN_ID_Evento = eventoItem.TN_ID_Evento,
+                                  TC_Novedad = eventoItem.TC_Novedad,
+                                  TC_Lugar = eventoItem.TC_Lugar,
+                                  TC_Informa = eventoItem.TC_Informa,
+                                  TF_Fecha = eventoItem.TF_Fecha
+                              }).Single();
+                return JsonConvert.SerializeObject(anonimo, Formatting.Indented);
             }
-            return aux;
         }
     }
 }

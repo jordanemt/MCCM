@@ -1,107 +1,273 @@
 ﻿$(document).ready(function () {
+    validarFormularioEntidadTelefono();
+});
 
-    $.validator.addMethod("DefaultProveedor", function (value, element, arg) {
-        return arg !== value;
-    }, "Debe elegir un Proveedor");
+$(document).on("click", "#entidadTelefono", function () {
+    CargarEntidadTelefono();
+    cargarCatalogoProveedores();
+})
 
+
+/*Descripción: Metodo que valida el formulario usando la libreria de js*/
+function validarFormularioEntidadTelefono() {
     $("#FormEntidadTelefono").validate({
         rules: {
-            TN_Numero: {
+            TN_Numero_Telefono: {
                 required: true,
                 minlength: 8
             },
-            TN_ID_Proveedor: { DefaultProveedor: "Selecciones un proveedor..." },
+            TN_ID_Proveedor: { required: true },
             TC_Creado_Por_Telefono: {
                 required: true
             }
         },
         messages: {
-            TN_Numero: {
-                required:"El campo Numero Telefono no puede quedar en blanco",
+            TN_Numero_Telefono: {
+                required: "El campo Numero Telefono no puede quedar en blanco",
                 number: "Este campo debe ser un valor numerico",
-                minlength: "El número de telefono debe ser de al menos 8 digitos"   
+                minlength: "El número de telefono debe ser de al menos 8 digitos"
             },
             TN_ID_Proveedor: {
-                DefaultProveedor: "Por Favor, seleccione un proveedor"
+                required: "Por favor, seleccione un proveedor"
             },
             TC_Creado_Por_Telefono: {
-                    required:"Debe especificar quien registró la entidad telefono."
+                required: "Debe especificar quien registró la entidad telefono."
             }
 
         },
         submitHandler: function (form) {
-            // do other things for a valid form
             return false;
         }
     });
-});
+}
 
 
-
-$("#FormEntidadTelefono").submit(function (e) {
+$(document).on("click", "#btnRegistrarEntidadTelefono", function (e) {
     e.preventDefault();
-    if ($(this).valid()) {
-        var form = new FormData($("#FormEntidadTelefono")[0]);
-        let url;
-        AccionesEntidadTelefonoForm(form, url);
-    } else {
-        alert("NO es valido");
+    if ($("#FormEntidadTelefono").valid()) {
+        fechaActual = moment().format('YYYY-MM-DD HH:mm:00');
+        var form = {
+            "TN_Numero": $("#TN_Numero_Telefono").val(),
+            "TN_ID_Proveedor": $("#TN_ID_Proveedor").val(),
+            "TN_ID_Icono_Telefono": $("#TN_ID_Icono_Telefono").val(),
+            "TC_Comentario": $("#TC_Comentario_Telefono").val(),
+            "TF_Fecha_Modificacion": $("#TF_Fecha_Modificacion_Telefono").val(),
+            "TF_Fecha_Creacion": fechaActual,
+            "TC_Creado_Por": $("#TC_Creado_Por_Telefono").val(),
+            "TF_Modificado_Por": $("#TF_Modificado_Por_Telefono").val(),
+            "TB_Verificado": $("#TB_Verificado_Telefono").is(":checked")
+        };
+        $.ajax({
+            type: "POST",
+            url: "/E_Telefono/Insertar_E_Telefono",
+            data: { "telefono": form, "caso": sessionStorage.CasoID },
+            beforeSend: function () {
+                $("#btnRegistrarEntidadTelefono").prop("disabled", true);
+                $("#btnRegistrarEntidadTelefono").html(
+                    '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
+                );
+            }
+        }).done(function (data) {
+            $("#btnRegistrarEntidadTelefono").removeAttr("disabled");
+            $("#btnRegistrarEntidadTelefono").html('Registrar');
+            CargarEntidadTelefono();
+            $("#entidadTelefonoModal").modal("hide");
+        });
     }
 });
 
-function AccionesEntidadTelefonoForm(form, url) {
-    
-    alert(JSON.stringify(Object.fromEntries(form)));
-    //alert(form.serialize());
-    $.ajax({
-        type: "POST",
-        url: "/E_Telefono/Insertar_E_Telefono",
-        data: { "telefono": Object.fromEntries(form), "caso": 15},
-    }).done(function (data) {
-        alert(data);
-        $("#entidadTelefonoModal").modal("hide");
+/*Descripción: Metodo que registra una entidad telefono,
+carga el formulario y lo envía los datos por el metodo POST*/
 
+
+$(document).on("click", "#btnRegistrarTelefonoProveedor", function (e) {
+    e.preventDefault();
+    if ($("#FormTelefonoProveedor").valid()) {
+        $.ajax({
+            type: "POST",
+            url: "/E_Telefono/Insertar_Proveedor",
+            data: { "TC_Descripcion": $("#TC_Descripcion").val() },
+            beforeSend: function () {
+                $("#btnRegistrarTelefonoProveedor").prop("disabled", true);
+                $("#btnRegistrarTelefonoProveedor").html(
+                    '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
+                );
+            }
+        }).done(function (data) {
+            $("#btnRegistrarTelefonoProveedor").removeAttr("disabled");
+            $("#btnRegistrarTelefonoProveedor").html('Registrar');
+            cargarCatalogoProveedores();
+            $("#FormTelefonoProveedor")[0].reset();
+            $("#telefonoProveedorModal").modal("hide");
+        });
+    }
+});
+
+/*Descripción: Metodo que modifica una entidad telefono,
+carga el formulario y lo envía los datos por el metodo POST*/
+$(document).on("click", "#btnModificarEntidadTelefono", function (e) {
+    e.preventDefault();
+    if ($("#FormEntidadTelefono").valid()) {
+        fechaActual = moment().format('YYYY-MM-DD HH:mm:00');
+        
+        var form = {
+            "TN_ID_Telefono": $("#TN_ID_Telefono").val(),
+            "TN_Numero": $("#TN_Numero_Telefono").val(),
+            "TN_ID_Proveedor": $("#TN_ID_Proveedor").val(),
+            "TN_ID_Icono_Telefono": $("#TN_ID_Icono_Telefono").val(),
+            "TC_Comentario": $("#TC_Comentario_Telefono").val(),
+            "TF_Fecha_Modificacion": fechaActual,
+            "TF_Fecha_Creacion": $("#TF_Fecha_Creacion_Telefono").val(),
+            "TC_Creado_Por": $("#TC_Creado_Por_Telefono").val(),
+            "TC_Modificado_Por": $("#TC_Modificado_Por_Telefono").val(),
+            "TB_Verificado": $("#TB_Verificado_Telefono").is(":checked")
+        };
+        $.ajax({
+            type: "POST",
+            url: "/E_Telefono/Modificar_E_Telefono",
+            data: { "telefono": form },
+            beforeSend: function () {
+                $("#btnModificarEntidadTelefono").prop("disabled", true);
+                $("#btnModificarEntidadTelefono").html(
+                    '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
+                );
+            }
+        }).done(function (data) {
+            $("#btnModificarEntidadTelefono").removeAttr("disabled");
+            $("#btnModificarEntidadTelefono").html('Modificar');
+            CargarEntidadTelefono();
+            $("#entidadTelefonoModal").modal("hide");
+        });
+    }
+});
+
+
+/*Descripción: Metodo que carga el formulario con los datos de la entidad solicitada,*/
+$(document).on("click", ".editarEntidadTelefono", function () {
+    $.ajax({
+        type: "GET",
+        url: "/E_Telefono/ObtenerEntidadTelefonoPorID",
+        data: { "ID": $(this).attr('ID') }
+    }).done(function (data) {
+        let telefono = new Array();
+        telefono = JSON.parse(data);
+        $("#tituloEntidadTelefonoInsertar").html("Modificar Entidad Telefono");
+        $("#TN_ID_Telefono").val(telefono.TN_ID_Telefono);
+        $("#TN_Numero_Telefono").val(telefono.TN_Numero_Telefono);
+        $("#TC_Comentario_Telefono").val(telefono.TC_Comentario_Telefono);
+        $("#TF_Fecha_Creacion_Telefono").val(telefono.TF_Fecha_Creacion_Telefono);
+        $("#TF_Fecha_Modificacion_Telefono").val(telefono.TF_Fecha_Modificacion_Telefono);
+        $("#TC_Creado_Por_Telefono").val(telefono.TC_Creado_Por_Telefono);
+        $("#TC_Modificado_Por_Telefono").val(telefono.TC_Modificado_Por_Telefono);
+        $('#TB_Verificado_Telefono').attr('checked', telefono.TB_Verificado_Telefono);
+        $("#TN_ID_Proveedor").val(telefono.TN_ID_Proveedor);
+        $("#TN_ID_Proveedor").selectpicker("refresh");
+        $("#btnModificarEntidadTelefono").show();
+        $("#btnRegistrarEntidadTelefono").hide();
+        $("#entidadTelefonoModal").modal("show");
+        $("#divTelefonoID").show();
+        $("#divFMT").show();
+        $("#divMPT").show();
+        $("#divFCT").show();
+    });
+});
+
+
+/*Descripcion: Carga todas las cartas en el DOM con las entidades Telefono relacionadas al caso,
+manda el id del caso y esto retorna un json con todas las entidades telefono, luego las carga en cartas*/
+function CargarEntidadTelefono() {
+    $.ajax({
+        type: "GET",
+        url: "/E_Telefono/ListarEntidadTelefono",
+        data: { "caso": sessionStorage.CasoID }
+    }).done(function (data) {
+        let telefonos = new Array();
+        telefonos = JSON.parse(data);
+        $("#entidades-body").empty();
+        for (let i = 0; i < telefonos.length; i++) {
+            $("#entidades-body").append(
+                '<div class="card" id="entidadTelefonoCard" >' +
+                '<div class="card-header">' +
+                'Telefono Codigo #' + telefonos[i].TN_ID_Telefono+
+                '<div>' +
+                '<a href="#" class="editarEntidadTelefono" id="' + telefonos[i].TN_ID_Telefono + '"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>' +
+                '<a href="#" class="borrar borrarEntidadTelefono" id="' + telefonos[i].TN_ID_Telefono + '"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>' +
+                '</div>' +
+                '</div>' +
+                '<div class="card-body" style="padding:0px!important">' +
+                '<div class="container">' +
+                '<div class="row">' +
+                '<div class="col-4">' +
+                '<h6><span class="w-100 badge badge-primary">Número:</span></h6>' +
+                '</div>' +
+                '<div class="col-md-8" id="divNumero">' +
+                '<p>' + telefonos[i].TN_Numero + '<p />' +
+                '</div>' +
+                '</div>' +
+                '<div class="row">' +
+                '<div class="col-4">' +
+                '<h6><span class="w-100 badge badge-primary">Empresa:</span></h6>' +
+                '</div>' +
+                '<div class="col-md-8" id="divProveedor">' +
+                '<p>' + telefonos[i].TC_Descripcion + '</p>' +
+                '</div>' +
+                '</div>' +
+                '<div class="row">' +
+                '<div class="col-4">' +
+                '<h6><span class="w-100 badge badge-primary">Comentario:</span></h6>' +
+                '</div>' +
+                '<div class="col-md-8" id="divComentario">' +
+                '<p>' + telefonos[i].TC_Comentario + '</p>' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
+                '</div>'
+            );
+        }
     });
 }
 
-$(document).on("click", ".editarEntidadTelefono", function () {
-    $("#tituloEntidadTelefonoInsertar").hide();
-    $("#tituloEntidadTelefono").show();
-    $("#TD_ID_Telefono").val("1");
-    $("#TN_Numero_Telefono").val("0000-00000");
-    $("#TC_Comentario_Telefono").val("Telefono Importante");
-    $("#divFMT").show();
-    $("#divMPT").show();
-    $("#divFCT").show();
-    $("#TF_Fecha_Creacion_Telefono").val("10/09/2020 5:00PM");
-    $("#TC_Creado_Por_Telefono").val("Maikel Matamoros Zúñiga");
-    $("#TC_Modificado_Por_Telefono").val("");
-    $('#TB_Verificado_Telefono').attr('checked', false);
-    $("#btnModificarEntidadTelefono").show();
-    $("#btnInsertarEntidadTelefono").hide();
-    $("#entidadTelefonoModal").modal("show");
+/*Descripcion: metodo que elimina un Telefono, recibe el id del Telefono y el elemento del DOM a eliminar
+El elemento del DOM es el botón de la carta del Telefono que se eliminó*/
+function eliminarTelefono(telefonoID, elemento) {
+    $.ajax({
+        type: "POST",
+        url: "/E_Telefono/EliminarTelefonoPorID",
+        data: { "telefonoID": telefonoID }
+    }).done(function (data) {
+        elemento.parent().parent().parent().remove();
+    });
+}
 
-});
-
+/*Cuando el modal se cierra reinicia y limpia el formulario dentro de este*/
 $('#entidadTelefonoModal').on('hidden.bs.modal', function () {
     $("#FormEntidadTelefono")[0].reset();
-    $("#tituloEntidadTelefonoInsertar").show();
-    $("#tituloEntidadTelefono").hide();
+    $("#divTelefonoID").hide();
     $("#divFMT").hide();
     $("#divMPT").hide();
     $("#divFCT").hide();
+    $("#tituloEntidadTelefonoInsertar").html("Registrar Entidad Telefono");
+    $("#TN_ID_Proveedor").selectpicker("refresh");
     $("#btnModificarEntidadTelefono").hide();
-    $("#btnInsertarEntidadTelefono").show();
+    $("#btnRegistrarEntidadTelefono").show();
+    $("label.error").hide();
 })
 
-$(document).ready(function () {
 
-    $('#TF_Fecha_Nacimiento').daterangepicker({
-        "singleDatePicker": true,
-        "startDate": "09/29/2020",
-        "endDate": "10/05/2020"
-    }, function (start, end, label) {
-        console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
+
+function cargarCatalogoProveedores() {
+    $.ajax({
+        type: "GET",
+        url: "/E_Telefono/ObtenerCatalogoProveedores"
+    }).done(function (data) {
+        let proveedores = JSON.parse(data);
+        $("#TN_ID_Proveedor").empty();
+        for (let i = 0; i < proveedores.length; i++) {
+            $("#TN_ID_Proveedor").append(
+                "<option value='" + proveedores[i].TN_ID_Proveedor + "'>" + proveedores[i].TC_Descripcion +"</option >"
+            );
+        }
+        $("#TN_ID_Proveedor").selectpicker("refresh");
     });
-
-})
+}

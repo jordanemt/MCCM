@@ -35,5 +35,6 @@ namespace MCCM.Entidad
         public virtual TMCCM_C_Vehiculo_Color TMCCM_C_Vehiculo_Color { get; set; }
         public virtual TMCCM_C_Vehiculo_Marca TMCCM_C_Vehiculo_Marca { get; set; }
         public virtual TMCCM_Caso TMCCM_Caso { get; set; }
+        public virtual TMCCM_C_Vehiculo_Clase TMCCM_C_Vehiculo_Clase { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
-    iniciarCalendarioEvento(moment())
+    iniciarCalendarioEvento(moment());
+    validarFormularioEvento();
 })
 
 function iniciarCalendarioEvento(fecha) {
@@ -15,17 +16,50 @@ function iniciarCalendarioEvento(fecha) {
     });
 }
 
+function validarFormularioEvento() {
+    $("#FormEvento").validate({
+        rules: {
+            TC_Novedad: { required: true },
+            TC_Lugar: { required: true },
+            TC_Informa: { required: true },
+            TF_Fecha: { required: true }
+        },
+        messages: {
+            TC_Novedad: { required: "Debe indicar la Novedad" },
+            TC_Lugar: { required: "Debe indicar el Lugar" },
+            TC_Informa: { required: "Debe indicar a quién está informando" },
+            TF_Fecha: { required: "Debe indicar la fecha" }
+
+        },
+        submitHandler: function (form) {
+            return false;
+        }
+    });
+}
+
+
 $(document).on("click", "#btnModificarEvento", function (e) {
     e.preventDefault();
-    var form = new FormData($("#FormEvento")[0]);
-    $.ajax({
-        type: "POST",
-        url: "/Evento/ModificarEvento",
-        data: Object.fromEntries(form)
-    }).done(function (data) {
-        CargarEventos();
-        $("#ModalFormEvento").modal("hide");
-    });
+    if ($("#FormEvento").valid()) {
+        var form = new FormData($("#FormEvento")[0]);
+        $.ajax({
+            type: "POST",
+            url: "/Evento/ModificarEvento",
+            data: Object.fromEntries(form),
+            beforeSend: function () {
+                $("#btnModificarEvento").prop("disabled", true);
+                $("#btnModificarEvento").html(
+                    '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
+                );
+            }
+        }).done(function (data) {
+            $("#btnModificarEvento").removeAttr("disabled");
+            $("#btnModificarEvento").html('Modificar');
+            CargarEventos();
+            $("#ModalFormEvento").modal("hide");
+        });
+    }
+
 });
 
 
@@ -36,10 +70,12 @@ $('#ModalFormEvento').on('hidden.bs.modal', function () {
     $("#tituloEventoModal").html("Registrar Evento");
     $("#btnModificarEvento").hide();
     $("#btnRegistrarEvento").show();
+    $("label.error").hide();
 })
 
 
 $(document).on("click", ".editarEvento", function () {
+    alert("HOLA");
     $.ajax({
         type: "GET",
         url: "/Evento/ObtenerEventoPorID",
@@ -61,30 +97,39 @@ $(document).on("click", ".editarEvento", function () {
     });
 });
 
-function eliminarEvento(eventoID) {
- 
+function eliminarEvento(eventoID, elemento) {
+
     $.ajax({
         type: "POST",
         url: "/Evento/EliminarEventoPorID",
         data: { "eventoID": eventoID }
     }).done(function (data) {
-
+        elemento.parent().parent().parent().remove();
     });
 }
 
 $(document).on("click", "#btnRegistrarEvento", function (e) {
     e.preventDefault();
-    var form = new FormData($("#FormEvento")[0]);
-    
-    $.ajax({
-        type: "POST",
-        url: "/Evento/InsertarEvento",
-        data: { "evento": Object.fromEntries(form), "caso": sessionStorage.CasoID }
-    }).done(function (data) {
-        $("#ModalFormEvento").modal("hide");
-        CargarEventos();
-        alert("Evento Insert");
-    });
+    if ($("#FormEvento").valid()) {
+        var form = new FormData($("#FormEvento")[0]);
+        $.ajax({
+            type: "POST",
+            url: "/Evento/InsertarEvento",
+            data: { "evento": Object.fromEntries(form), "caso": sessionStorage.CasoID },
+            beforeSend: function () {
+                $("#btnRegistrarEvento").prop("disabled", true);
+                $("#btnRegistrarEvento").html(
+                    '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
+                );
+            }
+        }).done(function (data) {
+            $("#btnRegistrarEvento").removeAttr("disabled");
+            $("#btnRegistrarEvento").html('Registrar');
+            $("#ModalFormEvento").modal("hide");
+            CargarEventos();
+
+        });
+    }
 });
 
 
@@ -97,26 +142,54 @@ function CargarEventos() {
     }).done(function (data) {
         let eventos = new Array();
         eventos = JSON.parse(data);
-        
+
         $("#bitacora-body").empty();
         for (let i = 0; i < eventos.length; i++) {
 
             $("#bitacora-body").append(
-                '<div class="card evento" id="' + eventos[i].TN_ID_Evento + '" style="height:10em;">' +
-                '<div class="card-header">'+
-                  ' Evento #' + eventos[i].TN_ID_Evento +
+                '<div class="card evento" id="' + eventos[i].TN_ID_Evento + '" >' +
+                '<div class="card-header">' +
+                ' Evento Codigo #' + eventos[i].TN_ID_Evento +
                 '<div>' +
-                '<a href="#" class="editarEvento" id="' + eventos[i].TN_ID_Evento + '"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>' +
-                '<a href="#" class="borrar borrarEvento" id="' + eventos[i].TN_ID_Evento + '"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>' +
+                '<a href="#" class="editarEvento" id="' + eventos[i].TN_ID_Evento + '"><span><i class="fa fa-pencil" aria-hidden="true"></i></span ></a > ' +
+                '<a href="#" class="borrar borrarEvento" id="' + eventos[i].TN_ID_Evento + '"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span ></a > ' +
                 '</div>' +
-
                 '</div>' +
-                
                 '<div class="card-body" style="padding:0px!important">' +
-                '<h6><small>Novedad:' + eventos[i].TC_Novedad + '</small></h6>' +
-                '<h6><small>Lugar: ' + eventos[i].TC_Lugar + '</small></h6>' +
-                '<h6><small>Fecha: ' + eventos[i].TF_Fecha + '</small></h6>' +
-                '<h6><small>Informa: ' + eventos[i].TC_Informa + '</small></h6>' +
+                '<div class="container">' +
+                '<div class="row">' +
+                '<div class="col-4">' +
+                '<h6><span class="w-100 badge badge-primary">Novedad:</span></h6>' +
+                '</div >' +
+                '<div class="col-md-8" >' +
+                '<p>' + eventos[i].TC_Novedad + '</p > ' +
+                '</div>' +
+                '</div>' +
+                '<div class="row">' +
+                '<div class="col-4">' +
+                '<h6><span class="w-100 badge badge-primary">Lugar:</span></h6>' +
+                '</div >' +
+                '<div class="col-md-8" >' +
+                '<p>' + eventos[i].TC_Lugar + '</p > ' +
+                '</div>' +
+                '</div>' +
+                '<div class="row">' +
+                '<div class="col-4">' +
+                '<h6><span class="w-100 badge badge-primary">Fecha/Hora:</span></h6>' +
+                '</div >' +
+                '<div class="col-md-8" >' +
+                '<p>' + eventos[i].TF_Fecha + '</p > ' +
+                '</div>' +
+                '</div>' +
+                '<div class="row">' +
+                '<div class="col-4">' +
+                '<h6><span class="w-100 badge badge-primary">Informa:</span></h6>' +
+                '</div >' +
+                '<div class="col-md-8" >' +
+                '<p>' + eventos[i].TC_Informa + '</p > ' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
                 '</div>' +
                 '</div>'
             );

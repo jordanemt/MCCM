@@ -28,7 +28,7 @@
                                 <h6><span>Fecha/Hora: </span></h6>
                             </div>
                             <div class="col-md-8" id="divCalendarioF">
-                                <input class="form-control" id="TF_Fecha_Tarea" name="TF_Fecha_Tarea" />
+                                <input class="form-control" id="TF_Fecha_Tarea" name="TF_Fecha" required />
                             </div>
                         </div>
 
@@ -37,8 +37,8 @@
                                 <h6><span>Asignado: </span></h6>
                             </div>
                             <div class="col-md-8 " id="divAsignadoF">
-                                <select id="TN_ID_Usuario" name="TN_ID_Usuario" class="selectpicker w-100" data-live-search="true" title="Asigne la tarea...">
-                                </select>
+                                <select id="TN_ID_Usuario" name="TN_ID_Usuario" class="selectpicker w-100" data-live-search="true" title="Asigne la tarea..." required></select>
+                                <label id="TN_ID_Usuario-error" class="error" for="TN_ID_Usuario" style="display: none"></label>
                             </div>
                         </div>
 
@@ -48,7 +48,7 @@
                             </div>
 
                             <div class="col-md-8" id="divTLugar">
-                                <input class="form-control" id="TC_Lugar" name="TC_Lugar" />
+                                <input class="form-control input_Tarea_Lugar" id="TC_Lugar" name="TC_Lugar" required />
                             </div>
                         </div>
                         <div class="form-group row">
@@ -56,7 +56,7 @@
                                 <h6><span>Diligencia:</span></h6>
                             </div>
                             <div class="col-md-8" id="divDiligenciaF">
-                                <textarea rows="2" class="form-control w-100" id="TC_Diligencia" name="TC_Diligencia"></textarea>
+                                <textarea rows="2" class="form-control w-100" id="TC_Diligencia" name="TC_Diligencia" required></textarea>
                             </div>
                         </div>
                         <div class="d-flex justify-content-center" style="padding-top:2%;">

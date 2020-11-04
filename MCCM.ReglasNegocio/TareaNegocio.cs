@@ -18,9 +18,9 @@ namespace MCCM.ReglasNegocio
             tareaDatos.InsertarTarea(tarea);
         }
 
-        public void ActualizarTarea(TMCCM_Tarea tarea)
+        public void ModificarTarea(TMCCM_Tarea tarea)
         {
-            tareaDatos.ActualizarTarea(tarea);
+            tareaDatos.ModificarTarea(tarea);
         }
 
         public string EliminarTarea(int ID)
@@ -28,17 +28,17 @@ namespace MCCM.ReglasNegocio
             tareaDatos.EliminarTarea(ID);
             return "S";
         }
-        public List<sp_obtenerTareaPorCaso_Result> ListarTarea(int idCaso)
+        public string ListarTarea(int idCaso)
         {
             return tareaDatos.ListarTareas(idCaso);
         }
 
-        public TMCCM_TareaDTO ObtenerTareaPorID(int ID)
+        public string ObtenerTareaPorID(int ID)
         {
             return tareaDatos.ObtenerTareaPorID(ID);
         }
 
-        public List<sp_Obtener_Catalogo_Usuario_Result> ObtenerCatalogoUsuarios() {
+        public string ObtenerCatalogoUsuarios() {
             return tareaDatos.ObtenerCatalogoUsuarios();
         }
 

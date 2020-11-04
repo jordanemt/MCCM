@@ -2,33 +2,22 @@
 
 $(document).ready(function () {
     CargarCasos();
+    validarFormularioCaso();
+});
+
+
+function validarFormularioCaso() {
     $("#FormCaso").validate({
         rules: {
-            TC_Nombre_Caso: {
-                required: true,
-            },
-            TN_ECU: {
-                required: true,
-                number: true
-            },
-            TN_Nivel: {
-                required: true,
-                number: true
-            },
-            TC_Descripcion: {
-                required: true,
-            },
-            TC_Fuente: {
-                required: true
-            },
-            TC_Delito: {
-                required: true
-            }
+            TC_Nombre_Caso: { required: true, },
+            TN_ECU: { required: true, number: true },
+            TN_Nivel: { required: true, number: true },
+            TC_Descripcion: { required: true },
+            TC_Fuente: { required: true },
+            TC_Delito: { required: true }
         },
         messages: {
-            TC_Nombre_Caso: {
-                required: "El Nombre del caso no puede quedar en blanco"
-            },
+            TC_Nombre_Caso: { required: "El Nombre del caso no puede quedar en blanco" },
             TN_ECU: {
                 required: "El #ECU no puede quedar en blanco",
                 number: "#ECU debe ser un número"
@@ -37,29 +26,20 @@ $(document).ready(function () {
                 required: "El Nivel no puede quedar en blanco",
                 number: "Nivel debe ser un número"
             },
-            TC_Descripcion: {
-                required: "La descripcion del caso no puede quedar en blanco",
-            },
-            TC_Fuente: {
-                required: "La fuente de la información no puede quedar en blanco"
-            },
-            TC_Delito: {
-                required: "El delito no puede quedar en blanco"
-            }
+            TC_Descripcion: { required: "La descripcion del caso no puede quedar en blanco", },
+            TC_Fuente: { required: "La fuente de la información no puede quedar en blanco" },
+            TC_Delito: { required: "El delito no puede quedar en blanco" }
 
         },
         submitHandler: function (form) {
-            // do other things for a valid form
             return false;
         }
     });
-});
-
+}
 
 
 $(document).on("click", ".caso", function () {
 
-    //alert("CLICK CASO");
     if ($(".card").hasClass('filaseleccionada')) {
         $(".card").removeClass('filaseleccionada');
         $(this).addClass('filaseleccionada');
@@ -77,6 +57,7 @@ $(document).on("click", ".caso", function () {
 
 $('#ModalFormCaso').on('hidden.bs.modal', function () {
     $("#FormCaso")[0].reset();
+    $("label.error").hide();
 })
 
 $('#ModalFormCaso').on('show.bs.modal', function (e) {
@@ -87,7 +68,6 @@ $('#ModalFormCaso').on('show.bs.modal', function (e) {
         $("#tituloFormModal").html("Registrar Caso");
         $("#TN_ID_Caso").hide();
         $("#TN_ID_Input").hide();
-        //alert("Hola1");
     } else {
         $("#TN_ID_Caso").show();
         $("#tituloFormModal").html("Modificar Caso");
@@ -95,7 +75,6 @@ $('#ModalFormCaso').on('show.bs.modal', function (e) {
         $("#btnModificarCaso").show();
         $("#btnEliminarCaso").show();
         $("#TN_ID_Input").show();
-        //alert("Hola2");
     }
 })
 
@@ -158,7 +137,6 @@ $(document).on("click", "#btnEliminarCaso", function (e) {
 
 $(document).on("click", "#btnRegistrarCaso", function (e) {
     e.preventDefault();
-    
     if ($("#FormCaso").valid()) {
         var form = new FormData($("#FormCaso")[0]);
         let url;
@@ -173,8 +151,6 @@ $(document).on("click", "#btnRegistrarCaso", function (e) {
             CargarCasos();
             $("#ModalFormCaso").modal("hide");
         });
-    } else {
-        alert("NO es valido");
     }
 });
 
@@ -183,7 +159,7 @@ $(document).on("click", "#btnRegistrarCaso", function (e) {
 function CargarCasos() {
     $.ajax({
         type: "GET",
-        url: "/Caso/ListarCasos"
+        url: "/Caso/ListarCasos",
     }).done(function (data) {
         let casos = new Array();
         casos = JSON.parse(data);
@@ -191,7 +167,7 @@ function CargarCasos() {
         for (let i = 0; i < casos.length; i++) {
             $("#casos-body").append(
                 '<div class="card caso" id="' + casos[i].TN_ID_Caso +'" >'+
-                    '<div class="card-header"><div>Caso #' + casos[i].TN_ID_Caso + '</div>'+
+                    '<div class="card-header"><div>Caso Codigo #' + casos[i].TN_ID_Caso + '</div>'+
                     '<a href="#" class="ojito" id="' + casos[i].TN_ID_Caso+'"><span><i class="fa fa-eye" style="color:black" aria-hidden="true"></i></span></a></div >'+
                     '<div class="card-body" style="padding:0px!important">'+
                             '<h6><small><b>Nombre: </b></small><small class="nombre">'+casos[i].TC_Nombre_Caso +'</small></h5>'+
