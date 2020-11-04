@@ -1,10 +1,17 @@
 ﻿using MCCM.Entidad;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
+
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+
 
 namespace MCCM.AccesoDatos
 {
@@ -58,6 +65,21 @@ namespace MCCM.AccesoDatos
                 data.TB_Eliminado = true;
                 context.Entry(data).State = EntityState.Modified;
                 context.SaveChanges();
+            }
+        }
+        
+        public TMCCM_Usuario Verificar(int Usuario, string contrasennia)
+        {
+          
+            using (var context = new MCCMEntities())
+            {
+
+                var User = context.TMCCM_Usuario
+                    .Where(e => e.TN_ID_Usuario == Usuario && e.TC_Contrasennia == contrasennia)
+                    .Include(e => e.TMCCM_Rol)
+                    .FirstOrDefault();
+                return User;
+
             }
         }
     }

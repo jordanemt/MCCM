@@ -1,0 +1,60 @@
+﻿@model MCCM.Entidad.TMCCM_Vehiculo
+
+<div class="modal fade" id="vehiculo-form-modal">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title"></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form id="add-vehiculo-form" method="post">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group row justify-content-center">
+                        <label for="TN_ID_Grupo" class="control-label col-md-3">Número de grupo: </label>
+                        <div class="row col-md-6">
+                            <input class="form-control col-md-11" type="text" id="TN_ID_Grupo-Vehiculo" name="TN_ID_Grupo" readonly />
+                        </div>
+                    </div>
+
+                    <div class="form-group row justify-content-center">
+                        @Html.LabelFor(model => model.TC_Placa, "Seleccione una placa:", htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="row col-md-6">
+                            @*@Html.EditorFor(model => model.TN_ID_Tipo_Gasto, new { htmlAttributes = new { @class = "form-control", required = "required" } })*@
+                            <select id="TC_Placa" class="form-control col-md-11" name="TC_Placa" required>
+                                <option selected disabled>Seleccione una opción</option>
+                                <option value="1">0102</option>
+                                <option value="2">0120</option>
+                            </select>
+                            @Html.ValidationMessageFor(model => model.TC_Placa, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row justify-content-center">
+                        <label for="TF_Hora" class="control-label col-md-3">Hora: </label>
+                        <div class="row col-md-6">
+                            <input class="form-control col-md-11" type="time" id="TF_Hora-Vehiculo" name="TF_Hora" required />
+                        </div>
+                    </div>
+
+                    <div class="form-group row justify-content-center">
+                        <input type="submit" value="Insertar" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
