@@ -71,7 +71,7 @@
                         <ol class="breadcrumb gris" style="margin: 0; padding: 0 0;">
                             <li class="breadcrumb-item"><a class="nav-link" href="#" style="padding: 0 0;" onclick="changeVisiblePestannaBody('pestanna-1-body');">Pestaña #1</a></li>
                             <li class="breadcrumb-item"><a class="nav-link" href="#" style="padding: 0 0;" onclick="changeVisiblePestannaBody('pestanna-2-body');">Pestaña #2</a></li>
-                            <li class="breadcrumb-item"><a class="nav-link" href="#" style="padding: 0 0;" onclick="changeVisiblePestannaBody('pestanna-3-body');">Generar Reporte</a></li>
+                            <li class="breadcrumb-item"><a class="nav-link" href="#" style="padding: 0 0;" onclick="changeVisiblePestannaBody('reporte-body');">Generar Reporte</a></li>
                         </ol>
                     </nav>
                 </div>
@@ -191,14 +191,9 @@
 
             </div>
             @*Pestanna #3 Body*@
-        <div class="card-body card-body-flex" id="pestanna-3-body">
-            @*<script>$('#pestanna-2-body').hide()</script>*@
-            @Html.Partial("~/Views/Dashboard/_GenerarReporte.cshtml")
-
-            @*Reporte Body*@
             <div class="card-body d-none card-body-flex" id="reporte-body">
-
-
+                @Html.Partial("~/Views/Dashboard/_GenerarReporte.cshtml")
+            </div>
         </div>
     </div>
 </div>

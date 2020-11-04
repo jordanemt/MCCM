@@ -199,6 +199,7 @@
     <Content Include="Content\bootstrap-select.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\Colores.css" />
     <Content Include="Content\css\Dashdboard.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
@@ -524,13 +525,9 @@
     <Content Include="Views\Usuario\ListaUsuario.cshtml" />
     <Content Include="Views\Tarea\_ModalFormTarea.cshtml" />
     <Content Include="Views\Dashboard\_ModalMensajeConfirmacion.cshtml" />
-    <Content Include="Views\Usuario\ListaUsuario.cshtml" />
     <Content Include="Views\Usuario\_modalFormAgregarUsuario.cshtml" />
     <Content Include="Views\Usuario\_modalFormActualizarUsuario.cshtml" />
     <Content Include="Views\Dashboard\Login.cshtml" />
-    <Content Include="Views\Vehiculo\_Vehiculo.cshtml" />
-    <Content Include="Views\Vehiculo\_Lista.cshtml" />
-    <Content Include="Views\Vehiculo\_FormModal.cshtml" />
     <Content Include="Views\Usuario\InsertarUsuario.cshtml" />
     <Content Include="Views\Usuario\ModificarUsuario.cshtml" />
     <Content Include="Views\EntidadDroga\_ModalTipoDroga.cshtml" />
@@ -538,16 +535,21 @@
     <Content Include="Views\EntidadArma\_ModalMarcaArma.cshtml" />
     <Content Include="Views\EntidadUbicacion\_ModalTipoUbicacion.cshtml" />
     <Content Include="Views\Dashboard\_Modal_C_Telefono_Proveedor.cshtml" />
-    <Content Include="Views\Gasto\_ActualizarFormModal.cshtml" />
-    <Content Include="Views\Gasto\_Card.cshtml" />
-    <Content Include="Views\Gasto\_InsertarFormModal.cshtml" />
-    <Content Include="Views\Gasto\_ListaCards.cshtml" />
-    <Content Include="Views\Gasto\_Tipo_GastoInsertarFormModal.cshtml" />
     <Content Include="Views\Grupo\_ActualizarFormModal.cshtml" />
     <Content Include="Views\Grupo\_Card.cshtml" />
     <Content Include="Views\Grupo\_InsertarFormModal.cshtml" />
     <Content Include="Views\Grupo\_ListaCards.cshtml" />
     <Content Include="Views\Dashboard\_GenerarReporte.cshtml" />
+    <Content Include="Views\Vehiculo\_Grupo_VehiculoActualizarFormModal.cshtml" />
+    <Content Include="Views\Vehiculo\_Grupo_VehiculoCard.cshtml" />
+    <Content Include="Views\Vehiculo\_Grupo_VehiculoInsertarFormModal.cshtml" />
+    <Content Include="Views\Vehiculo\_Grupo_VehiculoListaCards.cshtml" />
+    <Content Include="Views\Gasto\_ActualizarFormModal.cshtml" />
+    <Content Include="Views\Gasto\_Card.cshtml" />
+    <Content Include="Views\Gasto\_FormModal.cshtml" />
+    <Content Include="Views\Gasto\_InsertarFormModal.cshtml" />
+    <Content Include="Views\Gasto\_ListaCards.cshtml" />
+    <Content Include="Views\Gasto\_Tipo_GastoInsertarFormModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
