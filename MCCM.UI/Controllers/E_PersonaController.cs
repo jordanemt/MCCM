@@ -16,19 +16,43 @@ namespace MCCM.UI.Controllers
 
         EntidadPersonaNegocio entidadPersonaNegocio = new EntidadPersonaNegocio();
 
-        [HttpPost]
-        public String Insertar_E_Persona(TMCCM_Entidad_Persona entidadPersonaDTO)
-        {
+        
+      
 
-            entidadPersonaNegocio.InsertarEntidadPersona(entidadPersonaDTO);
+
+
+       [HttpPost]
+        public String Insertar_E_Persona(TMCCM_Entidad_Persona persona, HttpPostedFileBase imagen)
+        {
+            HttpPostedFileBase file = imagen;
+            var length = file.InputStream.Length; //Length: 103050706
+            byte[] fileData = null;
+            using (var binaryReader = new BinaryReader(file.InputStream))
+            {
+                fileData = binaryReader.ReadBytes(file.ContentLength);
+            }
+            persona.TB_Fotografia = fileData;
+
+
+            entidadPersonaNegocio.Insertar(persona);
             return "S";
         }
         [HttpGet]
         public String Listar_E_Persona(int caso)
         {
-            return JsonConvert.SerializeObject(entidadPersonaNegocio.ListarEntidadPersonas(caso), Formatting.Indented);
+            List<TMCCM_EntidadPersonaDTO> entidadPersonaDTO = entidadPersonaNegocio.ListarEntidadPersonas(caso);
+
+            foreach (TMCCM_EntidadPersonaDTO itemPersona in entidadPersonaDTO)
+            {
+                string imreBase64Data = Convert.ToBase64String(itemPersona.imgTemporal);
+                string imgDataURL = string.Format("data:image/png;base64,{0}", imreBase64Data);
+                itemPersona.imgString = imgDataURL;
+
+
+            }
+            return JsonConvert.SerializeObject(entidadPersonaDTO, Formatting.Indented);
         }
-        [HttpDelete]
+        [HttpPost]
         public String Eliminar_E_PersonaPorID(int entidadPersonaID)
         {
             return entidadPersonaNegocio.EliminarEntidadPersona(entidadPersonaID);
@@ -36,6 +60,15 @@ namespace MCCM.UI.Controllers
         [HttpPost]
         public String Modificar_E_Persona(TMCCM_EntidadPersonaDTO entidadPersonaDTO)
         {
+            HttpPostedFileBase file = entidadPersonaDTO.TB_Fotografia;
+            var length = file.InputStream.Length; //Length: 103050706
+            byte[] fileData = null;
+            using (var binaryReader = new BinaryReader(file.InputStream))
+            {
+                fileData = binaryReader.ReadBytes(file.ContentLength);
+            }
+            entidadPersonaDTO.imgTemporal = fileData;
+
             entidadPersonaNegocio.ActualizarEntidadPersona(entidadPersonaDTO);
             return "S";
         }

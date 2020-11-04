@@ -1,0 +1,97 @@
+﻿@model MCCM.Entidad.TMCCM_Entidad_Ubicacion
+<div class="modal fade bd-example-modal-lg" id="entidadUbicacionModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title col-11 text-center" id="tituloEntidadUbicacion">Insertar Ubicacion</h5>
+
+                <button type="button" class="close col-1" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="FormEntidadUbicacion" enctype="multipart/form-data">
+                    <div class="form-group row justify-content-center" id="divUbicacionID" style="display:none">
+                        <label for="creadoPor" class="col-md-3 col-form-label">ID</label>
+                        <input type="text" class="col-md-8 form-control" readonly name="TN_ID_Ubicacion" id="TN_ID_Ubicacion">
+                    </div>
+
+                    <div class="form-group row justify-content-center">
+                        <label for="tipoUbicacion" class="col-md-3 col-form-label">Tipo</label>
+                        <div class="col-8">
+                            <select class=" col-md-8 form-control" name="TN_ID_Tipo_Ubicacion" id="TN_ID_Tipo_Ubicacion" title="Seleccione un tipo..." required>
+                            </select>
+                            <a href="#" data-toggle="modal" data-target="#modal_C_TipoUbicacion" class="fa fa-plus col-md-1"></a>
+                        </div>
+                    </div>
+
+                    <div class="form-group row justify-content-center">
+                        <label for="provincia" class="col-md-3 col-form-label">Provincia</label>
+                        <div class="col-8">
+                            <select class=" col-md-8 form-control" name="TN_ID_Provincia" id="TN_ID_Provincia" title="Seleccione una provincia..." required>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row justify-content-center">
+                        <label for="canton" class="col-md-3 col-form-label">Cantón</label>
+                        <div class="col-8">
+                            <select class=" col-md-8 form-control" name="TN_ID_Canton" id="TN_ID_Canton" title="Seleccione un cantón..." required>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row justify-content-center">
+                        <label for="distrito" class="col-md-3 col-form-label">Distrito</label>
+                        <div class="col-8">
+                            <select class=" col-md-8 form-control" name="TN_ID_Distrito" id="TN_ID_Distrito" title="Seleccione un distito..." required>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row justify-content-center">
+                        <label for="senas" class="col-md-3 col-form-label">Señas</label>
+                        <textarea class="col-md-8 form-control" name="TC_Sennas" id="TC_Sennas_Ubicacion" rows="3"></textarea>
+                    </div>
+                    <div class="form-group row justify-content-center">
+                        <label for="latitud" class="col-md-3 col-form-label">Latitud</label>
+                        <input type="text" class="col-md-8 form-control" name="TD_Latitud" id="TD_Latitud_Ubicacion">
+                    </div>
+                    <div class="form-group row justify-content-center">
+                        <label for="longitud" class="col-md-3 col-form-label">Longitud</label>
+                        <input type="number" step="any" class="col-md-8 form-control" name="TD_Longitud" id="TD_Longitud_Ubicacion">
+                    </div>
+                    <div class="form-group row justify-content-center">
+                        <label id="creadoPor_U" for="creadoPor" class="col-md-3 col-form-label">Creado por</label>
+                        <input type="number" step="any" class="col-md-8 form-control" name="TC_Creado_Por" id="TC_Creado_Por_Ubicacion">
+                    </div>
+                    <div class="form-group row justify-content-center" tyle="display:none" id="fechaCreacion_Row_U">
+                        <label id="fechaCreacion_U" for="alias" class="col-md-3 col-form-label">Fecha Creacion</label>
+                        <input type="text" class="col-md-8 form-control" name="TF_Fecha_Creacion" readonly id="TF_Fecha_Creacion_Ubicacion">
+                    </div>
+                    <div class="form-group row justify-content-center" style="display:none" id="fechaModificación_Row_U">
+                        <label id="fechaModificación_U" for="segundoApellido" class="col-md-3 col-form-label">Fecha Modificación</label>
+                        <input type="text" class="col-md-8 form-control" name="TF_Fecha_Modificacion" readonly id="TF_Fecha_Modificacion_Ubicacion">
+                    </div>
+                    <div class="form-group row justify-content-center" style="display:none" id="modificadoPor_Row_U">
+                        <label id="modificadopor_U" for="creadoPor" class="col-md-3 col-form-label">Modificado por</label>
+                        <input type="text" class="col-md-8 form-control" name="TC_Modificado_Por" id="TF_Modificado_Por_Ubicacion">
+                    </div>
+                    <div class="form-group row justify-content-center">
+                        <label id="verificado_U" for="verificado" class="col-md-3 col-form-label">Verificado</label>
+                        <div class="col-md-8  form-check">
+                            <input class="form-check-input" type="checkbox" name="TB_Verificado" id="TB_Verificado_Ubicacion">
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button id="btnInsertarEntidadUbicacion" type="submit" class="btn btn-primary submit-button mx-2">Insertar</button>
+                        <button id="btnModificarEntidadUbicacion" class="btn btn-primary submit-button mx-2" style="display:none">Modificar</button>
+                        <button id="btnCancelarEntidadUbicacion" type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Partial("~/Views/EntidadUbicacion/_ModalTipoUbicacion.cshtml")
+<script src="~/Scripts/js/EntidadUbicacion.js"></script>

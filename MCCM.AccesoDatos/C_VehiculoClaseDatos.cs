@@ -1,5 +1,6 @@
 ﻿using MCCM.Entidad;
 using MCCM.Entidad.DTO;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,23 +9,35 @@ using System.Threading.Tasks;
 
 namespace MCCM.AccesoDatos
 {
-   public class C_VehiculoClaseDatos
+    public class C_VehiculoClaseDatos
     {
-        public List<TMCCM_C_VehiculoClaseDTO> ListarVehiculoClase()
+        public string ListarVehiculoClase()
         {
-            List<TMCCM_C_VehiculoClaseDTO> vehiculoClases = null;
 
             using (var context = new MCCMEntities())
             {
-                vehiculoClases = context.TMCCM_C_Vehiculo_Clase.Where(c => c.TB_Eliminado == false)
-                  .Select(vehiculoClaseItem => new TMCCM_C_VehiculoClaseDTO()
-                  {
-                      TN_ID_Clase_Vehiculo = vehiculoClaseItem.TN_ID_Clase_Vehiculo,
-                      TC_Descripcion = vehiculoClaseItem.TC_Descripcion
-                  }).ToList<TMCCM_C_VehiculoClaseDTO>();
+                var anonimo = from vehiculoClaseItem in context.TMCCM_C_Vehiculo_Clase
+                              where vehiculoClaseItem.TB_Eliminado == false
+                              select new
+                              {
+                                  TN_ID_Clase_Vehiculo = vehiculoClaseItem.TN_ID_Clase_Vehiculo,
+                                  TC_Descripcion = vehiculoClaseItem.TC_Descripcion
+                              };
+
+                return JsonConvert.SerializeObject(anonimo, Formatting.Indented);
+            }
+        }
+        public void InsertarVehiculoClase(TMCCM_C_Vehiculo_Clase vehiculoClase)
+        {
+            using (var context = new MCCMEntities())
+            {
+                vehiculoClase.TF_Fecha_Creacion = DateTime.Now;
+                vehiculoClase.TB_Eliminado = false;
+                context.TMCCM_C_Vehiculo_Clase.Add(vehiculoClase);
+                context.SaveChanges();
+
             }
 
-            return vehiculoClases;
         }
     }
 }

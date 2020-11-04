@@ -26,6 +26,17 @@ namespace MCCM.AccesoDatos
 
             return personaSexo;
         }
+        public void InsertarPersonaSexo(TMCCM_C_Persona_Sexo personaSexo)
+        {
+            using (var context = new MCCMEntities())
+            {
+                personaSexo.TB_Eliminado = false;
+                context.TMCCM_C_Persona_Sexo.Add(personaSexo);
+                context.SaveChanges();
+
+            }
+
+        }
     }
 
 }

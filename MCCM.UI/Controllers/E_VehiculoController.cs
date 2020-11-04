@@ -7,7 +7,7 @@ using MCCM.Entidad.DTO;
 using Newtonsoft.Json;
 using System.IO;
 using MCCM.ReglasNegocio;
-
+using MCCM.Entidad;
 
 namespace MCCM.UI.Controllers
 {
@@ -16,15 +16,26 @@ namespace MCCM.UI.Controllers
         EntidadVehiculoNegocio entidadVehiculoNegocio = new EntidadVehiculoNegocio();
 
         [HttpPost]
-        public String Insertar_E_Vehiculo(TMCCM_EntidadVehiculoDTO entidadVehiculoDTO)
+        public String Insertar_E_Vehiculo(TMCCM_Entidad_Vehiculo entidadVehiculo, HttpPostedFileBase imagenVehiculo)
         {
-            entidadVehiculoNegocio.InsertarEntidadVehiculo(entidadVehiculoDTO);
+            if(imagenVehiculo!= null) { 
+            HttpPostedFileBase file = imagenVehiculo;
+            var length = file.InputStream.Length; //Length: 103050706
+            byte[] fileData = null;
+            using (var binaryReader = new BinaryReader(file.InputStream))
+            {
+                fileData = binaryReader.ReadBytes(file.ContentLength);
+            } 
+            entidadVehiculo.TB_Fotografia = fileData;
+           }
+           
+            entidadVehiculoNegocio.InsertarEntidadVehiculo(entidadVehiculo);
             return "S";
         }
         [HttpGet]
         public String Listar_E_Vehiculo(int caso)
         {
-            return JsonConvert.SerializeObject(entidadVehiculoNegocio.ListarEntidadVehiculo(caso), Formatting.Indented);
+            return entidadVehiculoNegocio.ListarEntidadVehiculo(caso);
         }
         [HttpDelete]
         public String Eliminar_E_VehiculoPorID(int entidadVehiculoID)
@@ -32,15 +43,27 @@ namespace MCCM.UI.Controllers
             return entidadVehiculoNegocio.EliminarEntidadVehiculo(entidadVehiculoID);
         }
         [HttpPost]
-        public String Modificar_E_Vehiculo(TMCCM_EntidadVehiculoDTO entidadDrogaDTO)
+        public String Modificar_E_Vehiculo(TMCCM_Entidad_Vehiculo entidadVehiculo, HttpPostedFileBase imagenVehiculo)
         {
-            entidadVehiculoNegocio.ActualizarEntidadVehiculo(entidadDrogaDTO);
+            if (imagenVehiculo != null) { 
+            HttpPostedFileBase file = imagenVehiculo;
+
+            var length = file.InputStream.Length; //Length: 103050706
+            byte[] fileData = null;
+            using (var binaryReader = new BinaryReader(file.InputStream))
+            {
+                fileData = binaryReader.ReadBytes(file.ContentLength);
+            }
+            entidadVehiculo.TB_Fotografia = fileData;
+            }
+ 
+            entidadVehiculoNegocio.ActualizarEntidadVehiculo(entidadVehiculo);
             return "S";
         }
         [HttpGet]
-        public String Obtener_E_DrogaPorID(int ID)
+        public String Obtener_E_VehiculoPorID(int ID)
         {
-            return JsonConvert.SerializeObject(entidadVehiculoNegocio.ObtenerEntidadVehiculoPorID(ID), Formatting.Indented);
+            return entidadVehiculoNegocio.ObtenerEntidadVehiculoPorID(ID);
         }
     }
 }

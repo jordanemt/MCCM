@@ -13,9 +13,13 @@ namespace MCCM.ReglasNegocio
     {
         C_TipoUbicacionDatos c_TipoUbicacionDatos = new C_TipoUbicacionDatos();
 
-        public List<TMCCM_C_TipoUbicacionDTO> ListaTipoUbicacion()
+        public string ListaTipoUbicacion()
         {
             return c_TipoUbicacionDatos.ListarTipoUbicacion();
+        }
+        public void InsertarTipoUbicacion(TMCCM_C_Ubicacion_Tipo_Ubicacion tipoUbicacion)
+        {
+            c_TipoUbicacionDatos.InsertarTipoUbicacion(tipoUbicacion);
         }
 
     }

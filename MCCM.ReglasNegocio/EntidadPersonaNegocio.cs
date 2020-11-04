@@ -13,7 +13,11 @@ namespace MCCM.ReglasNegocio
     {
 
         EntidadPersonaDatos entidadPersonaDatos = new EntidadPersonaDatos();
-        public void InsertarEntidadPersona(TMCCM_Entidad_Persona entidadPersona)
+        public void Insertar(TMCCM_Entidad_Persona entidadPersona)
+        {
+            entidadPersonaDatos.Insertar(entidadPersona);
+        }
+        public void InsertarEntidadPersona(TMCCM_EntidadPersonaDTO entidadPersona)
         {
             entidadPersonaDatos.InsertarEntidadPersona(entidadPersona);
         }

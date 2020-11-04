@@ -17,6 +17,10 @@ namespace MCCM.ReglasNegocio
         
             return c_PersonaNacionalidadDatos.ListarPersonaNacionalidad();
         }
+        public void InsertarPersonaNacionalidad(TMCCM_C_Persona_Nacionalidad personaNacionalidad)
+        {
+            c_PersonaNacionalidadDatos.InsertarPersonaNacionalidad(personaNacionalidad);
+        }
 
     }
 }

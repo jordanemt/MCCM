@@ -23,7 +23,7 @@ namespace MCCM.UI.Controllers
         [HttpGet]
         public String Listar_E_Droga(int caso)
         {
-            return JsonConvert.SerializeObject(entidadDrogaNegocio.ListarEntidadDrogas(caso), Formatting.Indented);
+            return entidadDrogaNegocio.ListarEntidadDrogas(caso);
         }
         [HttpPost]
         public String Eliminar_E_DrogaPorID(int entidadDrogaID)
@@ -39,7 +39,7 @@ namespace MCCM.UI.Controllers
         [HttpGet]
         public String Obtener_E_DrogaPorID(int ID)
         {
-            return JsonConvert.SerializeObject(entidadDrogaNegocio.ObtenerEntidadDrogaPorID(ID), Formatting.Indented);
+            return entidadDrogaNegocio.ObtenerEntidadDrogaPorID(ID);
         }
     }
 }

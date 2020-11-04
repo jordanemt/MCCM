@@ -1,5 +1,6 @@
 ﻿using MCCM.Entidad;
 using MCCM.Entidad.DTO;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,24 +11,35 @@ namespace MCCM.AccesoDatos
 {
     public class C_TipoArmaDatos
     {
-        public List<TMCCM_C_TipoArmaDTO> ListaTipoArma()
+        public string ListaTipoArma()
         {
-            List<TMCCM_C_TipoArmaDTO> arma_Tipos = null;
 
             using (var context = new MCCMEntities())
             {
-                arma_Tipos = context.TMCCM_C_Arma_Tipo_Arma.Where(c => c.TB_Eliminado == false)
-                  .Select(armaTipoItem => new TMCCM_C_TipoArmaDTO()
-                  {
-                      TN_ID_Tipo_Arma = armaTipoItem.TN_ID_Tipo_Arma,
-                      TC_Descripcion = armaTipoItem.TC_Descripcion,
+                var anonimo = from armaTipoItem in context.TMCCM_C_Arma_Tipo_Arma
+                              where armaTipoItem.TB_Eliminado == false
+                              select new
+                              {
+                              TN_ID_Tipo_Arma = armaTipoItem.TN_ID_Tipo_Arma,
+                              TC_Descripcion = armaTipoItem.TC_Descripcion,
 
-                  }).ToList<TMCCM_C_TipoArmaDTO>();
+                  };
+
+
+                return JsonConvert.SerializeObject(anonimo, Formatting.Indented);
+            }
+        }
+        public void InsertarTipoArma(TMCCM_C_Arma_Tipo_Arma tipoArma)
+        {
+            using (var context = new MCCMEntities())
+            {
+                tipoArma.TB_Eliminado = false;
+                context.TMCCM_C_Arma_Tipo_Arma.Add(tipoArma);
+                context.SaveChanges();
+
             }
 
-            return arma_Tipos;
         }
-
     }
 }
 

@@ -26,6 +26,17 @@ namespace MCCM.AccesoDatos
 
             return personaGeneros;
         }
+        public void InsertarPersonaGenero(TMCCM_C_Persona_Genero personaGenero)
+        {
+            using (var context = new MCCMEntities())
+            {
+                personaGenero.TB_Eliminado = false;
+                context.TMCCM_C_Persona_Genero.Add(personaGenero);
+                context.SaveChanges();
+
+            }
+
+        }
 
     }
 }

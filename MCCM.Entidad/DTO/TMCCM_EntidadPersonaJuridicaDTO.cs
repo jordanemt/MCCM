@@ -15,8 +15,7 @@ namespace MCCM.Entidad.DTO
         public string TC_Nombre_Organización { get; set; }
         public string TC_Nombre_Comercial { get; set; }
         public Nullable<int> TN_ID_Icono_Persona_Juridica { get; set; }
-        public HttpPostedFileBase TB_Fotografia { get; set; }
-        public string imgTemporal { get; set; }
+
         public Nullable<int> TN_ID_Tipo_Organizacion { get; set; }
         public string TC_Sitio_Web { get; set; }
         public string TC_Comentario { get; set; }
@@ -25,5 +24,8 @@ namespace MCCM.Entidad.DTO
         public string TC_Creado_Por { get; set; }
         public string TC_Modificado_Por { get; set; }
         public Nullable<bool> TB_Verificado { get; set; }
+        public HttpPostedFileBase TB_Fotografia { get; set; }
+        public byte[] imgTemporal { get; set; }
+        public string imgString { get; set; }
     }
 }

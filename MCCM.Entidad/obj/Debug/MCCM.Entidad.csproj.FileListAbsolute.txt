@@ -34,3 +34,14 @@ C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.cspr
 C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.csproj.CopyComplete
 C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.dll
 C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.pdb
+C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.Entidad\bin\Debug\MCCM.Entidad.dll.config
+C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.Entidad\bin\Debug\MCCM.Entidad.dll
+C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.Entidad\bin\Debug\MCCM.Entidad.pdb
+C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.Entidad\bin\Debug\EntityFramework.dll
+C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.Entidad\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.Entidad\bin\Debug\EntityFramework.xml
+C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.Entidad\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.csproj.CopyComplete
+C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.dll
+C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.pdb
+C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.csprojAssemblyReference.cache

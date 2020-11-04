@@ -22,8 +22,6 @@ namespace MCCM.Entidad.DTO
         public string TC_Segundo_Apellido { get; set; }
         public Nullable<System.DateTime> TF_Fecha_Nacimiento { get; set; }
         public Nullable<int> TN_Edad { get; set; }
-        public HttpPostedFileBase TB_Fotografia { get; set; }
-        public string imgTemporal { get; set; }
         public string TC_Cedula { get; set; }
         public Nullable<bool> TB_Fallecido { get; set; }
         public Nullable<int> TN_Autopsia { get; set; }
@@ -35,6 +33,9 @@ namespace MCCM.Entidad.DTO
         public Nullable<bool> TB_Verificado { get; set; }
         public string TC_Comentario { get; set; }
         public string TC_Alias { get; set; }
+        public HttpPostedFileBase TB_Fotografia { get; set; }
+        public byte[] imgTemporal { get; set; }
+        public string imgString { get; set; }
 
     }
 }

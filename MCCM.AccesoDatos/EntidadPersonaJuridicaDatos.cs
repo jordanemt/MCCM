@@ -22,16 +22,14 @@ namespace MCCM.AccesoDatos
                     TC_ID_Cedula_Juridica = entidadPersonaJuridicaDTO.TC_ID_Cedula_Juridica,
                     TC_Nombre_Organización = entidadPersonaJuridicaDTO.TC_Nombre_Organización,
                     TC_Nombre_Comercial = entidadPersonaJuridicaDTO.TC_Nombre_Comercial,
-                    TN_ID_Icono_Persona_Juridica = entidadPersonaJuridicaDTO.TN_ID_Icono_Persona_Juridica,
-                    TB_Fotografia = utilidades.ConverToBytes(entidadPersonaJuridicaDTO.TB_Fotografia),
+                    TB_Fotografia =entidadPersonaJuridicaDTO.imgTemporal,
                     TN_ID_Tipo_Organizacion = entidadPersonaJuridicaDTO.TN_ID_Tipo_Organizacion,
                     TC_Sitio_Web = entidadPersonaJuridicaDTO.TC_Sitio_Web,
                     TC_Comentario = entidadPersonaJuridicaDTO.TC_Comentario,
-                    TF_Fecha_Creacion = entidadPersonaJuridicaDTO.TF_Fecha_Creacion,
-                    TF_Fecha_Modificacion = entidadPersonaJuridicaDTO.TF_Fecha_Modificacion,
                     TC_Creado_Por = entidadPersonaJuridicaDTO.TC_Creado_Por,
-                    TC_Modificado_Por = "",
                     TB_Verificado = entidadPersonaJuridicaDTO.TB_Verificado,
+                    TF_Fecha_Creacion = DateTime.Now,
+                    TB_Eliminado = false,
                 });
 
                 context.SaveChanges();
@@ -50,8 +48,7 @@ namespace MCCM.AccesoDatos
                     result.TC_ID_Cedula_Juridica = entidadPersonaJuridicaDTO.TC_ID_Cedula_Juridica;
                     result.TC_Nombre_Organización = entidadPersonaJuridicaDTO.TC_Nombre_Organización;
                     result.TC_Nombre_Comercial = entidadPersonaJuridicaDTO.TC_Nombre_Comercial;
-                    result.TN_ID_Icono_Persona_Juridica = entidadPersonaJuridicaDTO.TN_ID_Icono_Persona_Juridica;
-                    result.TB_Fotografia = utilidades.ConverToBytes(entidadPersonaJuridicaDTO.TB_Fotografia);
+                    result.TB_Fotografia = entidadPersonaJuridicaDTO.imgTemporal;
                     result.TN_ID_Tipo_Organizacion = entidadPersonaJuridicaDTO.TN_ID_Tipo_Organizacion;
                     result.TC_Sitio_Web = entidadPersonaJuridicaDTO.TC_Sitio_Web;
                     result.TC_Comentario = entidadPersonaJuridicaDTO.TC_Comentario;
@@ -70,10 +67,10 @@ namespace MCCM.AccesoDatos
         {
             using (var context = new MCCMEntities())
             {
-                var result = context.TMCCM_Entidad_Persona_Juridica.SingleOrDefault(b => b.TN_ID_Icono_Persona_Juridica == ID);
+                var result = context.TMCCM_Entidad_Persona_Juridica.SingleOrDefault(b => b.TN_ID_Persona_Juridica == ID);
                 if (result != null)
                 {
-                    result.TB_Eliminado = false;
+                    result.TB_Eliminado =true;
                     context.Entry(result).State = EntityState.Modified;
                     context.SaveChanges();
                 }
@@ -94,8 +91,7 @@ namespace MCCM.AccesoDatos
                        TC_ID_Cedula_Juridica = personaJuridicaItem.TC_ID_Cedula_Juridica,
                        TC_Nombre_Organización = personaJuridicaItem.TC_Nombre_Organización,
                        TC_Nombre_Comercial = personaJuridicaItem.TC_Nombre_Comercial,
-                       TN_ID_Icono_Persona_Juridica = personaJuridicaItem.TN_ID_Icono_Persona_Juridica,
-                       imgTemporal = utilidades.ConvertToString64(personaJuridicaItem.TB_Fotografia),
+                       imgTemporal = personaJuridicaItem.TB_Fotografia,
                        TN_ID_Tipo_Organizacion = personaJuridicaItem.TN_ID_Tipo_Organizacion,
                        TC_Sitio_Web = personaJuridicaItem.TC_Sitio_Web,
                        TC_Comentario = personaJuridicaItem.TC_Comentario,
@@ -123,8 +119,7 @@ namespace MCCM.AccesoDatos
                            TC_ID_Cedula_Juridica = personaJuridicaItem.TC_ID_Cedula_Juridica,
                            TC_Nombre_Organización = personaJuridicaItem.TC_Nombre_Organización,
                            TC_Nombre_Comercial = personaJuridicaItem.TC_Nombre_Comercial,
-                           TN_ID_Icono_Persona_Juridica = personaJuridicaItem.TN_ID_Icono_Persona_Juridica,
-                           imgTemporal = utilidades.ConvertToString64(personaJuridicaItem.TB_Fotografia),
+                           imgTemporal = personaJuridicaItem.TB_Fotografia,
                            TN_ID_Tipo_Organizacion = personaJuridicaItem.TN_ID_Tipo_Organizacion,
                            TC_Sitio_Web = personaJuridicaItem.TC_Sitio_Web,
                            TC_Comentario = personaJuridicaItem.TC_Comentario,

@@ -15,18 +15,18 @@ namespace MCCM.UI.Controllers
         EntidadUbicacionNegocio entidadUbicacionNegocio = new EntidadUbicacionNegocio();
   
         [HttpPost]
-        public String Insertar_E_Ubicacion(TMCCM_Entidad_Ubicacion entidadUbicacion)
+        public String Insertar_E_Ubicacion(TMCCM_Entidad_Ubicacion entidadUbicacion, int caso)
         {
-         
+            entidadUbicacion.TN_ID_Caso = caso;
             entidadUbicacionNegocio.InsertarEntidadUbicacion(entidadUbicacion);
             return "S";
         }
         [HttpGet]
         public String Listar_E_Ubicacion(int caso)
         {
-            return JsonConvert.SerializeObject(entidadUbicacionNegocio.ListarEntidadUbicaciones(caso), Formatting.Indented);
+            return entidadUbicacionNegocio.ListarEntidadUbicaciones(caso);
         }
-        [HttpDelete]
+        [HttpPost]
         public String Eliminar_E_UbicacionPorID(int entidadUbicacionID)
         {
             return entidadUbicacionNegocio.EliminarEntidadUbicacion(entidadUbicacionID);
@@ -40,7 +40,7 @@ namespace MCCM.UI.Controllers
         [HttpGet]
         public String Obtener_E_UbicacionPorID(int ID)
         {
-            return JsonConvert.SerializeObject(entidadUbicacionNegocio.ObtenerEntidadUbicacionPorID(ID), Formatting.Indented);
+            return entidadUbicacionNegocio.ObtenerEntidadUbicacionPorID(ID);
         }
     }
 }

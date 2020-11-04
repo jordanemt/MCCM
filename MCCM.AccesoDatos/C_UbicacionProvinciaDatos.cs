@@ -1,5 +1,6 @@
 ﻿using MCCM.Entidad;
 using MCCM.Entidad.DTO;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,21 +11,35 @@ namespace MCCM.AccesoDatos
 {
     public class C_UbicacionProvinciaDatos
     {
-        public List<TMCCM_C_UbicacionProvinciaDTO> ListarUbicacionProvincia()
+        public string ListarUbicacionProvincia()
         {
-            List<TMCCM_C_UbicacionProvinciaDTO> ubicacionProvincias = null;
-
             using (var context = new MCCMEntities())
             {
-                ubicacionProvincias = context.TMCCM_C_Ubicacion_Provincia.Where(c => c.TB_Eliminado == false)
-                  .Select(ubicacionProvinciaItem => new TMCCM_C_UbicacionProvinciaDTO()
-                  {
-                      TN_ID_Provincia = ubicacionProvinciaItem.TN_ID_Provincia,
-                      TC_Descripcion = ubicacionProvinciaItem.TC_Descripcion,
-                  }).ToList<TMCCM_C_UbicacionProvinciaDTO>();
+                var anonimo = from ubicacionProvinciaItem in context.TMCCM_C_Ubicacion_Provincia
+                              where ubicacionProvinciaItem.TB_Eliminado == false
+                              select new
+
+                              {
+                                  TN_ID_Provincia = ubicacionProvinciaItem.TN_ID_Provincia,
+                                  TC_Descripcion = ubicacionProvinciaItem.TC_Descripcion,
+                              };
+
+
+
+                return JsonConvert.SerializeObject(anonimo, Formatting.Indented);
+            }
+        }
+        public void InsertarUbicacionProvincia(TMCCM_C_Ubicacion_Provincia ubicacionProvincia)
+        {
+            using (var context = new MCCMEntities())
+            {
+                ubicacionProvincia.TF_Fecha_Creacion = DateTime.Now;
+                ubicacionProvincia.TB_Eliminado = false;
+                context.TMCCM_C_Ubicacion_Provincia.Add(ubicacionProvincia);
+                context.SaveChanges();
+
             }
 
-            return ubicacionProvincias;
         }
     }
 

@@ -12,12 +12,15 @@ namespace MCCM.ReglasNegocio
     public class C_UbicacionProvinciaNegocio
     {
         C_UbicacionProvinciaDatos c_UbicacionProvinciaDatos = new C_UbicacionProvinciaDatos();
-        public List<TMCCM_C_UbicacionProvinciaDTO> ListarUbicacionProvincia()
+        public string ListarUbicacionProvincia()
         {
            
             return c_UbicacionProvinciaDatos.ListarUbicacionProvincia();
         }
-
+        public void InsertarUbicacionProvincia(TMCCM_C_Ubicacion_Provincia ubicacionProvincia)
+        {
+            c_UbicacionProvinciaDatos.InsertarUbicacionProvincia(ubicacionProvincia);
+        }
     }
 
 }

@@ -5,29 +5,41 @@ using System.Linq;
 using MCCM.Entidad.DTO;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace MCCM.AccesoDatos
 {
     public class C_ArmaMarcaDatos
     {
-        public List<TMCCM_C_ArmaMarcaDTO> ListaArmaMarca()
+        public string ListaArmaMarca()
         {
-            List<TMCCM_C_ArmaMarcaDTO> arma_Marcas = null;
 
             using (var context = new MCCMEntities())
             {
-                arma_Marcas = context.TMCCM_C_Arma_Marca.Where(c => c.TB_Eliminado == false)
-                  .Select(armaMarcaItem => new TMCCM_C_ArmaMarcaDTO()
-                  {
+                var anonimo = from armaMarcaItem in context.TMCCM_C_Arma_Marca
+                              where armaMarcaItem.TB_Eliminado == false
+                              select new
+                              {
                       TN_ID_Marca_Arma = armaMarcaItem.TN_ID_Marca_Arma,
                       TC_Descripcion = armaMarcaItem.TC_Descripcion,
-                  }).ToList<TMCCM_C_ArmaMarcaDTO>();
+                  };
+
+
+                return JsonConvert.SerializeObject(anonimo, Formatting.Indented);
+            }
+        }
+        public void InsertarArmaMarca(TMCCM_C_Arma_Marca armaMarca)
+        {
+            using (var context = new MCCMEntities())
+            {
+                armaMarca.TB_Eliminado = false;
+                context.TMCCM_C_Arma_Marca.Add(armaMarca);
+                context.SaveChanges();
+
             }
 
-            return arma_Marcas;
         }
 
-     
 
     }
 }
