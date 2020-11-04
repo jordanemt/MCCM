@@ -62,8 +62,8 @@ namespace MCCM.AccesoDatos
 
             using (var context = new MCCMEntities())
             {
-                var result= context.sp_obtenerEventosPorCaso(caso).ToList();
-                return result;
+
+                return null;
                 
             }
             

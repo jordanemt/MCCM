@@ -26,13 +26,11 @@
         <EntityTypeShape EntityType="MCCMModel.TMCCM_Entidad_Droga" Width="1.5" PointX="6" PointY="29.25" IsExpanded="true" />
         <EntityTypeShape EntityType="MCCMModel.TMCCM_Entidad_Telefono" Width="1.5" PointX="6" PointY="24.25" IsExpanded="true" />
         <EntityTypeShape EntityType="MCCMModel.TMCCM_Entidad_Ubicacion" Width="1.5" PointX="3" PointY="34.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_Evento" Width="1.5" PointX="3" PointY="67.375" IsExpanded="true" />
         <EntityTypeShape EntityType="MCCMModel.TMCCM_Gasto" Width="1.5" PointX="9" PointY="23.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MCCMModel.TMCCM_Grupo" Width="1.5" PointX="3" PointY="74.25" IsExpanded="true" />
         <EntityTypeShape EntityType="MCCMModel.TMCCM_Grupo_Usuario" Width="1.5" PointX="5.25" PointY="74.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MCCMModel.TMCCM_Grupo_Vehiculo" Width="1.5" PointX="8.25" PointY="74.625" IsExpanded="true" />
         <EntityTypeShape EntityType="MCCMModel.TMCCM_Rol" Width="1.5" PointX="4.5" PointY="54.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_Tarea" Width="1.5" PointX="9" PointY="35.875" IsExpanded="true" />
         <EntityTypeShape EntityType="MCCMModel.TMCCM_Usuario" Width="1.5" PointX="6.75" PointY="53.625" IsExpanded="true" />
         <EntityTypeShape EntityType="MCCMModel.TMCCM_Vehiculo" Width="1.5" PointX="6" PointY="70.75" IsExpanded="true" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Droga_Tipo_Droga_REL_TMCCM_Entidad_Droga" ManuallyRouted="false" />
@@ -48,15 +46,12 @@
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_Droga" ManuallyRouted="false" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_Telefono" ManuallyRouted="false" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_Ubicacion" ManuallyRouted="false" />
-        <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Evento" ManuallyRouted="false" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Gasto" ManuallyRouted="false" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Grupo" ManuallyRouted="false" />
-        <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Tarea" ManuallyRouted="false" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Grupo_REL_TMCCM_Grupo_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Grupo_REL_TMCCM_Grupo_Vehiculo" ManuallyRouted="false" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Usuario_REL_TMCCM_Grupo_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Vehiculo_REL_TMCCM_Grupo_Vehiculo" ManuallyRouted="false" />
-        <AssociationConnector Association="MCCMModel.FK_TMCCM_Usuario_REL_TMCCM_Tarea" ManuallyRouted="false" />
         <AssociationConnector Association="MCCMModel.TMCCM_Usuario_Rol" ManuallyRouted="false" />
         <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Vehiculo_Clase" Width="1.5" PointX="6.75" PointY="49.5" />
         <EntityTypeShape EntityType="MCCMModel.TMCCM_Entidad_Arma" Width="1.5" PointX="6" PointY="34.125" />
@@ -77,6 +72,11 @@
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_PErsona" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_Persona_Juridica" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_Vehiculo" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_Evento" Width="1.5" PointX="3" PointY="24" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_Tarea" Width="1.5" PointX="12" PointY="41.375" />
+        <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Evento" />
+        <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Tarea" />
+        <AssociationConnector Association="MCCMModel.FK_TMCCM_Usuario_REL_TMCCM_Tarea" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

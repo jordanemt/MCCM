@@ -405,6 +405,7 @@
           <Property Name="TC_Diligencia" Type="varchar" MaxLength="100" />
           <Property Name="TC_Lugar" Type="varchar" MaxLength="50" />
           <Property Name="TB_Eliminado" Type="bit" />
+          <Property Name="TN_Tipo" Type="int" />
         </EntityType>
         <EntityType Name="TMCCM_Usuario">
           <Key>
@@ -1278,14 +1279,14 @@
           <NavigationProperty Name="TMCCM_Entidad_Droga" Relationship="Self.FK_TMCCM_Caso_REL_TMCCM_Entidad_Droga" FromRole="TMCCM_Caso" ToRole="TMCCM_Entidad_Droga" />
           <NavigationProperty Name="TMCCM_Entidad_Telefono" Relationship="Self.FK_TMCCM_Caso_REL_TMCCM_Entidad_Telefono" FromRole="TMCCM_Caso" ToRole="TMCCM_Entidad_Telefono" />
           <NavigationProperty Name="TMCCM_Entidad_Ubicacion" Relationship="Self.FK_TMCCM_Caso_REL_TMCCM_Entidad_Ubicacion" FromRole="TMCCM_Caso" ToRole="TMCCM_Entidad_Ubicacion" />
-          <NavigationProperty Name="TMCCM_Evento" Relationship="Self.FK_TMCCM_Caso_REL_TMCCM_Evento" FromRole="TMCCM_Caso" ToRole="TMCCM_Evento" />
           <NavigationProperty Name="TMCCM_Gasto" Relationship="Self.FK_TMCCM_Caso_REL_TMCCM_Gasto" FromRole="TMCCM_Caso" ToRole="TMCCM_Gasto" />
           <NavigationProperty Name="TMCCM_Grupo" Relationship="Self.FK_TMCCM_Caso_REL_TMCCM_Grupo" FromRole="TMCCM_Caso" ToRole="TMCCM_Grupo" />
-          <NavigationProperty Name="TMCCM_Tarea" Relationship="Self.FK_TMCCM_Caso_REL_TMCCM_Tarea" FromRole="TMCCM_Caso" ToRole="TMCCM_Tarea" />
           <NavigationProperty Name="TMCCM_Entidad_Arma" Relationship="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_Arma" FromRole="TMCCM_Caso" ToRole="TMCCM_Entidad_Arma" />
           <NavigationProperty Name="TMCCM_Entidad_Persona" Relationship="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_PErsona" FromRole="TMCCM_Caso" ToRole="TMCCM_Entidad_Persona" />
           <NavigationProperty Name="TMCCM_Entidad_Persona_Juridica" Relationship="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_Persona_Juridica" FromRole="TMCCM_Caso" ToRole="TMCCM_Entidad_Persona_Juridica" />
           <NavigationProperty Name="TMCCM_Entidad_Vehiculo" Relationship="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_Vehiculo" FromRole="TMCCM_Caso" ToRole="TMCCM_Entidad_Vehiculo" />
+          <NavigationProperty Name="TMCCM_Evento" Relationship="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Evento" FromRole="TMCCM_Caso" ToRole="TMCCM_Evento" />
+          <NavigationProperty Name="TMCCM_Tarea" Relationship="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Tarea" FromRole="TMCCM_Caso" ToRole="TMCCM_Tarea" />
         </EntityType>
         <EntityType Name="TMCCM_Entidad_Droga">
           <Key>
@@ -1351,19 +1352,6 @@
           <NavigationProperty Name="TMCCM_C_Ubicacion_Provincia" Relationship="Self.FK_TMCCM_C_Ubicacion_Provincia_REL_TMCCM_Entidad_Ubicacion" FromRole="TMCCM_Entidad_Ubicacion" ToRole="TMCCM_C_Ubicacion_Provincia" />
           <NavigationProperty Name="TMCCM_C_Ubicacion_Tipo_Ubicacion" Relationship="Self.FK_TMCCM_C_Ubicacion_Tipo_Ubicacion_REL_TMCCM_Entidad_Ubicacion" FromRole="TMCCM_Entidad_Ubicacion" ToRole="TMCCM_C_Ubicacion_Tipo_Ubicacion" />
           <NavigationProperty Name="TMCCM_Caso" Relationship="Self.FK_TMCCM_Caso_REL_TMCCM_Entidad_Ubicacion" FromRole="TMCCM_Entidad_Ubicacion" ToRole="TMCCM_Caso" />
-        </EntityType>
-        <EntityType Name="TMCCM_Evento">
-          <Key>
-            <PropertyRef Name="TN_ID_Evento" />
-          </Key>
-          <Property Name="TN_ID_Evento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TN_ID_Caso" Type="Int32" />
-          <Property Name="TF_Fecha" Type="DateTime" Precision="3" />
-          <Property Name="TC_Informa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TC_Lugar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TC_Novedad" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="TB_Eliminado" Type="Boolean" />
-          <NavigationProperty Name="TMCCM_Caso" Relationship="Self.FK_TMCCM_Caso_REL_TMCCM_Evento" FromRole="TMCCM_Evento" ToRole="TMCCM_Caso" />
         </EntityType>
         <EntityType Name="TMCCM_Gasto">
           <Key>
@@ -1433,20 +1421,6 @@
           <Property Name="TB_Eliminado" Type="Boolean" />
           <NavigationProperty Name="TMCCM_Usuario" Relationship="Self.TMCCM_Usuario_Rol" FromRole="TMCCM_Rol" ToRole="TMCCM_Usuario" />
         </EntityType>
-        <EntityType Name="TMCCM_Tarea">
-          <Key>
-            <PropertyRef Name="TN_ID_Tarea" />
-          </Key>
-          <Property Name="TN_ID_Tarea" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TN_ID_Caso" Type="Int32" />
-          <Property Name="TN_ID_Usuario" Type="Int32" />
-          <Property Name="TF_Fecha" Type="DateTime" Precision="3" />
-          <Property Name="TC_Diligencia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="TC_Lugar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TB_Eliminado" Type="Boolean" />
-          <NavigationProperty Name="TMCCM_Caso" Relationship="Self.FK_TMCCM_Caso_REL_TMCCM_Tarea" FromRole="TMCCM_Tarea" ToRole="TMCCM_Caso" />
-          <NavigationProperty Name="TMCCM_Usuario" Relationship="Self.FK_TMCCM_Usuario_REL_TMCCM_Tarea" FromRole="TMCCM_Tarea" ToRole="TMCCM_Usuario" />
-        </EntityType>
         <EntityType Name="TMCCM_Usuario">
           <Key>
             <PropertyRef Name="TN_ID_Usuario" />
@@ -1461,8 +1435,8 @@
           <Property Name="TB_Eliminado" Type="Boolean" />
           <Property Name="TB_En_Grupo" Type="Boolean" />
           <NavigationProperty Name="TMCCM_Grupo_Usuario" Relationship="Self.FK_TMCCM_Usuario_REL_TMCCM_Grupo_Usuario" FromRole="TMCCM_Usuario" ToRole="TMCCM_Grupo_Usuario" />
-          <NavigationProperty Name="TMCCM_Tarea" Relationship="Self.FK_TMCCM_Usuario_REL_TMCCM_Tarea" FromRole="TMCCM_Usuario" ToRole="TMCCM_Tarea" />
           <NavigationProperty Name="TMCCM_Rol" Relationship="Self.TMCCM_Usuario_Rol" FromRole="TMCCM_Usuario" ToRole="TMCCM_Rol" />
+          <NavigationProperty Name="TMCCM_Tarea" Relationship="MCCMModel.FK_TMCCM_Usuario_REL_TMCCM_Tarea" FromRole="TMCCM_Usuario" ToRole="TMCCM_Tarea" />
         </EntityType>
         <EntityType Name="TMCCM_Vehiculo">
           <Key>
@@ -1632,18 +1606,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TMCCM_Caso_REL_TMCCM_Evento">
-          <End Role="TMCCM_Caso" Type="Self.TMCCM_Caso" Multiplicity="0..1" />
-          <End Role="TMCCM_Evento" Type="Self.TMCCM_Evento" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TMCCM_Caso">
-              <PropertyRef Name="TN_ID_Caso" />
-            </Principal>
-            <Dependent Role="TMCCM_Evento">
-              <PropertyRef Name="TN_ID_Caso" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_TMCCM_Caso_REL_TMCCM_Gasto">
           <End Role="TMCCM_Caso" Type="Self.TMCCM_Caso" Multiplicity="0..1" />
           <End Role="TMCCM_Gasto" Type="Self.TMCCM_Gasto" Multiplicity="*" />
@@ -1664,18 +1626,6 @@
               <PropertyRef Name="TN_ID_Caso" />
             </Principal>
             <Dependent Role="TMCCM_Grupo">
-              <PropertyRef Name="TN_ID_Caso" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TMCCM_Caso_REL_TMCCM_Tarea">
-          <End Role="TMCCM_Caso" Type="Self.TMCCM_Caso" Multiplicity="0..1" />
-          <End Role="TMCCM_Tarea" Type="Self.TMCCM_Tarea" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TMCCM_Caso">
-              <PropertyRef Name="TN_ID_Caso" />
-            </Principal>
-            <Dependent Role="TMCCM_Tarea">
               <PropertyRef Name="TN_ID_Caso" />
             </Dependent>
           </ReferentialConstraint>
@@ -1728,18 +1678,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TMCCM_Usuario_REL_TMCCM_Tarea">
-          <End Role="TMCCM_Usuario" Type="Self.TMCCM_Usuario" Multiplicity="0..1" />
-          <End Role="TMCCM_Tarea" Type="Self.TMCCM_Tarea" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TMCCM_Usuario">
-              <PropertyRef Name="TN_ID_Usuario" />
-            </Principal>
-            <Dependent Role="TMCCM_Tarea">
-              <PropertyRef Name="TN_ID_Usuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="TMCCM_Usuario_Rol">
           <End Role="TMCCM_Rol" Type="Self.TMCCM_Rol" Multiplicity="*" />
           <End Role="TMCCM_Usuario" Type="Self.TMCCM_Usuario" Multiplicity="*" />
@@ -1766,13 +1704,11 @@
           <EntitySet Name="TMCCM_Entidad_Droga" EntityType="Self.TMCCM_Entidad_Droga" />
           <EntitySet Name="TMCCM_Entidad_Telefono" EntityType="Self.TMCCM_Entidad_Telefono" />
           <EntitySet Name="TMCCM_Entidad_Ubicacion" EntityType="Self.TMCCM_Entidad_Ubicacion" />
-          <EntitySet Name="TMCCM_Evento" EntityType="Self.TMCCM_Evento" />
           <EntitySet Name="TMCCM_Gasto" EntityType="Self.TMCCM_Gasto" />
           <EntitySet Name="TMCCM_Grupo" EntityType="Self.TMCCM_Grupo" />
           <EntitySet Name="TMCCM_Grupo_Usuario" EntityType="Self.TMCCM_Grupo_Usuario" />
           <EntitySet Name="TMCCM_Grupo_Vehiculo" EntityType="Self.TMCCM_Grupo_Vehiculo" />
           <EntitySet Name="TMCCM_Rol" EntityType="Self.TMCCM_Rol" />
-          <EntitySet Name="TMCCM_Tarea" EntityType="Self.TMCCM_Tarea" />
           <EntitySet Name="TMCCM_Usuario" EntityType="Self.TMCCM_Usuario" />
           <EntitySet Name="TMCCM_Vehiculo" EntityType="Self.TMCCM_Vehiculo" />
           <AssociationSet Name="FK_TMCCM_C_Droga_Tipo_Droga_REL_TMCCM_Entidad_Droga" Association="Self.FK_TMCCM_C_Droga_Tipo_Droga_REL_TMCCM_Entidad_Droga">
@@ -1827,10 +1763,6 @@
             <End Role="TMCCM_Caso" EntitySet="TMCCM_Caso" />
             <End Role="TMCCM_Entidad_Ubicacion" EntitySet="TMCCM_Entidad_Ubicacion" />
           </AssociationSet>
-          <AssociationSet Name="FK_TMCCM_Caso_REL_TMCCM_Evento" Association="Self.FK_TMCCM_Caso_REL_TMCCM_Evento">
-            <End Role="TMCCM_Caso" EntitySet="TMCCM_Caso" />
-            <End Role="TMCCM_Evento" EntitySet="TMCCM_Evento" />
-          </AssociationSet>
           <AssociationSet Name="FK_TMCCM_Caso_REL_TMCCM_Gasto" Association="Self.FK_TMCCM_Caso_REL_TMCCM_Gasto">
             <End Role="TMCCM_Caso" EntitySet="TMCCM_Caso" />
             <End Role="TMCCM_Gasto" EntitySet="TMCCM_Gasto" />
@@ -1838,10 +1770,6 @@
           <AssociationSet Name="FK_TMCCM_Caso_REL_TMCCM_Grupo" Association="Self.FK_TMCCM_Caso_REL_TMCCM_Grupo">
             <End Role="TMCCM_Caso" EntitySet="TMCCM_Caso" />
             <End Role="TMCCM_Grupo" EntitySet="TMCCM_Grupo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TMCCM_Caso_REL_TMCCM_Tarea" Association="Self.FK_TMCCM_Caso_REL_TMCCM_Tarea">
-            <End Role="TMCCM_Caso" EntitySet="TMCCM_Caso" />
-            <End Role="TMCCM_Tarea" EntitySet="TMCCM_Tarea" />
           </AssociationSet>
           <AssociationSet Name="FK_TMCCM_Grupo_REL_TMCCM_Grupo_Usuario" Association="Self.FK_TMCCM_Grupo_REL_TMCCM_Grupo_Usuario">
             <End Role="TMCCM_Grupo" EntitySet="TMCCM_Grupo" />
@@ -1859,21 +1787,10 @@
             <End Role="TMCCM_Vehiculo" EntitySet="TMCCM_Vehiculo" />
             <End Role="TMCCM_Grupo_Vehiculo" EntitySet="TMCCM_Grupo_Vehiculo" />
           </AssociationSet>
-          <AssociationSet Name="FK_TMCCM_Usuario_REL_TMCCM_Tarea" Association="Self.FK_TMCCM_Usuario_REL_TMCCM_Tarea">
-            <End Role="TMCCM_Usuario" EntitySet="TMCCM_Usuario" />
-            <End Role="TMCCM_Tarea" EntitySet="TMCCM_Tarea" />
-          </AssociationSet>
           <AssociationSet Name="TMCCM_Usuario_Rol" Association="Self.TMCCM_Usuario_Rol">
             <End Role="TMCCM_Rol" EntitySet="TMCCM_Rol" />
             <End Role="TMCCM_Usuario" EntitySet="TMCCM_Usuario" />
           </AssociationSet>
-          <FunctionImport Name="sp_Obtener_Catalogo_Usuario" ReturnType="Collection(MCCMModel.sp_Obtener_Catalogo_Usuario_Result)" />
-          <FunctionImport Name="sp_obtenerEventosPorCaso" ReturnType="Collection(MCCMModel.sp_obtenerEventosPorCaso_Result)">
-          <Parameter Name="casoID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_obtenerTareaPorCaso" ReturnType="Collection(MCCMModel.sp_obtenerTareaPorCaso_Result)">
-          <Parameter Name="idCaso" Mode="In" Type="Int32" />
-          </FunctionImport>
           <EntitySet Name="TMCCM_C_Vehiculo_Clase" EntityType="MCCMModel.TMCCM_C_Vehiculo_Clase" />
           <EntitySet Name="TMCCM_Entidad_Arma" EntityType="MCCMModel.TMCCM_Entidad_Arma" />
           <EntitySet Name="TMCCM_Entidad_Persona" EntityType="MCCMModel.TMCCM_Entidad_Persona" />
@@ -1934,6 +1851,20 @@
           <AssociationSet Name="FK_TMCCM_Caso_REL_TMCCM_Entidad_Vehiculo" Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_Vehiculo">
             <End Role="TMCCM_Caso" EntitySet="TMCCM_Caso" />
             <End Role="TMCCM_Entidad_Vehiculo" EntitySet="TMCCM_Entidad_Vehiculo" />
+          </AssociationSet>
+          <EntitySet Name="TMCCM_Evento" EntityType="MCCMModel.TMCCM_Evento" />
+          <EntitySet Name="TMCCM_Tarea" EntityType="MCCMModel.TMCCM_Tarea" />
+          <AssociationSet Name="FK_TMCCM_Caso_REL_TMCCM_Evento" Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Evento">
+            <End Role="TMCCM_Caso" EntitySet="TMCCM_Caso" />
+            <End Role="TMCCM_Evento" EntitySet="TMCCM_Evento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TMCCM_Caso_REL_TMCCM_Tarea" Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Tarea">
+            <End Role="TMCCM_Caso" EntitySet="TMCCM_Caso" />
+            <End Role="TMCCM_Tarea" EntitySet="TMCCM_Tarea" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TMCCM_Usuario_REL_TMCCM_Tarea" Association="MCCMModel.FK_TMCCM_Usuario_REL_TMCCM_Tarea">
+            <End Role="TMCCM_Usuario" EntitySet="TMCCM_Usuario" />
+            <End Role="TMCCM_Tarea" EntitySet="TMCCM_Tarea" />
           </AssociationSet>
           </EntityContainer>
         <ComplexType Name="sp_Obtener_Catalogo_Usuario_Result">
@@ -2236,6 +2167,70 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="TMCCM_Evento">
+          <Key>
+            <PropertyRef Name="TN_ID_Evento" />
+          </Key>
+          <Property Name="TN_ID_Evento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TN_ID_Caso" Type="Int32" />
+          <Property Name="TF_Fecha" Type="DateTime" Precision="3" />
+          <Property Name="TC_Informa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TC_Lugar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TC_Novedad" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="TB_Eliminado" Type="Boolean" />
+          <NavigationProperty Name="TMCCM_Caso" Relationship="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Evento" FromRole="TMCCM_Evento" ToRole="TMCCM_Caso" />
+        </EntityType>
+        <EntityType Name="TMCCM_Tarea">
+          <Key>
+            <PropertyRef Name="TN_ID_Tarea" />
+          </Key>
+          <Property Name="TN_ID_Tarea" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TN_ID_Caso" Type="Int32" />
+          <Property Name="TN_ID_Usuario" Type="Int32" />
+          <Property Name="TF_Fecha" Type="DateTime" Precision="3" />
+          <Property Name="TC_Diligencia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TC_Lugar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TB_Eliminado" Type="Boolean" />
+          <Property Name="TN_Tipo" Type="Int32" />
+          <NavigationProperty Name="TMCCM_Caso" Relationship="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Tarea" FromRole="TMCCM_Tarea" ToRole="TMCCM_Caso" />
+          <NavigationProperty Name="TMCCM_Usuario" Relationship="MCCMModel.FK_TMCCM_Usuario_REL_TMCCM_Tarea" FromRole="TMCCM_Tarea" ToRole="TMCCM_Usuario" />
+        </EntityType>
+        <Association Name="FK_TMCCM_Caso_REL_TMCCM_Evento">
+          <End Type="MCCMModel.TMCCM_Caso" Role="TMCCM_Caso" Multiplicity="0..1" />
+          <End Type="MCCMModel.TMCCM_Evento" Role="TMCCM_Evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TMCCM_Caso">
+              <PropertyRef Name="TN_ID_Caso" />
+            </Principal>
+            <Dependent Role="TMCCM_Evento">
+              <PropertyRef Name="TN_ID_Caso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TMCCM_Caso_REL_TMCCM_Tarea">
+          <End Type="MCCMModel.TMCCM_Caso" Role="TMCCM_Caso" Multiplicity="0..1" />
+          <End Type="MCCMModel.TMCCM_Tarea" Role="TMCCM_Tarea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TMCCM_Caso">
+              <PropertyRef Name="TN_ID_Caso" />
+            </Principal>
+            <Dependent Role="TMCCM_Tarea">
+              <PropertyRef Name="TN_ID_Caso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TMCCM_Usuario_REL_TMCCM_Tarea">
+          <End Type="MCCMModel.TMCCM_Usuario" Role="TMCCM_Usuario" Multiplicity="0..1" />
+          <End Type="MCCMModel.TMCCM_Tarea" Role="TMCCM_Tarea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TMCCM_Usuario">
+              <PropertyRef Name="TN_ID_Usuario" />
+            </Principal>
+            <Dependent Role="TMCCM_Tarea">
+              <PropertyRef Name="TN_ID_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2484,19 +2479,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TMCCM_Evento">
-            <EntityTypeMapping TypeName="MCCMModel.TMCCM_Evento">
-              <MappingFragment StoreEntitySet="TMCCM_Evento">
-                <ScalarProperty Name="TN_ID_Evento" ColumnName="TN_ID_Evento" />
-                <ScalarProperty Name="TN_ID_Caso" ColumnName="TN_ID_Caso" />
-                <ScalarProperty Name="TF_Fecha" ColumnName="TF_Fecha" />
-                <ScalarProperty Name="TC_Informa" ColumnName="TC_Informa" />
-                <ScalarProperty Name="TC_Lugar" ColumnName="TC_Lugar" />
-                <ScalarProperty Name="TC_Novedad" ColumnName="TC_Novedad" />
-                <ScalarProperty Name="TB_Eliminado" ColumnName="TB_Eliminado" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TMCCM_Gasto">
             <EntityTypeMapping TypeName="MCCMModel.TMCCM_Gasto">
               <MappingFragment StoreEntitySet="TMCCM_Gasto">
@@ -2554,19 +2536,6 @@
                 <ScalarProperty Name="TC_Nombre" ColumnName="TC_Nombre" />
                 <ScalarProperty Name="TC_Descripcion" ColumnName="TC_Descripcion" />
                 <ScalarProperty Name="TF_Fecha_Creacion" ColumnName="TF_Fecha_Creacion" />
-                <ScalarProperty Name="TB_Eliminado" ColumnName="TB_Eliminado" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TMCCM_Tarea">
-            <EntityTypeMapping TypeName="MCCMModel.TMCCM_Tarea">
-              <MappingFragment StoreEntitySet="TMCCM_Tarea">
-                <ScalarProperty Name="TN_ID_Tarea" ColumnName="TN_ID_Tarea" />
-                <ScalarProperty Name="TN_ID_Caso" ColumnName="TN_ID_Caso" />
-                <ScalarProperty Name="TN_ID_Usuario" ColumnName="TN_ID_Usuario" />
-                <ScalarProperty Name="TF_Fecha" ColumnName="TF_Fecha" />
-                <ScalarProperty Name="TC_Diligencia" ColumnName="TC_Diligencia" />
-                <ScalarProperty Name="TC_Lugar" ColumnName="TC_Lugar" />
                 <ScalarProperty Name="TB_Eliminado" ColumnName="TB_Eliminado" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2706,6 +2675,33 @@
                 <ScalarProperty Name="TN_ID_Marca_Vehiculo" ColumnName="TN_ID_Marca_Vehiculo" />
                 <ScalarProperty Name="TN_ID_Caso" ColumnName="TN_ID_Caso" />
                 <ScalarProperty Name="TN_ID_Vehiculo" ColumnName="TN_ID_Vehiculo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TMCCM_Evento">
+            <EntityTypeMapping TypeName="MCCMModel.TMCCM_Evento">
+              <MappingFragment StoreEntitySet="TMCCM_Evento">
+                <ScalarProperty Name="TB_Eliminado" ColumnName="TB_Eliminado" />
+                <ScalarProperty Name="TC_Novedad" ColumnName="TC_Novedad" />
+                <ScalarProperty Name="TC_Lugar" ColumnName="TC_Lugar" />
+                <ScalarProperty Name="TC_Informa" ColumnName="TC_Informa" />
+                <ScalarProperty Name="TF_Fecha" ColumnName="TF_Fecha" />
+                <ScalarProperty Name="TN_ID_Caso" ColumnName="TN_ID_Caso" />
+                <ScalarProperty Name="TN_ID_Evento" ColumnName="TN_ID_Evento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TMCCM_Tarea">
+            <EntityTypeMapping TypeName="MCCMModel.TMCCM_Tarea">
+              <MappingFragment StoreEntitySet="TMCCM_Tarea">
+                <ScalarProperty Name="TN_Tipo" ColumnName="TN_Tipo" />
+                <ScalarProperty Name="TB_Eliminado" ColumnName="TB_Eliminado" />
+                <ScalarProperty Name="TC_Lugar" ColumnName="TC_Lugar" />
+                <ScalarProperty Name="TC_Diligencia" ColumnName="TC_Diligencia" />
+                <ScalarProperty Name="TF_Fecha" ColumnName="TF_Fecha" />
+                <ScalarProperty Name="TN_ID_Usuario" ColumnName="TN_ID_Usuario" />
+                <ScalarProperty Name="TN_ID_Caso" ColumnName="TN_ID_Caso" />
+                <ScalarProperty Name="TN_ID_Tarea" ColumnName="TN_ID_Tarea" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

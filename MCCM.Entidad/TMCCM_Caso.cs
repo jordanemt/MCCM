@@ -20,14 +20,14 @@ namespace MCCM.Entidad
             this.TMCCM_Entidad_Droga = new HashSet<TMCCM_Entidad_Droga>();
             this.TMCCM_Entidad_Telefono = new HashSet<TMCCM_Entidad_Telefono>();
             this.TMCCM_Entidad_Ubicacion = new HashSet<TMCCM_Entidad_Ubicacion>();
-            this.TMCCM_Evento = new HashSet<TMCCM_Evento>();
             this.TMCCM_Gasto = new HashSet<TMCCM_Gasto>();
             this.TMCCM_Grupo = new HashSet<TMCCM_Grupo>();
-            this.TMCCM_Tarea = new HashSet<TMCCM_Tarea>();
             this.TMCCM_Entidad_Arma = new HashSet<TMCCM_Entidad_Arma>();
             this.TMCCM_Entidad_Persona = new HashSet<TMCCM_Entidad_Persona>();
             this.TMCCM_Entidad_Persona_Juridica = new HashSet<TMCCM_Entidad_Persona_Juridica>();
             this.TMCCM_Entidad_Vehiculo = new HashSet<TMCCM_Entidad_Vehiculo>();
+            this.TMCCM_Evento = new HashSet<TMCCM_Evento>();
+            this.TMCCM_Tarea = new HashSet<TMCCM_Tarea>();
         }
     
         public int TN_ID_Caso { get; set; }
@@ -49,13 +49,9 @@ namespace MCCM.Entidad
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TMCCM_Entidad_Ubicacion> TMCCM_Entidad_Ubicacion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TMCCM_Evento> TMCCM_Evento { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TMCCM_Gasto> TMCCM_Gasto { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TMCCM_Grupo> TMCCM_Grupo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TMCCM_Tarea> TMCCM_Tarea { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TMCCM_Entidad_Arma> TMCCM_Entidad_Arma { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -64,5 +60,9 @@ namespace MCCM.Entidad
         public virtual ICollection<TMCCM_Entidad_Persona_Juridica> TMCCM_Entidad_Persona_Juridica { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TMCCM_Entidad_Vehiculo> TMCCM_Entidad_Vehiculo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TMCCM_Evento> TMCCM_Evento { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TMCCM_Tarea> TMCCM_Tarea { get; set; }
     }
 }

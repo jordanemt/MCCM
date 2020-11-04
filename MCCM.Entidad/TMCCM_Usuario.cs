@@ -18,8 +18,8 @@ namespace MCCM.Entidad
         public TMCCM_Usuario()
         {
             this.TMCCM_Grupo_Usuario = new HashSet<TMCCM_Grupo_Usuario>();
-            this.TMCCM_Tarea = new HashSet<TMCCM_Tarea>();
             this.TMCCM_Rol = new HashSet<TMCCM_Rol>();
+            this.TMCCM_Tarea = new HashSet<TMCCM_Tarea>();
         }
     
         public int TN_ID_Usuario { get; set; }
@@ -35,8 +35,8 @@ namespace MCCM.Entidad
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TMCCM_Grupo_Usuario> TMCCM_Grupo_Usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TMCCM_Tarea> TMCCM_Tarea { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TMCCM_Rol> TMCCM_Rol { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TMCCM_Tarea> TMCCM_Tarea { get; set; }
     }
 }

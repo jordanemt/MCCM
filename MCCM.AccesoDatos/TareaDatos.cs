@@ -57,7 +57,7 @@ namespace MCCM.AccesoDatos
         {
             using (var context = new MCCMEntities())
             {
-                return context.sp_obtenerTareaPorCaso(idCaso).ToList();
+                return null;
             }
 
         }
@@ -82,7 +82,7 @@ namespace MCCM.AccesoDatos
 
         public List<sp_Obtener_Catalogo_Usuario_Result> ObtenerCatalogoUsuarios() {
             using (var context = new MCCMEntities()) {
-                return context.sp_Obtener_Catalogo_Usuario().ToList();
+                return null;
             }
         }
 

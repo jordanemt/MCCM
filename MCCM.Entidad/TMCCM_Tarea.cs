@@ -21,6 +21,7 @@ namespace MCCM.Entidad
         public string TC_Diligencia { get; set; }
         public string TC_Lugar { get; set; }
         public Nullable<bool> TB_Eliminado { get; set; }
+        public Nullable<int> TN_Tipo { get; set; }
     
         public virtual TMCCM_Caso TMCCM_Caso { get; set; }
         public virtual TMCCM_Usuario TMCCM_Usuario { get; set; }
