@@ -12,9 +12,13 @@ namespace MCCM.ReglasNegocio
     public class C_VehiculoColorNegocio
     {
         C_VehiculoColorDatos c_VehiculoColorDatos = new C_VehiculoColorDatos();
-        public List<TMCCM_C_VehiculoColorDTO> ListarVehiculoColor()
+        public string ListarVehiculoColor()
         {
             return c_VehiculoColorDatos.ListarVehiculoColor();
+        }
+        public void InsertarVehiculoColor(TMCCM_C_Vehiculo_Color vehiculoColor)
+        {
+            c_VehiculoColorDatos.InsertarVehiculoColor(vehiculoColor);
         }
     }
 }

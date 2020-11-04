@@ -1,22 +1,17 @@
 ﻿using MCCM.AccesoDatos;
-using MCCM.Entidad.DTO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MCCM.Entidad;
 
 namespace MCCM.ReglasNegocio
 {
     public class EntidadTelefonoNegocio
     {
         EntidadTelefonoDatos entidadTelefonoDatos = new EntidadTelefonoDatos();
-        public void InsertarEntidadTelefono(TMCCM_EntidadTelefonoDTO entidadTelefonoDTO)
+        public void InsertarEntidadTelefono(TMCCM_Entidad_Telefono entidadTelefonoDTO)
         {
             entidadTelefonoDatos.InsertarEntidadTelefono(entidadTelefonoDTO);
         }
 
-        public void ActualizarEntidadTelefono(TMCCM_EntidadTelefonoDTO entidadTelefonoDTO)
+        public void ActualizarEntidadTelefono(TMCCM_Entidad_Telefono entidadTelefonoDTO)
         {
             entidadTelefonoDatos.ActualizarEntidadTelefono(entidadTelefonoDTO);
         }
@@ -26,16 +21,24 @@ namespace MCCM.ReglasNegocio
             entidadTelefonoDatos.EliminarEntidadTelefono(ID);
             return "S";
         }
-        public List<TMCCM_EntidadTelefonoDTO> ListarEntidadTelefonos()
+        public string ListarEntidadTelefonos(int caso)
         {
-            return entidadTelefonoDatos.ListarEntidadTelefonos();
+            return entidadTelefonoDatos.ListarEntidadTelefonos(caso);
         }
 
-        public TMCCM_EntidadTelefonoDTO ObtenerEntidadTelefonoPorID(int ID)
+        public string ObtenerEntidadTelefonoPorID(int ID)
         {
             return entidadTelefonoDatos.ObtenerEntidadTelefonoPorID(ID);
         }
 
+        public string ListarTelefonosProveedores()
+        {
+            return entidadTelefonoDatos.ListarTelefonosProveedores();
+        }
 
+        public void InsertarProveedor(TMCCM_C_Telefono_Empresa_Telefonica proveedor)
+        {
+            entidadTelefonoDatos.InsertarTelefonoProveedor(proveedor);
+        }
     }
 }

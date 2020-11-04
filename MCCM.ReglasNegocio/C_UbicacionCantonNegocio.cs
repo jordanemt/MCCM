@@ -12,9 +12,13 @@ namespace MCCM.ReglasNegocio
     public class C_UbicacionCantonNegocio
     {
         C_UbicacionCantonDatos c_UbicacionCantonDatos = new C_UbicacionCantonDatos();
-        public List<TMCCM_C_UbicacionCantonDTO> ListarUbicacionCanton(int idProvincia)
+        public string ListarUbicacionCanton(int idProvincia)
         {
             return c_UbicacionCantonDatos.ListarUbicacionCanton(idProvincia);
+        }
+        public void InsertarUbicacionCanton(TMCCM_C_Ubicacion_Canton ubicacionCanton)
+        {
+            c_UbicacionCantonDatos.InsertarUbicacionCanton(ubicacionCanton);
         }
 
     }

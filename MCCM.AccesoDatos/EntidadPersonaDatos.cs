@@ -14,7 +14,44 @@ namespace MCCM.AccesoDatos
     public class EntidadPersonaDatos
     {
         Utilidades utilidades = new Utilidades();
-        public void InsertarEntidadPersona(TMCCM_Entidad_Persona entidadPersona)
+
+
+      
+        public void InsertarEntidadPersona(TMCCM_EntidadPersonaDTO entidadPersonaDTO)
+        {
+            using (var context = new MCCMEntities())
+            {
+                
+                    context.TMCCM_Entidad_Persona.Add(new TMCCM_Entidad_Persona()
+                    {
+                        TN_ID_Caso = entidadPersonaDTO.TN_ID_Caso,
+                        TN_ID_Tipo_Identificacion = entidadPersonaDTO.TN_ID_Tipo_Identificacion,
+                        TN_ID_Sexo = entidadPersonaDTO.TN_ID_Sexo,
+                        TN_ID_Genero = entidadPersonaDTO.TN_ID_Genero,
+                        TN_ID_Nacionalidad = entidadPersonaDTO.TN_ID_Nacionalidad,
+                        TC_Nombre = entidadPersonaDTO.TC_Nombre,
+                        TC_Primer_Apellido = entidadPersonaDTO.TC_Primer_Apellido,
+                        TC_Segundo_Apellido = entidadPersonaDTO.TC_Segundo_Apellido,
+                        TF_Fecha_Nacimiento = entidadPersonaDTO.TF_Fecha_Nacimiento,
+                        TN_Edad = entidadPersonaDTO.TN_Edad,
+                        TB_Fotografia = entidadPersonaDTO.imgTemporal,
+                        TC_Cedula = entidadPersonaDTO.TC_Cedula,
+                        TB_Fallecido = entidadPersonaDTO.TB_Fallecido,
+                        TN_Autopsia = entidadPersonaDTO.TN_Autopsia,
+                        TB_Exp_Criminal = entidadPersonaDTO.TB_Exp_Criminal,
+                        TC_Alias = entidadPersonaDTO.TC_Alias,
+                        TC_Creado_Por = entidadPersonaDTO.TC_Creado_Por,
+                        TC_Comentario = entidadPersonaDTO.TC_Comentario,
+                        TB_Verificado = entidadPersonaDTO.TB_Verificado,
+                        TF_Fecha_Creacion = DateTime.Now,
+                        TB_Eliminado = false
+
+                    });
+                    context.SaveChanges();
+                }
+        }
+
+        public void Insertar(TMCCM_Entidad_Persona entidadPersona)
         {
             using (var context = new MCCMEntities())
             {
@@ -23,11 +60,15 @@ namespace MCCM.AccesoDatos
                 context.TMCCM_Entidad_Persona.Add(entidadPersona);
                 context.SaveChanges();
 
-           
-                context.SaveChanges();
             }
-        } 
-            public void ActualizarEntidadPersona(TMCCM_EntidadPersonaDTO entidadPersonaDTO)
+
+        }
+
+
+
+
+
+        public void ActualizarEntidadPersona(TMCCM_EntidadPersonaDTO entidadPersonaDTO)
             {
                 using (var context = new MCCMEntities())
                 {
@@ -36,7 +77,6 @@ namespace MCCM.AccesoDatos
                 {
                     result.TN_ID_Persona = entidadPersonaDTO.TN_ID_Persona;
                         result.TN_ID_Tipo_Identificacion = entidadPersonaDTO.TN_ID_Tipo_Identificacion;
-                        result.TN_ID_Icono_Persona = entidadPersonaDTO.TN_ID_Icono_Persona;
                         result.TN_ID_Sexo = entidadPersonaDTO.TN_ID_Sexo;
                         result.TN_ID_Genero = entidadPersonaDTO.TN_ID_Genero;
                         result.TN_ID_Nacionalidad = entidadPersonaDTO.TN_ID_Nacionalidad;
@@ -45,7 +85,7 @@ namespace MCCM.AccesoDatos
                         result.TC_Segundo_Apellido = entidadPersonaDTO.TC_Segundo_Apellido;
                         result.TF_Fecha_Nacimiento = entidadPersonaDTO.TF_Fecha_Nacimiento;
                         result.TN_Edad = entidadPersonaDTO.TN_Edad;
-                        result.TB_Fotografia = utilidades.ConverToBytes(entidadPersonaDTO.TB_Fotografia);
+                        result.TB_Fotografia = entidadPersonaDTO.imgTemporal;
                         result.TC_Cedula = entidadPersonaDTO.TC_Cedula;
                         result.TB_Fallecido = entidadPersonaDTO.TB_Fallecido;
                         result.TN_Autopsia = entidadPersonaDTO.TN_Autopsia;
@@ -70,7 +110,7 @@ namespace MCCM.AccesoDatos
                     var result = context.TMCCM_Entidad_Persona.SingleOrDefault(b => b.TN_ID_Persona == ID);
                     if (result != null)
                     {
-                        result.TB_Eliminado = false;
+                        result.TB_Eliminado = true;
                         context.Entry(result).State = EntityState.Modified;
                         context.SaveChanges();
                     }
@@ -89,7 +129,6 @@ namespace MCCM.AccesoDatos
                           TN_ID_Persona = personaItem.TN_ID_Persona,
                           TN_ID_Caso = personaItem.TN_ID_Caso,
                           TN_ID_Tipo_Identificacion = personaItem.TN_ID_Tipo_Identificacion,
-                          TN_ID_Icono_Persona = personaItem.TN_ID_Icono_Persona,
                           TN_ID_Sexo = personaItem.TN_ID_Sexo,
                           TN_ID_Genero = personaItem.TN_ID_Genero,
                           TN_ID_Nacionalidad = personaItem.TN_ID_Nacionalidad,
@@ -98,7 +137,7 @@ namespace MCCM.AccesoDatos
                           TC_Segundo_Apellido = personaItem.TC_Segundo_Apellido,
                           TF_Fecha_Nacimiento = personaItem.TF_Fecha_Nacimiento,
                           TN_Edad = personaItem.TN_Edad,
-                          imgTemporal = utilidades.ConvertToString64(personaItem.TB_Fotografia),
+                          imgTemporal = personaItem.TB_Fotografia,
                           TC_Cedula = personaItem.TC_Cedula,
                           TB_Fallecido = personaItem.TB_Fallecido,
                           TN_Autopsia = personaItem.TN_Autopsia,
@@ -127,7 +166,6 @@ namespace MCCM.AccesoDatos
                                TN_ID_Persona = personaItem.TN_ID_Persona,
                                TN_ID_Caso = personaItem.TN_ID_Caso,
                                TN_ID_Tipo_Identificacion = personaItem.TN_ID_Tipo_Identificacion,
-                               TN_ID_Icono_Persona = personaItem.TN_ID_Icono_Persona,
                                TN_ID_Sexo = personaItem.TN_ID_Sexo,
                                TN_ID_Genero = personaItem.TN_ID_Genero,
                                TN_ID_Nacionalidad = personaItem.TN_ID_Nacionalidad,
@@ -136,7 +174,7 @@ namespace MCCM.AccesoDatos
                                TC_Segundo_Apellido = personaItem.TC_Segundo_Apellido,
                                TF_Fecha_Nacimiento = personaItem.TF_Fecha_Nacimiento,
                                TN_Edad = personaItem.TN_Edad,
-                               imgTemporal = utilidades.ConvertToString64(personaItem.TB_Fotografia),
+                               imgTemporal = personaItem.TB_Fotografia,
                                TC_Cedula = personaItem.TC_Cedula,
                                TB_Fallecido = personaItem.TB_Fallecido,
                                TN_Autopsia = personaItem.TN_Autopsia,

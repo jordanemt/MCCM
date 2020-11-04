@@ -12,9 +12,13 @@ namespace MCCM.ReglasNegocio
     public class C_VehiculoClaseNegocio
     {
         C_VehiculoClaseDatos c_VehiculoClaseDatos = new C_VehiculoClaseDatos();
-        public List<TMCCM_C_VehiculoClaseDTO> ListarVehiculoClase()
+        public string ListarVehiculoClase()
         {
             return c_VehiculoClaseDatos.ListarVehiculoClase();
+        }
+        public void InsertarVehiculoClase(TMCCM_C_Vehiculo_Clase vehiculoClase)
+        {
+            c_VehiculoClaseDatos.InsertarVehiculoClase(vehiculoClase);
         }
     }
 }

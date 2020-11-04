@@ -6,35 +6,35 @@ using System.Threading.Tasks;
 using MCCM.Entidad;
 using MCCM.Entidad.DTO;
 using System.Data.Entity;
-
+using Newtonsoft.Json;
 
 namespace MCCM.AccesoDatos
 {
     public class EntidadTelefonoDatos
     {
-        Utilidades utilidades = new Utilidades();
-        public void InsertarEntidadTelefono(TMCCM_EntidadTelefonoDTO entidadTelefonoDTO)
+        public void InsertarEntidadTelefono(TMCCM_Entidad_Telefono entidadTelefono)
         {
             using (var context = new MCCMEntities())
             {
                 context.TMCCM_Entidad_Telefono.Add(new TMCCM_Entidad_Telefono()
                 {
-                    TN_ID_Caso = entidadTelefonoDTO.TN_ID_Caso,
-                    TN_ID_Proveedor = entidadTelefonoDTO.TN_ID_Proveedor,
-                    TN_ID_Icono_Telefono = entidadTelefonoDTO.TN_ID_Icono_Telefono,
-                    TN_Numero = entidadTelefonoDTO.TN_Numero_Telefono,
-                    TC_Comentario = entidadTelefonoDTO.TC_Comentario_Telefono,
-                    TF_Fecha_Creacion = entidadTelefonoDTO.TF_Fecha_Creacion_Telefono,
-                    TF_Fecha_Modificacion = entidadTelefonoDTO.TF_Fecha_Modificacion_Telefono,
-                    TC_Creado_Por = entidadTelefonoDTO.TC_Creado_Por_Telefono,
+                    TN_ID_Caso = entidadTelefono.TN_ID_Caso,
+                    TN_ID_Proveedor = entidadTelefono.TN_ID_Proveedor,
+                    TN_ID_Icono_Telefono = entidadTelefono.TN_ID_Icono_Telefono,
+                    TN_Numero = entidadTelefono.TN_Numero,
+                    TC_Comentario = entidadTelefono.TC_Comentario,
+                    TF_Fecha_Creacion = entidadTelefono.TF_Fecha_Creacion,
+                    TF_Fecha_Modificacion = entidadTelefono.TF_Fecha_Modificacion,
+                    TC_Creado_Por = entidadTelefono.TC_Creado_Por,
                     TC_Modificado_Por = "",
-                    TB_Verificado = entidadTelefonoDTO.TB_Verificado_Telefono,
+                    TB_Verificado = entidadTelefono.TB_Verificado,
+                    TB_Eliminado = false
                 });
 
                 context.SaveChanges();
             }
         }
-        public void ActualizarEntidadTelefono(TMCCM_EntidadTelefonoDTO entidadTelefonoDTO)
+        public void ActualizarEntidadTelefono(TMCCM_Entidad_Telefono entidadTelefonoDTO)
         {
             using (var context = new MCCMEntities())
             {
@@ -42,16 +42,15 @@ namespace MCCM.AccesoDatos
                 if (result != null)
                 {
                     result.TN_ID_Telefono = (int)entidadTelefonoDTO.TN_ID_Telefono;
-                    result.TN_ID_Caso = entidadTelefonoDTO.TN_ID_Caso;
                     result.TN_ID_Proveedor = entidadTelefonoDTO.TN_ID_Proveedor;
                     result.TN_ID_Icono_Telefono = entidadTelefonoDTO.TN_ID_Icono_Telefono;
-                    result.TN_Numero = entidadTelefonoDTO.TN_Numero_Telefono;
-                    result.TC_Comentario = entidadTelefonoDTO.TC_Comentario_Telefono;
-                    result.TF_Fecha_Creacion = entidadTelefonoDTO.TF_Fecha_Creacion_Telefono;
-                    result.TF_Fecha_Modificacion = entidadTelefonoDTO.TF_Fecha_Modificacion_Telefono;
-                    result.TC_Creado_Por = entidadTelefonoDTO.TC_Creado_Por_Telefono;
-                    result.TC_Modificado_Por = "";
-                    result.TB_Verificado = entidadTelefonoDTO.TB_Verificado_Telefono;
+                    result.TN_Numero = entidadTelefonoDTO.TN_Numero;
+                    result.TC_Comentario = entidadTelefonoDTO.TC_Comentario;
+                    result.TF_Fecha_Creacion = entidadTelefonoDTO.TF_Fecha_Creacion;
+                    result.TF_Fecha_Modificacion = entidadTelefonoDTO.TF_Fecha_Modificacion;
+                    result.TC_Creado_Por = entidadTelefonoDTO.TC_Creado_Por;
+                    result.TC_Modificado_Por = entidadTelefonoDTO.TC_Modificado_Por;
+                    result.TB_Verificado = entidadTelefonoDTO.TB_Verificado;
                     context.Entry(result).State = EntityState.Modified;
                     context.SaveChanges();
                 }
@@ -65,62 +64,85 @@ namespace MCCM.AccesoDatos
                 var result = context.TMCCM_Entidad_Telefono.SingleOrDefault(b => b.TN_ID_Telefono == ID);
                 if (result != null)
                 {
-                    result.TB_Eliminado = false;
+                    result.TB_Eliminado = true;
                     context.Entry(result).State = EntityState.Modified;
                     context.SaveChanges();
                 }
             }
         }
 
-        public List<TMCCM_EntidadTelefonoDTO> ListarEntidadTelefonos()
+        public string ListarEntidadTelefonos(int caso)
         {
-            List<TMCCM_EntidadTelefonoDTO> entidadTelefonoDTO = null;
-
             using (var context = new MCCMEntities())
             {
-                entidadTelefonoDTO = context.TMCCM_Entidad_Telefono.Where(c => c.TB_Eliminado == true)
-                   .Select(telefonoItem => new TMCCM_EntidadTelefonoDTO()
-                   {
-                       TN_ID_Telefono = telefonoItem.TN_ID_Telefono,
-                       TN_ID_Caso = telefonoItem.TN_ID_Caso,
-                       TN_ID_Proveedor = telefonoItem.TN_ID_Proveedor,
-                       TN_ID_Icono_Telefono = telefonoItem.TN_ID_Icono_Telefono,
-                       TN_Numero_Telefono = telefonoItem.TN_Numero,
-                       TC_Comentario_Telefono = telefonoItem.TC_Comentario,
-                       TF_Fecha_Creacion_Telefono = telefonoItem.TF_Fecha_Creacion,
-                       TF_Fecha_Modificacion_Telefono = telefonoItem.TF_Fecha_Modificacion,
-                       TC_Creado_Por_Telefono = telefonoItem.TC_Creado_Por,
-                       TC_Modificado_Por_Telefono = telefonoItem.TC_Modificado_Por,
-                       TB_Verificado_Telefono = telefonoItem.TB_Verificado,
-                   }).ToList<TMCCM_EntidadTelefonoDTO>();
+                var anonimo = from t in context.TMCCM_Entidad_Telefono
+                              from p in context.TMCCM_C_Telefono_Empresa_Telefonica
+                              where t.TB_Eliminado == false
+                              where t.TN_ID_Caso == caso
+                              where t.TN_ID_Proveedor == p.TN_ID_Proveedor
+                              select new
+                              {
+                                  TN_ID_Telefono = t.TN_ID_Telefono,
+                                  TN_Numero = t.TN_Numero,
+                                  TC_Descripcion = p.TC_Descripcion,
+                                  TC_Comentario = t.TC_Comentario
+                              };
+                return JsonConvert.SerializeObject(anonimo, Formatting.Indented);
             }
-            return entidadTelefonoDTO;
         }
 
-        public TMCCM_EntidadTelefonoDTO ObtenerEntidadTelefonoPorID(int ID)
+        public string ObtenerEntidadTelefonoPorID(int ID)
         {
-            TMCCM_EntidadTelefonoDTO aux;
             using (var context = new MCCMEntities())
             {
-                aux = (from telefonoItem in context.TMCCM_Entidad_Telefono
-                       select new TMCCM_EntidadTelefonoDTO()
-                       {
-                           TN_ID_Telefono = telefonoItem.TN_ID_Telefono,
-                           TN_ID_Caso = telefonoItem.TN_ID_Caso,
-                           TN_ID_Proveedor = telefonoItem.TN_ID_Proveedor,
-                           TN_ID_Icono_Telefono = telefonoItem.TN_ID_Icono_Telefono,
-                           TN_Numero_Telefono = telefonoItem.TN_Numero,
-                           TC_Comentario_Telefono = telefonoItem.TC_Comentario,
-                           TF_Fecha_Creacion_Telefono = telefonoItem.TF_Fecha_Creacion,
-                           TF_Fecha_Modificacion_Telefono = telefonoItem.TF_Fecha_Modificacion,
-                           TC_Creado_Por_Telefono = telefonoItem.TC_Creado_Por,
-                           TC_Modificado_Por_Telefono = telefonoItem.TC_Modificado_Por,
-                           TB_Verificado_Telefono = telefonoItem.TB_Verificado,
-                       }).Where(x => x.TN_ID_Telefono == ID).Single();
+                var anonimo = (from telefonoItem in context.TMCCM_Entidad_Telefono
+                              where telefonoItem.TB_Eliminado == false
+                              where telefonoItem.TN_ID_Telefono==ID
+                              select new
+                              {
+                                  TN_ID_Telefono = telefonoItem.TN_ID_Telefono,
+                                  TN_ID_Proveedor = telefonoItem.TN_ID_Proveedor,
+                                  TN_ID_Icono_Telefono = telefonoItem.TN_ID_Icono_Telefono,
+                                  TN_Numero_Telefono = telefonoItem.TN_Numero,
+                                  TC_Comentario_Telefono = telefonoItem.TC_Comentario,
+                                  TF_Fecha_Creacion_Telefono = telefonoItem.TF_Fecha_Creacion,
+                                  TF_Fecha_Modificacion_Telefono = telefonoItem.TF_Fecha_Modificacion,
+                                  TC_Creado_Por_Telefono = telefonoItem.TC_Creado_Por,
+                                  TC_Modificado_Por_Telefono = telefonoItem.TC_Modificado_Por,
+                                  TB_Verificado_Telefono = telefonoItem.TB_Verificado,
+                              }).Single();
+                return JsonConvert.SerializeObject(anonimo, Formatting.Indented);
             }
-            return aux;
         }
+
+        public void InsertarTelefonoProveedor(TMCCM_C_Telefono_Empresa_Telefonica proveedor)
+        {
+            using (var context = new MCCMEntities())
+            {
+                context.TMCCM_C_Telefono_Empresa_Telefonica.Add(new TMCCM_C_Telefono_Empresa_Telefonica()
+                {
+                    TC_Descripcion=proveedor.TC_Descripcion,  
+                    TB_Eliminado = false
+                });
+                context.SaveChanges();
+            }
+        }
+
+        public string ListarTelefonosProveedores()
+        {
+            using (var context = new MCCMEntities())
+            {
+                var anonimo = from t in context.TMCCM_C_Telefono_Empresa_Telefonica
+                              where t.TB_Eliminado == false
+                              select new
+                              {
+                                  TN_ID_Proveedor = t.TN_ID_Proveedor,
+                                  TC_Descripcion = t.TC_Descripcion
+                              };
+                return JsonConvert.SerializeObject(anonimo, Formatting.Indented);
+            }
+        }
+
     }
-
 }
 

@@ -12,11 +12,15 @@ namespace MCCM.ReglasNegocio
    public class C_ArmaMarcaNegocio
     {
 
-        C_TipoArmaDatos c_TipoArmaDatos = new C_TipoArmaDatos();
-        public List<TMCCM_C_TipoArmaDTO> ListaTipoArma()
+        C_ArmaMarcaDatos c_ArmaMarcaDatos = new C_ArmaMarcaDatos();
+        public string ListaArmaMarca()
         {
 
-            return  c_TipoArmaDatos.ListaTipoArma();
+            return  c_ArmaMarcaDatos.ListaArmaMarca();
+        }
+        public void InsertarArmaMarca(TMCCM_C_Arma_Marca armaMarca)
+        {
+            c_ArmaMarcaDatos.InsertarArmaMarca(armaMarca);
         }
 
     }

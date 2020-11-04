@@ -1,0 +1,72 @@
+﻿@model MCCM.Entidad.TMCCM_Entidad_Telefono
+<div class="modal fade" id="entidadTelefonoModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title col-11 text-center" id="tituloEntidadTelefonoInsertar">Insertar Entidad Telefono</h5>
+
+                <button type="button" class="close col-1" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="FormEntidadTelefono">
+                    <div class="form-group row" id="divTelefonoID" style="display:none">
+                        <label for="telefono" class="col-md-3 col-form-label">ID Telefono</label>
+                        <input type="number" class="col-md-8 form-control" name="TN_ID_Telefono" id="TN_ID_Telefono" readonly>
+                    </div>
+                    <div class="form-group row">
+                        <label for="telefono" class="col-md-3 col-form-label">Telefono</label>
+                        <input type="number" class="col-md-8 form-control" name="TN_Numero_Telefono" id="TN_Numero_Telefono" required>
+                    </div>
+                    <div class="form-group row">
+                        <label for="empresaTelefonica" class="col-md-3 col-form-label">Proveedor</label>
+                        <select class="col-md-8 form-control" name="TN_ID_Proveedor" title="Seleccione Proveedor..." id="TN_ID_Proveedor" required>
+                        </select>
+                        <a href="#" data-toggle="modal" data-target="#telefonoProveedorModal" class="fa fa-plus col-md-1"></a>
+                        <label id="TN_ID_Proveedor-error" class="error" for="TN_ID_Proveedor" style="display: none"></label>
+
+                    </div>
+                    <div class="form-group row">
+                        <label for="ccomentario" class="col-md-3 col-form-label">Comentario</label>
+                        <textarea class="col-md-8 form-control" name="TC_Comentario_Telefono" id="TC_Comentario_Telefono" rows="3"></textarea>
+                    </div>
+                    <div class="form-group row" id="divFCT" style="display:none">
+                        <label for="TF_Fecha_Creacion_Telefono" class="col-md-3 col-form-label">Fecha Creacion</label>
+                        <input type="text" class="col-md-8 form-control" name="TF_Fecha_Creacion_Telefono" readonly id="TF_Fecha_Creacion_Telefono">
+                    </div>
+                    <div class="form-group row" id="divFMT" style="display:none">
+                        <label for="TF_Fecha_Modificacion" class="col-md-3 col-form-label">Fecha Modificación</label>
+                        <input type="text" class="col-md-8 form-control" name="TF_Fecha_Modificacion_Telefono" readonly id="TF_Fecha_Modificacion_Telefono">
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="creadoPor" class="col-md-3 col-form-label">Creado por</label>
+                        <input type="text" class="col-md-8 form-control" name="TC_Creado_Por_Telefono" id="TC_Creado_Por_Telefono">
+                    </div>
+                    <div class="form-group row" id="divMPT" style="display:none">
+                        <label for="creadoPor" class="col-md-3 col-form-label">Modificado por</label>
+                        <input type="text" class="col-md-8 form-control" name="TC_Modificado_Por_Telefono" id="TC_Modificado_Por_Telefono">
+                    </div>
+                    <div class="form-group row">
+                        <label for="verificado" class="col-md-3 col-form-label">Verificado</label>
+                        <div class="col-md-8  form-check">
+                            <input class="form-check-input" type="checkbox" name="TB_Verificado_Telefono" id="TB_Verificado_Telefono">
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button id="btnRegistrarEntidadTelefono" type="submit" class="btn btn-primary">Insertar</button>
+                        <button id="btnModificarEntidadTelefono" class="btn btn-info" style="display:none">Modificar</button>
+                        <button id="btnEliminarEntidadTelefono" class="btn btn-danger" style="display:none">Eliminar</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+
+
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Partial("_Modal_C_Telefono_Proveedor")
+<script src="~/Scripts/js/EntidadTelefono.js"></script>

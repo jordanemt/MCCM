@@ -16,8 +16,10 @@ namespace MCCM.ReglasNegocio
         {
             return c_PersonaGeneroDatos.ListarPersonaGenero();
         }
+        public void InsertarPersonaGenero(TMCCM_C_Persona_Genero personaGenero)
+        {
+            c_PersonaGeneroDatos.InsertarPersonaGenero(personaGenero);
+        }
+
     }
-
-
-
 }

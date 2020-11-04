@@ -12,9 +12,13 @@ namespace MCCM.ReglasNegocio
     public class C_VehiculoMarcaNegocio
     {
         C_VehiculoMarcaDatos c_VehiculoMarcaDatos = new C_VehiculoMarcaDatos();
-        public List<TMCCM_C_VehiculoMarcaDTO> ListarVehiculoMarca()
+        public string ListarVehiculoMarca()
         {
             return c_VehiculoMarcaDatos.ListarVehiculoMarca(); ;
+        }
+        public void InsertarVehiculoMarca(TMCCM_C_Vehiculo_Marca vehiculoMarca)
+        {
+            c_VehiculoMarcaDatos.InsertarVehiculoMarca(vehiculoMarca);
         }
     }
 }

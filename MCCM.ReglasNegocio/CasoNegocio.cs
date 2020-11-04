@@ -26,11 +26,11 @@ namespace MCCM.ReglasNegocio
             casoDatos.EliminarCaso(ID);
             return "S";
         }
-        public List<TMCCM_CasoDTO> ListarCasos() {
+        public string ListarCasos() {
             return casoDatos.ListarCasos();
         }
 
-        public TMCCM_CasoDTO ObtenerCasoPorID(int ID) {
+        public string ObtenerCasoPorID(int ID) {
             return casoDatos.ObtenerCasoPorID(ID);
         }
 

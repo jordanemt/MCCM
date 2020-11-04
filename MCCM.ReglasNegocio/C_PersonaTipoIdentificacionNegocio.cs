@@ -17,6 +17,9 @@ namespace MCCM.ReglasNegocio
         {
             return c_PersonaTipoIdentificacionDatos.ListarPersonaTipoIdentificacion();
         }
-
+        public void InsertarPersonaTipoIdentificacion(TMCCM_C_Persona_Tipo_Identificacion personaTipoIdentificacion)
+        {
+            c_PersonaTipoIdentificacionDatos.InsertarPersonaTipoIdentificacion(personaTipoIdentificacion);
+        }
     }
 }

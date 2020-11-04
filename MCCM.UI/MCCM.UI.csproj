@@ -130,7 +130,21 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CasoController.cs" />
+    <Compile Include="Controllers\C_ArmaMarcaController.cs" />
+    <Compile Include="Controllers\C_PersonaGeneroController.cs" />
+    <Compile Include="Controllers\C_PersonaJuridicaTipoOrganizacionController.cs" />
+    <Compile Include="Controllers\C_PersonaNacionalidadController.cs" />
+    <Compile Include="Controllers\C_PersonaSexoController.cs" />
+    <Compile Include="Controllers\C_PersonaTipoIdentificacionController.cs" />
+    <Compile Include="Controllers\C_TipoArmaController.cs" />
     <Compile Include="Controllers\C_TipoDrogaController.cs" />
+    <Compile Include="Controllers\C_TipoUbicacionController.cs" />
+    <Compile Include="Controllers\C_UbicacionCantonController.cs" />
+    <Compile Include="Controllers\C_UbicacionDistritoController.cs" />
+    <Compile Include="Controllers\C_UbicacionProvinciaController.cs" />
+    <Compile Include="Controllers\C_VehiculoClaseController.cs" />
+    <Compile Include="Controllers\C_VehiculoColorController.cs" />
+    <Compile Include="Controllers\C_VehiculoMarcaController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\E_ArmaController.cs" />
     <Compile Include="Controllers\E_DrogaController.cs" />
@@ -255,6 +269,7 @@
     <Content Include="Scripts\i18n\defaults-zh_TW.min.js" />
     <Content Include="Scripts\jquery.mask.js" />
     <Content Include="Scripts\jquery.mask.min.js" />
+    <Content Include="Scripts\js\Catalogos.js" />
     <Content Include="Scripts\js\Dashboard.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
@@ -336,11 +351,11 @@
     <Content Include="Scripts\js\Caso.js" />
     <Content Include="Scripts\js\EntidadArma.js" />
     <Content Include="Scripts\js\EntidadDroga.js" />
+    <Content Include="Scripts\js\EntidadPersonaJuridica.js" />
     <Content Include="Scripts\js\EntidadTelefono.js" />
     <Content Include="Scripts\js\EntidadUbicacion.js" />
     <Content Include="Scripts\js\EntidadVehiculo.js" />
     <Content Include="Scripts\js\EntidadPersona.js" />
-    <Content Include="Scripts\js\EntidadPersonaJuridica.js" />
     <Content Include="Scripts\js\Evento.js" />
     <Content Include="Scripts\js\JavaScript.js" />
     <Content Include="Scripts\js\Mensaje.js" />
@@ -447,13 +462,13 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Caso\_ModalCasoInsert.cshtml" />
-    <Content Include="Views\Dashboard\EntidadArma.cshtml" />
-    <Content Include="Views\Entidad\_EntidadDroga.cshtml" />
-    <Content Include="Views\Dashboard\EntidadPersona.cshtml" />
-    <Content Include="Views\Dashboard\EntidadPersonaJuridica.cshtml" />
-    <Content Include="Views\Dashboard\EntidadTelefono.cshtml" />
-    <Content Include="Views\Dashboard\EntidadUbicacion.cshtml" />
-    <Content Include="Views\Dashboard\EntidadVehiculo.cshtml" />
+    <Content Include="Views\EntidadArma\_EntidadArma.cshtml" />
+    <Content Include="Views\EntidadDroga\_EntidadDroga.cshtml" />
+    <Content Include="Views\Entidad\_EntidadPersona.cshtml" />
+    <Content Include="Views\Entidad\_EntidadPersonaJuridica.cshtml" />
+    <Content Include="Views\Entidad\_EntidadTelefono.cshtml" />
+    <Content Include="Views\EntidadUbicacion\_EntidadUbicacion.cshtml" />
+    <Content Include="Views\EntidadVehiculo\_EntidadVehiculo.cshtml" />
     <Content Include="Views\Bitacora\_ModalEventoForm.cshtml" />
     <Content Include="Views\Tarea\_ModalFormTarea.cshtml" />
     <Content Include="Views\Dashboard\_ModalMensajeConfirmacion.cshtml" />
@@ -472,6 +487,10 @@
     <Content Include="Views\Vehiculo\_FormModal.cshtml" />
     <Content Include="Views\Usuario\InsertarUsuario.cshtml" />
     <Content Include="Views\Usuario\ModificarUsuario.cshtml" />
+    <Content Include="Views\EntidadDroga\_ModalTipoDroga.cshtml" />
+    <Content Include="Views\EntidadArma\_ModalTipoArma.cshtml" />
+    <Content Include="Views\EntidadArma\_ModalMarcaArma.cshtml" />
+    <Content Include="Views\EntidadUbicacion\_ModalTipoUbicacion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

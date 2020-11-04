@@ -46,5 +46,17 @@ namespace MCCM.AccesoDatos
             return aux;
         }
 
+        public void InsertarPersonaTipoIdentificacion(TMCCM_C_Persona_Tipo_Identificacion personaTipoIdentificacion)
+        {
+            using (var context = new MCCMEntities())
+            {
+                personaTipoIdentificacion.TF_Fecha_Creacion = DateTime.Now;
+                context.TMCCM_C_Persona_Tipo_Identificacion.Add(personaTipoIdentificacion);
+                context.SaveChanges();
+
+            }
+
+        }
+
     }
 }

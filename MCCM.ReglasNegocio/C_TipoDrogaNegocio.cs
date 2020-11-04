@@ -13,9 +13,13 @@ namespace MCCM.ReglasNegocio
     public class C_TipoDrogaNegocio
     {
         C_TipoDrogaDatos c_TipoDrogaDatos = new C_TipoDrogaDatos();
-        public List<TMCCM_C_TipoDrogaDTO> ListarTiposDroga()
+        public string ListarTiposDroga()
         { 
             return c_TipoDrogaDatos.ListarTiposDroga();
+        }
+        public void InsertarTipoDroga(TMCCM_C_Droga_Tipo_Droga tipoDroga)
+        {
+            c_TipoDrogaDatos.InsertarTipoDroga(tipoDroga);
         }
     }
 }

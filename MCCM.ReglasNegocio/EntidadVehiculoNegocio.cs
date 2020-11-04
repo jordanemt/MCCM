@@ -5,19 +5,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
+using MCCM.Entidad;
 
 namespace MCCM.ReglasNegocio
 {
     public class EntidadVehiculoNegocio
     {
         EntidadVehiculoDatos entidadVehiculoDatos = new EntidadVehiculoDatos();
-        public void InsertarEntidadVehiculo(TMCCM_EntidadVehiculoDTO entidadVehiculoDTO)
+        public void InsertarEntidadVehiculo(TMCCM_Entidad_Vehiculo  entidadVehiculo)
         {
-            entidadVehiculoDatos.InsertarEntidadVehiculo(entidadVehiculoDTO);
+            entidadVehiculoDatos.InsertarEntidadVehiculo(entidadVehiculo);
         }
-        public void ActualizarEntidadVehiculo(TMCCM_EntidadVehiculoDTO entidadVehiculoDTO)
+        public void ActualizarEntidadVehiculo(TMCCM_Entidad_Vehiculo entidadVehiculo)
         {
-            entidadVehiculoDatos.ActualizarEntidadVehiculo(entidadVehiculoDTO);
+            entidadVehiculoDatos.ActualizarEntidadVehiculo(entidadVehiculo);
         }
 
         public string EliminarEntidadVehiculo(int ID)
@@ -25,12 +27,12 @@ namespace MCCM.ReglasNegocio
             entidadVehiculoDatos.EliminarEntidadVehiculo(ID);
             return "S";
         }
-        public List<TMCCM_EntidadVehiculoDTO> ListarEntidadVehiculo(int caso)
+        public string ListarEntidadVehiculo(int caso)
         {
             return entidadVehiculoDatos.ListarEntidadVehiculos(caso);
         }
 
-        public TMCCM_EntidadVehiculoDTO ObtenerEntidadVehiculoPorID(int ID)
+        public string ObtenerEntidadVehiculoPorID(int ID)
         {
             return entidadVehiculoDatos.ObtenerEntidadVehiculoPorID(ID);
         }

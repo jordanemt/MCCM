@@ -1,0 +1,140 @@
+﻿@model MCCM.Entidad.DTO.TMCCM_EntidadPersonaDTO
+<div class="modal fade bd-example-modal-lg " id="entidadPersonaModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title col-11 text-center" id="tituloEntidadPersona">Insertar Persona</h5>
+                <button type="button" class="close col-1" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="FormEntidadPersona" enctype="multipart/form-data">
+                    <input type="text" class="col-md-8 form-control" style="display:none" name="TN_ID_Caso" id="TN_ID_Caso_P">
+
+                    <div class="form-group row justify-content-center" id="divPersonaID" style="display:none">
+                        <label for="creadoPor" class="col-md-3 col-form-label">ID</label>
+                        <input type="text" class="col-md-8 form-control" readonly name="TN_ID_Persona" id="TN_ID_Persona">
+                    </div>
+                    <div class="form-group row">
+                        <label for="nombre" class="col-md-3 col-form-label">Nombre</label>
+                        <input type="text" class="col-md-8 form-control" name="TC_Nombre" id="TC_Nombre_Persona">
+                    </div>
+                    <div class="form-group row">
+                        <label for="primerApellido" class="col-md-3 col-form-label">Primer apellido</label>
+                        <input type="text" class="col-md-8 form-control" name="TC_Primer_Apellido" id="TC_Primer_Apellido_Persona">
+                    </div>
+                    <div class="form-group row">
+                        <label for="segundoApellido" class="col-md-3 col-form-label">Segundo apellido</label>
+                        <input type="text" class="col-md-8 form-control" name="TC_Segundo_Apellido" id="TC_Segundo_Apellido_Persona">
+                    </div>
+                    <div class="form-group row">
+                        <label for="segundoApellido" class="col-md-3 col-form-label">Fecha Nacimiento</label>
+                        <input type="text" class="col-md-8 form-control" name="TF_Fecha_Nacimiento" id="TF_Fecha_Nacimiento_Persona">
+                    </div>
+                    <div class="form-group row">
+                        <label for="tipoIdentificacion" class="col-md-3 col-form-label">Tipo identificación</label>
+                        <select class=" col-md-8 form-control form-control" name="TN_ID_Tipo_Identificacion" id="TN_ID_Tipo_Identificacion_Persona"></select>
+                        <a href="#" class="fa fa-plus col-md-1"></a>
+                    </div>
+                    <div class="form-group row">
+                        <label for="identificacion" class="col-md-3 col-form-label">Identificación</label>
+                        <input type="text" class="col-md-8 form-control" name="TC_Cedula" id="TC_Cedula_Persona">
+                    </div>
+                    <div class="form-group row">
+                        <label for="edad" class="col-md-3 col-form-label">Edad</label>
+                        <input type="number" class="col-md-8 form-control" name="TN_Edad" id="TN_Edad_Persona">
+                    </div>
+                    <div class="form-group row">
+                        <label for="iconoPersona" class="col-md-3 col-form-label">Icono persona</label>
+                        <select class=" col-md-8 form-control" name="TN_ID_Icono_Persona" id="TN_ID_Icono_Persona">
+                            <option> 1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                        <a href="#" class="fa fa-plus col-md-1"></a>
+                    </div>
+                    <div class="form-group row">
+                        <label for="fotografía" class="col-md-3 col-form-label">Fotografía</label>
+                        <input type="file" class="col-md-8 form-control-file" name="imagen" id="imagen">
+                    </div>
+                    <div class="form-group row">
+                        <label for="sexo" class="col-md-3 col-form-label">Sexo</label>
+                        <select class=" col-md-8 form-control" name="TN_ID_Sexo" id="TN_ID_Sexo_Persona"> </select>
+                        <a href="#" class="fa fa-plus col-md-1"></a>
+                    </div>
+                    <div class="form-group row">
+                        <label for="genero" class="col-md-3 col-form-label">Genero</label>
+                        <select class=" col-md-8 form-control" name="TN_ID_Genero" id="TN_ID_Genero_Persona"></select>
+                    </div>
+                    <div class="form-group row">
+                        <label for="nacionalidad" class="col-md-3 col-form-label">Nacionalidad</label>
+                        <select class=" col-md-8 form-control" name="TN_ID_Nacionalidad" id="TN_ID_Nacionalidad_Persona"></select>
+                        <a href="#" class="fa fa-plus col-md-1"></a>
+                    </div>
+                    <div class="form-group row">
+                        <label for="fallecido" class="col-md-3 col-form-label">Fallecido</label>
+                        <div class="col-md-8  form-check">
+                            <input class="form-check-input" type="checkbox" name="TB_Fallecido" id="TB_Fallecido_Persona">
+
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="nAutopsia" class="col-md-3 col-form-label">N° Autopsia</label>
+                        <input type="text" class="col-md-8 form-control" name="TN_Autopsia" id="TN_Autopsia_Persona">
+                    </div>
+                    <div class="form-group row">
+                        <label for="expCriminal" class="col-md-3 col-form-label">Expediente Criminal</label>
+                        <div class="col-md-8  form-check">
+                            <input class="form-check-input" type="checkbox" name="TB_Exp_Criminal" id="TB_Exp_Criminal_Persona">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="alias" class="col-md-3 col-form-label">Alias</label>
+                        <input type="text" class="col-md-8 form-control" name="TC_Alias" id="TC_Alias_Persona">
+                    </div>
+                    <div class="form-group row">
+                        <label for="senas" class="col-md-3 col-form-label">Comentario</label>
+                        <textarea class="col-md-8 form-control" name="TC_Comentario" id="TC_Comentario_P" rows="3"></textarea>
+                    </div>
+                    <div class="form-group row">
+                        <label id="creadoPor_P" for="creadoPor" class="col-md-3 col-form-label">Creado por</label>
+                        <input type="text" class="col-md-8 form-control" name="TC_Creado_Por" id="TC_Creado_Por_P">
+                    </div>
+                    <div class="form-group row" tyle="display:none" id="fechaCreacion_Row_P">
+                        <label id="fechaCreacion_P" for="alias" class="col-md-3 col-form-label">Fecha Creacion</label>
+                        <input type="text" class="col-md-8 form-control" name="TF_Fecha_Creacion" id="TF_Fecha_Creacion_P">
+                    </div>
+                    <div class="form-group row" style="display:none" id="fechaModificación_Row_P">
+                        <label id="fechaModificación_P" for="segundoApellido" class="col-md-3 col-form-label">Fecha Modificación</label>
+                        <input type="text" class="col-md-8 form-control" name="TF_Fecha_Modificacion" id="TF_Fecha_Modificacion_P">
+                    </div>
+                    <div class="form-group row" style="display:none" id="modificadoPor_Row_P">
+                        <label id="modificadopor_P" for="creadoPor" class="col-md-3 col-form-label">Modificado por</label>
+                        <input type="text" class="col-md-8 form-control" name="TF_Modificado_Por" id="TF_Modificado_Por_P">
+                    </div>
+                    <div class="form-group row">
+                        <label id="verificado_P" for="verificado" class="col-md-3 col-form-label">Verificado</label>
+                        <div class="col-md-8  form-check">
+                            <input class="form-check-input" type="checkbox" name="TB_Verificado" id="TB_Verificado_P">
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button id="btnInsertarEntidadPersona" type="submit" class="btn btn-primary submit-button mx-2">Insertar</button>
+                        <button id="btnModificarEntidadPersona" class="btn btn-primary submit-button mx-2" style="display:none">Modificar</button>
+                        <button id="btnCancelarEntidadPersona" type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Scripts/js/EntidadPersona.js"></script>

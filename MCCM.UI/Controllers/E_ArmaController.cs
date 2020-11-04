@@ -16,16 +16,18 @@ namespace MCCM.UI.Controllers
        
      
         [HttpPost]
-        public String Insertar_E_Arma(TMCCM_Entidad_Arma entidadArma)
+        public String Insertar_E_Arma(TMCCM_Entidad_Arma entidadArma,int caso)
         {
+            entidadArma.TN_ID_Caso = caso;
             entidadArmaNegocio.InsertarEntidadArma(entidadArma);
             return "S";
         }
+        [HttpGet]
         public String Listar_E_Arma(int caso)
         {
-            return JsonConvert.SerializeObject(entidadArmaNegocio.ListarEntidadArmas(caso), Formatting.Indented);
+            return entidadArmaNegocio.ListarEntidadArmas(caso);
         }
-        [HttpDelete]
+        [HttpPost]
         public String Eliminar_E_ArmaPorID(int entidadArmaID)
         {
             return entidadArmaNegocio.EliminarEntidadArma(entidadArmaID);
@@ -39,7 +41,7 @@ namespace MCCM.UI.Controllers
         [HttpGet]
         public String Obtener_E_ArmaPorID(int ID)
         {
-            return JsonConvert.SerializeObject(entidadArmaNegocio.ObtenerEntidadArmaPorID(ID), Formatting.Indented);
+            return entidadArmaNegocio.ObtenerEntidadArmaPorID(ID);
         }
 
     }

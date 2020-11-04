@@ -26,5 +26,16 @@ namespace MCCM.AccesoDatos
 
             return personaJuridicaTipoOrganización;
         }
+        public void InsertarPersonaJuridicaTipoOrganizacion(TMCCM_C_Persona_Juridica_Tipo_Organización personaJuridicaTipoOrganizacion)
+        {
+            using (var context = new MCCMEntities())
+            {
+                personaJuridicaTipoOrganizacion.TB_Eliminado = false;
+                context.TMCCM_C_Persona_Juridica_Tipo_Organización.Add(personaJuridicaTipoOrganizacion);
+                context.SaveChanges();
+
+            }
+
+        }
     }
 }

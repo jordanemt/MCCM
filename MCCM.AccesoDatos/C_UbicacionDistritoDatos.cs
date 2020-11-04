@@ -1,5 +1,6 @@
 ﻿using MCCM.Entidad;
 using MCCM.Entidad.DTO;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,22 +11,34 @@ namespace MCCM.AccesoDatos
 {
     public class C_UbicacionDistritoDatos
     {
-        public List<TMCCM_C_UbicacionDistritoDTO> ListarUbicacionDistrito(int idCanton)
+        public string ListarUbicacionDistrito(int idCanton)
         {
-            List<TMCCM_C_UbicacionDistritoDTO> ubicacionDistritos = null;
-
             using (var context = new MCCMEntities())
             {
-                ubicacionDistritos = context.TMCCM_C_Ubicacion_Distrito.Where(c => c.TB_Eliminado == false && c.TN_ID_Canton == idCanton)
-                  .Select(ubicacionDistritoItem => new TMCCM_C_UbicacionDistritoDTO()
-                  {
+                var anonimo = from ubicacionDistritoItem in context.TMCCM_C_Ubicacion_Distrito
+                              where ubicacionDistritoItem.TB_Eliminado == false
+                              where ubicacionDistritoItem.TN_ID_Canton == idCanton
+                              select new
+                              {
                       TN_ID_Distrito= ubicacionDistritoItem.TN_ID_Distrito,
                       TN_ID_Canton = ubicacionDistritoItem.TN_ID_Canton,
                       TC_Descripcion = ubicacionDistritoItem.TC_Descripcion
-                  }).ToList<TMCCM_C_UbicacionDistritoDTO>();
+                  };
+                return JsonConvert.SerializeObject(anonimo, Formatting.Indented);
             }
 
-            return ubicacionDistritos;
+        }
+        public void InsertarUbicacionDistrito(TMCCM_C_Ubicacion_Distrito ubicacionDistrito)
+        {
+            using (var context = new MCCMEntities())
+            {
+                ubicacionDistrito.TF_Fecha_Creacion = DateTime.Now;
+                ubicacionDistrito.TB_Eliminado = false;
+                context.TMCCM_C_Ubicacion_Distrito.Add(ubicacionDistrito);
+                context.SaveChanges();
+
+            }
+
         }
     }
 

@@ -1,5 +1,6 @@
 ﻿using MCCM.Entidad;
 using MCCM.Entidad.DTO;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,22 +11,33 @@ namespace MCCM.AccesoDatos
 {
     public class C_UbicacionCantonDatos
     {
-        public List<TMCCM_C_UbicacionCantonDTO> ListarUbicacionCanton(int idProvincia)
+        public string ListarUbicacionCanton(int idProvincia)
         {
-            List<TMCCM_C_UbicacionCantonDTO> ubicacionCantones = null;
-
             using (var context = new MCCMEntities())
             {
-                ubicacionCantones = context.TMCCM_C_Ubicacion_Canton.Where(c => c.TB_Eliminado == false && c.TN_ID_Provincia == idProvincia)
-                  .Select(ubicacionCantonItem => new TMCCM_C_UbicacionCantonDTO()
-                  {
-                      TN_ID_Canton = ubicacionCantonItem.TN_ID_Canton,
-                      TN_ID_Provincia = ubicacionCantonItem.TN_ID_Provincia,
-                      TC_Descripcion = ubicacionCantonItem.TC_Descripcion
-                  }).ToList<TMCCM_C_UbicacionCantonDTO>();
+                var anonimo = from ubicacionCantonItem in context.TMCCM_C_Ubicacion_Canton
+                              where ubicacionCantonItem.TB_Eliminado == false
+                              where ubicacionCantonItem.TN_ID_Provincia == idProvincia
+                              select new
+                              {
+                                  TN_ID_Canton = ubicacionCantonItem.TN_ID_Canton,
+                                  TN_ID_Provincia = ubicacionCantonItem.TN_ID_Provincia,
+                                  TC_Descripcion = ubicacionCantonItem.TC_Descripcion
+                              };
+                return JsonConvert.SerializeObject(anonimo, Formatting.Indented);
+            }
+            }
+        public void InsertarUbicacionCanton(TMCCM_C_Ubicacion_Canton ubicacionCanton)
+        {
+            using (var context = new MCCMEntities())
+            {
+                ubicacionCanton.TF_Fecha_Creacion = DateTime.Now;
+                ubicacionCanton.TB_Eliminado = false;
+                context.TMCCM_C_Ubicacion_Canton.Add(ubicacionCanton);
+                context.SaveChanges();
+
             }
 
-            return ubicacionCantones;
         }
     }
 

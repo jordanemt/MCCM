@@ -17,8 +17,12 @@ namespace MCCM.ReglasNegocio
            
             return c_PersonaSexoDatos.ListarPersonaSexo();
         }
+        public void InsertarPersonaSexo(TMCCM_C_Persona_Sexo personaSexo)
+        {
+            c_PersonaSexoDatos.InsertarPersonaSexo(personaSexo);
+        }
 
 
-}
+    }
 }
 

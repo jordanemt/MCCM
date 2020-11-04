@@ -1,5 +1,6 @@
 ﻿using MCCM.Entidad;
 using MCCM.Entidad.DTO;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -22,7 +23,7 @@ namespace MCCM.AccesoDatos
                 caso.TF_Fecha = Convert.ToDateTime(momentoActual, CultureInfo.InvariantCulture);
                 context.TMCCM_Caso.Add(caso);
                 context.SaveChanges();
-                
+
             }
         }
 
@@ -61,50 +62,49 @@ namespace MCCM.AccesoDatos
             }
         }
 
-
-
-
-        public List<TMCCM_CasoDTO> ListarCasos()
+        public string ListarCasos()
         {
-            List<TMCCM_CasoDTO> casosDTO = null;
 
             using (var context = new MCCMEntities())
             {
-                casosDTO = context.TMCCM_Caso.Where(c => c.TB_Eliminado==false)
-                  .Select(casoItem => new TMCCM_CasoDTO()
-                  {
-                      TN_ID_Caso = casoItem.TN_ID_Caso,
-                      TC_Nombre_Caso = casoItem.TC_Nombre_Caso,
-                      TC_Delito = casoItem.TC_Delito,
-                      TF_Fecha = casoItem.TF_Fecha
-                  }).ToList<TMCCM_CasoDTO>();
+                var anonimo = from casoItem in context.TMCCM_Caso
+                              where casoItem.TB_Eliminado == false
+                              select new
+                              {
+                                  TN_ID_Caso = casoItem.TN_ID_Caso,
+                                  TC_Nombre_Caso = casoItem.TC_Nombre_Caso,
+                                  TC_Delito = casoItem.TC_Delito,
+                                  TF_Fecha = casoItem.TF_Fecha
+                              };
+                return JsonConvert.SerializeObject(anonimo, Formatting.Indented);
             }
 
-            return casosDTO;
+
         }
 
-        public TMCCM_CasoDTO ObtenerCasoPorID(int ID)
+        public string ObtenerCasoPorID(int ID)
         {
-            TMCCM_CasoDTO aux;
             using (var context = new MCCMEntities())
             {
-                aux = (from casoItem in context.TMCCM_Caso
-                       select new TMCCM_CasoDTO(){
-                    TN_ID_Caso = casoItem.TN_ID_Caso,
-                    TC_Nombre_Caso = casoItem.TC_Nombre_Caso,
-                    TC_Delito = casoItem.TC_Delito,
-                    TF_Fecha = casoItem.TF_Fecha,
-                    TC_Area_Trabajo=casoItem.TC_Area_Trabajo,
-                    TC_Fuente=casoItem.TC_Fuente,
-                    TN_ECU=casoItem.TN_ECU,
-                    TN_Nivel=casoItem.TN_Nivel,
-                    TC_Descripcion=casoItem.TC_Descripcion,
-                    TC_Enfoque_Trabajo=casoItem.TC_Enfoque_Trabajo
-                }).Where(x => x.TN_ID_Caso == ID).Single(); 
-            }
-            return aux;
-        }
+                var anonimo = (from casoItem in context.TMCCM_Caso
+                               where casoItem.TN_ID_Caso == ID
+                               select new
+                               {
+                                   TN_ID_Caso = casoItem.TN_ID_Caso,
+                                   TC_Nombre_Caso = casoItem.TC_Nombre_Caso,
+                                   TC_Delito = casoItem.TC_Delito,
+                                   TF_Fecha = casoItem.TF_Fecha,
+                                   TC_Area_Trabajo = casoItem.TC_Area_Trabajo,
+                                   TC_Fuente = casoItem.TC_Fuente,
+                                   TN_ECU = casoItem.TN_ECU,
+                                   TN_Nivel = casoItem.TN_Nivel,
+                                   TC_Descripcion = casoItem.TC_Descripcion,
+                                   TC_Enfoque_Trabajo = casoItem.TC_Enfoque_Trabajo
+                               }).Single();
 
+                return JsonConvert.SerializeObject(anonimo, Formatting.Indented);
+            }
+        }
     }
 
 

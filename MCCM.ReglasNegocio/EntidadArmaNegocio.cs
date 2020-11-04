@@ -27,12 +27,12 @@ namespace MCCM.ReglasNegocio
             entidadArmaDatos.EliminarEntidadArma(ID);
             return "S";
         }
-        public List<TMCCM_EntidadArmaDTO> ListarEntidadArmas( int caso )
+        public string ListarEntidadArmas( int caso )
         {
             return entidadArmaDatos.ListarEntidadArmas(caso);
         }
 
-        public TMCCM_EntidadArmaDTO ObtenerEntidadArmaPorID(int ID)
+        public string ObtenerEntidadArmaPorID(int ID)
         {
             return entidadArmaDatos.ObtenerEntidadArmaPorID(ID);
         }

@@ -15,7 +15,7 @@ namespace MCCM.AccesoDatos
             using (var context = new MCCMEntities())
             {
                 return context.TMCCM_Usuario
-                    .Where(e => e.TB_Eliminado == false)
+                    .Where(e => e.TB_Eliminado == false).Include("TMCCM_Rol")
                     .ToList();
             }
         }

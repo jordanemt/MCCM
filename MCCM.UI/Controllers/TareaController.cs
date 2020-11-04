@@ -30,35 +30,36 @@ namespace MCCM.UI.Controllers
         }
 
         [HttpPost]
-        public String ActualizarTarea(TMCCM_Tarea tarea)
+        public String ModificarTarea(TMCCM_Tarea tarea,DateTime fecha)
         {
-            tareaNegocio.ActualizarTarea(tarea);
+            tarea.TF_Fecha = fecha;
+            tareaNegocio.ModificarTarea(tarea);
             return "S";
         }
 
         [HttpGet]
         public String ListarTarea(int caso)
         {
-            return JsonConvert.SerializeObject(tareaNegocio.ListarTarea(caso), Formatting.Indented);
+            return tareaNegocio.ListarTarea(caso);
         }
 
         [HttpGet]
         public string ObtenerTareaPorID(int ID)
         {
-            return JsonConvert.SerializeObject(tareaNegocio.ObtenerTareaPorID(ID), Formatting.Indented);
+            return tareaNegocio.ObtenerTareaPorID(ID);
         }
 
         [HttpGet]
         public string ObtenerCatalogoUsuarios()
         {
-            return JsonConvert.SerializeObject(tareaNegocio.ObtenerCatalogoUsuarios(), Formatting.Indented);
+            return tareaNegocio.ObtenerCatalogoUsuarios();
         }
         
 
        [HttpPost]
-        public string EliminarTareaPorID(int ID)
+        public string EliminarTareaPorID(int tareaID)
         {
-            return tareaNegocio.EliminarTarea(ID);
+            return tareaNegocio.EliminarTarea(tareaID);
         }
     }
 }

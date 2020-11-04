@@ -37,13 +37,13 @@ namespace MCCM.UI.Controllers
         [HttpGet]
         public String ListarEventos(int caso)
         {
-            return JsonConvert.SerializeObject(eventoNegocio.ListarEventos(caso), Formatting.Indented);
+            return eventoNegocio.ListarEventos(caso);
         }
 
         [HttpGet]
         public String ObtenerEventoPorID(int ID)
         {
-            return JsonConvert.SerializeObject(eventoNegocio.ObtenerEventoPorID(ID), Formatting.Indented);
+            return eventoNegocio.ObtenerEventoPorID(ID);
         }
 
     }

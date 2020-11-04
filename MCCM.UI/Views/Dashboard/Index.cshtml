@@ -6,20 +6,32 @@
 <link href="~/Content/css/Dashdboard.css" rel="stylesheet" />
 
 @*JS*@
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
 
 <script src="~/Scripts/js/Dashboard.js"></script>
 <script src="~/Scripts/js/Gasto.js"></script>
 <script src="~/Scripts/js/Grupo.js"></script>
 <script src="~/Scripts/js/Vehiculo.js"></script>
 
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+
 
 <style>
     .filaseleccionada {
         background-color: cornflowerblue;
+    }
+    .modal:nth-of-type(even) {
+        z-index: 1052 !important;
+    }
+
+    .modal-backdrop.show:nth-of-type(even) {
+        z-index: 1051 !important;
     }
 </style>
 
@@ -103,7 +115,7 @@
                                 <a class="nav-item nav-link fa fa-building" id="entidadPersonaJuridica" data-toggle="tab" href="#" role="tab" aria-controls="nav-profile" aria-selected="false" onclick="seleccionado('2')"></a>
                                 <a class="nav-item nav-link fa fa-car" id="entidadCarro" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('3')"></a>
                                 <a class="nav-item nav-link fa fa-map-marker" id="nav-contact-tab" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('4')"></a>
-                                <a class="nav-item nav-link fa fa-phone" id="nav-contact-tab" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('5')"></a>
+                                <a class="nav-item nav-link fa fa-phone" id="entidadTelefono" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('5')"></a>
                                 <a class="nav-item nav-link fa fa-bomb" id="nav-contact-tab" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('6')"></a>
                                 <a class="nav-item nav-link fa fa-magic" id="nav-contact-tab" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('7')"></a>
 
@@ -111,6 +123,7 @@
                         </div>
                         <div class="card-body" id="entidades-body" style="overflow-y: scroll">
                             <div class="container">
+
 
                             </div>
 
@@ -124,10 +137,10 @@
                         <div><a href="#"><span><i class="fa fa-plus" data-toggle="modal" data-target="#ModalFormTarea"></i></span></a></div>
                     </div>
                     <div class="card-body" id="tareas-body" style="overflow-y: scroll">
-                       
-                           
 
-                        
+
+
+
                     </div>
                 </div>
 
@@ -379,26 +392,27 @@ function seleccionado(seleccion) {
         document.getElementById('custId').value = seleccion;
     }
     if (seleccion == 1) {
-        $("#entidades-body").empty();
-    } 
+        CargarEntidadPersona();
+    }
     if (seleccion == 2) {
-        $("#entidades-body").empty();
+        CargarEntidadPersonaJuridica();
     }
     if (seleccion == 3) {
-        $("#entidades-body").empty();
+        CargarEntidadVehiculos();
     }
     if (seleccion == 4) {
-    $("#entidades-body").empty();
+        CargarEntidadUbicaciones();
     }
     if (seleccion == 5) {
      $("#entidades-body").empty();
     }
 
     if (seleccion == 6) {
-      $("#entidades-body").empty();  
+        CargarEntidadArmas();
     }
     if (seleccion == 7) {
         CargarEntidadDrogas();
+
     }
 
 }
@@ -437,13 +451,13 @@ function seleccionEntidad() {
     }
 </script>
 
-@Html.Partial("EntidadPersona")
-@Html.Partial("EntidadVehiculo")
-@Html.Partial("EntidadUbicacion")
-@Html.Partial("EntidadTelefono")
-@Html.Partial("EntidadArma")
-@Html.Partial("~/Views/Entidad/_EntidadDroga.cshtml")
-@Html.Partial("EntidadPersonaJuridica")
+@Html.Partial("~/Views/Entidad/_EntidadPersona.cshtml")
+@Html.Partial("~/Views/EntidadVehiculo/_EntidadVehiculo.cshtml")
+@Html.Partial("~/Views/EntidadUbicacion/_EntidadUbicacion.cshtml")
+@Html.Partial("~/Views/Entidad/_EntidadTelefono.cshtml")
+@Html.Partial("~/Views/EntidadArma/_EntidadArma.cshtml")
+@Html.Partial("~/Views/EntidadDroga/_EntidadDroga.cshtml")
+@Html.Partial("~/Views/Entidad/_EntidadPersonaJuridica.cshtml")
 @Html.Partial("~/Views/Caso/_ModalCasoInsert.cshtml")
 @Html.Partial("~/Views/Bitacora/_ModalEventoForm.cshtml")
 @Html.Partial("~/Views/Tarea/_ModalFormTarea.cshtml")
@@ -452,5 +466,5 @@ function seleccionEntidad() {
 @Html.Partial("_ModalMensajeConfirmacion")
 
 <script>
-    $('select').selectpicker();
+    //$('select').selectpicker();
 </script>

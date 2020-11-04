@@ -1,5 +1,6 @@
 ﻿using MCCM.Entidad;
 using MCCM.Entidad.DTO;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,23 +11,33 @@ namespace MCCM.AccesoDatos
 {
     public class C_TipoUbicacionDatos
     {
-        public List<TMCCM_C_TipoUbicacionDTO> ListarTipoUbicacion()
+        public string ListarTipoUbicacion()
         {
-            List<TMCCM_C_TipoUbicacionDTO> ubicacion_Tipos = null;
 
             using (var context = new MCCMEntities())
             {
-                ubicacion_Tipos = context.TMCCM_C_Ubicacion_Tipo_Ubicacion.Where(c => c.TB_Eliminado == false)
-                  .Select(ubicacionTipoItem => new TMCCM_C_TipoUbicacionDTO()
-                  {
-                      TN_ID_Tipo_Ubicacion= ubicacionTipoItem.TN_ID_Tipo_Ubicacion,
-                      TC_Nombre = ubicacionTipoItem.TC_Nombre,
-                      TC_Descripcion = ubicacionTipoItem.TC_Descripcion
+                var anonimo = from ubicacionTipoItem in context.TMCCM_C_Ubicacion_Tipo_Ubicacion
+                              where ubicacionTipoItem.TB_Eliminado == false
+                              select new
+                              {
+                                  TN_ID_Tipo_Ubicacion = ubicacionTipoItem.TN_ID_Tipo_Ubicacion,
+                                  TC_Nombre = ubicacionTipoItem.TC_Nombre,
+                                  TC_Descripcion = ubicacionTipoItem.TC_Descripcion
+                              };
 
-                  }).ToList<TMCCM_C_TipoUbicacionDTO>();
+               return JsonConvert.SerializeObject(anonimo, Formatting.Indented);
+            }
+        }
+        public void InsertarTipoUbicacion(TMCCM_C_Ubicacion_Tipo_Ubicacion tipoUbicacion)
+        {
+            using (var context = new MCCMEntities())
+            {
+                tipoUbicacion.TB_Eliminado = false;
+                context.TMCCM_C_Ubicacion_Tipo_Ubicacion.Add(tipoUbicacion);
+                context.SaveChanges();
+
             }
 
-            return ubicacion_Tipos;
         }
 
     }

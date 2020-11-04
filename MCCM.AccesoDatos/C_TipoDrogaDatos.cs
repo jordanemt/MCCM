@@ -1,5 +1,6 @@
 ﻿using MCCM.Entidad;
 using MCCM.Entidad.DTO;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,23 +11,37 @@ namespace MCCM.AccesoDatos
 {
     public class C_TipoDrogaDatos
     {
-        public List<TMCCM_C_TipoDrogaDTO> ListarTiposDroga()
+        public string ListarTiposDroga()
         {
-            List<TMCCM_C_TipoDrogaDTO> droga_Tipo_Drogas = null;
-
             using (var context = new MCCMEntities())
             {
-                droga_Tipo_Drogas = context.TMCCM_C_Droga_Tipo_Droga.Where(c => c.TB_Eliminado == false)
-                  .Select(tipoDrogaItem => new TMCCM_C_TipoDrogaDTO()
-                  {
-                      TN_ID_Tipo_Droga = tipoDrogaItem.TN_ID_Tipo_Droga,
-                      TC_Nombre = tipoDrogaItem.TC_Nombre,
-                      TC_Descripcion = tipoDrogaItem.TC_Descripcion
-                  }).ToList<TMCCM_C_TipoDrogaDTO>();
+                var anonimo = from tipoDrogaItem in context.TMCCM_C_Droga_Tipo_Droga
+                              where tipoDrogaItem.TB_Eliminado == false
+                              select new
+                              {
+                                  TN_ID_Tipo_Droga = tipoDrogaItem.TN_ID_Tipo_Droga,
+                                  TC_Nombre = tipoDrogaItem.TC_Nombre,
+                                  TC_Descripcion = tipoDrogaItem.TC_Descripcion
+                              };
+
+
+                return JsonConvert.SerializeObject(anonimo, Formatting.Indented);
+            }
+        }
+
+        public void InsertarTipoDroga(TMCCM_C_Droga_Tipo_Droga tipoDroga)
+        {
+            using (var context = new MCCMEntities())
+            {
+                tipoDroga.TF_Fecha_Creacion = DateTime.Now;
+                tipoDroga.TB_Eliminado = false;
+                context.TMCCM_C_Droga_Tipo_Droga.Add(tipoDroga);
+                context.SaveChanges();
+
             }
 
-            return droga_Tipo_Drogas;
         }
+
 
     }
 

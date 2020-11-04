@@ -26,5 +26,17 @@ namespace MCCM.AccesoDatos
 
             return personaNacionalidades;
         }
+        public void InsertarPersonaNacionalidad(TMCCM_C_Persona_Nacionalidad personaNacionalidad)
+        {
+            using (var context = new MCCMEntities())
+            {
+                personaNacionalidad.TF_Fecha_Creacion = DateTime.Now;
+                context.TMCCM_C_Persona_Nacionalidad.Add(personaNacionalidad);
+                context.SaveChanges();
+
+            }
+
+        }
+
     }
 }
