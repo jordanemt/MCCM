@@ -1,13 +1,12 @@
-﻿function changeVisiblePestannaBody(name) {
-    $("#pestanna-1-body").hide();
-    $("#pestanna-2-body").hide();
-    $("#reporte-body").hide();
-
-    $('#' + name).show();
+﻿var pestannaVisible = 'pestanna-1-body';
+function changeVisiblePestannaBody(nuevaPestannaVisible) {
+    $("#" + pestannaVisible).removeClass("d-flex").addClass("d-none");
+    $("#" + nuevaPestannaVisible).removeClass("d-none").addClass("d-flex");
+    pestannaVisible = nuevaPestannaVisible;
 }
 
 $(document).ready(function () {
-    //changeVisiblePestannaBody('pestanna-2-body');
+    changeVisiblePestannaBody('pestanna-1-body');
     $('#picker').daterangepicker({
         "showDropdowns": true,
         "showWeekNumbers": true,

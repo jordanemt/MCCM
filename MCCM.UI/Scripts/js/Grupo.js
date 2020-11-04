@@ -1,7 +1,7 @@
 ﻿function abrirInsertarGrupoFormModal() {
     $('#grupo-form-modal').remove();
 
-    var url = "/Grupo/CargarModal/";
+    var url = "/Grupo/InsertarFormModal/";
 
     $.ajax({
         url: url,
@@ -9,7 +9,9 @@
         type: "GET",
         success: function (data) {
             $('.body-content').append(data);
-            $('#grupo-form-modal').modal('show');
+            if (agregarCasoIDToInputElementVal($('#TN_ID_Caso_Grupo'))) {
+                $('#grupo-form-modal').modal('show');
+            }
         },
         error: function (reponse) {
             alert("error : " + reponse);
@@ -20,7 +22,7 @@
 function abrirActualizarGrupoFormModal(id) {
     $('#grupo-form-modal').remove();
 
-    var url = "/Grupo/CargarModalConId/";
+    var url = "/Grupo/ActualizarFormModal/";
 
     $.ajax({
         url: url,
@@ -37,18 +39,21 @@ function abrirActualizarGrupoFormModal(id) {
     });
 }
 
-function listarGrupo() {
-    var url = "/Grupo/Listar/";
+function listarGrupos() {
+    var url = "/Grupo/ListarPorCasoId/";
 
     $.ajax({
         url: url,
         cache: false,
         type: "GET",
+        data: {
+            idCaso: sessionStorage.CasoID
+        },
         success: function (data) {
             $('#grupo-contenedor').html(data);
         },
         error: function (reponse) {
-            alert("error : " + reponse);
+            alert("error : " + JSON.stringify(reponse));
         }
     });
 }
@@ -88,7 +93,7 @@ function actualizarGrupo() {
                 $('#grupo-contenedor').append(data);
             },
             error: function (reponse) {
-                alert("error : " + reponse);
+                alert("error: " + reponse);
             }
         });
     }
@@ -112,54 +117,62 @@ function eliminarGrupoPorId(id) {
     });
 }
 
-function aplicarValidGrupoForm() {
-    $("#grupo-form").validate({
-        rules: {
-            TC_Zona: "required",
-            TF_Fecha_Inicio: "required",
-            TF_Fecha_Final: "required",
-            TF_Hora: "required",
-            Encargado: "required",
-            Acompannantes: "required"
-        },
-        messages: {
-            TC_Zona: "Ingrese la zona",
-            TF_Fecha_Inicio: "Ingrese una fecha de inicio",
-            TF_Fecha_Final: "Ingrese una fecha final",
-            TF_Hora: "Ingrese la hora",
-            Encargado: "Seleccione un encargado",
-            Acompannantes: "Seleccione al menos un acompañante"
+function aplicarGrupoDateRangePicker() {
+    var fechaInicioElement = $('#TF_Fecha_Inicio');
+    var fechaInicio = $('#TF_Fecha_Inicio').val();
+    fechaInicioElement.daterangepicker({
+        singleDatePicker: true,
+        startDate: (fechaInicioElement.val() !== '') ? moment($('#TF_Fecha_Inicio').val()) : moment(),
+        locale: {
+            format: 'DD/M/Y'
         }
+    });
+
+    var fechaFinalElement = $('#TF_Fecha_Final');
+    fechaInicioElement.on('apply.daterangepicker', function (ev, picker) {
+        fechaFinalElement.val('');
+        fechaFinalElement.daterangepicker({
+            autoUpdateInput: false,
+            singleDatePicker: true,
+            minDate: picker.startDate,
+        });
+    });
+    fechaFinalElement.daterangepicker({
+        autoUpdateInput: false,
+        singleDatePicker: true,
+        minDate: (fechaInicio !== '') ? moment(fechaInicio) : moment(),
+    });
+    if (fechaFinalElement.val() !== '') {
+        fechaFinalElement.val(moment(fechaFinalElement.val()).format('DD/M/Y'));
+    }
+    fechaFinalElement.on('apply.daterangepicker', function (ev, picker) {
+        $(this).val(picker.startDate.format('DD/M/Y'));
     });
 }
 
-function aplicarMaskGrupoForm() {
-    //$('#TN_Num_Factura').mask("0000000000", { placeholder: "_ _ _ _ _ _ _ _ _ _" });
-    //$('#TD_Monto').mask("0000000000", { placeholder: "0000000000" });
+function aplicarGrupoSelectPicker() {
+    $('#Encargado').selectpicker();
+    $('#Acompannantes').selectpicker();
+    $('#TB_Mando').selectpicker();
 }
 
 function bloquearAcompannanteEncargado() {
     var encargadoId = $('#Encargado').val();
     $('#Acompannantes').find('option').prop('disabled', false);
-    $('#Acompannantes').find('#acompannante-' + encargadoId).prop('selected', false);
-    $('#Acompannantes').find('#acompannante-' + encargadoId).prop('disabled', true);
+    $('#Acompannantes').find('[value=' + encargadoId + ']').prop('selected', false);
+    $('#Acompannantes').find('[value=' + encargadoId + ']').prop('disabled', true);
+    $('#Acompannantes').selectpicker('refresh');
 }
 
-function aplicarDateRangeGrupo() {
-    $('#TF_Fecha_Inicio').daterangepicker({
-        timePicker: false,
-        singleDatePicker: true,
-        showDropdowns: true,
-        dateFormat: 'dd-mm-yyyy'
-    });
-    $('#TF_Fecha_Final').daterangepicker({
-        timePicker: false,
-        singleDatePicker: true,
-        showDropdowns: true,
-        dateFormat: 'dd/mm/yyyy' 
-    });
+function seleccionarGrupo(idGrupo) {
+    $(".grupoCard").removeClass('filaseleccionada');
+    $('#grupo-' + idGrupo).addClass('filaseleccionada');
+
+    sessionStorage.GrupoID = idGrupo;
+    $("#vehiculos-titulo").text('Vechículos/Grupo #' + idGrupo);
+    listarGrupo_Vehiculo();//Definido en Vehiculo.js
 }
 
 $(document).ready(function () {
-    listarGrupo();
+    //listarGrupo();
 });

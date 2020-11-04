@@ -2,29 +2,28 @@
     ViewBag.Title = "Dashboard";
 }
 
-@*CSS*@
-<link href="~/Content/css/Dashdboard.css" rel="stylesheet" />
-
 @*JS*@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
-
+<script src="~/Scripts/js/Util.js"></script>
 <script src="~/Scripts/js/Dashboard.js"></script>
 <script src="~/Scripts/js/Gasto.js"></script>
 <script src="~/Scripts/js/Grupo.js"></script>
 <script src="~/Scripts/js/Vehiculo.js"></script>
 
+@*CSS*@
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
+<link href="~/Content/css/Dashdboard.css" rel="stylesheet" />
 
 <style>
     .filaseleccionada {
-        background-color: cornflowerblue;
+        background-color: #e3f0ff;
     }
     /*.modal:nth-of-type(even) {
         z-index: 1052 !important;
@@ -35,44 +34,44 @@
     }*/
 </style>
 
-<div class="col-sm-12" id="dashboard-container">
+<div class="d-flex flex-sm-row flex-column p-0" id="dashboard-container">
 
-    <div class="col-md-2 dashboard-child" style="margin: 0 0">
+    <div class="col-sm-2 p-0 dashboard-child" style="margin: 0 0">
 
-        <div class="card border-light mb-3" style="height: 70%;">
-            <div class="card-header">
-                <div id="casosTitulo">Casos</div>
+        <div class="card border-light h-75">
+            <div class="card-header gris">
+                <div class="font_blanco" id="casosTitulo">Casos</div>
                 <div><a href="#"><span><i class="fa fa-plus" data-toggle="modal" data-target="#ModalFormCaso"></i></span></a></div>
             </div>
-            <div class="card-body" id="casos-body" style="overflow-y: scroll">
+            <div class="card-body p-0" id="casos-body" style="overflow-y: scroll">
 
             </div>
         </div>
 
-        <div class="card border-light mb-3" style="height: 30%;">
-            <div class="card-header">
-                <div>Mando</div>
+        <div class="card border-light h-25">
+            <div class="card-header gris">
+                <div class="font_blanco">Mando</div>
                 <div><a href="#"><span><i class="fa fa-plus"></i></span></a></div>
             </div>
-            <div class="card-body" id="mado-body">
+            <div class="card-body p-0" id="mado-body">
 
             </div>
         </div>
 
     </div>
 
-    <div class="col-md-10 dashboard-child" style="margin: 0 0">
+    <div class="col-sm-10 d-flex flex-column p-0 dashboard-child">
 
-        <div class="card border-light mb-3" style="height: 100%">
-            <div class="card-header">
+        <div class="card border-light col-sm-12 p-0">
+            <div class="card-header gris">
 
                 @*Pestannas nav*@
                 <div>
                     <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb" style="margin: 0; padding: 0 0;">
+                        <ol class="breadcrumb gris" style="margin: 0; padding: 0 0;">
                             <li class="breadcrumb-item"><a class="nav-link" href="#" style="padding: 0 0;" onclick="changeVisiblePestannaBody('pestanna-1-body');">Pestaña #1</a></li>
                             <li class="breadcrumb-item"><a class="nav-link" href="#" style="padding: 0 0;" onclick="changeVisiblePestannaBody('pestanna-2-body');">Pestaña #2</a></li>
-                            <li class="breadcrumb-item"><a class="nav-link" href="#" style="padding: 0 0;" onclick="changeVisiblePestannaBody('reporte-body');">Generar reporte</a></li>
+                            <li class="breadcrumb-item"><a class="nav-link" href="#" style="padding: 0 0;" onclick="changeVisiblePestannaBody('reporte-body');">Generar Reporte</a></li>
                         </ol>
                     </nav>
                 </div>
@@ -85,43 +84,42 @@
             </div>
 
             @*Pestanna #1 Body*@
-            <div class="card-body card-body-flex" id="pestanna-1-body">
-                <script>$('#pestanna-1-body').hide();</script>
+            <div class="card-body d-none flex-sm-row flex-column card-body-flex p-0" id="pestanna-1-body" style="display: none">
 
-                <div class="card border-light mb-3 col-md-4" style=" margin: 0 0; padding: 0 0;">
-                    <div class="card-header">
+                <div class="card border-light mb-3 col-sm-4 p-0">
+                    <div class="card-header amarillo">
                         <div>Bitácora</div>
-                        <div><a href="#"><span><i class="fa fa-plus" data-toggle="modal" data-target="#ModalFormEvento"></i></span></a></div>
+                        <div><a href="#"><span><i class="fa fa-plus font_grisHover" data-toggle="modal" data-target="#ModalFormEvento"></i></span></a></div>
                     </div>
-                    <div class="card-body" id="bitacora-body" style="overflow-y: scroll">
+                    <div class="card-body p-0" id="bitacora-body" style="overflow-y: scroll">
                         <div class="container">
 
                         </div>
 
                     </div>
                 </div>
-                <div class="card border-light mb-3 col-md-4" style="height: 100%; margin: 0 0; padding: 0 0;">
-                    <div class="card-header">
+
+                <div class="card border-light mb-3 col-sm-4 p-0">
+                    <div class="card-header amarillo">
                         <div>Entidades</div>
                         <div>
-                            <a href="#" onclick="seleccionEntidad()"><span><i class="fa fa-plus"></i></span></a>
+                            <a href="#" onclick="seleccionEntidad()"><span><i class="fa fa-plus font_grisHover"></i></span></a>
                         </div>
                     </div>
-                    <div class="card border-light" style="height: 100%; margin: 0 0; padding: 0 0;">
+                    <div class="card border-light ">
                         <div class="card-header">
-                            <div id="botones" class="nav nav-tabs card-header-tabs">
+                            <div id="botones" class="nav nav-tabs card-header-tabs col-12 justify-content-around">
                                 <input type="hidden" id="custId" name="custId" value="1">
-                                <a class="nav-item nav-link active fa fa-user" id="entidadPersona" data-toggle="tab" role="tab" aria-controls="nav-home" aria-selected="true" onclick="seleccionado('1')"></a>
-                                <a class="nav-item nav-link fa fa-building" id="entidadPersonaJuridica" data-toggle="tab" href="#" role="tab" aria-controls="nav-profile" aria-selected="false" onclick="seleccionado('2')"></a>
-                                <a class="nav-item nav-link fa fa-car" id="entidadCarro" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('3')"></a>
-                                <a class="nav-item nav-link fa fa-map-marker" id="nav-contact-tab" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('4')"></a>
-                                <a class="nav-item nav-link fa fa-phone" id="entidadTelefono" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('5')"></a>
-                                <a class="nav-item nav-link fa fa-bomb" id="nav-contact-tab" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('6')"></a>
-                                <a class="nav-item nav-link fa fa-magic" id="nav-contact-tab" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('7')"></a>
-
+                                <a class="nav-item nav-link active fa fa-user font_negro" id="entidadPersona" data-toggle="tab" href="#" role="tab" aria-controls="nav-home" aria-selected="true" onclick="seleccionado('1')"></a>
+                                <a class="nav-item nav-link fa fa-building font_negro" id="entidadPersonaJuridica" data-toggle="tab" href="#" role="tab" aria-controls="nav-profile" aria-selected="false" onclick="seleccionado('2')"></a>
+                                <a class="nav-item nav-link fa fa-car font_negro" id="entidadCarro" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('3')"></a>
+                                <a class="nav-item nav-link fa fa-map-marker font_negro" id="nav-contact-tab" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('4')"></a>
+                                <a class="nav-item nav-link fa fa-phone font_negro" id="nav-contact-tab" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('5')"></a>
+                                <a class="nav-item nav-link fa fa-bomb font_negro" id="nav-contact-tab" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('6')"></a>
+                                <a class="nav-item nav-link fa fa-magic font_negro" id="nav-contact-tab" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('7')"></a>
                             </div>
                         </div>
-                        <div class="card-body" id="entidades-body" style="overflow-y: scroll">
+                        <div class="card-body p-0" id="entidades-body" style="overflow-y: scroll">
                             <div class="container">
 
 
@@ -131,12 +129,12 @@
                     </div>
                 </div>
 
-                <div class="card border-light mb-3 col-md-4" style="height: 100%; margin: 0 0; padding: 0 0;">
-                    <div class="card-header">
+                <div class="card border-light mb-3 col-sm-4 p-0">
+                    <div class="card-header amarillo">
                         <div>Tareas</div>
-                        <div><a href="#"><span><i class="fa fa-plus" data-toggle="modal" data-target="#ModalFormTarea"></i></span></a></div>
+                        <div><a href="#"><span><i class="fa fa-plus font_grisHover" data-toggle="modal" data-target="#ModalFormTarea"></i></span></a></div>
                     </div>
-                    <div class="card-body" id="tareas-body" style="overflow-y: scroll">
+                    <div class="card-body p-0" id="tareas-body" style="overflow-y: scroll">
 
 
 
@@ -147,234 +145,54 @@
             </div>
 
             @*Pestanna #2 Body*@
-            <div class="card-body card-body-flex" id="pestanna-2-body">
-                @*<script>$('#pestanna-2-body').hide()</script>*@
+            <div class="card-body d-none flex-sm-row flex-column card-body-flex p-0" id="pestanna-2-body">
 
-                <div class="card border-light mb-3 col-md-3" style="height: 100%; margin: 0 0; padding: 0 0;">
-                    <div class="card-header">
+                <div class="card border-light col-sm-3 p-0">
+                    <div class="card-header amarillo">
                         <div>Gastos Operativos</div>
-                        <div><a href="#"><span><i class="fa fa-plus" onclick="abrirInsertarGastoFormModal()"></i></span></a></div>
+                        <div><a href="#"><span><i class="fa fa-plus font_grisHover" onclick="abrirInsertarGastoFormModal()"></i></span></a></div>
                     </div>
-                    <div class="card-body" style="overflow-y: scroll">
+                    <div class="card-body p-0" style="overflow-y: scroll">
                         <div id="gastos-contenedor" class="d-flex flex-column-reverse justify-content-center">
-
+                            <div class="text-center">
+                                <p>Seleccione un caso para cargar</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="card border-light mb-3 col-md-6" style="height: 100%; margin: 0 0; padding: 0 0;">
-                    <div class="card-header">
+                <div class="card border-light col-sm-6 p-0">
+                    <div class="card-header amarillo">
                         <div>Personal</div>
-                        <div><a href="#"><span><i class="fa fa-plus" onclick="abrirInsertarGrupoFormModal()"></i></span></a></div>
+                        <div><a href="#"><span><i class="fa fa-plus font_grisHover" onclick="abrirInsertarGrupoFormModal()"></i></span></a></div>
                     </div>
-                    <div class="card-body" id="personal-body" style="overflow-y: scroll">
+                    <div class="card-body p-0" style="overflow-y: scroll">
                         <div id="grupo-contenedor" class="d-flex flex-column-reverse">
-
+                            <div class="text-center">
+                                <p>Seleccione un caso para cargar</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="card border-light mb-3 col-md-3" style="height: 100%; margin: 0 0; padding: 0 0;">
-                    <div class="card-header">
-                        <div>Vehículos</div>
-                        <div><a href="#"><span><i class="fa fa-plus" onclick="abrirInsertarVehiculoFormModal()"></i></span></a></div>
+                <div class="card border-light col-sm-3 p-0">
+                    <div class="card-header amarillo">
+                        <div id="vehiculos-titulo">Vehículos</div>
+                        <div><a href="#"><span><i class="fa fa-plus font_grisHover" onclick="abrirGrupo_VehiculoInsertarFormModal()"></i></span></a></div>
                     </div>
-                    <div class="card-body" id="vehiculos-body" style="overflow-y: scroll">
-                        @* Solo para previsualizar *@
-                        @Html.Partial("~/Views/Vehiculo/_Vehiculo.cshtml")
+                    <div class="card-body p-0" style="overflow-y: scroll">
+                        <div id="grupo_vehiculo-contenedor" class="d-flex flex-column-reverse">
+                            <div class="text-center">
+                                <p>Seleccione un grupo para cargar</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
             </div>
-
-            @*Reporte Body*@
-            <div class="card-body card-body-flex" id="reporte-body">
-                <script>$('#reporte-body').hide()</script>
-
-                <div class="container col-12">
-                    <div class="row">
-
-
-                        <h5 class="badge-info" style="margin:0.5%;">
-                            Nombre del Caso:
-                        </h5>
-                        <input type="text" class="col-3 form-control" style="margin-left: 2%!important;">
-
-
-                        <button class="btn btn-info col-sm-3" style="margin-left: 60%; margin-top:-3.5%!important;" data-toggle="popover" data-content='<input type=' id='picker'>Rango de Fechas</button>
-
-                    </div>
-
-
-                    <div class="row">
-                        <div class="card align-content-center col-12" style="border:rgba(255, 106, 0, 0.5);">
-                            <div class="card-header" style="background-color:rgba(255, 106, 0, 0.75);">
-                                Reporte
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                    <label class="form-check-label" for="defaultCheck1">
-                                        Marcar Todo
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="card-body">
-                                <div class="container w-100">
-                                    <div class="row">
-                                        <div class="card col-4">
-                                            <div class="card-header">
-                                                Recursos
-                                            </div>
-                                            <div class="card-body" style="margin:0.5%;">
-
-                                                <div class="col-sm-12">
-                                                    <div class="row">
-
-                                                        <div class="col-6">
-                                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-
-                                                            <h5 class="badge-info" for="defaultCheck1" style="margin:auto; ">
-                                                                Dinero
-                                                            </h5>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-
-                                                            <h5 class="badge-info" for="defaultCheck1" style="margin:auto; ">
-                                                                Vehículos
-                                                            </h5>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-6">
-                                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-
-                                                            <h5 class="badge-info" for="defaultCheck1" style="margin:auto; ">
-                                                                Personal Policial
-
-                                                            </h5>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-
-                                                            <h5 class="badge-info" for="defaultCheck1" style="margin:auto; ">
-                                                                Combustible
-                                                            </h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card col-4">
-                                            <div class="card-header">
-                                                Entidades
-                                            </div>
-                                            <div class="card-body">
-
-                                                <div class="col-sm-12">
-                                                    <div class="row">
-
-                                                        <div class="col-3">
-                                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-
-                                                            <label class="fa fa-user" for="defaultCheck1" style="margin:auto; ">
-
-                                                            </label>
-                                                        </div>
-                                                        <div class="col-3">
-                                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-
-                                                            <label class="fa fa-car" for="defaultCheck1" style="margin:auto; ">
-
-                                                            </label>
-                                                        </div>
-
-                                                        <div class="col-3">
-                                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-
-                                                            <label class="fa fa-map-marker" for="defaultCheck1" style="margin:auto; ">
-
-                                                            </label>
-                                                        </div>
-                                                        <div class="col-3">
-                                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-
-                                                            <label class="fa fa-phone" for="defaultCheck1" style="margin:auto; ">
-
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-4" style="margin-right:20%!important">
-                                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-
-                                                            <label class="fa fa-bomb" for="defaultCheck1" style="margin:auto; ">
-
-                                                            </label>
-                                                        </div>
-                                                        <div class="col-4">
-                                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-
-                                                            <label class="fa fa-magic" for="defaultCheck1" style="margin:auto; ">
-
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card col-4">
-                                            <div class="card-header">
-                                                Bitácora
-                                            </div>
-                                            <div class="card-body">
-
-                                                <div class="col-sm-12">
-                                                    <div class="row">
-
-                                                        <div class="col-6">
-                                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-
-                                                            <h5 class="badge-info" for="defaultCheck1">
-                                                                Eventos
-                                                            </h5>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-
-                                                            <h5 class="badge-info" for="defaultCheck1">
-                                                                Entidades
-                                                            </h5>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-6">
-                                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-
-                                                            <h5 class="badge-info" for="defaultCheck1">
-                                                                Tareas Terminadas
-                                                            </h5>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                                            <h5 class="badge-info" for="defaultCheck1">
-                                                                Tareas Pendientes
-                                                            </h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-                        <div><button type="button" class="btn btn-info" style="margin:auto;" ; opacity:1">Generar Reporte</button></div>
-                    </div>
-                </div>
-
+            @*Pestanna #3 Body*@
+            <div class="card-body d-none card-body-flex" id="reporte-body">
+                @Html.Partial("~/Views/Dashboard/_GenerarReporte.cshtml")
             </div>
         </div>
     </div>
@@ -383,16 +201,14 @@
 
 
 <script type="text/javascript">
-
  @*Metodo para cambiar variable global hidden*@
 function seleccionado(seleccion) {
     var global = document.getElementById('custId').value;
-
     if (seleccion !== global) {
         document.getElementById('custId').value = seleccion;
     }
     if (seleccion == 1) {
-        CargarEntidadPersona();
+        $("#entidades-body").empty();
     }
     if (seleccion == 2) {
         CargarEntidadPersonaJuridica();
@@ -406,46 +222,36 @@ function seleccionado(seleccion) {
     if (seleccion == 5) {
      $("#entidades-body").empty();
     }
-
     if (seleccion == 6) {
-        CargarEntidadArmas();
+      $("#entidades-body").empty();
     }
     if (seleccion == 7) {
         CargarEntidadDrogas();
 
     }
-
 }
-
  @*Metodo para seleccionar la entidad*@
 function seleccionEntidad() {
     var global = document.getElementById('custId').value;
-
     if (global == 1) {
         $('#entidadPersonaModal').modal('show');
     }
     if (global == 2) {
-
         $('#entidadPersonaJuridicaModal').modal('show');
     }
     if (global == 3) {
-
         $('#entidadVehículoModal').modal('show');
     }
     if (global == 4) {
-
         $('#entidadUbicacionModal').modal('show');
     }
     if (global == 5) {
-
         $('#entidadTelefonoModal').modal('show');
     }
     if (global == 6) {
-
         $('#entidadArmaModal').modal('show');
     }
     if (global == 7) {
-
         $('#entidadDrogaModal').modal('show');
     }
     }
@@ -461,10 +267,12 @@ function seleccionEntidad() {
 @Html.Partial("~/Views/Caso/_ModalCasoInsert.cshtml")
 @Html.Partial("~/Views/Bitacora/_ModalEventoForm.cshtml")
 @Html.Partial("~/Views/Tarea/_ModalFormTarea.cshtml")
-@Html.Partial("~/Views/Vehiculo/_FormModal.cshtml")
 
 @Html.Partial("_ModalMensajeConfirmacion")
 
+@Html.Partial("~/Views/Gasto/_Tipo_GastoInsertarFormModal.cshtml")
+
 <script>
-    //$('select').selectpicker();
+    $('select').selectpicker();
+    sobreescribirJQueryMessages();
 </script>

@@ -15,7 +15,7 @@ namespace MCCM.AccesoDatos
             using (var context = new MCCMEntities())
             {
                 List<TMCCM_Grupo> data = context.TMCCM_Grupo
-                    .Where(e => e.TB_Eliminado == true)
+                    .Where(e => e.TB_Eliminado == false)
                     .Include(e => e.TMCCM_Grupo_Usuario)
                     .ToList();
 
@@ -40,9 +40,25 @@ namespace MCCM.AccesoDatos
         {
             using (var context = new MCCMEntities())
             {
-                return context.TMCCM_Grupo
-                    .Where(e => e.TB_Eliminado == true && e.TN_ID_Caso == idCaso)
+                List<TMCCM_Grupo> data = context.TMCCM_Grupo
+                    .Where(e => e.TB_Eliminado == false && e.TN_ID_Caso == idCaso)
+                    .Include(e => e.TMCCM_Grupo_Usuario)
                     .ToList();
+
+                foreach (TMCCM_Grupo grupo in data)
+                {
+                    foreach (TMCCM_Grupo_Usuario item in grupo.TMCCM_Grupo_Usuario)
+                    {
+                        context.Entry(item).Reference(e => e.TMCCM_Usuario).Load();
+                    }
+                    List<TMCCM_Grupo_Usuario> toRemoveList = grupo.TMCCM_Grupo_Usuario.Where(e => e.TMCCM_Usuario.TB_Eliminado == true).ToList();
+                    foreach (var toRemove in toRemoveList)
+                    {
+                        grupo.TMCCM_Grupo_Usuario.Remove(toRemove);
+                    }
+                }
+
+                return data;
             }
         }
 
@@ -69,8 +85,7 @@ namespace MCCM.AccesoDatos
         {
             using (var context = new MCCMEntities())
             {
-                data.TB_Eliminado = true;
-                data.TF_Fecha_Inicio = DateTime.Now;
+                data.TB_Eliminado = false;
                 TMCCM_Grupo newData = context.TMCCM_Grupo.Add(data);
                 foreach (TMCCM_Grupo_Usuario item in newData.TMCCM_Grupo_Usuario)
                 {
@@ -85,7 +100,7 @@ namespace MCCM.AccesoDatos
         {
             using (var context = new MCCMEntities())
             {
-                data.TB_Eliminado = true;
+                data.TB_Eliminado = false;
                 context.TMCCM_Grupo_Usuario.RemoveRange(context.TMCCM_Grupo_Usuario.Where(e => e.TN_ID_Grupo == data.TN_ID_Grupo));
                 context.TMCCM_Grupo_Usuario.AddRange(data.TMCCM_Grupo_Usuario);
                 context.Entry(data).State = EntityState.Modified;
@@ -103,7 +118,7 @@ namespace MCCM.AccesoDatos
             using (var context = new MCCMEntities())
             {
                 TMCCM_Grupo data = context.TMCCM_Grupo.Find(id);
-                data.TB_Eliminado = false;
+                data.TB_Eliminado = true;
                 context.Entry(data).State = EntityState.Modified;
                 context.SaveChanges();
             }

@@ -4,80 +4,80 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ba6c5c216d0745ae83e4b6a53f108f28" Name="Diagram1" ZoomLevel="77">
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Arma_Marca" Width="1.5" PointX="0.75" PointY="37.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Arma_Tipo_Arma" Width="1.5" PointX="0.75" PointY="39.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Droga_Tipo_Droga" Width="1.5" PointX="3.75" PointY="41.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Gasto_Tipo_Gasto" Width="1.5" PointX="6.75" PointY="21.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Persona_Genero" Width="1.5" PointX="6.75" PointY="18.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Persona_Juridica_Tipo_Organización" Width="1.5" PointX="0.75" PointY="25.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Persona_Nacionalidad" Width="1.5" PointX="6.75" PointY="41.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Persona_Sexo" Width="1.5" PointX="6.75" PointY="43.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Persona_Tipo_Identificacion" Width="1.5" PointX="6.75" PointY="46.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Telefono_Empresa_Telefonica" Width="1.5" PointX="3.75" PointY="20" IsExpanded="true" />
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Telefono_Icono_Telefono" Width="1.5" PointX="3.75" PointY="16.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Ubicacion_Canton" Width="1.5" PointX="0.75" PointY="43" IsExpanded="true" />
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Ubicacion_Distrito" Width="1.5" PointX="0.75" PointY="50.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Ubicacion_Provincia" Width="1.5" PointX="1.5" PointY="47.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Ubicacion_Tipo_Ubicacion" Width="1.5" PointX="0.75" PointY="53.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Vehiculo_Color" Width="1.5" PointX="3.75" PointY="44.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Vehiculo_Marca" Width="1.5" PointX="3.75" PointY="50.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_Caso" Width="1.5" PointX="0.75" PointY="28.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_Entidad_Droga" Width="1.5" PointX="6" PointY="29.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_Entidad_Telefono" Width="1.5" PointX="6" PointY="24.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_Entidad_Ubicacion" Width="1.5" PointX="3" PointY="34.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_Gasto" Width="1.5" PointX="9" PointY="23.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_Grupo" Width="1.5" PointX="3" PointY="74.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_Grupo_Usuario" Width="1.5" PointX="5.25" PointY="74.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_Grupo_Vehiculo" Width="1.5" PointX="8.25" PointY="74.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_Rol" Width="1.5" PointX="4.5" PointY="54.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_Usuario" Width="1.5" PointX="6.75" PointY="53.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_Vehiculo" Width="1.5" PointX="6" PointY="70.75" IsExpanded="true" />
-        <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Droga_Tipo_Droga_REL_TMCCM_Entidad_Droga" ManuallyRouted="false" />
-        <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Gasto_Tipo_Gasto_REL_TMCCM_Gasto" ManuallyRouted="false" />
-        <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Telefono_Empresa_Telefonica_REL_TMCCM_Entidad_Telefono" ManuallyRouted="false" />
-        <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Telefono_Icono_Telefono_REL_TMCCM_Entidad_Telefono" ManuallyRouted="false" />
-        <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Ubicacion_Canton_REL_TMCCM_C_Ubicacion_Distrito" ManuallyRouted="false" />
-        <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Ubicacion_Canton_REL_TMCCM_Entidad_Ubicacion" ManuallyRouted="false" />
-        <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Ubicacion_Provincia_REL_TMCCM_C_Ubicacion_Canton" ManuallyRouted="false" />
-        <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Ubicacion_Distrito_REL_TMCCM_Entidad_Ubicacion" ManuallyRouted="false" />
-        <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Ubicacion_Provincia_REL_TMCCM_Entidad_Ubicacion" ManuallyRouted="false" />
-        <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Ubicacion_Tipo_Ubicacion_REL_TMCCM_Entidad_Ubicacion" ManuallyRouted="false" />
-        <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_Droga" ManuallyRouted="false" />
-        <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_Telefono" ManuallyRouted="false" />
-        <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_Ubicacion" ManuallyRouted="false" />
-        <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Gasto" ManuallyRouted="false" />
-        <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Grupo" ManuallyRouted="false" />
-        <AssociationConnector Association="MCCMModel.FK_TMCCM_Grupo_REL_TMCCM_Grupo_Usuario" ManuallyRouted="false" />
-        <AssociationConnector Association="MCCMModel.FK_TMCCM_Grupo_REL_TMCCM_Grupo_Vehiculo" ManuallyRouted="false" />
-        <AssociationConnector Association="MCCMModel.FK_TMCCM_Usuario_REL_TMCCM_Grupo_Usuario" ManuallyRouted="false" />
-        <AssociationConnector Association="MCCMModel.FK_TMCCM_Vehiculo_REL_TMCCM_Grupo_Vehiculo" ManuallyRouted="false" />
-        <AssociationConnector Association="MCCMModel.TMCCM_Usuario_Rol" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Vehiculo_Clase" Width="1.5" PointX="6.75" PointY="49.5" />
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_Entidad_Arma" Width="1.5" PointX="6" PointY="34.125" />
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_Entidad_Persona" Width="1.5" PointX="9" PointY="28" />
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_Entidad_Persona_Juridica" Width="1.5" PointX="3" PointY="27.625" />
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_Entidad_Vehiculo" Width="1.5" PointX="9" PointY="39.875" />
+      <Diagram DiagramId="ba6c5c216d0745ae83e4b6a53f108f28" Name="Diagram1">
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Arma_Marca" Width="1.5" PointX="0.75" PointY="34.5" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Arma_Tipo_Arma" Width="1.5" PointX="0.75" PointY="37" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Droga_Tipo_Droga" Width="1.5" PointX="6.75" PointY="20.625" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Gasto_Tipo_Gasto" Width="1.5" PointX="3.75" PointY="20.75" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Persona_Genero" Width="1.5" PointX="3.75" PointY="56.125" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Persona_Juridica_Tipo_Organización" Width="1.5" PointX="3.75" PointY="17.75" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Persona_Nacionalidad" Width="1.5" PointX="3.75" PointY="58.75" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Persona_Sexo" Width="1.5" PointX="3.75" PointY="53.625" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Persona_Tipo_Identificacion" Width="1.5" PointX="3.75" PointY="46.875" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Telefono_Empresa_Telefonica" Width="1.5" PointX="0.75" PointY="20.125" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Telefono_Icono_Telefono" Width="1.5" PointX="0.75" PointY="23.5" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Ubicacion_Canton" Width="1.5" PointX="0.75" PointY="40.5" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Ubicacion_Distrito" Width="1.5" PointX="0.75" PointY="50.5" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Ubicacion_Provincia" Width="1.5" PointX="1.5" PointY="46.75" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Ubicacion_Tipo_Ubicacion" Width="1.5" PointX="0.75" PointY="43.75" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Vehiculo_Clase" Width="1.5" PointX="6.75" PointY="46.5" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Vehiculo_Color" Width="1.5" PointX="6.75" PointY="17" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_C_Vehiculo_Marca" Width="1.5" PointX="6.75" PointY="13.75" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_Caso" Width="1.5" PointX="0.75" PointY="28.125" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_Entidad_Arma" Width="1.5" PointX="3" PointY="28.5" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_Entidad_Droga" Width="1.5" PointX="9" PointY="22.75" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_Entidad_Persona" Width="1.5" PointX="6" PointY="34.375" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_Entidad_Persona_Juridica" Width="1.5" PointX="6" PointY="28.5" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_Entidad_Telefono" Width="1.5" PointX="3" PointY="23.75" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_Entidad_Ubicacion" Width="1.5" PointX="3" PointY="34.25" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_Entidad_Vehiculo" Width="1.5" PointX="9" PointY="28.25" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_Evento" Width="1.5" PointX="3" PointY="76.75" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_Gasto" Width="1.5" PointX="6" PointY="24.25" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_Grupo" Width="1.5" PointX="3" PointY="42.25" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_Grupo_Usuario" Width="1.5" PointX="8.25" PointY="42.75" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_Grupo_Vehiculo" Width="1.5" PointX="5.25" PointY="42.375" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_Rol" Width="1.5" PointX="4.5" PointY="50.625" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_Tarea" Width="1.5" PointX="9" PointY="34.25" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_Usuario" Width="1.5" PointX="6.75" PointY="50" />
+        <EntityTypeShape EntityType="MCCMModel.TMCCM_Vehiculo" Width="1.5" PointX="3" PointY="61.625" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Arma_Marca_REL_TMCCM_Entidad_Arma" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Arma_Tipo_Arma_REL_TMCCM_Entidad_Arma" />
+        <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Droga_Tipo_Droga_REL_TMCCM_Entidad_Droga" />
+        <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Gasto_Tipo_Gasto_REL_TMCCM_Gasto" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Persona_Genero_REL_TMCCM_Entidad_Persona" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Persona_Juridica_Tipo_Organización_REL_TMCCM_Entidad_Persona_Juridica" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Persona_Nacionalidad_REL_TMCCM_Entidad_Persona" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Persona_Sexo_REL_TMCCM_Entidad_Persona" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Persona_Tipo_Identificacion_REL_TMCCM_Entidad_Persona" />
+        <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Telefono_Empresa_Telefonica_REL_TMCCM_Entidad_Telefono" />
+        <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Telefono_Icono_Telefono_REL_TMCCM_Entidad_Telefono" />
+        <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Ubicacion_Canton_REL_TMCCM_C_Ubicacion_Distrito" />
+        <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Ubicacion_Canton_REL_TMCCM_Entidad_Ubicacion" />
+        <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Ubicacion_Provincia_REL_TMCCM_C_Ubicacion_Canton" />
+        <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Ubicacion_Distrito_REL_TMCCM_Entidad_Ubicacion" />
+        <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Ubicacion_Provincia_REL_TMCCM_Entidad_Ubicacion" />
+        <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Ubicacion_Tipo_Ubicacion_REL_TMCCM_Entidad_Ubicacion" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Vehiculo_Clase_REL_TMCCM_Entidad_Vehiculo" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Vehiculo_Color_REL_TMCCM_Entidad_Vehiculo" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_C_Vehiculo_Marca_REL_TMCCM_Entidad_Vehiculo" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_Arma" />
+        <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_Droga" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_PErsona" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_Persona_Juridica" />
+        <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_Telefono" />
+        <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_Ubicacion" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_Vehiculo" />
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_Evento" Width="1.5" PointX="3" PointY="24" />
-        <EntityTypeShape EntityType="MCCMModel.TMCCM_Tarea" Width="1.5" PointX="12" PointY="41.375" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Evento" />
+        <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Gasto" />
+        <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Grupo" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Tarea" />
+        <AssociationConnector Association="MCCMModel.FK_TMCCM_Grupo_REL_TMCCM_Grupo_Usuario" />
+        <AssociationConnector Association="MCCMModel.FK_TMCCM_Grupo_REL_TMCCM_Grupo_Vehiculo" />
+        <AssociationConnector Association="MCCMModel.FK_TMCCM_Usuario_REL_TMCCM_Grupo_Usuario" />
+        <AssociationConnector Association="MCCMModel.FK_TMCCM_Vehiculo_REL_TMCCM_Grupo_Vehiculo" />
         <AssociationConnector Association="MCCMModel.FK_TMCCM_Usuario_REL_TMCCM_Tarea" />
-        </Diagram>
+        <AssociationConnector Association="MCCMModel.TMCCM_Usuario_Rol" />
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

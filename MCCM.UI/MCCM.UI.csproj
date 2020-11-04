@@ -55,6 +55,24 @@
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -160,10 +178,17 @@
     <Compile Include="Controllers\TareaController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\VehiculoController.cs" />
+    <Compile Include="Filters\VerificaSession.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="MCCMDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MCCMDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlServerTypes\Loader.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -174,6 +199,7 @@
     <Content Include="Content\bootstrap-select.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\Colores.css" />
     <Content Include="Content\css\Dashdboard.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
@@ -181,6 +207,7 @@
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Img\icono.png" />
     <Content Include="Scripts\bootstrap-select.js" />
     <Content Include="Scripts\bootstrap-select.min.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -338,6 +365,17 @@
     <Content Include="Scripts\bootstrap-select.min.js.map" />
     <Content Include="Scripts\bootstrap-select.js.map" />
     <Content Include="Content\bootstrap-select.css.map" />
+    <Content Include="MCCMDataSet.xsc">
+      <DependentUpon>MCCMDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="MCCMDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MCCMDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="MCCMDataSet.xss">
+      <DependentUpon>MCCMDataSet.xsd</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />
@@ -363,6 +401,7 @@
     <Content Include="Scripts\js\Grupo.js" />
     <Content Include="Scripts\js\Tarea.js" />
     <Content Include="Scripts\js\Usuario.js" />
+    <Content Include="Scripts\js\Util.js" />
     <Content Include="Scripts\js\Vehiculo.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper-utils.js" />
@@ -436,6 +475,19 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -470,27 +522,34 @@
     <Content Include="Views\EntidadUbicacion\_EntidadUbicacion.cshtml" />
     <Content Include="Views\EntidadVehiculo\_EntidadVehiculo.cshtml" />
     <Content Include="Views\Bitacora\_ModalEventoForm.cshtml" />
+    <Content Include="Views\Usuario\ListaUsuario.cshtml" />
     <Content Include="Views\Tarea\_ModalFormTarea.cshtml" />
     <Content Include="Views\Dashboard\_ModalMensajeConfirmacion.cshtml" />
-    <Content Include="Views\Gasto\_Lista.cshtml" />
-    <Content Include="Views\Gasto\_FormModal.cshtml" />
-    <Content Include="Views\Grupo\_Lista.cshtml" />
-    <Content Include="Views\Grupo\_FormModal.cshtml" />
-    <Content Include="Views\Usuario\ListaUsuario.cshtml" />
     <Content Include="Views\Usuario\_modalFormAgregarUsuario.cshtml" />
     <Content Include="Views\Usuario\_modalFormActualizarUsuario.cshtml" />
     <Content Include="Views\Dashboard\Login.cshtml" />
-    <Content Include="Views\Gasto\_Gasto.cshtml" />
-    <Content Include="Views\Grupo\_Grupo.cshtml" />
-    <Content Include="Views\Vehiculo\_Vehiculo.cshtml" />
-    <Content Include="Views\Vehiculo\_Lista.cshtml" />
-    <Content Include="Views\Vehiculo\_FormModal.cshtml" />
     <Content Include="Views\Usuario\InsertarUsuario.cshtml" />
     <Content Include="Views\Usuario\ModificarUsuario.cshtml" />
     <Content Include="Views\EntidadDroga\_ModalTipoDroga.cshtml" />
     <Content Include="Views\EntidadArma\_ModalTipoArma.cshtml" />
     <Content Include="Views\EntidadArma\_ModalMarcaArma.cshtml" />
     <Content Include="Views\EntidadUbicacion\_ModalTipoUbicacion.cshtml" />
+    <Content Include="Views\Dashboard\_Modal_C_Telefono_Proveedor.cshtml" />
+    <Content Include="Views\Grupo\_ActualizarFormModal.cshtml" />
+    <Content Include="Views\Grupo\_Card.cshtml" />
+    <Content Include="Views\Grupo\_InsertarFormModal.cshtml" />
+    <Content Include="Views\Grupo\_ListaCards.cshtml" />
+    <Content Include="Views\Dashboard\_GenerarReporte.cshtml" />
+    <Content Include="Views\Vehiculo\_Grupo_VehiculoActualizarFormModal.cshtml" />
+    <Content Include="Views\Vehiculo\_Grupo_VehiculoCard.cshtml" />
+    <Content Include="Views\Vehiculo\_Grupo_VehiculoInsertarFormModal.cshtml" />
+    <Content Include="Views\Vehiculo\_Grupo_VehiculoListaCards.cshtml" />
+    <Content Include="Views\Gasto\_ActualizarFormModal.cshtml" />
+    <Content Include="Views\Gasto\_Card.cshtml" />
+    <Content Include="Views\Gasto\_FormModal.cshtml" />
+    <Content Include="Views\Gasto\_InsertarFormModal.cshtml" />
+    <Content Include="Views\Gasto\_ListaCards.cshtml" />
+    <Content Include="Views\Gasto\_Tipo_GastoInsertarFormModal.cshtml" />
     <Content Include="Views\EntidadVehiculo\_ModalMarcaVehiculo.cshtml" />
     <Content Include="Views\EntidadVehiculo\_ModalClaseVehiculo.cshtml" />
     <Content Include="Views\EntidadVehiculo\_ModalColorVehiculo.cshtml" />
@@ -509,9 +568,9 @@
       <Project>{8b873827-90fe-4f09-a8cc-612b61d57269}</Project>
       <Name>MCCM.Entidad</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MCCM.ReglasNegocio\MCCM.ReglasNegocio.csproj">
-      <Project>{34e13288-382a-44bb-ae35-b048e860caf7}</Project>
-      <Name>MCCM.ReglasNegocio</Name>
+    <ProjectReference Include="..\ReglasNegocio\ReglasNegocio.csproj">
+      <Project>{ec1a40d5-dbc0-4b5c-86f4-ef4f78462293}</Project>
+      <Name>ReglasNegocio</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -519,6 +578,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
