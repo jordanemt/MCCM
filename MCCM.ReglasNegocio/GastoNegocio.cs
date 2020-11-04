@@ -48,5 +48,10 @@ namespace MCCM.ReglasNegocio
         {
             return datos.ListarTipoGasto();
         }
+
+        public TMCCM_C_Gasto_Tipo_Gasto InsertarTipo_Gasto(TMCCM_C_Gasto_Tipo_Gasto data)
+        {
+            return datos.InsertarTipo_Gasto(data);
+        }
     }
 }

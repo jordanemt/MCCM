@@ -48,8 +48,10 @@ $(document).on("click", ".caso", function () {
     }
     
     sessionStorage.CasoID = $(this).attr('id');
-    CargarEventos();
-    CargarTareas();
+    //CargarEventos();
+    //CargarTareas();
+    listarGastos();
+    listarGrupos();
     $("#casosTitulo").html($(this).children(".card-body").children().first().children().last().text());
     
 });
@@ -181,7 +183,7 @@ function CargarCasos() {
             $("#casos-body").children().last().addClass('filaseleccionada');
             $("#casos-body").children().last()[0].scrollIntoView();
             $("#casosTitulo").html($("#casos-body").children().last().children(".card-body").children().first().children().last().text());
-            sessionStorage.CasoID = $("#casos-body").last().attr("id");
+            //sessionStorage.CasoID = $("#casos-body").last().attr("id");
             insert = 0;
         }
     });

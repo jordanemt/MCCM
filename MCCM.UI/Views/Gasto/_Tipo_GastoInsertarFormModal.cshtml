@@ -1,0 +1,51 @@
+﻿@model MCCM.Entidad.TMCCM_C_Gasto_Tipo_Gasto
+
+<div class="modal fade" id="tipo_gasto-form-modal">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 id="gasto-form-modal-title" class="modal-title">Insertar Tipo de Gasto</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form id="tipo_gasto-form">
+                    <div class="form-group row justify-content-center">
+                        <label class="control-label col-sm-3" for="TC_Nombre">Nombre:</label>
+                        <div class="row col-sm-6">
+                            <input id="TC_Nombre" name="TC_Nombre" class="form-control col-sm-11" type="text" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group row justify-content-center">
+                        <label class="control-label col-sm-3" for="TC_Descripcion">Descripción:</label>
+                        <div class="row col-sm-6">
+                            <input id="TC_Descripcion" name="TC_Descripcion" class="form-control col-sm-11" type="text" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group row justify-content-center">
+                        <input id="gasto-form-modal-submit" type="button" value="Insertar" class="btn btn-primary submit-button mx-2" onclick="insertarTipo_Gasto()" />
+                        <button type="button" class="btn btn-danger mx-2" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#tipo_gasto-form-modal').on('shown.bs.modal', function () {
+        $('#gasto-form-modal').modal('hide');
+        $('#tipo_gasto-form').trigger('reset');
+        $('#TC_Nombre-error').hide();
+        $('#TC_Descripcion-error').hide();
+    })
+
+    $('#tipo_gasto-form-modal').on('hidden.bs.modal', function () {
+        $('#gasto-form-modal').modal('show');
+    })
+</script>

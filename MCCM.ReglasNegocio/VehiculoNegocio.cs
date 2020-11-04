@@ -13,29 +13,29 @@ namespace MCCM.ReglasNegocio
             datos = new VehiculoDatos();
         }
 
-        public IEnumerable<TMCCM_Vehiculo> GetAll()
+        public IEnumerable<TMCCM_Vehiculo> Listar()
         {
-            return datos.GetAll();
+            return datos.Listar();
         }
 
-        public TMCCM_Vehiculo GetById(int id)
+        public TMCCM_Vehiculo ObtenerPorId(int id)
         {
-            return datos.GetById(id);
+            return datos.ObtenerPorId(id);
         }
 
-        public TMCCM_Vehiculo Insert(TMCCM_Vehiculo data)
+        public TMCCM_Vehiculo Insertar(TMCCM_Vehiculo data)
         {
-            return datos.Insert(data);
+            return datos.Insertar(data);
         }
 
-        public void Update(TMCCM_Vehiculo data)
+        public TMCCM_Vehiculo Actualizar(TMCCM_Vehiculo data)
         {
-            datos.Update(data);
+            return datos.Actualizar(data);
         }
 
         public void DeleteById(int id)
         {
-            datos.DeleteById(id);
+            datos.EliminarPorId(id);
         }
     }
 }
