@@ -20,7 +20,7 @@ namespace MCCM.AccesoDatos
                 {
                     TN_ID_Caso = entidadVehiculoDTO.TN_ID_Caso,
                     TN_ID_Marca_Vehiculo = entidadVehiculoDTO.TN_ID_Marca_Vehiculo,
-                    TN_ID_Icono_Vehiculo = entidadVehiculoDTO.TN_ID_Icono_Vehiculo,
+
                     TN_ID_Color_Vehiculo = entidadVehiculoDTO.TN_ID_Color_Vehiculo,
                     TC_Placa = entidadVehiculoDTO.TC_Placa,
                     TC_Estilo = entidadVehiculoDTO.TC_Estilo,
@@ -47,7 +47,6 @@ namespace MCCM.AccesoDatos
                     result.TN_ID_Vehiculo = entidadVehiculoDTO.TN_ID_Vehiculo;
                     result.TN_ID_Caso = entidadVehiculoDTO.TN_ID_Caso;
                     result.TN_ID_Marca_Vehiculo = entidadVehiculoDTO.TN_ID_Marca_Vehiculo;
-                    result.TN_ID_Icono_Vehiculo = entidadVehiculoDTO.TN_ID_Icono_Vehiculo;
                     result.TN_ID_Color_Vehiculo = entidadVehiculoDTO.TN_ID_Color_Vehiculo;
                     result.TC_Placa = entidadVehiculoDTO.TC_Placa;
                     result.TC_Estilo = entidadVehiculoDTO.TC_Estilo;
@@ -91,7 +90,7 @@ namespace MCCM.AccesoDatos
                        TN_ID_Vehiculo = vehiculoItem.TN_ID_Vehiculo,
                        TN_ID_Caso = vehiculoItem.TN_ID_Caso,
                        TN_ID_Marca_Vehiculo = vehiculoItem.TN_ID_Marca_Vehiculo,
-                       TN_ID_Icono_Vehiculo = vehiculoItem.TN_ID_Icono_Vehiculo,
+                
                        TN_ID_Color_Vehiculo = vehiculoItem.TN_ID_Color_Vehiculo,
                        TC_Placa = vehiculoItem.TC_Placa,
                        TC_Estilo = vehiculoItem.TC_Estilo,
@@ -120,7 +119,7 @@ namespace MCCM.AccesoDatos
                            TN_ID_Vehiculo = vehiculoItem.TN_ID_Vehiculo,
                            TN_ID_Caso = vehiculoItem.TN_ID_Caso,
                            TN_ID_Marca_Vehiculo = vehiculoItem.TN_ID_Marca_Vehiculo,
-                           TN_ID_Icono_Vehiculo = vehiculoItem.TN_ID_Icono_Vehiculo,
+                       
                            TN_ID_Color_Vehiculo = vehiculoItem.TN_ID_Color_Vehiculo,
                            TC_Placa = vehiculoItem.TC_Placa,
                            TC_Estilo = vehiculoItem.TC_Estilo,

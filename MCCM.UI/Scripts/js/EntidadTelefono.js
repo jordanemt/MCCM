@@ -41,7 +41,8 @@ function validarFormularioEntidadTelefono() {
     });
 }
 
-
+/*Descripción: Metodo que registra una entidad telefono,
+carga el formulario y lo envía los datos por el metodo POST*/
 $(document).on("click", "#btnRegistrarEntidadTelefono", function (e) {
     e.preventDefault();
     if ($("#FormEntidadTelefono").valid()) {
@@ -76,8 +77,7 @@ $(document).on("click", "#btnRegistrarEntidadTelefono", function (e) {
     }
 });
 
-/*Descripción: Metodo que registra una entidad telefono,
-carga el formulario y lo envía los datos por el metodo POST*/
+
 
 
 $(document).on("click", "#btnRegistrarTelefonoProveedor", function (e) {

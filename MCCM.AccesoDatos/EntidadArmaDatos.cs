@@ -31,7 +31,6 @@ namespace MCCM.AccesoDatos
                 {
                     result.TN_ID_Arma = entidadArma.TN_ID_Arma;
                     result.TN_ID_Marca_Arma = entidadArma.TN_ID_Marca_Arma;
-                    result.TN_ID_Icono_Arma = entidadArma.TN_ID_Icono_Arma;
                     result.TN_ID_Tipo_Arma = entidadArma.TN_ID_Tipo_Arma;
                     result.TC_Modelo_Arma = entidadArma.TC_Modelo_Arma;
                     result.TC_Calibre = entidadArma.TC_Calibre;
@@ -73,7 +72,6 @@ namespace MCCM.AccesoDatos
                        TN_ID_Arma = armaItem.TN_ID_Arma,
                        TN_ID_Caso = armaItem.TN_ID_Caso,
                        TN_ID_Marca_Arma = armaItem.TN_ID_Marca_Arma,
-                       TN_ID_Icono_Arma = armaItem.TN_ID_Icono_Arma,
                        TN_ID_Tipo_Arma = armaItem.TN_ID_Tipo_Arma,
                        TC_Modelo_Arma = armaItem.TC_Modelo_Arma,
                        TC_Calibre = armaItem.TC_Calibre,
@@ -100,7 +98,7 @@ namespace MCCM.AccesoDatos
                            TN_ID_Arma = armaItem.TN_ID_Arma,
                            TN_ID_Caso = armaItem.TN_ID_Caso,
                            TN_ID_Marca_Arma = armaItem.TN_ID_Marca_Arma,
-                           TN_ID_Icono_Arma = armaItem.TN_ID_Icono_Arma,
+ 
                            TN_ID_Tipo_Arma = armaItem.TN_ID_Tipo_Arma,
                            TC_Modelo_Arma = armaItem.TC_Modelo_Arma,
                            TC_Calibre = armaItem.TC_Calibre,

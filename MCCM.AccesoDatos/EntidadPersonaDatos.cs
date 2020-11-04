@@ -36,7 +36,7 @@ namespace MCCM.AccesoDatos
                 {
                     result.TN_ID_Persona = entidadPersonaDTO.TN_ID_Persona;
                         result.TN_ID_Tipo_Identificacion = entidadPersonaDTO.TN_ID_Tipo_Identificacion;
-                        result.TN_ID_Icono_Persona = entidadPersonaDTO.TN_ID_Icono_Persona;
+                       // result.TN_ID_Icono_Persona = entidadPersonaDTO.TN_ID_Icono_Persona;
                         result.TN_ID_Sexo = entidadPersonaDTO.TN_ID_Sexo;
                         result.TN_ID_Genero = entidadPersonaDTO.TN_ID_Genero;
                         result.TN_ID_Nacionalidad = entidadPersonaDTO.TN_ID_Nacionalidad;
@@ -89,7 +89,7 @@ namespace MCCM.AccesoDatos
                           TN_ID_Persona = personaItem.TN_ID_Persona,
                           TN_ID_Caso = personaItem.TN_ID_Caso,
                           TN_ID_Tipo_Identificacion = personaItem.TN_ID_Tipo_Identificacion,
-                          TN_ID_Icono_Persona = personaItem.TN_ID_Icono_Persona,
+                         // TN_ID_Icono_Persona = personaItem.TN_ID_Icono_Persona,
                           TN_ID_Sexo = personaItem.TN_ID_Sexo,
                           TN_ID_Genero = personaItem.TN_ID_Genero,
                           TN_ID_Nacionalidad = personaItem.TN_ID_Nacionalidad,
@@ -127,7 +127,7 @@ namespace MCCM.AccesoDatos
                                TN_ID_Persona = personaItem.TN_ID_Persona,
                                TN_ID_Caso = personaItem.TN_ID_Caso,
                                TN_ID_Tipo_Identificacion = personaItem.TN_ID_Tipo_Identificacion,
-                               TN_ID_Icono_Persona = personaItem.TN_ID_Icono_Persona,
+                               //TN_ID_Icono_Persona = personaItem.TN_ID_Icono_Persona,
                                TN_ID_Sexo = personaItem.TN_ID_Sexo,
                                TN_ID_Genero = personaItem.TN_ID_Genero,
                                TN_ID_Nacionalidad = personaItem.TN_ID_Nacionalidad,

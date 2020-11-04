@@ -22,7 +22,7 @@ namespace MCCM.AccesoDatos
                     TC_ID_Cedula_Juridica = entidadPersonaJuridicaDTO.TC_ID_Cedula_Juridica,
                     TC_Nombre_Organización = entidadPersonaJuridicaDTO.TC_Nombre_Organización,
                     TC_Nombre_Comercial = entidadPersonaJuridicaDTO.TC_Nombre_Comercial,
-                    TN_ID_Icono_Persona_Juridica = entidadPersonaJuridicaDTO.TN_ID_Icono_Persona_Juridica,
+                    //TN_ID_Icono_Persona_Juridica = entidadPersonaJuridicaDTO.TN_ID_Icono_Persona_Juridica,
                     TB_Fotografia = utilidades.ConverToBytes(entidadPersonaJuridicaDTO.TB_Fotografia),
                     TN_ID_Tipo_Organizacion = entidadPersonaJuridicaDTO.TN_ID_Tipo_Organizacion,
                     TC_Sitio_Web = entidadPersonaJuridicaDTO.TC_Sitio_Web,
@@ -50,7 +50,7 @@ namespace MCCM.AccesoDatos
                     result.TC_ID_Cedula_Juridica = entidadPersonaJuridicaDTO.TC_ID_Cedula_Juridica;
                     result.TC_Nombre_Organización = entidadPersonaJuridicaDTO.TC_Nombre_Organización;
                     result.TC_Nombre_Comercial = entidadPersonaJuridicaDTO.TC_Nombre_Comercial;
-                    result.TN_ID_Icono_Persona_Juridica = entidadPersonaJuridicaDTO.TN_ID_Icono_Persona_Juridica;
+                   // result.TN_ID_Icono_Persona_Juridica = entidadPersonaJuridicaDTO.TN_ID_Icono_Persona_Juridica;
                     result.TB_Fotografia = utilidades.ConverToBytes(entidadPersonaJuridicaDTO.TB_Fotografia);
                     result.TN_ID_Tipo_Organizacion = entidadPersonaJuridicaDTO.TN_ID_Tipo_Organizacion;
                     result.TC_Sitio_Web = entidadPersonaJuridicaDTO.TC_Sitio_Web;
@@ -70,7 +70,7 @@ namespace MCCM.AccesoDatos
         {
             using (var context = new MCCMEntities())
             {
-                var result = context.TMCCM_Entidad_Persona_Juridica.SingleOrDefault(b => b.TN_ID_Icono_Persona_Juridica == ID);
+                var result = context.TMCCM_Entidad_Persona_Juridica.SingleOrDefault(b => b.TN_ID_Persona_Juridica == ID);
                 if (result != null)
                 {
                     result.TB_Eliminado = false;
@@ -94,7 +94,7 @@ namespace MCCM.AccesoDatos
                        TC_ID_Cedula_Juridica = personaJuridicaItem.TC_ID_Cedula_Juridica,
                        TC_Nombre_Organización = personaJuridicaItem.TC_Nombre_Organización,
                        TC_Nombre_Comercial = personaJuridicaItem.TC_Nombre_Comercial,
-                       TN_ID_Icono_Persona_Juridica = personaJuridicaItem.TN_ID_Icono_Persona_Juridica,
+                       //TN_ID_Icono_Persona_Juridica = personaJuridicaItem.TN_ID_Icono_Persona_Juridica,
                        imgTemporal = utilidades.ConvertToString64(personaJuridicaItem.TB_Fotografia),
                        TN_ID_Tipo_Organizacion = personaJuridicaItem.TN_ID_Tipo_Organizacion,
                        TC_Sitio_Web = personaJuridicaItem.TC_Sitio_Web,
@@ -123,7 +123,7 @@ namespace MCCM.AccesoDatos
                            TC_ID_Cedula_Juridica = personaJuridicaItem.TC_ID_Cedula_Juridica,
                            TC_Nombre_Organización = personaJuridicaItem.TC_Nombre_Organización,
                            TC_Nombre_Comercial = personaJuridicaItem.TC_Nombre_Comercial,
-                           TN_ID_Icono_Persona_Juridica = personaJuridicaItem.TN_ID_Icono_Persona_Juridica,
+
                            imgTemporal = utilidades.ConvertToString64(personaJuridicaItem.TB_Fotografia),
                            TN_ID_Tipo_Organizacion = personaJuridicaItem.TN_ID_Tipo_Organizacion,
                            TC_Sitio_Web = personaJuridicaItem.TC_Sitio_Web,

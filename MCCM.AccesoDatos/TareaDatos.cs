@@ -34,6 +34,7 @@ namespace MCCM.AccesoDatos
                     result.TF_Fecha = tarea.TF_Fecha;
                     result.TC_Diligencia = tarea.TC_Diligencia;
                     result.TC_Lugar = tarea.TC_Lugar;
+                    result.TN_Tipo = tarea.TN_Tipo;
                     context.Entry(result).State = EntityState.Modified;
                     context.SaveChanges();
                 }
@@ -63,13 +64,15 @@ namespace MCCM.AccesoDatos
                               where t.TB_Eliminado == false
                               where t.TN_ID_Caso == idCaso
                               where t.TN_ID_Usuario==u.TN_ID_Usuario
+                              orderby t.TN_Tipo ascending , t.TF_Fecha descending
                               select new
                               {
                                   TN_ID_Tarea = t.TN_ID_Tarea,
                                   TC_Diligencia = t.TC_Diligencia,
                                   TC_Lugar= t.TC_Lugar,
                                   T_Usuario = u.TC_Identificacion +" "+ u.TC_Nombre +" "+u.TC_Primer_Apellido+" "+u.TC_Segundo_Apellido,
-                                  TF_Fecha = t.TF_Fecha
+                                  TF_Fecha = t.TF_Fecha,
+                                  TN_Tipo = t.TN_Tipo
                               };
                 return JsonConvert.SerializeObject(anonimo, Formatting.Indented);
             }
@@ -90,7 +93,8 @@ namespace MCCM.AccesoDatos
                                   TC_Diligencia = t.TC_Diligencia,
                                   TN_ID_Usuario = t.TN_ID_Usuario,
                                   TC_Lugar = t.TC_Lugar,
-                                  TF_Fecha = t.TF_Fecha
+                                  TF_Fecha = t.TF_Fecha,
+                                  TN_Tipo = t.TN_Tipo
                               };
                 return JsonConvert.SerializeObject(anonimo, Formatting.Indented);   
             }
@@ -102,7 +106,7 @@ namespace MCCM.AccesoDatos
                               where u.TB_Eliminado == false
                               select new
                               {
-                                  TN_ID_Tarea = u.TN_ID_Usuario,
+                                  TN_ID_Usuario = u.TN_ID_Usuario,
                                   TC_Identificacion = u.TC_Identificacion,
                                   TC_Nombre_Completo = u.TC_Nombre + " " + u.TC_Primer_Apellido + " " + u.TC_Segundo_Apellido
                               };

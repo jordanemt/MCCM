@@ -10,14 +10,15 @@ function validarFormularioTarea() {
             TC_Diligencia: { required: true },
             TC_Lugar: { required: true },
             TN_ID_Usuario: { required: true },
-            TF_Fecha_Tarea: { required: true }
+            TF_Fecha_Tarea: { required: true },
+            TN_Tipo: { required: true }
         },
         messages: {
             TC_Diligencia: { required: "Debe indicar la Diligencia" },
             TC_Lugar: { required: "Debe indicar el Lugar" },
             TN_ID_Usuario: { required: "Debe indicar a quién se le asigna la tarea" },
-            TF_Fecha_Tarea: { required: "Debe indicar la fecha limite" }
-
+            TF_Fecha_Tarea: { required: "Debe indicar la fecha limite" },
+            TN_Tipo: { required: "Seleccione un tipo" }
         },
         submitHandler: function (form) {
             return false;
@@ -43,6 +44,7 @@ function cargarCatalogoUsuario() {
 }
 
 $(document).on("click", "#btnRegistrarTarea", function (e) {
+    
     e.preventDefault();
     if ($("#FormTarea").valid()) {
         var form = new FormData($("#FormTarea")[0]);
@@ -84,15 +86,24 @@ function CargarTareas() {
         url: "/Tarea/ListarTarea",
         data: { "caso": sessionStorage.CasoID }
     }).done(function (data) {
+
         let tareas = new Array();
         tareas = JSON.parse(data);
 
         $("#tareas-body").empty();
         for (let i = 0; i < tareas.length; i++) {
+            let iconoTarea = -1;
+            if (tareas[i].TN_Tipo == 1) {
+                iconoTarea = '<i class="fa fa-warning" aria-hidden="true"></i>';
+            } else if (tareas[i].TN_Tipo == 2) {
+                iconoTarea = '<i class="fa fa-tasks" aria-hidden="true"></i>';
+            } else {
+                iconoTarea = '<i class="fa fa-check" aria-hidden="true"></i>';
+            }
             $("#tareas-body").append(
                 '<div class="card tarea" id="' + tareas[i].TN_ID_Tarea + '">' +
-                    '<div class="card-header">' +
-                        ' Tarea Codigo #' + tareas[i].TN_ID_Tarea +
+                '<div class="card-header">' +
+                    '<div>'+iconoTarea+'</div>' + "Taread Codigo #"+tareas[i].TN_ID_Tarea +
                         '<div>' +
                             '<a href="#" class="editarTarea" id="' + tareas[i].TN_ID_Tarea + '"><span><i class="fa fa-pencil" aria-hidden="true"></i></span ></a > ' +
                             '<a href="#" class="borrar borrarTarea" id="' + tareas[i].TN_ID_Tarea + '"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span ></a > ' +
@@ -154,25 +165,26 @@ function eliminarTarea(tareaID, elemento) {
 
 
 $(document).on("click", ".editarTarea", function () {
-    alert("HOLA2.0");
     $.ajax({
         type: "GET",
         url: "/Tarea/ObtenerTareaPorID",
         data: { "ID": $(this).attr('ID') }
     }).done(function (data) {
-        let tarea = new Array();
-        tarea = JSON.parse(data);
+        let tarea = JSON.parse(data);
+
         $("#tituloFormTarea").html("Modificar Tarea");
-        $("#TN_ID_Tarea").val(tarea.TN_ID_Tarea);
-        $(".input_Tarea_Lugar").val(tarea.TC_Lugar);
-        $("#TC_Diligencia").val(tarea.TC_Diligencia);
-        $("#TN_ID_Usuario").val(tarea.TN_ID_Usuario);
+        $("#TN_ID_Tarea").val(tarea[0].TN_ID_Tarea);
+        $(".input_Tarea_Lugar").val(tarea[0].TC_Lugar);
+        $("#TC_Diligencia").val(tarea[0].TC_Diligencia);
+        $("#TN_ID_Usuario").val(tarea[0].TN_ID_Usuario);
         $("#TN_ID_Usuario").selectpicker("refresh");
+        $("#TN_Tipo").val(tarea[0].TN_Tipo);
+        $("#TN_Tipo").selectpicker("refresh");
         $("#divTareaID").show();
         $("#btnModificarTarea").show();
         $("#btnRegistrarTarea").hide();
-        $('#TF_Fecha_Tarea').val(tarea.TF_Fecha);
-        iniciarCalendarioTarea(tarea.TF_Fecha);
+        $('#TF_Fecha_Tarea').val(tarea[0].TF_Fecha);
+        iniciarCalendarioTarea(tarea[0].TF_Fecha);
         $("#ModalFormTarea").modal("show");
         
     });
