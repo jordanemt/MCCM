@@ -68,8 +68,8 @@ function saveAsPDF() {
 }
 
 $(document).ready(function () {
-    changeVisiblePestannaBody('reporte-body');
-    generarReporte();
+    changeVisiblePestannaBody('pestanna-1-body');
+    //generarReporte();
     $('#picker').daterangepicker({
         "showDropdowns": true,
         "showWeekNumbers": true,
