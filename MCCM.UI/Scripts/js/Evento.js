@@ -147,7 +147,7 @@ function CargarEventos() {
 
             $("#bitacora-body").append(
                 '<div class="card evento" id="' + eventos[i].TN_ID_Evento + '" >' +
-                '<div class="card-header">' +
+                '<div class="card-header gris_claro">' +
                 ' Evento Codigo #' + eventos[i].TN_ID_Evento +
                 '<div>' +
                 '<a href="#" class="editarEvento" id="' + eventos[i].TN_ID_Evento + '"><span><i class="fa fa-pencil icono_evento" aria-hidden="true"></i></span ></a > ' +

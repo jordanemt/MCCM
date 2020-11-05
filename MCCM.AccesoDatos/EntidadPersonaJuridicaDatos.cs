@@ -16,14 +16,13 @@ namespace MCCM.AccesoDatos
             using (var context = new MCCMEntities())
             {
                 entidadPersonaJuridica.TB_Eliminado = false;
-                entidadPersonaJuridica.TF_Fecha_Creacion = DateTime.Now;
                 context.TMCCM_Entidad_Persona_Juridica.Add(entidadPersonaJuridica);
                 context.SaveChanges();
 
             }
         }
 
-        public void ActualizarEntidadPersonaJuridica(TMCCM_Entidad_Persona_Juridica entidadPersonaJuridica)
+        public void ModificarEntidadPersonaJuridica(TMCCM_Entidad_Persona_Juridica entidadPersonaJuridica)
         {
             using (var context = new MCCMEntities())
             {
@@ -38,7 +37,7 @@ namespace MCCM.AccesoDatos
                     result.TC_Sitio_Web = entidadPersonaJuridica.TC_Sitio_Web;
                     result.TC_Comentario = entidadPersonaJuridica.TC_Comentario;
                     result.TF_Fecha_Creacion = entidadPersonaJuridica.TF_Fecha_Creacion;
-                    result.TF_Fecha_Modificacion = DateTime.Now;
+                    result.TF_Fecha_Modificacion = entidadPersonaJuridica.TF_Fecha_Modificacion;
                     result.TC_Creado_Por = entidadPersonaJuridica.TC_Creado_Por;
                     result.TC_Modificado_Por = entidadPersonaJuridica.TC_Modificado_Por;
                     result.TB_Verificado = entidadPersonaJuridica.TB_Verificado;

@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title col-11 text-center" id="tituloEntidadTelefonoInsertar">Insertar Entidad Telefono</h5>
+                <h5 class="modal-title font_blanco text-center" id="tituloEntidadTelefonoInsertar">Insertar Entidad Telefono</h5>
 
                 <button type="button" class="close col-1" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -23,7 +23,7 @@
                         <label for="empresaTelefonica" class="col-md-3 col-form-label">Proveedor</label>
                         <select class="col-md-8 form-control" name="TN_ID_Proveedor" title="Seleccione Proveedor..." id="TN_ID_Proveedor" required>
                         </select>
-                        <a href="#" data-toggle="modal" data-target="#telefonoProveedorModal" class="fa fa-plus col-md-1"></a>
+                        <a href="#" class="fa fa-plus col-sm-1 align-self-center font_gris" data-toggle="modal" data-target="#telefonoProveedorModal"></a>
                         <label id="TN_ID_Proveedor-error" class="error" for="TN_ID_Proveedor" style="display: none"></label>
 
                     </div>
@@ -57,7 +57,7 @@
                     <div class="d-flex justify-content-center">
                         <button id="btnRegistrarEntidadTelefono" type="submit" class="btn btn-primary">Insertar</button>
                         <button id="btnModificarEntidadTelefono" class="btn btn-info" style="display:none">Modificar</button>
-                        <button id="btnEliminarEntidadTelefono" class="btn btn-danger" style="display:none">Eliminar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     </div>
                 </form>
             </div>
@@ -68,5 +68,5 @@
         </div>
     </div>
 </div>
-@Html.Partial("_Modal_C_Telefono_Proveedor")
+@Html.Partial("/Views/EntidadTelefono/_Modal_C_Telefono_Proveedor.cshtml")
 <script src="~/Scripts/js/EntidadTelefono.js"></script>

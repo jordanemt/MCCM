@@ -24,23 +24,9 @@
 <style>
     .filaseleccionada {
         background-color: #e3f0ff;
-    }
-<<<<<<< HEAD
-    /*.modal:nth-of-type(even) {
-        z-index: 1052 !important;
-=======
-    .modal:nth-of-type(even) {
-        z-index: 1052 !important;
+
     }
 
-    .modal-backdrop.show:nth-of-type(even) {
-        z-index: 1051 !important;
->>>>>>> Maikel
-    }
-
-    .modal-backdrop.show:nth-of-type(even) {
-        z-index: 1051 !important;
-    }*/
 </style>
 
 <div class="d-flex flex-sm-row flex-column p-0" id="dashboard-container">
@@ -269,10 +255,10 @@ function seleccionEntidad() {
 @Html.Partial("~/Views/Entidad/_EntidadPersona.cshtml")
 @Html.Partial("~/Views/EntidadVehiculo/_EntidadVehiculo.cshtml")
 @Html.Partial("~/Views/EntidadUbicacion/_EntidadUbicacion.cshtml")
-@Html.Partial("~/Views/Entidad/_EntidadTelefono.cshtml")
+@Html.Partial("~/Views/EntidadTelefono/_EntidadTelefono.cshtml")
 @Html.Partial("~/Views/EntidadArma/_EntidadArma.cshtml")
 @Html.Partial("~/Views/EntidadDroga/_EntidadDroga.cshtml")
-@Html.Partial("~/Views/Entidad/_EntidadPersonaJuridica.cshtml")
+@Html.Partial("~/Views/EntidadPersonaJuridica/_EntidadPersonaJuridica.cshtml")
 @Html.Partial("~/Views/Caso/_ModalCasoInsert.cshtml")
 @Html.Partial("~/Views/Bitacora/_ModalEventoForm.cshtml")
 @Html.Partial("~/Views/Tarea/_ModalFormTarea.cshtml")
@@ -284,4 +270,17 @@ function seleccionEntidad() {
 <script>
     $('select').selectpicker();
     sobreescribirJQueryMessages();
+
+
+
+    $(document).on('show.bs.modal', '.modal', function () {
+        var zIndex = 1040 + (10 * $('.modal:visible').length);
+        $(this).css('z-index', zIndex);
+        setTimeout(function () {
+            $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+        }, 0);
+    });
+
+
+
 </script>

@@ -15,9 +15,9 @@ namespace MCCM.UI.Controllers
         EntidadPersonaJuridicaNegocio entidadPersonaJuridicaNegocio = new EntidadPersonaJuridicaNegocio();
 
         [HttpPost]
-        public String Insertar_E_PersonaJuridica(TMCCM_Entidad_Persona_Juridica entidadPersonaJuridica, int caso)
+        public String Insertar_E_PersonaJuridica(TMCCM_Entidad_Persona_Juridica entidadPersonaJuridica)
         {
-            entidadPersonaJuridica.TN_ID_Caso = caso;
+
             entidadPersonaJuridicaNegocio.InsertarEntidadPersonaJuridica(entidadPersonaJuridica);
             return "S";
         }
@@ -33,10 +33,9 @@ namespace MCCM.UI.Controllers
             return entidadPersonaJuridicaNegocio.EliminarEntidadPersonaJuridica(entidadPersonaJuridicaID);
         }
         [HttpPost]
-        public String Modificar_E_PersonaJuridica(TMCCM_Entidad_Persona_Juridica entidadPersonaJuridica, int caso)
+        public String Modificar_E_PersonaJuridica(TMCCM_Entidad_Persona_Juridica entidadPersonaJuridica)
         {
-
-            entidadPersonaJuridicaNegocio.ActualizarEntidadPersonaJuridica(entidadPersonaJuridica);
+            entidadPersonaJuridicaNegocio.ModificarEntidadPersonaJuridica(entidadPersonaJuridica);
             return "S";
         }
         [HttpGet]

@@ -19,8 +19,8 @@ namespace MCCM.AccesoDatos
                               select new
                               {
                                   TN_ID_Tipo_Organizacion = tipoOrganizacionItem.TN_ID_Tipo_Organizacion,
-                      TC_Descripcion = tipoOrganizacionItem.TC_Descripcion
-                  };
+                                  TC_Descripcion = tipoOrganizacionItem.TC_Descripcion
+                              };
                 return JsonConvert.SerializeObject(anonimo, Formatting.Indented);
             }
         }
