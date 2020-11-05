@@ -11,12 +11,13 @@ namespace MCCM.UI.Controllers
     public class C_VehiculoColorController : Controller
     {
         C_VehiculoColorNegocio c_VehiculoColorNegocio = new C_VehiculoColorNegocio();
-
+        [HttpGet]
         public String ListarVehiculoColor()
         {
 
             return c_VehiculoColorNegocio.ListarVehiculoColor();
         }
+        [HttpPost]
         public String InsertarVehiculoColor(TMCCM_C_Vehiculo_Color vehiculoColor)
         {
             c_VehiculoColorNegocio.InsertarVehiculoColor(vehiculoColor);

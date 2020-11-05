@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using MCCM.Entidad.DTO;
 using Newtonsoft.Json;
 using System.IO;
 using MCCM.ReglasNegocio;
@@ -15,42 +14,28 @@ namespace MCCM.UI.Controllers
     {
 
         EntidadPersonaNegocio entidadPersonaNegocio = new EntidadPersonaNegocio();
-
-        
-      
-
-
-
-       [HttpPost]
-        public String Insertar_E_Persona(TMCCM_Entidad_Persona persona, HttpPostedFileBase imagen)
+        [HttpPost]
+        public String Insertar_E_Persona(TMCCM_Entidad_Persona entidadPersona, HttpPostedFileBase imagenPersona)
         {
-            HttpPostedFileBase file = imagen;
-            var length = file.InputStream.Length; //Length: 103050706
-            byte[] fileData = null;
-            using (var binaryReader = new BinaryReader(file.InputStream))
+            if (imagenPersona != null)
             {
-                fileData = binaryReader.ReadBytes(file.ContentLength);
+                HttpPostedFileBase file = imagenPersona;
+                var length = file.InputStream.Length; //Length: 103050706
+                byte[] fileData = null;
+                using (var binaryReader = new BinaryReader(file.InputStream))
+                {
+                    fileData = binaryReader.ReadBytes(file.ContentLength);
+                }
+                entidadPersona.TB_Fotografia = fileData;
             }
-            persona.TB_Fotografia = fileData;
 
-
-            entidadPersonaNegocio.Insertar(persona);
+            entidadPersonaNegocio.InsertarEntidadPersona(entidadPersona);
             return "S";
         }
         [HttpGet]
         public String Listar_E_Persona(int caso)
         {
-            List<TMCCM_EntidadPersonaDTO> entidadPersonaDTO = entidadPersonaNegocio.ListarEntidadPersonas(caso);
-
-            foreach (TMCCM_EntidadPersonaDTO itemPersona in entidadPersonaDTO)
-            {
-                string imreBase64Data = Convert.ToBase64String(itemPersona.imgTemporal);
-                string imgDataURL = string.Format("data:image/png;base64,{0}", imreBase64Data);
-                itemPersona.imgString = imgDataURL;
-
-
-            }
-            return JsonConvert.SerializeObject(entidadPersonaDTO, Formatting.Indented);
+            return entidadPersonaNegocio.ListarEntidadPersonas(caso);
         }
         [HttpPost]
         public String Eliminar_E_PersonaPorID(int entidadPersonaID)
@@ -58,24 +43,26 @@ namespace MCCM.UI.Controllers
             return entidadPersonaNegocio.EliminarEntidadPersona(entidadPersonaID);
         }
         [HttpPost]
-        public String Modificar_E_Persona(TMCCM_EntidadPersonaDTO entidadPersonaDTO)
+        public String Modificar_E_Persona(TMCCM_Entidad_Persona entidadPersona, HttpPostedFileBase imagenPersona)
         {
-            HttpPostedFileBase file = entidadPersonaDTO.TB_Fotografia;
-            var length = file.InputStream.Length; //Length: 103050706
-            byte[] fileData = null;
-            using (var binaryReader = new BinaryReader(file.InputStream))
+            if (imagenPersona != null)
             {
-                fileData = binaryReader.ReadBytes(file.ContentLength);
+                HttpPostedFileBase file = imagenPersona;
+                var length = file.InputStream.Length; //Length: 103050706
+                byte[] fileData = null;
+                using (var binaryReader = new BinaryReader(file.InputStream))
+                {
+                    fileData = binaryReader.ReadBytes(file.ContentLength);
+                }
+                entidadPersona.TB_Fotografia = fileData;
             }
-            entidadPersonaDTO.imgTemporal = fileData;
-
-            entidadPersonaNegocio.ActualizarEntidadPersona(entidadPersonaDTO);
+            entidadPersonaNegocio.ActualizarEntidadPersona(entidadPersona);
             return "S";
         }
         [HttpGet]
         public String Obtener_E_PersonaPorID(int ID)
         {
-            return JsonConvert.SerializeObject(entidadPersonaNegocio.ObtenerEntidadPersonaPorID(ID), Formatting.Indented);
+            return entidadPersonaNegocio.ObtenerEntidadPersonaPorID(ID);
         }
 
     }

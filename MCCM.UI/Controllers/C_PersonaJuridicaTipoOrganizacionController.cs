@@ -13,11 +13,12 @@ namespace MCCM.UI.Controllers
         C_PersonaJuridicaTipoOrganizacionNegocio c_PersonaJuridicaTipoOrganizacionNegocio = new C_PersonaJuridicaTipoOrganizacionNegocio();
 
         [HttpGet]
-        public JsonResult ListarPersonaJuridicaTipoOrganizacion()
+        public String ListarPersonaJuridicaTipoOrganizacion()
         {
 
-            return Json(c_PersonaJuridicaTipoOrganizacionNegocio.ListarPersonaJuridicaTipoOrganización(), JsonRequestBehavior.AllowGet);
+            return c_PersonaJuridicaTipoOrganizacionNegocio.ListarPersonaJuridicaTipoOrganización();
         }
+        [HttpPost]
         public String InsertarPersonaJuridicaTipoOrganizacion(TMCCM_C_Persona_Juridica_Tipo_Organización personaJuridicaTipoOrganizacion)
         {
             c_PersonaJuridicaTipoOrganizacionNegocio.InsertarPersonaJuridicaTipoOrganizacion(personaJuridicaTipoOrganizacion);

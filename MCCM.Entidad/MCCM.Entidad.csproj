@@ -51,20 +51,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTO\TMCCM_CasoDTO.cs" />
-    <Compile Include="DTO\TMCCM_C_PersonaGeneroDTO.cs" />
-    <Compile Include="DTO\TMCCM_C_PersonaNacionalidadDTO.cs" />
-    <Compile Include="DTO\TMCCM_C_PersonaSexoDTO.cs" />
-    <Compile Include="DTO\TMCCM_C_PersonaTipoIdentificacionDTO.cs" />
-    <Compile Include="DTO\TMCCM_C_PersonaJuridicaTipoOrganizaciónDTO.cs" />
-    <Compile Include="DTO\TMCCM_C_VehiculoClaseDTO.cs" />
-    <Compile Include="DTO\TMCCM_C_VehiculoColorDTO.cs" />
-    <Compile Include="DTO\TMCCM_C_VehiculoMarcaDTO.cs" />
-    <Compile Include="DTO\TMCCM_EntidadPersonaDTO.cs" />
-    <Compile Include="DTO\TMCCM_EntidadPersonaJuridicaDTO.cs" />
-    <Compile Include="DTO\TMCCM_EntidadTelefonoDTO.cs" />
-    <Compile Include="DTO\TMCCM_EventoDTO.cs" />
-    <Compile Include="DTO\TMCCM_TareaDTO.cs" />
     <Compile Include="MCCMModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -203,7 +189,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
     <EntityDeploy Include="MCCMModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>MCCMModel.Designer.cs</LastGenOutput>

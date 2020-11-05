@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MCCM.Entidad;
-using MCCM.Entidad.DTO;
 using MCCM.AccesoDatos;
 
 namespace MCCM.ReglasNegocio
@@ -12,7 +11,7 @@ namespace MCCM.ReglasNegocio
     public class C_PersonaNacionalidadNegocio
     {
         C_PersonaNacionalidadDatos c_PersonaNacionalidadDatos = new C_PersonaNacionalidadDatos();
-        public List<TMCCM_C_PersonaNacionalidadDTO> ListarPersonaNacionalidad()
+        public string ListarPersonaNacionalidad()
         {
         
             return c_PersonaNacionalidadDatos.ListarPersonaNacionalidad();

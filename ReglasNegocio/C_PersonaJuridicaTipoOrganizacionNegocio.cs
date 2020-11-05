@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MCCM.Entidad;
-using MCCM.Entidad.DTO;
 using MCCM.AccesoDatos;
 
 namespace MCCM.ReglasNegocio
@@ -13,7 +12,7 @@ namespace MCCM.ReglasNegocio
     {
         C_PersonaJuridicaTipoOrganizacionDatos c_PersonaJuridicaTipoOrganizacion = new C_PersonaJuridicaTipoOrganizacionDatos();
 
-        public List<TMCCM_C_PersonaJuridicaTipoOrganizaciónDTO> ListarPersonaJuridicaTipoOrganización()
+        public string ListarPersonaJuridicaTipoOrganización()
         {
            
             return c_PersonaJuridicaTipoOrganizacion.ListarPersonaJuridicaTipoOrganizacion();

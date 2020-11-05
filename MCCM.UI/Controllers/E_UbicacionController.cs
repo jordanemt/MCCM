@@ -1,5 +1,4 @@
 ﻿using MCCM.Entidad;
-using MCCM.Entidad.DTO;
 using MCCM.ReglasNegocio;
 using Newtonsoft.Json;
 using System;

@@ -1,5 +1,4 @@
 ﻿using MCCM.AccesoDatos;
-using MCCM.Entidad.DTO;
 using MCCM.Entidad;
 using System;
 using System.Collections.Generic;
@@ -13,18 +12,15 @@ namespace MCCM.ReglasNegocio
     {
 
         EntidadPersonaDatos entidadPersonaDatos = new EntidadPersonaDatos();
-        public void Insertar(TMCCM_Entidad_Persona entidadPersona)
-        {
-            entidadPersonaDatos.Insertar(entidadPersona);
-        }
-        public void InsertarEntidadPersona(TMCCM_EntidadPersonaDTO entidadPersona)
+        
+        public void InsertarEntidadPersona(TMCCM_Entidad_Persona entidadPersona)
         {
             entidadPersonaDatos.InsertarEntidadPersona(entidadPersona);
         }
 
-        public void ActualizarEntidadPersona(TMCCM_EntidadPersonaDTO entidadPersonaDTO)
+        public void ActualizarEntidadPersona(TMCCM_Entidad_Persona entidadPersona)
         {
-            entidadPersonaDatos.ActualizarEntidadPersona(entidadPersonaDTO);
+            entidadPersonaDatos.ActualizarEntidadPersona(entidadPersona);
         }
 
         public string EliminarEntidadPersona(int ID)
@@ -32,12 +28,12 @@ namespace MCCM.ReglasNegocio
             entidadPersonaDatos.EliminarEntidadPersona(ID);
             return "S";
         }
-        public List<TMCCM_EntidadPersonaDTO> ListarEntidadPersonas(int caso)
+        public string ListarEntidadPersonas(int caso)
         {
             return entidadPersonaDatos.ListarEntidadPersonas(caso);
         }
 
-        public TMCCM_EntidadPersonaDTO ObtenerEntidadPersonaPorID(int ID)
+        public string ObtenerEntidadPersonaPorID(int ID)
         {
             return entidadPersonaDatos.ObtenerEntidadPersonaPorID(ID);
         }

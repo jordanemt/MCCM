@@ -67,7 +67,7 @@ $(document).on("click", ".editarEntidadVehiculo", function () {
         $("#fechaModificación_Row_V").show();
         $("TF_Fecha_Modificacion_Vehiculo").val(entidadVehiculo.TF_Fecha_Modificacion);
         $("#modificadoPor_Row_V").show();
-        $("#TF_Modificado_Por_Vehiculo").val(entidadVehiculo.TF_Modificado_Por);
+        $("#TC_Modificado_Por_Vehiculo").val(entidadVehiculo.TC_Modificado_Por);
         $('#TB_Verificado_Vehiculo').attr('checked', entidadVehiculo.TB_Verificado);
         $("#btnInsertarEntidadVehiculo").hide();
         $("#btnModificarEntidadVehiculo").show();
@@ -257,3 +257,57 @@ function cargarVehiculoColor() {
 
     });
 }
+
+/*Insertar Vehiculo Marca*/
+$(document).on("click", "#btnAgregar_C_MarcaVehiculo", function (e) {
+    e.preventDefault();
+    if ($("#Form_C_MarcaVehiculo").valid()) {
+        var form = new FormData($("#Form_C_MarcaVehiculo")[0]);
+        $.ajax({
+            type: "POST",
+            url: "/C_VehiculoMarca/InsertarVehiculoMarca",
+            data: Object.fromEntries(form)
+        }).done(function (data) {
+            $("#modal_C_MarcaVehiculo").modal("hide");
+            cargarVehiculoMarca();
+        });
+    } else {
+        alert("NO es valido");
+    }
+});
+
+/*Insertar Vehiculo Clase*/
+$(document).on("click", "#btnAgregar_C_ClaseVehiculo", function (e) {
+    e.preventDefault();
+    if ($("#Form_C_ClaseVehiculo").valid()) {
+        var form = new FormData($("#Form_C_ClaseVehiculo")[0]);
+        $.ajax({
+            type: "POST",
+            url: "/C_VehiculoClase/InsertarVehiculoClase",
+            data: Object.fromEntries(form)
+        }).done(function (data) {
+            $("#modal_C_ClaseVehiculo").modal("hide");
+            cargarVehiculoClase();
+        });
+    } else {
+        alert("NO es valido");
+    }
+});
+
+/*Insertar Vehiculo Color*/
+$(document).on("click", "#btnAgregar_C_ColorVehiculo", function (e) {
+    e.preventDefault();
+    if ($("#Form_C_ColorVehiculo").valid()) {
+        var form = new FormData($("#Form_C_ColorVehiculo")[0]);
+        $.ajax({
+            type: "POST",
+            url: "/C_VehiculoColor/InsertarVehiculoColor",
+            data: Object.fromEntries(form)
+        }).done(function (data) {
+            $("#modal_C_ColorVehiculo").modal("hide");
+            cargarVehiculoColor();
+        });
+    } else {
+        alert("NO es valido");
+    }
+});
