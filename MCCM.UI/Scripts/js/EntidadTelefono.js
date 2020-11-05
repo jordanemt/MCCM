@@ -176,8 +176,8 @@ function CargarEntidadTelefono() {
                 '<div class="card-header gris_claro">' +
                 'Teléfono Código #' + telefonos[i].TN_ID_Telefono +
                 '<div>' +
-                '<a href="#" class="editarEntidadTelefono" id="' + telefonos[i].TN_ID_Telefono + '"><span><i class="fa fa-pencil icono" aria-hidden="true"></i></span ></a > ' +
-                '<a href="#" class="borrar borrarEntidadTelefono" id="' + telefonos[i].TN_ID_Telefono + '"><span><i class="fa fa-trash icono" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span ></a > ' +
+                '<a href="#" class="editarEntidadTelefono" id="' + telefonos[i].TN_ID_Telefono + '"><span><i class="fa fa-pencil icono font_amarilloHover" aria-hidden="true"></i></span ></a > ' +
+                '<a href="#" class="borrar borrarEntidadTelefono" id="' + telefonos[i].TN_ID_Telefono + '"><span><i class="fa fa-trash icono font_amarilloHover" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span ></a > ' +
                 '</div>' +
                 '</div>' +
                 '<div class="card-body" style="padding:0px!important">' +

@@ -8,7 +8,6 @@ C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.AccesoDatos\bin\Debug\MCCM.Entidad.
 C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.AccesoDatos\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.AccesoDatos\bin\Debug\System.Data.SqlServerCe.dll
 C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.AccesoDatos\bin\Debug\MCCM.Entidad.pdb
-C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.AccesoDatos\bin\Debug\MCCM.Entidad.dll.config
 C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.AccesoDatos\bin\Debug\EntityFramework.xml
 C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.AccesoDatos\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.AccesoDatos\bin\Debug\EntityFramework.SqlServerCompact.xml

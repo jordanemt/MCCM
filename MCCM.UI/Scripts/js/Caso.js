@@ -174,7 +174,7 @@ function CargarCasos() {
         $("#casos-body").empty();
         for (let i = 0; i < casos.length; i++) {
             $("#casos-body").append(
-                '<div class="card caso" id="' + casos[i].TN_ID_Caso +'" >'+
+                '<div class="card caso hoverOp" id="' + casos[i].TN_ID_Caso +'" >'+
                     '<div class="card-header gris_claro"><div>Caso Codigo #' + casos[i].TN_ID_Caso + '</div>'+
                     '<a href="#" class="ojito" id="' + casos[i].TN_ID_Caso+'"><span><i class="fa fa-eye" style="color:black" aria-hidden="true"></i></span></a></div >'+
                     '<div class="card-body" style="padding:0px!important">'+

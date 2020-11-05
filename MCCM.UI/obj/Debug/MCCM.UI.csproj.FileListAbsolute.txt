@@ -86,7 +86,6 @@ C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.UI\bin\Microsoft.VisualStudio.TextM
 C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.UI\bin\Microsoft.VisualStudio.TextManager.Interop.8.0.dll
 C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.UI\bin\Microsoft.MSXML.dll
 C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.UI\bin\MCCM.Entidad.pdb
-C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.UI\bin\MCCM.Entidad.dll.config
 C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.UI\bin\ReglasNegocio.pdb
 C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.UI\bin\EntityFramework.xml
 C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.UI\bin\EntityFramework.SqlServer.xml
