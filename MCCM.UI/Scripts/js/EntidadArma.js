@@ -1,8 +1,9 @@
-﻿$(document).ready(function () {
+﻿$(document).on("click", "#entidadArma", function () {
+
+    CargarEntidadArmas();
     cargarArmaMarca();
     cargarTipoArma();
-
-});
+})
 
 //*Agregar Arma
 $(document).on("click", "#btnAgregarEntidadArma", function (e) {
@@ -32,7 +33,6 @@ function CargarEntidadArmas() {
     }).done(function (data) {
         let entidadArmas = new Array();
         entidadArmas = JSON.parse(data);
-        alert(data);
 
         $("#entidades-body").empty();
 
@@ -170,20 +170,20 @@ $(document).on("click", "#btnModificarEntidadArma", function (e) {
 //*Cargar Arma Marca*
 function cargarArmaMarca() {
 
-        $.ajax({
-            type: "GET",
-            url: "/C_ArmaMarca/ListarArmaMarca",
-        }).done(function (data) {
-            let marcaArma = JSON.parse(data);
-            $("#TN_ID_Marca_Arma").empty();
-            var s;
-            s = '<option value="" disabled selected>Seleccione una Marca </option>';
-            for (var i = 0; i < marcaArma.length; i++) {
-                s += '<option value="' + marcaArma[i].TN_ID_Marca_Arma + '">' + marcaArma[i].TC_Descripcion + '</option>';
-  
-            }
-            $("#TN_ID_Marca_Arma").html(s);
-                $('#TN_ID_Marca_Arma').selectpicker('refresh');
+    $.ajax({
+        type: "GET",
+        url: "/C_ArmaMarca/ListarArmaMarca",
+    }).done(function (data) {
+        let marcaArma = JSON.parse(data);
+        $("#TN_ID_Marca_Arma").empty();
+        var s;
+        s = '<option value="" disabled selected>Seleccione una Marca </option>';
+        for (var i = 0; i < marcaArma.length; i++) {
+            s += '<option value="' + marcaArma[i].TN_ID_Marca_Arma + '">' + marcaArma[i].TC_Descripcion + '</option>';
+
+        }
+        $("#TN_ID_Marca_Arma").html(s);
+        $('#TN_ID_Marca_Arma').selectpicker('refresh');
 
     });
 }
@@ -191,23 +191,23 @@ function cargarArmaMarca() {
 //*Cargar Tipo Arma
 function cargarTipoArma() {
 
-        $.ajax({
-            type: "GET",
-            url: "/C_TipoArma/ListarTipoArma",
-        }).done(function (data) {
-            let tipoArma = JSON.parse(data);
-            $("#TN_ID_Tipo_Arma").empty();
-            var s;
-            s = '<option value="" disabled selected>Seleccione un tipo </option>';
-            for (var i = 0; i < tipoArma.length; i++) {
-                s += '<option value="' + tipoArma[i].TN_ID_Tipo_Arma + '">' + tipoArma[i].TC_Descripcion + '</option>';
-               
-            }
-            $("#TN_ID_Tipo_Arma").html(s);
-            $('#TN_ID_Tipo_Arma').selectpicker('refresh');
+    $.ajax({
+        type: "GET",
+        url: "/C_TipoArma/ListarTipoArma",
+    }).done(function (data) {
+        let tipoArma = JSON.parse(data);
+        $("#TN_ID_Tipo_Arma").empty();
+        var s;
+        s = '<option value="" disabled selected>Seleccione un tipo </option>';
+        for (var i = 0; i < tipoArma.length; i++) {
+            s += '<option value="' + tipoArma[i].TN_ID_Tipo_Arma + '">' + tipoArma[i].TC_Descripcion + '</option>';
 
-        });
-    
+        }
+        $("#TN_ID_Tipo_Arma").html(s);
+        $('#TN_ID_Tipo_Arma').selectpicker('refresh');
+
+    });
+
 }
 /*Insertar Arma Marca*/
 $(document).on("click", "#btnAgregar_C_ArmaMarca", function (e) {

@@ -112,11 +112,11 @@
                                 <input type="hidden" id="custId" name="custId" value="1">
                                 <a class="nav-item nav-link active fa fa-user font_negro" id="entidadPersona" data-toggle="tab" href="#" role="tab" aria-controls="nav-home" aria-selected="true" onclick="seleccionado('1')"></a>
                                 <a class="nav-item nav-link fa fa-building font_negro" id="entidadPersonaJuridica" data-toggle="tab" href="#" role="tab" aria-controls="nav-profile" aria-selected="false" onclick="seleccionado('2')"></a>
-                                <a class="nav-item nav-link fa fa-car font_negro" id="entidadCarro" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('3')"></a>
-                                <a class="nav-item nav-link fa fa-map-marker font_negro" id="nav-contact-tab" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('4')"></a>
+                                <a class="nav-item nav-link fa fa-car font_negro" id="entidadVehiculo" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('3')"></a>
+                                <a class="nav-item nav-link fa fa-map-marker font_negro" id="entidadUbicacion" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('4')"></a>
                                 <a class="nav-item nav-link fa fa-phone font_negro" id="nav-contact-tab" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('5')"></a>
-                                <a class="nav-item nav-link fa fa-bomb font_negro" id="nav-contact-tab" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('6')"></a>
-                                <a class="nav-item nav-link fa fa-magic font_negro" id="nav-contact-tab" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('7')"></a>
+                                <a class="nav-item nav-link fa fa-bomb font_negro" id="entidadArma" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('6')"></a>
+                                <a class="nav-item nav-link fa fa-magic font_negro" id="entidadDroga" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('7')"></a>
                             </div>
                         </div>
                         <div class="card-body p-0" id="entidades-body" style="overflow-y: scroll">
@@ -207,28 +207,6 @@ function seleccionado(seleccion) {
     if (seleccion !== global) {
         document.getElementById('custId').value = seleccion;
     }
-    if (seleccion == 1) {
-        CargarEntidadPersona();
-    }
-    if (seleccion == 2) {
-        CargarEntidadPersonaJuridica();
-    }
-    if (seleccion == 3) {
-        CargarEntidadVehiculos();
-    }
-    if (seleccion == 4) {
-        CargarEntidadUbicaciones();
-    }
-    if (seleccion == 5) {
-        CargarEntidadTelefono();
-    }
-    if (seleccion == 6) {
-       CargarEntidadArmas();
-    }
-    if (seleccion == 7) {
-        CargarEntidadDrogas();
-
-    }
 }
  @*Metodo para seleccionar la entidad*@
 function seleccionEntidad() {
@@ -257,7 +235,7 @@ function seleccionEntidad() {
     }
 </script>
 
-@Html.Partial("~/Views/Entidad/_EntidadPersona.cshtml")
+@Html.Partial("~/Views/EntidadPersona/_EntidadPersona.cshtml")
 @Html.Partial("~/Views/EntidadVehiculo/_EntidadVehiculo.cshtml")
 @Html.Partial("~/Views/EntidadUbicacion/_EntidadUbicacion.cshtml")
 @Html.Partial("~/Views/Entidad/_EntidadTelefono.cshtml")

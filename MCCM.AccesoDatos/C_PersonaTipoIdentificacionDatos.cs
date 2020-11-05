@@ -19,8 +19,7 @@ namespace MCCM.AccesoDatos
                               select new
                               {
                                   TN_ID_Tipo_Identificacion = tipoIdentificacionItem.TN_ID_Tipo_Identificacion,
-                                  TC_Descripcion = tipoIdentificacionItem.TC_Descripcion,
-                                  TC_Mascara = tipoIdentificacionItem.TC_Mascara
+                                  TC_Descripcion = tipoIdentificacionItem.TC_Descripcion
 
                               };
                 return JsonConvert.SerializeObject(anonimo, Formatting.Indented);

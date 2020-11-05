@@ -1,8 +1,8 @@
-﻿$(document).ready(function () {
+﻿$(document).on("click", "#entidadUbicacion", function () {
+    CargarEntidadUbicaciones();
     cargarTipoUbicacion();
     cargarUbicacionProvincia();
-
-});
+})
 
 /* Agregar Ubicacion*/
 $(document).on("click", "#btnInsertarEntidadUbicacion", function (e) {
@@ -202,7 +202,7 @@ function cargarUbicacionProvincia() {
         type: "GET",
         url: "/C_UbicacionProvincia/ListarUbicacionProvincia"
     }).done(function (data) {
-        let provincia= JSON.parse(data);
+        let provincia = JSON.parse(data);
         $("#TN_ID_Provincia").empty();
         var s;
         for (var i = 0; i < provincia.length; i++) {
@@ -251,10 +251,10 @@ $('#TN_ID_Canton').on('change', function () {
         var s;
         for (var i = 0; i < distrito.length; i++) {
             s += '<option value="' + distrito[i].TN_ID_Distrito + '">' + distrito[i].TC_Descripcion + '</option>';
-        
-        $("#TN_ID_Distrito").html(s);
-        $('#TN_ID_Distrito').selectpicker('refresh');
-    }
+
+            $("#TN_ID_Distrito").html(s);
+            $('#TN_ID_Distrito').selectpicker('refresh');
+        }
 
     });
 });

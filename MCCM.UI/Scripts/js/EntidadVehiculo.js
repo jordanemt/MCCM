@@ -1,9 +1,9 @@
-﻿$(document).ready(function () {
+﻿$(document).on("click", "#entidadVehiculo", function () {
+    CargarEntidadVehiculos();
     cargarVehiculoMarca();
     cargarVehiculoClase();
     cargarVehiculoColor();
-
-});
+})
 /*Fecha*/
 function iniciarCalendarioVehiculo(fecha) {
     $('#TN_Anno_Vehiculo').datepicker({
@@ -78,6 +78,7 @@ $(document).on("click", ".editarEntidadVehiculo", function () {
 $('#entidadVehículoModal').on('hidden.bs.modal', function () {
     $("#FormEntidadVehiculo")[0].reset();
     $("#tituloEntidadVehiculo").html("Insertar Vehiculo");
+    $("#divVehiculoID").hide();
     $("#fechaCreacion_Row_V").hide();
     $("#fechaModificación_Row_V").hide();
     $("#modificadoPor_Row_V").hide();
@@ -109,7 +110,7 @@ function CargarEntidadVehiculos() {
                 '<div>Entidad Vehiculo #' + entidadVehiculos[i].TN_ID_Vehiculo + '</div>' +
                 '<div>' +
                 ' <a href="#" class="editarEntidadVehiculo" id="' + entidadVehiculos[i].TN_ID_Vehiculo + '"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>' +
-                '<a href="#" class="borrar borrarVehiculo" id="' + entidadVehiculos[i].TN_ID_Vehiculo + '"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>' +
+                '<a href="#" class="borrar borrarEntidadVehiculo" id="' + entidadVehiculos[i].TN_ID_Vehiculo + '"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>' +
                 '</div>' +
 
                 '</div>' +

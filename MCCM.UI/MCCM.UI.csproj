@@ -516,7 +516,7 @@
     <Content Include="Views\Caso\_ModalCasoInsert.cshtml" />
     <Content Include="Views\EntidadArma\_EntidadArma.cshtml" />
     <Content Include="Views\EntidadDroga\_EntidadDroga.cshtml" />
-    <Content Include="Views\Entidad\_EntidadPersona.cshtml" />
+    <Content Include="Views\EntidadPersona\_EntidadPersona.cshtml" />
     <Content Include="Views\Entidad\_EntidadPersonaJuridica.cshtml" />
     <Content Include="Views\Entidad\_EntidadTelefono.cshtml" />
     <Content Include="Views\EntidadUbicacion\_EntidadUbicacion.cshtml" />
@@ -553,6 +553,10 @@
     <Content Include="Views\EntidadVehiculo\_ModalMarcaVehiculo.cshtml" />
     <Content Include="Views\EntidadVehiculo\_ModalClaseVehiculo.cshtml" />
     <Content Include="Views\EntidadVehiculo\_ModalColorVehiculo.cshtml" />
+    <Content Include="Views\EntidadPersona\_ModalPersonaGenero.cshtml" />
+    <Content Include="Views\EntidadPersona\_ModalPersonaNacionalidad.cshtml" />
+    <Content Include="Views\EntidadPersona\_ModalPersonaSexo.cshtml" />
+    <Content Include="Views\EntidadPersona\_ModalPersonaTipoIdentificacion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

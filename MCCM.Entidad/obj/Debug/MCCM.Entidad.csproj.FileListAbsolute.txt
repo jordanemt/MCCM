@@ -54,3 +54,4 @@ C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.Entidad
 C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.csproj.CopyComplete
 C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.dll
 C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.pdb
+C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.csprojAssemblyReference.cache

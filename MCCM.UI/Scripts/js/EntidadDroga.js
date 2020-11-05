@@ -1,40 +1,9 @@
-﻿$(document).ready(function () {
+﻿$(document).on("click", "#entidadDroga", function () {
+
+    CargarEntidadDrogas();
     cargarTipoDroga();
     iniciarCalendarioDroga(moment());
-
-    $("#FormEntidadDroga").validate({
-        rules: {
-            TC_Nombre: {
-                required: true,
-            },
-            TN_Cantidad: {
-                required: true,
-                number: true
-            },
-            TN_ID_Tipo_Droga: { required: true },
-            TF_Fecha_Decomiso: { required: true }
-        },
-        messages: {
-            TC_Nombre: {
-                required: "El nombre de la droga no puede quedar en blanco"
-            },
-            TN_Cantidad: {
-                required: "La cantidad no puede quedar en blanco",
-                number: "La cantidad debe ser un número"
-            },
-            TN_ID_Tipo_Droga: {
-                required: "Por favor, seleccione un tipo de Droga"
-            },
-            TF_Fecha_Decomiso: {
-                required: "Debe indicar la fecha y hora del decomiso"
-            }
-
-        },
-        submitHandler: function (form) {
-            return false;
-        }
-    });
-});
+})
 
 /*Fecha*/
 function iniciarCalendarioDroga(fecha) {

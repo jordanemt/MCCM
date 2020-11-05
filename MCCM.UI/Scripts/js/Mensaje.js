@@ -29,7 +29,7 @@ $(document).on("click", ".btnEliminarMensaje", function () {
     else if (boton.attr('class').split(' ')[1] == "borrarUbicacion") {
         eliminarUbicacion(boton.attr('id'));
     }
-    else if (boton.attr('class').split(' ')[1] == "borrarVehiculo") {
+    else if (boton.attr('class').split(' ')[1] == "borrarEntidadVehiculo") {
         eliminarVehiculo(boton.attr('id'));
     }
     else if (boton.attr('class').split(' ')[1] == "borrarPersonaJuridica") {

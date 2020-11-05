@@ -3,68 +3,67 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title col-11 text-center" id="tituloEntidadDroga">Insertar Droga</h5>
+                <h5 class="modal-title font_blanco text-center" id="tituloEntidadDroga">Insertar Droga</h5>
                 <button type="button" class="close col-1" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <form id="FormEntidadDroga">
-                    <div class="form-group row justify-content-center" id="divDrogaID" style="display:none">
+                    <div class="form-group row" id="divDrogaID" style="display:none">
                         <label for="creadoPor" class="col-md-3 col-form-label">ID</label>
                         <input type="text" class="col-md-8 form-control" readonly name="TN_ID_Droga" id="TN_ID_Droga">
                     </div>
-                    <div class="form-group row justify-content-center">
+                    <div class="form-group row">
                         <label for="tipo" class="col-md-3 col-form-label">Tipo</label>
-                        <div class="col-8">
-                            <select class="col-md-7 form-control" id="TN_ID_Tipo_Droga" name="TN_ID_Tipo_Droga" required autocomplete="off"></select>
-                            <a href="#" data-toggle="modal" data-target="#modal_C_Droga" class="fa fa-plus col-md-1"></a>
-                        </div>
+                        <select class="col-md-8 form-control" id="TN_ID_Tipo_Droga" name="TN_ID_Tipo_Droga" required autocomplete="off title="Seleccione un tipo...""></select>
+                        <a href="#" data-toggle="modal" data-target="#modal_C_Droga" class="fa fa-plus col-md-1 font_gris"></a>
+                        <label id="TN_ID_Tipo_Droga-error" class="error" for="TN_ID_Tipo_Droga" style="display: none"></label>
                     </div>
-                    <div class="form-group row justify-content-center">
+                    <div class="form-group row">
                         <label for="nombre" class="col-md-3 col-form-label">Nombre</label>
                         <input type="text" class="col-md-8 form-control" name="TC_Nombre" id="TC_Nombre_Droga">
                     </div>
-                    <div class="form-group row justify-content-center">
+                    <div class="form-group row">
                         <label for="detalle" class="col-md-3 col-form-label">Detalle</label>
                         <textarea class="col-md-8 form-control" name="TC_Detalle" id="TC_Detalle_Droga" rows="3"></textarea>
                     </div>
-                    <div class="form-group row justify-content-center">
+                    <div class="form-group row">
                         <label for="cantidad" class="col-md-3 col-form-label">Cantidad</label>
                         <input type="number" class="col-md-8 form-control" name="TN_Cantidad" id="TN_Cantidad_Droga" required>
                     </div>
 
-                    <div class="form-group row justify-content-center">
+                    <div class="form-group row">
                         <label for="alias" class="col-md-3 col-form-label">Fecha de Decomiso</label>
                         <input class="col-md-8 form-control" name="TF_Fecha_Decomiso" id="TF_Fecha_Decomiso_Droga" required>
                     </div>
 
-                    <div class="form-group row justify-content-center">
+                    <div class="form-group row">
                         <label for="segundoApellido" class="col-md-3 col-form-label" style="display:none">Fecha Modificación</label>
                         <input type="text" class="col-md-8 form-control" name="TF_Fecha_Modificacion" style="display:none" id="TF_Fecha_Modificacion_Droga">
                     </div>
-                    <div class="form-group row justify-content-center" id="divDrogaFC" style="display:none">
+                    <div class="form-group row" id="divDrogaFC" style="display:none">
                         <label for="alias" class="col-md-3 col-form-label">Fecha Creacion</label>
                         <input type="text" class="col-md-8 form-control" name="TF_Fecha_Creacion" readonly id="TF_Fecha_Creacion_Droga">
                     </div>
-                    <div class="form-group row justify-content-center">
+                    <div class="form-group row">
                         <label for="creadoPor" class="col-md-3 col-form-label">Creado por</label>
                         <input type="text" class="col-md-8 form-control" name="TC_Creado_Por" id="TC_Creado_Por_Droga">
                     </div>
-                    <div class="form-group row justify-content-center" id="divDrogaMP" style="display:none">
+                    <div class="form-group row" id="divDrogaMP" style="display:none">
                         <label for="creadoPor" class="col-md-3 col-form-label">Modificado por</label>
                         <input type="text" class="col-md-8 form-control" name="TC_Modificado_Por" id="TC_Modificado_Por_Droga">
                     </div>
-                    <div class="form-group row justify-content-center">
+                    <div class="form-group row">
                         <label for="verificado" class="col-md-3 col-form-label">Verificado</label>
                         <div class="col-md-8  form-check">
                             <input class="form-check-input" type="checkbox" name="TB_Verificado" id="TB_Verificado_Droga">
                         </div>
                     </div>
-                    <div class="form-group row justify-content-center">
+                    <div class="d-flex justify-content-center">
                         <button id="btnAgregarEntidadDroga" type="submit" class="btn btn-primary submit-button mx-2">Insertar</button>
                         <button id="btnModificarEntidadDroga" class="btn btn-primary submit-button mx-2" style="display:none">Modificar</button>
-                        <button id="btnCancelarEntidadDroga" type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button id="btnCancelarEntidadDroga" type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
 
                     </div>
                 </form>
