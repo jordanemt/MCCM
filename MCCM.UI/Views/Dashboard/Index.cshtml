@@ -24,14 +24,9 @@
 <style>
     .filaseleccionada {
         background-color: #e3f0ff;
-    }
-    /*.modal:nth-of-type(even) {
-        z-index: 1052 !important;
+
     }
 
-    .modal-backdrop.show:nth-of-type(even) {
-        z-index: 1051 !important;
-    }*/
 </style>
 
 <div class="d-flex flex-sm-row flex-column p-0" id="dashboard-container">
@@ -114,10 +109,10 @@
                                 <a class="nav-item nav-link fa fa-building font_negro" id="entidadPersonaJuridica" data-toggle="tab" href="#" role="tab" aria-controls="nav-profile" aria-selected="false" onclick="seleccionado('2')"></a>
                                 <a class="nav-item nav-link fa fa-car font_negro" id="entidadVehiculo" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('3')"></a>
                                 <a class="nav-item nav-link fa fa-map-marker font_negro" id="entidadUbicacion" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('4')"></a>
-                                <a class="nav-item nav-link fa fa-phone font_negro" id="nav-contact-tab" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('5')"></a>
+                                <a class="nav-item nav-link fa fa-phone font_negro" id="entidadTelefono" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('5')"></a>
                                 <a class="nav-item nav-link fa fa-bomb font_negro" id="entidadArma" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('6')"></a>
                                 <a class="nav-item nav-link fa fa-magic font_negro" id="entidadDroga" data-toggle="tab" href="#" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="seleccionado('7')"></a>
-                            </div>
+                                 </div>
                         </div>
                         <div class="card-body p-0" id="entidades-body" style="overflow-y: scroll">
                             <div class="container">
@@ -238,10 +233,10 @@ function seleccionEntidad() {
 @Html.Partial("~/Views/EntidadPersona/_EntidadPersona.cshtml")
 @Html.Partial("~/Views/EntidadVehiculo/_EntidadVehiculo.cshtml")
 @Html.Partial("~/Views/EntidadUbicacion/_EntidadUbicacion.cshtml")
-@Html.Partial("~/Views/Entidad/_EntidadTelefono.cshtml")
+@Html.Partial("~/Views/EntidadTelefono/_EntidadTelefono.cshtml")
 @Html.Partial("~/Views/EntidadArma/_EntidadArma.cshtml")
 @Html.Partial("~/Views/EntidadDroga/_EntidadDroga.cshtml")
-@Html.Partial("~/Views/Entidad/_EntidadPersonaJuridica.cshtml")
+@Html.Partial("~/Views/EntidadPersonaJuridica/_EntidadPersonaJuridica.cshtml")
 @Html.Partial("~/Views/Caso/_ModalCasoInsert.cshtml")
 @Html.Partial("~/Views/Bitacora/_ModalEventoForm.cshtml")
 @Html.Partial("~/Views/Tarea/_ModalFormTarea.cshtml")
@@ -253,4 +248,17 @@ function seleccionEntidad() {
 <script>
     $('select').selectpicker();
     sobreescribirJQueryMessages();
+
+
+
+    $(document).on('show.bs.modal', '.modal', function () {
+        var zIndex = 1040 + (10 * $('.modal:visible').length);
+        $(this).css('z-index', zIndex);
+        setTimeout(function () {
+            $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+        }, 0);
+    });
+
+
+
 </script>

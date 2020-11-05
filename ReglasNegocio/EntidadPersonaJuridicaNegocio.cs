@@ -16,9 +16,9 @@ namespace MCCM.ReglasNegocio
             entidadPersonaJuridicaDatos.InsertarEntidadPersonaJuridica(entidadPersonaJuridica);
         }
 
-        public void ActualizarEntidadPersonaJuridica(TMCCM_Entidad_Persona_Juridica entidadPersonaJuridica)
+        public void ModificarEntidadPersonaJuridica(TMCCM_Entidad_Persona_Juridica entidadPersonaJuridica)
         {
-            entidadPersonaJuridicaDatos.ActualizarEntidadPersonaJuridica(entidadPersonaJuridica);
+            entidadPersonaJuridicaDatos.ModificarEntidadPersonaJuridica(entidadPersonaJuridica);
         }
 
         public string EliminarEntidadPersonaJuridica(int ID)

@@ -7,7 +7,7 @@
 }
 
 .rojo {
-    background-color: #E21212;
+    background-color: #e65050;
 }
 
 .gris {
@@ -41,6 +41,16 @@
 .blanco {
     background-color: black;
 }
+
+.icono_tarea {
+    color:  #333333;
+}
+
+.icono_evento {
+    color: #333333;
+}
+
+
 
 .font_gris {
     color: #808080;

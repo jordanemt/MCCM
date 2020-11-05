@@ -517,8 +517,8 @@
     <Content Include="Views\EntidadArma\_EntidadArma.cshtml" />
     <Content Include="Views\EntidadDroga\_EntidadDroga.cshtml" />
     <Content Include="Views\EntidadPersona\_EntidadPersona.cshtml" />
-    <Content Include="Views\Entidad\_EntidadPersonaJuridica.cshtml" />
-    <Content Include="Views\Entidad\_EntidadTelefono.cshtml" />
+    <Content Include="Views\EntidadPersonaJuridica\_EntidadPersonaJuridica.cshtml" />
+    <Content Include="Views\EntidadTelefono\_EntidadTelefono.cshtml" />
     <Content Include="Views\EntidadUbicacion\_EntidadUbicacion.cshtml" />
     <Content Include="Views\EntidadVehiculo\_EntidadVehiculo.cshtml" />
     <Content Include="Views\Bitacora\_ModalEventoForm.cshtml" />
@@ -534,7 +534,7 @@
     <Content Include="Views\EntidadArma\_ModalTipoArma.cshtml" />
     <Content Include="Views\EntidadArma\_ModalMarcaArma.cshtml" />
     <Content Include="Views\EntidadUbicacion\_ModalTipoUbicacion.cshtml" />
-    <Content Include="Views\Dashboard\_Modal_C_Telefono_Proveedor.cshtml" />
+    <Content Include="Views\EntidadTelefono\_Modal_C_Telefono_Proveedor.cshtml" />
     <Content Include="Views\Grupo\_ActualizarFormModal.cshtml" />
     <Content Include="Views\Grupo\_Card.cshtml" />
     <Content Include="Views\Grupo\_InsertarFormModal.cshtml" />
@@ -557,6 +557,7 @@
     <Content Include="Views\EntidadPersona\_ModalPersonaNacionalidad.cshtml" />
     <Content Include="Views\EntidadPersona\_ModalPersonaSexo.cshtml" />
     <Content Include="Views\EntidadPersona\_ModalPersonaTipoIdentificacion.cshtml" />
+    <Content Include="Views\EntidadPersonaJuridica\_ModalC_Tipo_Organizacion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
