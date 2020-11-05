@@ -11,7 +11,7 @@ namespace MCCM.AccesoDatos
         {
             using (var context = new MCCMEntities())
             {
-                return context.TMCCM_Vehiculo.Where(e => e.TB_Eliminado == false).ToList();
+                return context.TMCCM_Vehiculo.Where(e => e.TB_Eliminado == false && e.TB_En_Uso == false).ToList();
             }
         }
 
@@ -28,7 +28,8 @@ namespace MCCM.AccesoDatos
         {
             using (var context = new MCCMEntities())
             {
-                data.TB_Eliminado = true;
+                data.TB_Eliminado = false;
+                data.TB_En_Uso = false;
                 TMCCM_Vehiculo newData = context.TMCCM_Vehiculo.Add(data);
                 context.SaveChanges();
                 return newData;

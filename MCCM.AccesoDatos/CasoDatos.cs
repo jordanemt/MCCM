@@ -104,8 +104,84 @@ namespace MCCM.AccesoDatos
                 return JsonConvert.SerializeObject(anonimo, Formatting.Indented);
             }
         }
+
+        public int ReporteDeEventos(int idCaso, DateTime inicio, DateTime final)
+        {
+            using (var context = new MCCMEntities())
+            {
+                return context.TMCCM_Evento.Where(e => e.TB_Eliminado == false &&
+                    e.TN_ID_Caso == idCaso).ToList().Count();
+            }
+        }
+
+        public List<int> ReporteDeTareas(int idCaso, DateTime inicio, DateTime final)
+        {
+            using (var context = new MCCMEntities())
+            {
+                List<int> data = new List<int>();
+
+                data.Add(context.TMCCM_Tarea.Where(e => e.TB_Eliminado == false && 
+                    e.TN_ID_Caso == idCaso &&
+                    e.TN_Tipo != 3).ToList().Count);
+                data.Add(context.TMCCM_Tarea.Where(e => e.TB_Eliminado == false &&
+                    e.TN_ID_Caso == idCaso &&
+                    e.TN_Tipo == 3).ToList().Count);
+
+                return data;
+            }
+        }
+
+        public List<int> ReporteDeEntidades(int idCaso, DateTime inicio, DateTime final) {
+            using (var context = new MCCMEntities())
+            {
+                List<int> data = new List<int>();
+
+                data.Add(context.TMCCM_Entidad_Persona.Where(e => e.TB_Eliminado == false && e.TN_ID_Caso == idCaso).ToList().Count);
+                data.Add(context.TMCCM_Entidad_Persona_Juridica.Where(e => e.TB_Eliminado == false && e.TN_ID_Caso == idCaso).ToList().Count);
+                data.Add(context.TMCCM_Entidad_Vehiculo.Where(e => e.TB_Eliminado == false && e.TN_ID_Caso == idCaso).ToList().Count);
+                data.Add(context.TMCCM_Entidad_Ubicacion.Where(e => e.TB_Eliminado == false && e.TN_ID_Caso == idCaso).ToList().Count);
+                data.Add(context.TMCCM_Entidad_Telefono.Where(e => e.TB_Eliminado == false && e.TN_ID_Caso == idCaso).ToList().Count);
+                data.Add(context.TMCCM_Entidad_Arma.Where(e => e.TB_Eliminado == false && e.TN_ID_Caso == idCaso).ToList().Count);
+                data.Add(context.TMCCM_Entidad_Droga.Where(e => e.TB_Eliminado == false && e.TN_ID_Caso == idCaso).ToList().Count);
+
+                return data;
+            }
+        }
+
+        public List<float> ReporteDeGastos(int idCaso, DateTime inicio, DateTime final)
+        {
+            using (var context = new MCCMEntities())
+            {
+                List<float> data = new List<float>();
+
+                data.Add((float)context.TMCCM_Gasto.Where(e => e.TB_Eliminado == false &&
+                    e.TN_ID_Caso == idCaso &&
+                    e.TMCCM_C_Gasto_Tipo_Gasto.TC_Nombre == "Operativo").ToList().Sum(e => e.TD_Monto));
+                data.Add((float)context.TMCCM_Gasto.Where(e => e.TB_Eliminado == false &&
+                    e.TN_ID_Caso == idCaso &&
+                    e.TMCCM_C_Gasto_Tipo_Gasto.TC_Nombre == "Combustible").ToList().Sum(e => e.TD_Monto));
+                data.Add((float)context.TMCCM_Gasto.Where(e => e.TB_Eliminado == false &&
+                    e.TN_ID_Caso == idCaso &&
+                    (e.TMCCM_C_Gasto_Tipo_Gasto.TC_Nombre != "Operativo" &&
+                    e.TMCCM_C_Gasto_Tipo_Gasto.TC_Nombre != "Combustible")).ToList().Sum(e => e.TD_Monto));
+
+                return data;
+            }
+        }
+
+        public List<int> ReporteDeRecursos(int idCaso, DateTime inicio, DateTime final)
+        {
+            using (var context = new MCCMEntities())
+            {
+                List<int> data = new List<int>();
+
+                data.Add(context.TMCCM_Grupo_Usuario.Where(e => e.TB_Eliminado == false &&
+                    e.TMCCM_Grupo.TN_ID_Caso == idCaso).ToList().Count());
+                data.Add(context.TMCCM_Grupo_Vehiculo.Where(e => e.TB_Eliminado == false &&
+                    e.TMCCM_Grupo.TN_ID_Caso == idCaso).ToList().Count());
+
+                return data;
+            }
+        }
     }
-
-
-
 }

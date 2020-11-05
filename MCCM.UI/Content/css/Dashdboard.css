@@ -6,6 +6,10 @@
     margin-left:2%;
 }
 
+.card {
+    overflow: hidden;
+}
+
 .card-header {
     display: flex;
     flex-direction: row;
@@ -14,4 +18,9 @@
 
 #dashboard-container {
     height: 90vh;
+}
+
+.hoverOp:hover {
+    cursor: pointer;
+    opacity: 0.8;
 }

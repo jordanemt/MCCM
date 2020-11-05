@@ -554,6 +554,8 @@
     <Content Include="Views\EntidadVehiculo\_ModalClaseVehiculo.cshtml" />
     <Content Include="Views\EntidadVehiculo\_ModalColorVehiculo.cshtml" />
     <Content Include="Views\EntidadPersonaJuridica\_ModalC_Tipo_Organizacion.cshtml" />
+    <Content Include="Views\Vehiculo\_InsertarFormModal.cshtml" />
+    <Content Include="Views\Dashboard\_Reporte.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -119,6 +119,10 @@ namespace MCCM.AccesoDatos
             {
                 TMCCM_Grupo data = context.TMCCM_Grupo.Find(id);
                 data.TB_Eliminado = true;
+                foreach (TMCCM_Grupo_Usuario item in data.TMCCM_Grupo_Usuario)
+                {
+                    item.TB_Eliminado = true;
+                }
                 context.Entry(data).State = EntityState.Modified;
                 context.SaveChanges();
             }

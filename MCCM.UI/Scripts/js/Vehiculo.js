@@ -20,7 +20,7 @@
     });
 }
 
-function abrirGrupo_VehiculoActualizarFormModal(idGrupo, idVehiculo) {
+function abrirGrupo_VehiculoActualizarFormModal(id) {
     $('#grupo_vehiculo-form-modal').remove();
 
     var url = "/Vehiculo/Grupo_VehiculoActualizarFormModal/";
@@ -29,10 +29,7 @@ function abrirGrupo_VehiculoActualizarFormModal(idGrupo, idVehiculo) {
         url: url,
         cache: false,
         type: "GET",
-        data: {
-            idGrupo: idGrupo,
-            idVehiculo: idVehiculo
-        },
+        data: { id: id },
         success: function (data) {
             $('.body-content').append(data);
             $('#grupo_vehiculo-form-modal').modal('show');
@@ -92,7 +89,7 @@ function actualizarGrupo_Vehiculo() {
             type: "POST",
             data: $('#grupo_vehiculo-form').serialize(),
             success: function (data) {
-                $('#grupo_vehiculo-' + $('#TN_ID_Vehiculo').val()).remove();
+                $('#grupo_vehiculo-' + $('#TN_ID_Grupo_Vehiculo').val()).remove();
                 $('#grupo_vehiculo-form-modal').modal('hide');
                 $('#grupo_vehiculo-contenedor').append(data);
             },
@@ -103,17 +100,44 @@ function actualizarGrupo_Vehiculo() {
     }
 }
 
-function aplicarGrupo_VehiculoValidation() {
-    $("#grupo_vehiculo-form").validate({
-        rules: {
-            TN_ID_Vehiculo: "required",
-            TF_Fecha_Hora: "required"
+function eliminarGrupo_VehiculoPorId(id) {
+    var url = "/Vehiculo/EliminarGrupo_Vehiculo/";
+
+    $.ajax({
+        url: url,
+        cache: false,
+        type: "POST",
+        data: { "id": id },
+        success: function (data) {
+            alert('Se ha borrado el vehículo del grupo');
+            $('#grupo_vehiculo-' + id).remove();
         },
-        messages: {
-            TN_ID_Vehiculo: "Este campo es requerido",
-            TF_Fecha_Hora: "Este campo es requerido"
+        error: function (reponse) {
+            alert("error : " + reponse);
         }
     });
+}
+
+function insertarVehiculo() {
+    if ($("#vehiculo-form").valid()) {
+        var url = "/Vehiculo/InsertarVehiculo/";
+
+        $.ajax({
+            url: url,
+            cache: false,
+            type: "POST",
+            data: $('#vehiculo-form').serialize(),
+            success: function (data) {
+                $("#TN_ID_Vehiculo-Grupo_Vehiculo").append(new Option(data.Placa, data.ID, true, true));
+                $('#TN_ID_Vehiculo-Grupo_Vehiculo').selectpicker('refresh');
+                $('#vehiculo-form-modal').modal('hide');
+                $('#grupo_vehiculo-form-modal').modal('show');
+            },
+            error: function (reponse) {
+                alert("error : " + reponse);
+            }
+        });
+    }
 }
 
 function aplicarGrupo_VehiculoDateRangePicker() {

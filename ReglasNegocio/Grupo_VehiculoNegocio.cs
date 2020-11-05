@@ -27,9 +27,9 @@ namespace MCCM.ReglasNegocio
             return datos.ListarPorGrupoId(idGrupo);
         }
 
-        public TMCCM_Grupo_Vehiculo ObtenerPorId(int idGrupo, int idVehiculo)
+        public TMCCM_Grupo_Vehiculo ObtenerPorId(int id)
         {
-            return datos.ObtenerPorId(idGrupo, idVehiculo);
+            return datos.ObtenerPorId(id);
         }
 
         public TMCCM_Grupo_Vehiculo Insertar(TMCCM_Grupo_Vehiculo data)
@@ -45,11 +45,6 @@ namespace MCCM.ReglasNegocio
         public void EliminarPorId(int id)
         {
             datos.EliminarPorId(id);
-        }
-
-        public TMCCM_Grupo_Vehiculo Devolver(TMCCM_Grupo_Vehiculo data)
-        {
-            return datos.Devolver(data);
         }
     }
 }

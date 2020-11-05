@@ -29,17 +29,16 @@ namespace MCCM.AccesoDatos
             }
         }
 
-        public TMCCM_Grupo_Vehiculo ObtenerPorId(int idGrupo, int idVehiculo)
+        public TMCCM_Grupo_Vehiculo ObtenerPorId(int id)
         {
             using (var context = new MCCMEntities())
             {
-                return context.TMCCM_Grupo_Vehiculo
-                    .Where(e => e.TN_ID_Grupo == idGrupo && e.TN_ID_Vehiculo == idVehiculo)
-                    .Include(e => e.TMCCM_Vehiculo)
-                    .FirstOrDefault();
+                var data = context.TMCCM_Grupo_Vehiculo.Find(id);
+                context.Entry(data).Reference(e => e.TMCCM_Vehiculo).Load();
+                context.Entry(data).Reference(e => e.TMCCM_Grupo).Load();
+                return data;
             }
         }
-
 
         public TMCCM_Grupo_Vehiculo Insertar(TMCCM_Grupo_Vehiculo data)
         {
@@ -52,6 +51,7 @@ namespace MCCM.AccesoDatos
                 data.TN_Km_Inicio = vehiculo.TC_Kilometraje;
                 TMCCM_Grupo_Vehiculo newData = context.TMCCM_Grupo_Vehiculo.Add(data);
                 context.Entry(newData).Reference(e => e.TMCCM_Vehiculo).Load();
+                context.Entry(newData).Reference(e => e.TMCCM_Grupo).Load();
                 context.SaveChanges();
                 return newData;
             }
@@ -61,16 +61,14 @@ namespace MCCM.AccesoDatos
         {
             using (var context = new MCCMEntities())
             {
-                if (data.TN_Km_Regreso != null) 
+                if (data.TN_Km_Regreso != null) //El vehiculo fue devuelto
                 {
-                    TMCCM_Vehiculo vehiculo = context.TMCCM_Vehiculo.Find(data.TN_ID_Vehiculo);
-                    vehiculo.TB_En_Uso = false;
-                    vehiculo.TC_Kilometraje = data.TN_Km_Regreso;
-                    context.Entry(vehiculo).State = EntityState.Modified;
+                    DevolverVehiculo((int)data.TN_ID_Vehiculo, (int)data.TN_Km_Regreso);
                 }
                 data.TB_Eliminado = false;
                 context.Entry(data).State = EntityState.Modified;
                 context.Entry(data).Reference(e => e.TMCCM_Vehiculo).Load();
+                context.Entry(data).Reference(e => e.TMCCM_Grupo).Load();
                 context.SaveChanges();
                 return data;
             }
@@ -82,18 +80,23 @@ namespace MCCM.AccesoDatos
             {
                 TMCCM_Grupo_Vehiculo data = context.TMCCM_Grupo_Vehiculo.Find(id);
                 data.TB_Eliminado = true;
+                if (data.TN_Km_Regreso == null) //El Vehiculo no fue devuelto
+                {
+                    DevolverVehiculo((int)data.TN_ID_Vehiculo, (int)data.TN_Km_Inicio);
+                }
                 context.Entry(data).State = EntityState.Modified;
                 context.SaveChanges();
             }
         }
 
-        public TMCCM_Grupo_Vehiculo Devolver(TMCCM_Grupo_Vehiculo data)
-        {
+        private void DevolverVehiculo(int id, int km_Regreso) {
             using (var context = new MCCMEntities())
             {
-                
+                TMCCM_Vehiculo vehiculo = context.TMCCM_Vehiculo.Find(id);
+                vehiculo.TB_En_Uso = false;
+                vehiculo.TC_Kilometraje = km_Regreso;
+                context.Entry(vehiculo).State = EntityState.Modified;
                 context.SaveChanges();
-                return data;
             }
         }
     }

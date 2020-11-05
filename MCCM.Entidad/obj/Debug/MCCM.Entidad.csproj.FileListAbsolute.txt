@@ -39,6 +39,7 @@ C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.Entidad\bin\Debug\EntityFramework.d
 C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.Entidad\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.Entidad\bin\Debug\EntityFramework.xml
 C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.Entidad\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.csprojAssemblyReference.cache
 C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.csproj.CoreCompileInputs.cache
 C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.csproj.CopyComplete
 C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.dll

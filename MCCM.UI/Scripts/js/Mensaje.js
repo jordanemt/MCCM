@@ -15,8 +15,7 @@ $(document).on("click", ".btnEliminarMensaje", function () {
     } else if (boton.attr('class').split(' ')[1] == "borrarGrupo") {
         eliminarGrupoPorId(boton.attr('id'));
     } else if (boton.attr('class').split(' ')[1] == "borrarVehiculo") {
-        alert('Se ha borrado el vehículo');
-        boton.parent().parent().parent().remove();
+        eliminarGrupo_VehiculoPorId(boton.attr('id'));
     }
     else if (boton.attr('class').split(' ')[1] == "borrarEntidadDroga") {
         eliminarDroga(boton.attr('id'));
