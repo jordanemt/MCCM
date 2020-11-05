@@ -128,7 +128,6 @@ function insertarVehiculo() {
             type: "POST",
             data: $('#vehiculo-form').serialize(),
             success: function (data) {
-                alert(data.Placa);
                 $("#TN_ID_Vehiculo-Grupo_Vehiculo").append(new Option(data.Placa, data.ID, true, true));
                 $('#TN_ID_Vehiculo-Grupo_Vehiculo').selectpicker('refresh');
                 $('#vehiculo-form-modal').modal('hide');

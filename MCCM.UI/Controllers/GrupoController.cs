@@ -1,5 +1,6 @@
 ﻿using MCCM.Entidad;
 using MCCM.ReglasNegocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -10,11 +11,13 @@ namespace MCCM.UI.Controllers
     {
         private GrupoNegocio negocio;
         private UsuarioNegocio usuarioNegocio;
+        private EventoNegocio eventoNegocio;
 
         public GrupoController()
         {
             negocio = new GrupoNegocio();
             usuarioNegocio = new UsuarioNegocio();
+            eventoNegocio = new EventoNegocio();
         }
 
         [HttpGet]
@@ -75,7 +78,9 @@ namespace MCCM.UI.Controllers
                 item.TB_Eliminado = false;
                 data.TMCCM_Grupo_Usuario.Add(item);
             }
-            return PartialView("_Card", negocio.Insertar(data));
+            var model = negocio.Insertar(data);
+            InsertarEvento(model, "Se insertó");
+            return PartialView("_Card", model);
         }
 
         [HttpPost]
@@ -97,13 +102,48 @@ namespace MCCM.UI.Controllers
                 item.TB_Eliminado = false;
                 data.TMCCM_Grupo_Usuario.Add(item);
             }
-            return PartialView("_Card", negocio.Actualizar(data));
+            var model = negocio.Actualizar(data);
+            InsertarEvento(model, "Se actualizó");
+            return PartialView("_Card", model);
         }
 
         [HttpPost]
         public void EliminarPorId(int id)
         {
+            var model = negocio.ObtenerPorId(id);
+            InsertarEvento(model, "Se eliminó");
             negocio.EliminarPorId(id);
+        }
+
+        private void InsertarEvento(TMCCM_Grupo data, string accion)
+        {
+            TMCCM_Usuario encargado = data.TMCCM_Grupo_Usuario.Where(e => e.TB_Encargado == true).FirstOrDefault().TMCCM_Usuario;
+            List<TMCCM_Usuario> acompannantes = data.TMCCM_Grupo_Usuario.Where(e => e.TB_Encargado == false).Select(e => e.TMCCM_Usuario).ToList();
+
+            string encargadoMsg = "Encargado: " + encargado.TN_ID_Usuario + " " + encargado.TC_Nombre + " " + encargado.TC_Primer_Apellido;
+            string acompannantesMsg = "";
+
+            foreach (TMCCM_Usuario acompannante in acompannantes) 
+            {
+                acompannantesMsg += (acompannante.TN_ID_Usuario == acompannantes.FirstOrDefault().TN_ID_Usuario) ? "Acompañantes: " : "; ";
+                acompannantesMsg += acompannante.TN_ID_Usuario + " " + acompannante.TC_Nombre + " " + acompannante.TC_Primer_Apellido;
+            }
+
+            TMCCM_Evento evento = new TMCCM_Evento();
+            evento.TN_ID_Caso = data.TN_ID_Caso;
+            evento.TC_Lugar = "Grupos";
+            evento.TC_Informa = "MCCM";
+            evento.TF_Fecha = DateTime.Now;
+            evento.TC_Novedad =
+                accion + " grupo #" + data.TN_ID_Grupo +
+                " (Zona: " + data.TC_Zona +
+                ", Fecha/Inicio: " + ((DateTime)data.TF_Fecha_Inicio).ToString("dd/MM/yyyy") +
+                ", Fecha/Final: " + ((data.TF_Fecha_Final != null)? ((DateTime)data.TF_Fecha_Inicio).ToString("dd/MM/yyyy"):"---") +
+                ", Hora: " + data.TF_Hora +
+                ", Tipo: " + (((bool)data.TB_Mando)? "Mando":"Operativo") +
+                ", " + encargadoMsg + 
+                ", " + acompannantesMsg + ")";
+            eventoNegocio.InsertarEvento(evento);
         }
     }
 }

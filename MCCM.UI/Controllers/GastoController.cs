@@ -12,25 +12,27 @@ namespace MCCM.UI.Controllers
 {
     public class GastoController : Controller
     {
-        private GastoNegocio gastoNegocio;
+        private GastoNegocio negocio;
+        private  EventoNegocio eventoNegocio;
 
         public GastoController()
         {
-            gastoNegocio = new GastoNegocio();
+            negocio = new GastoNegocio();
+            eventoNegocio = new EventoNegocio();
         }
 
         [HttpGet]
         public ActionResult InsertarFormModal()
         {
-            ViewBag.TipoGasto = gastoNegocio.ListarTipoGasto();
+            ViewBag.TipoGasto = negocio.ListarTipoGasto();
             return PartialView("_InsertarFormModal");
         }
 
         [HttpGet]
         public ActionResult ActualizarFormModal(int id)
         {
-            ViewBag.TipoGasto = gastoNegocio.ListarTipoGasto();
-            return PartialView("_ActualizarFormModal", gastoNegocio.ObtenerPorId(id));
+            ViewBag.TipoGasto = negocio.ListarTipoGasto();
+            return PartialView("_ActualizarFormModal", negocio.ObtenerPorId(id));
         }
 
         [HttpGet]
@@ -38,7 +40,7 @@ namespace MCCM.UI.Controllers
         {
             try
             {
-                var model = gastoNegocio.Listar();
+                var model = negocio.Listar();
                 return PartialView("_ListaCards", model);
             }
             catch (Exception e)
@@ -50,38 +52,44 @@ namespace MCCM.UI.Controllers
         [HttpGet]
         public ActionResult ListarPorCasoId(int idCaso)
         {
-            return PartialView("_ListaCards", gastoNegocio.ListarPorCaso(idCaso));
+            return PartialView("_ListaCards", negocio.ListarPorCaso(idCaso));
         }
 
         [HttpPost]
         public ActionResult Insertar(TMCCM_Gasto data)
         {
-            return PartialView("_Card", gastoNegocio.Insertar(data));
+            var model = negocio.Insertar(data);
+            InsertarEvento(model, "Se insertó");
+            return PartialView("_Card", model);
         }
 
         [HttpPost]
         public ActionResult Actualizar(TMCCM_Gasto data)
         {
-            return PartialView("_Card", gastoNegocio.Actualizar(data));
+            var model = negocio.Actualizar(data);
+            InsertarEvento(model, "Se actualizó");
+            return PartialView("_Card", model);
         }
 
         [HttpPost]
         public void EliminarPorId(int id)
         {
-            gastoNegocio.EliminarPorId(id);
+            var model = negocio.ObtenerPorId(id);
+            InsertarEvento(model, "Se eliminó");
+            negocio.EliminarPorId(id);
         }
 
         [HttpPost]
         public ActionResult InsertarTipo_Gasto(TMCCM_C_Gasto_Tipo_Gasto data)
         {
-            TMCCM_C_Gasto_Tipo_Gasto newData = gastoNegocio.InsertarTipo_Gasto(data);
+            TMCCM_C_Gasto_Tipo_Gasto newData = negocio.InsertarTipo_Gasto(data);
             return Json(new { Nombre = newData.TC_Nombre, ID = newData.TN_ID_Tipo_Gasto });
         }
 
         [HttpGet]
         public ActionResult ObtenerSumatoriaDeGastosPorTipoPorCaso(int idCaso)
         {
-            var lista = gastoNegocio.ListarPorCaso(idCaso);
+            var lista = negocio.ListarPorCaso(idCaso);
             var totalPorTipos =
                 from grupo in lista
                 group grupo by grupo.TMCCM_C_Gasto_Tipo_Gasto.TC_Nombre into grupoGroup
@@ -92,6 +100,22 @@ namespace MCCM.UI.Controllers
                 };
             var total = totalPorTipos.Sum(e => e.totalTipo);
             return Json(new { tiposSumatoria = totalPorTipos, total }, JsonRequestBehavior.AllowGet);
+        }
+
+        private void InsertarEvento(TMCCM_Gasto data, string accion) {
+            TMCCM_Evento evento = new TMCCM_Evento();
+            evento.TN_ID_Caso = data.TN_ID_Caso;
+            evento.TC_Lugar = "Gastos Operativos";
+            evento.TC_Informa = "MCCM";
+            evento.TF_Fecha = DateTime.Now;
+            evento.TC_Novedad =
+                accion + " gasto #" + data.TN_ID_Gasto +
+                " (Factura: " + data.TN_Num_Factura +
+                ", Fecha: " + ((DateTime) data.TF_Fecha).ToString("dd/MM/yyyy") +
+                ", Tipo: " + data.TMCCM_C_Gasto_Tipo_Gasto.TC_Nombre +
+                ", Monto: " + data.TD_Monto +
+                ", Detalle: " + data.TC_Compra + ")";
+            eventoNegocio.InsertarEvento(evento);
         }
     }
 }

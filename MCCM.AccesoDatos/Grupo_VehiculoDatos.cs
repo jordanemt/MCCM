@@ -35,6 +35,7 @@ namespace MCCM.AccesoDatos
             {
                 var data = context.TMCCM_Grupo_Vehiculo.Find(id);
                 context.Entry(data).Reference(e => e.TMCCM_Vehiculo).Load();
+                context.Entry(data).Reference(e => e.TMCCM_Grupo).Load();
                 return data;
             }
         }
@@ -50,6 +51,7 @@ namespace MCCM.AccesoDatos
                 data.TN_Km_Inicio = vehiculo.TC_Kilometraje;
                 TMCCM_Grupo_Vehiculo newData = context.TMCCM_Grupo_Vehiculo.Add(data);
                 context.Entry(newData).Reference(e => e.TMCCM_Vehiculo).Load();
+                context.Entry(newData).Reference(e => e.TMCCM_Grupo).Load();
                 context.SaveChanges();
                 return newData;
             }
@@ -66,6 +68,7 @@ namespace MCCM.AccesoDatos
                 data.TB_Eliminado = false;
                 context.Entry(data).State = EntityState.Modified;
                 context.Entry(data).Reference(e => e.TMCCM_Vehiculo).Load();
+                context.Entry(data).Reference(e => e.TMCCM_Grupo).Load();
                 context.SaveChanges();
                 return data;
             }
