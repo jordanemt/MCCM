@@ -75,7 +75,6 @@ $('#ModalFormEvento').on('hidden.bs.modal', function () {
 
 
 $(document).on("click", ".editarEvento", function () {
-    alert("HOLA");
     $.ajax({
         type: "GET",
         url: "/Evento/ObtenerEventoPorID",
@@ -151,8 +150,8 @@ function CargarEventos() {
                 '<div class="card-header">' +
                 ' Evento Codigo #' + eventos[i].TN_ID_Evento +
                 '<div>' +
-                '<a href="#" class="editarEvento" id="' + eventos[i].TN_ID_Evento + '"><span><i class="fa fa-pencil" aria-hidden="true"></i></span ></a > ' +
-                '<a href="#" class="borrar borrarEvento" id="' + eventos[i].TN_ID_Evento + '"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span ></a > ' +
+                '<a href="#" class="editarEvento" id="' + eventos[i].TN_ID_Evento + '"><span><i class="fa fa-pencil icono_evento" aria-hidden="true"></i></span ></a > ' +
+                '<a href="#" class="borrar borrarEvento" id="' + eventos[i].TN_ID_Evento + '"><span><i class="fa fa-trash icono_evento" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span ></a > ' +
                 '</div>' +
                 '</div>' +
                 '<div class="card-body" style="padding:0px!important">' +
