@@ -1,7 +1,36 @@
 ﻿$(document).ready(function () {
     cargarTipoOrganizacion();
-
+    validarFormularioEntidadPersonaJuridica();
 });
+
+
+/*Descripción: Metodo que valida el formulario usando la libreria de js*/
+function validarFormularioEntidadPersonaJuridica() {
+    $("#FormEntidadPersonaJuridica").validate({
+        rules: {
+            TC_ID_Cedula_Juridica_PJ: {required: true},
+            TC_Nombre_OrganizaciónPJuridca_PJ: { required: true },
+            TC_Nombre_Comercial_PJ: { required: true },
+            TN_ID_Tipo_Organizacion: { required: true },
+            TC_Sitio_Web_PJ: { required: true },
+            TC_Comentario_PJ: { required: true },
+        },
+        submitHandler: function (form) {
+            return false;
+        }
+    });
+
+    $("#FormTipoOrganizacion").validate({
+        rules: {
+            TC_Descripcion: { required: true }
+        },
+        submitHandler: function (form) {
+            return false;
+        }
+    });
+
+
+}
 
 
 $(document).on("click", "#btnRegistrarTipoOrganizacion", function (e) {
@@ -35,9 +64,18 @@ $(document).on("click", "#btnInsertarEntidadPersonaJuridica", function (e) {
             type: "POST",
             url: "/E_PersonaJuridica/Insertar_E_PersonaJuridica",
             data: Object.fromEntries(form),
+            beforeSend: function () {
+                $("#btnInsertarEntidadPersonaJuridica").prop("disabled", true);
+                $("#btnInsertarEntidadPersonaJuridica").html(
+                    '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
+                );
+            }
         }).done(function (data) {
-            $("#entidadPersonaJuridicaModal").modal("hide");
+            $("#btnInsertarEntidadPersonaJuridica").removeAttr("disabled");
+            $("#btnInsertarEntidadPersonaJuridica").html('Insertar');
             CargarEntidadPersonaJuridica();
+            $("#entidadPersonaJuridicaModal").modal("hide");
+            
         });
     } 
 });
@@ -56,7 +94,15 @@ $(document).on("click", "#btnModificarEntidadPersonaJuridica", function (e) {
             type: "POST",
             url: "/E_PersonaJuridica/Modificar_E_PersonaJuridica",
             data: Object.fromEntries(form),
+            beforeSend: function () {
+                $("#btnModificarEntidadPersonaJuridica").prop("disabled", true);
+                $("#btnModificarEntidadPersonaJuridica").html(
+                    '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
+                );
+            }
         }).done(function (data) {
+            $("#btnModificarEntidadPersonaJuridica").removeAttr("disabled");
+            $("#btnModificarEntidadPersonaJuridica").html('Modificar');
             $("#entidadPersonaJuridicaModal").modal("hide");
             CargarEntidadPersonaJuridica();
         });
@@ -75,14 +121,15 @@ function CargarEntidadPersonaJuridica() {
         for (let i = 0; i < entidadPersonaJuridica.length; i++) {
 
             $("#entidades-body").append(
-                ' <div class="card" id="cartaEntidadPersonaJuridica" ' + entidadPersonaJuridica[i].TN_ID_Persona_Juridica + '>' +
-                    '<div class="card-header gris_claro">' +
-                        'Persona Juridica Codigo #' + entidadPersonaJuridica[i].TN_ID_Persona_Juridica +
-                        '<div>' +
-                            ' <a href="#" class="editarEntidadPersonaJuridica" id="' + entidadPersonaJuridica[i].TN_ID_Persona_Juridica + '"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>' +
-                            '<a href="#" class="borrar borrarPersonaJuridica" id="' + entidadPersonaJuridica[i].TN_ID_Persona_Juridica + '"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>' +
-                        '</div>' +
-                    '</div>' +
+                ' <div class="card">' +
+
+                '<div class="card-header gris_claro">' +
+                'Persona Jurídica Código #' + entidadPersonaJuridica[i].TN_ID_Persona_Juridica +
+                '<div>' +
+                '<a href="#" class="editarEntidadPersonaJuridica" id="' + entidadPersonaJuridica[i].TN_ID_Persona_Juridica + '"><span><i class="fa fa-pencil icono" aria-hidden="true"></i></span ></a > ' +
+                '<a href="#" class="borrar borrarPersonaJuridica" id="' + entidadPersonaJuridica[i].TN_ID_Persona_Juridica + '"><span><i class="fa fa-trash icono" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span ></a > ' +
+                '</div>' +
+                '</div>' +
                     '<div class="card-body" style="padding:0px!important">' +
                         '<div class="container">' +
                             '<div class="row">' +
@@ -121,13 +168,13 @@ function CargarEntidadPersonaJuridica() {
 
 /*Eliminar Persona Juridca*/
 
-function eliminarPersonaJuridica(entidadPersonaJuridicaID) {
+function eliminarPersonaJuridica(entidadPersonaJuridicaID, elemento) {
     $.ajax({
         type: "POST",
         url: "/E_PersonaJuridica/Eliminar_E_PersonaJuridicaPorID",
         data: { "entidadPersonaJuridicaID": entidadPersonaJuridicaID }
     }).done(function (data) {
-
+        elemento.parent().parent().parent().remove();
     });
 }
 
@@ -139,7 +186,6 @@ $(document).on("click", ".editarEntidadPersonaJuridica", function () {
         url: "/E_PersonaJuridica/Obtener_E_PersonaJuridicaPorID",
         data: { "ID": $(this).attr('ID') }
     }).done(function (data) {
-        alert(data);
         let entidadPersonaJuridica = JSON.parse(data);
         $("#tituloEntidadPersonaJuridica").html("Modificar Persona Juridica");
         $("#divPersonaJuridicaID").show();

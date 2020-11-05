@@ -24,13 +24,6 @@ function validarFormularioEvento() {
             TC_Informa: { required: true },
             TF_Fecha: { required: true }
         },
-        messages: {
-            TC_Novedad: { required: "Debe indicar la Novedad" },
-            TC_Lugar: { required: "Debe indicar el Lugar" },
-            TC_Informa: { required: "Debe indicar a quién está informando" },
-            TF_Fecha: { required: "Debe indicar la fecha" }
-
-        },
         submitHandler: function (form) {
             return false;
         }
@@ -146,18 +139,18 @@ function CargarEventos() {
         for (let i = 0; i < eventos.length; i++) {
 
             $("#bitacora-body").append(
-                '<div class="card evento" id="' + eventos[i].TN_ID_Evento + '" >' +
-                '<div class="card-header gris_claro">' +
-                ' Evento Codigo #' + eventos[i].TN_ID_Evento +
-                '<div>' +
-                '<a href="#" class="editarEvento" id="' + eventos[i].TN_ID_Evento + '"><span><i class="fa fa-pencil icono_evento" aria-hidden="true"></i></span ></a > ' +
-                '<a href="#" class="borrar borrarEvento" id="' + eventos[i].TN_ID_Evento + '"><span><i class="fa fa-trash icono_evento" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span ></a > ' +
-                '</div>' +
-                '</div>' +
-                '<div class="card-body" style="padding:0px!important">' +
-                '<div class="container">' +
-                '<div class="row">' +
-                '<div class="col-4">' +
+                '<div class="card evento">' +
+                    '<div class="card-header gris_claro">' +
+                        'Evento Código #' + eventos[i].TN_ID_Evento +
+                        '<div>' +
+                            '<a href="#" class="editarEvento" id="' + eventos[i].TN_ID_Evento + '"><span><i class="fa fa-pencil icono" aria-hidden="true"></i></span ></a > ' +
+                            '<a href="#" class="borrar borrarEvento" id="' + eventos[i].TN_ID_Evento + '"><span><i class="fa fa-trash icono" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span ></a > ' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="card-body" style="padding:0px!important">' +
+                        '<div class="container">' +
+                            '<div class="row">' +
+                                '<div class="col-4">' +
                 '<h6><span class="w-100 badge badge-primary">Novedad:</span></h6>' +
                 '</div >' +
                 '<div class="col-md-8" >' +

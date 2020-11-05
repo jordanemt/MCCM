@@ -8,17 +8,10 @@ function validarFormularioTarea() {
     $("#FormTarea").validate({
         rules: {
             TC_Diligencia: { required: true },
-            TC_Lugar: { required: true },
+            TC_Lugar_Tarea: { required: true },
             TN_ID_Usuario: { required: true },
             TF_Fecha_Tarea: { required: true },
             TN_Tipo: { required: true }
-        },
-        messages: {
-            TC_Diligencia: { required: "Debe indicar la Diligencia" },
-            TC_Lugar: { required: "Debe indicar el Lugar" },
-            TN_ID_Usuario: { required: "Debe indicar a quién se le asigna la tarea" },
-            TF_Fecha_Tarea: { required: "Debe indicar la fecha limite" },
-            TN_Tipo: { required: "Seleccione un tipo" }
         },
         submitHandler: function (form) {
             return false;
@@ -175,7 +168,6 @@ $(document).on("click", ".editarTarea", function () {
         data: { "ID": $(this).attr('ID') }
     }).done(function (data) {
         let tarea = JSON.parse(data);
-
         $("#tituloFormTarea").html("Modificar Tarea");
         $("#TN_ID_Tarea").val(tarea[0].TN_ID_Tarea);
         $(".input_Tarea_Lugar").val(tarea[0].TC_Lugar);

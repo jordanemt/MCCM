@@ -33,7 +33,7 @@ $(document).on("click", ".btnEliminarMensaje", function () {
         eliminarVehiculo(boton.attr('id'));
     }
     else if (boton.attr('class').split(' ')[1] == "borrarPersonaJuridica") {
-        eliminarPersonaJuridica(boton.attr('id'));
+        eliminarPersonaJuridica(boton.attr('id'), boton);
     }
     else if (boton.attr('class').split(' ')[1] == "borrarEntidadPersona") {
         eliminarPersona(boton.attr('id'));
