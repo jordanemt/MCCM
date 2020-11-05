@@ -8,6 +8,9 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.3/jspdf.debug.js"></script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
 <script src="~/Scripts/js/Util.js"></script>
 <script src="~/Scripts/js/Dashboard.js"></script>
@@ -150,7 +153,10 @@
                 <div class="card border-light col-sm-3 p-0">
                     <div class="card-header amarillo">
                         <div>Gastos Operativos</div>
-                        <div><a href="#"><span><i class="fa fa-plus font_grisHover" onclick="abrirInsertarGastoFormModal()"></i></span></a></div>
+                        <div>
+                            <a href="#"><span><i class="fa fa-calculator font_grisHover" onclick="obtenerSumatoriaDeGastosPorTipoPorCaso()"></i></span></a>
+                            <a href="#"><span><i class="fa fa-plus font_grisHover" onclick="abrirInsertarGastoFormModal()"></i></span></a>
+                        </div>
                     </div>
                     <div class="card-body p-0" style="overflow-y: scroll">
                         <div id="gastos-contenedor" class="d-flex flex-column-reverse justify-content-center">
@@ -191,8 +197,9 @@
 
             </div>
             @*Pestanna #3 Body*@
-            <div class="card-body d-none card-body-flex" id="reporte-body">
-                @Html.Partial("~/Views/Dashboard/_GenerarReporte.cshtml")
+            <div class="card-body d-none card-body-flex" id="reporte-body" style="overflow-y: scroll; overflow: hidden">
+                @*@Html.Partial("~/Views/Dashboard/_GenerarReporte.cshtml")*@
+                @*@Html.Partial("~/Views/Dashboard/_Reporte.cshtml")*@
             </div>
         </div>
     </div>
@@ -271,6 +278,7 @@ function seleccionEntidad() {
 @Html.Partial("_ModalMensajeConfirmacion")
 
 @Html.Partial("~/Views/Gasto/_Tipo_GastoInsertarFormModal.cshtml")
+@Html.Partial("~/Views/Vehiculo/_InsertarFormModal.cshtml")
 
 <script>
     $('select').selectpicker();

@@ -550,6 +550,8 @@
     <Content Include="Views\Gasto\_InsertarFormModal.cshtml" />
     <Content Include="Views\Gasto\_ListaCards.cshtml" />
     <Content Include="Views\Gasto\_Tipo_GastoInsertarFormModal.cshtml" />
+    <Content Include="Views\Vehiculo\_InsertarFormModal.cshtml" />
+    <Content Include="Views\Dashboard\_Reporte.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

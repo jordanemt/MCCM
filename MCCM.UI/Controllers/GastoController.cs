@@ -1,6 +1,11 @@
 ﻿using MCCM.Entidad;
 using MCCM.ReglasNegocio;
+using Microsoft.Ajax.Utilities;
+using Newtonsoft.Json.Linq;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace MCCM.UI.Controllers
@@ -71,6 +76,22 @@ namespace MCCM.UI.Controllers
         {
             TMCCM_C_Gasto_Tipo_Gasto newData = gastoNegocio.InsertarTipo_Gasto(data);
             return Json(new { Nombre = newData.TC_Nombre, ID = newData.TN_ID_Tipo_Gasto });
+        }
+
+        [HttpGet]
+        public ActionResult ObtenerSumatoriaDeGastosPorTipoPorCaso(int idCaso)
+        {
+            var lista = gastoNegocio.ListarPorCaso(idCaso);
+            var totalPorTipos =
+                from grupo in lista
+                group grupo by grupo.TMCCM_C_Gasto_Tipo_Gasto.TC_Nombre into grupoGroup
+                select new 
+                {
+                    nombre = grupoGroup.Key,
+                    totalTipo = grupoGroup.Sum(e => e.TD_Monto)
+                };
+            var total = totalPorTipos.Sum(e => e.totalTipo);
+            return Json(new { tiposSumatoria = totalPorTipos, total }, JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -20,10 +20,10 @@ namespace MCCM.UI.Controllers
         }
 
         [HttpGet]
-        public ActionResult Grupo_VehiculoActualizarFormModal(int idGrupo, int idVehiculo)
+        public ActionResult Grupo_VehiculoActualizarFormModal(int id)
         {
-            ViewBag.Grupo_Vehiculo = negocioGrupo_Vehiculo.ObtenerPorId(idGrupo, idVehiculo);
-            return PartialView("_Grupo_VehiculoActualizarFormModal", negocio.Listar());
+            ViewBag.Grupo_Vehiculo = negocioGrupo_Vehiculo.ObtenerPorId(id);
+            return PartialView("_Grupo_VehiculoActualizarFormModal");
         }
 
         [HttpGet]
@@ -41,6 +41,13 @@ namespace MCCM.UI.Controllers
         }
 
         [HttpPost]
+        public ActionResult InsertarVehiculo(TMCCM_Vehiculo data)
+        {
+            TMCCM_Vehiculo newData = negocio.Insertar(data);
+            return Json(new { Placa = newData.TC_Placa, ID = newData.TN_ID_Vehiculo });
+        }
+
+        [HttpPost]
         public ActionResult InsertarGrupo_Vehiculo(TMCCM_Grupo_Vehiculo data)
         {
             return PartialView("_Grupo_VehiculoCard", negocioGrupo_Vehiculo.Insertar(data));
@@ -53,11 +60,9 @@ namespace MCCM.UI.Controllers
         }
 
         [HttpPost]
-        public ActionResult DevolverGrupo_Vehiculo(int idGrupo, int idVehiculo, int kmRegreso)
+        public void EliminarGrupo_Vehiculo(int id)
         {
-            TMCCM_Grupo_Vehiculo e = negocioGrupo_Vehiculo.ObtenerPorId(idGrupo, idVehiculo);
-            e.TN_Km_Regreso = kmRegreso;
-            return PartialView("_Grupo_VehiculoCard", negocioGrupo_Vehiculo.Devolver(e));
+            negocioGrupo_Vehiculo.EliminarPorId(id);
         }
     }
 }

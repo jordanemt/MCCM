@@ -51,7 +51,7 @@
 }
 
 .font_negro {
-    color: black;
+    color: #333333;
 }
 
 .modal-header {
@@ -84,6 +84,10 @@
 
 .font_grisHover:hover {
     color: #808080 !important;
+}
+
+.font_amarilloHover:hover {
+    color: #FFB140 !important;
 }
 
 .transparencia {

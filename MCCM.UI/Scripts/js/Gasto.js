@@ -140,6 +140,28 @@ function insertarTipo_Gasto() {
     }
 }
 
+function obtenerSumatoriaDeGastosPorTipoPorCaso() {
+    var url = "/Gasto/ObtenerSumatoriaDeGastosPorTipoPorCaso/";
+
+    $.ajax({
+        url: url,
+        cache: false,
+        type: "GET",
+        data: { "idCaso": sessionStorage.CasoID },
+        success: function (data) {
+            var msg = '';
+            jQuery.each(data.tiposSumatoria, function (i, val) {
+                msg += val.nombre + ': ' + val.totalTipo + '\n';
+            });
+            msg += 'Total: ' + data.total;
+            alert(msg);
+        },
+        error: function (reponse) {
+            alert("error : " + reponse);
+        }
+    });
+}
+
 function aplicarGastoDateRangePicker() {
     $('#TF_Fecha_Gasto').daterangepicker({
         singleDatePicker: true,
