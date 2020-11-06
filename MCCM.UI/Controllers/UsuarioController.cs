@@ -15,7 +15,7 @@ namespace MCCM.UI.Controllers
         UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
 
         // GET: Usuario
-        [Autentificacion(idRol: 1)]
+        //[Autentificacion(idRol: 1)]
         public ActionResult ListaUsuario()
         {
             return View(usuarioNegocio.Listar());
