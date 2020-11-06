@@ -67,12 +67,26 @@ function insertarGasto() {
             cache: false,
             type: "POST",
             data: $('#gasto-form').serialize(),
+            beforeSend: function () {
+                $("#gasto-form-modal-submit")
+                    .prop("disabled", true);
+                $("#gasto-form-modal-submit")
+                    .html(
+                        '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
+                    );
+            },
             success: function (data) {
                 $('#gasto-form-modal').modal('hide');
                 $('#gastos-contenedor').append(data);
             },
             error: function (reponse) {
                 alert("error : " + reponse);
+            },
+            complete: function () {
+                $("#gasto-form-modal-submit")
+                    .prop("disabled", false);
+                $("#gasto-form-modal-submit")
+                    .html('Insertar');
             }
         });
     }
