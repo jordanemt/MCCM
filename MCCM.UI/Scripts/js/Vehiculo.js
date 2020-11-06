@@ -11,7 +11,6 @@
             $('.body-content').append(data);
             if (agregarGrupoIDToInputElementVal($('#TN_ID_Grupo_Vehiculo'))) {
                 $('#grupo_vehiculo-form-modal').modal('show');
-                //$('#TN_ID_Grupo_Vehiculo').val(sessionStorage.GrupoID)
             }
         },
         error: function (reponse) {
@@ -68,12 +67,26 @@ function insertarGrupo_Vehiculo() {
             cache: false,
             type: "POST",
             data: $('#grupo_vehiculo-form').serialize(),
+            beforeSend: function () {
+                $("#grupo_vehiculo-form-modal-submit")
+                    .prop("disabled", true);
+                $("#grupo_vehiculo-form-modal-submit")
+                    .html(
+                        '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
+                    );
+            },
             success: function (data) {
                 $('#grupo_vehiculo-form-modal').modal('hide');
                 $('#grupo_vehiculo-contenedor').append(data);
             },
             error: function (reponse) {
                 alert("error : " + reponse);
+            },
+            complete: function () {
+                $("#grupo_vehiculo-form-modal-submit")
+                    .prop("disabled", false);
+                $("#grupo_vehiculo-form-modal-submit")
+                    .html('Insertar');
             }
         });
     }
@@ -88,6 +101,14 @@ function actualizarGrupo_Vehiculo() {
             cache: false,
             type: "POST",
             data: $('#grupo_vehiculo-form').serialize(),
+            beforeSend: function () {
+                $("#grupo_vehiculo-form-modal-submit")
+                    .prop("disabled", true);
+                $("#grupo_vehiculo-form-modal-submit")
+                    .html(
+                        '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
+                    );
+            },
             success: function (data) {
                 $('#grupo_vehiculo-' + $('#TN_ID_Grupo_Vehiculo').val()).remove();
                 $('#grupo_vehiculo-form-modal').modal('hide');
@@ -95,6 +116,12 @@ function actualizarGrupo_Vehiculo() {
             },
             error: function (reponse) {
                 alert("error : " + reponse);
+            },
+            complete: function () {
+                $("#grupo_vehiculo-form-modal-submit")
+                    .prop("disabled", false);
+                $("#grupo_vehiculo-form-modal-submit")
+                    .html('Actualizar');
             }
         });
     }
@@ -118,6 +145,15 @@ function eliminarGrupo_VehiculoPorId(id) {
     });
 }
 
+function abrirInsertarVehiculoModal() {
+    $('#vehiculo-form').trigger('reset');
+    $('#TC_Placa-error').hide();
+    $('#TC_Kilometraje-error').hide();
+    $('#TC_Descripcion-error').hide();
+    $('#danger-text').hide();
+    $('#vehiculo-form-modal').modal('show');
+}
+
 function insertarVehiculo() {
     if ($("#vehiculo-form").valid()) {
         var url = "/Vehiculo/InsertarVehiculo/";
@@ -127,14 +163,29 @@ function insertarVehiculo() {
             cache: false,
             type: "POST",
             data: $('#vehiculo-form').serialize(),
+            beforeSend: function () {
+                $("#vehiculo-form-modal-submit")
+                    .prop("disabled", true);
+                $("#vehiculo-form-modal-submit")
+                    .html(
+                        '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
+                    );
+            },
             success: function (data) {
                 $("#TN_ID_Vehiculo-Grupo_Vehiculo").append(new Option(data.Placa, data.ID, true, true));
                 $('#TN_ID_Vehiculo-Grupo_Vehiculo').selectpicker('refresh');
                 $('#vehiculo-form-modal').modal('hide');
                 $('#grupo_vehiculo-form-modal').modal('show');
             },
-            error: function (reponse) {
-                alert("error : " + reponse);
+            error: function (error) {
+                $('#danger-text').html(error.responseText);
+                $('#danger-text').show();
+            },
+            complete: function () {
+                $("#vehiculo-form-modal-submit")
+                    .prop("disabled", false);
+                $("#vehiculo-form-modal-submit")
+                    .html('Actualizar');
             }
         });
     }

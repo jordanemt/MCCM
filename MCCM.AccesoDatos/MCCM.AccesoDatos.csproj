@@ -86,6 +86,7 @@
     <Compile Include="EntidadVehiculoDatos.cs" />
     <Compile Include="exceptions\ErrorInesperadoException.cs" />
     <Compile Include="exceptions\ExceptionHandler.cs" />
+    <Compile Include="exceptions\PlacaVehiculoException.cs" />
     <Compile Include="UsuarioDatos.cs" />
     <Compile Include="EventoDatos.cs" />
     <Compile Include="TareaDatos.cs" />

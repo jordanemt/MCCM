@@ -67,12 +67,26 @@ function insertarGrupo() {
             cache: false,
             type: "POST",
             data: $('#grupo-form').serialize(),
+            beforeSend: function () {
+                $("#grupo-form-modal-submit")
+                    .prop("disabled", true);
+                $("#grupo-form-modal-submit")
+                    .html(
+                        '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
+                    );
+            },
             success: function (data) {
                 $('#grupo-form-modal').modal('hide');
                 $('#grupo-contenedor').append(data);
             },
             error: function (reponse) {
                 alert("error : " + reponse);
+            },
+            complete: function () {
+                $("#grupo-form-modal-submit")
+                    .prop("disabled", false);
+                $("#grupo-form-modal-submit")
+                    .html('Insertar');
             }
         });
     }
@@ -87,6 +101,14 @@ function actualizarGrupo() {
             cache: false,
             type: "POST",
             data: $('#grupo-form').serialize(),
+            beforeSend: function () {
+                $("#grupo-form-modal-submit")
+                    .prop("disabled", true);
+                $("#grupo-form-modal-submit")
+                    .html(
+                        '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
+                    );
+            },
             success: function (data) {
                 $('#grupo-' + $('#TN_ID_Grupo').val()).remove();
                 $('#grupo-form-modal').modal('hide');
@@ -94,6 +116,12 @@ function actualizarGrupo() {
             },
             error: function (reponse) {
                 alert("error: " + reponse);
+            },
+            complete: function () {
+                $("#grupo-form-modal-submit")
+                    .prop("disabled", false);
+                $("#grupo-form-modal-submit")
+                    .html('Actualizar');
             }
         });
     }

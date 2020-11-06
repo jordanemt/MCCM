@@ -59,7 +59,7 @@ namespace MCCM.UI.Controllers
         public ActionResult Insertar(TMCCM_Gasto data)
         {
             var model = negocio.Insertar(data);
-            //InsertarEvento(model, "Se insertó");
+            InsertarEvento(model, "Se insertó");
             return PartialView("_Card", model);
         }
 

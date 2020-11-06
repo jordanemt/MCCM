@@ -5,7 +5,7 @@
     var acompannantes = Model.TMCCM_Grupo_Usuario.Where(e => e.TB_Encargado != true).Select(e => e.TMCCM_Usuario).ToList();
 }
 
-<div id="grupo-@Model.TN_ID_Grupo" class="card hoverOp" onclick="seleccionarGrupo(@Model.TN_ID_Grupo);">
+<div id="grupo-@Model.TN_ID_Grupo" class="card hoverOp grupoCard" onclick="seleccionarGrupo(@Model.TN_ID_Grupo);">
     <div class="card-header gris_claro">
         <div>Grupo #@Model.TN_ID_Grupo</div>
         <div>

@@ -44,8 +44,15 @@ namespace MCCM.UI.Controllers
         [HttpPost]
         public ActionResult InsertarVehiculo(TMCCM_Vehiculo data)
         {
-            TMCCM_Vehiculo newData = negocio.Insertar(data);
-            return Json(new { Placa = newData.TC_Placa, ID = newData.TN_ID_Vehiculo });
+            try
+            {
+                TMCCM_Vehiculo newData = negocio.Insertar(data);
+                return Json(new { Placa = newData.TC_Placa, ID = newData.TN_ID_Vehiculo });
+            }
+            catch (Exception e)
+            {
+                return Content(e.Message);
+            }
         }
 
         [HttpPost]

@@ -32,7 +32,6 @@ C:\Users\Arturo\Desktop\Analisi\MCCM-Arturo\MCCM.Entidad\obj\Debug\MCCM.Entidad.
 C:\Users\Arturo\Desktop\Analisi\MCCM-Arturo\MCCM.Entidad\obj\Debug\MCCM.Entidad.csproj.CopyComplete
 C:\Users\Arturo\Desktop\Analisi\MCCM-Arturo\MCCM.Entidad\obj\Debug\MCCM.Entidad.dll
 C:\Users\Arturo\Desktop\Analisi\MCCM-Arturo\MCCM.Entidad\obj\Debug\MCCM.Entidad.pdb
-C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.Entidad\bin\Debug\MCCM.Entidad.dll.config
 C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.Entidad\bin\Debug\MCCM.Entidad.dll
 C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.Entidad\bin\Debug\MCCM.Entidad.pdb
 C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.Entidad\bin\Debug\EntityFramework.dll
@@ -44,7 +43,6 @@ C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.cspr
 C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.csproj.CopyComplete
 C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.dll
 C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.pdb
-C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.Entidad\obj\Debug\MCCM.Entidad.csprojAssemblyReference.cache
 C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.Entidad\bin\Debug\MCCM.Entidad.dll
 C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.Entidad\bin\Debug\MCCM.Entidad.pdb
 C:\Users\Valeria\Documents\2semestre2020_Virtual\Análisis\MCC\MCCM\MCCM.Entidad\bin\Debug\EntityFramework.dll

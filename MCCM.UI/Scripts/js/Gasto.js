@@ -101,14 +101,27 @@ function actualizarGasto() {
             cache: false,
             type: "POST",
             data: $('#gasto-form').serialize(),
+            beforeSend: function () {
+                $("#gasto-form-modal-submit")
+                    .prop("disabled", true);
+                $("#gasto-form-modal-submit")
+                    .html(
+                        '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
+                    );
+            },
             success: function (data) {
                 $('#gasto-' + $('#TN_ID_Gasto').val()).remove();
                 $('#gasto-form-modal').modal('hide');
                 $('#gastos-contenedor').append(data);
-                //$('#gastos-contenedor').fadeIn('fast');
             },
             error: function (reponse) {
                 alert("error : " + reponse);
+            },
+            complete: function () {
+                $("#gasto-form-modal-submit")
+                    .prop("disabled", false);
+                $("#gasto-form-modal-submit")
+                    .html('Actualizar');
             }
         });
     }
@@ -141,6 +154,14 @@ function insertarTipo_Gasto() {
             cache: false,
             type: "POST",
             data: $('#tipo_gasto-form').serialize(),
+            beforeSend: function () {
+                $("#tipo_gasto-form-modal-submit")
+                    .prop("disabled", true);
+                $("#tipo_gasto-form-modal-submit")
+                    .html(
+                        '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
+                    );
+            },
             success: function (data) {
                 $("#TN_ID_Tipo_Gasto").append(new Option(data.Nombre, data.ID, true, true));
                 $('#TN_ID_Tipo_Gasto').selectpicker('refresh');
@@ -149,6 +170,12 @@ function insertarTipo_Gasto() {
             },
             error: function (reponse) {
                 alert("error : " + reponse);
+            },
+            complete: function () {
+                $("#tipo_gasto-form-modal-submit")
+                    .prop("disabled", false);
+                $("#tipo_gasto-form-modal-submit")
+                    .html('Insertar');
             }
         });
     }
