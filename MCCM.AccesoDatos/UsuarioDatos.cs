@@ -68,14 +68,14 @@ namespace MCCM.AccesoDatos
             }
         }
         
-        public TMCCM_Usuario Verificar(int Usuario, string contrasennia)
+        public TMCCM_Usuario Verificar(string Usuario, string contrasennia)
         {
           
             using (var context = new MCCMEntities())
             {
 
                 var User = context.TMCCM_Usuario
-                    .Where(e => e.TN_ID_Usuario == Usuario && e.TC_Contrasennia == contrasennia)
+                    .Where(e => e.TC_Identificacion == Usuario && e.TC_Contrasennia == contrasennia)
                     .Include(e => e.TMCCM_Rol)
                     .FirstOrDefault();
                 return User;

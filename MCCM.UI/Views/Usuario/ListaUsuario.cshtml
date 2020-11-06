@@ -3,24 +3,23 @@
 @{
     ViewBag.Title = "prueba";
 }
-<H5>
-    Lista de Usuarios
-</H5>
+
 
 <div class="row justify-content-center">
 
-    <div class="card ">
-        <div class="card-header align-content-center col-12">
-            <div>Usuarios</div>
+    <div class="card" style="border-color:#FFB140">
+        <div class="card-header align-content-center col-12 amarillo">
+            <h5>Lista de Usuarios</h5>
 
-            <div><a href="/Usuario/InsertarUsuario"><span><i class="fa fa-plus  "style="margin-left:95%!important"></i></span></a></div>
+            <div><a href="/Usuario/InsertarUsuario"><span><i class="fa fa-plus  "style="margin-left:95%!important" ></i></span></a></div>
         </div>
-        <div class="card-body ">
+
+        <div class="card-body" style="border-color:#FFB140">
             <form form class="form" id="tablaUsuario">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                 
-                <table class="table">
+                <table class="table ">
                     <tr>
                         <th>
                            Codigo
@@ -36,7 +35,7 @@
                         </th> 
                         
                         <th>
-                            Accion
+                            Acción
                         </th>
                         
                     </tr>
@@ -59,10 +58,10 @@
                             
                            
                             <td>
-                              
-                                @Html.ActionLink("Editar", "ModificarUsuario", new { id=item.TN_ID_Usuario }, new { @class = "btn btn-info fa fa-pencil" }) |
-                  
-                                @Html.ActionLink("Eliminar", "EliminarUsuarioPorID", new { id=item.TN_ID_Usuario }, new { @class = "eliminar btn btn-danger fa fa-trash" })
+
+                                @Html.ActionLink("Editar", "ModificarUsuario", new { id = item.TN_ID_Usuario }, new { @class = "btn btn-primary fa fa-pencil" }) |
+                               
+                                @Html.ActionLink("Eliminar", "EliminarUsuarioPorID", new { id = item.TN_ID_Usuario }, new { @class = "eliminar btn btn-danger fa fa-trash" })
                             </td>
                         </tr>
                     }
@@ -73,7 +72,7 @@
         </div>
     </div>
 </div>
-@Html.Partial("~/Views/Usuario/_modalFormAgregarUsuario.cshtml")
-@Html.Partial("~/Views/Usuario/_modalFormActualizarUsuario.cshtml")
+@*@Html.Partial("~/Views/Usuario/InsertarUsuario.cshtml")
+@Html.Partial("~/Views/Usuario/ModificarUsuario.cshtml")*@
 
 <script src="~/Scripts/js/Usuario.js"></script>

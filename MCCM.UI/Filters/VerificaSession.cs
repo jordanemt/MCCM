@@ -19,7 +19,7 @@ namespace MCCM.UI.Filters
                 oUsuario = (TMCCM_Usuario)HttpContext.Current.Session["User"];
                 if (oUsuario==null)
                 {
-                    if (filterContext.Controller is HomeController == false) 
+                    if (filterContext.Controller is DashboardController == false) 
                     {
                         filterContext.HttpContext.Response.Redirect("~/Dashboard/Login");
 

@@ -20,7 +20,7 @@ namespace MCCM.UI.Controllers
         {
             return View();
         }
-       
+
 
         public ActionResult About()
         {
@@ -35,25 +35,7 @@ namespace MCCM.UI.Controllers
 
             return View();
         }
-        public ActionResult VerificarUsuario(int Usuario, string contrasennia)
-        {
-            
-                var oUser = usuarioNegocio.Verificar(Usuario, contrasennia);
-                if (oUser == null)
-                {
-                    ViewBag.Error = "Usuario o contrase;a invalida";
-                    return View();
-                }
-                Session["User"] = oUser;
-                
-            
-
-
-             return RedirectToAction("Index", "Home");
-
-
-
-        }
         
+
     }
 }

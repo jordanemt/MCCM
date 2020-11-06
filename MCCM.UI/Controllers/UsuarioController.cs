@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using MCCM.Entidad;
 using MCCM.Entidad.DTO;
 using MCCM.ReglasNegocio;
+using MCCM.UI.Filters;
 using Newtonsoft.Json;
 namespace MCCM.UI.Controllers
 {
@@ -15,6 +16,7 @@ namespace MCCM.UI.Controllers
         UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
 
         // GET: Usuario
+        [Autentificacion(idRol: 1)]
         public ActionResult ListaUsuario()
         {
             return View(usuarioNegocio.Listar());
@@ -25,7 +27,7 @@ namespace MCCM.UI.Controllers
         }
         public ActionResult ModificarUsuario(int id)
         {
-            return View(usuarioNegocio.ObtenerPorID(1));
+            return View(usuarioNegocio.ObtenerPorID(id));
         }
 
         [HttpPost]
