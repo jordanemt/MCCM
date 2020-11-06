@@ -10,7 +10,7 @@
         @ViewBag.Error
     </div>
     
-        
+        <hr />
         <div class="container h-100">
             <div class="d-flex justify-content-center h-100">
                 <div class="user_card">
@@ -19,19 +19,20 @@
                             <img src="~/Img/icono.png" id="icon" width="100" height="100">
                         </div>
                     </div>
+                    <hr />
                     <div class="d-flex justify-content-center form_container">
                         <form action="@Url.Content("/Dashboard/VerificarUsuario")" method="post">
                             <div class="input-group mb-3">
                                 <div class="input-group-append">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 </div>
-                                <input type="text" name="Usuario" class="form-control input_user"  id="Usuario" placeholder="Usuario">
+                                <input type="text" name="Usuario" class="form-control input_user" id="Usuario" placeholder="Usuario">
                             </div>
                             <div class="input-group mb-2">
                                 <div class="input-group-append">
                                     <span class="input-group-text"><i class="fas fa-key"></i></span>
                                 </div>
-                                <input type="password"  name="contrasennia" class="form-control input_pass" id="contrasennia" placeholder="Contraseña">
+                                <input type="password" name="contrasennia" class="form-control input_pass" id="contrasennia" placeholder="Contraseña">
                             </div>
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox">
@@ -46,7 +47,7 @@
                     </div>
 
                     <div class="mt-4">
-                        
+
                         <div class="d-flex justify-content-center links">
                             <a href="#">¿Olvidó su código de identificación o contraseña?</a>
                         </div>

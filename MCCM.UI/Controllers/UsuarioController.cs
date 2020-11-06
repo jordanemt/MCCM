@@ -41,7 +41,7 @@ namespace MCCM.UI.Controllers
         public ActionResult ActualizarUsuario(TMCCM_Usuario usuario)
         {
             usuarioNegocio.Actualizar(usuario);
-            return View("ModificarUsuario", usuarioNegocio.ObtenerPorID(usuario.TN_ID_Usuario));
+            return View("ListaUsuario", usuarioNegocio.Listar());
         }
 
         [HttpGet]

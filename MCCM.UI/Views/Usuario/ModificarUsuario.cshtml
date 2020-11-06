@@ -9,88 +9,91 @@
 @using (Html.BeginForm("ActualizarUsuario", "Usuario", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    <div class="row justify-content-center">
-        <div class="form-horizontal">
-            <h4>ModificarUsuario</h4>
-            <hr />
+    <div class="row justify-content-center" style="border-color:#FFB140">
+        <div class="form-horizontal" style="border-color:#FFB140">
+            <div class="card-header amarillo">
+                <h4>ModificarUsuario</h4>
+            </div>
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="card-body" style="border-color:#FFB140">
+            <div class="row">
+                <div class="form-group">
 
+                    ID Usuario
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TN_ID_Usuario, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    </div>
+                </div>
 
-            <div class="form-group">
-                ID Usuario
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.TN_ID_Usuario, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                <div class="form-group">
+                    Nombre Usuario
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TC_Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TC_Nombre, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    Primer Apellido
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TC_Primer_Apellido, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TC_Primer_Apellido, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    Segundo Apellido
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TC_Segundo_Apellido, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TC_Segundo_Apellido, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
-
-            <div class="form-group">
-                Nombre Usuario
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.TC_Nombre, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.TC_Nombre, "", new { @class = "text-danger" })
+            <div class="row">
+                <div class="form-group">
+                    Contraseña
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TC_Contrasennia, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TC_Contrasennia, "", new { @class = "text-danger" })
+                    </div>
                 </div>
-            </div>
-
-            <div class="form-group">
-                Primer Apellido
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.TC_Primer_Apellido, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.TC_Primer_Apellido, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                Segundo Apellido
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.TC_Segundo_Apellido, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.TC_Segundo_Apellido, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                Contraseña
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.TC_Contrasennia, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.TC_Contrasennia, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="form-group">
+                @*<div class="form-group">
                 Estado
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.TB_Eliminado, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.TB_Eliminado, "", new { @class = "text-danger" })
                 </div>
-            </div>
+            </div>*@
 
 
-            <div class="form-group">
-                Identificación
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.TC_Identificacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                    @Html.ValidationMessageFor(model => model.TC_Identificacion, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    Identificación
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TC_Identificacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.TC_Identificacion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    Correo
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TC_Correo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TC_Correo, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
+        </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Modificar" class="btn btn-primary" />
+                    </div>
 
-            <div class="form-group">
-                Correo
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.TC_Correo, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.TC_Correo, "", new { @class = "text-danger" })
                 </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Modificar" class="btn btn-primary" />
-                </div>
-                
-            </div>
+            
         </div>
     </div>
 }
-<div>
-    <div><a href="/Usuario/ListarUsuario"><span><i class="btn btn-danger "></i></span></a></div>
-</div>
+
 
 
 @section Scripts {

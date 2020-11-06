@@ -22,48 +22,57 @@
                 <table class="table ">
                     <tr>
                         <th>
-                           Codigo
+                            Codigo
                         </th>
                         <th>
-                           Nombre
+                            Nombre
                         </th>
                         <th>
                             Primer Apellido
                         </th>
                         <th>
                             Segundo Apellido
-                        </th> 
-                        
+                        </th>
+                        <th>
+                            Identificación
+                        </th>
+
+                        <th>
+                            Correo
+                        </th>
                         <th>
                             Acción
                         </th>
-                        
+
                     </tr>
 
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TN_ID_Usuario)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TC_Nombre)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TC_Primer_Apellido)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TC_Segundo_Apellido)
-                            </td>
-                            
-                           
-                            <td>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TN_ID_Usuario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TC_Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TC_Primer_Apellido)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TC_Segundo_Apellido)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TC_Identificacion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TC_Correo)
+                    </td>                    <td>
 
-                                @Html.ActionLink("Editar", "ModificarUsuario", new { id = item.TN_ID_Usuario }, new { @class = "btn btn-primary fa fa-pencil" }) |
-                               
-                                @Html.ActionLink("Eliminar", "EliminarUsuarioPorID", new { id = item.TN_ID_Usuario }, new { @class = "eliminar btn btn-danger fa fa-trash" })
-                            </td>
-                        </tr>
+                        @Html.ActionLink("Editar", "ModificarUsuario", new { id = item.TN_ID_Usuario }, new { @class = "btn btn-primary fa fa-pencil" }) |
+
+                        @Html.ActionLink("Eliminar", "EliminarUsuarioPorID", new { id = item.TN_ID_Usuario }, new { @class = "eliminar btn btn-danger fa fa-trash" })
+                    </td>
+                </tr>
                     }
 
                 </table>

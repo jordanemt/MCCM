@@ -41,7 +41,7 @@ namespace MCCM.ReglasNegocio
         {
             datos.EliminarPorID(id);
         }
-        public TMCCM_Usuario Verificar(int Usuario, string contrasennia)
+        public TMCCM_Usuario Verificar(string Usuario, string contrasennia)
         {
             return datos.Verificar(Usuario, contrasennia);
         }
