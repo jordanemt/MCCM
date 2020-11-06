@@ -12,11 +12,14 @@ namespace MCCM.UI.Controllers
     {
         C_PersonaNacionalidadNegocio c_PersonaNacionalidadNegocio = new C_PersonaNacionalidadNegocio();
 
-            public JsonResult ListarPersonaNacionalidad()
-            {
+        [HttpGet]
+        public String ListarPersonaNacionalidad()
+        {
 
-                return Json(c_PersonaNacionalidadNegocio.ListarPersonaNacionalidad(), JsonRequestBehavior.AllowGet);
-            }
+            return c_PersonaNacionalidadNegocio.ListarPersonaNacionalidad();
+        }
+
+        [HttpPost]
         public String InsertarPersonaNacionalidad(TMCCM_C_Persona_Nacionalidad personaNacionalidad)
         {
             c_PersonaNacionalidadNegocio.InsertarPersonaNacionalidad(personaNacionalidad);

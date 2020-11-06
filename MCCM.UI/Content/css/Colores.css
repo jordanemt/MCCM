@@ -7,7 +7,7 @@
 }
 
 .rojo {
-    background-color: #E21212;
+    background-color: #e65050;
 }
 
 .gris {
@@ -42,6 +42,14 @@
     background-color: black;
 }
 
+.icono_tarea {
+    color:  #333333;
+}
+
+.icono {
+    color: #333333;
+}
+
 .font_gris {
     color: #808080;
 }
@@ -51,7 +59,7 @@
 }
 
 .font_negro {
-    color: black;
+    color: #333333;
 }
 
 .modal-header {
@@ -84,6 +92,10 @@
 
 .font_grisHover:hover {
     color: #808080 !important;
+}
+
+.font_amarilloHover:hover {
+    color: #FFB140 !important;
 }
 
 .transparencia {

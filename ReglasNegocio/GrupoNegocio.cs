@@ -13,11 +13,6 @@ namespace MCCM.ReglasNegocio
             datos = new GrupoDatos();
         }
 
-        public IEnumerable<TMCCM_Grupo> Listar()
-        {
-            return datos.Listar();
-        }
-
         public IEnumerable<TMCCM_Grupo> ListarPorCaso(int idCaso)
         {
             return datos.ListarPorCaso(idCaso);
@@ -42,6 +37,11 @@ namespace MCCM.ReglasNegocio
         public void EliminarPorId(int id)
         {
             datos.EliminarPorId(id);
+        }
+
+        public TMCCM_Grupo ObtenerGrupoDeMandoActivoPorIdCaso(int idCaso)
+        {
+            return datos.ObtenerGrupoDeMandoActivoPorIdCaso(idCaso);
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using MCCM.Entidad;
-using MCCM.Entidad.DTO;
 
 namespace MCCM.ReglasNegocio
 {

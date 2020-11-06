@@ -21,20 +21,6 @@ function validarFormularioEntidadTelefono() {
                 required: true
             }
         },
-        messages: {
-            TN_Numero_Telefono: {
-                required: "El campo Numero Telefono no puede quedar en blanco",
-                number: "Este campo debe ser un valor numerico",
-                minlength: "El número de telefono debe ser de al menos 8 digitos"
-            },
-            TN_ID_Proveedor: {
-                required: "Por favor, seleccione un proveedor"
-            },
-            TC_Creado_Por_Telefono: {
-                required: "Debe especificar quien registró la entidad telefono."
-            }
-
-        },
         submitHandler: function (form) {
             return false;
         }
@@ -186,12 +172,12 @@ function CargarEntidadTelefono() {
         $("#entidades-body").empty();
         for (let i = 0; i < telefonos.length; i++) {
             $("#entidades-body").append(
-                '<div class="card" id="entidadTelefonoCard" >' +
-                '<div class="card-header">' +
-                'Telefono Codigo #' + telefonos[i].TN_ID_Telefono+
+                '<div class="card" >' +
+                '<div class="card-header gris_claro">' +
+                'Teléfono Código #' + telefonos[i].TN_ID_Telefono +
                 '<div>' +
-                '<a href="#" class="editarEntidadTelefono" id="' + telefonos[i].TN_ID_Telefono + '"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>' +
-                '<a href="#" class="borrar borrarEntidadTelefono" id="' + telefonos[i].TN_ID_Telefono + '"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>' +
+                '<a href="#" class="editarEntidadTelefono" id="' + telefonos[i].TN_ID_Telefono + '"><span><i class="fa fa-pencil icono font_amarilloHover" aria-hidden="true"></i></span ></a > ' +
+                '<a href="#" class="borrar borrarEntidadTelefono" id="' + telefonos[i].TN_ID_Telefono + '"><span><i class="fa fa-trash icono font_amarilloHover" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span ></a > ' +
                 '</div>' +
                 '</div>' +
                 '<div class="card-body" style="padding:0px!important">' +

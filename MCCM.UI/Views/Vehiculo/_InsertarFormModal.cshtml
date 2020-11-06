@@ -1,0 +1,45 @@
+﻿@model MCCM.Entidad.TMCCM_Vehiculo
+
+<div class="modal fade" id="vehiculo-form-modal">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 id="gasto-form-modal-title" class="modal-title">Insertar Vehiculo</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form id="vehiculo-form">
+                    <div class="form-group row justify-content-center">
+                        <label class="control-label col-sm-3" for="TC_Nombre">Placa:</label>
+                        <div class="row col-sm-6">
+                            <input id="TC_Placa" name="TC_Placa" class="form-control col-sm-11" type="text" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group row justify-content-center">
+                        <label class="control-label col-sm-3" for="TC_Nombre">Kilometraje:</label>
+                        <div class="row col-sm-6">
+                            <input id="TC_Kilometraje" name="TC_Kilometraje" class="form-control col-sm-11" type="number" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group row justify-content-center">
+                        <label class="control-label col-sm-3" for="TC_Descripcion">Descripción:</label>
+                        <div class="row col-sm-6">
+                            <input id="TC_Descripcion" name="TC_Descripcion" class="form-control col-sm-11" type="text" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group row justify-content-center">
+                        <input id="vehiculo-form-modal-submit" type="button" value="Insertar" class="btn btn-primary submit-button mx-2" onclick="insertarVehiculo()" />
+                        <button type="button" class="btn btn-danger mx-2" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

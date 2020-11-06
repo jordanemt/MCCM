@@ -1,5 +1,4 @@
 ﻿using MCCM.AccesoDatos;
-using MCCM.Entidad.DTO;
 using MCCM.Entidad;
 using System;
 using System.Collections.Generic;

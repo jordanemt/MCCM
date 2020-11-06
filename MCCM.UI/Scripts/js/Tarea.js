@@ -8,17 +8,10 @@ function validarFormularioTarea() {
     $("#FormTarea").validate({
         rules: {
             TC_Diligencia: { required: true },
-            TC_Lugar: { required: true },
+            TC_Lugar_Tarea: { required: true },
             TN_ID_Usuario: { required: true },
             TF_Fecha_Tarea: { required: true },
             TN_Tipo: { required: true }
-        },
-        messages: {
-            TC_Diligencia: { required: "Debe indicar la Diligencia" },
-            TC_Lugar: { required: "Debe indicar el Lugar" },
-            TN_ID_Usuario: { required: "Debe indicar a quién se le asigna la tarea" },
-            TF_Fecha_Tarea: { required: "Debe indicar la fecha limite" },
-            TN_Tipo: { required: "Seleccione un tipo" }
         },
         submitHandler: function (form) {
             return false;
@@ -93,20 +86,24 @@ function CargarTareas() {
         $("#tareas-body").empty();
         for (let i = 0; i < tareas.length; i++) {
             let iconoTarea = -1;
+            let color;
             if (tareas[i].TN_Tipo == 1) {
                 iconoTarea = '<i class="fa fa-warning" aria-hidden="true"></i>';
+                color = "rojo";
             } else if (tareas[i].TN_Tipo == 2) {
                 iconoTarea = '<i class="fa fa-tasks" aria-hidden="true"></i>';
+                color = "gris_claro";
             } else {
                 iconoTarea = '<i class="fa fa-check" aria-hidden="true"></i>';
+                color = "";
             }
             $("#tareas-body").append(
                 '<div class="card tarea" id="' + tareas[i].TN_ID_Tarea + '">' +
-                '<div class="card-header">' +
-                    '<div>'+iconoTarea+'</div>' + "Taread Codigo #"+tareas[i].TN_ID_Tarea +
+                '<div class="card-header ' + color + '" >' +
+                    '<div>'+iconoTarea+'</div>' + "Tarea Código #"+tareas[i].TN_ID_Tarea +
                         '<div>' +
-                            '<a href="#" class="editarTarea" id="' + tareas[i].TN_ID_Tarea + '"><span><i class="fa fa-pencil" aria-hidden="true"></i></span ></a > ' +
-                            '<a href="#" class="borrar borrarTarea" id="' + tareas[i].TN_ID_Tarea + '"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span ></a > ' +
+                            '<a href="#" class="editarTarea" id="' + tareas[i].TN_ID_Tarea + '"><span><i class="fa fa-pencil icono_tarea" aria-hidden="true" ></i></span ></a > ' +
+                '<a href="#" class="borrar borrarTarea" id="' + tareas[i].TN_ID_Tarea + '"><span><i class="fa fa-trash icono_tarea" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span ></a > ' +
                         '</div>' +
                     '</div>' +
                 '<div class="card-body" style="padding:0px!important">' +
@@ -171,7 +168,6 @@ $(document).on("click", ".editarTarea", function () {
         data: { "ID": $(this).attr('ID') }
     }).done(function (data) {
         let tarea = JSON.parse(data);
-
         $("#tituloFormTarea").html("Modificar Tarea");
         $("#TN_ID_Tarea").val(tarea[0].TN_ID_Tarea);
         $(".input_Tarea_Lugar").val(tarea[0].TC_Lugar);

@@ -5,11 +5,16 @@ using System.Web;
 
 namespace MCCM.AccesoDatos.exceptions
 {
-    public class ExceptionHandler
+    class ExceptionHandler
     {
         public static Exception Handle(Exception e)
         {
             Type typeException = e.GetType();
+
+            if (typeof(PlacaVehiculoException).IsAssignableFrom(typeException))
+            {
+                return e;
+            }
 
             if (typeof(EntityException).IsAssignableFrom(typeException)) {
                 HttpContext.Current.Response.StatusCode = (int) HttpStatusCode.BadGateway;

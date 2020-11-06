@@ -62,7 +62,7 @@
                             </div>
 
                             <div class="col-md-8" id="divTLugar">
-                                <input class="form-control input_Tarea_Lugar" id="TC_Lugar" name="TC_Lugar" required />
+                                <input class="form-control input_Tarea_Lugar" id="TC_Lugar_Tarea" name="TC_Lugar" required />
                             </div>
                         </div>
                         <div class="form-group row">
@@ -73,9 +73,11 @@
                                 <textarea rows="2" class="form-control w-100" id="TC_Diligencia" name="TC_Diligencia" required></textarea>
                             </div>
                         </div>
-                        <div class="d-flex justify-content-center" style="padding-top:2%;">
-                            <button id="btnRegistrarTarea" class="btn btn-primary">Registrar</button>
-                            <button id="btnModificarTarea" class="btn btn-info" style="display:none">Modificar</button>
+
+                        <div class="d-flex justify-content-center">
+                            <button id="btnRegistrarTarea" type="submit" class="btn btn-primary submit-button mx-2">Insertar</button>
+                            <button id="btnModificarTarea" class="btn btn-primary submit-button mx-2" style="display:none">Modificar</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                         </div>
 
                     </form>

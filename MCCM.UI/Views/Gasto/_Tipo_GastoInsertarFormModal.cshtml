@@ -1,7 +1,7 @@
 ﻿@model MCCM.Entidad.TMCCM_C_Gasto_Tipo_Gasto
 
 <div class="modal fade" id="tipo_gasto-form-modal">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-dialog modal-dialog-centered modal-md">
         <div class="modal-content">
 
             <!-- Modal Header -->
@@ -28,7 +28,7 @@
                     </div>
 
                     <div class="form-group row justify-content-center">
-                        <input id="gasto-form-modal-submit" type="button" value="Insertar" class="btn btn-primary submit-button mx-2" onclick="insertarTipo_Gasto()" />
+                        <button id="tipo_gasto-form-modal-submit" type="button" class="btn btn-primary submit-button mx-2" onclick="insertarTipo_Gasto();">Insertar</button>
                         <button type="button" class="btn btn-danger mx-2" data-dismiss="modal">Cancelar</button>
                     </div>
                 </form>
@@ -36,16 +36,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    $('#tipo_gasto-form-modal').on('shown.bs.modal', function () {
-        $('#gasto-form-modal').modal('hide');
-        $('#tipo_gasto-form').trigger('reset');
-        $('#TC_Nombre-error').hide();
-        $('#TC_Descripcion-error').hide();
-    })
-
-    $('#tipo_gasto-form-modal').on('hidden.bs.modal', function () {
-        $('#gasto-form-modal').modal('show');
-    })
-</script>

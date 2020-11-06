@@ -13,8 +13,8 @@
                 $('#gasto-form-modal').modal('show');
             }
         },
-        error: function (reponse) {
-            alert("error : " + reponse);
+        error: function (error) {
+            alert(error.responseText);
         }
     });
 }
@@ -33,8 +33,8 @@ function abrirActualizarGastoFormModal(id) {
             $('.body-content').append(data);
             $('#gasto-form-modal').modal('show');
         },
-        error: function (reponse) {
-            alert("error : " + reponse);
+        error: function (error) {
+            alert(error.responseText);
         }
     });
 }
@@ -52,8 +52,8 @@ function listarGastos() {
         success: function (data) {
             $('#gastos-contenedor').html(data);
         },
-        error: function (reponse) {
-            alert("error : " + reponse);
+        error: function (error) {
+            alert(error.responseText);
         }
     });
 }
@@ -67,12 +67,26 @@ function insertarGasto() {
             cache: false,
             type: "POST",
             data: $('#gasto-form').serialize(),
+            beforeSend: function () {
+                $("#gasto-form-modal-submit")
+                    .prop("disabled", true);
+                $("#gasto-form-modal-submit")
+                    .html(
+                        '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
+                    );
+            },
             success: function (data) {
                 $('#gasto-form-modal').modal('hide');
                 $('#gastos-contenedor').append(data);
             },
-            error: function (reponse) {
-                alert("error : " + reponse);
+            error: function (error) {
+                alert(error.responseText);
+            },
+            complete: function () {
+                $("#gasto-form-modal-submit")
+                    .prop("disabled", false);
+                $("#gasto-form-modal-submit")
+                    .html('Insertar');
             }
         });
     }
@@ -87,14 +101,27 @@ function actualizarGasto() {
             cache: false,
             type: "POST",
             data: $('#gasto-form').serialize(),
+            beforeSend: function () {
+                $("#gasto-form-modal-submit")
+                    .prop("disabled", true);
+                $("#gasto-form-modal-submit")
+                    .html(
+                        '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
+                    );
+            },
             success: function (data) {
                 $('#gasto-' + $('#TN_ID_Gasto').val()).remove();
                 $('#gasto-form-modal').modal('hide');
                 $('#gastos-contenedor').append(data);
-                //$('#gastos-contenedor').fadeIn('fast');
             },
-            error: function (reponse) {
-                alert("error : " + reponse);
+            error: function (error) {
+                alert(error.responseText);
+            },
+            complete: function () {
+                $("#gasto-form-modal-submit")
+                    .prop("disabled", false);
+                $("#gasto-form-modal-submit")
+                    .html('Actualizar');
             }
         });
     }
@@ -112,10 +139,17 @@ function eliminarGastoPorId(id) {
             alert("Se elimino el gasto #" + id);
             $('#gasto-' + id).remove();
         },
-        error: function (reponse) {
-            alert("error : " + reponse);
+        error: function (error) {
+            alert(error.responseText);
         }
     });
+}
+
+function abrirInsertarTipo_GastoModal() {
+    $('#tipo_gasto-form').trigger('reset');
+    $('#TC_Nombre-error').hide();
+    $('#TC_Descripcion-error').hide();
+    $('#tipo_gasto-form-modal').modal('show');
 }
 
 function insertarTipo_Gasto() {
@@ -127,17 +161,53 @@ function insertarTipo_Gasto() {
             cache: false,
             type: "POST",
             data: $('#tipo_gasto-form').serialize(),
+            beforeSend: function () {
+                $("#tipo_gasto-form-modal-submit")
+                    .prop("disabled", true);
+                $("#tipo_gasto-form-modal-submit")
+                    .html(
+                        '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
+                    );
+            },
             success: function (data) {
                 $("#TN_ID_Tipo_Gasto").append(new Option(data.Nombre, data.ID, true, true));
                 $('#TN_ID_Tipo_Gasto').selectpicker('refresh');
                 $('#tipo_gasto-form-modal').modal('hide');
                 $('#gasto-form-modal').modal('show');
             },
-            error: function (reponse) {
-                alert("error : " + reponse);
+            error: function (error) {
+                alert(error.responseText);
+            },
+            complete: function () {
+                $("#tipo_gasto-form-modal-submit")
+                    .prop("disabled", false);
+                $("#tipo_gasto-form-modal-submit")
+                    .html('Insertar');
             }
         });
     }
+}
+
+function obtenerSumatoriaDeGastosPorTipoPorCaso() {
+    var url = "/Gasto/ObtenerSumatoriaDeGastosPorTipoPorCaso/";
+
+    $.ajax({
+        url: url,
+        cache: false,
+        type: "GET",
+        data: { "idCaso": sessionStorage.CasoID },
+        success: function (data) {
+            var msg = '';
+            jQuery.each(data.tiposSumatoria, function (i, val) {
+                msg += val.nombre + ': ' + val.totalTipo + '\n';
+            });
+            msg += 'Total: ' + data.total;
+            alert(msg);
+        },
+        error: function (error) {
+            alert(error.responseText);
+        }
+    });
 }
 
 function aplicarGastoDateRangePicker() {
@@ -153,7 +223,3 @@ function aplicarGastoDateRangePicker() {
 function aplicarGastoSelectPicker() {
     $('#TN_ID_Tipo_Gasto').selectpicker();
 }
-
-$(document).ready(function () {
-    //listarGastos();
-});

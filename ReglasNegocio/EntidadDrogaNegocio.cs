@@ -1,6 +1,5 @@
 ﻿using MCCM.AccesoDatos;
 using MCCM.Entidad;
-using MCCM.Entidad.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;

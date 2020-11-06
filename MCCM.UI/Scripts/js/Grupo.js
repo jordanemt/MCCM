@@ -13,8 +13,8 @@
                 $('#grupo-form-modal').modal('show');
             }
         },
-        error: function (reponse) {
-            alert("error : " + reponse);
+        error: function (error) {
+            alert(error.responseText);
         }
     });
 }
@@ -33,8 +33,8 @@ function abrirActualizarGrupoFormModal(id) {
             $('.body-content').append(data);
             $('#grupo-form-modal').modal('show');
         },
-        error: function (reponse) {
-            alert("error : " + reponse);
+        error: function (error) {
+            alert(error.responseText);
         }
     });
 }
@@ -52,8 +52,8 @@ function listarGrupos() {
         success: function (data) {
             $('#grupo-contenedor').html(data);
         },
-        error: function (reponse) {
-            alert("error : " + JSON.stringify(reponse));
+        error: function (error) {
+            alert(error.responseText);
         }
     });
 }
@@ -67,12 +67,26 @@ function insertarGrupo() {
             cache: false,
             type: "POST",
             data: $('#grupo-form').serialize(),
+            beforeSend: function () {
+                $("#grupo-form-modal-submit")
+                    .prop("disabled", true);
+                $("#grupo-form-modal-submit")
+                    .html(
+                        '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
+                    );
+            },
             success: function (data) {
                 $('#grupo-form-modal').modal('hide');
                 $('#grupo-contenedor').append(data);
             },
-            error: function (reponse) {
-                alert("error : " + reponse);
+            error: function (error) {
+                alert(error.responseText);
+            },
+            complete: function () {
+                $("#grupo-form-modal-submit")
+                    .prop("disabled", false);
+                $("#grupo-form-modal-submit")
+                    .html('Insertar');
             }
         });
     }
@@ -87,13 +101,27 @@ function actualizarGrupo() {
             cache: false,
             type: "POST",
             data: $('#grupo-form').serialize(),
+            beforeSend: function () {
+                $("#grupo-form-modal-submit")
+                    .prop("disabled", true);
+                $("#grupo-form-modal-submit")
+                    .html(
+                        '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
+                    );
+            },
             success: function (data) {
                 $('#grupo-' + $('#TN_ID_Grupo').val()).remove();
                 $('#grupo-form-modal').modal('hide');
                 $('#grupo-contenedor').append(data);
             },
-            error: function (reponse) {
-                alert("error: " + reponse);
+            error: function (error) {
+                alert(error.responseText);
+            },
+            complete: function () {
+                $("#grupo-form-modal-submit")
+                    .prop("disabled", false);
+                $("#grupo-form-modal-submit")
+                    .html('Actualizar');
             }
         });
     }
@@ -111,10 +139,31 @@ function eliminarGrupoPorId(id) {
             alert("Se elimino el grupo #" + id);
             $('#grupo-' + id).remove();
         },
-        error: function (reponse) {
-            alert("error : " + reponse);
+        error: function (error) {
+            alert(error.responseText);
         }
     });
+}
+
+function cargarGrupoMandoVigente() {
+    if (sessionStorage.CasoID != null) {
+        var url = "/Grupo/ObtenerGrupoDeMandoActivoPorIdCaso/";
+
+        $.ajax({
+            url: url,
+            cache: false,
+            type: "GET",
+            data: { "idCaso": sessionStorage.CasoID },
+            success: function (data) {
+                $('#mando-body').html(data);
+            },
+            error: function (error) {
+                alert(error.responseText);
+            }
+        });
+    } else {
+        alert('Debe seleccionar un caso');
+    }
 }
 
 function aplicarGrupoDateRangePicker() {
@@ -172,7 +221,3 @@ function seleccionarGrupo(idGrupo) {
     $("#vehiculos-titulo").text('Vechículos/Grupo #' + idGrupo);
     listarGrupo_Vehiculo();//Definido en Vehiculo.js
 }
-
-$(document).ready(function () {
-    //listarGrupo();
-});

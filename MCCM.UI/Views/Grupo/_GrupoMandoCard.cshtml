@@ -1,0 +1,31 @@
+﻿@model MCCM.Entidad.TMCCM_Grupo
+
+@{
+    MCCM.Entidad.TMCCM_Usuario encargado = Model.TMCCM_Grupo_Usuario.Where(e => e.TB_Encargado == true).Select(e => e.TMCCM_Usuario).FirstOrDefault();
+    var acompannantes = Model.TMCCM_Grupo_Usuario.Where(e => e.TB_Encargado != true).Select(e => e.TMCCM_Usuario).ToList();
+}
+
+<div class="d-flex flex-column justify-content-center my-2">
+    <div class="d-flex flex-lg-row">
+        <div class="col-lg-6 w-100">
+            <span class="badge badge-primary w-100">Encargado:</span>
+        </div>
+        <div class="col-lg-6">
+            @if (encargado != null)
+            {
+                <p>@encargado.TN_ID_Usuario @encargado.TC_Nombre @encargado.TC_Primer_Apellido</p>
+            }
+        </div>
+    </div>
+    <div class="d-flex flex-lg-row">
+        <div class="col-lg-6">
+            <span class="badge badge-primary w-100">Acompaña:</span>
+        </div>
+        <div class="col-lg-6">
+            @foreach (MCCM.Entidad.TMCCM_Usuario acompannante in acompannantes)
+            {
+                <p>@acompannante.TN_ID_Usuario @acompannante.TC_Nombre @acompannante.TC_Primer_Apellido</p>
+            }
+        </div>
+    </div>
+</div>

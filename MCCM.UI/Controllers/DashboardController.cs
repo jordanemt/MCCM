@@ -21,6 +21,7 @@ namespace MCCM.UI.Controllers
             return RedirectToAction("Login", "Dashboard");
         }
 
+
         public ActionResult Login()
         {
             return View();
@@ -43,6 +44,17 @@ namespace MCCM.UI.Controllers
 
 
 
+        }
+
+        [HttpGet]
+        public ActionResult GenerarReporte() {
+            CasoNegocio negocio = new CasoNegocio();
+            ViewBag.eventos = negocio.ReporteDeEventos(15, DateTime.Now, DateTime.Now);
+            ViewBag.tareas = negocio.ReporteDeTareas(15, DateTime.Now, DateTime.Now);
+            ViewBag.entidades = negocio.ReporteDeEntidades(15, DateTime.Now, DateTime.Now);
+            ViewBag.gastos = negocio.ReporteDeGastos(15, DateTime.Now, DateTime.Now);
+            ViewBag.recursos = negocio.ReporteDeRecursos(15, DateTime.Now, DateTime.Now);
+            return PartialView("_Reporte");
         }
     }
 }

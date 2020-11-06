@@ -76,7 +76,7 @@
                                 <label class="w-100 col-form-label">Descripcion</label>
                             </div>
                             <div class="col-md-8">
-                                <textarea class=" form-control" name="TC_Descripcion" id="TC_Descripcion" required></textarea>
+                                <textarea class=" form-control" name="TC_Descripcion" id="TC_Descripcion_Caso" required></textarea>
                             </div>
                         </div>
 
@@ -97,11 +97,11 @@
                                 <textarea class=" form-control" name="TC_Delito" id="TC_Delito" required></textarea>
                             </div>
                         </div>
-
-                        <div class="d-flex justify-content-center" style="padding:2%;">
-                            <button id="btnRegistrarCaso" class="btn btn-primary">Registrar</button>
-                            <button id="btnModificarCaso" class="btn btn-info" style="display:none">Modificar</button>
+                        <div class="d-flex justify-content-center">
+                            <button id="btnRegistrarCaso" type="submit" class="btn btn-primary submit-button mx-2">Insertar</button>
+                            <button id="btnModificarCaso" class="btn btn-primary submit-button mx-2" style="display:none">Modificar</button>
                             <button id="btnEliminarCaso" class="btn btn-danger" style="display:none">Eliminar</button>
+                            <button type="button" id="btnCancelarCaso" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                         </div>
 
                     </form>

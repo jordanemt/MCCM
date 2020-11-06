@@ -12,11 +12,13 @@ namespace MCCM.UI.Controllers
     {
         C_PersonaSexoNegocio c_PersonaSexoNegocio = new C_PersonaSexoNegocio();
 
-        public JsonResult ListarPersonaSexo()
+        [HttpGet]
+        public String ListarPersonaSexo()
         {
 
-            return Json(c_PersonaSexoNegocio.ListarPersonaSexo(), JsonRequestBehavior.AllowGet);
+            return c_PersonaSexoNegocio.ListarPersonaSexo();
         }
+        [HttpPost]
         public String InsertarPersonaSexo(TMCCM_C_Persona_Sexo personaSexo)
         {
             c_PersonaSexoNegocio.InsertarPersonaSexo(personaSexo);

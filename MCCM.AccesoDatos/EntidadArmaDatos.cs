@@ -1,5 +1,4 @@
 ﻿using MCCM.Entidad;
-using MCCM.Entidad.DTO;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -12,7 +11,6 @@ namespace MCCM.AccesoDatos
 {
     public class EntidadArmaDatos
     {
-        Utilidades utilidades = new Utilidades();
         public void InsertarEntidadArma(TMCCM_Entidad_Arma entidadArma)
         {
             using (var context = new MCCMEntities())

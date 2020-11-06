@@ -30,7 +30,8 @@
                     <div class="form-group row justify-content-center">
                         <label class="control-label col-sm-3" for="TF_Fecha">Fecha:</label>
                         <div class="row col-sm-6">
-                            <input id="TF_Fecha_Gasto" name="TF_Fecha" class="form-control col-sm-11" type="datetime" value="@(((DateTime) Model.TF_Fecha).ToString("yyyy-MM-dd"))" required>                        </div>
+                            <input id="TF_Fecha_Gasto" name="TF_Fecha" class="form-control col-sm-11" type="datetime" value="@(((DateTime) Model.TF_Fecha).ToString("yyyy-MM-dd"))" required>
+                        </div>
                     </div>
 
                     <div class="form-group row justify-content-center">
@@ -56,7 +57,7 @@
                                     }
                                 }
                             </select>
-                            <a href="#" class="fa fa-plus col-sm-1 align-self-center font_gris" data-dismiss="modal" data-toggle="modal" data-target="#tipo_gasto-form-modal"></a>
+                            <a href="#" class="fa fa-plus col-sm-1 align-self-center font_gris" onclick="abrirInsertarTipo_GastoModal();"></a>
                             <label id="TN_ID_Tipo_Gasto-error" class="error" for="TN_ID_Tipo_Gasto" style="display: none"></label>
                         </div>
                     </div>
@@ -76,8 +77,8 @@
                     </div>
 
                     <div class="form-group row justify-content-center">
-                        <input id="gasto-form-modal-submit" type="button" value="Actualizar" class="btn btn-primary submit-button mx-2" onclick="actualizarGasto();" />
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button id="gasto-form-modal-submit" type="button" class="btn btn-primary submit-button mx-2" onclick="actualizarGasto();">Actualizar</button>
+                        <button type="button" class="btn btn-danger mx-2" data-dismiss="modal">Cancelar</button>
                     </div>
                 </form>
             </div>
