@@ -24,82 +24,125 @@ namespace MCCM.UI.Controllers
         [HttpGet]
         public ActionResult InsertarFormModal()
         {
-            ViewBag.TipoGasto = negocio.ListarTipoGasto();
-            return PartialView("_InsertarFormModal");
+            try
+            {
+                ViewBag.TipoGasto = negocio.ListarTipoGasto();
+                return PartialView("_InsertarFormModal");
+            }
+            catch (Exception e)
+            {
+                return Content(e.Message);
+            }
         }
 
         [HttpGet]
         public ActionResult ActualizarFormModal(int id)
         {
-            ViewBag.TipoGasto = negocio.ListarTipoGasto();
-            return PartialView("_ActualizarFormModal", negocio.ObtenerPorId(id));
-        }
-
-        [HttpGet]
-        public ActionResult Listar()
-        {
             try
             {
-                var model = negocio.Listar();
-                return PartialView("_ListaCards", model);
+                ViewBag.TipoGasto = negocio.ListarTipoGasto();
+                return PartialView("_ActualizarFormModal", negocio.ObtenerPorId(id));
             }
             catch (Exception e)
             {
-                return Content(e.Message, "text");
+                return Content(e.Message);
             }
         }
 
         [HttpGet]
         public ActionResult ListarPorCasoId(int idCaso)
         {
-            return PartialView("_ListaCards", negocio.ListarPorCaso(idCaso));
+            try
+            {
+                return PartialView("_ListaCards", negocio.ListarPorCaso(idCaso));
+            }
+            catch (Exception e)
+            {
+                return Content(e.Message);
+            }
         }
 
         [HttpPost]
         public ActionResult Insertar(TMCCM_Gasto data)
         {
-            var model = negocio.Insertar(data);
-            InsertarEvento(model, "Se insertó");
-            return PartialView("_Card", model);
+            try
+            {
+                var model = negocio.Insertar(data);
+                InsertarEvento(model, "Se insertó");
+                return PartialView("_Card", model);
+            }
+            catch (Exception e)
+            {
+                return Content(e.Message);
+            }
         }
 
         [HttpPost]
         public ActionResult Actualizar(TMCCM_Gasto data)
         {
-            var model = negocio.Actualizar(data);
-            InsertarEvento(model, "Se actualizó");
-            return PartialView("_Card", model);
+            try
+            {
+                var model = negocio.Actualizar(data);
+                InsertarEvento(model, "Se actualizó");
+                return PartialView("_Card", model);
+            }
+            catch (Exception e)
+            {
+                return Content(e.Message);
+            }
         }
 
         [HttpPost]
-        public void EliminarPorId(int id)
+        public ActionResult EliminarPorId(int id)
         {
-            var model = negocio.ObtenerPorId(id);
-            InsertarEvento(model, "Se eliminó");
-            negocio.EliminarPorId(id);
+            try
+            {
+                var model = negocio.ObtenerPorId(id);
+                InsertarEvento(model, "Se eliminó");
+                negocio.EliminarPorId(id);
+                return Content("Se eliminó correctamente");
+            }
+            catch (Exception e)
+            {
+                return Content(e.Message);
+            }
         }
 
         [HttpPost]
         public ActionResult InsertarTipo_Gasto(TMCCM_C_Gasto_Tipo_Gasto data)
         {
-            TMCCM_C_Gasto_Tipo_Gasto newData = negocio.InsertarTipo_Gasto(data);
-            return Json(new { Nombre = newData.TC_Nombre, ID = newData.TN_ID_Tipo_Gasto });
+            try
+            {
+                TMCCM_C_Gasto_Tipo_Gasto newData = negocio.InsertarTipo_Gasto(data);
+                return Json(new { Nombre = newData.TC_Nombre, ID = newData.TN_ID_Tipo_Gasto });
+            }
+            catch (Exception e)
+            {
+                return Content(e.Message);
+            }
         }
 
         [HttpGet]
         public ActionResult ObtenerSumatoriaDeGastosPorTipoPorCaso(int idCaso)
         {
-            var lista = negocio.ListarPorCaso(idCaso);
-            var totalPorTipos =
-                from grupo in lista
-                group grupo by grupo.TMCCM_C_Gasto_Tipo_Gasto.TC_Nombre into grupoGroup
-                select new 
-                {
-                    nombre = grupoGroup.Key,
-                    totalTipo = grupoGroup.Sum(e => e.TD_Monto)
-                };
-            var total = totalPorTipos.Sum(e => e.totalTipo);
-            return Json(new { tiposSumatoria = totalPorTipos, total }, JsonRequestBehavior.AllowGet);
+            try
+            {
+                var lista = negocio.ListarPorCaso(idCaso);
+                var totalPorTipos =
+                    from grupo in lista
+                    group grupo by grupo.TMCCM_C_Gasto_Tipo_Gasto.TC_Nombre into grupoGroup
+                    select new
+                    {
+                        nombre = grupoGroup.Key,
+                        totalTipo = grupoGroup.Sum(e => e.TD_Monto)
+                    };
+                var total = totalPorTipos.Sum(e => e.totalTipo);
+                return Json(new { tiposSumatoria = totalPorTipos, total }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return Content(e.Message);
+            }
         }
 
         private void InsertarEvento(TMCCM_Gasto data, string accion) {

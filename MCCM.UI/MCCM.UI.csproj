@@ -517,7 +517,6 @@
     <Content Include="Views\Vehiculo\_Grupo_VehiculoListaCards.cshtml" />
     <Content Include="Views\Gasto\_ActualizarFormModal.cshtml" />
     <Content Include="Views\Gasto\_Card.cshtml" />
-    <Content Include="Views\Gasto\_FormModal.cshtml" />
     <Content Include="Views\Gasto\_InsertarFormModal.cshtml" />
     <Content Include="Views\Gasto\_ListaCards.cshtml" />
     <Content Include="Views\Gasto\_Tipo_GastoInsertarFormModal.cshtml" />

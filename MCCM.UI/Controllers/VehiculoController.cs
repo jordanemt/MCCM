@@ -17,28 +17,42 @@ namespace MCCM.UI.Controllers
         [HttpGet]
         public ActionResult Grupo_VehiculoInsertarFormModal()
         {
-            return PartialView("_Grupo_VehiculoInsertarFormModal", negocio.Listar());
+            try
+            {
+                return PartialView("_Grupo_VehiculoInsertarFormModal", negocio.Listar());
+            }
+            catch (Exception e)
+            {
+                return Content(e.Message);
+            }
         }
 
         [HttpGet]
         public ActionResult Grupo_VehiculoActualizarFormModal(int id)
         {
-            ViewBag.Grupo_Vehiculo = negocioGrupo_Vehiculo.ObtenerPorId(id);
-            return PartialView("_Grupo_VehiculoActualizarFormModal");
-        }
-
-        [HttpGet]
-        public ActionResult ListarGrupo_Vehiculo()
-        {
-            var model = negocioGrupo_Vehiculo.Listar();
-            return PartialView("_Grupo_VehiculoListaCards", model);
+            try
+            {
+                ViewBag.Grupo_Vehiculo = negocioGrupo_Vehiculo.ObtenerPorId(id);
+                return PartialView("_Grupo_VehiculoActualizarFormModal");
+            }
+            catch (Exception e)
+            {
+                return Content(e.Message);
+            }
         }
 
         [HttpGet]
         public ActionResult ListarGrupo_VehiculoPorGrupoId(int idGrupo)
         {
-            var model = negocioGrupo_Vehiculo.ListarPorGrupoId(idGrupo);
-            return PartialView("_Grupo_VehiculoListaCards", model);
+            try
+            {
+                var model = negocioGrupo_Vehiculo.ListarPorGrupoId(idGrupo);
+                return PartialView("_Grupo_VehiculoListaCards", model);
+            }
+            catch (Exception e)
+            {
+                return Content(e.Message);
+            }
         }
 
         [HttpPost]
@@ -58,25 +72,47 @@ namespace MCCM.UI.Controllers
         [HttpPost]
         public ActionResult InsertarGrupo_Vehiculo(TMCCM_Grupo_Vehiculo data)
         {
-            var model = negocioGrupo_Vehiculo.Insertar(data);
-            InsertarEvento(model, "Se insertó");
-            return PartialView("_Grupo_VehiculoCard", model);
+            try
+            {
+                var model = negocioGrupo_Vehiculo.Insertar(data);
+                InsertarEvento(model, "Se insertó");
+                return PartialView("_Grupo_VehiculoCard", model);
+            }
+            catch (Exception e)
+            {
+                return Content(e.Message);
+            }
         }
 
         [HttpPost]
         public ActionResult ActualizarGrupo_Vehiculo(TMCCM_Grupo_Vehiculo data)
         {
-            var model = negocioGrupo_Vehiculo.Actualizar(data);
-            InsertarEvento(model, "Se actualizó");
-            return PartialView("_Grupo_VehiculoCard", model);
+            try
+            {
+                var model = negocioGrupo_Vehiculo.Actualizar(data);
+                InsertarEvento(model, "Se actualizó");
+                return PartialView("_Grupo_VehiculoCard", model);
+            }
+            catch (Exception e)
+            {
+                return Content(e.Message);
+            }
         }
 
         [HttpPost]
-        public void EliminarGrupo_Vehiculo(int id)
+        public ActionResult EliminarGrupo_Vehiculo(int id)
         {
-            var model = negocioGrupo_Vehiculo.ObtenerPorId(id);
-            InsertarEvento(model, "Se eliminó");
-            negocioGrupo_Vehiculo.EliminarPorId(id);
+            try
+            {
+                var model = negocioGrupo_Vehiculo.ObtenerPorId(id);
+                InsertarEvento(model, "Se eliminó");
+                negocioGrupo_Vehiculo.EliminarPorId(id);
+                return Content("Se eliminó correctamente");
+            }
+            catch (Exception e)
+            {
+                return Content(e.Message);
+            }
         }
 
         private void InsertarEvento(TMCCM_Grupo_Vehiculo data, string accion)

@@ -1,4 +1,5 @@
-﻿using MCCM.Entidad;
+﻿using MCCM.AccesoDatos.exceptions;
+using MCCM.Entidad;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -10,121 +11,130 @@ namespace MCCM.AccesoDatos
 {
     public class GrupoDatos
     {
-        public IEnumerable<TMCCM_Grupo> Listar()
-        {
-            using (var context = new MCCMEntities())
-            {
-                List<TMCCM_Grupo> data = context.TMCCM_Grupo
-                    .Where(e => e.TB_Eliminado == false)
-                    .Include(e => e.TMCCM_Grupo_Usuario)
-                    .ToList();
-
-                foreach (TMCCM_Grupo grupo in data) 
-                {
-                    foreach (TMCCM_Grupo_Usuario item in grupo.TMCCM_Grupo_Usuario)
-                    {
-                        context.Entry(item).Reference(e => e.TMCCM_Usuario).Load();
-                    }
-                    List<TMCCM_Grupo_Usuario> toRemoveList = grupo.TMCCM_Grupo_Usuario.Where(e => e.TMCCM_Usuario.TB_Eliminado == true).ToList();
-                    foreach (var toRemove in toRemoveList)
-                    {
-                        grupo.TMCCM_Grupo_Usuario.Remove(toRemove);
-                    }
-                }
-
-                return data;
-            }
-        }
-
         public IEnumerable<TMCCM_Grupo> ListarPorCaso(int idCaso)
         {
-            using (var context = new MCCMEntities())
+            try
             {
-                List<TMCCM_Grupo> data = context.TMCCM_Grupo
-                    .Where(e => e.TB_Eliminado == false && e.TN_ID_Caso == idCaso)
-                    .Include(e => e.TMCCM_Grupo_Usuario)
-                    .ToList();
-
-                foreach (TMCCM_Grupo grupo in data)
+                using (var context = new MCCMEntities())
                 {
-                    foreach (TMCCM_Grupo_Usuario item in grupo.TMCCM_Grupo_Usuario)
-                    {
-                        context.Entry(item).Reference(e => e.TMCCM_Usuario).Load();
-                    }
-                    List<TMCCM_Grupo_Usuario> toRemoveList = grupo.TMCCM_Grupo_Usuario.Where(e => e.TMCCM_Usuario.TB_Eliminado == true).ToList();
-                    foreach (var toRemove in toRemoveList)
-                    {
-                        grupo.TMCCM_Grupo_Usuario.Remove(toRemove);
-                    }
-                }
+                    List<TMCCM_Grupo> data = context.TMCCM_Grupo
+                        .Where(e => e.TB_Eliminado == false && e.TN_ID_Caso == idCaso)
+                        .Include(e => e.TMCCM_Grupo_Usuario)
+                        .ToList();
 
-                return data;
+                    foreach (TMCCM_Grupo grupo in data)
+                    {
+                        foreach (TMCCM_Grupo_Usuario item in grupo.TMCCM_Grupo_Usuario)
+                        {
+                            context.Entry(item).Reference(e => e.TMCCM_Usuario).Load();
+                        }
+                        List<TMCCM_Grupo_Usuario> toRemoveList = grupo.TMCCM_Grupo_Usuario.Where(e => e.TMCCM_Usuario.TB_Eliminado == true).ToList();
+                        foreach (var toRemove in toRemoveList)
+                        {
+                            grupo.TMCCM_Grupo_Usuario.Remove(toRemove);
+                        }
+                    }
+
+                    return data;
+                }
+            }
+            catch (Exception e)
+            {
+                throw ExceptionHandler.Handle(e);
             }
         }
 
         public TMCCM_Grupo ObtenerPorId(int id)
         {
-            using (var context = new MCCMEntities())
+            try
             {
-                TMCCM_Grupo data = context.TMCCM_Grupo.Find(id);
-                foreach (TMCCM_Grupo_Usuario item in data.TMCCM_Grupo_Usuario) 
+                using (var context = new MCCMEntities())
                 {
-                    context.Entry(item).Reference(e => e.TMCCM_Usuario).Load();
+                    TMCCM_Grupo data = context.TMCCM_Grupo.Find(id);
+                    foreach (TMCCM_Grupo_Usuario item in data.TMCCM_Grupo_Usuario)
+                    {
+                        context.Entry(item).Reference(e => e.TMCCM_Usuario).Load();
+                    }
+                    List<TMCCM_Grupo_Usuario> toRemoveList = data.TMCCM_Grupo_Usuario.Where(e => e.TMCCM_Usuario.TB_Eliminado == true).ToList();
+                    foreach (var toRemove in toRemoveList)
+                    {
+                        data.TMCCM_Grupo_Usuario.Remove(toRemove);
+                    }
+                    return data;
                 }
-                List<TMCCM_Grupo_Usuario> toRemoveList = data.TMCCM_Grupo_Usuario.Where(e => e.TMCCM_Usuario.TB_Eliminado == true).ToList();
-                foreach (var toRemove in toRemoveList)
-                {
-                    data.TMCCM_Grupo_Usuario.Remove(toRemove);
-                }
-                return data;
+            }
+            catch (Exception e)
+            {
+                throw ExceptionHandler.Handle(e);
             }
         }
 
 
         public TMCCM_Grupo Insertar(TMCCM_Grupo data)
         {
-            using (var context = new MCCMEntities())
+            try
             {
-                data.TB_Eliminado = false;
-                TMCCM_Grupo newData = context.TMCCM_Grupo.Add(data);
-                foreach (TMCCM_Grupo_Usuario item in newData.TMCCM_Grupo_Usuario)
+                using (var context = new MCCMEntities())
                 {
-                    context.Entry(item).Reference(e => e.TMCCM_Usuario).Load();
+                    data.TB_Eliminado = false;
+                    TMCCM_Grupo newData = context.TMCCM_Grupo.Add(data);
+                    foreach (TMCCM_Grupo_Usuario item in newData.TMCCM_Grupo_Usuario)
+                    {
+                        context.Entry(item).Reference(e => e.TMCCM_Usuario).Load();
+                    }
+                    context.SaveChanges();
+                    return newData;
                 }
-                context.SaveChanges();
-                return newData;
+            }
+            catch (Exception e)
+            {
+                throw ExceptionHandler.Handle(e);
             }
         }
 
         public TMCCM_Grupo Actualizar(TMCCM_Grupo data)
         {
-            using (var context = new MCCMEntities())
+            try
             {
-                data.TB_Eliminado = false;
-                context.TMCCM_Grupo_Usuario.RemoveRange(context.TMCCM_Grupo_Usuario.Where(e => e.TN_ID_Grupo == data.TN_ID_Grupo));
-                context.TMCCM_Grupo_Usuario.AddRange(data.TMCCM_Grupo_Usuario);
-                context.Entry(data).State = EntityState.Modified;
-                foreach (TMCCM_Grupo_Usuario item in data.TMCCM_Grupo_Usuario)
+                using (var context = new MCCMEntities())
                 {
-                    context.Entry(item).Reference(e => e.TMCCM_Usuario).Load();
+                    data.TB_Eliminado = false;
+                    context.TMCCM_Grupo_Usuario.RemoveRange(context.TMCCM_Grupo_Usuario.Where(e => e.TN_ID_Grupo == data.TN_ID_Grupo));
+                    context.TMCCM_Grupo_Usuario.AddRange(data.TMCCM_Grupo_Usuario);
+                    context.Entry(data).State = EntityState.Modified;
+                    foreach (TMCCM_Grupo_Usuario item in data.TMCCM_Grupo_Usuario)
+                    {
+                        context.Entry(item).Reference(e => e.TMCCM_Usuario).Load();
+                    }
+                    context.SaveChanges();
+                    return context.Entry(data).Entity;
                 }
-                context.SaveChanges();
-                return context.Entry(data).Entity;
+            }
+            catch (Exception e)
+            {
+                throw ExceptionHandler.Handle(e);
             }
         }
 
         public void EliminarPorId(int id)
         {
-            using (var context = new MCCMEntities())
+            try
             {
-                TMCCM_Grupo data = context.TMCCM_Grupo.Find(id);
-                data.TB_Eliminado = true;
-                foreach (TMCCM_Grupo_Usuario item in data.TMCCM_Grupo_Usuario)
+                using (var context = new MCCMEntities())
                 {
-                    item.TB_Eliminado = true;
+                    TMCCM_Grupo data = context.TMCCM_Grupo.Find(id);
+                    data.TB_Eliminado = true;
+                    foreach (TMCCM_Grupo_Usuario item in data.TMCCM_Grupo_Usuario)
+                    {
+                        item.TB_Eliminado = true;
+                    }
+                    context.Entry(data).State = EntityState.Modified;
+                    context.SaveChanges();
                 }
-                context.Entry(data).State = EntityState.Modified;
-                context.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                throw ExceptionHandler.Handle(e);
             }
         }
     }

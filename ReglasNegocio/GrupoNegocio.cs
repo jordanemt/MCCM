@@ -13,11 +13,6 @@ namespace MCCM.ReglasNegocio
             datos = new GrupoDatos();
         }
 
-        public IEnumerable<TMCCM_Grupo> Listar()
-        {
-            return datos.Listar();
-        }
-
         public IEnumerable<TMCCM_Grupo> ListarPorCaso(int idCaso)
         {
             return datos.ListarPorCaso(idCaso);

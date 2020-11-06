@@ -17,11 +17,6 @@ namespace MCCM.ReglasNegocio
             datos = new Grupo_VehiculoDatos();
         }
 
-        public IEnumerable<TMCCM_Grupo_Vehiculo> Listar()
-        {
-            return datos.Listar();
-        }
-
         public IEnumerable<TMCCM_Grupo_Vehiculo> ListarPorGrupoId(int idGrupo)
         {
             return datos.ListarPorGrupoId(idGrupo);

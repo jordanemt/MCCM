@@ -10,9 +10,16 @@ namespace MCCM.AccesoDatos
     {
         public IEnumerable<TMCCM_Vehiculo> Listar()
         {
-            using (var context = new MCCMEntities())
+            try
             {
-                return context.TMCCM_Vehiculo.Where(e => e.TB_Eliminado == false && e.TB_En_Uso == false).ToList();
+                using (var context = new MCCMEntities())
+                {
+                    return context.TMCCM_Vehiculo.Where(e => e.TB_Eliminado == false && e.TB_En_Uso == false).ToList();
+                }
+            }
+            catch (Exception e)
+            {
+                throw ExceptionHandler.Handle(e);
             }
         }
 

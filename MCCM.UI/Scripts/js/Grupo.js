@@ -13,8 +13,8 @@
                 $('#grupo-form-modal').modal('show');
             }
         },
-        error: function (reponse) {
-            alert("error : " + reponse);
+        error: function (error) {
+            alert(error.responseText);
         }
     });
 }
@@ -33,8 +33,8 @@ function abrirActualizarGrupoFormModal(id) {
             $('.body-content').append(data);
             $('#grupo-form-modal').modal('show');
         },
-        error: function (reponse) {
-            alert("error : " + reponse);
+        error: function (error) {
+            alert(error.responseText);
         }
     });
 }
@@ -52,8 +52,8 @@ function listarGrupos() {
         success: function (data) {
             $('#grupo-contenedor').html(data);
         },
-        error: function (reponse) {
-            alert("error : " + JSON.stringify(reponse));
+        error: function (error) {
+            alert(error.responseText);
         }
     });
 }
@@ -79,8 +79,8 @@ function insertarGrupo() {
                 $('#grupo-form-modal').modal('hide');
                 $('#grupo-contenedor').append(data);
             },
-            error: function (reponse) {
-                alert("error : " + reponse);
+            error: function (error) {
+                alert(error.responseText);
             },
             complete: function () {
                 $("#grupo-form-modal-submit")
@@ -114,8 +114,8 @@ function actualizarGrupo() {
                 $('#grupo-form-modal').modal('hide');
                 $('#grupo-contenedor').append(data);
             },
-            error: function (reponse) {
-                alert("error: " + reponse);
+            error: function (error) {
+                alert(error.responseText);
             },
             complete: function () {
                 $("#grupo-form-modal-submit")
@@ -139,8 +139,8 @@ function eliminarGrupoPorId(id) {
             alert("Se elimino el grupo #" + id);
             $('#grupo-' + id).remove();
         },
-        error: function (reponse) {
-            alert("error : " + reponse);
+        error: function (error) {
+            alert(error.responseText);
         }
     });
 }
@@ -200,7 +200,3 @@ function seleccionarGrupo(idGrupo) {
     $("#vehiculos-titulo").text('Vechículos/Grupo #' + idGrupo);
     listarGrupo_Vehiculo();//Definido en Vehiculo.js
 }
-
-$(document).ready(function () {
-    //listarGrupo();
-});

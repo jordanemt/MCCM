@@ -13,9 +13,9 @@
                 $('#grupo_vehiculo-form-modal').modal('show');
             }
         },
-        error: function (reponse) {
-            alert("error : " + reponse);
-        }
+        error: function (error) {
+            alert(error.responseText);
+        },
     });
 }
 
@@ -33,8 +33,8 @@ function abrirGrupo_VehiculoActualizarFormModal(id) {
             $('.body-content').append(data);
             $('#grupo_vehiculo-form-modal').modal('show');
         },
-        error: function (reponse) {
-            alert("error : " + reponse);
+        error: function (error) {
+            alert(error.responseText);
         }
     });
 }
@@ -52,8 +52,8 @@ function listarGrupo_Vehiculo() {
         success: function (data) {
             $('#grupo_vehiculo-contenedor').html(data);
         },
-        error: function (reponse) {
-            alert("error : " + reponse);
+        error: function (error) {
+            alert(error.responseText);
         }
     });
 }
@@ -79,8 +79,8 @@ function insertarGrupo_Vehiculo() {
                 $('#grupo_vehiculo-form-modal').modal('hide');
                 $('#grupo_vehiculo-contenedor').append(data);
             },
-            error: function (reponse) {
-                alert("error : " + reponse);
+            error: function (error) {
+                alert(error.responseText);
             },
             complete: function () {
                 $("#grupo_vehiculo-form-modal-submit")
@@ -114,8 +114,8 @@ function actualizarGrupo_Vehiculo() {
                 $('#grupo_vehiculo-form-modal').modal('hide');
                 $('#grupo_vehiculo-contenedor').append(data);
             },
-            error: function (reponse) {
-                alert("error : " + reponse);
+            error: function (error) {
+                alert(error.responseText);
             },
             complete: function () {
                 $("#grupo_vehiculo-form-modal-submit")
@@ -139,8 +139,8 @@ function eliminarGrupo_VehiculoPorId(id) {
             alert('Se ha borrado el vehículo del grupo');
             $('#grupo_vehiculo-' + id).remove();
         },
-        error: function (reponse) {
-            alert("error : " + reponse);
+        error: function (error) {
+            alert(error.responseText);
         }
     });
 }
@@ -150,7 +150,6 @@ function abrirInsertarVehiculoModal() {
     $('#TC_Placa-error').hide();
     $('#TC_Kilometraje-error').hide();
     $('#TC_Descripcion-error').hide();
-    $('#danger-text').hide();
     $('#vehiculo-form-modal').modal('show');
 }
 
@@ -178,8 +177,7 @@ function insertarVehiculo() {
                 $('#grupo_vehiculo-form-modal').modal('show');
             },
             error: function (error) {
-                $('#danger-text').html(error.responseText);
-                $('#danger-text').show();
+                alert(error.responseText);
             },
             complete: function () {
                 $("#vehiculo-form-modal-submit")
@@ -206,7 +204,3 @@ function aplicarGrupo_VehiculoDateRangePicker() {
 function aplicarGrupo_VehiculoSelectPicker() {
     $('#TN_ID_Vehiculo').selectpicker();
 }
-
-$(document).ready(function () {
-    //listarGrupo_Vehiculo();
-});
