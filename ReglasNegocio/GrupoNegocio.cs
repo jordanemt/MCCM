@@ -38,5 +38,10 @@ namespace MCCM.ReglasNegocio
         {
             datos.EliminarPorId(id);
         }
+
+        public TMCCM_Grupo ObtenerGrupoDeMandoActivoPorIdCaso(int idCaso)
+        {
+            return datos.ObtenerGrupoDeMandoActivoPorIdCaso(idCaso);
+        }
     }
 }

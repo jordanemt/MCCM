@@ -151,6 +151,27 @@ namespace MCCM.UI.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult ObtenerGrupoDeMandoActivoPorIdCaso(int idCaso)
+        {
+            try
+            {
+                var model = negocio.ObtenerGrupoDeMandoActivoPorIdCaso(idCaso);
+                if (model != null)
+                {
+                    return PartialView("_GrupoMandoCard", model);
+                }
+                else 
+                {
+                    return Content("No hay un grupo de mando asignado para la fecha y hora actual");
+                }
+            }
+            catch (Exception e)
+            {
+                return Content(e.Message);
+            }
+        }
+
         private void InsertarEvento(TMCCM_Grupo data, string accion)
         {
             TMCCM_Usuario encargado = data.TMCCM_Grupo_Usuario.Where(e => e.TB_Encargado == true).FirstOrDefault().TMCCM_Usuario;

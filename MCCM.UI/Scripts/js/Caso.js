@@ -37,6 +37,7 @@ $(document).on("click", ".caso", function () {
     CargarTareas();
     listarGastos();
     listarGrupos();
+    cargarGrupoMandoVigente();
     $("#casosTitulo").html($(this).children(".card-body").children().first().children().last().text());
     
 });

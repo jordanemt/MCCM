@@ -145,6 +145,27 @@ function eliminarGrupoPorId(id) {
     });
 }
 
+function cargarGrupoMandoVigente() {
+    if (sessionStorage.CasoID != null) {
+        var url = "/Grupo/ObtenerGrupoDeMandoActivoPorIdCaso/";
+
+        $.ajax({
+            url: url,
+            cache: false,
+            type: "GET",
+            data: { "idCaso": sessionStorage.CasoID },
+            success: function (data) {
+                $('#mando-body').html(data);
+            },
+            error: function (error) {
+                alert(error.responseText);
+            }
+        });
+    } else {
+        alert('Debe seleccionar un caso');
+    }
+}
+
 function aplicarGrupoDateRangePicker() {
     var fechaInicioElement = $('#TF_Fecha_Inicio');
     var fechaInicio = $('#TF_Fecha_Inicio').val();

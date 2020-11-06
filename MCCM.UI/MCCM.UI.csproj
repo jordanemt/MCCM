@@ -526,6 +526,7 @@
     <Content Include="Views\EntidadPersonaJuridica\_ModalC_Tipo_Organizacion.cshtml" />
     <Content Include="Views\Vehiculo\_InsertarFormModal.cshtml" />
     <Content Include="Views\Dashboard\_Reporte.cshtml" />
+    <Content Include="Views\Grupo\_GrupoMandoCard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
