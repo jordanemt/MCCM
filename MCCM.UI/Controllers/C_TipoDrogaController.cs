@@ -15,13 +15,25 @@ namespace MCCM.UI.Controllers
         [HttpGet]
         public String ListarTipoDroga()
         {
+            try { 
             return c_TipoDrogaNegocio.ListarTiposDroga();
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
         [HttpPost]
         public String InsertarTipoDroga(TMCCM_C_Droga_Tipo_Droga tipoDroga)
         {
+            try { 
             c_TipoDrogaNegocio.InsertarTipoDroga(tipoDroga);
             return "S";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
 
     }

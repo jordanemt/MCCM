@@ -15,15 +15,27 @@ namespace MCCM.UI.Controllers
         [HttpGet]
         public String ListarPersonaTipoIdentificacion()
         {
+            try { 
 
             return c_PersonaTipoIdentificacionNegocio.ListarPersonaTipoIdentificacion();
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
 
         [HttpPost]
         public String InsertarPersonaTipoIdentificacion(TMCCM_C_Persona_Tipo_Identificacion persona_Tipo_Identificacion)
         {
+            try { 
             c_PersonaTipoIdentificacionNegocio.InsertarPersonaTipoIdentificacion(persona_Tipo_Identificacion);
             return "S";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
     }
 }

@@ -1,40 +1,9 @@
-﻿$(document).ready(function () {
+﻿$(document).on("click", "#entidadDroga", function () {
+
+    CargarEntidadDrogas();
     cargarTipoDroga();
     iniciarCalendarioDroga(moment());
-
-    $("#FormEntidadDroga").validate({
-        rules: {
-            TC_Nombre: {
-                required: true,
-            },
-            TN_Cantidad: {
-                required: true,
-                number: true
-            },
-            TN_ID_Tipo_Droga: { required: true },
-            TF_Fecha_Decomiso: { required: true }
-        },
-        messages: {
-            TC_Nombre: {
-                required: "El nombre de la droga no puede quedar en blanco"
-            },
-            TN_Cantidad: {
-                required: "La cantidad no puede quedar en blanco",
-                number: "La cantidad debe ser un número"
-            },
-            TN_ID_Tipo_Droga: {
-                required: "Por favor, seleccione un tipo de Droga"
-            },
-            TF_Fecha_Decomiso: {
-                required: "Debe indicar la fecha y hora del decomiso"
-            }
-
-        },
-        submitHandler: function (form) {
-            return false;
-        }
-    });
-});
+})
 
 /*Fecha*/
 function iniciarCalendarioDroga(fecha) {
@@ -55,17 +24,22 @@ $(document).on("click", "#btnAgregarEntidadDroga", function (e) {
 
         var form = new FormData($("#FormEntidadDroga")[0]);
         form.append("TB_Verificado", $("#TB_Verificado_Droga").is(":checked"));
-        alert(JSON.stringify(Object.fromEntries(form)));
         $.ajax({
             type: "POST",
             url: "/E_Droga/Insertar_E_Droga",
             data: { "entidadDroga": Object.fromEntries(form), "caso": sessionStorage.CasoID },
+            beforeSend: function () {
+                $("#btnAgregarEntidadDroga").prop("disabled", true);
+                $("#btnAgregarEntidadDroga").html(
+                    '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
+                );
+            }
         }).done(function (data) {
+            $("#btnAgregarEntidadDroga").removeAttr("disabled");
+            $("#btnAgregarEntidadDroga").html('Insertar');
             $("#entidadDrogaModal").modal("hide");
             CargarEntidadDrogas();
         });
-    } else {
-        alert("NO es valido");
     }
 });
 
@@ -89,28 +63,28 @@ function CargarEntidadDrogas() {
 
             $("#entidades-body").append(
                 '<div class="card" id="cartaEntidadDroga"' + entidadDrogas[i].TN_ID_Droga + '>' +
-                '<div class="card-header">' +
-                ' Droga #' + entidadDrogas[i].TN_ID_Droga +
+                '<div class="card-header gris_claro">' +
+                ' Droga Código #' + entidadDrogas[i].TN_ID_Droga +
                 '<div>' +
-                '<a href="#" class="editarEntidadDroga" id="' + entidadDrogas[i].TN_ID_Droga + '"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>' +
-                '<a href="#" class="borrar borrarEntidadDroga" id="' + entidadDrogas[i].TN_ID_Droga + '"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>' +
+                '<a href="#" class="editarEntidadDroga" id="' + entidadDrogas[i].TN_ID_Droga + '"><span><i class="fa fa-pencil icono" aria-hidden="true"></i></span></a>' +
+                '<a href="#" class="borrar borrarEntidadDroga" id="' + entidadDrogas[i].TN_ID_Droga + '"><span><i class="fa fa-trash icono" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>' +
                 '</div>' +
                 '</div>' +
                 '<div class="card-body" style="padding:0px!important">' +
                 '<div class="container">' +
                 '<div class="row">' +
-                '<div class="col-sm-6">' +
+                '<div class="col-4">' +
                 '<span class="w-100 badge badge-primary">Nombre:</span>' +
                 '</div>' +
-                '<div class="col-sm-6">' +
-                '<span>' + entidadDrogas[i].TC_Nombre + '</span>' +
+                '<div class="col-md-8">' +
+                '<p>' + entidadDrogas[i].TC_Nombre + '<p>' +
                 '</div>' +
                 '</div>' +
                 '<div class="row">' +
-                '<div class="col-sm-6">' +
+                '<div class="col-4">' +
                 '<span class="w-100 badge badge-primary">Cantidad:</span>' +
                 '</div>' +
-                '<div class="col-sm-6">' +
+                '<div class="col-md-8">' +
                 '<p>' + entidadDrogas[i].TN_Cantidad + '</p>' +
                 '</div>' +
                 ' </div>' +
@@ -130,6 +104,7 @@ function eliminarDroga(entidadDrogaID) {
         url: "/E_Droga/Eliminar_E_DrogaPorID",
         data: { "entidadDrogaID": entidadDrogaID }
     }).done(function (data) {
+        elemento.parent().parent().parent().remove();
 
     });
 }
@@ -145,7 +120,6 @@ $(document).on("click", ".editarEntidadDroga", function () {
     }).done(function (data) {
         let entidadDroga = new Array();
         entidadDroga = JSON.parse(data);
-        alert(JSON.stringify(data));
         $("#tituloEntidadDroga").html("Modificar Droga");
         $("#divDrogaID").show();
         $("#TN_ID_Droga").val(entidadDroga.TN_ID_Droga);
@@ -158,10 +132,11 @@ $(document).on("click", ".editarEntidadDroga", function () {
         iniciarCalendarioDroga(entidadDroga.TF_Fecha_Decomiso);
         $("#divDrogaFC").show();
         $("#TF_Fecha_Creacion_Droga").val(entidadDroga.TF_Fecha_Creacion);
-        iniciarCalendarioDroga(entidadDroga.TF_Fecha_Creacion);
-        $("#TC_Creado_Por_Droga").val(entidadDroga.TC_Creado_Por);
+        $("#divDrogaFM").show();
+        $("#TF_Fecha_Modificacion_Droga").val(entidadDroga.TF_Fecha_Modificacion);
         $("#divDrogaMP").show();
         $("#TC_Modificado_Por_Droga").val(entidadDroga.TC_Modificado_Por);
+        $("#TC_Creado_Por_Droga").val(entidadDroga.TC_Creado_Por);
         $('#TB_Verificado_Droga').attr('checked', entidadDroga.TB_Verificado);
         $("#btnModificarEntidadDroga").show();
         $("#btnAgregarEntidadDroga").hide();
@@ -174,7 +149,9 @@ $('#entidadDrogaModal').on('hidden.bs.modal', function () {
     $('#TN_ID_Tipo_Droga').selectpicker('refresh');
     $("#tituloEntidadDroga").html("Insertar Droga");
     $("#divDrogaFC").hide();
+    $("#divDrogaFM").hide();
     $("#divDrogaMP").hide();
+    $('#TB_Verificado_Droga').attr('checked', false);
     $("#btnModificarEntidadDroga").hide();
     $("#btnAgregarEntidadDroga").show();
     $("label.error").hide();
@@ -184,16 +161,26 @@ $('#entidadDrogaModal').on('hidden.bs.modal', function () {
 //*Modificar Droga
 $(document).on("click", "#btnModificarEntidadDroga", function (e) {
     e.preventDefault();
-    var form = new FormData($("#FormEntidadDroga")[0]);
-    form.append("TB_Verificado", $("#TB_Verificado_Droga").is(":checked"));
-    $.ajax({
-        type: "POST",
-        url: "/E_Droga/Modificar_E_Droga",
-        data: Object.fromEntries(form)
-    }).done(function (data) {
-        $("#entidadDrogaModal").modal("hide");
-        CargarEntidadDrogas();
-    });
+    if ($("#FormEntidadDroga").valid()) {
+        var form = new FormData($("#FormEntidadDroga")[0]);
+        form.append("TB_Verificado", $("#TB_Verificado_Droga").is(":checked"));
+        $.ajax({
+            type: "POST",
+            url: "/E_Droga/Modificar_E_Droga",
+            data: Object.fromEntries(form),
+            beforeSend: function () {
+                $("#btnModificarEntidadDroga").prop("disabled", true);
+                $("#btnModificarEntidadDroga").html(
+                    '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
+                );
+            }
+        }).done(function (data) {
+            $("#btnModificarEntidadDroga").removeAttr("disabled");
+            $("#btnModificarEntidadDroga").html('Modificar');
+            $("#entidadDrogaModal").modal("hide");
+            CargarEntidadDrogas();
+        });
+    }
 });
 
 
@@ -207,7 +194,6 @@ function cargarTipoDroga() {
         let tipoDroga = JSON.parse(data);
         $("#TN_ID_Tipo_Droga").empty();
         var s;
-        s = '<option value="" disabled selected>Seleccione un tipo</option>';
         for (var i = 0; i < tipoDroga.length; i++) {
             s += '<option value="' + tipoDroga[i].TN_ID_Tipo_Droga + '">' + tipoDroga[i].TC_Nombre + '</option>';
         }
@@ -227,13 +213,20 @@ $(document).on("click", "#btnAgregar_C_Droga", function (e) {
         $.ajax({
             type: "POST",
             url: "/C_TipoDroga/InsertarTipoDroga",
-            data: Object.fromEntries(form)
+            data: Object.fromEntries(form),
+            beforeSend: function () {
+                $("#btnAgregar_C_Droga").prop("disabled", true);
+                $("#btnAgregar_C_Droga").html(
+                    '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
+                );
+            }
         }).done(function (data) {
+            $("#btnAgregar_C_Droga").removeAttr("disabled");
+            $("#btnAgregar_C_Droga").html('Insertar');
             $("#modal_C_Droga").modal("hide");
             cargarTipoDroga();
+            $("#Form_C_Droga")[0].reset();
         });
-    } else {
-        alert("NO es valido");
     }
 });
 

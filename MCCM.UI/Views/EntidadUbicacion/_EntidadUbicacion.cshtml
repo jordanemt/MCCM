@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title col-11 text-center" id="tituloEntidadUbicacion">Insertar Ubicacion</h5>
+                <h5 class="modal-title  font_blanco text-center" id="tituloEntidadUbicacion">Insertar Ubicacion</h5>
 
                 <button type="button" class="close col-1" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -11,70 +11,67 @@
             </div>
             <div class="modal-body">
                 <form id="FormEntidadUbicacion" enctype="multipart/form-data">
-                    <div class="form-group row justify-content-center" id="divUbicacionID" style="display:none">
+                    <div class="form-group row" id="divUbicacionID" style="display:none">
                         <label for="creadoPor" class="col-md-3 col-form-label">ID</label>
                         <input type="text" class="col-md-8 form-control" readonly name="TN_ID_Ubicacion" id="TN_ID_Ubicacion">
                     </div>
 
-                    <div class="form-group row justify-content-center">
+                    <div class="form-group row">
                         <label for="tipoUbicacion" class="col-md-3 col-form-label">Tipo</label>
-                        <div class="col-8">
-                            <select class=" col-md-8 form-control" name="TN_ID_Tipo_Ubicacion" id="TN_ID_Tipo_Ubicacion" title="Seleccione un tipo..." required>
-                            </select>
-                            <a href="#" data-toggle="modal" data-target="#modal_C_TipoUbicacion" class="fa fa-plus col-md-1"></a>
-                        </div>
+                        <select class=" col-md-8 form-control" name="TN_ID_Tipo_Ubicacion" id="TN_ID_Tipo_Ubicacion" title="Seleccione un tipo..." required>
+                        </select>
+                        <a href="#" data-toggle="modal" data-target="#modal_C_TipoUbicacion" class="btn fa fa-plus col-sm-1 align-self-center font_gris"></a>
+                        <label id="TN_ID_Tipo_Ubicacion-error" class="error" for="TN_ID_Tipo_Ubicacion" style="display: none"></label>
                     </div>
 
-                    <div class="form-group row justify-content-center">
+                    <div class="form-group row">
                         <label for="provincia" class="col-md-3 col-form-label">Provincia</label>
-                        <div class="col-8">
-                            <select class=" col-md-8 form-control" name="TN_ID_Provincia" id="TN_ID_Provincia" title="Seleccione una provincia..." required>
-                            </select>
-                        </div>
+                        <select class=" col-md-8 form-control" name="TN_ID_Provincia" id="TN_ID_Provincia" title="Seleccione una provincia..." required>
+                        </select>
+                        <label id="TN_ID_Provincia-error" class="error" for="TN_ID_Provincia" style="display: none"></label>
                     </div>
-                    <div class="form-group row justify-content-center">
+                    <div class="form-group row">
                         <label for="canton" class="col-md-3 col-form-label">Cantón</label>
-                        <div class="col-8">
-                            <select class=" col-md-8 form-control" name="TN_ID_Canton" id="TN_ID_Canton" title="Seleccione un cantón..." required>
-                            </select>
-                        </div>
+                        <select class=" col-md-8 form-control" name="TN_ID_Canton" id="TN_ID_Canton" title="Seleccione un cantón..." required>
+                        </select>
+                        <label id="TN_ID_Canton-error" class="error" for="TN_ID_Canton" style="display: none"></label>
                     </div>
-                    <div class="form-group row justify-content-center">
+                    <div class="form-group row">
                         <label for="distrito" class="col-md-3 col-form-label">Distrito</label>
-                        <div class="col-8">
-                            <select class=" col-md-8 form-control" name="TN_ID_Distrito" id="TN_ID_Distrito" title="Seleccione un distito..." required>
-                            </select>
-                        </div>
+                        <select class=" col-md-8 form-control" name="TN_ID_Distrito" id="TN_ID_Distrito" title="Seleccione un distito..." required>
+                        </select>
+                        <label id="TN_ID_Distrito-error" class="error" for="TN_ID_Distrito" style="display: none"></label>
                     </div>
-                    <div class="form-group row justify-content-center">
+                    <div class="form-group row">
                         <label for="senas" class="col-md-3 col-form-label">Señas</label>
-                        <textarea class="col-md-8 form-control" name="TC_Sennas" id="TC_Sennas_Ubicacion" rows="3"></textarea>
+                        <textarea class="col-md-8 form-control" name="TC_Sennas" id="TC_Sennas_Ubicacion" rows="3" required></textarea>
                     </div>
-                    <div class="form-group row justify-content-center">
+                    <div class="form-group row">
                         <label for="latitud" class="col-md-3 col-form-label">Latitud</label>
-                        <input type="text" class="col-md-8 form-control" name="TD_Latitud" id="TD_Latitud_Ubicacion">
+                        <input type="number" class="col-md-8 form-control" name="TD_Latitud" id="TD_Latitud_Ubicacion">
                     </div>
-                    <div class="form-group row justify-content-center">
+                    <div class="form-group row">
                         <label for="longitud" class="col-md-3 col-form-label">Longitud</label>
                         <input type="number" step="any" class="col-md-8 form-control" name="TD_Longitud" id="TD_Longitud_Ubicacion">
                     </div>
-                    <div class="form-group row justify-content-center">
-                        <label id="creadoPor_U" for="creadoPor" class="col-md-3 col-form-label">Creado por</label>
-                        <input type="number" step="any" class="col-md-8 form-control" name="TC_Creado_Por" id="TC_Creado_Por_Ubicacion">
-                    </div>
-                    <div class="form-group row justify-content-center" tyle="display:none" id="fechaCreacion_Row_U">
+
+                    <div class="form-group row" tyle="display:none" id="fechaCreacion_Row_U">
                         <label id="fechaCreacion_U" for="alias" class="col-md-3 col-form-label">Fecha Creacion</label>
                         <input type="text" class="col-md-8 form-control" name="TF_Fecha_Creacion" readonly id="TF_Fecha_Creacion_Ubicacion">
                     </div>
-                    <div class="form-group row justify-content-center" style="display:none" id="fechaModificación_Row_U">
+                    <div class="form-group row" style="display:none" id="fechaModificación_Row_U">
                         <label id="fechaModificación_U" for="segundoApellido" class="col-md-3 col-form-label">Fecha Modificación</label>
                         <input type="text" class="col-md-8 form-control" name="TF_Fecha_Modificacion" readonly id="TF_Fecha_Modificacion_Ubicacion">
                     </div>
-                    <div class="form-group row justify-content-center" style="display:none" id="modificadoPor_Row_U">
-                        <label id="modificadopor_U" for="creadoPor" class="col-md-3 col-form-label">Modificado por</label>
-                        <input type="text" class="col-md-8 form-control" name="TC_Modificado_Por" id="TF_Modificado_Por_Ubicacion">
+                    <div class="form-group row">
+                        <label id="creadoPor_U" for="creadoPor" class="col-md-3 col-form-label">Creado por</label>
+                        <input type="text" step="any" class="col-md-8 form-control" name="TC_Creado_Por" id="TC_Creado_Por_Ubicacion" required>
                     </div>
-                    <div class="form-group row justify-content-center">
+                    <div class="form-group row" style="display:none" id="modificadoPor_Row_U">
+                        <label id="modificadopor_U" for="creadoPor" class="col-md-3 col-form-label">Modificado por</label>
+                        <input type="text" class="col-md-8 form-control" name="TC_Modificado_Por" id="TF_Modificado_Por_Ubicacion" required>
+                    </div>
+                    <div class="form-group row">
                         <label id="verificado_U" for="verificado" class="col-md-3 col-form-label">Verificado</label>
                         <div class="col-md-8  form-check">
                             <input class="form-check-input" type="checkbox" name="TB_Verificado" id="TB_Verificado_Ubicacion">
@@ -83,7 +80,7 @@
                     <div class="d-flex justify-content-center">
                         <button id="btnInsertarEntidadUbicacion" type="submit" class="btn btn-primary submit-button mx-2">Insertar</button>
                         <button id="btnModificarEntidadUbicacion" class="btn btn-primary submit-button mx-2" style="display:none">Modificar</button>
-                        <button id="btnCancelarEntidadUbicacion" type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                     </div>
                 </form>
             </div>

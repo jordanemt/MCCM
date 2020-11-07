@@ -1,4 +1,5 @@
-﻿using MCCM.Entidad;
+﻿using MCCM.AccesoDatos.exceptions;
+using MCCM.Entidad;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace MCCM.AccesoDatos
     {
         public void InsertarEntidadUbicacion(TMCCM_Entidad_Ubicacion entidadUbicacion)
         {
+            try { 
             using (var context = new MCCMEntities())
             {
                 entidadUbicacion.TB_Eliminado = false;
@@ -21,10 +23,16 @@ namespace MCCM.AccesoDatos
                 context.SaveChanges();
 
             }
+            }
+            catch (Exception e)
+            {
+                throw ExceptionHandler.Handle(e);
+            }
 
         }
         public void ActualizarEntidadUbicacion(TMCCM_Entidad_Ubicacion entidadUbicacion)
         {
+            try { 
             using (var context = new MCCMEntities())
             {
                 var result = context.TMCCM_Entidad_Ubicacion.SingleOrDefault(b => b.TN_ID_Ubicacion == entidadUbicacion.TN_ID_Ubicacion);
@@ -46,12 +54,18 @@ namespace MCCM.AccesoDatos
                     context.SaveChanges();
                 }
             }
+            }
+            catch (Exception e)
+            {
+                throw ExceptionHandler.Handle(e);
+            }
 
 
         }
 
         public void EliminarEntidadUbicacion(int ID)
         {
+            try { 
             using (var context = new MCCMEntities())
             {
                 var result = context.TMCCM_Entidad_Ubicacion.SingleOrDefault(b => b.TN_ID_Ubicacion == ID);
@@ -61,6 +75,11 @@ namespace MCCM.AccesoDatos
                     context.Entry(result).State = EntityState.Modified;
                     context.SaveChanges();
                 }
+            }
+            }
+            catch (Exception e)
+            {
+                throw ExceptionHandler.Handle(e);
             }
         }
 

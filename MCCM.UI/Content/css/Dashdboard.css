@@ -19,6 +19,9 @@
 #dashboard-container {
     height: 90vh;
 }
+.card-image {
+    height: 150px;
+}
 
 .hoverOp:hover {
     cursor: pointer;

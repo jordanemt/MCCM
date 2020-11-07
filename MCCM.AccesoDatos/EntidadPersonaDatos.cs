@@ -1,4 +1,5 @@
-﻿using MCCM.Entidad;
+﻿using MCCM.AccesoDatos.exceptions;
+using MCCM.Entidad;
 using Newtonsoft.Json;
 using System;
 using System.Data.Entity;
@@ -11,7 +12,7 @@ namespace MCCM.AccesoDatos
 
         public void InsertarEntidadPersona(TMCCM_Entidad_Persona entidadPersona)
         {
-
+            try { 
 
             using (var context = new MCCMEntities())
             {
@@ -20,11 +21,17 @@ namespace MCCM.AccesoDatos
                 context.TMCCM_Entidad_Persona.Add(entidadPersona);
                 context.SaveChanges();
             }
+            }
+            catch (Exception e)
+            {
+                throw ExceptionHandler.Handle(e);
+            }
 
         }
 
         public void ActualizarEntidadPersona(TMCCM_Entidad_Persona entidadPersona)
         {
+            try { 
             using (var context = new MCCMEntities())
             {
                 var result = context.TMCCM_Entidad_Persona.SingleOrDefault(b => b.TN_ID_Persona == entidadPersona.TN_ID_Persona);
@@ -46,7 +53,7 @@ namespace MCCM.AccesoDatos
                     result.TN_Autopsia = entidadPersona.TN_Autopsia;
                     result.TB_Exp_Criminal = entidadPersona.TB_Exp_Criminal;
                     result.TF_Fecha_Creacion = entidadPersona.TF_Fecha_Creacion;
-                    result.TF_Fecha_Modificacion = DateTime.Now;
+                    result.TF_Fecha_Modificacion =entidadPersona.TF_Fecha_Modificacion; 
                     result.TC_Creado_Por = entidadPersona.TC_Creado_Por;
                     result.TC_Modificado_Por = entidadPersona.TC_Modificado_Por;
                     result.TB_Verificado = entidadPersona.TB_Verificado;
@@ -56,10 +63,16 @@ namespace MCCM.AccesoDatos
                     context.SaveChanges();
                 }
             }
+            }
+            catch (Exception e)
+            {
+                throw ExceptionHandler.Handle(e);
+            }
         }
 
         public void EliminarEntidadPersona(int ID)
         {
+            try { 
             using (var context = new MCCMEntities())
             {
                 var result = context.TMCCM_Entidad_Persona.SingleOrDefault(b => b.TN_ID_Persona == ID);
@@ -69,6 +82,11 @@ namespace MCCM.AccesoDatos
                     context.Entry(result).State = EntityState.Modified;
                     context.SaveChanges();
                 }
+            }
+            }
+            catch (Exception e)
+            {
+                throw ExceptionHandler.Handle(e);
             }
         }
 
@@ -84,6 +102,7 @@ namespace MCCM.AccesoDatos
                                where personaItem.TN_ID_Caso == caso
                                where personaItem.TN_ID_Nacionalidad == nacionalidadItem.TN_ID_Nacionalidad
                                where personaItem.TN_ID_Genero == generoItem.TN_ID_Genero
+                               orderby personaItem.TB_Exp_Criminal descending
                                select new
 
                                {
@@ -103,7 +122,7 @@ namespace MCCM.AccesoDatos
                                    TC_Genero = item.TC_Genero,
                                    TC_Nacionalidad = item.TC_Nacionalidad,
                                    TC_Nombre = item.TC_Nombre,
-                                   TC_Imagen = string.Format("data:image/png;base64,{0}", Convert.ToBase64String(item.TB_Imagen)),
+                                   TC_Imagen = Conversor_Binario_String64(item.TB_Imagen),
                                    TC_Cedula = item.TC_Cedula,
                                    TB_Exp_Criminal = item.TB_Exp_Criminal,
                                    TC_Alias = item.TC_Alias
@@ -151,10 +170,14 @@ namespace MCCM.AccesoDatos
         }
         public string Conversor_Binario_String64(byte[] image)
         {
+            if (image != null)
+            {
+                string imreBase64Data = Convert.ToBase64String(image);
+                string imgDataURL = string.Format("data:image/png;base64,{0}", imreBase64Data);
+                return imgDataURL;
+            }
 
-            string imreBase64Data = Convert.ToBase64String(image);
-            string imgDataURL = string.Format("data:image/png;base64,{0}", imreBase64Data);
-            return imgDataURL;
+            return null;
         }
     }
 }

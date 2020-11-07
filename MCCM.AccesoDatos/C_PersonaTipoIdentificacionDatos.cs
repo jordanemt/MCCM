@@ -1,4 +1,5 @@
-﻿using MCCM.Entidad;
+﻿using MCCM.AccesoDatos.exceptions;
+using MCCM.Entidad;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -19,8 +20,7 @@ namespace MCCM.AccesoDatos
                               select new
                               {
                                   TN_ID_Tipo_Identificacion = tipoIdentificacionItem.TN_ID_Tipo_Identificacion,
-                                  TC_Descripcion = tipoIdentificacionItem.TC_Descripcion,
-                                  TC_Mascara = tipoIdentificacionItem.TC_Mascara
+                                  TC_Descripcion = tipoIdentificacionItem.TC_Descripcion
 
                               };
                 return JsonConvert.SerializeObject(anonimo, Formatting.Indented);
@@ -30,12 +30,18 @@ namespace MCCM.AccesoDatos
 
         public void InsertarPersonaTipoIdentificacion(TMCCM_C_Persona_Tipo_Identificacion personaTipoIdentificacion)
         {
+            try { 
             using (var context = new MCCMEntities())
             {
                 personaTipoIdentificacion.TF_Fecha_Creacion = DateTime.Now;
                 context.TMCCM_C_Persona_Tipo_Identificacion.Add(personaTipoIdentificacion);
                 context.SaveChanges();
 
+            }
+            }
+            catch (Exception e)
+            {
+                throw ExceptionHandler.Handle(e);
             }
 
         }

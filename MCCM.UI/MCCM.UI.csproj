@@ -194,6 +194,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Img\icono.png" />
+    <Content Include="Img\no-disponible.png" />
     <Content Include="Scripts\bootstrap-select.js" />
     <Content Include="Scripts\bootstrap-select.min.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -489,7 +490,7 @@
     <Content Include="Views\Caso\_ModalCasoInsert.cshtml" />
     <Content Include="Views\EntidadArma\_EntidadArma.cshtml" />
     <Content Include="Views\EntidadDroga\_EntidadDroga.cshtml" />
-    <Content Include="Views\Entidad\_EntidadPersona.cshtml" />
+    <Content Include="Views\EntidadPersona\_EntidadPersona.cshtml" />
     <Content Include="Views\EntidadPersonaJuridica\_EntidadPersonaJuridica.cshtml" />
     <Content Include="Views\EntidadTelefono\_EntidadTelefono.cshtml" />
     <Content Include="Views\EntidadUbicacion\_EntidadUbicacion.cshtml" />
@@ -525,6 +526,10 @@
     <Content Include="Views\EntidadVehiculo\_ModalMarcaVehiculo.cshtml" />
     <Content Include="Views\EntidadVehiculo\_ModalClaseVehiculo.cshtml" />
     <Content Include="Views\EntidadVehiculo\_ModalColorVehiculo.cshtml" />
+    <Content Include="Views\EntidadPersona\_ModalPersonaGenero.cshtml" />
+    <Content Include="Views\EntidadPersona\_ModalPersonaNacionalidad.cshtml" />
+    <Content Include="Views\EntidadPersona\_ModalPersonaSexo.cshtml" />
+    <Content Include="Views\EntidadPersona\_ModalPersonaTipoIdentificacion.cshtml" />
     <Content Include="Views\EntidadPersonaJuridica\_ModalC_Tipo_Organizacion.cshtml" />
     <Content Include="Views\Vehiculo\_InsertarFormModal.cshtml" />
     <Content Include="Views\Dashboard\_Reporte.cshtml" />

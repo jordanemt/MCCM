@@ -1,4 +1,5 @@
-﻿using MCCM.Entidad;
+﻿using MCCM.AccesoDatos.exceptions;
+using MCCM.Entidad;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,7 @@ namespace MCCM.AccesoDatos
         }
         public void InsertarUbicacionDistrito(TMCCM_C_Ubicacion_Distrito ubicacionDistrito)
         {
+            try { 
             using (var context = new MCCMEntities())
             {
                 ubicacionDistrito.TF_Fecha_Creacion = DateTime.Now;
@@ -36,6 +38,11 @@ namespace MCCM.AccesoDatos
                 context.TMCCM_C_Ubicacion_Distrito.Add(ubicacionDistrito);
                 context.SaveChanges();
 
+            }
+            }
+            catch (Exception e)
+            {
+                throw ExceptionHandler.Handle(e);
             }
 
         }

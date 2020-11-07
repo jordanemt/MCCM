@@ -15,14 +15,25 @@ namespace MCCM.UI.Controllers
         [HttpGet]
         public String ListarTipoUbicacion()
         {
-
+            try { 
             return c_TipoUbicacionNegocio.ListaTipoUbicacion();
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
         [HttpPost]
         public String InsertarTipoUbicacion(TMCCM_C_Ubicacion_Tipo_Ubicacion tipoUbicacion)
         {
+            try { 
             c_TipoUbicacionNegocio.InsertarTipoUbicacion(tipoUbicacion);
             return "S";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
     }
 }

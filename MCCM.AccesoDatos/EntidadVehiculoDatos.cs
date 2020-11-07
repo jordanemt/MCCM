@@ -1,4 +1,5 @@
-﻿using MCCM.Entidad;
+﻿using MCCM.AccesoDatos.exceptions;
+using MCCM.Entidad;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace MCCM.AccesoDatos
     {
         public void InsertarEntidadVehiculo(TMCCM_Entidad_Vehiculo entidadVehiculo)
         {
-
+            try { 
             using (var context = new MCCMEntities())
             {
                 entidadVehiculo.TB_Eliminado = false;
@@ -21,10 +22,16 @@ namespace MCCM.AccesoDatos
                 context.TMCCM_Entidad_Vehiculo.Add(entidadVehiculo);
                 context.SaveChanges();
             }
+            }
+            catch (Exception e)
+            {
+                throw ExceptionHandler.Handle(e);
+            }
 
         }
         public void ActualizarEntidadVehiculo(TMCCM_Entidad_Vehiculo entidadVehiculo)
         {
+            try { 
             using (var context = new MCCMEntities())
             {
                 var result = context.TMCCM_Entidad_Vehiculo.SingleOrDefault(b => b.TN_ID_Vehiculo == entidadVehiculo.TN_ID_Vehiculo);
@@ -48,19 +55,30 @@ namespace MCCM.AccesoDatos
                     context.SaveChanges();
                 }
             }
+            }
+            catch (Exception e)
+            {
+                throw ExceptionHandler.Handle(e);
+            }
         }
 
         public void EliminarEntidadVehiculo(int ID)
         {
+            try { 
             using (var context = new MCCMEntities())
             {
-                var result = context.TMCCM_Entidad_Persona.SingleOrDefault(b => b.TN_ID_Persona == ID);
+                var result = context.TMCCM_Entidad_Vehiculo.SingleOrDefault(b => b.TN_ID_Vehiculo == ID);
                 if (result != null)
                 {
                     result.TB_Eliminado = true;
                     context.Entry(result).State = EntityState.Modified;
                     context.SaveChanges();
                 }
+            }
+            }
+            catch (Exception e)
+            {
+                throw ExceptionHandler.Handle(e);
             }
         }
 
@@ -89,7 +107,9 @@ namespace MCCM.AccesoDatos
                                    TC_Marca = item.TC_Marca,
                                    TC_Placa = item.TC_Placa,
                                    TC_Estilo = item.TC_Estilo,
-                                   TC_Imagen = string.Format("data:image/png;base64,{0}", Convert.ToBase64String(item.TB_Imagen))
+                                   TC_Imagen = Conversor_Binario_String64(item.TB_Imagen)
+
+                                   //string.Format("data:image/png;base64,{0}", Convert.ToBase64String(item.TB_Imagen))
                                });
 
 
@@ -130,10 +150,13 @@ namespace MCCM.AccesoDatos
 
         public string Conversor_Binario_String64(byte[] image)
         {
-
-            string imreBase64Data = Convert.ToBase64String(image);
+            if (image != null) 
+            {  string imreBase64Data = Convert.ToBase64String(image);
             string imgDataURL = string.Format("data:image/png;base64,{0}", imreBase64Data);
-            return imgDataURL;
+            return imgDataURL;}
+
+            return null;
+        
         }
     }
 }

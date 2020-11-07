@@ -15,14 +15,26 @@ namespace MCCM.UI.Controllers
         [HttpGet]
         public String ListarTipoArma()
         {
+            try { 
 
             return c_TipoArmaNegocio.ListaTipoArma();
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
         [HttpPost]
         public String InsertarTipoArma(TMCCM_C_Arma_Tipo_Arma tipoArma)
         {
+            try { 
             c_TipoArmaNegocio.InsertarTipoArma(tipoArma);
             return "S";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
     }
 }
