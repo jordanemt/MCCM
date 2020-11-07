@@ -38,6 +38,7 @@ $(document).on("click", ".caso", function () {
     } else if (pestannaVisible == 'pestanna-2-body') {
         cargarPestanna2();
     }
+    $('#reporte-nombre-caso').val($(this).children(".card-body").children().first().children().last().text());
 });
 
 

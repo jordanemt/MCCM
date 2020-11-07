@@ -80,7 +80,7 @@
             </div>
 
             @*Pestanna #1 Body*@
-            <div class="card-body d-none flex-sm-row flex-column card-body-flex p-0" id="pestanna-1-body" style="display: none">
+            <div class="card-body d-flex flex-sm-row flex-column card-body-flex p-0" id="pestanna-1-body">
 
                 <div class="card border-light mb-3 col-sm-4 p-0">
                     <div class="card-header amarillo">
@@ -135,7 +135,7 @@
             @*Pestanna #2 Body*@
             <div class="card-body d-none flex-sm-row flex-column card-body-flex p-0" id="pestanna-2-body">
 
-                <div class="card border-light col-sm-3 p-0">
+                <div class="card border-light col-sm-3 p-0 h-100">
                     <div class="card-header amarillo">
                         <div>Gastos Operativos</div>
                         <div>
@@ -143,25 +143,21 @@
                             <a href="#"><span><i class="fa fa-plus font_grisHover" onclick="abrirInsertarGastoFormModal()"></i></span></a>
                         </div>
                     </div>
-                    <div class="card-body p-0" style="overflow-y: scroll">
-                        <div id="gastos-contenedor" class="d-flex flex-column-reverse justify-content-center">
-                            <div class="text-center">
-                                <p>Seleccione un caso para cargar</p>
-                            </div>
+                    <div id="gastos-contenedor" class="card-body p-0" style="overflow-y: scroll;">
+                        <div class="text-center">
+                            <p>Seleccione un caso para cargar</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="card border-light col-sm-6 p-0">
+                <div class="card border-light col-sm-6 p-0 h-100">
                     <div class="card-header amarillo">
                         <div>Personal</div>
                         <div><a href="#"><span><i class="fa fa-plus font_grisHover" onclick="abrirInsertarGrupoFormModal()"></i></span></a></div>
                     </div>
-                    <div class="card-body p-0" style="overflow-y: scroll">
-                        <div id="grupo-contenedor" class="d-flex flex-column-reverse">
-                            <div class="text-center">
-                                <p>Seleccione un caso para cargar</p>
-                            </div>
+                    <div id="grupo-contenedor" class="card-body p-0" style="overflow-y: scroll">
+                        <div class="text-center">
+                            <p>Seleccione un caso para cargar</p>
                         </div>
                     </div>
                 </div>
@@ -171,11 +167,9 @@
                         <div id="vehiculos-titulo">Vehículos</div>
                         <div><a href="#"><span><i class="fa fa-plus font_grisHover" onclick="abrirGrupo_VehiculoInsertarFormModal()"></i></span></a></div>
                     </div>
-                    <div class="card-body p-0" style="overflow-y: scroll">
-                        <div id="grupo_vehiculo-contenedor" class="d-flex flex-column-reverse">
-                            <div class="text-center">
-                                <p>Seleccione un grupo para cargar</p>
-                            </div>
+                    <div id="grupo_vehiculo-contenedor" class="card-body p-0" style="overflow-y: scroll">
+                        <div class="text-center">
+                            <p>Seleccione un caso para cargar</p>
                         </div>
                     </div>
                 </div>
@@ -183,6 +177,9 @@
             </div>
             @*Pestanna #3 Body*@
             <div class="card-body d-none card-body-flex flex-column" id="reporte-body" style="overflow-y: scroll; overflow: hidden">
+                <div id="spinner-contenedor">
+                    <script>$('spinner-contenedor').hide();</script>
+                </div>
                 @Html.Partial("~/Views/Dashboard/_GenerarReporte.cshtml")
                 @Html.Partial("~/Views/Dashboard/_Reporte.cshtml")
             </div>

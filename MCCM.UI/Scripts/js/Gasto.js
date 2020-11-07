@@ -14,7 +14,8 @@
             }
         },
         error: function (error) {
-            alert(error.responseText);
+            $("#mensaje-body").html(error.responseText);
+            $("#modalMensajeError").modal("show");
         }
     });
 }
@@ -34,7 +35,8 @@ function abrirActualizarGastoFormModal(id) {
             $('#gasto-form-modal').modal('show');
         },
         error: function (error) {
-            alert(error.responseText);
+            $("#mensaje-body").html(error.responseText);
+            $("#modalMensajeError").modal("show");
         }
     });
 }
@@ -57,7 +59,8 @@ function listarGastos() {
             $('#gastos-contenedor').html(data);
         },
         error: function (error) {
-            alert(error.responseText);
+            $("#mensaje-body").html(error.responseText);
+            $("#modalMensajeError").modal("show");
         }
     });
 }
@@ -84,7 +87,8 @@ function insertarGasto() {
                 $('#gastos-contenedor').append(data);
             },
             error: function (error) {
-                alert(error.responseText);
+                $("#mensaje-body").html(error.responseText);
+                $("#modalMensajeError").modal("show");
             },
             complete: function () {
                 $("#gasto-form-modal-submit")
@@ -119,7 +123,8 @@ function actualizarGasto() {
                 $('#gastos-contenedor').append(data);
             },
             error: function (error) {
-                alert(error.responseText);
+                $("#mensaje-body").html(error.responseText);
+                $("#modalMensajeError").modal("show");
             },
             complete: function () {
                 $("#gasto-form-modal-submit")
@@ -140,11 +145,13 @@ function eliminarGastoPorId(id) {
         type: "POST",
         data: { "id": id },
         success: function (data) {
-            alert("Se elimino el gasto #" + id);
+            $("#mensaje-body").html('Se eliminó correctamente');
+            $("#modalMensajeError").modal("show");
             $('#gasto-' + id).remove();
         },
         error: function (error) {
-            alert(error.responseText);
+            $("#mensaje-body").html(error.responseText);
+            $("#modalMensajeError").modal("show");
         }
     });
 }
@@ -180,7 +187,8 @@ function insertarTipo_Gasto() {
                 $('#gasto-form-modal').modal('show');
             },
             error: function (error) {
-                alert(error.responseText);
+                $("#mensaje-body").html(error.responseText);
+                $("#modalMensajeError").modal("show");
             },
             complete: function () {
                 $("#tipo_gasto-form-modal-submit")
@@ -203,13 +211,15 @@ function obtenerSumatoriaDeGastosPorTipoPorCaso() {
         success: function (data) {
             var msg = '';
             jQuery.each(data.tiposSumatoria, function (i, val) {
-                msg += val.nombre + ': ' + val.totalTipo + '\n';
+                msg += val.nombre + ': ' + val.totalTipo + '<br>';
             });
             msg += 'Total: ' + data.total;
-            alert(msg);
+            $("#mensaje-body").html(msg);
+            $("#modalMensajeError").modal("show");
         },
         error: function (error) {
-            alert(error.responseText);
+            $("#mensaje-body").html(error.responseText);
+            $("#modalMensajeError").modal("show");
         }
     });
 }

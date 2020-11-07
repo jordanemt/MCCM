@@ -14,7 +14,8 @@
             }
         },
         error: function (error) {
-            alert(error.responseText);
+            $("#mensaje-body").html(error.responseText);
+            $("#modalMensajeError").modal("show");
         },
     });
 }
@@ -34,7 +35,8 @@ function abrirGrupo_VehiculoActualizarFormModal(id) {
             $('#grupo_vehiculo-form-modal').modal('show');
         },
         error: function (error) {
-            alert(error.responseText);
+            $("#mensaje-body").html(error.responseText);
+            $("#modalMensajeError").modal("show");
         }
     });
 }
@@ -57,7 +59,8 @@ function listarGrupo_Vehiculo() {
             $('#grupo_vehiculo-contenedor').html(data);
         },
         error: function (error) {
-            alert(error.responseText);
+            $("#mensaje-body").html(error.responseText);
+            $("#modalMensajeError").modal("show");
         }
     });
 }
@@ -84,7 +87,8 @@ function insertarGrupo_Vehiculo() {
                 $('#grupo_vehiculo-contenedor').append(data);
             },
             error: function (error) {
-                alert(error.responseText);
+                $("#mensaje-body").html(error.responseText);
+                $("#modalMensajeError").modal("show");
             },
             complete: function () {
                 $("#grupo_vehiculo-form-modal-submit")
@@ -119,7 +123,8 @@ function actualizarGrupo_Vehiculo() {
                 $('#grupo_vehiculo-contenedor').append(data);
             },
             error: function (error) {
-                alert(error.responseText);
+                $("#mensaje-body").html(error.responseText);
+                $("#modalMensajeError").modal("show");
             },
             complete: function () {
                 $("#grupo_vehiculo-form-modal-submit")
@@ -140,11 +145,12 @@ function eliminarGrupo_VehiculoPorId(id) {
         type: "POST",
         data: { "id": id },
         success: function (data) {
-            alert('Se ha borrado el vehículo del grupo');
-            $('#grupo_vehiculo-' + id).remove();
+            $("#mensaje-body").html('Se ha borrado el vehículo del grupo');
+            $("#modalMensajeError").modal("show");
         },
         error: function (error) {
-            alert(error.responseText);
+            $("#mensaje-body").html(error.responseText);
+            $("#modalMensajeError").modal("show");
         }
     });
 }
@@ -181,7 +187,8 @@ function insertarVehiculo() {
                 $('#grupo_vehiculo-form-modal').modal('show');
             },
             error: function (error) {
-                alert(error.responseText);
+                $("#mensaje-body").html(error.responseText);
+                $("#modalMensajeError").modal("show");
             },
             complete: function () {
                 $("#vehiculo-form-modal-submit")

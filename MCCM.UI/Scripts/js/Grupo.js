@@ -14,7 +14,8 @@
             }
         },
         error: function (error) {
-            alert(error.responseText);
+            $("#mensaje-body").html(error.responseText);
+            $("#modalMensajeError").modal("show");
         }
     });
 }
@@ -34,7 +35,8 @@ function abrirActualizarGrupoFormModal(id) {
             $('#grupo-form-modal').modal('show');
         },
         error: function (error) {
-            alert(error.responseText);
+            $("#mensaje-body").html(error.responseText);
+            $("#modalMensajeError").modal("show");
         }
     });
 }
@@ -57,7 +59,8 @@ function listarGrupos() {
             $('#grupo-contenedor').html(data);
         },
         error: function (error) {
-            alert(error.responseText);
+            $("#mensaje-body").html(error.responseText);
+            $("#modalMensajeError").modal("show");
         }
     });
 }
@@ -84,7 +87,8 @@ function insertarGrupo() {
                 $('#grupo-contenedor').append(data);
             },
             error: function (error) {
-                alert(error.responseText);
+                $("#mensaje-body").html(error.responseText);
+                $("#modalMensajeError").modal("show");
             },
             complete: function () {
                 $("#grupo-form-modal-submit")
@@ -119,7 +123,8 @@ function actualizarGrupo() {
                 $('#grupo-contenedor').append(data);
             },
             error: function (error) {
-                alert(error.responseText);
+                $("#mensaje-body").html(error.responseText);
+                $("#modalMensajeError").modal("show");
             },
             complete: function () {
                 $("#grupo-form-modal-submit")
@@ -140,11 +145,12 @@ function eliminarGrupoPorId(id) {
         type: "POST",
         data: { "id": id },
         success: function (data) {
-            alert("Se elimino el grupo #" + id);
-            $('#grupo-' + id).remove();
+            $("#mensaje-body").html('Se eliminó correctamente');
+            $("#modalMensajeError").modal("show");
         },
         error: function (error) {
-            alert(error.responseText);
+            $("#mensaje-body").html(error.responseText);
+            $("#modalMensajeError").modal("show");
         }
     });
 }
@@ -162,7 +168,8 @@ function cargarGrupoMandoVigente() {
                 $('#mando-body').html(data);
             },
             error: function (error) {
-                alert(error.responseText);
+                $("#mensaje-body").html(error.responseText);
+                $("#modalMensajeError").modal("show");
             }
         });
     } else {

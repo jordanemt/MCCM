@@ -279,9 +279,14 @@ function agregarRecusrosReporte(data) {
 }
 
 function generarReporte() {
+    if (sessionStorage.CasoID == null) {
+        alert("Debe seleccionar un caso");
+        return 0;
+    }
     var url = "/Dashboard/GenerarReporte/";
     $('#generarReporte-form').hide();
-    agregarSpinnerCargando($("#reporte-body"))
+    $('#spinner-contenedor').show();
+    agregarSpinnerCargando($("#spinner-contenedor"));
     $.ajax({
         url: url,
         cache: false,
@@ -325,7 +330,9 @@ function generarReporte() {
                 agregarRecusrosReporte(data.recursos);
                 $('#recursos-reporte-contenedor').show();
             }
+            $('#spinner-contenedor').hide();
             $("#spinnerCargando").remove();
+            $("#nombre-caso-reporte").html($("#reporte-nombre-caso").val());
             $('#reporteFinal').show();
         },
         error: function (reponse) {
@@ -380,7 +387,7 @@ function saveAsPDF() {
 var fechaInicioReporte;
 var fechaFinalReporte;
 $(document).ready(function () {
-    changeVisiblePestannaBody('reporte-body');
+    //changeVisiblePestannaBody('reporte-body');
     //generarReporte();
 
     $(document).ready(function () {
