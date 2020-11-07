@@ -182,9 +182,9 @@
 
             </div>
             @*Pestanna #3 Body*@
-            <div class="card-body d-none card-body-flex" id="reporte-body" style="overflow-y: scroll; overflow: hidden">
-                @*@Html.Partial("~/Views/Dashboard/_GenerarReporte.cshtml")*@
-                @*@Html.Partial("~/Views/Dashboard/_Reporte.cshtml")*@
+            <div class="card-body d-none card-body-flex flex-column" id="reporte-body" style="overflow-y: scroll; overflow: hidden">
+                @Html.Partial("~/Views/Dashboard/_GenerarReporte.cshtml")
+                @Html.Partial("~/Views/Dashboard/_Reporte.cshtml")
             </div>
         </div>
     </div>

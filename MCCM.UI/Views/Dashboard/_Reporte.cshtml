@@ -1,13 +1,7 @@
-﻿@{
-    int eventos = ViewBag.eventos;
-    List<int> tareas = ViewBag.tareas;
-    List<int> entidades = ViewBag.entidades;
-    List<float> gastos = ViewBag.gastos;
-    List<int> recursos = ViewBag.recursos;
-}
-
-<div id="chart-container" class="chart-container d-flex flex-column h-100 w-100" style="overflow-y: scroll;">
-    <div id="bitacora">
+﻿<div id="reporteFinal" class="chart-container d-flex flex-column h-100 w-100" style="overflow-y: scroll;">
+    <script>$('#reporteFinal').hide();</script>
+    <div id="bitacora-reporte-contenedor">
+        <script>$('#bitacora-reporte-contenedor').hide();</script>
         <h4>Bitácora</h4>
         <div class="d-flex flex-sm-row">
             <canvas id="eventos-reporte" class="col-sm-6"></canvas>
@@ -16,14 +10,15 @@
             <script>$('#tareas-reporte').hide();</script>
         </div>
     </div>
-    <div id="entidades">
-        <script>$('#entidades').hide();</script>
+    <div id="entidades-reporte-contenedor">
+        <script>$('#entidades-reporte-contenedor').hide();</script>
         <h4>Entidades</h4>
         <div class="d-flex flex-sm-row">
             <canvas id="entidades-reporte" class="col-sm-12"></canvas>
         </div>
     </div>
-    <div id="recursos">
+    <div id="recursos-reporte-contenedor">
+        <script>$('#recursos-reporte-contenedor').hide();</script>
         <h4>Recursos</h4>
         <div class="d-flex flex-sm-row">
             <canvas id="gastos-reporte" class="col-sm-6"></canvas>
@@ -33,228 +28,3 @@
         </div>
     </div>
 </div>
-
-@if (eventos != 0)
-{
-    <script>
-        var ctx = document.getElementById('eventos-reporte').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['', 'Total', ''],
-                datasets: [{
-                    label: 'Unidades',
-                    data: [0, @eventos, 0],
-                    backgroundColor: [
-                        'rgba(226, 18, 18, 0.5)',
-                        'rgba(226, 18, 18, 0.5)',
-                        'rgba(226, 18, 18, 0.5)'
-                    ],
-                    borderColor: [
-                        'rgba(226, 18, 18, 1)',
-                        'rgba(226, 18, 18, 1)',
-                        'rgba(226, 18, 18, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: ['Eventos'],
-                    fontSize: 18,
-                    position: 'top'
-                },
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            }
-        });
-        $('#eventos-reporte').show();
-    </script>
-}
-
-@if (tareas != null)
-{
-    <script>
-    var ctx = document.getElementById('tareas-reporte').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Tareas Terminadas', 'Tareas Pendientes'],
-            datasets: [{
-                label: 'Unidades',
-                data: [@tareas[0], @tareas[1]],
-                backgroundColor: [
-                    'rgba(19, 97, 223, 0.5)',
-                    'rgba(145, 15, 102, 0.5)'
-                ],
-                borderColor: [
-                    'rgba(19, 97, 223, 1)',
-                    'rgba(145, 15, 102, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            title: {
-                display: true,
-                text: ['Tareas', 'Total: ' + @tareas.Sum()],
-                fontSize: 18,
-                position: 'top'
-            },
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    });
-    $('#tareas-reporte').show();
-    </script>
-}
-
-
-@if (entidades != null)
-{
-    <script>
-    var ctx = document.getElementById('entidades-reporte').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Persona', 'Persona Jurídica', 'Vehículo', 'Ubicación', 'Teléfono', 'Arma', 'Drogra'],
-            datasets: [{
-                label: 'Unidades',
-                data: [@entidades[0],@entidades[1],@entidades[2],@entidades[3],@entidades[4],@entidades[5],@entidades[6]],
-                backgroundColor: [
-                    'rgba(255, 177, 64, 0.5)',
-                    'rgba(19, 97, 223, 0.5)',
-                    'rgba(226, 18, 18, 0.5)',
-                    'rgba(145, 15, 102, 0.5)',
-                    'rgba(128, 128, 128, 0.5)',
-                    'rgba(168, 204, 102, 0.5)',
-                    'rgba(66, 200, 212, 0.5)'
-                ],
-                borderColor: [
-                    'rgba(255, 177, 64, 1)',
-                    'rgba(19, 97, 223, 1)',
-                    'rgba(226, 18, 18, 1)',
-                    'rgba(145, 15, 102, 1)',
-                    'rgba(128, 128, 128, 1)',
-                    'rgba(168, 204, 102, 1)',
-                    'rgba(66, 200, 212, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            title: {
-                display: true,
-                text: ['Entidades', 'Total: ' + @entidades.Sum()],
-                fontSize: 18,
-                position: 'top'
-            },
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    });
-    $('#entidades').show();
-    </script>
-}
-
-@if (gastos != null)
-{
-    <script>
-    var ctx = document.getElementById('gastos-reporte').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ['Operativo', 'Combustible', 'Otros'],
-            datasets: [{
-                label: 'Total en colones',
-                data: [@gastos[0], @gastos[1], @gastos[2]],
-                backgroundColor: [
-                    'rgba(255, 177, 64, 0.5)',
-                    'rgba(19, 97, 223, 0.5)',
-                    'rgba(226, 18, 18, 0.5)'
-                ],
-                borderColor: [
-                    'rgba(255, 177, 64, 1)',
-                    'rgba(19, 97, 223, 1)',
-                    'rgba(226, 18, 18, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            title: {
-                display: true,
-                text: ['Gastos', 'Total: ' + @gastos.Sum() + '₡'],
-                fontSize: 18,
-                position: 'top'
-            },
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    });
-    $('#gastos-reporte').show();
-    </script>
-}
-
-@if (recursos != null)
-{
-    <script>
-        var ctx = document.getElementById('personal-reporte').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Personal policial', 'Vehículos'],
-                datasets: [{
-                    label: 'Unidades',
-                    data: [@recursos[0], @recursos[1]],
-                    backgroundColor: [
-                        'rgba(168, 204, 102, 0.5)',
-                        'rgba(19, 97, 223, 0.5)'
-                    ],
-                    borderColor: [
-                        'rgba(168, 204, 102, 1)',
-                        'rgba(19, 97, 223, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: ['Personal', 'Total: ' + @recursos.Sum()],
-                    fontSize: 18,
-                    position: 'top'
-                },
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            }
-        });
-        $('#personal-reporte').show();
-    </script>
-}

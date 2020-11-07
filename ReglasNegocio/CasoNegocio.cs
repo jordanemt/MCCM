@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Security;
 using System.Text;
 using System.Threading.Tasks;
 using MCCM.AccesoDatos;
@@ -33,28 +34,54 @@ namespace MCCM.ReglasNegocio
             return casoDatos.ObtenerCasoPorID(ID);
         }
 
-        public int ReporteDeEventos(int idCaso, DateTime inicio, DateTime final) 
+        public Dictionary<string, int> ReporteDeEventos(int idCaso, DateTime inicio, DateTime final, bool eventos) 
         {
-            return casoDatos.ReporteDeEventos(idCaso, inicio, final);
+            if (eventos) return casoDatos.ReporteDeEventos(idCaso, inicio, final);
+            else return null;
         }
 
-        public List<int> ReporteDeTareas(int idCaso, DateTime inicio, DateTime final)
+        public Dictionary<string, int> ReporteDeTareas(
+            int idCaso,
+            DateTime inicio,
+            DateTime final,
+            bool tareasTerminadas,
+            bool tareasPendientes)
         {
-            return casoDatos.ReporteDeTareas(idCaso, inicio, final);
-        }
-        public List<int> ReporteDeEntidades(int idCaso, DateTime inicio, DateTime final) 
-        {
-            return casoDatos.ReporteDeEntidades(idCaso, inicio, final);
-        }
-
-        public List<float> ReporteDeGastos(int idCaso, DateTime inicio, DateTime final) 
-        {
-            return casoDatos.ReporteDeGastos(idCaso, inicio, final);
+            return casoDatos.ReporteDeTareas(idCaso, inicio, final, tareasTerminadas, tareasPendientes);
         }
 
-        public List<int> ReporteDeRecursos(int idCaso, DateTime inicio, DateTime final) 
+        public Dictionary<string, int> ReporteDeEntidades(
+            int idCaso,
+            DateTime inicio,
+            DateTime final,
+            bool persona,
+            bool personaJuridica,
+            bool vehiculo,
+            bool ubicacion,
+            bool telefono,
+            bool arma,
+            bool droga)
         {
-            return casoDatos.ReporteDeRecursos(idCaso, inicio, final);
+            return casoDatos.ReporteDeEntidades(idCaso, inicio, final, persona, personaJuridica, vehiculo, ubicacion, telefono, arma, droga);
+        }
+
+        public Dictionary<string, float> ReporteDeGastos(
+            int idCaso,
+            DateTime inicio, DateTime final,
+            bool operativo,
+            bool combustible)
+        {
+            return casoDatos.ReporteDeGastos(idCaso, inicio, final, operativo, combustible);
+        }
+
+        public Dictionary<string, int> ReporteDeRecursos(
+            int idCaso,
+            DateTime inicio,
+            DateTime final,
+            bool personal,
+            bool vehiculo)
+        {
+            return casoDatos.ReporteDeRecursos(idCaso, inicio, final, personal, vehiculo);
         }
     }
 }

@@ -140,83 +140,260 @@ namespace MCCM.AccesoDatos
             }
         }
 
-        public int ReporteDeEventos(int idCaso, DateTime inicio, DateTime final)
+        //Reporte por meses
+        public Dictionary<string, int> ReporteDeEventos(int idCaso, DateTime inicio, DateTime final)
         {
             using (var context = new MCCMEntities())
             {
-                return context.TMCCM_Evento.Where(e => e.TB_Eliminado == false &&
-                    e.TN_ID_Caso == idCaso).ToList().Count();
+                Dictionary<string, int> data = new Dictionary<string, int>();
+
+                int diferencia = ((final.Year - inicio.Year) * 12) + final.Month - inicio.Month;
+                for (int sumaMes = 0; sumaMes <= diferencia; sumaMes++) 
+                {
+                    DateTime fecha = inicio.AddMonths(sumaMes);
+                    data.Add(fecha.ToString("MM/yy"), context.TMCCM_Evento.Where(e =>
+                        e.TB_Eliminado == false &&
+                        e.TN_ID_Caso == idCaso &&
+                        ((DateTime)e.TF_Fecha).Month == fecha.Month)
+                            .ToList()
+                            .Count()
+                        );
+                }
+
+                if (data.Count == 0) return null;
+                else return data;
             }
         }
 
-        public List<int> ReporteDeTareas(int idCaso, DateTime inicio, DateTime final)
+        public Dictionary<string, int> ReporteDeTareas(
+            int idCaso, 
+            DateTime inicio, 
+            DateTime final,
+            bool tareasPendientes,
+            bool tareasTerminadas)
         {
             using (var context = new MCCMEntities())
             {
-                List<int> data = new List<int>();
+                Dictionary<string, int> data = new Dictionary<string, int>();
 
-                data.Add(context.TMCCM_Tarea.Where(e => e.TB_Eliminado == false &&
-                    e.TN_ID_Caso == idCaso &&
-                    e.TN_Tipo != 3).ToList().Count);
-                data.Add(context.TMCCM_Tarea.Where(e => e.TB_Eliminado == false &&
-                    e.TN_ID_Caso == idCaso &&
-                    e.TN_Tipo == 3).ToList().Count);
+                if (tareasPendientes) 
+                {
+                    data.Add("Pendientes", context.TMCCM_Tarea.Where(e =>
+                        e.TB_Eliminado == false &&
+                        e.TN_ID_Caso == idCaso &&
+                        e.TN_Tipo != 3 &&
+                        DateTime.Compare((DateTime)e.TF_Fecha, inicio) >= 0 &&
+                        DateTime.Compare((DateTime)e.TF_Fecha, final) <= 0)
+                            .ToList()
+                            .Count
+                        );
+                }
 
-                return data;
+                if (tareasTerminadas)
+                {
+                    data.Add("Terminadas", context.TMCCM_Tarea.Where(e => 
+                        e.TB_Eliminado == false &&
+                        e.TN_ID_Caso == idCaso &&
+                        e.TN_Tipo == 3 &&
+                        DateTime.Compare((DateTime)e.TF_Fecha, inicio) >= 0 &&
+                        DateTime.Compare((DateTime)e.TF_Fecha, final) <= 0)
+                            .ToList()
+                            .Count
+                        );
+                }
+
+                if (data.Count == 0) return null;
+                else return data;
             }
         }
 
-        public List<int> ReporteDeEntidades(int idCaso, DateTime inicio, DateTime final)
+        public Dictionary<string, int> ReporteDeEntidades(
+            int idCaso,
+            DateTime inicio,
+            DateTime final,
+            bool persona,
+            bool personaJuridica,
+            bool vehiculo,
+            bool ubicacion,
+            bool telefono,
+            bool arma,
+            bool droga)
         {
             using (var context = new MCCMEntities())
             {
-                List<int> data = new List<int>();
+                Dictionary<string, int> data = new Dictionary<string, int>();
 
-                data.Add(context.TMCCM_Entidad_Persona.Where(e => e.TB_Eliminado == false && e.TN_ID_Caso == idCaso).ToList().Count);
-                data.Add(context.TMCCM_Entidad_Persona_Juridica.Where(e => e.TB_Eliminado == false && e.TN_ID_Caso == idCaso).ToList().Count);
-                data.Add(context.TMCCM_Entidad_Vehiculo.Where(e => e.TB_Eliminado == false && e.TN_ID_Caso == idCaso).ToList().Count);
-                data.Add(context.TMCCM_Entidad_Ubicacion.Where(e => e.TB_Eliminado == false && e.TN_ID_Caso == idCaso).ToList().Count);
-                data.Add(context.TMCCM_Entidad_Telefono.Where(e => e.TB_Eliminado == false && e.TN_ID_Caso == idCaso).ToList().Count);
-                data.Add(context.TMCCM_Entidad_Arma.Where(e => e.TB_Eliminado == false && e.TN_ID_Caso == idCaso).ToList().Count);
-                data.Add(context.TMCCM_Entidad_Droga.Where(e => e.TB_Eliminado == false && e.TN_ID_Caso == idCaso).ToList().Count);
+                if (persona)
+                {
+                    data.Add("Persona", context.TMCCM_Entidad_Persona.Where(e =>
+                        e.TB_Eliminado == false &&
+                        e.TN_ID_Caso == idCaso &&
+                        DateTime.Compare((DateTime)e.TF_Fecha_Creacion, inicio) >= 0 &&
+                        DateTime.Compare((DateTime)e.TF_Fecha_Creacion, final) <= 0)
+                            .ToList()
+                            .Count
+                        );
+                }
 
-                return data;
+                if (personaJuridica)
+                {
+                    data.Add("Persona Jurídica", context.TMCCM_Entidad_Persona_Juridica.Where(e =>
+                        e.TB_Eliminado == false &&
+                        e.TN_ID_Caso == idCaso &&
+                        DateTime.Compare((DateTime)e.TF_Fecha_Creacion, inicio) >= 0 &&
+                        DateTime.Compare((DateTime)e.TF_Fecha_Creacion, final) <= 0)
+                            .ToList()
+                            .Count
+                        );
+                }
+
+                if (vehiculo)
+                {
+                    data.Add("Vehículo", context.TMCCM_Entidad_Vehiculo.Where(e =>
+                        e.TB_Eliminado == false &&
+                        e.TN_ID_Caso == idCaso &&
+                        DateTime.Compare((DateTime)e.TF_Fecha_Creacion, inicio) >= 0 &&
+                        DateTime.Compare((DateTime)e.TF_Fecha_Creacion, final) <= 0)
+                            .ToList()
+                            .Count
+                        );
+                }
+
+                if (ubicacion)
+                {
+                    data.Add("Ubicación", context.TMCCM_Entidad_Ubicacion.Where(e =>
+                        e.TB_Eliminado == false &&
+                        e.TN_ID_Caso == idCaso &&
+                        DateTime.Compare((DateTime)e.TF_Fecha_Creacion, inicio) >= 0 &&
+                        DateTime.Compare((DateTime)e.TF_Fecha_Creacion, final) <= 0)
+                            .ToList()
+                            .Count
+                        );
+                }
+
+                if (telefono)
+                {
+                    data.Add("Teléfono", context.TMCCM_Entidad_Telefono.Where(e =>
+                        e.TB_Eliminado == false &&
+                        e.TN_ID_Caso == idCaso &&
+                        DateTime.Compare((DateTime)e.TF_Fecha_Creacion, inicio) >= 0 &&
+                        DateTime.Compare((DateTime)e.TF_Fecha_Creacion, final) <= 0)
+                            .ToList()
+                            .Count
+                        );
+                }
+
+                if (arma)
+                {
+                    data.Add("Arma", context.TMCCM_Entidad_Arma.Where(e =>
+                        e.TB_Eliminado == false &&
+                        e.TN_ID_Caso == idCaso &&
+                        DateTime.Compare((DateTime)e.TF_Fecha_Creacion, inicio) >= 0 &&
+                        DateTime.Compare((DateTime)e.TF_Fecha_Creacion, final) <= 0)
+                            .ToList()
+                            .Count
+                        );
+                }
+
+                if (droga)
+                {
+                    data.Add("Droga", context.TMCCM_Entidad_Droga.Where(e =>
+                        e.TB_Eliminado == false &&
+                        e.TN_ID_Caso == idCaso &&
+                        DateTime.Compare((DateTime)e.TF_Fecha_Creacion, inicio) >= 0 &&
+                        DateTime.Compare((DateTime)e.TF_Fecha_Creacion, final) <= 0)
+                            .ToList()
+                            .Count
+                        );
+                }
+
+                if (data.Count == 0) return null;
+                else return data;
             }
         }
 
-        public List<float> ReporteDeGastos(int idCaso, DateTime inicio, DateTime final)
+        public Dictionary<string, float> ReporteDeGastos(
+            int idCaso, 
+            DateTime inicio, DateTime final,
+            bool operativo,
+            bool combustible)
         {
             using (var context = new MCCMEntities())
             {
-                List<float> data = new List<float>();
+                Dictionary<string, float> data = new Dictionary<string, float>();
 
-                data.Add((float)context.TMCCM_Gasto.Where(e => e.TB_Eliminado == false &&
-                    e.TN_ID_Caso == idCaso &&
-                    e.TMCCM_C_Gasto_Tipo_Gasto.TC_Nombre == "Operativo").ToList().Sum(e => e.TD_Monto));
-                data.Add((float)context.TMCCM_Gasto.Where(e => e.TB_Eliminado == false &&
-                    e.TN_ID_Caso == idCaso &&
-                    e.TMCCM_C_Gasto_Tipo_Gasto.TC_Nombre == "Combustible").ToList().Sum(e => e.TD_Monto));
-                data.Add((float)context.TMCCM_Gasto.Where(e => e.TB_Eliminado == false &&
-                    e.TN_ID_Caso == idCaso &&
-                    (e.TMCCM_C_Gasto_Tipo_Gasto.TC_Nombre != "Operativo" &&
-                    e.TMCCM_C_Gasto_Tipo_Gasto.TC_Nombre != "Combustible")).ToList().Sum(e => e.TD_Monto));
+                if (operativo)
+                {
+                    data.Add("Operativo", (float)context.TMCCM_Gasto.Where(e => 
+                        e.TB_Eliminado == false &&
+                        e.TN_ID_Caso == idCaso &&
+                        e.TMCCM_C_Gasto_Tipo_Gasto.TC_Nombre == "Operativo" &&
+                        DateTime.Compare((DateTime)e.TF_Fecha, inicio) >= 0 &&
+                        DateTime.Compare((DateTime)e.TF_Fecha, final) <= 0)
+                            .ToList()
+                            .Sum(e => e.TD_Monto)
+                        );
+                }
 
-                return data;
+                if (combustible)
+                {
+                    data.Add("Combustible", (float)context.TMCCM_Gasto.Where(e => 
+                        e.TB_Eliminado == false &&
+                        e.TN_ID_Caso == idCaso &&
+                        e.TMCCM_C_Gasto_Tipo_Gasto.TC_Nombre == "Combustible" &&
+                        DateTime.Compare((DateTime)e.TF_Fecha, inicio) >= 0 &&
+                        DateTime.Compare((DateTime)e.TF_Fecha, final) <= 0)
+                            .ToList()
+                            .Sum(e => e.TD_Monto)
+                        );
+                }
+
+                if (data.Count == 0) return null;
+                else return data;
             }
         }
 
-        public List<int> ReporteDeRecursos(int idCaso, DateTime inicio, DateTime final)
+        public Dictionary<string, int> ReporteDeRecursos(
+            int idCaso, 
+            DateTime inicio, 
+            DateTime final,
+            bool personal,
+            bool vehiculo)
         {
             using (var context = new MCCMEntities())
             {
-                List<int> data = new List<int>();
+                Dictionary<string, int> data = new Dictionary<string, int>();
 
-                data.Add(context.TMCCM_Grupo_Usuario.Where(e => e.TB_Eliminado == false &&
-                    e.TMCCM_Grupo.TN_ID_Caso == idCaso).ToList().Count());
-                data.Add(context.TMCCM_Grupo_Vehiculo.Where(e => e.TB_Eliminado == false &&
-                    e.TMCCM_Grupo.TN_ID_Caso == idCaso).ToList().Count());
+                if (personal)
+                {
+                    data.Add("Personal", context.TMCCM_Grupo_Usuario.Where(e => 
+                        e.TB_Eliminado == false &&
+                        e.TMCCM_Grupo.TN_ID_Caso == idCaso &&
+                        DateTime.Compare((DateTime)e.TMCCM_Grupo.TF_Fecha_Inicio, inicio) >= 0 &&
+                        DateTime.Compare((DateTime)e.TMCCM_Grupo.TF_Fecha_Inicio, final) <= 0)
+                            .ToList()
+                            .Select(e => e.TMCCM_Usuario.TN_ID_Usuario)
+                            .Distinct()
+                            .Count()
+                        );
+                }
 
-                return data;
+                if (vehiculo)
+                {
+                    data.Add("Vehículos", context.TMCCM_Grupo_Vehiculo.Where(e =>
+                        e.TB_Eliminado == false &&
+                        e.TMCCM_Grupo.TN_ID_Caso == idCaso &&
+                        DateTime.Compare((DateTime)e.TF_Fecha_Hora, inicio) >= 0 &&
+                        DateTime.Compare((DateTime)e.TF_Fecha_Hora, final) <= 0)
+                            .ToList()
+                            .Select(e => e.TMCCM_Vehiculo.TC_Placa)
+                            .Distinct()
+                            .Count()
+                        );
+                }
+
+                if (data.Count == 0) return null;
+                else return data;
             }
         }
     }

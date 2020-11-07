@@ -43,7 +43,7 @@ function sobreescribirJQueryMessages() {
 
 function agregarSpinnerCargando(elemento) {
     elemento.append(
-        '<div class="d-flex align-items-center justify-content-center h-100">' +
+        '<div id="spinnerCargando" class="d-flex align-items-center justify-content-center h-100">' +
             '<div class= "spinner-border text-primary" role = "status" >' +
                 '<span class="sr-only">Cargando...</span>'+
             '</div >' +
