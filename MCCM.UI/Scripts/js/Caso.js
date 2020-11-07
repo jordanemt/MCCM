@@ -72,7 +72,11 @@ $(document).on("click", ".ojito", function () {
     $.ajax({
         type: "GET",
         url: "/Caso/ObtenerCasoPorID",
-        data: { "ID": $(this).attr('id') }
+        data: { "ID": $(this).attr('id') },
+        error: function (data) {
+            $("#mensaje-body").html(data);
+            $("#modalMensajeError").modal("show");
+        }
     }).done(function (data) {
         
         let caso = new Array();
@@ -109,6 +113,10 @@ $(document).on("click", "#btnModificarCaso", function (e) {
                 $("#btnModificarCaso").html(
                     '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
                 );
+            },
+            error: function (data) {
+                $("#mensaje-body").html(data);
+                $("#modalMensajeError").modal("show");
             }
 
         }).done(function (data) {
@@ -126,7 +134,11 @@ $(document).on("click", "#btnEliminarCaso", function (e) {
     $.ajax({
         type: "POST",
         url: "/Caso/EliminarCasoPorID",
-        data: { "ID": $("#TN_ID_Caso").val() }
+        data: { "ID": $("#TN_ID_Caso").val() },
+        error: function (data) {
+            $("#mensaje-body").html(data);
+            $("#modalMensajeError").modal("show");
+        }
     }).done(function (data) {
         $("#ModalFormCaso").modal("hide");
         CargarCasos();
@@ -149,6 +161,10 @@ $(document).on("click", "#btnRegistrarCaso", function (e) {
                 $("#btnRegistrarCaso").html(
                     '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
                 );
+            },
+            error: function (data) {
+                $("#mensaje-body").html(data);
+                $("#modalMensajeError").modal("show");
             }
 
         }).done(function (data) {
@@ -167,6 +183,13 @@ function CargarCasos() {
     $.ajax({
         type: "GET",
         url: "/Caso/ListarCasos",
+        beforeSend: function () {
+            agregarSpinnerCargando($("#casos-body"));
+        },
+        error: function (data) {
+            $("#mensaje-body").html(data);
+            $("#modalMensajeError").modal("show");
+        }
     }).done(function (data) {
 
         let casos = new Array();
@@ -192,5 +215,5 @@ function CargarCasos() {
             //sessionStorage.CasoID = $("#casos-body").last().attr("id");
             insert = 0;
         }
-    });
+    })
 }

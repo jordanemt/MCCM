@@ -44,6 +44,10 @@ $(document).on("click", "#btnModificarEvento", function (e) {
                 $("#btnModificarEvento").html(
                     '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
                 );
+            },
+            error: function (data) {
+                $("#mensaje-body").html(data);
+                $("#modalMensajeError").modal("show");
             }
         }).done(function (data) {
             $("#btnModificarEvento").removeAttr("disabled");
@@ -71,7 +75,11 @@ $(document).on("click", ".editarEvento", function () {
     $.ajax({
         type: "GET",
         url: "/Evento/ObtenerEventoPorID",
-        data: { "ID": $(this).attr('ID') }
+        data: { "ID": $(this).attr('ID') },
+        error: function (data) {
+            $("#mensaje-body").html(data);
+            $("#modalMensajeError").modal("show");
+        }
     }).done(function (data) {
         let evento = new Array();
         evento = JSON.parse(data);
@@ -94,9 +102,14 @@ function eliminarEvento(eventoID, elemento) {
     $.ajax({
         type: "POST",
         url: "/Evento/EliminarEventoPorID",
-        data: { "eventoID": eventoID }
+        data: { "eventoID": eventoID },
+        error: function (data) {
+            $("#mensaje-body").html(data);
+            $("#modalMensajeError").modal("show");
+        }
     }).done(function (data) {
         elemento.parent().parent().parent().remove();
+        $("#ModalMensaje").modal("hide");
     });
 }
 
@@ -113,6 +126,10 @@ $(document).on("click", "#btnRegistrarEvento", function (e) {
                 $("#btnRegistrarEvento").html(
                     '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
                 );
+            },
+            error: function (data) {
+                $("#mensaje-body").html(data);
+                $("#modalMensajeError").modal("show");
             }
         }).done(function (data) {
             $("#btnRegistrarEvento").removeAttr("disabled");
@@ -130,7 +147,14 @@ function CargarEventos() {
     $.ajax({
         type: "GET",
         url: "/Evento/ListarEventos",
-        data: { "caso": sessionStorage.CasoID }
+        data: { "caso": sessionStorage.CasoID },
+        beforeSend: function () {
+            agregarSpinnerCargando($("#bitacora-body"));
+        },
+        error: function (data) {
+            $("#mensaje-body").html(data);
+            $("#modalMensajeError").modal("show");
+        }
     }).done(function (data) {
         let eventos = new Array();
         eventos = JSON.parse(data);
@@ -186,7 +210,7 @@ function CargarEventos() {
                 '</div>'
             );
         }
-    });
+    })
 }
 
 

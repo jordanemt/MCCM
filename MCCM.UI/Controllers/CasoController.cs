@@ -15,34 +15,73 @@ namespace MCCM.UI.Controllers
     {
 
         CasoNegocio casoNegocio = new CasoNegocio();
-        
+
 
         [HttpPost]
-        public String InsertarCaso(TMCCM_Caso caso) {
-            casoNegocio.InsertarCaso(caso);
-            return "S";
+        public String InsertarCaso(TMCCM_Caso caso)
+        {
+            try
+            {
+                casoNegocio.InsertarCaso(caso);
+                return "S";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
 
         [HttpPost]
         public String ActualizarCaso(TMCCM_Caso caso)
         {
-            casoNegocio.ActualizarCaso(caso);
-            return "S";
+            try
+            {
+                casoNegocio.ActualizarCaso(caso);
+                return "S";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
 
         [HttpGet]
-        public string ListarCasos() {
-            return casoNegocio.ListarCasos();
+        public string ListarCasos()
+        {
+            try
+            {
+                return casoNegocio.ListarCasos();
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
+
         [HttpGet]
-        public string ObtenerCasoPorID(int ID) {
-            return casoNegocio.ObtenerCasoPorID(ID);
+        public string ObtenerCasoPorID(int ID)
+        {
+            try
+            {
+                return casoNegocio.ObtenerCasoPorID(ID);
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
 
         [HttpPost]
         public string EliminarCasoPorID(int ID)
         {
-            return casoNegocio.EliminarCaso(ID);
+            try
+            {
+                return casoNegocio.EliminarCaso(ID);
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
 
 

@@ -50,6 +50,10 @@ function listarGrupo_Vehiculo() {
         data: {
             idGrupo: sessionStorage.GrupoID
         },
+        beforeSend: function () {
+            $("#grupo_vehiculo-contenedor").empty();
+            agregarSpinnerCargando($("#grupo_vehiculo-contenedor"));
+        },
         success: function (data) {
             $('#grupo_vehiculo-contenedor').html(data);
         },

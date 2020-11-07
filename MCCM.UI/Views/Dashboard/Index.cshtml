@@ -90,9 +90,7 @@
                         <div><a href="#"><span><i class="fa fa-plus font_grisHover" data-toggle="modal" data-target="#ModalFormEvento"></i></span></a></div>
                     </div>
                     <div class="card-body p-0" id="bitacora-body" style="overflow-y: scroll">
-                        <div class="container">
-
-                        </div>
+                        
 
                     </div>
                 </div>
@@ -104,7 +102,7 @@
                             <a href="#" onclick="seleccionEntidad()"><span><i class="fa fa-plus font_grisHover"></i></span></a>
                         </div>
                     </div>
-                    <div class="card border-light ">
+                    <div class="card border-light h-100">
                         <div class="card-header">
                             <div id="botones" class="nav nav-tabs card-header-tabs col-12 justify-content-around">
                                 <input type="hidden" id="custId" name="custId" value="1">
@@ -118,10 +116,7 @@
                             </div>
                         </div>
                         <div class="card-body p-0" id="entidades-body" style="overflow-y: scroll">
-                            <div class="container">
 
-
-                            </div>
 
                         </div>
                     </div>
@@ -133,9 +128,6 @@
                         <div><a href="#"><span><i class="fa fa-plus font_grisHover" data-toggle="modal" data-target="#ModalFormTarea"></i></span></a></div>
                     </div>
                     <div class="card-body p-0" id="tareas-body" style="overflow-y: scroll">
-
-
-
 
                     </div>
                 </div>
@@ -259,6 +251,7 @@ function seleccionEntidad() {
     }
 </script>
 
+
 @Html.Partial("~/Views/Entidad/_EntidadPersona.cshtml")
 @Html.Partial("~/Views/EntidadVehiculo/_EntidadVehiculo.cshtml")
 @Html.Partial("~/Views/EntidadUbicacion/_EntidadUbicacion.cshtml")
@@ -269,7 +262,7 @@ function seleccionEntidad() {
 @Html.Partial("~/Views/Caso/_ModalCasoInsert.cshtml")
 @Html.Partial("~/Views/Bitacora/_ModalEventoForm.cshtml")
 @Html.Partial("~/Views/Tarea/_ModalFormTarea.cshtml")
-
+@Html.Partial("_ModalMensajeError")
 @Html.Partial("_ModalMensajeConfirmacion")
 
 @Html.Partial("~/Views/Gasto/_Tipo_GastoInsertarFormModal.cshtml")
@@ -294,6 +287,9 @@ function seleccionEntidad() {
         });
 
 
+        $('#modalMensajeError').on('hidden.bs.modal', function () {
+            $("#mensaje-body").empty();
+        })
     });
 
 

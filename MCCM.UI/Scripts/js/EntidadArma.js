@@ -28,7 +28,11 @@ function CargarEntidadArmas() {
     $.ajax({
         type: "GET",
         url: "/E_Arma/Listar_E_Arma",
-        data: { "caso": sessionStorage.CasoID }
+        data: { "caso": sessionStorage.CasoID },
+        beforeSend: function () {
+            $("#entidades-body").empty();
+            agregarSpinnerCargando($("#entidades-body"));
+        }
     }).done(function (data) {
         let entidadArmas = new Array();
         entidadArmas = JSON.parse(data);

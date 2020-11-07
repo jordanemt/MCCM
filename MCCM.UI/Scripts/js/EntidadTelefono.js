@@ -53,6 +53,10 @@ $(document).on("click", "#btnRegistrarEntidadTelefono", function (e) {
                 $("#btnRegistrarEntidadTelefono").html(
                     '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
                 );
+            },
+            error: function (data) {
+                $("#mensaje-body").html(data);
+                $("#modalMensajeError").modal("show");
             }
         }).done(function (data) {
             $("#btnRegistrarEntidadTelefono").removeAttr("disabled");
@@ -78,6 +82,10 @@ $(document).on("click", "#btnRegistrarTelefonoProveedor", function (e) {
                 $("#btnRegistrarTelefonoProveedor").html(
                     '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
                 );
+            },
+            error: function (data) {
+                $("#mensaje-body").html(data);
+                $("#modalMensajeError").modal("show");
             }
         }).done(function (data) {
             $("#btnRegistrarTelefonoProveedor").removeAttr("disabled");
@@ -117,6 +125,10 @@ $(document).on("click", "#btnModificarEntidadTelefono", function (e) {
                 $("#btnModificarEntidadTelefono").html(
                     '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
                 );
+            },
+            error: function (data) {
+                $("#mensaje-body").html(data);
+                $("#modalMensajeError").modal("show");
             }
         }).done(function (data) {
             $("#btnModificarEntidadTelefono").removeAttr("disabled");
@@ -133,7 +145,11 @@ $(document).on("click", ".editarEntidadTelefono", function () {
     $.ajax({
         type: "GET",
         url: "/E_Telefono/ObtenerEntidadTelefonoPorID",
-        data: { "ID": $(this).attr('ID') }
+        data: { "ID": $(this).attr('ID') },
+        error: function (data) {
+            $("#mensaje-body").html(data);
+            $("#modalMensajeError").modal("show");
+        }
     }).done(function (data) {
         let telefono = new Array();
         telefono = JSON.parse(data);
@@ -165,7 +181,15 @@ function CargarEntidadTelefono() {
     $.ajax({
         type: "GET",
         url: "/E_Telefono/ListarEntidadTelefono",
-        data: { "caso": sessionStorage.CasoID }
+        data: { "caso": sessionStorage.CasoID },
+        beforeSend: function () {
+            $("#entidades-body").empty();
+            agregarSpinnerCargando($("#entidades-body"));
+        },
+        error: function (data) {
+            $("#mensaje-body").html(data);
+            $("#modalMensajeError").modal("show");
+        }
     }).done(function (data) {
         let telefonos = new Array();
         telefonos = JSON.parse(data);
@@ -220,9 +244,14 @@ function eliminarTelefono(telefonoID, elemento) {
     $.ajax({
         type: "POST",
         url: "/E_Telefono/EliminarTelefonoPorID",
-        data: { "telefonoID": telefonoID }
+        data: { "telefonoID": telefonoID },
+        error: function (data) {
+            $("#mensaje-body").html(data);
+            $("#modalMensajeError").modal("show");
+        }
     }).done(function (data) {
         elemento.parent().parent().parent().remove();
+        $("#ModalMensaje").modal("hide");
     });
 }
 
@@ -245,7 +274,11 @@ $('#entidadTelefonoModal').on('hidden.bs.modal', function () {
 function cargarCatalogoProveedores() {
     $.ajax({
         type: "GET",
-        url: "/E_Telefono/ObtenerCatalogoProveedores"
+        url: "/E_Telefono/ObtenerCatalogoProveedores",
+        error: function (data) {
+            $("#mensaje-body").html(data);
+            $("#modalMensajeError").modal("show");
+        }
     }).done(function (data) {
         let proveedores = JSON.parse(data);
         $("#TN_ID_Proveedor").empty();

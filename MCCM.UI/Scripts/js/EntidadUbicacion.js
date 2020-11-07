@@ -29,7 +29,11 @@ function CargarEntidadUbicaciones() {
     $.ajax({
         type: "GET",
         url: "/E_Ubicacion/Listar_E_Ubicacion",
-        data: { "caso": sessionStorage.CasoID }
+        data: { "caso": sessionStorage.CasoID },
+        beforeSend: function () {
+            $("#entidades-body").empty();
+            agregarSpinnerCargando($("#entidades-body"));
+        }
     }).done(function (data) {
         let entidadUbicaciones = new Array();
         entidadUbicaciones = JSON.parse(data);

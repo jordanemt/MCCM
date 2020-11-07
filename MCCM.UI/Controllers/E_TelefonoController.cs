@@ -17,47 +17,96 @@ namespace MCCM.UI.Controllers
         [HttpPost]
         public String Insertar_E_Telefono(TMCCM_Entidad_Telefono telefono,int caso)
         {
-            telefono.TN_ID_Caso = caso;
-            entidadTelefonoNegocio.InsertarEntidadTelefono(telefono);
-            return "S";
+            try
+            {
+                telefono.TN_ID_Caso = caso;
+                entidadTelefonoNegocio.InsertarEntidadTelefono(telefono);
+                return "S";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
 
         [HttpPost]
         public String Insertar_Proveedor(TMCCM_C_Telefono_Empresa_Telefonica proveedor)
         {
-            entidadTelefonoNegocio.InsertarProveedor(proveedor);
-            return "S";
+            try
+            {
+                entidadTelefonoNegocio.InsertarProveedor(proveedor);
+                return "S";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
 
         [HttpPost]
         public String Modificar_E_Telefono(TMCCM_Entidad_Telefono telefono)
         {
-            entidadTelefonoNegocio.ActualizarEntidadTelefono(telefono);
-            return "S";
+            try
+            {
+                entidadTelefonoNegocio.ActualizarEntidadTelefono(telefono);
+                return "S";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
 
         [HttpGet]
         public String ListarEntidadTelefono(int caso)
         {
-            return entidadTelefonoNegocio.ListarEntidadTelefonos(caso);
+            try
+            {
+                return entidadTelefonoNegocio.ListarEntidadTelefonos(caso);
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
 
         [HttpGet]
         public String ObtenerCatalogoProveedores()
         {
-            return entidadTelefonoNegocio.ListarTelefonosProveedores();
+            try
+            {
+                return entidadTelefonoNegocio.ListarTelefonosProveedores();
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
 
         [HttpPost]
         public string EliminarTelefonoPorID(int telefonoID)
         {
-            return entidadTelefonoNegocio.EliminarEntidadTelefono(telefonoID);
+            try
+            {
+                return entidadTelefonoNegocio.EliminarEntidadTelefono(telefonoID);
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
 
         [HttpGet]
         public string ObtenerEntidadTelefonoPorID(int ID)
         {
-            return entidadTelefonoNegocio.ObtenerEntidadTelefonoPorID(ID);
+            try
+            {
+                return entidadTelefonoNegocio.ObtenerEntidadTelefonoPorID(ID);
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
 
     }
