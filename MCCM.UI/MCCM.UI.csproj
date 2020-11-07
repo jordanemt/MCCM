@@ -550,9 +550,9 @@
       <Project>{8b873827-90fe-4f09-a8cc-612b61d57269}</Project>
       <Name>MCCM.Entidad</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ReglasNegocio\ReglasNegocio.csproj">
+    <ProjectReference Include="..\MCCM.ReglasNegocio\MCCM.ReglasNegocio.csproj">
       <Project>{ec1a40d5-dbc0-4b5c-86f4-ef4f78462293}</Project>
-      <Name>ReglasNegocio</Name>
+      <Name>MCCM.ReglasNegocio</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

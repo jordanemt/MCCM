@@ -1,0 +1,16 @@
+C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.ReglasNegocio\bin\Debug\MCCM.ReglasNegocio.dll
+C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.ReglasNegocio\bin\Debug\MCCM.ReglasNegocio.pdb
+C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.ReglasNegocio\bin\Debug\MCCM.AccesoDatos.dll
+C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.ReglasNegocio\bin\Debug\MCCM.Entidad.dll
+C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.ReglasNegocio\bin\Debug\EntityFramework.dll
+C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.ReglasNegocio\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.ReglasNegocio\bin\Debug\MCCM.AccesoDatos.pdb
+C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.ReglasNegocio\bin\Debug\MCCM.AccesoDatos.dll.config
+C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.ReglasNegocio\bin\Debug\MCCM.Entidad.pdb
+C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.ReglasNegocio\bin\Debug\EntityFramework.xml
+C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.ReglasNegocio\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.ReglasNegocio\obj\Debug\MCCM.ReglasNegocio.csprojAssemblyReference.cache
+C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.ReglasNegocio\obj\Debug\MCCM.ReglasNegocio.csproj.CoreCompileInputs.cache
+C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.ReglasNegocio\obj\Debug\MCCM.ReglasNegocio.csproj.CopyComplete
+C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.ReglasNegocio\obj\Debug\MCCM.ReglasNegocio.dll
+C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.ReglasNegocio\obj\Debug\MCCM.ReglasNegocio.pdb

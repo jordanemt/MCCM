@@ -13,11 +13,6 @@ namespace MCCM.ReglasNegocio
             datos = new GastoDatos();
         }
 
-        public IEnumerable<TMCCM_Gasto> Listar()
-        {
-            return datos.Listar();
-        }
-
         public IEnumerable<TMCCM_Gasto> ListarPorCaso(int idCaso)
         {
             return datos.ListarPorCaso(idCaso);
@@ -47,6 +42,11 @@ namespace MCCM.ReglasNegocio
         public IEnumerable<TMCCM_C_Gasto_Tipo_Gasto> ListarTipoGasto()
         {
             return datos.ListarTipoGasto();
+        }
+
+        public TMCCM_C_Gasto_Tipo_Gasto InsertarTipo_Gasto(TMCCM_C_Gasto_Tipo_Gasto data)
+        {
+            return datos.InsertarTipo_Gasto(data);
         }
     }
 }

@@ -7,8 +7,8 @@
     <ProjectGuid>{EC1A40D5-DBC0-4B5C-86F4-EF4F78462293}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ReglasNegocio</RootNamespace>
-    <AssemblyName>ReglasNegocio</AssemblyName>
+    <RootNamespace>MCCM.ReglasNegocio</RootNamespace>
+    <AssemblyName>MCCM.ReglasNegocio</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

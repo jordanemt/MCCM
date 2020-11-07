@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCCM.Entidad", "MCCM.Entida
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCCM.AccesoDatos", "MCCM.AccesoDatos\MCCM.AccesoDatos.csproj", "{0CCC43B0-5C18-46F2-9CF7-B37FC4C6E339}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReglasNegocio", "ReglasNegocio\ReglasNegocio.csproj", "{EC1A40D5-DBC0-4B5C-86F4-EF4F78462293}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCCM.ReglasNegocio", "MCCM.ReglasNegocio\MCCM.ReglasNegocio.csproj", "{EC1A40D5-DBC0-4B5C-86F4-EF4F78462293}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

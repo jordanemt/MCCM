@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MCCM.ReglasNegocio")]
+[assembly: AssemblyTitle("ReglasNegocio")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("MCCM.ReglasNegocio")]
+[assembly: AssemblyProduct("ReglasNegocio")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("34e13288-382a-44bb-ae35-b048e860caf7")]
+[assembly: Guid("ec1a40d5-dbc0-4b5c-86f4-ef4f78462293")]
 
 // Version information for an assembly consists of the following four values:
 //
