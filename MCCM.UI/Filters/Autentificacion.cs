@@ -36,7 +36,7 @@ namespace MCCM.UI.Filters
 
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 filterContext.HttpContext.Response.Redirect("~/Dashboard/Login");
             }
