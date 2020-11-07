@@ -41,6 +41,10 @@ $(document).on("click", "#btnRegistrarTipoOrganizacion", function (e) {
             type: "POST",
             url: "/C_PersonaJuridicaTipoOrganizacion/InsertarPersonaJuridicaTipoOrganizacion",
             data: Object.fromEntries(form),
+            error: function (data) {
+                $("#mensaje-body").html(data);
+                $("#modalMensajeError").modal("show");
+            }
         }).done(function (data) {
             cargarTipoOrganizacion();
             $("#tipoOrganizacionModal").modal("hide");
@@ -69,6 +73,10 @@ $(document).on("click", "#btnInsertarEntidadPersonaJuridica", function (e) {
                 $("#btnInsertarEntidadPersonaJuridica").html(
                     '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
                 );
+            },
+            error: function (data) {
+                $("#mensaje-body").html(data);
+                $("#modalMensajeError").modal("show");
             }
         }).done(function (data) {
             $("#btnInsertarEntidadPersonaJuridica").removeAttr("disabled");
@@ -99,6 +107,10 @@ $(document).on("click", "#btnModificarEntidadPersonaJuridica", function (e) {
                 $("#btnModificarEntidadPersonaJuridica").html(
                     '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
                 );
+            },
+            error: function (data) {
+                $("#mensaje-body").html(data);
+                $("#modalMensajeError").modal("show");
             }
         }).done(function (data) {
             $("#btnModificarEntidadPersonaJuridica").removeAttr("disabled");
@@ -114,7 +126,15 @@ function CargarEntidadPersonaJuridica() {
     $.ajax({
         type: "GET",
         url: "/E_PersonaJuridica/Listar_E_PersonaJuridica",
-        data: { "caso": sessionStorage.CasoID }
+        data: { "caso": sessionStorage.CasoID },
+        beforeSend: function () {
+            $("#entidades-body").empty();
+            agregarSpinnerCargando($("#entidades-body"));
+        },
+        error: function (data) {
+            $("#mensaje-body").html(data);
+            $("#modalMensajeError").modal("show");
+        }
     }).done(function (data) {
         let entidadPersonaJuridica = JSON.parse(data);
         $("#entidades-body").empty();
@@ -172,9 +192,14 @@ function eliminarPersonaJuridica(entidadPersonaJuridicaID, elemento) {
     $.ajax({
         type: "POST",
         url: "/E_PersonaJuridica/Eliminar_E_PersonaJuridicaPorID",
-        data: { "entidadPersonaJuridicaID": entidadPersonaJuridicaID }
+        data: { "entidadPersonaJuridicaID": entidadPersonaJuridicaID },
+        error: function (data) {
+            $("#mensaje-body").html(data);
+            $("#modalMensajeError").modal("show");
+        }
     }).done(function (data) {
         elemento.parent().parent().parent().remove();
+        $("#ModalMensaje").modal("hide");
     });
 }
 
@@ -184,7 +209,11 @@ $(document).on("click", ".editarEntidadPersonaJuridica", function () {
     $.ajax({
         type: "GET",
         url: "/E_PersonaJuridica/Obtener_E_PersonaJuridicaPorID",
-        data: { "ID": $(this).attr('ID') }
+        data: { "ID": $(this).attr('ID') },
+        error: function (data) {
+            $("#mensaje-body").html(data);
+            $("#modalMensajeError").modal("show");
+        }
     }).done(function (data) {
         let entidadPersonaJuridica = JSON.parse(data);
         $("#tituloEntidadPersonaJuridica").html("Modificar Persona Juridica");
@@ -239,6 +268,10 @@ function cargarTipoOrganizacion() {
             type: "GET",
             url: "/C_PersonaJuridicaTipoOrganizacion/ListarPersonaJuridicaTipoOrganizacion",
             data: "{}",
+            error: function (data) {
+                $("#mensaje-body").html(data);
+                $("#modalMensajeError").modal("show");
+            },
             success: function (data) {
                 let tipos = JSON.parse(data);
                 var s;

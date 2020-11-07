@@ -17,33 +17,64 @@ namespace MCCM.UI.Controllers
         [HttpPost]
         public String InsertarEvento(TMCCM_Evento evento,int caso)
         {
-            evento.TN_ID_Caso = caso;
-            eventoNegocio.InsertarEvento(evento);
-            return "S";
+            try
+            {
+                evento.TN_ID_Caso = caso;
+                eventoNegocio.InsertarEvento(evento);
+                return "S";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
 
         [HttpPost]
         public String ModificarEvento(TMCCM_Evento evento)
         {
-            eventoNegocio.ActualizarEvento(evento);
-            return "S";
+            try
+            {
+                eventoNegocio.ActualizarEvento(evento);
+                return "S";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
 
         [HttpPost]
         public String EliminarEventoPorID(int eventoID) {
-            return eventoNegocio.EliminarEvento(eventoID);
+            try {
+                return eventoNegocio.EliminarEvento(eventoID);
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
-
         [HttpGet]
         public String ListarEventos(int caso)
         {
-            return eventoNegocio.ListarEventos(caso);
+            try {
+                return eventoNegocio.ListarEventos(caso);
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
 
         [HttpGet]
         public String ObtenerEventoPorID(int ID)
         {
-            return eventoNegocio.ObtenerEventoPorID(ID);
+            try {
+                return eventoNegocio.ObtenerEventoPorID(ID);
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
 
     }

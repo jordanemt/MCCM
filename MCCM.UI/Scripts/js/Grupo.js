@@ -49,6 +49,10 @@ function listarGrupos() {
         data: {
             idCaso: sessionStorage.CasoID
         },
+        beforeSend: function () {
+            $('#grupo-contenedor').empty();
+            agregarSpinnerCargando($('#grupo-contenedor'));
+        },
         success: function (data) {
             $('#grupo-contenedor').html(data);
         },

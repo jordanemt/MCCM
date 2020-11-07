@@ -39,3 +39,14 @@ function sobreescribirJQueryMessages() {
         min: jQuery.validator.format("Please enter a value greater than or equal to {0}.")
     });
 }
+
+
+function agregarSpinnerCargando(elemento) {
+    elemento.append(
+        '<div class="d-flex align-items-center justify-content-center h-100">' +
+            '<div class= "spinner-border text-primary" role = "status" >' +
+                '<span class="sr-only">Cargando...</span>'+
+            '</div >' +
+        '</div >'
+    );
+}

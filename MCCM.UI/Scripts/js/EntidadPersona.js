@@ -48,8 +48,13 @@ function CargarEntidadPersona() {
     $.ajax({
         type: "GET",
         url: "/E_Persona/Listar_E_Persona",
-        data: { "caso": sessionStorage.CasoID }
+        data: { "caso": sessionStorage.CasoID },
+        beforeSend: function () {
+            $("#entidades-body").empty();
+            agregarSpinnerCargando($("#entidades-body"));
+        }
     }).done(function (data) {
+        alert(data);
         let entidadPersonaJuridicas = new Array();
         entidadPersona = JSON.parse(data);
 

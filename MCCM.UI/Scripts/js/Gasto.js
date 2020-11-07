@@ -49,6 +49,10 @@ function listarGastos() {
         data: {
             idCaso: sessionStorage.CasoID
         },
+        beforeSend: function () {
+            $("#gastos-contenedor").empty();
+            agregarSpinnerCargando($("#gastos-contenedor"))
+        },
         success: function (data) {
             $('#gastos-contenedor').html(data);
         },

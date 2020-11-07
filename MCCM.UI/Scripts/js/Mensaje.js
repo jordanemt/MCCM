@@ -37,8 +37,7 @@ $(document).on("click", ".btnEliminarMensaje", function () {
     else if (boton.attr('class').split(' ')[1] == "borrarEntidadPersona") {
         eliminarPersona(boton.attr('id'));
     }
-    boton.parent().parent().parent().remove();
-    $("#ModalMensaje").modal("hide");
+    
 });
 
 

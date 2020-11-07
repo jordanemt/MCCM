@@ -17,31 +17,62 @@ namespace MCCM.UI.Controllers
         [HttpPost]
         public String Insertar_E_PersonaJuridica(TMCCM_Entidad_Persona_Juridica entidadPersonaJuridica)
         {
-
-            entidadPersonaJuridicaNegocio.InsertarEntidadPersonaJuridica(entidadPersonaJuridica);
-            return "S";
+            try
+            {
+                entidadPersonaJuridicaNegocio.InsertarEntidadPersonaJuridica(entidadPersonaJuridica);
+                return "S";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
         [HttpGet]
         public String Listar_E_PersonaJuridica(int caso)
         {
-
-            return entidadPersonaJuridicaNegocio.ListarEntidadPersonaJuridicas(caso);
+            try
+            {
+                return entidadPersonaJuridicaNegocio.ListarEntidadPersonaJuridicas(caso);
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
         [HttpPost]
         public String Eliminar_E_PersonaJuridicaPorID(int entidadPersonaJuridicaID)
         {
-            return entidadPersonaJuridicaNegocio.EliminarEntidadPersonaJuridica(entidadPersonaJuridicaID);
+            try {
+                return entidadPersonaJuridicaNegocio.EliminarEntidadPersonaJuridica(entidadPersonaJuridicaID);
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
         [HttpPost]
         public String Modificar_E_PersonaJuridica(TMCCM_Entidad_Persona_Juridica entidadPersonaJuridica)
         {
-            entidadPersonaJuridicaNegocio.ModificarEntidadPersonaJuridica(entidadPersonaJuridica);
-            return "S";
+            try
+            {
+                entidadPersonaJuridicaNegocio.ModificarEntidadPersonaJuridica(entidadPersonaJuridica);
+                return "S";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
         [HttpGet]
         public String Obtener_E_PersonaJuridicaPorID(int ID)
         {
-            return entidadPersonaJuridicaNegocio.ObtenerEntidadPersonaJuridicaPorID(ID);
+            try {
+                return entidadPersonaJuridicaNegocio.ObtenerEntidadPersonaJuridicaPorID(ID);
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
     }
 }

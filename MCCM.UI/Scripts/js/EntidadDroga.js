@@ -74,7 +74,11 @@ function CargarEntidadDrogas() {
     $.ajax({
         type: "GET",
         url: "/E_Droga/Listar_E_Droga",
-        data: { "caso": sessionStorage.CasoID }
+        data: { "caso": sessionStorage.CasoID },
+        beforeSend: function () {
+            $("#entidades-body").empty();
+            agregarSpinnerCargando($("#entidades-body"));
+        }
     }).done(function (data) {
         let entidadDrogas = new Array();
         entidadDrogas = JSON.parse(data);

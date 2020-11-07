@@ -47,7 +47,6 @@ $(document).on("click", ".editarEntidadVehiculo", function () {
     }).done(function (data) {
         let entidadVehiculo = new Array();
         entidadVehiculo = JSON.parse(data);
-        alert(JSON.stringify(data));
         $("#tituloEntidadVehiculo").html("Modificar Vehiculo");
         $("#TB_Fotografia_Vehiculo").val(entidadVehiculo.TB_Fotografia);
         $("#divVehiculoID").show();
@@ -94,7 +93,10 @@ function CargarEntidadVehiculos() {
     $.ajax({
         type: "GET",
         url: "/E_Vehiculo/Listar_E_Vehiculo",
-        data: { "caso": sessionStorage.CasoID }
+        data: { "caso": sessionStorage.CasoID },
+        beforeSend: function () {
+            agregarSpinnerCargando($("#entidades-body"));
+        }
     }).done(function (data) {
         let entidadVehiculos = new Array();
         entidadVehiculos = JSON.parse(data);

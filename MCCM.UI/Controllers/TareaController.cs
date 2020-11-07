@@ -13,52 +13,90 @@ namespace MCCM.UI.Controllers
     {
 
         TareaNegocio tareaNegocio = new TareaNegocio();
-        // GET: Tarea
-        public ActionResult Index()
+
+        [HttpPost]
+        public String InsertarTarea(TMCCM_Tarea tarea, DateTime TF_Fecha, int caso)
         {
-            return View();
+            try
+            {
+                tarea.TF_Fecha = TF_Fecha;
+                tarea.TN_ID_Caso = caso;
+                tareaNegocio.InsertarTarea(tarea);
+                return "S";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
 
         [HttpPost]
-        public String InsertarTarea(TMCCM_Tarea tarea,DateTime TF_Fecha, int caso)
+        public String ModificarTarea(TMCCM_Tarea tarea, DateTime fecha)
         {
-            tarea.TF_Fecha = TF_Fecha;
-            tarea.TN_ID_Caso = caso;
-            tareaNegocio.InsertarTarea(tarea);
-            return "S";
-        }
-
-        [HttpPost]
-        public String ModificarTarea(TMCCM_Tarea tarea,DateTime fecha)
-        {
-            tarea.TF_Fecha = fecha;
-            tareaNegocio.ModificarTarea(tarea);
-            return "S";
+            try
+            {
+                tarea.TF_Fecha = fecha;
+                tareaNegocio.ModificarTarea(tarea);
+                return "S";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
 
         [HttpGet]
         public String ListarTarea(int caso)
         {
-            return tareaNegocio.ListarTarea(caso);
+            try
+            {
+                return tareaNegocio.ListarTarea(caso);
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
 
         [HttpGet]
         public string ObtenerTareaPorID(int ID)
         {
-            return tareaNegocio.ObtenerTareaPorID(ID);
+            try
+            {
+                return tareaNegocio.ObtenerTareaPorID(ID);
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
 
         [HttpGet]
         public string ObtenerCatalogoUsuarios()
         {
-            return tareaNegocio.ObtenerCatalogoUsuarios();
+            try
+            {
+                return tareaNegocio.ObtenerCatalogoUsuarios();
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
-        
 
-       [HttpPost]
+
+        [HttpPost]
         public string EliminarTareaPorID(int tareaID)
         {
-            return tareaNegocio.EliminarTarea(tareaID);
+            try
+            {
+                
+                return tareaNegocio.EliminarTarea(tareaID);
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
     }
 }

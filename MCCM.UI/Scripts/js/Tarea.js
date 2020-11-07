@@ -23,13 +23,17 @@ function validarFormularioTarea() {
 function cargarCatalogoUsuario() {
     $.ajax({
         type: "GET",
-        url: "/Tarea/ObtenerCatalogoUsuarios"
+        url: "/Tarea/ObtenerCatalogoUsuarios",
+        error: function (data) {
+            $("#mensaje-body").html(data);
+            $("#modalMensajeError").modal("show");
+        }
     }).done(function (data) {
         let usuarios = JSON.parse(data);
         $("#TN_ID_Usuario").empty();
         for (let i = 0; i < usuarios.length; i++) {
             $("#TN_ID_Usuario").append(
-                "<option value='" + usuarios[i].TN_ID_Usuario + "'>"+ usuarios[i].TC_Identificacion + " " + usuarios[i].TC_Nombre_Completo + "</option >"
+                "<option value='" + usuarios[i].TN_ID_Usuario + "'>" + usuarios[i].TC_Identificacion + " " + usuarios[i].TC_Nombre_Completo + "</option >"
             );
         }
         $("#TN_ID_Usuario").selectpicker("refresh");
@@ -37,7 +41,7 @@ function cargarCatalogoUsuario() {
 }
 
 $(document).on("click", "#btnRegistrarTarea", function (e) {
-    
+
     e.preventDefault();
     if ($("#FormTarea").valid()) {
         var form = new FormData($("#FormTarea")[0]);
@@ -50,6 +54,10 @@ $(document).on("click", "#btnRegistrarTarea", function (e) {
                 $("#btnRegistrarTarea").html(
                     '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
                 );
+            },
+            error: function (data) {
+                $("#mensaje-body").html(data);
+                $("#modalMensajeError").modal("show");
             }
         }).done(function (data) {
             $("#btnRegistrarTarea").removeAttr("disabled");
@@ -58,7 +66,7 @@ $(document).on("click", "#btnRegistrarTarea", function (e) {
             $("#ModalFormTarea").modal("hide");
         });
     }
-    
+
 });
 
 function iniciarCalendarioTarea(fecha) {
@@ -77,7 +85,14 @@ function CargarTareas() {
     $.ajax({
         type: "GET",
         url: "/Tarea/ListarTarea",
-        data: { "caso": sessionStorage.CasoID }
+        data: { "caso": sessionStorage.CasoID },
+        beforeSend: function () {
+            agregarSpinnerCargando($("#tareas-body"));
+        },
+        error: function (data) {
+            $("#mensaje-body").html(data);
+            $("#modalMensajeError").modal("show");
+        }
     }).done(function (data) {
 
         let tareas = new Array();
@@ -100,52 +115,52 @@ function CargarTareas() {
             $("#tareas-body").append(
                 '<div class="card tarea" id="' + tareas[i].TN_ID_Tarea + '">' +
                 '<div class="card-header ' + color + '" >' +
-                    '<div>'+iconoTarea+'</div>' + "Tarea Código #"+tareas[i].TN_ID_Tarea +
-                        '<div>' +
-                            '<a href="#" class="editarTarea" id="' + tareas[i].TN_ID_Tarea + '"><span><i class="fa fa-pencil icono_tarea" aria-hidden="true" ></i></span ></a > ' +
+                '<div>' + iconoTarea + '</div>' + "Tarea Código #" + tareas[i].TN_ID_Tarea +
+                '<div>' +
+                '<a href="#" class="editarTarea" id="' + tareas[i].TN_ID_Tarea + '"><span><i class="fa fa-pencil icono_tarea" aria-hidden="true" ></i></span ></a > ' +
                 '<a href="#" class="borrar borrarTarea" id="' + tareas[i].TN_ID_Tarea + '"><span><i class="fa fa-trash icono_tarea" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span ></a > ' +
-                        '</div>' +
-                    '</div>' +
+                '</div>' +
+                '</div>' +
                 '<div class="card-body" style="padding:0px!important">' +
-                    '<div class="container">' +
-                       '<div class="row">' +
-                            '<div class="col-4">' +
-                                '<h6><span class="w-100 badge badge-primary">Asignado:</span></h6>' +
-                            '</div >'+
-                            '<div class="col-md-8" >' +
-                                '<p>'+ tareas[i].T_Usuario + '</p > ' +
-                            '</div>'+
-                        '</div>' +
-                        '<div class="row">' +
-                            '<div class="col-4">' +
-                                '<h6><span class="w-100 badge badge-primary">Fecha/Hora:</span></h6>' +
-                            '</div >' +
-                            '<div class="col-md-8" >' +
-                              '<p>' + tareas[i].TF_Fecha + '</p > ' +
-                            '</div>' +
-                        '</div>' +
-                        '<div class="row">' +
-                            '<div class="col-4">' +
-                                '<h6><span class="w-100 badge badge-primary">Diligencia:</span></h6>' +
-                            '</div >' +
-                            '<div class="col-md-8" >' +
-                                '<p>' + tareas[i].TC_Diligencia + '</p > ' +
-                            '</div>' +
-                        '</div>' +
-                        '<div class="row">' +
-                            '<div class="col-4">' +
-                                '<h6><span class="w-100 badge badge-primary">Lugar:</span></h6>' +
-                            '</div >' +
-                          '<div class="col-md-8" >' +
-                                '<p>' + tareas[i].TC_Lugar + '</p > ' +
-                          '</div>' +
-                        '</div>' +
-                    '</div>' +
-                '</div>'+
+                '<div class="container">' +
+                '<div class="row">' +
+                '<div class="col-4">' +
+                '<h6><span class="w-100 badge badge-primary">Asignado:</span></h6>' +
+                '</div >' +
+                '<div class="col-md-8" >' +
+                '<p>' + tareas[i].T_Usuario + '</p > ' +
+                '</div>' +
+                '</div>' +
+                '<div class="row">' +
+                '<div class="col-4">' +
+                '<h6><span class="w-100 badge badge-primary">Fecha/Hora:</span></h6>' +
+                '</div >' +
+                '<div class="col-md-8" >' +
+                '<p>' + tareas[i].TF_Fecha + '</p > ' +
+                '</div>' +
+                '</div>' +
+                '<div class="row">' +
+                '<div class="col-4">' +
+                '<h6><span class="w-100 badge badge-primary">Diligencia:</span></h6>' +
+                '</div >' +
+                '<div class="col-md-8" >' +
+                '<p>' + tareas[i].TC_Diligencia + '</p > ' +
+                '</div>' +
+                '</div>' +
+                '<div class="row">' +
+                '<div class="col-4">' +
+                '<h6><span class="w-100 badge badge-primary">Lugar:</span></h6>' +
+                '</div >' +
+                '<div class="col-md-8" >' +
+                '<p>' + tareas[i].TC_Lugar + '</p > ' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
                 '</div>'
             )
         }
-    })
+    });
 }
 
 
@@ -154,9 +169,17 @@ function eliminarTarea(tareaID, elemento) {
     $.ajax({
         type: "POST",
         url: "/Tarea/EliminarTareaPorID",
-        data: { "tareaID": tareaID }
+        data: { "tareaID": tareaID },
+        error: function (data) {
+            $("#mensaje-body").html(data);
+            $("#modalMensajeError").modal("show");
+        }
+
     }).done(function (data) {
+
         elemento.parent().parent().parent().remove();
+        $("#ModalMensaje").modal("hide");
+
     });
 }
 
@@ -165,7 +188,11 @@ $(document).on("click", ".editarTarea", function () {
     $.ajax({
         type: "GET",
         url: "/Tarea/ObtenerTareaPorID",
-        data: { "ID": $(this).attr('ID') }
+        data: { "ID": $(this).attr('ID') },
+        error: function (data) {
+            $("#mensaje-body").html(data);
+            $("#modalMensajeError").modal("show");
+        }
     }).done(function (data) {
         let tarea = JSON.parse(data);
         $("#tituloFormTarea").html("Modificar Tarea");
@@ -182,7 +209,7 @@ $(document).on("click", ".editarTarea", function () {
         $('#TF_Fecha_Tarea').val(tarea[0].TF_Fecha);
         iniciarCalendarioTarea(tarea[0].TF_Fecha);
         $("#ModalFormTarea").modal("show");
-        
+
     });
 });
 
@@ -199,6 +226,10 @@ $(document).on("click", "#btnModificarTarea", function (e) {
                 $("#btnModificarTarea").html(
                     '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
                 );
+            },
+            error: function (data) {
+                $("#mensaje-body").html(data);
+                $("#modalMensajeError").modal("show");
             }
         }).done(function (data) {
             $("#btnModificarTarea").removeAttr("disabled");
