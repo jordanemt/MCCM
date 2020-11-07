@@ -1,7 +1,11 @@
 ﻿$(document).ready(function () {
-    cargarTipoOrganizacion();
     validarFormularioEntidadPersonaJuridica();
 });
+
+$(document).on("click", "#entidadPersonaJuridica", function () {
+    CargarEntidadPersonaJuridica();
+    cargarTipoOrganizacion();
+})
 
 
 /*Descripción: Metodo que valida el formulario usando la libreria de js*/
