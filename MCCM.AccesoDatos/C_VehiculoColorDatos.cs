@@ -1,4 +1,5 @@
-﻿using MCCM.Entidad;
+﻿using MCCM.AccesoDatos.exceptions;
+using MCCM.Entidad;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ namespace MCCM.AccesoDatos
         }
         public void InsertarVehiculoColor(TMCCM_C_Vehiculo_Color vehiculoColor)
         {
+            try { 
             using (var context = new MCCMEntities())
             {
                 vehiculoColor.TF_Fecha_Creacion = DateTime.Now;
@@ -33,6 +35,11 @@ namespace MCCM.AccesoDatos
                 context.TMCCM_C_Vehiculo_Color.Add(vehiculoColor);
                 context.SaveChanges();
 
+            }
+            }
+            catch (Exception e)
+            {
+                throw ExceptionHandler.Handle(e);
             }
 
         }

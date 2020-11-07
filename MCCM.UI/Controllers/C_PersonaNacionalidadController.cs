@@ -15,15 +15,28 @@ namespace MCCM.UI.Controllers
         [HttpGet]
         public String ListarPersonaNacionalidad()
         {
-
-            return c_PersonaNacionalidadNegocio.ListarPersonaNacionalidad();
+            try
+            {
+                return c_PersonaNacionalidadNegocio.ListarPersonaNacionalidad();
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
 
         [HttpPost]
         public String InsertarPersonaNacionalidad(TMCCM_C_Persona_Nacionalidad personaNacionalidad)
         {
-            c_PersonaNacionalidadNegocio.InsertarPersonaNacionalidad(personaNacionalidad);
-            return "S";
+            try
+            {
+                c_PersonaNacionalidadNegocio.InsertarPersonaNacionalidad(personaNacionalidad);
+                return "S";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
     }
 }

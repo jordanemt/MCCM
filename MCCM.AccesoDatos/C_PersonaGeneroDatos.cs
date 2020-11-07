@@ -1,4 +1,5 @@
-﻿using MCCM.Entidad;
+﻿using MCCM.AccesoDatos.exceptions;
+using MCCM.Entidad;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -27,12 +28,18 @@ namespace MCCM.AccesoDatos
         }
         public void InsertarPersonaGenero(TMCCM_C_Persona_Genero personaGenero)
         {
+            try { 
             using (var context = new MCCMEntities())
             {
                 personaGenero.TB_Eliminado = false;
                 context.TMCCM_C_Persona_Genero.Add(personaGenero);
                 context.SaveChanges();
 
+            }
+            }
+            catch (Exception e)
+            {
+                throw ExceptionHandler.Handle(e);
             }
 
         }

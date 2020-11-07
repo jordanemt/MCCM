@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using MCCM.AccesoDatos.exceptions;
 
 namespace MCCM.AccesoDatos
 {
@@ -29,12 +30,18 @@ namespace MCCM.AccesoDatos
         }
         public void InsertarArmaMarca(TMCCM_C_Arma_Marca armaMarca)
         {
+            try { 
             using (var context = new MCCMEntities())
             {
                 armaMarca.TB_Eliminado = false;
                 context.TMCCM_C_Arma_Marca.Add(armaMarca);
                 context.SaveChanges();
 
+            }
+            }
+            catch (Exception e)
+            {
+                throw ExceptionHandler.Handle(e);
             }
 
         }

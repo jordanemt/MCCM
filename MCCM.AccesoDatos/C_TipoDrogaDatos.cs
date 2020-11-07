@@ -1,4 +1,5 @@
-﻿using MCCM.Entidad;
+﻿using MCCM.AccesoDatos.exceptions;
+using MCCM.Entidad;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,7 @@ namespace MCCM.AccesoDatos
 
         public void InsertarTipoDroga(TMCCM_C_Droga_Tipo_Droga tipoDroga)
         {
+            try { 
             using (var context = new MCCMEntities())
             {
                 tipoDroga.TF_Fecha_Creacion = DateTime.Now;
@@ -37,6 +39,11 @@ namespace MCCM.AccesoDatos
                 context.TMCCM_C_Droga_Tipo_Droga.Add(tipoDroga);
                 context.SaveChanges();
 
+            }
+            }
+            catch (Exception e)
+            {
+                throw ExceptionHandler.Handle(e);
             }
 
         }

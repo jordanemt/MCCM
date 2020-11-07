@@ -1,4 +1,5 @@
-﻿using MCCM.Entidad;
+﻿using MCCM.AccesoDatos.exceptions;
+using MCCM.Entidad;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -29,12 +30,18 @@ namespace MCCM.AccesoDatos
 
         public void InsertarPersonaTipoIdentificacion(TMCCM_C_Persona_Tipo_Identificacion personaTipoIdentificacion)
         {
+            try { 
             using (var context = new MCCMEntities())
             {
                 personaTipoIdentificacion.TF_Fecha_Creacion = DateTime.Now;
                 context.TMCCM_C_Persona_Tipo_Identificacion.Add(personaTipoIdentificacion);
                 context.SaveChanges();
 
+            }
+            }
+            catch (Exception e)
+            {
+                throw ExceptionHandler.Handle(e);
             }
 
         }

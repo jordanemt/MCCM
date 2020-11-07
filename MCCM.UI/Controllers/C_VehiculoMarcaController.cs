@@ -14,14 +14,26 @@ namespace MCCM.UI.Controllers
         [HttpGet]
         public String ListarVehiculoMarca()
         {
+            try { 
 
             return c_VehiculoMarcaNegocio.ListarVehiculoMarca();
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
         [HttpPost]
         public String InsertarVehiculoMarca(TMCCM_C_Vehiculo_Marca vehiculMarca)
         {
+            try { 
             c_VehiculoMarcaNegocio.InsertarVehiculoMarca(vehiculMarca);
             return "S";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
     }
 }

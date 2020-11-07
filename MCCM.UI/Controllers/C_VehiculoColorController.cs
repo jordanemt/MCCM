@@ -14,14 +14,25 @@ namespace MCCM.UI.Controllers
         [HttpGet]
         public String ListarVehiculoColor()
         {
-
+            try { 
             return c_VehiculoColorNegocio.ListarVehiculoColor();
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
         [HttpPost]
         public String InsertarVehiculoColor(TMCCM_C_Vehiculo_Color vehiculoColor)
         {
+            try { 
             c_VehiculoColorNegocio.InsertarVehiculoColor(vehiculoColor);
             return "S";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
     }
 }

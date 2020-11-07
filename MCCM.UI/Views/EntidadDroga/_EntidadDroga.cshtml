@@ -16,13 +16,13 @@
                     </div>
                     <div class="form-group row">
                         <label for="tipo" class="col-md-3 col-form-label">Tipo</label>
-                        <select class="col-md-8 form-control" id="TN_ID_Tipo_Droga" name="TN_ID_Tipo_Droga" required autocomplete="off title="Seleccione un tipo...""></select>
+                        <select class="col-md-8 form-control" id="TN_ID_Tipo_Droga" name="TN_ID_Tipo_Droga" required title="Seleccione un tipo..."></select>
                         <a href="#" data-toggle="modal" data-target="#modal_C_Droga" class="fa fa-plus col-md-1 font_gris"></a>
                         <label id="TN_ID_Tipo_Droga-error" class="error" for="TN_ID_Tipo_Droga" style="display: none"></label>
                     </div>
                     <div class="form-group row">
                         <label for="nombre" class="col-md-3 col-form-label">Nombre</label>
-                        <input type="text" class="col-md-8 form-control" name="TC_Nombre" id="TC_Nombre_Droga">
+                        <input type="text" class="col-md-8 form-control" name="TC_Nombre" id="TC_Nombre_Droga" required>
                     </div>
                     <div class="form-group row">
                         <label for="detalle" class="col-md-3 col-form-label">Detalle</label>
@@ -38,21 +38,22 @@
                         <input class="col-md-8 form-control" name="TF_Fecha_Decomiso" id="TF_Fecha_Decomiso_Droga" required>
                     </div>
 
-                    <div class="form-group row">
-                        <label for="segundoApellido" class="col-md-3 col-form-label" style="display:none">Fecha Modificación</label>
-                        <input type="text" class="col-md-8 form-control" name="TF_Fecha_Modificacion" style="display:none" id="TF_Fecha_Modificacion_Droga">
-                    </div>
+
                     <div class="form-group row" id="divDrogaFC" style="display:none">
                         <label for="alias" class="col-md-3 col-form-label">Fecha Creacion</label>
                         <input type="text" class="col-md-8 form-control" name="TF_Fecha_Creacion" readonly id="TF_Fecha_Creacion_Droga">
                     </div>
+                    <div class="form-group row" id="divDrogaFM" style="display:none">
+                        <label for="segundoApellido" class="col-md-3 col-form-label" >Fecha Modificación</label>
+                        <input type="text" class="col-md-8 form-control" name="TF_Fecha_Modificacion" readonly  id="TF_Fecha_Modificacion_Droga">
+                    </div>
                     <div class="form-group row">
                         <label for="creadoPor" class="col-md-3 col-form-label">Creado por</label>
-                        <input type="text" class="col-md-8 form-control" name="TC_Creado_Por" id="TC_Creado_Por_Droga">
+                        <input type="text" class="col-md-8 form-control" name="TC_Creado_Por" id="TC_Creado_Por_Droga" required>
                     </div>
                     <div class="form-group row" id="divDrogaMP" style="display:none">
                         <label for="creadoPor" class="col-md-3 col-form-label">Modificado por</label>
-                        <input type="text" class="col-md-8 form-control" name="TC_Modificado_Por" id="TC_Modificado_Por_Droga">
+                        <input type="text" class="col-md-8 form-control" name="TC_Modificado_Por" id="TC_Modificado_Por_Droga" required>
                     </div>
                     <div class="form-group row">
                         <label for="verificado" class="col-md-3 col-form-label">Verificado</label>

@@ -1,4 +1,5 @@
-﻿using MCCM.Entidad;
+﻿using MCCM.AccesoDatos.exceptions;
+using MCCM.Entidad;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,7 @@ namespace MCCM.AccesoDatos
         }
         public void InsertarVehiculoClase(TMCCM_C_Vehiculo_Clase vehiculoClase)
         {
+            try { 
             using (var context = new MCCMEntities())
             {
                 vehiculoClase.TF_Fecha_Creacion = DateTime.Now;
@@ -36,7 +38,11 @@ namespace MCCM.AccesoDatos
                 context.SaveChanges();
 
             }
-
+            }
+            catch (Exception e)
+            {
+                throw ExceptionHandler.Handle(e);
+            }
         }
     }
 }

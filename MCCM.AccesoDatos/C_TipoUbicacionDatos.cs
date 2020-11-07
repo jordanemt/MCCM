@@ -1,4 +1,5 @@
-﻿using MCCM.Entidad;
+﻿using MCCM.AccesoDatos.exceptions;
+using MCCM.Entidad;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -29,12 +30,18 @@ namespace MCCM.AccesoDatos
         }
         public void InsertarTipoUbicacion(TMCCM_C_Ubicacion_Tipo_Ubicacion tipoUbicacion)
         {
+            try { 
             using (var context = new MCCMEntities())
             {
                 tipoUbicacion.TB_Eliminado = false;
                 context.TMCCM_C_Ubicacion_Tipo_Ubicacion.Add(tipoUbicacion);
                 context.SaveChanges();
 
+            }
+            }
+            catch (Exception e)
+            {
+                throw ExceptionHandler.Handle(e);
             }
 
         }

@@ -1,4 +1,5 @@
-﻿using MCCM.Entidad;
+﻿using MCCM.AccesoDatos.exceptions;
+using MCCM.Entidad;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -30,12 +31,18 @@ namespace MCCM.AccesoDatos
         }
         public void InsertarTipoArma(TMCCM_C_Arma_Tipo_Arma tipoArma)
         {
+            try { 
             using (var context = new MCCMEntities())
             {
                 tipoArma.TB_Eliminado = false;
                 context.TMCCM_C_Arma_Tipo_Arma.Add(tipoArma);
                 context.SaveChanges();
 
+            }
+            }
+            catch (Exception e)
+            {
+                throw ExceptionHandler.Handle(e);
             }
 
         }

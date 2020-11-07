@@ -15,14 +15,25 @@ namespace MCCM.UI.Controllers
         [HttpGet]
         public String ListarPersonaGenero()
         {
-
+            try { 
             return c_PersonaGeneroNegocio.ListarPersonaGenero();
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
         [HttpPost]
         public String InsertarPersonaGenero(TMCCM_C_Persona_Genero personaGenero)
         {
+            try { 
             c_PersonaGeneroNegocio.InsertarPersonaGenero(personaGenero);
             return "S";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
     }
 }

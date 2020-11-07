@@ -15,14 +15,27 @@ namespace MCCM.UI.Controllers
         [HttpGet]
         public String ListarUbicacionProvincia()
         {
+            try { 
 
             return c_UbicacionProvinciaNegocio.ListarUbicacionProvincia();
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
         [HttpPost]
         public String InsertarUbicacionProvincia(TMCCM_C_Ubicacion_Provincia ubicacionProvincia)
         {
+            try { 
             c_UbicacionProvinciaNegocio.InsertarUbicacionProvincia(ubicacionProvincia);
             return "S";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+
         }
     }
 }

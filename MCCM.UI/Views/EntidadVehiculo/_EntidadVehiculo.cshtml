@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title col-11 text-center" id="tituloEntidadVehiculo">Insertar Vehiculo</h5>
+                <h5 class="modal-title font_blanco text-center" id="tituloEntidadVehiculo">Insertar Vehiculo</h5>
                 <button type="button" class="close col-1" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -19,22 +19,25 @@
                     </div>
                     <div class="form-group row">
                         <label for="placa" class="col-md-3 col-form-label">Placa</label>
-                        <input type="text" class="col-md-8 form-control" name="TC_Placa" id="TC_Placa_Vehiculo">
+                        <input type="text" class="col-md-8 form-control" name="TC_Placa" id="TC_Placa_Vehiculo" required>
                     </div>
                     <div class="form-group row ">
                         <label for="marca" class="col-md-3 col-form-label">Marca</label>
-                        <select class=" col-md-8 form-control" name="TN_ID_Marca_Vehiculo" title="Seleccione una Marca..." id="TN_ID_Marca_Vehiculo"></select>
-                        <a href="#" data-toggle="modal" data-target="#modal_C_MarcaVehiculo" class="fa fa-plus col-md-1"></a>
+                        <select class="col-md-8 form-control" name="TN_ID_Marca_Vehiculo" title="Seleccione una Marca..." id="TN_ID_Marca_Vehiculo" required></select>
+                        <a href="#" data-toggle="modal" data-target="#modal_C_MarcaVehiculo" class="btn fa fa-plus col-sm-1 align-self-center font_gris"></a>
+                        <label id="TN_ID_Marca_Vehiculo-error" class="error" for="TN_ID_Marca_Vehiculo" style="display: none"></label>
                     </div>
                     <div class="form-group row ">
                         <label for="clase" class="col-md-3 col-form-label">Clase</label>
-                        <select class=" col-md-8 form-control" name="TN_ID_Clase_Vehiculo" title="Seleccione una Clase..." id="TN_ID_Clase_Vehiculo"></select>
-                        <a href="#" data-toggle="modal" data-target="#modal_C_ClaseVehiculo" class="fa fa-plus col-md-1"></a>
+                        <select class="col-md-8 form-control" name="TN_ID_Clase_Vehiculo" title="Seleccione una Clase..." id="TN_ID_Clase_Vehiculo" required></select>
+                        <a href="#" data-toggle="modal" data-target="#modal_C_ClaseVehiculo" class="btn fa fa-plus col-sm-1 align-self-center font_gris"></a>
+                        <label id="TN_ID_Clase_Vehiculo-error" class="error" for="TN_ID_Clase_Vehiculo" style="display: none"></label>
                     </div>
                     <div class="form-group row ">
                         <label for="color" class="col-md-3 col-form-label">Color</label>
-                        <select class=" col-md-8 form-control" name="TN_ID_Color_Vehiculo" title="Seleccione un Color..." id="TN_ID_Color_Vehiculo"></select>
-                        <a href="#" data-toggle="modal" data-target="#modal_C_ColorVehiculo" class="fa fa-plus col-md-1"></a>
+                        <select class="col-md-8 form-control" name="TN_ID_Color_Vehiculo" title="Seleccione un Color..." id="TN_ID_Color_Vehiculo" required></select>
+                        <a href="#" data-toggle="modal" data-target="#modal_C_ColorVehiculo" class="btn fa fa-plus col-sm-1 align-self-center font_gris"></a>
+                        <label id="TN_ID_Color_Vehiculo-error" class="error" for="TN_ID_Color_Vehiculo" style="display: none"></label>
                     </div>
                     <div class="form-group row ">
                         <label for="fotografía" class="col-md-3 col-form-label">Fotografía</label>
@@ -49,32 +52,33 @@
                         <label for="año" class="col-md-3 col-form-label">Año</label>
                         <input type="text" class="col-md-8 form-control" name="TN_Anno" id="TN_Anno_Vehiculo">
                     </div>
-                    <div class="form-group row ">
-                        <label id="creadoPor_V" for="creadoPor" class="col-md-3 col-form-label">Creado por</label>
-                        <input type="text" class="col-md-8 form-control" name="TC_Creado_Por" id="TC_Creado_Por_Vehiculo">
-                    </div>
-                    <div class="form-group row " tyle="display:none" id="fechaCreacion_Row_V">
+
+                    <div class="form-group row " style="display:none" id="fechaCreacion_Row_V">
                         <label id="fechaCreacion_V" for="alias" class="col-md-3 col-form-label">Fecha Creacion</label>
                         <input type="text" class="col-md-8 form-control" name="TF_Fecha_Creacion" readonly id="TF_Fecha_Creacion_Vehiculo">
                     </div>
                     <div class="form-group row " style="display:none" id="fechaModificación_Row_V">
-                        <label id="fechaModificación_V" for="segundoApellido" class="col-md-3 col-form-label">Fecha Modificación</label>
-                        <input type="text" class="col-md-8 form-control" name="TF_Fecha_Modificacion" readonly id="TF_Fecha_Modificacion_Vehiculo">
+                        <label id="fechaModificación_V" for="modificacion" class="col-md-3 col-form-label">Fecha Modificación</label>
+                        <input type="text" class="col-md-8 form-control" name="TF_Fecha_Modificacion_Vehiculo" readonly id="TF_Fecha_Modificacion_Vehiculo">
+                    </div>
+                    <div class="form-group row ">
+                        <label id="creadoPor_V" for="creadoPor" class="col-md-3 col-form-label">Creado por</label>
+                        <input type="text" class="col-md-8 form-control" name="TC_Creado_Por" id="TC_Creado_Por_Vehiculo" required>
                     </div>
                     <div class="form-group row " style="display:none" id="modificadoPor_Row_V">
                         <label id="modificadopor_V" for="creadoPor" class="col-md-3 col-form-label">Modificado por</label>
-                        <input type="text" class="col-md-8 form-control" name="TC_Modificado_Por" id="TC_Modificado_Por_Vehiculo">
+                        <input type="text" class="col-md-8 form-control" name="TC_Modificado_Por" id="TC_Modificado_Por_Vehiculo" required>
                     </div>
                     <div class="form-group row ">
                         <label id="verificado_V" for="verificado" class="col-md-3 col-form-label">Verificado</label>
                         <div class="col-md-8  form-check">
-                            <input class="form-check-input" type="checkbox" name="TB_Verificado" id="TB_Verificado_Vehiculo">
+                            <input class="form-check-input" type="checkbox" value="1" TB_Verificado" id="TB_Verificado_Vehiculo_V">
                         </div>
                     </div>
                     <div class="d-flex justify-content-center">
                         <button id="btnInsertarEntidadVehiculo" type="submit" class="btn btn-primary submit-button mx-2">Insertar</button>
                         <button id="btnModificarEntidadVehiculo" class="btn btn-primary submit-button mx-2" style="display:none">Modificar</button>
-                        <button id="btnCancelarEntidadVehiculo" type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                     </div>
                 </form>
             </div>

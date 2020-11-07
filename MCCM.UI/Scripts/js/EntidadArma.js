@@ -15,12 +15,18 @@ $(document).on("click", "#btnAgregarEntidadArma", function (e) {
             type: "POST",
             url: "/E_Arma/Insertar_E_Arma",
             data: { "entidadArma": Object.fromEntries(form), "caso": sessionStorage.CasoID },
+            beforeSend: function () {
+                $("#btnAgregarEntidadArma").prop("disabled", true);
+                $("#btnAgregarEntidadArma").html(
+                    '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
+                );
+            }
         }).done(function (data) {
+            $("#btnAgregarEntidadArma").removeAttr("disabled");
+            $("#btnAgregarEntidadArma").html('Insertar');
             $("#entidadArmaModal").modal("hide");
             CargarEntidadArmas();
         });
-    } else {
-        alert("NO es valido");
     }
 });
 
@@ -41,11 +47,11 @@ function CargarEntidadArmas() {
             $("#entidades-body").append(
                 '<div class="card" id="cartaEntidadArma"' + entidadArmas[i].TN_ID_Arma + '>' +
 
-                '<div class="card-header">' +
-                '<div>Entidad Arma' + entidadArmas[i].TN_ID_Arma + '</div>' +
+                '<div class="card-header gris_claro">' +
+                '<div>Arma Código #' + entidadArmas[i].TN_ID_Arma + '</div>' +
                 ' <div>' +
-                ' <a href="#" class="editarEntidadArma" id="' + entidadArmas[i].TN_ID_Arma + '"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>' +
-                '<a href="#" class="borrar borrarEntidadArma" id="' + entidadArmas[i].TN_ID_Arma + '"><span><i class="fa fa-trash" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>' +
+                ' <a href="#" class="editarEntidadArma" id="' + entidadArmas[i].TN_ID_Arma + '"><span><i class="fa fa-pencil icono" aria-hidden="true"></i></span></a>' +
+                '<a href="#" class="borrar borrarEntidadArma" id="' + entidadArmas[i].TN_ID_Arma + '"><span><i class="fa fa-trash icono" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>' +
                 '</div>' +
 
                 '</div>' +
@@ -53,30 +59,30 @@ function CargarEntidadArmas() {
                 '<div class="container">' +
 
                 '<div class="row">' +
-                '<div class="col-sm-6">' +
+                '<div class="col-4">' +
                 '<h6><span class="w-100 badge badge-primary">Marca:</span></h6>' +
                 '</div>' +
-                '<div class="col-sm-6">' +
+                '<div class="col-md-8">' +
                 '<p>' + entidadArmas[i].TC_Marca + '<p />' +
 
                 '</div>' +
                 '</div>' +
 
                 '<div class="row">' +
-                '<div class="col-sm-6">' +
+                '<div class="col-4">' +
                 '<h6><span class="w-100 badge badge-primary">Tipo:</span></h6>' +
                 '</div>' +
-                '<div class="col-sm-6">' +
+                '<div class="col-md-8">' +
                 '<p>' + entidadArmas[i].TC_Tipo + '</p>' +
                 '</div>' +
                 '</div>' +
 
                 '<div class="row">' +
-                '<div class="col-sm-6">' +
+                '<div class="col-4">' +
                 '<h6><span class="w-100 badge badge-primary">Calibre:</span></h6>' +
                 '</div>' +
 
-                '<div class="col-sm-6">' +
+                '<div class="col-md-8">' +
                 '<p>' + entidadArmas[i].TC_Calibre + '</p>' +
                 ' </div>' +
                 '</div>' +
@@ -97,7 +103,7 @@ function eliminarArma(entidadArmaID) {
         url: "/E_Arma/Eliminar_E_ArmaPorID",
         data: { "entidadArmaID": entidadArmaID }
     }).done(function (data) {
-        CargarEntidadArmas();
+        elemento.parent().parent().parent().remove();
     });
 }
 /*Editar*/
@@ -110,7 +116,6 @@ $(document).on("click", ".editarEntidadArma", function () {
     }).done(function (data) {
         let entidadArma = new Array();
         entidadArma = JSON.parse(data);
-        alert(JSON.stringify(data));
         $("#tituloEntidadArma").html("Modificar Arma");
         $("#divArmaID").show();
         $("#TN_ID_Arma").val(entidadArma.TN_ID_Arma);
@@ -138,12 +143,14 @@ $(document).on("click", ".editarEntidadArma", function () {
 
 $('#entidadArmaModal').on('hidden.bs.modal', function () {
     $("#FormEntidadArma")[0].reset();
-    $('#TN_ID_Tipo_Droga').selectpicker('refresh');
     $("#tituloEntidadArma").html("Insertar Arma");
     $("#divArmaMarcaID").hide();
     $("#divFCA").hide();
     $("#divFMA").hide();
     $("#divMPA").hide();
+    $('#TN_ID_Marca_Arma').selectpicker('refresh');
+    $('#TN_ID_Tipo_Arma').selectpicker('refresh');
+    $('#TB_Verificado_Arma').attr('checked', false);
     $("#btnModificarEntidadArma").hide();
     $("#btnAgregarEntidadArma").show();
     $("label.error").hide();
@@ -153,16 +160,26 @@ $('#entidadArmaModal').on('hidden.bs.modal', function () {
 //*Modificar Arma
 $(document).on("click", "#btnModificarEntidadArma", function (e) {
     e.preventDefault();
-    var form = new FormData($("#FormEntidadArma")[0]);
-    form.append("TB_Verificado", $("#TB_Verificado_Arma").is(":checked"));
-    $.ajax({
-        type: "POST",
-        url: "/E_Arma/Modificar_E_Arma",
-        data: Object.fromEntries(form)
-    }).done(function (data) {
-        $("#entidadArmaModal").modal("hide");
-        CargarEntidadArmas();
-    });
+    if ($("#FormEntidadArma").valid()) {
+        var form = new FormData($("#FormEntidadArma")[0]);
+        form.append("TB_Verificado", $("#TB_Verificado_Arma").is(":checked"));
+        $.ajax({
+            type: "POST",
+            url: "/E_Arma/Modificar_E_Arma",
+            data: Object.fromEntries(form),
+            beforeSend: function () {
+                $("#btnModificarEntidadArma").prop("disabled", true);
+                $("#btnModificarEntidadArma").html(
+                    '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
+                );
+            }
+        }).done(function (data) {
+            $("#btnModificarEntidadArma").removeAttr("disabled");
+            $("#btnModificarEntidadArma").html('Modificar');
+            $("#entidadArmaModal").modal("hide");
+            CargarEntidadArmas();
+        });
+    }
 });
 
 ///*-----------------------------------------------------
@@ -177,7 +194,6 @@ function cargarArmaMarca() {
         let marcaArma = JSON.parse(data);
         $("#TN_ID_Marca_Arma").empty();
         var s;
-        s = '<option value="" disabled selected>Seleccione una Marca </option>';
         for (var i = 0; i < marcaArma.length; i++) {
             s += '<option value="' + marcaArma[i].TN_ID_Marca_Arma + '">' + marcaArma[i].TC_Descripcion + '</option>';
 
@@ -198,7 +214,6 @@ function cargarTipoArma() {
         let tipoArma = JSON.parse(data);
         $("#TN_ID_Tipo_Arma").empty();
         var s;
-        s = '<option value="" disabled selected>Seleccione un tipo </option>';
         for (var i = 0; i < tipoArma.length; i++) {
             s += '<option value="' + tipoArma[i].TN_ID_Tipo_Arma + '">' + tipoArma[i].TC_Descripcion + '</option>';
 
@@ -212,18 +227,25 @@ function cargarTipoArma() {
 /*Insertar Arma Marca*/
 $(document).on("click", "#btnAgregar_C_ArmaMarca", function (e) {
     e.preventDefault();
-    if ($("#Form_C_ArmaMarca").valid()) {
-        var form = new FormData($("#Form_C_ArmaMarca")[0]);
+    if ($("#Form_C_MarcaArma").valid()) {
+        var form = new FormData($("#Form_C_MarcaArma")[0]);
         $.ajax({
             type: "POST",
             url: "/C_ArmaMarca/InsertarArmaMarca",
-            data: Object.fromEntries(form)
+            data: Object.fromEntries(form),
+            beforeSend: function () {
+                $("#btnAgregar_C_ArmaMarca").prop("disabled", true);
+                $("#btnAgregar_C_ArmaMarca").html(
+                    '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
+                );
+            }
         }).done(function (data) {
+            $("#btnAgregar_C_ArmaMarca").removeAttr("disabled");
+            $("#btnAgregar_C_ArmaMarca").html('Insertar');
             $("#modal_C_ArmaMarca").modal("hide");
             cargarArmaMarca();
+            $("#Form_C_MarcaArma")[0].reset();
         });
-    } else {
-        alert("NO es valido");
     }
 });
 
@@ -234,13 +256,20 @@ $(document).on("click", "#btnAgregar_C_ArmaTipo", function (e) {
         var form = new FormData($("#Form_C_ArmaTipo")[0]);
         $.ajax({
             type: "POST",
-            url: "/C_TipoArma/ InsertarTipoArma",
-            data: Object.fromEntries(form)
+            url: "/C_TipoArma/InsertarTipoArma",
+            data: Object.fromEntries(form),
+            beforeSend: function () {
+                $("#btnAgregar_C_ArmaTipo").prop("disabled", true);
+                $("#btnAgregar_C_ArmaTipo").html(
+                    '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...'
+                );
+            }
         }).done(function (data) {
+            $("#btnAgregar_C_ArmaTipo").removeAttr("disabled");
+            $("#btnAgregar_C_ArmaTipo").html('Insertar');
             $("#modal_C_ArmaTipo").modal("hide");
             cargarTipoArma();
+            $("#Form_C_ArmaTipo")[0].reset();
         });
-    } else {
-        alert("NO es valido");
     }
 });

@@ -1,4 +1,5 @@
-﻿using MCCM.Entidad;
+﻿using MCCM.AccesoDatos.exceptions;
+using MCCM.Entidad;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -14,18 +15,26 @@ namespace MCCM.AccesoDatos
         
         public void InsertarEntidadDroga(TMCCM_Entidad_Droga entidadDroga)
         {
-            using (var context = new MCCMEntities())
+            try
             {
-                entidadDroga.TB_Eliminado = false;
-                entidadDroga.TF_Fecha_Creacion = DateTime.Now;
-                context.TMCCM_Entidad_Droga.Add(entidadDroga);
-                context.SaveChanges();
+                using (var context = new MCCMEntities())
+                {
+                    entidadDroga.TB_Eliminado = false;
+                    entidadDroga.TF_Fecha_Creacion = DateTime.Now;
+                    context.TMCCM_Entidad_Droga.Add(entidadDroga);
+                    context.SaveChanges();
 
+                }
+            }
+            catch (Exception e)
+            {
+                throw ExceptionHandler.Handle(e);
             }
 
         }
         public void ActualizarEntidadDroga(TMCCM_Entidad_Droga entidadDroga)
         {
+            try { 
             using (var context = new MCCMEntities())
             {
                 var result = context.TMCCM_Entidad_Droga.SingleOrDefault(b => b.TN_ID_Droga == entidadDroga.TN_ID_Droga);
@@ -46,11 +55,17 @@ namespace MCCM.AccesoDatos
                     context.SaveChanges();
                 }
             }
+            }
+            catch (Exception e)
+            {
+                throw ExceptionHandler.Handle(e);
+            }
 
         }
 
         public void EliminarEntidadDroga(int ID)
         {
+            try { 
             using (var context = new MCCMEntities())
             {
                 var result = context.TMCCM_Entidad_Droga.SingleOrDefault(b => b.TN_ID_Droga == ID);
@@ -60,6 +75,11 @@ namespace MCCM.AccesoDatos
                     context.Entry(result).State = EntityState.Modified;
                     context.SaveChanges();
                 }
+            }
+            }
+            catch (Exception e)
+            {
+                throw ExceptionHandler.Handle(e);
             }
         }
 

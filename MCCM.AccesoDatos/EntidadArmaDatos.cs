@@ -1,4 +1,5 @@
-﻿using MCCM.Entidad;
+﻿using MCCM.AccesoDatos.exceptions;
+using MCCM.Entidad;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace MCCM.AccesoDatos
     {
         public void InsertarEntidadArma(TMCCM_Entidad_Arma entidadArma)
         {
+            try { 
             using (var context = new MCCMEntities())
             {
                 entidadArma.TB_Eliminado = false;
@@ -20,9 +22,15 @@ namespace MCCM.AccesoDatos
                 context.TMCCM_Entidad_Arma.Add(entidadArma);
                 context.SaveChanges();
             }
+            }
+            catch (Exception e)
+            {
+                throw ExceptionHandler.Handle(e);
+            }
         }
         public void ActualizarEntidadArma(TMCCM_Entidad_Arma entidadArma)
         {
+            try { 
             using (var context = new MCCMEntities())
             {
                 var result = context.TMCCM_Entidad_Arma.SingleOrDefault(b => b.TN_ID_Arma == entidadArma.TN_ID_Arma);
@@ -44,10 +52,16 @@ namespace MCCM.AccesoDatos
                     context.SaveChanges();
                 }
             }
+            }
+            catch (Exception e)
+            {
+                throw ExceptionHandler.Handle(e);
+            }
         }
 
         public void EliminarEntidadArma(int ID)
         {
+            try { 
             using (var context = new MCCMEntities())
             {
                 var result = context.TMCCM_Entidad_Arma.SingleOrDefault(b => b.TN_ID_Arma == ID);
@@ -57,6 +71,11 @@ namespace MCCM.AccesoDatos
                     context.Entry(result).State = EntityState.Modified;
                     context.SaveChanges();
                 }
+            }
+            }
+            catch (Exception e)
+            {
+                throw ExceptionHandler.Handle(e);
             }
         }
 
