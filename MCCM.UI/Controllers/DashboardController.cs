@@ -1,4 +1,5 @@
-﻿using MCCM.ReglasNegocio;
+﻿using MCCM.Entidad;
+using MCCM.ReglasNegocio;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -38,6 +39,11 @@ namespace MCCM.UI.Controllers
             Session["User"] = oUser;
             return RedirectToAction("Index", "Dashboard");
         }
+        [HttpGet]
+        public int ObtenerRolUsuario() { 
+            TMCCM_Usuario usuario= (TMCCM_Usuario)HttpContext.Session["User"];
+            return usuario.TMCCM_Rol.FirstOrDefault<TMCCM_Rol>().TN_ID_Rol;
+        } 
 
         [HttpGet]
         public ActionResult GenerarReporte(ReporteRequest request) {

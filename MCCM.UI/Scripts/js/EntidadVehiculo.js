@@ -1,8 +1,10 @@
 ﻿$(document).on("click", "#entidadVehiculo", function () {
-    CargarEntidadVehiculos();
-    cargarVehiculoMarca();
-    cargarVehiculoClase();
-    cargarVehiculoColor();
+    if (validarCasoSession()) {
+        CargarEntidadVehiculos();
+        cargarVehiculoMarca();
+        cargarVehiculoClase();
+        cargarVehiculoColor();
+    }
 })
 
 /* Agregar Vehiculo*/
@@ -120,7 +122,7 @@ function CargarEntidadVehiculos() {
                 '<div class="card-header gris_claro">' +
                 '<div>Entidad Vehiculo #' + entidadVehiculos[i].TN_ID_Vehiculo + '</div>' +
                 '<div>' +
-                ' <a href="#" class="editarEntidadVehiculo" id="' + entidadVehiculos[i].TN_ID_Vehiculo + '"><span><i class="fa fa-pencil icono" aria-hidden="true"></i></span></a>' +
+                ' <a href="#" class="editar editarEntidadVehiculo" id="' + entidadVehiculos[i].TN_ID_Vehiculo + '"><span><i class="fa fa-pencil icono" aria-hidden="true"></i></span></a>' +
                 '<a href="#" class="borrar borrarEntidadVehiculo" id="' + entidadVehiculos[i].TN_ID_Vehiculo + '"><span><i class="fa fa-trash icono" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>' +
                 '</div>' +
 
@@ -170,6 +172,11 @@ function CargarEntidadVehiculos() {
 
                 '</div>'
             );
+
+        }
+        desactivarAcciones();
+        if (entidadVehiculos.length == 0) {
+            agregarMensajeVacio($("#entidades-body"));
         }
     });
 }

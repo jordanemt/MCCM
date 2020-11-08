@@ -118,7 +118,7 @@ function CargarTareas() {
                 '<div class="card-header ' + color + '" >' +
                 '<div>' + iconoTarea + '</div>' + "Tarea Código #" + tareas[i].TN_ID_Tarea +
                 '<div>' +
-                '<a href="#" class="editarTarea" id="' + tareas[i].TN_ID_Tarea + '"><span><i class="fa fa-pencil icono_tarea" aria-hidden="true" ></i></span ></a > ' +
+                '<a href="#" class="editar editarTarea" id="' + tareas[i].TN_ID_Tarea + '"><span><i class="fa fa-pencil icono_tarea" aria-hidden="true" ></i></span ></a > ' +
                 '<a href="#" class="borrar borrarTarea" id="' + tareas[i].TN_ID_Tarea + '"><span><i class="fa fa-trash icono_tarea" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span ></a > ' +
                 '</div>' +
                 '</div>' +
@@ -160,6 +160,10 @@ function CargarTareas() {
                 '</div>' +
                 '</div>'
             )
+        }
+        desactivarAcciones();
+        if (tareas.length == 0) {
+            agregarMensajeVacio($("#tareas-body"));
         }
     });
 }

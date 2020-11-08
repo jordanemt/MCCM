@@ -19,6 +19,22 @@ function agregarGrupoIDToInputElementVal(e) {
 }
 
 
+function validarCasoSession() {
+    if (sessionStorage.CasoID != null) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function desactivarAcciones() {
+    if (sessionStorage.Rol != null) {
+        if (sessionStorage.Rol == 2) {
+            $(".borrar").hide();
+            $(".editar").hide();
+        }
+    }
+}
 
 function sobreescribirJQueryMessages() {
     jQuery.extend(jQuery.validator.messages, {
@@ -50,6 +66,15 @@ function agregarSpinnerCargando(elemento) {
             '<div class= "spinner-border text-primary" role = "status" >' +
                 '<span class="sr-only">Cargando...</span>'+
             '</div >' +
+        '</div >'
+    );
+}
+
+function agregarMensajeVacio(elemento) {
+    elemento.empty();
+    elemento.append(
+        '<div id="mensajeVacio" class="d-flex align-items-center justify-content-center h-100">' +
+        '<span>No hay datos para mostrar</span>' +
         '</div >'
     );
 }

@@ -3,8 +3,10 @@
 });
 
 $(document).on("click", "#entidadTelefono", function () {
-    CargarEntidadTelefono();
-    cargarCatalogoProveedores();
+    if (validarCasoSession()) {
+        CargarEntidadTelefono();
+        cargarCatalogoProveedores();
+    }
 })
 
 
@@ -200,7 +202,7 @@ function CargarEntidadTelefono() {
                 '<div class="card-header gris_claro">' +
                 'Teléfono Código #' + telefonos[i].TN_ID_Telefono +
                 '<div>' +
-                '<a href="#" class="editarEntidadTelefono" id="' + telefonos[i].TN_ID_Telefono + '"><span><i class="fa fa-pencil icono font_amarilloHover" aria-hidden="true"></i></span ></a > ' +
+                '<a href="#" class="editar editarEntidadTelefono" id="' + telefonos[i].TN_ID_Telefono + '"><span><i class="fa fa-pencil icono font_amarilloHover" aria-hidden="true"></i></span ></a > ' +
                 '<a href="#" class="borrar borrarEntidadTelefono" id="' + telefonos[i].TN_ID_Telefono + '"><span><i class="fa fa-trash icono font_amarilloHover" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span ></a > ' +
                 '</div>' +
                 '</div>' +
@@ -234,6 +236,10 @@ function CargarEntidadTelefono() {
                 '</div>' +
                 '</div>'
             );
+        }
+        desactivarAcciones();
+        if (telefonos.length == 0) {
+            agregarMensajeVacio($("#entidades-body"));
         }
     });
 }
