@@ -1,5 +1,4 @@
-﻿
-let global = 1;
+﻿let global = 1;
 function seleccionado(seleccion) {
     global = document.getElementById('custId').value;
     if (seleccion !== global) {
@@ -43,6 +42,9 @@ function changeVisiblePestannaBody(nuevaPestannaVisible) {
         cargarPestanna1();
     } else if (pestannaVisible == 'pestanna-2-body') {
         cargarPestanna2();
+    } else if (pestannaVisible == 'reporte-body') {
+        $('#reporteFinal').hide();
+        $('#generarReporte-form').show();
     }
 }
 
