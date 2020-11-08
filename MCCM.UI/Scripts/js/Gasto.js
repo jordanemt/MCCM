@@ -57,6 +57,7 @@ function listarGastos() {
         },
         success: function (data) {
             $('#gastos-contenedor').html(data);
+            desactivarAcciones();
         },
         error: function (error) {
             $("#mensaje-body").html(error.responseText);
@@ -85,6 +86,7 @@ function insertarGasto() {
             success: function (data) {
                 $('#gasto-form-modal').modal('hide');
                 $('#gastos-contenedor').append(data);
+                desactivarAcciones();
             },
             error: function (error) {
                 $("#mensaje-body").html(error.responseText);
@@ -121,6 +123,7 @@ function actualizarGasto() {
                 $('#gasto-' + $('#TN_ID_Gasto').val()).remove();
                 $('#gasto-form-modal').modal('hide');
                 $('#gastos-contenedor').append(data);
+                desactivarAcciones();
             },
             error: function (error) {
                 $("#mensaje-body").html(error.responseText);
@@ -201,6 +204,10 @@ function insertarTipo_Gasto() {
 }
 
 function obtenerSumatoriaDeGastosPorTipoPorCaso() {
+    if (sessionStorage.CasoID == null) {
+        alert('Debe seleccionar un gasto');
+        return 0;
+    }
     var url = "/Gasto/ObtenerSumatoriaDeGastosPorTipoPorCaso/";
 
     $.ajax({

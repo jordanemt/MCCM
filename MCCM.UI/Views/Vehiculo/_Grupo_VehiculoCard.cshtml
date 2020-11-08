@@ -6,7 +6,7 @@
         <div>
             @if (Model.TN_Km_Regreso == null)
             {
-                <a href="#" onclick="abrirGrupo_VehiculoActualizarFormModal(@Model.TN_ID_Grupo_Vehiculo)"><span><i class="fa fa-pencil font_negro font_amarilloHover"></i></span></a>
+                <a href="#" class="editar" onclick="abrirGrupo_VehiculoActualizarFormModal(@Model.TN_ID_Grupo_Vehiculo)"><span><i class="fa fa-pencil font_negro font_amarilloHover"></i></span></a>
             }
             <a href="#" class="borrar borrarVehiculo" id="@Model.TN_ID_Grupo_Vehiculo"><span><i class="fa fa-trash font_negro font_amarilloHover" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>
         </div>

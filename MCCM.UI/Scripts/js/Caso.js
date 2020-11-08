@@ -39,6 +39,7 @@ $(document).on("click", ".caso", function () {
         cargarPestanna2();
     }
     $('#reporte-nombre-caso').val($(this).children(".card-body").children().first().children().last().text());
+    cargarGrupoMandoVigente();
 });
 
 

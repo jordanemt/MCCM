@@ -57,6 +57,7 @@ function listarGrupos() {
         },
         success: function (data) {
             $('#grupo-contenedor').html(data);
+            desactivarAcciones();
         },
         error: function (error) {
             $("#mensaje-body").html(error.responseText);
@@ -85,6 +86,7 @@ function insertarGrupo() {
             success: function (data) {
                 $('#grupo-form-modal').modal('hide');
                 $('#grupo-contenedor').append(data);
+                desactivarAcciones();
             },
             error: function (error) {
                 $("#mensaje-body").html(error.responseText);
@@ -121,6 +123,7 @@ function actualizarGrupo() {
                 $('#grupo-' + $('#TN_ID_Grupo').val()).remove();
                 $('#grupo-form-modal').modal('hide');
                 $('#grupo-contenedor').append(data);
+                desactivarAcciones();
             },
             error: function (error) {
                 $("#mensaje-body").html(error.responseText);
@@ -164,6 +167,10 @@ function cargarGrupoMandoVigente() {
             cache: false,
             type: "GET",
             data: { "idCaso": sessionStorage.CasoID },
+            beforeSend: function () {
+                $('#mando-bod').empty();
+                agregarSpinnerCargando($('#mando-body'));
+            },
             success: function (data) {
                 $('#mando-body').html(data);
             },

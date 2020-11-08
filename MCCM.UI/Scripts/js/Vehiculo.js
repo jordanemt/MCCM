@@ -57,6 +57,7 @@ function listarGrupo_Vehiculo() {
         },
         success: function (data) {
             $('#grupo_vehiculo-contenedor').html(data);
+            desactivarAcciones();
         },
         error: function (error) {
             $("#mensaje-body").html(error.responseText);
@@ -85,6 +86,7 @@ function insertarGrupo_Vehiculo() {
             success: function (data) {
                 $('#grupo_vehiculo-form-modal').modal('hide');
                 $('#grupo_vehiculo-contenedor').append(data);
+                desactivarAcciones();
             },
             error: function (error) {
                 $("#mensaje-body").html(error.responseText);
@@ -121,6 +123,7 @@ function actualizarGrupo_Vehiculo() {
                 $('#grupo_vehiculo-' + $('#TN_ID_Grupo_Vehiculo').val()).remove();
                 $('#grupo_vehiculo-form-modal').modal('hide');
                 $('#grupo_vehiculo-contenedor').append(data);
+                desactivarAcciones();
             },
             error: function (error) {
                 $("#mensaje-body").html(error.responseText);

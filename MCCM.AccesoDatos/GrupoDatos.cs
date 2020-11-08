@@ -101,13 +101,14 @@ namespace MCCM.AccesoDatos
                     data.TB_Eliminado = false;
                     context.TMCCM_Grupo_Usuario.RemoveRange(context.TMCCM_Grupo_Usuario.Where(e => e.TN_ID_Grupo == data.TN_ID_Grupo));
                     context.TMCCM_Grupo_Usuario.AddRange(data.TMCCM_Grupo_Usuario);
+                    context.SaveChanges();
                     context.Entry(data).State = EntityState.Modified;
                     foreach (TMCCM_Grupo_Usuario item in data.TMCCM_Grupo_Usuario)
                     {
                         context.Entry(item).Reference(e => e.TMCCM_Usuario).Load();
                     }
                     context.SaveChanges();
-                    return context.Entry(data).Entity;
+                    return data;
                 }
             }
             catch (Exception e)
