@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "Dashboard";
+
 }
 
 @*JS*@
@@ -28,6 +29,10 @@
 
     }
 
+    .plus {
+        display: none;
+    }
+
 </style>
 
 <div class="d-flex flex-sm-row flex-column p-0" id="dashboard-container">
@@ -37,7 +42,7 @@
         <div class="card border-light h-75">
             <div class="card-header gris">
                 <div class="font_blanco" id="casosTitulo">Casos</div>
-                <div><a href="#"><span><i class="fa fa-plus" data-toggle="modal" data-target="#ModalFormCaso"></i></span></a></div>
+                <div class="plus"><a href="#"><span><i class="fa fa-plus" data-toggle="modal" data-target="#ModalFormCaso"></i></span></a></div>
             </div>
             <div class="card-body p-0" id="casos-body" style="overflow-y: scroll">
 
@@ -47,7 +52,7 @@
         <div class="card border-light h-25">
             <div class="card-header gris">
                 <div class="font_blanco">Mando</div>
-                <div><a href="#"><span><i class="fa fa-refresh" onclick="cargarGrupoMandoVigente();"></i></span></a></div>
+                <div class="plus"><a href="#"><span><i class="fa fa-refresh" onclick="cargarGrupoMandoVigente();"></i></span></a></div>
             </div>
             <div class="card-body p-0" id="mando-body" style="overflow-y: scroll">
                 Seleccione un caso
@@ -85,7 +90,7 @@
                 <div class="card border-light mb-3 col-sm-4 p-0">
                     <div class="card-header amarillo">
                         <div>Bitácora</div>
-                        <div><a href="#"><span><i class="fa fa-plus font_grisHover" data-toggle="modal" data-target="#ModalFormEvento"></i></span></a></div>
+                        <div class="plus"><a href="#"><span><i class="fa fa-plus font_grisHover" data-toggle="modal" data-target="#ModalFormEvento"></i></span></a></div>
                     </div>
                     <div class="card-body p-0" id="bitacora-body" style="overflow-y: scroll">
                         
@@ -96,7 +101,7 @@
                 <div class="card border-light mb-3 col-sm-4 p-0">
                     <div class="card-header amarillo">
                         <div>Entidades</div>
-                        <div>
+                        <div class="plus">
                             <a href="#" onclick="seleccionEntidad()"><span><i class="fa fa-plus font_grisHover"></i></span></a>
                         </div>
                     </div>
@@ -123,7 +128,7 @@
                 <div class="card border-light mb-3 col-sm-4 p-0">
                     <div class="card-header amarillo">
                         <div>Tareas</div>
-                        <div><a href="#"><span><i class="fa fa-plus font_grisHover" data-toggle="modal" data-target="#ModalFormTarea"></i></span></a></div>
+                        <div class="plus"><a href="#"><span><i class="fa fa-plus font_grisHover" data-toggle="modal" data-target="#ModalFormTarea"></i></span></a></div>
                     </div>
                     <div class="card-body p-0" id="tareas-body" style="overflow-y: scroll">
 
@@ -140,7 +145,7 @@
                         <div>Gastos Operativos</div>
                         <div>
                             <a href="#"><span><i class="fa fa-calculator font_grisHover" onclick="obtenerSumatoriaDeGastosPorTipoPorCaso()"></i></span></a>
-                            <a href="#"><span><i class="fa fa-plus font_grisHover" onclick="abrirInsertarGastoFormModal()"></i></span></a>
+                            <a href="#" class="plus"><span><i class="fa fa-plus font_grisHover" onclick="abrirInsertarGastoFormModal()"></i></span></a>
                         </div>
                     </div>
                     <div id="gastos-contenedor" class="card-body p-0" style="overflow-y: scroll;">
@@ -153,7 +158,7 @@
                 <div class="card border-light col-sm-6 p-0 h-100">
                     <div class="card-header amarillo">
                         <div>Personal</div>
-                        <div><a href="#"><span><i class="fa fa-plus font_grisHover" onclick="abrirInsertarGrupoFormModal()"></i></span></a></div>
+                        <div class="plus"><a href="#"><span><i class="fa fa-plus font_grisHover" onclick="abrirInsertarGrupoFormModal()"></i></span></a></div>
                     </div>
                     <div id="grupo-contenedor" class="card-body p-0" style="overflow-y: scroll">
                         <div class="text-center">
@@ -165,7 +170,7 @@
                 <div class="card border-light col-sm-3 p-0">
                     <div class="card-header amarillo">
                         <div id="vehiculos-titulo">Vehículos</div>
-                        <div><a href="#"><span><i class="fa fa-plus font_grisHover" onclick="abrirGrupo_VehiculoInsertarFormModal()"></i></span></a></div>
+                        <div class="plus"><a href="#"><span><i class="fa fa-plus font_grisHover" onclick="abrirGrupo_VehiculoInsertarFormModal()"></i></span></a></div>
                     </div>
                     <div id="grupo_vehiculo-contenedor" class="card-body p-0" style="overflow-y: scroll">
                         <div class="text-center">

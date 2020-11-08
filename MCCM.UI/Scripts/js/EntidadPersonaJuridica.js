@@ -3,8 +3,10 @@
 });
 
 $(document).on("click", "#entidadPersonaJuridica", function () {
-    CargarEntidadPersonaJuridica();
-    cargarTipoOrganizacion();
+    if (validarCasoSession()) {
+        CargarEntidadPersonaJuridica();
+        cargarTipoOrganizacion();
+    }
 })
 
 
@@ -150,7 +152,7 @@ function CargarEntidadPersonaJuridica() {
                 '<div class="card-header gris_claro">' +
                 'Persona Jurídica Código #' + entidadPersonaJuridica[i].TN_ID_Persona_Juridica +
                 '<div>' +
-                '<a href="#" class="editarEntidadPersonaJuridica" id="' + entidadPersonaJuridica[i].TN_ID_Persona_Juridica + '"><span><i class="fa fa-pencil icono font_amarilloHover" aria-hidden="true"></i></span ></a > ' +
+                '<a href="#" class="editar editarEntidadPersonaJuridica" id="' + entidadPersonaJuridica[i].TN_ID_Persona_Juridica + '"><span><i class="fa fa-pencil icono font_amarilloHover" aria-hidden="true"></i></span ></a > ' +
                 '<a href="#" class="borrar borrarPersonaJuridica" id="' + entidadPersonaJuridica[i].TN_ID_Persona_Juridica + '"><span><i class="fa fa-trash icono font_amarilloHover" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span ></a > ' +
                 '</div>' +
                 '</div>' +
@@ -185,6 +187,10 @@ function CargarEntidadPersonaJuridica() {
                 '</div>'
 
             );
+        }
+        desactivarAcciones();
+        if (entidadPersonaJuridica.length == 0) {
+            agregarMensajeVacio($("#entidades-body"));
         }
     });
 }

@@ -81,7 +81,6 @@ $(document).on("click", ".ojito", function () {
         
         let caso = new Array();
         caso = JSON.parse(data);
-        alert(caso.TC_Descripcion);
         $("#TN_ID_Caso").val(caso.TN_ID_Caso);
         $("#TN_ECU").val(caso.TN_ECU);
         $("#TC_Nombre_Caso").val(caso.TC_Nombre_Caso);
@@ -207,6 +206,9 @@ function CargarCasos() {
                         '</div>'+
                     '</div>'
             );
+        }
+        if (casos.length == 0) {
+            agregarMensajeVacio($("#casos-body"));
         }
         if (insert == 1) {
             $("#casos-body").children().last().addClass('filaseleccionada');

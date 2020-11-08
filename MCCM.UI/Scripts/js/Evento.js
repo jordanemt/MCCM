@@ -167,7 +167,7 @@ function CargarEventos() {
                     '<div class="card-header gris_claro">' +
                         'Evento Código #' + eventos[i].TN_ID_Evento +
                         '<div>' +
-                        '<a href="#" class="editarEvento" id="' + eventos[i].TN_ID_Evento + '"><span><i class="fa fa-pencil icono font_amarilloHover" aria-hidden="true"></i></span ></a > ' +
+                        '<a href="#" class="editar editarEvento" id="' + eventos[i].TN_ID_Evento + '"><span><i class="fa fa-pencil icono font_amarilloHover" aria-hidden="true"></i></span ></a > ' +
                         '<a href="#" class="borrar borrarEvento" id="' + eventos[i].TN_ID_Evento + '"><span><i class="fa fa-trash icono font_amarilloHover" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span ></a > ' +
                         '</div>' +
                     '</div>' +
@@ -209,6 +209,10 @@ function CargarEventos() {
                 '</div>' +
                 '</div>'
             );
+        }
+        desactivarAcciones();
+        if (eventos.length == 0) {
+            agregarMensajeVacio($("#bitacoras-body"));
         }
     })
 }

@@ -1,7 +1,9 @@
 ﻿$(document).on("click", "#entidadUbicacion", function () {
-    CargarEntidadUbicaciones();
-    cargarTipoUbicacion();
-    cargarUbicacionProvincia();
+    if (validarCasoSession()) {
+        CargarEntidadUbicaciones();
+        cargarTipoUbicacion();
+        cargarUbicacionProvincia();
+    }
 })
 
 /* Agregar Ubicacion*/
@@ -50,7 +52,7 @@ function CargarEntidadUbicaciones() {
                 '<div class="card-header gris_claro">' +
                 ' <div>Ubicación Código #' + entidadUbicaciones[i].TN_ID_Ubicacion + '</div>' +
                 ' <div>' +
-                '<a href="#" class="editarEntidadUbicacion" id="' + entidadUbicaciones[i].TN_ID_Ubicacion + '"><span><i class="fa fa-pencil icono" aria-hidden="true"></i></span></a>' +
+                '<a href="#" class="editar editarEntidadUbicacion" id="' + entidadUbicaciones[i].TN_ID_Ubicacion + '"><span><i class="fa fa-pencil icono" aria-hidden="true"></i></span></a>' +
                 '<a href="#" class="borrar borrarUbicacion" id="' + entidadUbicaciones[i].TN_ID_Ubicacion + '"><span><i class="fa fa-trash icono" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>' +
                 '</div>' +
 
@@ -99,6 +101,10 @@ function CargarEntidadUbicaciones() {
                 '</div>'
 
             );
+        }
+        desactivarAcciones();
+        if (entidadUbicaciones.length == 0) {
+            agregarMensajeVacio($("#entidades-body"));
         }
     });
 }

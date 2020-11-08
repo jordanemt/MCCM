@@ -1,8 +1,9 @@
 ﻿$(document).on("click", "#entidadArma", function () {
-
-    CargarEntidadArmas();
-    cargarArmaMarca();
-    cargarTipoArma();
+    if (validarCasoSession()) {
+        CargarEntidadArmas();
+        cargarArmaMarca();
+        cargarTipoArma();
+    }
 })
 
 //*Agregar Arma
@@ -54,7 +55,7 @@ function CargarEntidadArmas() {
                 '<div class="card-header gris_claro">' +
                 '<div>Arma Código #' + entidadArmas[i].TN_ID_Arma + '</div>' +
                 ' <div>' +
-                ' <a href="#" class="editarEntidadArma" id="' + entidadArmas[i].TN_ID_Arma + '"><span><i class="fa fa-pencil icono" aria-hidden="true"></i></span></a>' +
+                ' <a href="#" class="editar editarEntidadArma" id="' + entidadArmas[i].TN_ID_Arma + '"><span><i class="fa fa-pencil icono" aria-hidden="true"></i></span></a>' +
                 '<a href="#" class="borrar borrarEntidadArma" id="' + entidadArmas[i].TN_ID_Arma + '"><span><i class="fa fa-trash icono" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>' +
                 '</div>' +
 
@@ -95,6 +96,10 @@ function CargarEntidadArmas() {
                 ' </div>' +
                 ' </div>'
             );
+        }
+        desactivarAcciones();
+        if (entidadArmas.length == 0) {
+            agregarMensajeVacio($("#entidades-body"));
         }
     });
 }

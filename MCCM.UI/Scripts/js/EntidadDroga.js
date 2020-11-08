@@ -1,8 +1,9 @@
 ﻿$(document).on("click", "#entidadDroga", function () {
-
-    CargarEntidadDrogas();
-    cargarTipoDroga();
-    iniciarCalendarioDroga(moment());
+    if (validarCasoSession()) {
+        CargarEntidadDrogas();
+        cargarTipoDroga();
+        iniciarCalendarioDroga(moment());
+    }
 })
 
 /*Fecha*/
@@ -66,7 +67,7 @@ function CargarEntidadDrogas() {
                 '<div class="card-header gris_claro">' +
                 ' Droga Código #' + entidadDrogas[i].TN_ID_Droga +
                 '<div>' +
-                '<a href="#" class="editarEntidadDroga" id="' + entidadDrogas[i].TN_ID_Droga + '"><span><i class="fa fa-pencil icono" aria-hidden="true"></i></span></a>' +
+                '<a href="#" class="editar editarEntidadDroga" id="' + entidadDrogas[i].TN_ID_Droga + '"><span><i class="fa fa-pencil icono" aria-hidden="true"></i></span></a>' +
                 '<a href="#" class="borrar borrarEntidadDroga" id="' + entidadDrogas[i].TN_ID_Droga + '"><span><i class="fa fa-trash icono" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>' +
                 '</div>' +
                 '</div>' +
@@ -92,6 +93,10 @@ function CargarEntidadDrogas() {
                 '</div>' +
                 '</div>'
             );
+        }
+        desactivarAcciones();
+        if (entidadDrogas.length == 0) {
+            agregarMensajeVacio($("#entidades-body"));
         }
     });
 }

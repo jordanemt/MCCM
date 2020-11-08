@@ -535,6 +535,7 @@
     <Content Include="Views\Dashboard\_Reporte.cshtml" />
     <Content Include="Views\Grupo\_GrupoMandoCard.cshtml" />
     <Content Include="Views\Dashboard\_ModalMensajeError.cshtml" />
+    <Content Include="Views\Shared\_LayoutLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

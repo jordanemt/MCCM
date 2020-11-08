@@ -1,4 +1,27 @@
-﻿let global = 1;
+﻿$(document).ready(function () {
+    $.ajax({
+        url: "/Dashboard/ObtenerRolUsuario",
+        cache: false,
+        type: "GET",
+        success: function (data) {
+            sessionStorage.Rol = data;
+            if (data != 2) {
+                $(".plus").show();
+                $("#Usuario").show();
+            }
+        }
+    });
+});
+
+$(window).on('beforeunload', function () {
+    sessionStorage.removeItem('CasoID');
+});
+
+$(document).on("click", "#salir", function () {
+    sessionStorage.clear();
+});
+
+let global = 1;
 function seleccionado(seleccion) {
     global = document.getElementById('custId').value;
     if (seleccion !== global) {
@@ -38,9 +61,9 @@ function changeVisiblePestannaBody(nuevaPestannaVisible) {
     $("#" + pestannaVisible).removeClass("d-flex").addClass("d-none");
     $("#" + nuevaPestannaVisible).removeClass("d-none").addClass("d-flex");
     pestannaVisible = nuevaPestannaVisible;
-    if (pestannaVisible == 'pestanna-1-body') {
+    if (pestannaVisible == 'pestanna-1-body' && validarCasoSession()) {
         cargarPestanna1();
-    } else if (pestannaVisible == 'pestanna-2-body') {
+    } else if (pestannaVisible == 'pestanna-2-body' && validarCasoSession()) {
         cargarPestanna2();
     } else if (pestannaVisible == 'reporte-body') {
         $('#reporteFinal').hide();
@@ -389,8 +412,7 @@ function saveAsPDF() {
 var fechaInicioReporte;
 var fechaFinalReporte;
 $(document).ready(function () {
-    //changeVisiblePestannaBody('reporte-body');
-    //generarReporte();
+
 
     $(document).ready(function () {
         selected = true;

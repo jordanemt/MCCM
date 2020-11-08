@@ -1,11 +1,12 @@
 ﻿$(document).on("click", "#entidadPersona", function () {
-
-    CargarEntidadPersona();
-    cargarTipoIdentificacion();
-    cargarPersonaSexo();
-    cargarPersonaGenero();
-    cargarPersonaNacionalidad();
-    iniciarCalendarioPersona(moment());
+    if (validarCasoSession()) {
+        CargarEntidadPersona();
+        cargarTipoIdentificacion();
+        cargarPersonaSexo();
+        cargarPersonaGenero();
+        cargarPersonaNacionalidad();
+        iniciarCalendarioPersona(moment());
+    }
 })
 
 
@@ -177,7 +178,7 @@ function CargarEntidadPersona() {
                 '<div class="card-header ' + color + '" >' +
                 colorTexto +
                 '<div>' +
-                '<a href="#" class="editarEntidadPersona" id="' + entidadPersona[i].TN_ID_Persona + '"><span><i class="fa fa-pencil ' + colorIcono + '" aria-hidden="true"></i></span></a>' +
+                '<a href="#" class="editar editarEntidadPersona" id="' + entidadPersona[i].TN_ID_Persona + '"><span><i class="fa fa-pencil ' + colorIcono + '" aria-hidden="true"></i></span></a>' +
                 '<a href="#" class="borrar borrarEntidadPersona" id="' + entidadPersona[i].TN_ID_Persona + '"><span><i class="fa fa-trash ' + colorIcono + '" data-toggle="modal" data-target="#ModalMensaje" aria-hidden="true"></i></span></a>' +
                 '</div>' +
 
@@ -246,6 +247,10 @@ function CargarEntidadPersona() {
                 '</div>'
 
             );
+        }
+        desactivarAcciones();
+        if (entidadPersona.length == 0) {
+            agregarMensajeVacio($("#entidades-body"));
         }
     });
 }
