@@ -49,7 +49,7 @@
           <Property Name="TC_Descripcion" Type="varchar" MaxLength="100" />
           <Property Name="TB_Eliminado" Type="bit" />
         </EntityType>
-        <EntityType Name="TMCCM_C_Persona_Juridica_Tipo_Organización">
+        <EntityType Name="TMCCM_C_Persona_Juridica_Tipo_Organizacion">
           <Key>
             <PropertyRef Name="TN_ID_Tipo_Organizacion" />
           </Key>
@@ -63,7 +63,7 @@
           </Key>
           <Property Name="TN_ID_Nacionalidad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TC_Descripcion" Type="varchar" MaxLength="100" />
-          <Property Name="TF_Fecha_Creacion" Type="date" />
+          <Property Name="TF_Fecha_Creacion" Type="datetime" />
         </EntityType>
         <EntityType Name="TMCCM_C_Persona_Sexo">
           <Key>
@@ -90,22 +90,13 @@
           <Property Name="TC_Descripcion" Type="varchar" MaxLength="100" />
           <Property Name="TB_Eliminado" Type="bit" />
         </EntityType>
-        <EntityType Name="TMCCM_C_Telefono_Icono_Telefono">
-          <Key>
-            <PropertyRef Name="TN_ID_Icono_Telefono" />
-          </Key>
-          <Property Name="TN_ID_Icono_Telefono" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TC_Descripcion" Type="varchar" MaxLength="100" />
-          <Property Name="TB_Imagen" Type="varbinary(max)" />
-          <Property Name="TB_Eliminado" Type="bit" />
-        </EntityType>
         <EntityType Name="TMCCM_C_Ubicacion_Canton">
           <Key>
             <PropertyRef Name="TN_ID_Canton" />
           </Key>
           <Property Name="TN_ID_Canton" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TN_ID_Provincia" Type="int" />
-          <Property Name="TF_Fecha_Creacion" Type="date" />
+          <Property Name="TF_Fecha_Creacion" Type="datetime" />
           <Property Name="TC_Descripcion" Type="varchar" MaxLength="100" />
           <Property Name="TB_Eliminado" Type="bit" />
         </EntityType>
@@ -115,7 +106,7 @@
           </Key>
           <Property Name="TN_ID_Distrito" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TN_ID_Canton" Type="int" />
-          <Property Name="TF_Fecha_Creacion" Type="date" />
+          <Property Name="TF_Fecha_Creacion" Type="datetime" />
           <Property Name="TC_Descripcion" Type="varchar" MaxLength="100" />
           <Property Name="TB_Eliminado" Type="bit" />
         </EntityType>
@@ -124,7 +115,7 @@
             <PropertyRef Name="TN_ID_Provincia" />
           </Key>
           <Property Name="TN_ID_Provincia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TF_Fecha_Creacion" Type="date" />
+          <Property Name="TF_Fecha_Creacion" Type="datetime" />
           <Property Name="TC_Descripcion" Type="varchar" MaxLength="100" />
           <Property Name="TB_Eliminado" Type="bit" />
         </EntityType>
@@ -143,7 +134,7 @@
           </Key>
           <Property Name="TN_ID_Clase_Vehiculo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TC_Descripcion" Type="varchar" MaxLength="100" />
-          <Property Name="TF_Fecha_Creacion" Type="date" />
+          <Property Name="TF_Fecha_Creacion" Type="datetime" />
           <Property Name="TB_Eliminado" Type="bit" />
         </EntityType>
         <EntityType Name="TMCCM_C_Vehiculo_Color">
@@ -152,7 +143,7 @@
           </Key>
           <Property Name="TN_ID_Color_Vehiculo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TC_Descripcion" Type="varchar" MaxLength="100" />
-          <Property Name="TF_Fecha_Creacion" Type="date" />
+          <Property Name="TF_Fecha_Creacion" Type="datetime" />
           <Property Name="TB_Eliminado" Type="bit" />
         </EntityType>
         <EntityType Name="TMCCM_C_Vehiculo_Marca">
@@ -161,7 +152,7 @@
           </Key>
           <Property Name="TN_ID_Marca_Vehiculo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TC_Descripcion" Type="varchar" MaxLength="100" />
-          <Property Name="TF_Fecha_Creacion" Type="date" />
+          <Property Name="TF_Fecha_Creacion" Type="datetime" />
           <Property Name="TB_Eliminado" Type="bit" />
         </EntityType>
         <EntityType Name="TMCCM_Caso">
@@ -174,11 +165,11 @@
           <Property Name="TC_Enfoque_Trabajo" Type="varchar" MaxLength="100" />
           <Property Name="TC_Area_Trabajo" Type="varchar" MaxLength="100" />
           <Property Name="TN_Nivel" Type="int" />
+          <Property Name="TF_Fecha" Type="datetime" />
+          <Property Name="TC_Delito" Type="varchar" MaxLength="100" />
           <Property Name="TC_Descripcion" Type="varchar" MaxLength="200" />
           <Property Name="TC_Fuente" Type="varchar" MaxLength="200" />
           <Property Name="TB_Eliminado" Type="bit" />
-          <Property Name="TC_Delito" Type="varchar" MaxLength="100" />
-          <Property Name="TF_Fecha" Type="datetime" />
         </EntityType>
         <EntityType Name="TMCCM_Entidad_Arma">
           <Key>
@@ -191,8 +182,8 @@
           <Property Name="TC_Modelo_Arma" Type="varchar" MaxLength="40" />
           <Property Name="TC_Calibre" Type="varchar" MaxLength="15" />
           <Property Name="TC_Serie" Type="varchar" MaxLength="20" />
-          <Property Name="TF_Fecha_Creacion" Type="date" />
-          <Property Name="TF_Fecha_Modificacion" Type="date" />
+          <Property Name="TF_Fecha_Creacion" Type="datetime" />
+          <Property Name="TF_Fecha_Modificacion" Type="datetime" />
           <Property Name="TC_Creado_Por" Type="varchar" MaxLength="50" />
           <Property Name="TC_Modificado_Por" Type="varchar" MaxLength="50" />
           <Property Name="TB_Eliminado" Type="bit" />
@@ -209,7 +200,7 @@
           <Property Name="TC_Nombre" Type="varchar" MaxLength="50" />
           <Property Name="TC_Detalle" Type="varchar" MaxLength="200" />
           <Property Name="TN_Cantidad" Type="int" />
-          <Property Name="TF_Fecha_Decomiso" Type="date" />
+          <Property Name="TF_Fecha_Decomiso" Type="datetime" />
           <Property Name="TB_Eliminado" Type="bit" />
           <Property Name="TF_Fecha_Creacion" Type="datetime" />
           <Property Name="TF_Fecha_Modificacion" Type="datetime" />
@@ -237,14 +228,14 @@
           <Property Name="TB_Fallecido" Type="bit" />
           <Property Name="TN_Autopsia" Type="int" />
           <Property Name="TB_Exp_Criminal" Type="bit" />
-          <Property Name="TF_Fecha_Creacion" Type="date" />
-          <Property Name="TF_Fecha_Modificacion" Type="date" />
+          <Property Name="TF_Fecha_Creacion" Type="datetime" />
+          <Property Name="TF_Fecha_Modificacion" Type="datetime" />
           <Property Name="TC_Creado_Por" Type="varchar" MaxLength="50" />
           <Property Name="TC_Modificado_Por" Type="varchar" MaxLength="50" />
           <Property Name="TB_Verificado" Type="bit" />
           <Property Name="TB_Eliminado" Type="bit" />
-          <Property Name="TC_Comentario" Type="varchar" MaxLength="100" />
           <Property Name="TC_Alias" Type="varchar" MaxLength="30" />
+          <Property Name="TC_Comentario" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="TMCCM_Entidad_Persona_Juridica">
           <Key>
@@ -253,14 +244,13 @@
           <Property Name="TN_ID_Persona_Juridica" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TN_ID_Caso" Type="int" />
           <Property Name="TC_ID_Cedula_Juridica" Type="varchar" MaxLength="50" />
-          <Property Name="TC_Nombre_Organización" Type="varchar" MaxLength="100" />
+          <Property Name="TC_Nombre_Organizacion" Type="varchar" MaxLength="100" />
           <Property Name="TC_Nombre_Comercial" Type="varchar" MaxLength="100" />
-          <Property Name="TB_Fotografia" Type="varbinary(max)" />
           <Property Name="TN_ID_Tipo_Organizacion" Type="int" />
           <Property Name="TC_Sitio_Web" Type="varchar" MaxLength="200" />
           <Property Name="TC_Comentario" Type="varchar" MaxLength="100" />
-          <Property Name="TF_Fecha_Creacion" Type="date" />
-          <Property Name="TF_Fecha_Modificacion" Type="date" />
+          <Property Name="TF_Fecha_Creacion" Type="datetime" />
+          <Property Name="TF_Fecha_Modificacion" Type="datetime" />
           <Property Name="TC_Creado_Por" Type="varchar" MaxLength="50" />
           <Property Name="TC_Modificado_Por" Type="varchar" MaxLength="50" />
           <Property Name="TB_Verificado" Type="bit" />
@@ -273,15 +263,14 @@
           <Property Name="TN_ID_Telefono" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TN_ID_Caso" Type="int" />
           <Property Name="TN_ID_Proveedor" Type="int" />
-          <Property Name="TN_ID_Icono_Telefono" Type="int" />
           <Property Name="TC_Comentario" Type="varchar" MaxLength="100" />
           <Property Name="TN_Numero" Type="int" />
           <Property Name="TF_Fecha_Creacion" Type="datetime" />
           <Property Name="TF_Fecha_Modificacion" Type="datetime" />
           <Property Name="TC_Creado_Por" Type="varchar" MaxLength="50" />
           <Property Name="TC_Modificado_Por" Type="varchar" MaxLength="50" />
-          <Property Name="TB_Eliminado" Type="bit" />
           <Property Name="TB_Verificado" Type="bit" />
+          <Property Name="TB_Eliminado" Type="bit" />
         </EntityType>
         <EntityType Name="TMCCM_Entidad_Ubicacion">
           <Key>
@@ -296,8 +285,8 @@
           <Property Name="TC_Sennas" Type="varchar" MaxLength="100" />
           <Property Name="TD_Latitud" Type="float" />
           <Property Name="TD_Longitud" Type="float" />
-          <Property Name="TF_Fecha_Creacion" Type="date" />
-          <Property Name="TF_Fecha_Modificacion" Type="date" />
+          <Property Name="TF_Fecha_Creacion" Type="datetime" />
+          <Property Name="TF_Fecha_Modificacion" Type="datetime" />
           <Property Name="TC_Creado_Por" Type="varchar" MaxLength="50" />
           <Property Name="TC_Modificado_Por" Type="varchar" MaxLength="50" />
           <Property Name="TB_Eliminado" Type="bit" />
@@ -312,17 +301,17 @@
           <Property Name="TN_ID_Marca_Vehiculo" Type="int" />
           <Property Name="TN_ID_Color_Vehiculo" Type="int" />
           <Property Name="TC_Placa" Type="varchar" MaxLength="20" />
+          <Property Name="TN_ID_Clase_Vehiculo" Type="int" />
           <Property Name="TC_Estilo" Type="varchar" MaxLength="50" />
           <Property Name="TC_Comentario" Type="varchar" MaxLength="100" />
           <Property Name="TN_Anno" Type="int" />
-          <Property Name="TF_Fecha_Creacion" Type="date" />
-          <Property Name="TF_Fecha_Modificacion" Type="date" />
+          <Property Name="TF_Fecha_Creacion" Type="datetime" />
+          <Property Name="TF_Fecha_Modificacion" Type="datetime" />
           <Property Name="TC_Creado_Por" Type="varchar" MaxLength="50" />
           <Property Name="TC_Modificado_Por" Type="varchar" MaxLength="50" />
           <Property Name="TB_Eliminado" Type="bit" />
           <Property Name="TB_Verificado" Type="bit" />
           <Property Name="TB_Fotografia" Type="varbinary(max)" />
-          <Property Name="TN_ID_Clase_Vehiculo" Type="int" />
         </EntityType>
         <EntityType Name="TMCCM_Evento">
           <Key>
@@ -333,7 +322,7 @@
           <Property Name="TF_Fecha" Type="datetime" />
           <Property Name="TC_Informa" Type="varchar" MaxLength="50" />
           <Property Name="TC_Lugar" Type="varchar" MaxLength="50" />
-          <Property Name="TC_Novedad" Type="varchar" MaxLength="200" />
+          <Property Name="TC_Novedad" Type="varchar" MaxLength="500" />
           <Property Name="TB_Eliminado" Type="bit" />
         </EntityType>
         <EntityType Name="TMCCM_Gasto">
@@ -359,8 +348,8 @@
           <Property Name="TC_Zona" Type="varchar" MaxLength="50" />
           <Property Name="TF_Fecha_Inicio" Type="date" />
           <Property Name="TF_Fecha_Final" Type="date" />
-          <Property Name="TB_Eliminado" Type="bit" />
           <Property Name="TB_Mando" Type="bit" />
+          <Property Name="TB_Eliminado" Type="bit" />
         </EntityType>
         <EntityType Name="TMCCM_Grupo_Usuario">
           <Key>
@@ -404,8 +393,8 @@
           <Property Name="TF_Fecha" Type="datetime" />
           <Property Name="TC_Diligencia" Type="varchar" MaxLength="100" />
           <Property Name="TC_Lugar" Type="varchar" MaxLength="50" />
-          <Property Name="TB_Eliminado" Type="bit" />
           <Property Name="TN_Tipo" Type="int" />
+          <Property Name="TB_Eliminado" Type="bit" />
         </EntityType>
         <EntityType Name="TMCCM_Usuario">
           <Key>
@@ -418,8 +407,8 @@
           <Property Name="TC_Segundo_Apellido" Type="varchar" MaxLength="30" />
           <Property Name="TC_Correo" Type="varchar" MaxLength="100" />
           <Property Name="TC_Contrasennia" Type="varchar" MaxLength="20" />
-          <Property Name="TB_Eliminado" Type="bit" />
           <Property Name="TB_En_Grupo" Type="bit" />
+          <Property Name="TB_Eliminado" Type="bit" />
         </EntityType>
         <EntityType Name="TMCCM_Usuario_Rol">
           <Key>
@@ -435,9 +424,9 @@
           </Key>
           <Property Name="TN_ID_Vehiculo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TC_Placa" Type="varchar" MaxLength="20" />
-          <Property Name="TC_Kilometraje" Type="int" />
-          <Property Name="TB_En_Uso" Type="bit" />
+          <Property Name="TN_Kilometraje" Type="int" />
           <Property Name="TC_Descripcion" Type="varchar" MaxLength="100" />
+          <Property Name="TB_En_Uso" Type="bit" />
           <Property Name="TB_Eliminado" Type="bit" />
         </EntityType>
         <Association Name="FK_TMCCM_C_Arma_Marca_REL_TMCCM_Entidad_Arma">
@@ -500,11 +489,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TMCCM_C_Persona_Juridica_Tipo_Organización_REL_TMCCM_Entidad_Persona_Juridica">
-          <End Role="TMCCM_C_Persona_Juridica_Tipo_Organización" Type="Self.TMCCM_C_Persona_Juridica_Tipo_Organización" Multiplicity="0..1" />
+        <Association Name="FK_TMCCM_C_Persona_Juridica_Tipo_Organizacion_REL_TMCCM_Entidad_Persona_Juridica">
+          <End Role="TMCCM_C_Persona_Juridica_Tipo_Organizacion" Type="Self.TMCCM_C_Persona_Juridica_Tipo_Organizacion" Multiplicity="0..1" />
           <End Role="TMCCM_Entidad_Persona_Juridica" Type="Self.TMCCM_Entidad_Persona_Juridica" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TMCCM_C_Persona_Juridica_Tipo_Organización">
+            <Principal Role="TMCCM_C_Persona_Juridica_Tipo_Organizacion">
               <PropertyRef Name="TN_ID_Tipo_Organizacion" />
             </Principal>
             <Dependent Role="TMCCM_Entidad_Persona_Juridica">
@@ -557,18 +546,6 @@
             </Principal>
             <Dependent Role="TMCCM_Entidad_Telefono">
               <PropertyRef Name="TN_ID_Proveedor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TMCCM_C_Telefono_Icono_Telefono_REL_TMCCM_Entidad_Telefono">
-          <End Role="TMCCM_C_Telefono_Icono_Telefono" Type="Self.TMCCM_C_Telefono_Icono_Telefono" Multiplicity="0..1" />
-          <End Role="TMCCM_Entidad_Telefono" Type="Self.TMCCM_Entidad_Telefono" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TMCCM_C_Telefono_Icono_Telefono">
-              <PropertyRef Name="TN_ID_Icono_Telefono" />
-            </Principal>
-            <Dependent Role="TMCCM_Entidad_Telefono">
-              <PropertyRef Name="TN_ID_Icono_Telefono" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -902,12 +879,11 @@
           <EntitySet Name="TMCCM_C_Droga_Tipo_Droga" EntityType="Self.TMCCM_C_Droga_Tipo_Droga" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TMCCM_C_Gasto_Tipo_Gasto" EntityType="Self.TMCCM_C_Gasto_Tipo_Gasto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TMCCM_C_Persona_Genero" EntityType="Self.TMCCM_C_Persona_Genero" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TMCCM_C_Persona_Juridica_Tipo_Organización" EntityType="Self.TMCCM_C_Persona_Juridica_Tipo_Organización" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TMCCM_C_Persona_Juridica_Tipo_Organizacion" EntityType="Self.TMCCM_C_Persona_Juridica_Tipo_Organizacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TMCCM_C_Persona_Nacionalidad" EntityType="Self.TMCCM_C_Persona_Nacionalidad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TMCCM_C_Persona_Sexo" EntityType="Self.TMCCM_C_Persona_Sexo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TMCCM_C_Persona_Tipo_Identificacion" EntityType="Self.TMCCM_C_Persona_Tipo_Identificacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TMCCM_C_Telefono_Empresa_Telefonica" EntityType="Self.TMCCM_C_Telefono_Empresa_Telefonica" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TMCCM_C_Telefono_Icono_Telefono" EntityType="Self.TMCCM_C_Telefono_Icono_Telefono" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TMCCM_C_Ubicacion_Canton" EntityType="Self.TMCCM_C_Ubicacion_Canton" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TMCCM_C_Ubicacion_Distrito" EntityType="Self.TMCCM_C_Ubicacion_Distrito" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TMCCM_C_Ubicacion_Provincia" EntityType="Self.TMCCM_C_Ubicacion_Provincia" Schema="dbo" store:Type="Tables" />
@@ -953,8 +929,8 @@
             <End Role="TMCCM_C_Persona_Genero" EntitySet="TMCCM_C_Persona_Genero" />
             <End Role="TMCCM_Entidad_Persona" EntitySet="TMCCM_Entidad_Persona" />
           </AssociationSet>
-          <AssociationSet Name="FK_TMCCM_C_Persona_Juridica_Tipo_Organización_REL_TMCCM_Entidad_Persona_Juridica" Association="Self.FK_TMCCM_C_Persona_Juridica_Tipo_Organización_REL_TMCCM_Entidad_Persona_Juridica">
-            <End Role="TMCCM_C_Persona_Juridica_Tipo_Organización" EntitySet="TMCCM_C_Persona_Juridica_Tipo_Organización" />
+          <AssociationSet Name="FK_TMCCM_C_Persona_Juridica_Tipo_Organizacion_REL_TMCCM_Entidad_Persona_Juridica" Association="Self.FK_TMCCM_C_Persona_Juridica_Tipo_Organizacion_REL_TMCCM_Entidad_Persona_Juridica">
+            <End Role="TMCCM_C_Persona_Juridica_Tipo_Organizacion" EntitySet="TMCCM_C_Persona_Juridica_Tipo_Organizacion" />
             <End Role="TMCCM_Entidad_Persona_Juridica" EntitySet="TMCCM_Entidad_Persona_Juridica" />
           </AssociationSet>
           <AssociationSet Name="FK_TMCCM_C_Persona_Nacionalidad_REL_TMCCM_Entidad_Persona" Association="Self.FK_TMCCM_C_Persona_Nacionalidad_REL_TMCCM_Entidad_Persona">
@@ -971,10 +947,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_TMCCM_C_Telefono_Empresa_Telefonica_REL_TMCCM_Entidad_Telefono" Association="Self.FK_TMCCM_C_Telefono_Empresa_Telefonica_REL_TMCCM_Entidad_Telefono">
             <End Role="TMCCM_C_Telefono_Empresa_Telefonica" EntitySet="TMCCM_C_Telefono_Empresa_Telefonica" />
-            <End Role="TMCCM_Entidad_Telefono" EntitySet="TMCCM_Entidad_Telefono" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TMCCM_C_Telefono_Icono_Telefono_REL_TMCCM_Entidad_Telefono" Association="Self.FK_TMCCM_C_Telefono_Icono_Telefono_REL_TMCCM_Entidad_Telefono">
-            <End Role="TMCCM_C_Telefono_Icono_Telefono" EntitySet="TMCCM_C_Telefono_Icono_Telefono" />
             <End Role="TMCCM_Entidad_Telefono" EntitySet="TMCCM_Entidad_Telefono" />
           </AssociationSet>
           <AssociationSet Name="FK_TMCCM_C_Ubicacion_Canton_REL_TMCCM_C_Ubicacion_Distrito" Association="Self.FK_TMCCM_C_Ubicacion_Canton_REL_TMCCM_C_Ubicacion_Distrito">
@@ -1103,12 +1075,11 @@
           <EntitySet Name="TMCCM_C_Droga_Tipo_Droga" EntityType="MCCMModel.TMCCM_C_Droga_Tipo_Droga" />
           <EntitySet Name="TMCCM_C_Gasto_Tipo_Gasto" EntityType="MCCMModel.TMCCM_C_Gasto_Tipo_Gasto" />
           <EntitySet Name="TMCCM_C_Persona_Genero" EntityType="MCCMModel.TMCCM_C_Persona_Genero" />
-          <EntitySet Name="TMCCM_C_Persona_Juridica_Tipo_Organización" EntityType="MCCMModel.TMCCM_C_Persona_Juridica_Tipo_Organización" />
+          <EntitySet Name="TMCCM_C_Persona_Juridica_Tipo_Organizacion" EntityType="MCCMModel.TMCCM_C_Persona_Juridica_Tipo_Organizacion" />
           <EntitySet Name="TMCCM_C_Persona_Nacionalidad" EntityType="MCCMModel.TMCCM_C_Persona_Nacionalidad" />
           <EntitySet Name="TMCCM_C_Persona_Sexo" EntityType="MCCMModel.TMCCM_C_Persona_Sexo" />
           <EntitySet Name="TMCCM_C_Persona_Tipo_Identificacion" EntityType="MCCMModel.TMCCM_C_Persona_Tipo_Identificacion" />
           <EntitySet Name="TMCCM_C_Telefono_Empresa_Telefonica" EntityType="MCCMModel.TMCCM_C_Telefono_Empresa_Telefonica" />
-          <EntitySet Name="TMCCM_C_Telefono_Icono_Telefono" EntityType="MCCMModel.TMCCM_C_Telefono_Icono_Telefono" />
           <EntitySet Name="TMCCM_C_Ubicacion_Canton" EntityType="MCCMModel.TMCCM_C_Ubicacion_Canton" />
           <EntitySet Name="TMCCM_C_Ubicacion_Distrito" EntityType="MCCMModel.TMCCM_C_Ubicacion_Distrito" />
           <EntitySet Name="TMCCM_C_Ubicacion_Provincia" EntityType="MCCMModel.TMCCM_C_Ubicacion_Provincia" />
@@ -1153,8 +1124,8 @@
             <End Role="TMCCM_C_Persona_Genero" EntitySet="TMCCM_C_Persona_Genero" />
             <End Role="TMCCM_Entidad_Persona" EntitySet="TMCCM_Entidad_Persona" />
           </AssociationSet>
-          <AssociationSet Name="FK_TMCCM_C_Persona_Juridica_Tipo_Organización_REL_TMCCM_Entidad_Persona_Juridica" Association="MCCMModel.FK_TMCCM_C_Persona_Juridica_Tipo_Organización_REL_TMCCM_Entidad_Persona_Juridica">
-            <End Role="TMCCM_C_Persona_Juridica_Tipo_Organización" EntitySet="TMCCM_C_Persona_Juridica_Tipo_Organización" />
+          <AssociationSet Name="FK_TMCCM_C_Persona_Juridica_Tipo_Organizacion_REL_TMCCM_Entidad_Persona_Juridica" Association="MCCMModel.FK_TMCCM_C_Persona_Juridica_Tipo_Organizacion_REL_TMCCM_Entidad_Persona_Juridica">
+            <End Role="TMCCM_C_Persona_Juridica_Tipo_Organizacion" EntitySet="TMCCM_C_Persona_Juridica_Tipo_Organizacion" />
             <End Role="TMCCM_Entidad_Persona_Juridica" EntitySet="TMCCM_Entidad_Persona_Juridica" />
           </AssociationSet>
           <AssociationSet Name="FK_TMCCM_C_Persona_Nacionalidad_REL_TMCCM_Entidad_Persona" Association="MCCMModel.FK_TMCCM_C_Persona_Nacionalidad_REL_TMCCM_Entidad_Persona">
@@ -1171,10 +1142,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_TMCCM_C_Telefono_Empresa_Telefonica_REL_TMCCM_Entidad_Telefono" Association="MCCMModel.FK_TMCCM_C_Telefono_Empresa_Telefonica_REL_TMCCM_Entidad_Telefono">
             <End Role="TMCCM_C_Telefono_Empresa_Telefonica" EntitySet="TMCCM_C_Telefono_Empresa_Telefonica" />
-            <End Role="TMCCM_Entidad_Telefono" EntitySet="TMCCM_Entidad_Telefono" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TMCCM_C_Telefono_Icono_Telefono_REL_TMCCM_Entidad_Telefono" Association="MCCMModel.FK_TMCCM_C_Telefono_Icono_Telefono_REL_TMCCM_Entidad_Telefono">
-            <End Role="TMCCM_C_Telefono_Icono_Telefono" EntitySet="TMCCM_C_Telefono_Icono_Telefono" />
             <End Role="TMCCM_Entidad_Telefono" EntitySet="TMCCM_Entidad_Telefono" />
           </AssociationSet>
           <AssociationSet Name="FK_TMCCM_C_Ubicacion_Canton_REL_TMCCM_C_Ubicacion_Distrito" Association="MCCMModel.FK_TMCCM_C_Ubicacion_Canton_REL_TMCCM_C_Ubicacion_Distrito">
@@ -1281,7 +1248,7 @@
             <End Role="TMCCM_Rol" EntitySet="TMCCM_Rol" />
             <End Role="TMCCM_Usuario" EntitySet="TMCCM_Usuario" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <ComplexType Name="sp_Obtener_Catalogo_Usuario_Result">
           <Property Type="Int32" Name="TN_ID_Usuario" Nullable="false" />
           <Property Type="String" Name="TC_Identificacion" Nullable="true" MaxLength="30" />
@@ -1350,14 +1317,14 @@
           <Property Name="TB_Eliminado" Type="Boolean" />
           <NavigationProperty Name="TMCCM_Entidad_Persona" Relationship="MCCMModel.FK_TMCCM_C_Persona_Genero_REL_TMCCM_Entidad_Persona" FromRole="TMCCM_C_Persona_Genero" ToRole="TMCCM_Entidad_Persona" />
         </EntityType>
-        <EntityType Name="TMCCM_C_Persona_Juridica_Tipo_Organización">
+        <EntityType Name="TMCCM_C_Persona_Juridica_Tipo_Organizacion">
           <Key>
             <PropertyRef Name="TN_ID_Tipo_Organizacion" />
           </Key>
           <Property Name="TN_ID_Tipo_Organizacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TC_Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="TB_Eliminado" Type="Boolean" />
-          <NavigationProperty Name="TMCCM_Entidad_Persona_Juridica" Relationship="MCCMModel.FK_TMCCM_C_Persona_Juridica_Tipo_Organización_REL_TMCCM_Entidad_Persona_Juridica" FromRole="TMCCM_C_Persona_Juridica_Tipo_Organización" ToRole="TMCCM_Entidad_Persona_Juridica" />
+          <NavigationProperty Name="TMCCM_Entidad_Persona_Juridica" Relationship="MCCMModel.FK_TMCCM_C_Persona_Juridica_Tipo_Organizacion_REL_TMCCM_Entidad_Persona_Juridica" FromRole="TMCCM_C_Persona_Juridica_Tipo_Organizacion" ToRole="TMCCM_Entidad_Persona_Juridica" />
         </EntityType>
         <EntityType Name="TMCCM_C_Persona_Nacionalidad">
           <Key>
@@ -1365,7 +1332,7 @@
           </Key>
           <Property Name="TN_ID_Nacionalidad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TC_Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="TF_Fecha_Creacion" Type="DateTime" Precision="0" />
+          <Property Name="TF_Fecha_Creacion" Type="DateTime" Precision="3" />
           <NavigationProperty Name="TMCCM_Entidad_Persona" Relationship="MCCMModel.FK_TMCCM_C_Persona_Nacionalidad_REL_TMCCM_Entidad_Persona" FromRole="TMCCM_C_Persona_Nacionalidad" ToRole="TMCCM_Entidad_Persona" />
         </EntityType>
         <EntityType Name="TMCCM_C_Persona_Sexo">
@@ -1396,23 +1363,13 @@
           <Property Name="TB_Eliminado" Type="Boolean" />
           <NavigationProperty Name="TMCCM_Entidad_Telefono" Relationship="MCCMModel.FK_TMCCM_C_Telefono_Empresa_Telefonica_REL_TMCCM_Entidad_Telefono" FromRole="TMCCM_C_Telefono_Empresa_Telefonica" ToRole="TMCCM_Entidad_Telefono" />
         </EntityType>
-        <EntityType Name="TMCCM_C_Telefono_Icono_Telefono">
-          <Key>
-            <PropertyRef Name="TN_ID_Icono_Telefono" />
-          </Key>
-          <Property Name="TN_ID_Icono_Telefono" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TC_Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="TB_Imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="TB_Eliminado" Type="Boolean" />
-          <NavigationProperty Name="TMCCM_Entidad_Telefono" Relationship="MCCMModel.FK_TMCCM_C_Telefono_Icono_Telefono_REL_TMCCM_Entidad_Telefono" FromRole="TMCCM_C_Telefono_Icono_Telefono" ToRole="TMCCM_Entidad_Telefono" />
-        </EntityType>
         <EntityType Name="TMCCM_C_Ubicacion_Canton">
           <Key>
             <PropertyRef Name="TN_ID_Canton" />
           </Key>
           <Property Name="TN_ID_Canton" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TN_ID_Provincia" Type="Int32" />
-          <Property Name="TF_Fecha_Creacion" Type="DateTime" Precision="0" />
+          <Property Name="TF_Fecha_Creacion" Type="DateTime" Precision="3" />
           <Property Name="TC_Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="TB_Eliminado" Type="Boolean" />
           <NavigationProperty Name="TMCCM_C_Ubicacion_Distrito" Relationship="MCCMModel.FK_TMCCM_C_Ubicacion_Canton_REL_TMCCM_C_Ubicacion_Distrito" FromRole="TMCCM_C_Ubicacion_Canton" ToRole="TMCCM_C_Ubicacion_Distrito" />
@@ -1425,7 +1382,7 @@
           </Key>
           <Property Name="TN_ID_Distrito" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TN_ID_Canton" Type="Int32" />
-          <Property Name="TF_Fecha_Creacion" Type="DateTime" Precision="0" />
+          <Property Name="TF_Fecha_Creacion" Type="DateTime" Precision="3" />
           <Property Name="TC_Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="TB_Eliminado" Type="Boolean" />
           <NavigationProperty Name="TMCCM_C_Ubicacion_Canton" Relationship="MCCMModel.FK_TMCCM_C_Ubicacion_Canton_REL_TMCCM_C_Ubicacion_Distrito" FromRole="TMCCM_C_Ubicacion_Distrito" ToRole="TMCCM_C_Ubicacion_Canton" />
@@ -1436,7 +1393,7 @@
             <PropertyRef Name="TN_ID_Provincia" />
           </Key>
           <Property Name="TN_ID_Provincia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TF_Fecha_Creacion" Type="DateTime" Precision="0" />
+          <Property Name="TF_Fecha_Creacion" Type="DateTime" Precision="3" />
           <Property Name="TC_Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="TB_Eliminado" Type="Boolean" />
           <NavigationProperty Name="TMCCM_C_Ubicacion_Canton" Relationship="MCCMModel.FK_TMCCM_C_Ubicacion_Provincia_REL_TMCCM_C_Ubicacion_Canton" FromRole="TMCCM_C_Ubicacion_Provincia" ToRole="TMCCM_C_Ubicacion_Canton" />
@@ -1458,7 +1415,7 @@
           </Key>
           <Property Name="TN_ID_Clase_Vehiculo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TC_Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="TF_Fecha_Creacion" Type="DateTime" Precision="0" />
+          <Property Name="TF_Fecha_Creacion" Type="DateTime" Precision="3" />
           <Property Name="TB_Eliminado" Type="Boolean" />
           <NavigationProperty Name="TMCCM_Entidad_Vehiculo" Relationship="MCCMModel.FK_TMCCM_C_Vehiculo_Clase_REL_TMCCM_Entidad_Vehiculo" FromRole="TMCCM_C_Vehiculo_Clase" ToRole="TMCCM_Entidad_Vehiculo" />
         </EntityType>
@@ -1468,7 +1425,7 @@
           </Key>
           <Property Name="TN_ID_Color_Vehiculo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TC_Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="TF_Fecha_Creacion" Type="DateTime" Precision="0" />
+          <Property Name="TF_Fecha_Creacion" Type="DateTime" Precision="3" />
           <Property Name="TB_Eliminado" Type="Boolean" />
           <NavigationProperty Name="TMCCM_Entidad_Vehiculo" Relationship="MCCMModel.FK_TMCCM_C_Vehiculo_Color_REL_TMCCM_Entidad_Vehiculo" FromRole="TMCCM_C_Vehiculo_Color" ToRole="TMCCM_Entidad_Vehiculo" />
         </EntityType>
@@ -1478,7 +1435,7 @@
           </Key>
           <Property Name="TN_ID_Marca_Vehiculo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TC_Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="TF_Fecha_Creacion" Type="DateTime" Precision="0" />
+          <Property Name="TF_Fecha_Creacion" Type="DateTime" Precision="3" />
           <Property Name="TB_Eliminado" Type="Boolean" />
           <NavigationProperty Name="TMCCM_Entidad_Vehiculo" Relationship="MCCMModel.FK_TMCCM_C_Vehiculo_Marca_REL_TMCCM_Entidad_Vehiculo" FromRole="TMCCM_C_Vehiculo_Marca" ToRole="TMCCM_Entidad_Vehiculo" />
         </EntityType>
@@ -1492,11 +1449,11 @@
           <Property Name="TC_Enfoque_Trabajo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="TC_Area_Trabajo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="TN_Nivel" Type="Int32" />
+          <Property Name="TF_Fecha" Type="DateTime" Precision="3" />
+          <Property Name="TC_Delito" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="TC_Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="TC_Fuente" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="TB_Eliminado" Type="Boolean" />
-          <Property Name="TC_Delito" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="TF_Fecha" Type="DateTime" Precision="3" />
           <NavigationProperty Name="TMCCM_Entidad_Arma" Relationship="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_Arma" FromRole="TMCCM_Caso" ToRole="TMCCM_Entidad_Arma" />
           <NavigationProperty Name="TMCCM_Entidad_Droga" Relationship="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_Droga" FromRole="TMCCM_Caso" ToRole="TMCCM_Entidad_Droga" />
           <NavigationProperty Name="TMCCM_Entidad_Persona" Relationship="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_PErsona" FromRole="TMCCM_Caso" ToRole="TMCCM_Entidad_Persona" />
@@ -1520,8 +1477,8 @@
           <Property Name="TC_Modelo_Arma" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="TC_Calibre" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="TC_Serie" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="TF_Fecha_Creacion" Type="DateTime" Precision="0" />
-          <Property Name="TF_Fecha_Modificacion" Type="DateTime" Precision="0" />
+          <Property Name="TF_Fecha_Creacion" Type="DateTime" Precision="3" />
+          <Property Name="TF_Fecha_Modificacion" Type="DateTime" Precision="3" />
           <Property Name="TC_Creado_Por" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TC_Modificado_Por" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TB_Eliminado" Type="Boolean" />
@@ -1541,7 +1498,7 @@
           <Property Name="TC_Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TC_Detalle" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="TN_Cantidad" Type="Int32" />
-          <Property Name="TF_Fecha_Decomiso" Type="DateTime" Precision="0" />
+          <Property Name="TF_Fecha_Decomiso" Type="DateTime" Precision="3" />
           <Property Name="TB_Eliminado" Type="Boolean" />
           <Property Name="TF_Fecha_Creacion" Type="DateTime" Precision="3" />
           <Property Name="TF_Fecha_Modificacion" Type="DateTime" Precision="3" />
@@ -1571,14 +1528,14 @@
           <Property Name="TB_Fallecido" Type="Boolean" />
           <Property Name="TN_Autopsia" Type="Int32" />
           <Property Name="TB_Exp_Criminal" Type="Boolean" />
-          <Property Name="TF_Fecha_Creacion" Type="DateTime" Precision="0" />
-          <Property Name="TF_Fecha_Modificacion" Type="DateTime" Precision="0" />
+          <Property Name="TF_Fecha_Creacion" Type="DateTime" Precision="3" />
+          <Property Name="TF_Fecha_Modificacion" Type="DateTime" Precision="3" />
           <Property Name="TC_Creado_Por" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TC_Modificado_Por" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TB_Verificado" Type="Boolean" />
           <Property Name="TB_Eliminado" Type="Boolean" />
-          <Property Name="TC_Comentario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="TC_Alias" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="TC_Comentario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TMCCM_C_Persona_Genero" Relationship="MCCMModel.FK_TMCCM_C_Persona_Genero_REL_TMCCM_Entidad_Persona" FromRole="TMCCM_Entidad_Persona" ToRole="TMCCM_C_Persona_Genero" />
           <NavigationProperty Name="TMCCM_C_Persona_Nacionalidad" Relationship="MCCMModel.FK_TMCCM_C_Persona_Nacionalidad_REL_TMCCM_Entidad_Persona" FromRole="TMCCM_Entidad_Persona" ToRole="TMCCM_C_Persona_Nacionalidad" />
           <NavigationProperty Name="TMCCM_C_Persona_Sexo" Relationship="MCCMModel.FK_TMCCM_C_Persona_Sexo_REL_TMCCM_Entidad_Persona" FromRole="TMCCM_Entidad_Persona" ToRole="TMCCM_C_Persona_Sexo" />
@@ -1592,19 +1549,18 @@
           <Property Name="TN_ID_Persona_Juridica" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TN_ID_Caso" Type="Int32" />
           <Property Name="TC_ID_Cedula_Juridica" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TC_Nombre_Organización" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TC_Nombre_Organizacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="TC_Nombre_Comercial" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="TB_Fotografia" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="TN_ID_Tipo_Organizacion" Type="Int32" />
           <Property Name="TC_Sitio_Web" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="TC_Comentario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="TF_Fecha_Creacion" Type="DateTime" Precision="0" />
-          <Property Name="TF_Fecha_Modificacion" Type="DateTime" Precision="0" />
+          <Property Name="TF_Fecha_Creacion" Type="DateTime" Precision="3" />
+          <Property Name="TF_Fecha_Modificacion" Type="DateTime" Precision="3" />
           <Property Name="TC_Creado_Por" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TC_Modificado_Por" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TB_Verificado" Type="Boolean" />
           <Property Name="TB_Eliminado" Type="Boolean" />
-          <NavigationProperty Name="TMCCM_C_Persona_Juridica_Tipo_Organización" Relationship="MCCMModel.FK_TMCCM_C_Persona_Juridica_Tipo_Organización_REL_TMCCM_Entidad_Persona_Juridica" FromRole="TMCCM_Entidad_Persona_Juridica" ToRole="TMCCM_C_Persona_Juridica_Tipo_Organización" />
+          <NavigationProperty Name="TMCCM_C_Persona_Juridica_Tipo_Organizacion" Relationship="MCCMModel.FK_TMCCM_C_Persona_Juridica_Tipo_Organizacion_REL_TMCCM_Entidad_Persona_Juridica" FromRole="TMCCM_Entidad_Persona_Juridica" ToRole="TMCCM_C_Persona_Juridica_Tipo_Organizacion" />
           <NavigationProperty Name="TMCCM_Caso" Relationship="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_Persona_Juridica" FromRole="TMCCM_Entidad_Persona_Juridica" ToRole="TMCCM_Caso" />
         </EntityType>
         <EntityType Name="TMCCM_Entidad_Telefono">
@@ -1614,17 +1570,15 @@
           <Property Name="TN_ID_Telefono" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TN_ID_Caso" Type="Int32" />
           <Property Name="TN_ID_Proveedor" Type="Int32" />
-          <Property Name="TN_ID_Icono_Telefono" Type="Int32" />
           <Property Name="TC_Comentario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="TN_Numero" Type="Int32" />
           <Property Name="TF_Fecha_Creacion" Type="DateTime" Precision="3" />
           <Property Name="TF_Fecha_Modificacion" Type="DateTime" Precision="3" />
           <Property Name="TC_Creado_Por" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TC_Modificado_Por" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TB_Eliminado" Type="Boolean" />
           <Property Name="TB_Verificado" Type="Boolean" />
+          <Property Name="TB_Eliminado" Type="Boolean" />
           <NavigationProperty Name="TMCCM_C_Telefono_Empresa_Telefonica" Relationship="MCCMModel.FK_TMCCM_C_Telefono_Empresa_Telefonica_REL_TMCCM_Entidad_Telefono" FromRole="TMCCM_Entidad_Telefono" ToRole="TMCCM_C_Telefono_Empresa_Telefonica" />
-          <NavigationProperty Name="TMCCM_C_Telefono_Icono_Telefono" Relationship="MCCMModel.FK_TMCCM_C_Telefono_Icono_Telefono_REL_TMCCM_Entidad_Telefono" FromRole="TMCCM_Entidad_Telefono" ToRole="TMCCM_C_Telefono_Icono_Telefono" />
           <NavigationProperty Name="TMCCM_Caso" Relationship="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Entidad_Telefono" FromRole="TMCCM_Entidad_Telefono" ToRole="TMCCM_Caso" />
         </EntityType>
         <EntityType Name="TMCCM_Entidad_Ubicacion">
@@ -1640,8 +1594,8 @@
           <Property Name="TC_Sennas" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="TD_Latitud" Type="Double" />
           <Property Name="TD_Longitud" Type="Double" />
-          <Property Name="TF_Fecha_Creacion" Type="DateTime" Precision="0" />
-          <Property Name="TF_Fecha_Modificacion" Type="DateTime" Precision="0" />
+          <Property Name="TF_Fecha_Creacion" Type="DateTime" Precision="3" />
+          <Property Name="TF_Fecha_Modificacion" Type="DateTime" Precision="3" />
           <Property Name="TC_Creado_Por" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TC_Modificado_Por" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TB_Eliminado" Type="Boolean" />
@@ -1661,17 +1615,17 @@
           <Property Name="TN_ID_Marca_Vehiculo" Type="Int32" />
           <Property Name="TN_ID_Color_Vehiculo" Type="Int32" />
           <Property Name="TC_Placa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TN_ID_Clase_Vehiculo" Type="Int32" />
           <Property Name="TC_Estilo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TC_Comentario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="TN_Anno" Type="Int32" />
-          <Property Name="TF_Fecha_Creacion" Type="DateTime" Precision="0" />
-          <Property Name="TF_Fecha_Modificacion" Type="DateTime" Precision="0" />
+          <Property Name="TF_Fecha_Creacion" Type="DateTime" Precision="3" />
+          <Property Name="TF_Fecha_Modificacion" Type="DateTime" Precision="3" />
           <Property Name="TC_Creado_Por" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TC_Modificado_Por" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TB_Eliminado" Type="Boolean" />
           <Property Name="TB_Verificado" Type="Boolean" />
           <Property Name="TB_Fotografia" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="TN_ID_Clase_Vehiculo" Type="Int32" />
           <NavigationProperty Name="TMCCM_C_Vehiculo_Clase" Relationship="MCCMModel.FK_TMCCM_C_Vehiculo_Clase_REL_TMCCM_Entidad_Vehiculo" FromRole="TMCCM_Entidad_Vehiculo" ToRole="TMCCM_C_Vehiculo_Clase" />
           <NavigationProperty Name="TMCCM_C_Vehiculo_Color" Relationship="MCCMModel.FK_TMCCM_C_Vehiculo_Color_REL_TMCCM_Entidad_Vehiculo" FromRole="TMCCM_Entidad_Vehiculo" ToRole="TMCCM_C_Vehiculo_Color" />
           <NavigationProperty Name="TMCCM_C_Vehiculo_Marca" Relationship="MCCMModel.FK_TMCCM_C_Vehiculo_Marca_REL_TMCCM_Entidad_Vehiculo" FromRole="TMCCM_Entidad_Vehiculo" ToRole="TMCCM_C_Vehiculo_Marca" />
@@ -1686,7 +1640,7 @@
           <Property Name="TF_Fecha" Type="DateTime" Precision="3" />
           <Property Name="TC_Informa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TC_Lugar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TC_Novedad" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="TC_Novedad" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="TB_Eliminado" Type="Boolean" />
           <NavigationProperty Name="TMCCM_Caso" Relationship="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Evento" FromRole="TMCCM_Evento" ToRole="TMCCM_Caso" />
         </EntityType>
@@ -1715,8 +1669,8 @@
           <Property Name="TC_Zona" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TF_Fecha_Inicio" Type="DateTime" Precision="0" />
           <Property Name="TF_Fecha_Final" Type="DateTime" Precision="0" />
-          <Property Name="TB_Eliminado" Type="Boolean" />
           <Property Name="TB_Mando" Type="Boolean" />
+          <Property Name="TB_Eliminado" Type="Boolean" />
           <NavigationProperty Name="TMCCM_Caso" Relationship="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Grupo" FromRole="TMCCM_Grupo" ToRole="TMCCM_Caso" />
           <NavigationProperty Name="TMCCM_Grupo_Usuario" Relationship="MCCMModel.FK_TMCCM_Grupo_REL_TMCCM_Grupo_Usuario" FromRole="TMCCM_Grupo" ToRole="TMCCM_Grupo_Usuario" />
           <NavigationProperty Name="TMCCM_Grupo_Vehiculo" Relationship="MCCMModel.FK_TMCCM_Grupo_REL_TMCCM_Grupo_Vehiculo" FromRole="TMCCM_Grupo" ToRole="TMCCM_Grupo_Vehiculo" />
@@ -1768,8 +1722,8 @@
           <Property Name="TF_Fecha" Type="DateTime" Precision="3" />
           <Property Name="TC_Diligencia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="TC_Lugar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TB_Eliminado" Type="Boolean" />
           <Property Name="TN_Tipo" Type="Int32" />
+          <Property Name="TB_Eliminado" Type="Boolean" />
           <NavigationProperty Name="TMCCM_Caso" Relationship="MCCMModel.FK_TMCCM_Caso_REL_TMCCM_Tarea" FromRole="TMCCM_Tarea" ToRole="TMCCM_Caso" />
           <NavigationProperty Name="TMCCM_Usuario" Relationship="MCCMModel.FK_TMCCM_Usuario_REL_TMCCM_Tarea" FromRole="TMCCM_Tarea" ToRole="TMCCM_Usuario" />
         </EntityType>
@@ -1784,8 +1738,8 @@
           <Property Name="TC_Segundo_Apellido" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="TC_Correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="TC_Contrasennia" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="TB_Eliminado" Type="Boolean" />
           <Property Name="TB_En_Grupo" Type="Boolean" />
+          <Property Name="TB_Eliminado" Type="Boolean" />
           <NavigationProperty Name="TMCCM_Grupo_Usuario" Relationship="MCCMModel.FK_TMCCM_Usuario_REL_TMCCM_Grupo_Usuario" FromRole="TMCCM_Usuario" ToRole="TMCCM_Grupo_Usuario" />
           <NavigationProperty Name="TMCCM_Tarea" Relationship="MCCMModel.FK_TMCCM_Usuario_REL_TMCCM_Tarea" FromRole="TMCCM_Usuario" ToRole="TMCCM_Tarea" />
           <NavigationProperty Name="TMCCM_Rol" Relationship="MCCMModel.TMCCM_Usuario_Rol" FromRole="TMCCM_Usuario" ToRole="TMCCM_Rol" />
@@ -1796,9 +1750,9 @@
           </Key>
           <Property Name="TN_ID_Vehiculo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TC_Placa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="TC_Kilometraje" Type="Int32" />
-          <Property Name="TB_En_Uso" Type="Boolean" />
+          <Property Name="TN_Kilometraje" Type="Int32" />
           <Property Name="TC_Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TB_En_Uso" Type="Boolean" />
           <Property Name="TB_Eliminado" Type="Boolean" />
           <NavigationProperty Name="TMCCM_Grupo_Vehiculo" Relationship="MCCMModel.FK_TMCCM_Vehiculo_REL_TMCCM_Grupo_Vehiculo" FromRole="TMCCM_Vehiculo" ToRole="TMCCM_Grupo_Vehiculo" />
         </EntityType>
@@ -1862,11 +1816,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TMCCM_C_Persona_Juridica_Tipo_Organización_REL_TMCCM_Entidad_Persona_Juridica">
-          <End Type="MCCMModel.TMCCM_C_Persona_Juridica_Tipo_Organización" Role="TMCCM_C_Persona_Juridica_Tipo_Organización" Multiplicity="0..1" />
+        <Association Name="FK_TMCCM_C_Persona_Juridica_Tipo_Organizacion_REL_TMCCM_Entidad_Persona_Juridica">
+          <End Type="MCCMModel.TMCCM_C_Persona_Juridica_Tipo_Organizacion" Role="TMCCM_C_Persona_Juridica_Tipo_Organizacion" Multiplicity="0..1" />
           <End Type="MCCMModel.TMCCM_Entidad_Persona_Juridica" Role="TMCCM_Entidad_Persona_Juridica" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TMCCM_C_Persona_Juridica_Tipo_Organización">
+            <Principal Role="TMCCM_C_Persona_Juridica_Tipo_Organizacion">
               <PropertyRef Name="TN_ID_Tipo_Organizacion" />
             </Principal>
             <Dependent Role="TMCCM_Entidad_Persona_Juridica">
@@ -1919,18 +1873,6 @@
             </Principal>
             <Dependent Role="TMCCM_Entidad_Telefono">
               <PropertyRef Name="TN_ID_Proveedor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TMCCM_C_Telefono_Icono_Telefono_REL_TMCCM_Entidad_Telefono">
-          <End Type="MCCMModel.TMCCM_C_Telefono_Icono_Telefono" Role="TMCCM_C_Telefono_Icono_Telefono" Multiplicity="0..1" />
-          <End Type="MCCMModel.TMCCM_Entidad_Telefono" Role="TMCCM_Entidad_Telefono" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TMCCM_C_Telefono_Icono_Telefono">
-              <PropertyRef Name="TN_ID_Icono_Telefono" />
-            </Principal>
-            <Dependent Role="TMCCM_Entidad_Telefono">
-              <PropertyRef Name="TN_ID_Icono_Telefono" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2238,7 +2180,7 @@
           <End Type="MCCMModel.TMCCM_Rol" Role="TMCCM_Rol" Multiplicity="*" />
           <End Type="MCCMModel.TMCCM_Usuario" Role="TMCCM_Usuario" Multiplicity="*" />
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -2293,9 +2235,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TMCCM_C_Persona_Juridica_Tipo_Organización">
-            <EntityTypeMapping TypeName="MCCMModel.TMCCM_C_Persona_Juridica_Tipo_Organización">
-              <MappingFragment StoreEntitySet="TMCCM_C_Persona_Juridica_Tipo_Organización">
+          <EntitySetMapping Name="TMCCM_C_Persona_Juridica_Tipo_Organizacion">
+            <EntityTypeMapping TypeName="MCCMModel.TMCCM_C_Persona_Juridica_Tipo_Organizacion">
+              <MappingFragment StoreEntitySet="TMCCM_C_Persona_Juridica_Tipo_Organizacion">
                 <ScalarProperty Name="TB_Eliminado" ColumnName="TB_Eliminado" />
                 <ScalarProperty Name="TC_Descripcion" ColumnName="TC_Descripcion" />
                 <ScalarProperty Name="TN_ID_Tipo_Organizacion" ColumnName="TN_ID_Tipo_Organizacion" />
@@ -2336,16 +2278,6 @@
                 <ScalarProperty Name="TB_Eliminado" ColumnName="TB_Eliminado" />
                 <ScalarProperty Name="TC_Descripcion" ColumnName="TC_Descripcion" />
                 <ScalarProperty Name="TN_ID_Proveedor" ColumnName="TN_ID_Proveedor" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TMCCM_C_Telefono_Icono_Telefono">
-            <EntityTypeMapping TypeName="MCCMModel.TMCCM_C_Telefono_Icono_Telefono">
-              <MappingFragment StoreEntitySet="TMCCM_C_Telefono_Icono_Telefono">
-                <ScalarProperty Name="TB_Eliminado" ColumnName="TB_Eliminado" />
-                <ScalarProperty Name="TB_Imagen" ColumnName="TB_Imagen" />
-                <ScalarProperty Name="TC_Descripcion" ColumnName="TC_Descripcion" />
-                <ScalarProperty Name="TN_ID_Icono_Telefono" ColumnName="TN_ID_Icono_Telefono" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2424,11 +2356,11 @@
           <EntitySetMapping Name="TMCCM_Caso">
             <EntityTypeMapping TypeName="MCCMModel.TMCCM_Caso">
               <MappingFragment StoreEntitySet="TMCCM_Caso">
-                <ScalarProperty Name="TF_Fecha" ColumnName="TF_Fecha" />
-                <ScalarProperty Name="TC_Delito" ColumnName="TC_Delito" />
                 <ScalarProperty Name="TB_Eliminado" ColumnName="TB_Eliminado" />
                 <ScalarProperty Name="TC_Fuente" ColumnName="TC_Fuente" />
                 <ScalarProperty Name="TC_Descripcion" ColumnName="TC_Descripcion" />
+                <ScalarProperty Name="TC_Delito" ColumnName="TC_Delito" />
+                <ScalarProperty Name="TF_Fecha" ColumnName="TF_Fecha" />
                 <ScalarProperty Name="TN_Nivel" ColumnName="TN_Nivel" />
                 <ScalarProperty Name="TC_Area_Trabajo" ColumnName="TC_Area_Trabajo" />
                 <ScalarProperty Name="TC_Enfoque_Trabajo" ColumnName="TC_Enfoque_Trabajo" />
@@ -2480,8 +2412,8 @@
           <EntitySetMapping Name="TMCCM_Entidad_Persona">
             <EntityTypeMapping TypeName="MCCMModel.TMCCM_Entidad_Persona">
               <MappingFragment StoreEntitySet="TMCCM_Entidad_Persona">
-                <ScalarProperty Name="TC_Alias" ColumnName="TC_Alias" />
                 <ScalarProperty Name="TC_Comentario" ColumnName="TC_Comentario" />
+                <ScalarProperty Name="TC_Alias" ColumnName="TC_Alias" />
                 <ScalarProperty Name="TB_Eliminado" ColumnName="TB_Eliminado" />
                 <ScalarProperty Name="TB_Verificado" ColumnName="TB_Verificado" />
                 <ScalarProperty Name="TC_Modificado_Por" ColumnName="TC_Modificado_Por" />
@@ -2519,9 +2451,8 @@
                 <ScalarProperty Name="TC_Comentario" ColumnName="TC_Comentario" />
                 <ScalarProperty Name="TC_Sitio_Web" ColumnName="TC_Sitio_Web" />
                 <ScalarProperty Name="TN_ID_Tipo_Organizacion" ColumnName="TN_ID_Tipo_Organizacion" />
-                <ScalarProperty Name="TB_Fotografia" ColumnName="TB_Fotografia" />
                 <ScalarProperty Name="TC_Nombre_Comercial" ColumnName="TC_Nombre_Comercial" />
-                <ScalarProperty Name="TC_Nombre_Organización" ColumnName="TC_Nombre_Organización" />
+                <ScalarProperty Name="TC_Nombre_Organizacion" ColumnName="TC_Nombre_Organizacion" />
                 <ScalarProperty Name="TC_ID_Cedula_Juridica" ColumnName="TC_ID_Cedula_Juridica" />
                 <ScalarProperty Name="TN_ID_Caso" ColumnName="TN_ID_Caso" />
                 <ScalarProperty Name="TN_ID_Persona_Juridica" ColumnName="TN_ID_Persona_Juridica" />
@@ -2531,15 +2462,14 @@
           <EntitySetMapping Name="TMCCM_Entidad_Telefono">
             <EntityTypeMapping TypeName="MCCMModel.TMCCM_Entidad_Telefono">
               <MappingFragment StoreEntitySet="TMCCM_Entidad_Telefono">
-                <ScalarProperty Name="TB_Verificado" ColumnName="TB_Verificado" />
                 <ScalarProperty Name="TB_Eliminado" ColumnName="TB_Eliminado" />
+                <ScalarProperty Name="TB_Verificado" ColumnName="TB_Verificado" />
                 <ScalarProperty Name="TC_Modificado_Por" ColumnName="TC_Modificado_Por" />
                 <ScalarProperty Name="TC_Creado_Por" ColumnName="TC_Creado_Por" />
                 <ScalarProperty Name="TF_Fecha_Modificacion" ColumnName="TF_Fecha_Modificacion" />
                 <ScalarProperty Name="TF_Fecha_Creacion" ColumnName="TF_Fecha_Creacion" />
                 <ScalarProperty Name="TN_Numero" ColumnName="TN_Numero" />
                 <ScalarProperty Name="TC_Comentario" ColumnName="TC_Comentario" />
-                <ScalarProperty Name="TN_ID_Icono_Telefono" ColumnName="TN_ID_Icono_Telefono" />
                 <ScalarProperty Name="TN_ID_Proveedor" ColumnName="TN_ID_Proveedor" />
                 <ScalarProperty Name="TN_ID_Caso" ColumnName="TN_ID_Caso" />
                 <ScalarProperty Name="TN_ID_Telefono" ColumnName="TN_ID_Telefono" />
@@ -2570,7 +2500,6 @@
           <EntitySetMapping Name="TMCCM_Entidad_Vehiculo">
             <EntityTypeMapping TypeName="MCCMModel.TMCCM_Entidad_Vehiculo">
               <MappingFragment StoreEntitySet="TMCCM_Entidad_Vehiculo">
-                <ScalarProperty Name="TN_ID_Clase_Vehiculo" ColumnName="TN_ID_Clase_Vehiculo" />
                 <ScalarProperty Name="TB_Fotografia" ColumnName="TB_Fotografia" />
                 <ScalarProperty Name="TB_Verificado" ColumnName="TB_Verificado" />
                 <ScalarProperty Name="TB_Eliminado" ColumnName="TB_Eliminado" />
@@ -2581,6 +2510,7 @@
                 <ScalarProperty Name="TN_Anno" ColumnName="TN_Anno" />
                 <ScalarProperty Name="TC_Comentario" ColumnName="TC_Comentario" />
                 <ScalarProperty Name="TC_Estilo" ColumnName="TC_Estilo" />
+                <ScalarProperty Name="TN_ID_Clase_Vehiculo" ColumnName="TN_ID_Clase_Vehiculo" />
                 <ScalarProperty Name="TC_Placa" ColumnName="TC_Placa" />
                 <ScalarProperty Name="TN_ID_Color_Vehiculo" ColumnName="TN_ID_Color_Vehiculo" />
                 <ScalarProperty Name="TN_ID_Marca_Vehiculo" ColumnName="TN_ID_Marca_Vehiculo" />
@@ -2619,8 +2549,8 @@
           <EntitySetMapping Name="TMCCM_Grupo">
             <EntityTypeMapping TypeName="MCCMModel.TMCCM_Grupo">
               <MappingFragment StoreEntitySet="TMCCM_Grupo">
-                <ScalarProperty Name="TB_Mando" ColumnName="TB_Mando" />
                 <ScalarProperty Name="TB_Eliminado" ColumnName="TB_Eliminado" />
+                <ScalarProperty Name="TB_Mando" ColumnName="TB_Mando" />
                 <ScalarProperty Name="TF_Fecha_Final" ColumnName="TF_Fecha_Final" />
                 <ScalarProperty Name="TF_Fecha_Inicio" ColumnName="TF_Fecha_Inicio" />
                 <ScalarProperty Name="TC_Zona" ColumnName="TC_Zona" />
@@ -2667,8 +2597,8 @@
           <EntitySetMapping Name="TMCCM_Tarea">
             <EntityTypeMapping TypeName="MCCMModel.TMCCM_Tarea">
               <MappingFragment StoreEntitySet="TMCCM_Tarea">
-                <ScalarProperty Name="TN_Tipo" ColumnName="TN_Tipo" />
                 <ScalarProperty Name="TB_Eliminado" ColumnName="TB_Eliminado" />
+                <ScalarProperty Name="TN_Tipo" ColumnName="TN_Tipo" />
                 <ScalarProperty Name="TC_Lugar" ColumnName="TC_Lugar" />
                 <ScalarProperty Name="TC_Diligencia" ColumnName="TC_Diligencia" />
                 <ScalarProperty Name="TF_Fecha" ColumnName="TF_Fecha" />
@@ -2681,8 +2611,8 @@
           <EntitySetMapping Name="TMCCM_Usuario">
             <EntityTypeMapping TypeName="MCCMModel.TMCCM_Usuario">
               <MappingFragment StoreEntitySet="TMCCM_Usuario">
-                <ScalarProperty Name="TB_En_Grupo" ColumnName="TB_En_Grupo" />
                 <ScalarProperty Name="TB_Eliminado" ColumnName="TB_Eliminado" />
+                <ScalarProperty Name="TB_En_Grupo" ColumnName="TB_En_Grupo" />
                 <ScalarProperty Name="TC_Contrasennia" ColumnName="TC_Contrasennia" />
                 <ScalarProperty Name="TC_Correo" ColumnName="TC_Correo" />
                 <ScalarProperty Name="TC_Segundo_Apellido" ColumnName="TC_Segundo_Apellido" />
@@ -2697,9 +2627,9 @@
             <EntityTypeMapping TypeName="MCCMModel.TMCCM_Vehiculo">
               <MappingFragment StoreEntitySet="TMCCM_Vehiculo">
                 <ScalarProperty Name="TB_Eliminado" ColumnName="TB_Eliminado" />
-                <ScalarProperty Name="TC_Descripcion" ColumnName="TC_Descripcion" />
                 <ScalarProperty Name="TB_En_Uso" ColumnName="TB_En_Uso" />
-                <ScalarProperty Name="TC_Kilometraje" ColumnName="TC_Kilometraje" />
+                <ScalarProperty Name="TC_Descripcion" ColumnName="TC_Descripcion" />
+                <ScalarProperty Name="TN_Kilometraje" ColumnName="TN_Kilometraje" />
                 <ScalarProperty Name="TC_Placa" ColumnName="TC_Placa" />
                 <ScalarProperty Name="TN_ID_Vehiculo" ColumnName="TN_ID_Vehiculo" />
               </MappingFragment>

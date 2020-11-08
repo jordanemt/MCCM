@@ -17,7 +17,7 @@ namespace MCCM.ReglasNegocio
            
             return c_PersonaJuridicaTipoOrganizacion.ListarPersonaJuridicaTipoOrganizacion();
         }
-        public void InsertarPersonaJuridicaTipoOrganizacion(TMCCM_C_Persona_Juridica_Tipo_Organización personaJuridicaTipoOrganización)
+        public void InsertarPersonaJuridicaTipoOrganizacion(TMCCM_C_Persona_Juridica_Tipo_Organizacion personaJuridicaTipoOrganización)
         {
             c_PersonaJuridicaTipoOrganizacion.InsertarPersonaJuridicaTipoOrganizacion(personaJuridicaTipoOrganización);
         }

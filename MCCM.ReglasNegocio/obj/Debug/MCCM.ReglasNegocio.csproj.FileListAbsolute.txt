@@ -7,6 +7,7 @@ C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.ReglasNegocio\bin\Debug\Newtonsoft.
 C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.ReglasNegocio\bin\Debug\MCCM.AccesoDatos.pdb
 C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.ReglasNegocio\bin\Debug\MCCM.AccesoDatos.dll.config
 C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.ReglasNegocio\bin\Debug\MCCM.Entidad.pdb
+C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.ReglasNegocio\bin\Debug\MCCM.Entidad.dll.config
 C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.ReglasNegocio\bin\Debug\EntityFramework.xml
 C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.ReglasNegocio\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Jordan\Documents\Proyects\MCCM\MCCM.ReglasNegocio\obj\Debug\MCCM.ReglasNegocio.csprojAssemblyReference.cache

@@ -22,7 +22,6 @@ namespace MCCM.AccesoDatos
                     {
                         TN_ID_Caso = entidadTelefono.TN_ID_Caso,
                         TN_ID_Proveedor = entidadTelefono.TN_ID_Proveedor,
-                        TN_ID_Icono_Telefono = entidadTelefono.TN_ID_Icono_Telefono,
                         TN_Numero = entidadTelefono.TN_Numero,
                         TC_Comentario = entidadTelefono.TC_Comentario,
                         TF_Fecha_Creacion = entidadTelefono.TF_Fecha_Creacion,
@@ -52,7 +51,6 @@ namespace MCCM.AccesoDatos
                     {
                         result.TN_ID_Telefono = (int)entidadTelefonoDTO.TN_ID_Telefono;
                         result.TN_ID_Proveedor = entidadTelefonoDTO.TN_ID_Proveedor;
-                        result.TN_ID_Icono_Telefono = entidadTelefonoDTO.TN_ID_Icono_Telefono;
                         result.TN_Numero = entidadTelefonoDTO.TN_Numero;
                         result.TC_Comentario = entidadTelefonoDTO.TC_Comentario;
                         result.TF_Fecha_Creacion = entidadTelefonoDTO.TF_Fecha_Creacion;
@@ -132,7 +130,6 @@ namespace MCCM.AccesoDatos
                                    {
                                        TN_ID_Telefono = telefonoItem.TN_ID_Telefono,
                                        TN_ID_Proveedor = telefonoItem.TN_ID_Proveedor,
-                                       TN_ID_Icono_Telefono = telefonoItem.TN_ID_Icono_Telefono,
                                        TN_Numero_Telefono = telefonoItem.TN_Numero,
                                        TC_Comentario_Telefono = telefonoItem.TC_Comentario,
                                        TF_Fecha_Creacion_Telefono = telefonoItem.TF_Fecha_Creacion,

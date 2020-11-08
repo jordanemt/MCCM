@@ -14,7 +14,7 @@ namespace MCCM.AccesoDatos
         {
             using (var context = new MCCMEntities())
             {
-                var anonimo = from tipoOrganizacionItem in context.TMCCM_C_Persona_Juridica_Tipo_Organización
+                var anonimo = from tipoOrganizacionItem in context.TMCCM_C_Persona_Juridica_Tipo_Organizacion
                               where tipoOrganizacionItem.TB_Eliminado == false
                               select new
                               {
@@ -24,12 +24,12 @@ namespace MCCM.AccesoDatos
                 return JsonConvert.SerializeObject(anonimo, Formatting.Indented);
             }
         }
-        public void InsertarPersonaJuridicaTipoOrganizacion(TMCCM_C_Persona_Juridica_Tipo_Organización personaJuridicaTipoOrganizacion)
+        public void InsertarPersonaJuridicaTipoOrganizacion(TMCCM_C_Persona_Juridica_Tipo_Organizacion personaJuridicaTipoOrganizacion)
         {
             using (var context = new MCCMEntities())
             {
                 personaJuridicaTipoOrganizacion.TB_Eliminado = false;
-                context.TMCCM_C_Persona_Juridica_Tipo_Organización.Add(personaJuridicaTipoOrganizacion);
+                context.TMCCM_C_Persona_Juridica_Tipo_Organizacion.Add(personaJuridicaTipoOrganizacion);
                 context.SaveChanges();
 
             }
