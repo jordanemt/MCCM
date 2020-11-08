@@ -87,6 +87,7 @@ function CargarTareas() {
         url: "/Tarea/ListarTarea",
         data: { "caso": sessionStorage.CasoID },
         beforeSend: function () {
+            
             agregarSpinnerCargando($("#tareas-body"));
         },
         error: function (data) {

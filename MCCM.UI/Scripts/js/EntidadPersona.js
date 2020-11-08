@@ -140,7 +140,10 @@ function CargarEntidadPersona() {
     $.ajax({
         type: "GET",
         url: "/E_Persona/Listar_E_Persona",
-        data: { "caso": sessionStorage.CasoID }
+        data: { "caso": sessionStorage.CasoID },
+        beforeSend: function () {
+            agregarSpinnerCargando($("#entidades-body"));
+        }
     }).done(function (data) {
         let entidadPersona = new Array();
         entidadPersona = JSON.parse(data);

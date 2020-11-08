@@ -1,8 +1,74 @@
-﻿var pestannaVisible = 'pestanna-1-body';
+﻿
+let global = 1;
+function seleccionado(seleccion) {
+    global = document.getElementById('custId').value;
+    if (seleccion !== global) {
+        document.getElementById('custId').value = seleccion;
+        global = document.getElementById('custId').value;
+    }
+}
+
+function seleccionEntidad() {
+    global = document.getElementById('custId').value;
+    if (global == 1) {
+        $('#entidadPersonaModal').modal('show');
+    }
+    if (global == 2) {
+        $('#entidadPersonaJuridicaModal').modal('show');
+    }
+    if (global == 3) {
+        $('#entidadVehículoModal').modal('show');
+    }
+    if (global == 4) {
+        $('#entidadUbicacionModal').modal('show');
+    }
+    if (global == 5) {
+        $('#entidadTelefonoModal').modal('show');
+    }
+    if (global == 6) {
+        $('#entidadArmaModal').modal('show');
+    }
+    if (global == 7) {
+        $('#entidadDrogaModal').modal('show');
+    }
+}
+
+
+var pestannaVisible = 'pestanna-1-body';
 function changeVisiblePestannaBody(nuevaPestannaVisible) {
     $("#" + pestannaVisible).removeClass("d-flex").addClass("d-none");
     $("#" + nuevaPestannaVisible).removeClass("d-none").addClass("d-flex");
     pestannaVisible = nuevaPestannaVisible;
+    if (pestannaVisible == 'pestanna-1-body') {
+        cargarPestanna1();
+    } else if (pestannaVisible == 'pestanna-2-body') {
+        cargarPestanna2();
+    }
+}
+
+function cargarPestanna1() {
+    CargarEventos();
+    CargarTareas();
+    if (global == 1) {
+        CargarEntidadPersona();
+    } else if (global == 2) {
+        CargarEntidadPersonaJuridica();
+    } else if (global == 3) {
+        CargarEntidadVehiculos();
+    } else if (global == 4) {
+        CargarEntidadUbicaciones();
+    } else if (global == 5) {
+        CargarEntidadTelefono();
+    } else if (global == 6) {
+        CargarEntidadArmas();
+    } else if (global == 7) {
+        CargarEntidadDrogas();
+    } 
+}
+
+function cargarPestanna2() {
+    listarGastos();
+    listarGrupos();
 }
 
 function sumArray(array) {
@@ -117,8 +183,8 @@ function agregarEntidadesReporte(data) {
             title: {
                 display: true,
                 text: ['Entidades', 'Total: ' + sumArray(Object.values(data))],
-                    fontSize: 18,
-                    position: 'top'
+                fontSize: 18,
+                position: 'top'
             },
             scales: {
                 yAxes: [{
@@ -343,7 +409,7 @@ $(document).ready(function () {
         "showCustomRangeLabel": false,
         "opens": "center"
     }, function (start, end, label) {
-            fechaInicioReporte = start.format('YYYY-MM-DD');
-            fechaFinalReporte = end.format('YYYY-MM-DD');
-    }); 
+        fechaInicioReporte = start.format('YYYY-MM-DD');
+        fechaFinalReporte = end.format('YYYY-MM-DD');
+    });
 });

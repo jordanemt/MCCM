@@ -192,40 +192,7 @@
 
 
 
-<script type="text/javascript">
- @*Metodo para cambiar variable global hidden*@
-function seleccionado(seleccion) {
-    var global = document.getElementById('custId').value;
-    if (seleccion !== global) {
-        document.getElementById('custId').value = seleccion;
-    }
-}
- @*Metodo para seleccionar la entidad*@
-function seleccionEntidad() {
-    var global = document.getElementById('custId').value;
-    if (global == 1) {
-        $('#entidadPersonaModal').modal('show');
-    }
-    if (global == 2) {
-        $('#entidadPersonaJuridicaModal').modal('show');
-    }
-    if (global == 3) {
-        $('#entidadVehículoModal').modal('show');
-    }
-    if (global == 4) {
-        $('#entidadUbicacionModal').modal('show');
-    }
-    if (global == 5) {
-        $('#entidadTelefonoModal').modal('show');
-    }
-    if (global == 6) {
-        $('#entidadArmaModal').modal('show');
-    }
-    if (global == 7) {
-        $('#entidadDrogaModal').modal('show');
-    }
-    }
-</script>
+
 
 @Html.Partial("~/Views/EntidadPersona/_EntidadPersona.cshtml")
 @Html.Partial("~/Views/EntidadVehiculo/_EntidadVehiculo.cshtml")

@@ -31,15 +31,13 @@ $(document).on("click", ".caso", function () {
     } else {
         $(this).addClass('filaseleccionada');
     }
-    
     sessionStorage.CasoID = $(this).attr('id');
-    CargarEventos();
-    CargarTareas();
-    listarGastos();
-    listarGrupos();
-    cargarGrupoMandoVigente();
     $("#casosTitulo").html($(this).children(".card-body").children().first().children().last().text());
-    
+    if (pestannaVisible == 'pestanna-1-body') {
+        cargarPestanna1();
+    } else if (pestannaVisible == 'pestanna-2-body') {
+        cargarPestanna2();
+    }
 });
 
 
@@ -214,6 +212,7 @@ function CargarCasos() {
             $("#casos-body").children().last()[0].scrollIntoView();
             $("#casosTitulo").html($("#casos-body").children().last().children(".card-body").children().first().children().last().text());
             //sessionStorage.CasoID = $("#casos-body").last().attr("id");
+            cargarGrupoMandoVigente();
             insert = 0;
         }
     })
