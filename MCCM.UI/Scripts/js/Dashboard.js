@@ -390,13 +390,16 @@ $(document).ready(function () {
         });
     });
 
+    $('#reporte-nombre-caso').val('');
+
     $('#picker').daterangepicker({
         "showDropdowns": true,
         "showWeekNumbers": true,
         "showISOWeekNumbers": true,
         "linkedCalendars": false,
         "showCustomRangeLabel": false,
-        "opens": "center"
+        "opens": "center",
+        startDate: moment()
     }, function (start, end, label) {
             fechaInicioReporte = start.format('YYYY-MM-DD');
             fechaFinalReporte = end.format('YYYY-MM-DD');

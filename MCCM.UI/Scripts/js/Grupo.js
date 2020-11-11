@@ -211,7 +211,8 @@ function aplicarGrupoDateRangePicker() {
     }
     fechaFinalElement.daterangepicker({
         autoUpdateInput: false,
-        singleDatePicker: true
+        singleDatePicker: true,
+        minDate: fechaInicioElement.val(),
     }, function (start) {
         fechaFinalElement.val(start.format('DD/M/Y'));
     });
