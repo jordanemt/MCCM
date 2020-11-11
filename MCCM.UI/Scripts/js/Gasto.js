@@ -85,6 +85,7 @@ function insertarGasto() {
             },
             success: function (data) {
                 $('#gasto-form-modal').modal('hide');
+                $('.mensajeVacio').remove();
                 $('#gastos-contenedor').append(data);
                 desactivarAcciones();
             },
@@ -122,6 +123,8 @@ function actualizarGasto() {
             success: function (data) {
                 $('#gasto-' + $('#TN_ID_Gasto').val()).remove();
                 $('#gasto-form-modal').modal('hide');
+                $('.mensajeVacio').remove();
+                $('.mensajeVacio').remove();
                 $('#gastos-contenedor').append(data);
                 desactivarAcciones();
             },
@@ -148,9 +151,8 @@ function eliminarGastoPorId(id) {
         type: "POST",
         data: { "id": id },
         success: function (data) {
-            $("#mensaje-body").html('Se eliminó correctamente');
-            $("#modalMensajeError").modal("show");
             $('#gasto-' + id).remove();
+            $('#ModalMensaje').modal('hide');
         },
         error: function (error) {
             $("#mensaje-body").html(error.responseText);

@@ -85,6 +85,7 @@ function insertarGrupo() {
             },
             success: function (data) {
                 $('#grupo-form-modal').modal('hide');
+                $('.mensajeVacio').remove();
                 $('#grupo-contenedor').append(data);
                 desactivarAcciones();
             },
@@ -122,6 +123,7 @@ function actualizarGrupo() {
             success: function (data) {
                 $('#grupo-' + $('#TN_ID_Grupo').val()).remove();
                 $('#grupo-form-modal').modal('hide');
+                $('.mensajeVacio').remove();
                 $('#grupo-contenedor').append(data);
                 desactivarAcciones();
             },
@@ -148,8 +150,8 @@ function eliminarGrupoPorId(id) {
         type: "POST",
         data: { "id": id },
         success: function (data) {
-            $("#mensaje-body").html('Se eliminó correctamente');
-            $("#modalMensajeError").modal("show");
+            $('#grupo-' + id).remove();
+            $('#ModalMensaje').modal('hide');
         },
         error: function (error) {
             $("#mensaje-body").html(error.responseText);
@@ -186,34 +188,32 @@ function cargarGrupoMandoVigente() {
 
 function aplicarGrupoDateRangePicker() {
     var fechaInicioElement = $('#TF_Fecha_Inicio');
-    var fechaInicio = $('#TF_Fecha_Inicio').val();
+    var fechaFinalElement = $('#TF_Fecha_Final');
     fechaInicioElement.daterangepicker({
         singleDatePicker: true,
-        startDate: (fechaInicioElement.val() !== '') ? moment($('#TF_Fecha_Inicio').val()) : moment(),
+        startDate: (fechaInicioElement.val() != '') ? moment($('#TF_Fecha_Inicio').val()) : moment(),
         locale: {
             format: 'DD/M/Y'
         }
+    }, function (start) {
+            fechaFinalElement.val('');
+            fechaFinalElement.daterangepicker({
+                autoUpdateInput: false,
+                singleDatePicker: true,
+                minDate: start,
+            }, function (start) {
+                fechaFinalElement.val(start.format('DD/M/Y'));
+            });
     });
 
-    var fechaFinalElement = $('#TF_Fecha_Final');
-    fechaInicioElement.on('apply.daterangepicker', function (ev, picker) {
-        fechaFinalElement.val('');
-        fechaFinalElement.daterangepicker({
-            autoUpdateInput: false,
-            singleDatePicker: true,
-            minDate: picker.startDate,
-        });
-    });
-    fechaFinalElement.daterangepicker({
-        autoUpdateInput: false,
-        singleDatePicker: true,
-        minDate: (fechaInicio !== '') ? moment(fechaInicio) : moment(),
-    });
-    if (fechaFinalElement.val() !== '') {
+    if (fechaFinalElement.val() != '') {
         fechaFinalElement.val(moment(fechaFinalElement.val()).format('DD/M/Y'));
     }
-    fechaFinalElement.on('apply.daterangepicker', function (ev, picker) {
-        $(this).val(picker.startDate.format('DD/M/Y'));
+    fechaFinalElement.daterangepicker({
+        autoUpdateInput: false,
+        singleDatePicker: true
+    }, function (start) {
+        fechaFinalElement.val(start.format('DD/M/Y'));
     });
 }
 

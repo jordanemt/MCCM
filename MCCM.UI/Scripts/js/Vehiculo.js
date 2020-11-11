@@ -85,6 +85,7 @@ function insertarGrupo_Vehiculo() {
             },
             success: function (data) {
                 $('#grupo_vehiculo-form-modal').modal('hide');
+                $('.mensajeVacio').remove();
                 $('#grupo_vehiculo-contenedor').append(data);
                 desactivarAcciones();
             },
@@ -122,6 +123,7 @@ function actualizarGrupo_Vehiculo() {
             success: function (data) {
                 $('#grupo_vehiculo-' + $('#TN_ID_Grupo_Vehiculo').val()).remove();
                 $('#grupo_vehiculo-form-modal').modal('hide');
+                $('.mensajeVacio').remove();
                 $('#grupo_vehiculo-contenedor').append(data);
                 desactivarAcciones();
             },
@@ -148,8 +150,8 @@ function eliminarGrupo_VehiculoPorId(id) {
         type: "POST",
         data: { "id": id },
         success: function (data) {
-            $("#mensaje-body").html('Se ha borrado el vehículo del grupo');
-            $("#modalMensajeError").modal("show");
+            $('#grupo_vehiculo-' + id).remove();
+            $('#ModalMensaje').modal('hide');
         },
         error: function (error) {
             $("#mensaje-body").html(error.responseText);
