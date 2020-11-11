@@ -1,4 +1,18 @@
-﻿$(document).on("click", "#entidadPersona", function () {
+﻿
+$(document).ready(function () {
+    cargarTipoIdentificacion();
+    cargarPersonaSexo();
+    cargarPersonaGenero();
+    cargarPersonaNacionalidad();
+    iniciarCalendarioPersona(moment());
+})
+
+$(document).on("click", "#entidadPersona", function () {
+    iniciarCatalogosPersona()
+})
+
+function iniciarCatalogosPersona() {
+    
     if (validarCasoSession()) {
         CargarEntidadPersona();
         cargarTipoIdentificacion();
@@ -7,7 +21,7 @@
         cargarPersonaNacionalidad();
         iniciarCalendarioPersona(moment());
     }
-})
+}
 
 
 /*Fecha*/
