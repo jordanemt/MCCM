@@ -103,14 +103,14 @@ function CargarEntidadDrogas() {
 
 /*Eliminar Droga*/
 
-function eliminarDroga(entidadDrogaID) {
+function eliminarDroga(entidadDrogaID, elemento) {
     $.ajax({
         type: "POST",
         url: "/E_Droga/Eliminar_E_DrogaPorID",
         data: { "entidadDrogaID": entidadDrogaID }
     }).done(function (data) {
         elemento.parent().parent().parent().remove();
-
+        $("#ModalMensaje").modal("hide");
     });
 }
 

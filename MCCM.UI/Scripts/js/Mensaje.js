@@ -18,7 +18,7 @@ $(document).on("click", ".btnEliminarMensaje", function () {
         eliminarGrupo_VehiculoPorId(boton.attr('id'));
     }
     else if (boton.attr('class').split(' ')[1] == "borrarEntidadDroga") {
-        eliminarDroga(boton.attr('id'));
+        eliminarDroga(boton.attr('id'),boton);
     } else if (boton.attr('class').split(' ')[1] == "borrarEntidadTelefono") {
         eliminarTelefono(boton.attr('id'), boton);
     }
