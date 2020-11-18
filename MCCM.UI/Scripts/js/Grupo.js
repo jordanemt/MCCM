@@ -14,7 +14,8 @@
             }
         },
         error: function (error) {
-            alert(error.responseText);
+            $("#mensaje-body").html(error.responseText);
+            $("#modalMensajeError").modal("show");
         }
     });
 }
@@ -34,7 +35,8 @@ function abrirActualizarGrupoFormModal(id) {
             $('#grupo-form-modal').modal('show');
         },
         error: function (error) {
-            alert(error.responseText);
+            $("#mensaje-body").html(error.responseText);
+            $("#modalMensajeError").modal("show");
         }
     });
 }
@@ -55,9 +57,11 @@ function listarGrupos() {
         },
         success: function (data) {
             $('#grupo-contenedor').html(data);
+            desactivarAcciones();
         },
         error: function (error) {
-            alert(error.responseText);
+            $("#mensaje-body").html(error.responseText);
+            $("#modalMensajeError").modal("show");
         }
     });
 }
@@ -81,10 +85,13 @@ function insertarGrupo() {
             },
             success: function (data) {
                 $('#grupo-form-modal').modal('hide');
+                $('.mensajeVacio').remove();
                 $('#grupo-contenedor').append(data);
+                desactivarAcciones();
             },
             error: function (error) {
-                alert(error.responseText);
+                $("#mensaje-body").html(error.responseText);
+                $("#modalMensajeError").modal("show");
             },
             complete: function () {
                 $("#grupo-form-modal-submit")
@@ -116,10 +123,13 @@ function actualizarGrupo() {
             success: function (data) {
                 $('#grupo-' + $('#TN_ID_Grupo').val()).remove();
                 $('#grupo-form-modal').modal('hide');
+                $('.mensajeVacio').remove();
                 $('#grupo-contenedor').append(data);
+                desactivarAcciones();
             },
             error: function (error) {
-                alert(error.responseText);
+                $("#mensaje-body").html(error.responseText);
+                $("#modalMensajeError").modal("show");
             },
             complete: function () {
                 $("#grupo-form-modal-submit")
@@ -140,11 +150,12 @@ function eliminarGrupoPorId(id) {
         type: "POST",
         data: { "id": id },
         success: function (data) {
-            alert("Se elimino el grupo #" + id);
             $('#grupo-' + id).remove();
+            $('#ModalMensaje').modal('hide');
         },
         error: function (error) {
-            alert(error.responseText);
+            $("#mensaje-body").html(error.responseText);
+            $("#modalMensajeError").modal("show");
         }
     });
 }
@@ -158,11 +169,16 @@ function cargarGrupoMandoVigente() {
             cache: false,
             type: "GET",
             data: { "idCaso": sessionStorage.CasoID },
+            beforeSend: function () {
+                $('#mando-bod').empty();
+                agregarSpinnerCargando($('#mando-body'));
+            },
             success: function (data) {
                 $('#mando-body').html(data);
             },
             error: function (error) {
-                alert(error.responseText);
+                $("#mensaje-body").html(error.responseText);
+                $("#modalMensajeError").modal("show");
             }
         });
     } else {
@@ -172,34 +188,33 @@ function cargarGrupoMandoVigente() {
 
 function aplicarGrupoDateRangePicker() {
     var fechaInicioElement = $('#TF_Fecha_Inicio');
-    var fechaInicio = $('#TF_Fecha_Inicio').val();
+    var fechaFinalElement = $('#TF_Fecha_Final');
     fechaInicioElement.daterangepicker({
         singleDatePicker: true,
-        startDate: (fechaInicioElement.val() !== '') ? moment($('#TF_Fecha_Inicio').val()) : moment(),
+        startDate: (fechaInicioElement.val() != '') ? moment($('#TF_Fecha_Inicio').val()) : moment(),
         locale: {
             format: 'DD/M/Y'
         }
+    }, function (start) {
+            fechaFinalElement.val('');
+            fechaFinalElement.daterangepicker({
+                autoUpdateInput: false,
+                singleDatePicker: true,
+                minDate: start,
+            }, function (start) {
+                fechaFinalElement.val(start.format('DD/M/Y'));
+            });
     });
 
-    var fechaFinalElement = $('#TF_Fecha_Final');
-    fechaInicioElement.on('apply.daterangepicker', function (ev, picker) {
-        fechaFinalElement.val('');
-        fechaFinalElement.daterangepicker({
-            autoUpdateInput: false,
-            singleDatePicker: true,
-            minDate: picker.startDate,
-        });
-    });
+    if (fechaFinalElement.val() != '') {
+        fechaFinalElement.val(moment(fechaFinalElement.val()).format('DD/M/Y'));
+    }
     fechaFinalElement.daterangepicker({
         autoUpdateInput: false,
         singleDatePicker: true,
-        minDate: (fechaInicio !== '') ? moment(fechaInicio) : moment(),
-    });
-    if (fechaFinalElement.val() !== '') {
-        fechaFinalElement.val(moment(fechaFinalElement.val()).format('DD/M/Y'));
-    }
-    fechaFinalElement.on('apply.daterangepicker', function (ev, picker) {
-        $(this).val(picker.startDate.format('DD/M/Y'));
+        minDate: fechaInicioElement.val(),
+    }, function (start) {
+        fechaFinalElement.val(start.format('DD/M/Y'));
     });
 }
 

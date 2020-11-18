@@ -38,8 +38,8 @@ $(document).on("click", ".caso", function () {
     } else if (pestannaVisible == 'pestanna-2-body') {
         cargarPestanna2();
     }
-
-
+    $('#reporte-nombre-caso').val($(this).children(".card-body").children().first().children().last().text());
+    cargarGrupoMandoVigente();
 });
 
 
@@ -216,7 +216,6 @@ function CargarCasos() {
             $("#casos-body").children().last()[0].scrollIntoView();
             $("#casosTitulo").html($("#casos-body").children().last().children(".card-body").children().first().children().last().text());
             //sessionStorage.CasoID = $("#casos-body").last().attr("id");
-            cargarGrupoMandoVigente();
             insert = 0;
         }
     })

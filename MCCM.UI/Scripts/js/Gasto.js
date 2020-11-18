@@ -14,7 +14,8 @@
             }
         },
         error: function (error) {
-            alert(error.responseText);
+            $("#mensaje-body").html(error.responseText);
+            $("#modalMensajeError").modal("show");
         }
     });
 }
@@ -34,7 +35,8 @@ function abrirActualizarGastoFormModal(id) {
             $('#gasto-form-modal').modal('show');
         },
         error: function (error) {
-            alert(error.responseText);
+            $("#mensaje-body").html(error.responseText);
+            $("#modalMensajeError").modal("show");
         }
     });
 }
@@ -55,9 +57,11 @@ function listarGastos() {
         },
         success: function (data) {
             $('#gastos-contenedor').html(data);
+            desactivarAcciones();
         },
         error: function (error) {
-            alert(error.responseText);
+            $("#mensaje-body").html(error.responseText);
+            $("#modalMensajeError").modal("show");
         }
     });
 }
@@ -81,10 +85,13 @@ function insertarGasto() {
             },
             success: function (data) {
                 $('#gasto-form-modal').modal('hide');
+                $('.mensajeVacio').remove();
                 $('#gastos-contenedor').append(data);
+                desactivarAcciones();
             },
             error: function (error) {
-                alert(error.responseText);
+                $("#mensaje-body").html(error.responseText);
+                $("#modalMensajeError").modal("show");
             },
             complete: function () {
                 $("#gasto-form-modal-submit")
@@ -116,10 +123,14 @@ function actualizarGasto() {
             success: function (data) {
                 $('#gasto-' + $('#TN_ID_Gasto').val()).remove();
                 $('#gasto-form-modal').modal('hide');
+                $('.mensajeVacio').remove();
+                $('.mensajeVacio').remove();
                 $('#gastos-contenedor').append(data);
+                desactivarAcciones();
             },
             error: function (error) {
-                alert(error.responseText);
+                $("#mensaje-body").html(error.responseText);
+                $("#modalMensajeError").modal("show");
             },
             complete: function () {
                 $("#gasto-form-modal-submit")
@@ -140,11 +151,12 @@ function eliminarGastoPorId(id) {
         type: "POST",
         data: { "id": id },
         success: function (data) {
-            alert("Se elimino el gasto #" + id);
             $('#gasto-' + id).remove();
+            $('#ModalMensaje').modal('hide');
         },
         error: function (error) {
-            alert(error.responseText);
+            $("#mensaje-body").html(error.responseText);
+            $("#modalMensajeError").modal("show");
         }
     });
 }
@@ -180,7 +192,8 @@ function insertarTipo_Gasto() {
                 $('#gasto-form-modal').modal('show');
             },
             error: function (error) {
-                alert(error.responseText);
+                $("#mensaje-body").html(error.responseText);
+                $("#modalMensajeError").modal("show");
             },
             complete: function () {
                 $("#tipo_gasto-form-modal-submit")
@@ -193,6 +206,10 @@ function insertarTipo_Gasto() {
 }
 
 function obtenerSumatoriaDeGastosPorTipoPorCaso() {
+    if (sessionStorage.CasoID == null) {
+        alert('Debe seleccionar un gasto');
+        return 0;
+    }
     var url = "/Gasto/ObtenerSumatoriaDeGastosPorTipoPorCaso/";
 
     $.ajax({
@@ -203,13 +220,15 @@ function obtenerSumatoriaDeGastosPorTipoPorCaso() {
         success: function (data) {
             var msg = '';
             jQuery.each(data.tiposSumatoria, function (i, val) {
-                msg += val.nombre + ': ' + val.totalTipo + '\n';
+                msg += val.nombre + ': ' + val.totalTipo + '<br>';
             });
             msg += 'Total: ' + data.total;
-            alert(msg);
+            $("#mensaje-body").html(msg);
+            $("#modalMensajeError").modal("show");
         },
         error: function (error) {
-            alert(error.responseText);
+            $("#mensaje-body").html(error.responseText);
+            $("#modalMensajeError").modal("show");
         }
     });
 }

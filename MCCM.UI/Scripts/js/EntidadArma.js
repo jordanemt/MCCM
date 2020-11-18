@@ -106,13 +106,14 @@ function CargarEntidadArmas() {
 
 /*Eliminar Arma*/
 
-function eliminarArma(entidadArmaID) {
+function eliminarArma(entidadArmaID, elemento) {
     $.ajax({
         type: "POST",
         url: "/E_Arma/Eliminar_E_ArmaPorID",
         data: { "entidadArmaID": entidadArmaID }
     }).done(function (data) {
         elemento.parent().parent().parent().remove();
+        $("#ModalMensaje").modal("hide");
     });
 }
 /*Editar*/

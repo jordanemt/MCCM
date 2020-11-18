@@ -185,13 +185,14 @@ function CargarEntidadVehiculos() {
 
 /*Eliminar Vehiculo*/
 
-function eliminarEntidadVehiculo(entidadVehiculoID) {
+function eliminarEntidadVehiculo(entidadVehiculoID,, elemento) {
     $.ajax({
         type: "POST",
         url: "/E_Vehiculo/Eliminar_E_VehiculoPorID",
         data: { "entidadVehiculoID": entidadVehiculoID }
     }).done(function (data) {
         elemento.parent().parent().parent().remove();
+        $("#ModalMensaje").modal("hide");
     });
 }
 

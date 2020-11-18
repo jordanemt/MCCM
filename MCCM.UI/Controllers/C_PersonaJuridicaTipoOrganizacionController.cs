@@ -19,7 +19,7 @@ namespace MCCM.UI.Controllers
             return c_PersonaJuridicaTipoOrganizacionNegocio.ListarPersonaJuridicaTipoOrganización();
         }
         [HttpPost]
-        public String InsertarPersonaJuridicaTipoOrganizacion(TMCCM_C_Persona_Juridica_Tipo_Organización personaJuridicaTipoOrganizacion)
+        public String InsertarPersonaJuridicaTipoOrganizacion(TMCCM_C_Persona_Juridica_Tipo_Organizacion personaJuridicaTipoOrganizacion)
         {
             c_PersonaJuridicaTipoOrganizacionNegocio.InsertarPersonaJuridicaTipoOrganizacion(personaJuridicaTipoOrganizacion);
             return "S";

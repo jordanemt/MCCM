@@ -109,13 +109,14 @@ function CargarEntidadUbicaciones() {
     });
 }
 //*Eliminar Ubicacion
-function eliminarUbicacion(entidadUbicacionID) {
+function eliminarUbicacion(entidadUbicacionID,elemento) {
     $.ajax({
         type: "POST",
         url: "/E_Ubicacion/Eliminar_E_UbicacionPorID",
         data: { "entidadUbicacionID": entidadUbicacionID }
     }).done(function (data) {
         elemento.parent().parent().parent().remove();
+        $("#ModalMensaje").modal("hide");
     });
 }
 

@@ -212,7 +212,7 @@ function CargarEventos() {
         }
         desactivarAcciones();
         if (eventos.length == 0) {
-            agregarMensajeVacio($("#bitacoras-body"));
+            agregarMensajeVacio($("#bitacora-body"));
         }
     })
 }

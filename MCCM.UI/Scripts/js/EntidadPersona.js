@@ -1,4 +1,18 @@
-﻿$(document).on("click", "#entidadPersona", function () {
+﻿
+$(document).ready(function () {
+    cargarTipoIdentificacion();
+    cargarPersonaSexo();
+    cargarPersonaGenero();
+    cargarPersonaNacionalidad();
+    iniciarCalendarioPersona(moment());
+})
+
+$(document).on("click", "#entidadPersona", function () {
+    iniciarCatalogosPersona()
+})
+
+function iniciarCatalogosPersona() {
+    
     if (validarCasoSession()) {
         CargarEntidadPersona();
         cargarTipoIdentificacion();
@@ -7,7 +21,7 @@
         cargarPersonaNacionalidad();
         iniciarCalendarioPersona(moment());
     }
-})
+}
 
 
 /*Fecha*/
@@ -57,14 +71,14 @@ $(document).on("click", "#btnInsertarEntidadPersona", function (e) {
 
 /*Eliminar Persona*/
 
-function eliminarPersona(entidadPersonaID) {
+function eliminarPersona(entidadPersonaID, elemento) {
     $.ajax({
         type: "POST",
         url: "/E_Persona/Eliminar_E_PersonaPorID",
         data: { "entidadPersonaID": entidadPersonaID }
     }).done(function (data) {
         elemento.parent().parent().parent().remove();
-
+        $("#ModalMensaje").modal("hide");
     });
 }
 

@@ -171,7 +171,7 @@ function CargarEntidadPersonaJuridica() {
                                     '<h6><span class="w-100 badge badge-primary">Nombre Organización:</span></h6>' +
                                 ' </div>' +
                                 '<div class="col-md-7" >' +
-                                    '<p>' + entidadPersonaJuridica[i].TC_Nombre_Organización + '</p>' +
+                                    '<p>' + entidadPersonaJuridica[i].TC_Nombre_Organizacion + '</p>' +
                                 '</div>' +
                             '</div>' +
                             '<div class="row">' +
@@ -230,7 +230,7 @@ $(document).on("click", ".editarEntidadPersonaJuridica", function () {
         $("#divPersonaJuridicaID").show();
         $("#TN_ID_Persona_Juridica").val(entidadPersonaJuridica.TN_ID_Persona_Juridica);
         $("#TC_ID_Cedula_Juridica_PJ").val(entidadPersonaJuridica.TC_ID_Cedula_Juridica);
-        $("#TC_Nombre_OrganizaciónPJuridca_PJ").val(entidadPersonaJuridica.TC_Nombre_Organización);
+        $("#TC_Nombre_OrganizacionPJuridca_PJ").val(entidadPersonaJuridica.TC_Nombre_Organización);
         $("#TC_Nombre_Comercial_PJ").val(entidadPersonaJuridica.TC_Nombre_Comercial);
         $("#TN_ID_Tipo_Organizacion").val(entidadPersonaJuridica.TN_ID_Tipo_Organizacion).selectpicker("refresh");
         $("#TC_Sitio_Web_PJ").val(entidadPersonaJuridica.TC_Sitio_Web);

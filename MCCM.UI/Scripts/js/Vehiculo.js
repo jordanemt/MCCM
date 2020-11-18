@@ -14,7 +14,8 @@
             }
         },
         error: function (error) {
-            alert(error.responseText);
+            $("#mensaje-body").html(error.responseText);
+            $("#modalMensajeError").modal("show");
         },
     });
 }
@@ -34,7 +35,8 @@ function abrirGrupo_VehiculoActualizarFormModal(id) {
             $('#grupo_vehiculo-form-modal').modal('show');
         },
         error: function (error) {
-            alert(error.responseText);
+            $("#mensaje-body").html(error.responseText);
+            $("#modalMensajeError").modal("show");
         }
     });
 }
@@ -55,9 +57,11 @@ function listarGrupo_Vehiculo() {
         },
         success: function (data) {
             $('#grupo_vehiculo-contenedor').html(data);
+            desactivarAcciones();
         },
         error: function (error) {
-            alert(error.responseText);
+            $("#mensaje-body").html(error.responseText);
+            $("#modalMensajeError").modal("show");
         }
     });
 }
@@ -81,10 +85,13 @@ function insertarGrupo_Vehiculo() {
             },
             success: function (data) {
                 $('#grupo_vehiculo-form-modal').modal('hide');
+                $('.mensajeVacio').remove();
                 $('#grupo_vehiculo-contenedor').append(data);
+                desactivarAcciones();
             },
             error: function (error) {
-                alert(error.responseText);
+                $("#mensaje-body").html(error.responseText);
+                $("#modalMensajeError").modal("show");
             },
             complete: function () {
                 $("#grupo_vehiculo-form-modal-submit")
@@ -116,10 +123,13 @@ function actualizarGrupo_Vehiculo() {
             success: function (data) {
                 $('#grupo_vehiculo-' + $('#TN_ID_Grupo_Vehiculo').val()).remove();
                 $('#grupo_vehiculo-form-modal').modal('hide');
+                $('.mensajeVacio').remove();
                 $('#grupo_vehiculo-contenedor').append(data);
+                desactivarAcciones();
             },
             error: function (error) {
-                alert(error.responseText);
+                $("#mensaje-body").html(error.responseText);
+                $("#modalMensajeError").modal("show");
             },
             complete: function () {
                 $("#grupo_vehiculo-form-modal-submit")
@@ -140,11 +150,12 @@ function eliminarGrupo_VehiculoPorId(id) {
         type: "POST",
         data: { "id": id },
         success: function (data) {
-            alert('Se ha borrado el vehículo del grupo');
             $('#grupo_vehiculo-' + id).remove();
+            $('#ModalMensaje').modal('hide');
         },
         error: function (error) {
-            alert(error.responseText);
+            $("#mensaje-body").html(error.responseText);
+            $("#modalMensajeError").modal("show");
         }
     });
 }
@@ -181,7 +192,8 @@ function insertarVehiculo() {
                 $('#grupo_vehiculo-form-modal').modal('show');
             },
             error: function (error) {
-                alert(error.responseText);
+                $("#mensaje-body").html(error.responseText);
+                $("#modalMensajeError").modal("show");
             },
             complete: function () {
                 $("#vehiculo-form-modal-submit")

@@ -22,7 +22,7 @@ namespace MCCM.AccesoDatos
                 {
                     caso.TB_Eliminado = false;
                     string momentoActual = DateTime.Now.ToString("yyyy-MM-dd HH:mm tt");
-                    caso.TF_Fecha = Convert.ToDateTime(momentoActual, CultureInfo.InvariantCulture);
+                    caso.TF_Fecha = DateTime.Now;
                     context.TMCCM_Caso.Add(caso);
                     context.SaveChanges();
 
